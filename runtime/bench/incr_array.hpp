@@ -68,6 +68,24 @@ public:
 /* Hardware-interrupt version */
 
 extern "C"
+void incr_array_interrupt_l0();
+extern "C"
+void incr_array_interrupt_l1();
+extern "C"
+void incr_array_interrupt_l2();
+extern "C"
+void incr_array_interrupt_l3();
+
+extern "C"
+void incr_array_interrupt_rf_l0();
+extern "C"
+void incr_array_interrupt_rf_l1();
+extern "C"
+void incr_array_interrupt_rf_l2();
+extern "C"
+void incr_array_interrupt_rf_l3();
+
+extern "C"
 int64_t* incr_array_interrupt(int64_t*, int64_t, int64_t, tpalrts::promotable*);
 
 extern "C"

@@ -3,28 +3,6 @@
 #include <sys/signal.h>
 
 namespace tpalrts {
-
-/*---------------------------------------------------------------------*/
-/* Rollforward assembly labels */
-
-extern "C"
-void incr_array_interrupt_l0();
-extern "C"
-void incr_array_interrupt_l1();
-extern "C"
-void incr_array_interrupt_l2();
-extern "C"
-void incr_array_interrupt_l3();
-
-extern "C"
-void incr_array_interrupt_rf_l0();
-extern "C"
-void incr_array_interrupt_rf_l1();
-extern "C"
-void incr_array_interrupt_rf_l2();
-extern "C"
-void incr_array_interrupt_rf_l3();
-
   
 /*---------------------------------------------------------------------*/
 /* Rollforward table */
