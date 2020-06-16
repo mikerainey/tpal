@@ -1,4 +1,5 @@
 #include "benchmark.hpp"
+#include "incr_array.hpp"
 
 namespace tpalrts {
   

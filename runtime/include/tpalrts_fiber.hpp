@@ -127,7 +127,7 @@ public:
     : fiber<Scheduler>([] (promotable*) { return mcsl::fiber_status_finish; }) { }
   
   mcsl::fiber_status_type exec() {
-    return mcsl::fiber_status_terminate;
+    return mcsl::fiber_status_exit_launch;
   }
   
 };

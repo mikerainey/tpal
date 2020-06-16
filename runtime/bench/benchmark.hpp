@@ -1,3 +1,8 @@
+#ifdef USE_CILK_PLUS
+#include <cilk/cilk.h>
+#include <cilk/cilk_api.h>
+#endif
+
 #if defined(TPALRTS_LINUX)
 #include "cmdline.hpp"
 #endif
@@ -7,8 +12,7 @@
 
 #include "tpalrts_scheduler.hpp"
 #include "tpalrts_rollforward.hpp"
-
-#include "incr_array.hpp"
+#include "tpalrts_fiber.hpp"
 
 namespace tpalrts {
 
@@ -34,24 +38,29 @@ void launch0(std::size_t nb_workers,
   bench_pre();
   logging::initialize();
   {
+    auto f_pre = new fiber<Scheduler>([=] (promotable*) {
+      stats::start_collecting();
+      logging::log_event(mcsl::enter_algo);
+      start_time = mcsl::clock::now();                                        
+    });
     auto f_cont = new fiber<Scheduler>([=] (promotable*) {
       elapsed_time = mcsl::clock::since(start_time);
+      logging::log_event(mcsl::exit_algo);
+      stats::report(nb_workers);
     });
     auto f_term = new terminal_fiber<Scheduler>();
+    fiber<Scheduler>::add_edge(f_pre, f_body);
     fiber<Scheduler>::add_edge(f_body, f_cont);
     fiber<Scheduler>::add_edge(f_cont, f_term);
-    start_time = mcsl::clock::now();
+    f_pre->release();
     f_body->release();
     f_cont->release();
     f_term->release();
   }
   using scheduler_type = mcsl::chase_lev_work_stealing_scheduler<Scheduler, fiber, stats, logging, mcsl::minimal_elastic, Worker, Interrupt>;
-  stats::on_enter_launch();
   scheduler_type::launch(nb_workers);
-  stats::on_exit_launch();
   bench_post();
   printf("exectime %.3f\n", elapsed_time);
-  stats::report(nb_workers);
   logging::output(nb_workers);
 }
 

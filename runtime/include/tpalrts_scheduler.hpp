@@ -92,7 +92,7 @@ public:
   void launch_worker_thread(std::size_t id, const Body& b) {
     auto t = std::thread([id, &b] {
       mcsl::perworker::unique_id::initialize_worker(id);
-      b();
+      b(id);
     });
     pthreads[id] = t.native_handle();
     t.detach();
