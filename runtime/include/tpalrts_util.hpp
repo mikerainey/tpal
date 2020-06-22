@@ -1,7 +1,5 @@
 #pragma once
 
-#include <map>
-
 #include "mcsl_stats.hpp"
 #include "mcsl_logging.hpp"
 
@@ -35,7 +33,7 @@ public:
 
   static
   const char* name_of_counter(counter_id_type id) {
-    std::map<counter_id_type, const char*> names;
+    const char* names[nb_counters];
     names[nb_promotions] = "nb_promotions";
     names[nb_steals] = "nb_steals";
     return names[id];

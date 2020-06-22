@@ -5,13 +5,11 @@
 
 #if defined(TPALRTS_LINUX)
 #include "cmdline.hpp"
-#endif
-
 #include "mcsl_chaselev.hpp"
 #include "mcsl_machine.hpp"
+#endif
 
 #include "tpalrts_scheduler.hpp"
-#include "tpalrts_rollforward.hpp"
 #include "tpalrts_fiber.hpp"
 
 namespace tpalrts {
@@ -146,6 +144,7 @@ void launch(const Bench_pre& bench_pre,
             const Bench_post& bench_post,
             Bench_body_manual bench_body_manual,
             const Bench_body_cilk& bench_body_cilk) {
+  mcsl::init_print_lock();
   should_pin_workers_to_cores = deepsea::cmdline::parse_or_default_bool("pin_workers_to_cores", false);
   std::size_t nb_workers = deepsea::cmdline::parse_or_default_int("proc", 1);
   mcsl::perworker::unique_id::initialize(nb_workers);

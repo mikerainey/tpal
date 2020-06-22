@@ -144,7 +144,7 @@ int64_t* incr_array_cilk(int64_t* a, int64_t lo, int64_t hi) {
     a[i]++;
   }
 #else
-  mcsl::die("Cilk unsupported\n");
+  assert(false);
 #endif
   return a;
 }
