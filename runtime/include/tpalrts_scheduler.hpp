@@ -9,7 +9,36 @@
 #include <sys/signal.h>
 #include <sys/syscall.h>
 #elif defined(MCSL_NAUTILUS)
-
+static constexpr
+uint64_t dflt_timer_us = 20;
+static constexpr
+uint64_t dflt_timer_ns = 1000 * dflt_timer_us;
+uint64_t nk_heartbeat_timer_ns = dflt_timer_ns;
+struct nk_timer_s;
+using nk_timer_t = struct nk_timer_s;
+using nemo_event_id_t = int;
+typedef void (*nemo_action_t)(struct excp_entry_state *, void * priv);
+extern "C"
+nemo_event_id_t nk_nemo_register_event_action(nemo_action_t func, void * priv_data);
+extern "C"
+void nk_timer_cancel(nk_timer_t* timer);
+extern "C"
+int nk_timer_reset(nk_timer_t *t,
+		   uint64_t ns);
+extern "C"
+int nk_timer_start(nk_timer_t *t);
+extern "C"
+nk_timer_t *nk_timer_create(char *name);
+extern "C"
+void nk_nemo_event_notify(nemo_event_id_t eid, int cpu);
+extern "C"
+int nk_timer_set(nk_timer_t *t, 
+                 uint64_t ns, 
+                 uint64_t flags,
+                 void (*callback)(void *p), 
+                 void *p,
+                 uint32_t cpu);
+#define NK_TIMER_CALLBACK  0x4  // thread continue immediately,
 #endif
 
 #include "mcsl_scheduler.hpp"
@@ -213,35 +242,6 @@ public:
   using termination_detection_type = mcsl::minimal_termination_detection;
 
 };
-
-#define TIMER_MS 500UL
-#define TIMER_NS (1000000UL*TIMER_MS)
-
-struct nk_timer_s;
-using nk_timer_t = struct nk_timer_s;
-using nemo_event_id_t = int;
-typedef void (*nemo_action_t)(struct excp_entry_state *, void * priv);
-extern "C"
-nemo_event_id_t nk_nemo_register_event_action(nemo_action_t func, void * priv_data);
-extern "C"
-void nk_timer_cancel(nk_timer_t* timer);
-extern "C"
-int nk_timer_reset(nk_timer_t *t,
-		   uint64_t ns);
-extern "C"
-int nk_timer_start(nk_timer_t *t);
-extern "C"
-nk_timer_t *nk_timer_create(char *name);
-extern "C"
-void nk_nemo_event_notify(nemo_event_id_t eid, int cpu);
-extern "C"
-int nk_timer_set(nk_timer_t *t, 
-                 uint64_t ns, 
-                 uint64_t flags,
-                 void (*callback)(void *p), 
-                 void *p,
-                 uint32_t cpu);
-#define NK_TIMER_CALLBACK  0x4  // thread continue immediately,
   
 class ping_thread_interrupt {
 public:
@@ -253,7 +253,7 @@ public:
   nemo_event_id_t id;
 
   static
-  ping_thread_status_type ping_thread_status;
+  std::atomic<ping_thread_status_type> ping_thread_status;
   
   static
   void initialize_signal_handler() {
@@ -262,17 +262,23 @@ public:
   
   static
   void wait_to_terminate_ping_thread() {
-    while (ping_thread_status != ping_thread_status_exited) { }
+    auto s = ping_thread_status.load();
+    if (s == ping_thread_status_active) {
+      ping_thread_status.compare_exchange_strong(s, ping_thread_status_exit_launch);
+    }
+    while (ping_thread_status.load() != ping_thread_status_exited) { }
   }
 
   static
-  void heartbeat_timer_callback(void *s) {
-    if (ping_thread_status != ping_thread_status_active) {
-      ping_thread_status = ping_thread_status_exited;
+  void heartbeat_timer_callback(void *) {
+    auto s = ping_thread_status.load();
+    if (s == ping_thread_status_exit_launch) {
       nk_timer_cancel(timer);
+      ping_thread_status.store(ping_thread_status_exited);
       return;
     }
-    nk_timer_reset(timer, TIMER_NS);
+    assert(s == ping_thread_status_active);
+    nk_timer_reset(timer, nk_heartbeat_timer_ns);
     nk_timer_start(timer);
     auto nb_workers = mcsl::perworker::unique_id::get_nb_workers();
     for (std::size_t i = 0; i != nb_workers; i++) {
@@ -284,9 +290,9 @@ public:
   void launch_ping_thread(std::size_t nb_workers) {    
     std::function<void(std::size_t)> f = [=] (std::size_t id) {
       timer = nk_timer_create("heartbeat_timer");
-      nk_timer_set(timer, TIMER_NS, NK_TIMER_CALLBACK, heartbeat_timer_callback, (void*)naut_get_cur_thread(), 0);
+      nk_timer_set(timer, nk_heartbeat_timer_ns, NK_TIMER_CALLBACK, heartbeat_timer_callback, (void*)naut_get_cur_thread(), 0);
       nk_timer_start(timer);
-      while (ping_thread_status == ping_thread_status_active) { }                                           
+      while (ping_thread_status.load() == ping_thread_status_active) { }                                           
     };
     auto p = new nk_worker_activation_type(id, f);
     int remote_core = nb_workers;
@@ -297,7 +303,7 @@ public:
 
 nk_timer_t* ping_thread_interrupt::timer;
   
-ping_thread_status_type ping_thread_interrupt::ping_thread_status = ping_thread_status_active;
+std::atomic<ping_thread_status_type> ping_thread_interrupt::ping_thread_status(ping_thread_status_active);
 
 nemo_event_id_t ping_thread_interrupt::id;
 
