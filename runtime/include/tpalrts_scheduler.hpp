@@ -221,7 +221,9 @@ class ping_thread_worker {
 public:
 
   static
-  void initialize_worker() { }
+  void initialize_worker() {
+    threads.mine() = naut_get_cur_thread();
+  }
 
   template <typename Body>
   static
@@ -229,7 +231,6 @@ public:
     // todo: assert that i+1 < nb_cpus
     std::function<void(std::size_t)> f = [&] (std::size_t id) {
       mcsl::perworker::unique_id::initialize_worker(id);
-      threads.mine() = naut_get_cur_thread();
       b(id);
     };
     auto p = new nk_worker_activation_type(id, f);
