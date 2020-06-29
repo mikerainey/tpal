@@ -144,51 +144,18 @@ void launch(const Bench_pre& bench_pre,
             const Bench_post& bench_post,
             Bench_body_manual bench_body_manual,
             const Bench_body_cilk& bench_body_cilk) {
-  mcsl::init_print_lock();
-  should_pin_workers_to_cores = deepsea::cmdline::parse_or_default_bool("pin_workers_to_cores", false);
-  std::size_t nb_workers = deepsea::cmdline::parse_or_default_int("proc", 1);
-  mcsl::perworker::unique_id::initialize(nb_workers);
-  if (nb_workers > mcsl::perworker::default_max_nb_workers) {
-    mcsl::die("Requested too many worker threads: %lld, should be maximum %lld\n",
-                      nb_workers, mcsl::perworker::default_max_nb_workers);
-  }
-  // just hint to the OS that we'll be using this many threads
-  pthread_setconcurrency ((int)nb_workers);
-  {
-    bool numa_alloc_interleaved = (nb_workers == 1) ? false : true;
-    numa_alloc_interleaved = deepsea::cmdline::parse_or_default("numa_alloc_interleaved", numa_alloc_interleaved);
-    mcsl::initialize_hwloc(nb_workers, numa_alloc_interleaved);
-    printf("numa_interleave %d\n", numa_alloc_interleaved);
-  }
-  // load the CPU frequency
+  initialize_machine();
+  // assign heartbeat parameter kappa
   {
     double cpu_freq_ghz = mcsl::load_cpu_frequency_ghz();
     kappa_usec = deepsea::cmdline::parse_or_default_int("kappa_usec", 100);
     auto kappa_nsec = kappa_usec * 1000;
     kappa_cycles = (uint64_t)(cpu_freq_ghz * kappa_nsec);
   }
-  {
-    // initialize the CPU binding policy
-    auto resource_packing = mcsl::resource_packing_sparse;
-    {
-      deepsea::cmdline::dispatcher d;
-      d.add("sparse", [&] { });
-      d.add("dense", [&] { resource_packing = mcsl::resource_packing_dense; });
-      d.dispatch_or_default("resource_packing", "sparse");
-    }
-    auto resource_binding = mcsl::resource_binding_all;
-    {
-      deepsea::cmdline::dispatcher d;
-      d.add("all", [&] { });
-      d.add("by_core", [&] { resource_binding = mcsl::resource_binding_by_core; });
-      d.add("by_numa_node", [&] { resource_binding = mcsl::resource_binding_by_numa_node; });
-      d.dispatch_or_default("resource_binding", "by_core");      
-    }
-    mcsl::assign_cpusets(nb_workers, resource_packing, resource_binding);
-  }
   launch2(nb_workers,
           bench_pre, bench_body_interrupt, bench_body_software_polling, bench_body_serial,
           bench_post, bench_body_manual, bench_body_cilk);
+  teardown_machine();
 }
 
 } // end namespace

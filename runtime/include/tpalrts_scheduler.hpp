@@ -52,17 +52,12 @@ namespace tpalrts {
 /*---------------------------------------------------------------------*/
 /* TPAL worker-thread configuration */
 
-static
-bool should_pin_workers_to_cores = false;
-  
 class tpal_worker {
 public:
 
   static
   void initialize_worker() {
-    if (should_pin_workers_to_cores) {
-      mcsl::pin_calling_worker();
-    }
+    mcsl::pin_calling_worker();
   }
 
   template <typename Body>
@@ -320,8 +315,8 @@ public:
 
   template <typename Body>
   static
-  void launch_worker_thread(std::size_t i, const Body& b) {
-    mcsl::minimal_worker::launch_worker_thread(i, b);
+  void launch_worker_thread(std::size_t id, const Body& b) {
+    mcsl::minimal_worker::launch_worker_thread(id, b);
   }
   
   static
