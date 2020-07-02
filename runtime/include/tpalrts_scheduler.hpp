@@ -13,7 +13,7 @@ static constexpr
 uint64_t dflt_timer_us = 20;
 static constexpr
 uint64_t dflt_timer_ns = 1000 * dflt_timer_us;
-uint64_t nk_heartbeat_timer_ns = dflt_timer_ns;
+uint64_t nk_heartbeat_timer_ns;
 struct nk_timer_s;
 using nk_timer_t = struct nk_timer_s;
 using nemo_event_id_t = int;
@@ -302,7 +302,7 @@ nk_timer_t* ping_thread_interrupt::timer;
 std::atomic<ping_thread_status_type> ping_thread_interrupt::ping_thread_status(ping_thread_status_active);
 
 nemo_event_id_t ping_thread_interrupt::id;
-
+  
 #endif
 
 /*---------------------------------------------------------------------*/

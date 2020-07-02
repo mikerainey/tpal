@@ -1,3 +1,5 @@
+INSTALL_FOLDER=.
+
 ifeq (, $(shell which jemalloc-config))
 JEMALLOC =
 else
@@ -40,6 +42,10 @@ spmv_manual.s: spmv_manual_orig.s
 
 %.s: %.c $(INCLUDE_FILES)
 	$(CC) $(OPT_BASE_PREFIX) -S -o $@ $<
+
+install:
+	cp *.opt *.opt_cilk $(INSTALL_FOLDER)
+	cp run $(INSTALL_FOLDER)
 
 clean: 
 	rm -f spmv_manual2.s *.opt *.dbg *.dbg_cilk *.opt_cilk *.sta *.log *.ii *~ *.o *.i vgcore.*

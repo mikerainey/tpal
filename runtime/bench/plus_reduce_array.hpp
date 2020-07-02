@@ -1,5 +1,10 @@
 #pragma once
 
+#ifdef USE_CILK_PLUS
+#include <cilk/cilk.h>
+#include <cilk/cilk_api.h>
+#include <cilk/reducer_opadd.h>
+#endif
 #include <cstdint>
 
 #include "mcsl_util.hpp"
@@ -117,9 +122,9 @@ void plus_reduce_array_interrupt_promote(int64_t* a, int64_t lo, int64_t* ptr_hi
 /* Software-polling version */
 
 static
-void plus_reduce_array_software_polling(int64_t* a, int64_t lo, int64_t hi, int64_t* dst, tpalrts::promotable* p) {
+void plus_reduce_array_software_polling(int64_t* a, int64_t lo, int64_t hi, int64_t* dst, tpalrts::promotable* p,  int64_t software_polling_K = 128) {
   int64_t result = 0;
-  int64_t K = deepsea::cmdline::parse_or_default_int("software_polling_K", 128);
+  auto K = software_polling_K;
   uint64_t promotion_prev = mcsl::cycles::now();
   int64_t lo_outer = lo;
   while (lo_outer != hi) {
@@ -141,7 +146,7 @@ void plus_reduce_array_software_polling(int64_t* a, int64_t lo, int64_t hi, int6
 	auto dst0 = dst;
 	dst = dst1;
         p->fork_join_promote([=] (tpalrts::promotable* p2) {
-          plus_reduce_array_software_polling(a, mid, hi, dst2, p2);
+          plus_reduce_array_software_polling(a, mid, hi, dst2, p2, K);
         }, [=] (tpalrts::promotable*) {
           *dst0 = *dst1 + *dst2;
 	  delete dst1;
@@ -166,7 +171,7 @@ int64_t plus_reduce_array_cilk(int64_t* a, int64_t lo, int64_t hi) {
   }
   return sum.get_value();
 #else
-  mcsl::die("Cilk unsupported\n");
+  //mcsl::die("Cilk unsupported\n");
 #endif
   return 0;
 }

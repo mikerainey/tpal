@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+ARGS="$@"
+BENCHMARK=""
+SCHEDULER_CONFIGURATION=""
+OTHER_ARGS=""
+
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -p|-proc|--proc)
+    PROCS="$2"
+    shift
+    shift
+    ;;
+
+    -benchmark)
+    BENCHMARK="$2"
+    shift
+    shift
+    ;;
+
+    -scheduler_configuration)
+    SCHEDULER_CONFIGURATION="$2"
+    shift
+    shift
+    ;;
+                
+    *)
+    OTHER_ARGS="$1 $2 $OTHER_ARGS"
+    shift
+    shift
+    ;;
+esac
+done
+
+if [ "$BENCHMARK" == "" ]; then
+  echo "[ERR] missing benchmark"
+  echo $ARGS
+  exit 1
+fi
+
+if [ "$SCHEDULER_CONFIGURATION" == "cilk" ]; then
+   EXT="opt_cilk"
+else
+   EXT="opt"
+fi
+
+export NUM_THREADS=$PROCS
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+$SCRIPTPATH/$BENCHMARK.$EXT $ARGS $OTHER_ARGS
+rc=$?
+# the line below is needed because for some reason prun isn't properly
+# interpreting crashes, which exit with positive exit codes
+if [[ $rc != 0 ]]; then echo "exectime ERROR"; fi 
+exit $rc

@@ -144,7 +144,7 @@ void launch(const Bench_pre& bench_pre,
             const Bench_post& bench_post,
             Bench_body_manual bench_body_manual,
             const Bench_body_cilk& bench_body_cilk) {
-  initialize_machine();
+  mcsl::initialize_machine();
   // assign heartbeat parameter kappa
   {
     double cpu_freq_ghz = mcsl::load_cpu_frequency_ghz();
@@ -152,10 +152,10 @@ void launch(const Bench_pre& bench_pre,
     auto kappa_nsec = kappa_usec * 1000;
     kappa_cycles = (uint64_t)(cpu_freq_ghz * kappa_nsec);
   }
-  launch2(nb_workers,
+  launch2(mcsl::nb_workers,
           bench_pre, bench_body_interrupt, bench_body_software_polling, bench_body_serial,
           bench_post, bench_body_manual, bench_body_cilk);
-  teardown_machine();
+  mcsl::teardown_machine();
 }
 
 } // end namespace

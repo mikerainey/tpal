@@ -10,6 +10,7 @@ void launch() {
     mk_rollforward_entry(plus_reduce_array_interrupt_l2, plus_reduce_array_interrupt_rf_l2),
     mk_rollforward_entry(plus_reduce_array_interrupt_l3, plus_reduce_array_interrupt_rf_l3),
   };
+  int64_t software_polling_K = deepsea::cmdline::parse_or_default_int("software_polling_K", 128);
   uint64_t nb_items = deepsea::cmdline::parse_or_default_long("n", 20000000);
   int64_t* a = (int64_t*)malloc(sizeof(int64_t)*nb_items);
   int64_t result = 0;
@@ -22,7 +23,7 @@ void launch() {
     plus_reduce_array_interrupt(a, 0, nb_items, &result, p);
   };
   auto bench_body_software_polling = [&] (promotable* p) {
-    plus_reduce_array_software_polling(a, 0, nb_items, &result, p);
+    plus_reduce_array_software_polling(a, 0, nb_items, &result, p, software_polling_K);
   };
   auto bench_body_serial = [&] (promotable* p) {
     result = plus_reduce_array_serial(a, 0, nb_items);

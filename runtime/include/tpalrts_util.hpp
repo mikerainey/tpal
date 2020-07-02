@@ -6,7 +6,7 @@
 namespace tpalrts {
 
 /*---------------------------------------------------------------------*/
-  
+
 uint64_t kappa_usec;
 
 uint64_t kappa_cycles;

@@ -42,6 +42,7 @@ void launch() {
     mk_rollforward_entry(spmv_col_l5, spmv_col_rf_l5),
     mk_rollforward_entry(spmv_col_l6, spmv_col_rf_l6),
   };
+  int64_t software_polling_K = deepsea::cmdline::parse_or_default_int("software_polling_K", 128);
   int64_t n = deepsea::cmdline::parse_or_default_long("n", 2000);
   int64_t row_len = deepsea::cmdline::parse_or_default_long("row_len", std::min(n, (int64_t)1000));
   size_t nb_rows = n / row_len;
@@ -85,7 +86,7 @@ void launch() {
     spmv_interrupt(env);
   };
   auto bench_body_software_polling = [&] (promotable* p) {
-    spmv_software_polling(val, row_ptr, col_ind, x, y, nb_rows, p);
+    spmv_software_polling(val, row_ptr, col_ind, x, y, nb_rows, p, software_polling_K);
   };
   auto bench_body_serial = [&] (promotable* p) {
     spmv_serial(val, row_ptr, col_ind, x, y, nb_rows);

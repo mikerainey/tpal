@@ -1,12 +1,17 @@
 #pragma once
 
+#ifdef USE_CILK_PLUS
+#include <cilk/cilk.h>
+#include <cilk/cilk_api.h>
+#include <cilk/reducer_opadd.h>
+#endif
 #include <cstdint>
 
 #include "mcsl_util.hpp"
 
 #include "tpalrts_fiber.hpp"
 
-#include "spmv_offsets.h"
+#include "spmv_offsets.hpp"
 
 /*---------------------------------------------------------------------*/
 /* Manual version */
@@ -417,8 +422,9 @@ void spmv_software_polling_row_loop(double* val,
                                     double* y,
                                     int64_t i_lo,
                                     int64_t i_hi,
-                                    tpalrts::promotable* p) {
-  int64_t K = deepsea::cmdline::parse_or_default_int("software_polling_K", 128);
+                                    tpalrts::promotable* p,
+                                    int64_t software_polling_K = 128) {
+  int64_t K = software_polling_K;
   uint64_t promotion_prev = mcsl::cycles::now();
   int64_t N = K;
   int64_t k_lo, k_hi;
@@ -448,7 +454,7 @@ void spmv_software_polling_row_loop(double* val,
               double* tmp = new double;
               *tmp = 0.0;
               p->fork_join_promote([=] (tpalrts::promotable* p2) {
-                spmv_software_polling_col_loop_par(K, val, row_ptr, col_ind, x, k_lo, k_hi, tmp, p2);
+               spmv_software_polling_col_loop_par(K, val, row_ptr, col_ind, x, k_lo, k_hi, tmp, p2);
               }, [=] (tpalrts::promotable*) {
                 y[i_lo] = t + *tmp;
                 delete tmp;
@@ -460,7 +466,7 @@ void spmv_software_polling_row_loop(double* val,
           // promotion successful
           auto i_mid = (i_lo+i_hi)/2;
           p->async_finish_promote([=] (tpalrts::promotable* p) {
-            spmv_software_polling_row_loop(val, row_ptr, col_ind, x, y, i_mid, i_hi, p);
+            spmv_software_polling_row_loop(val, row_ptr, col_ind, x, y, i_mid, i_hi, p, K);
           });
           i_hi = i_mid;
         }
@@ -478,8 +484,9 @@ void spmv_software_polling(double* val,
                            double* x,
                            double* y,
                            int64_t n,
-                           tpalrts::promotable* p) {
-  spmv_software_polling_row_loop(val, row_ptr, col_ind, x, y, 0, n, p);
+                           tpalrts::promotable* p,
+                           int64_t software_polling_K = 128) {
+  spmv_software_polling_row_loop(val, row_ptr, col_ind, x, y, 0, n, p, software_polling_K);
 }
 
 /*---------------------------------------------------------------------*/
@@ -500,6 +507,6 @@ void spmv_cilk(double* val,
     y[i] = t.get_value();
   }
 #else
-  mcsl::die("Cilk unsupported\n");
+  //  mcsl::die("Cilk unsupported\n");
 #endif
 }

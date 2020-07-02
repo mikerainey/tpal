@@ -25,13 +25,13 @@ let
   
   pbenchOcamlSrcs = import "${pbenchSrc}/nix/local-sources.nix";
 
-  PRSSrc = ../.;
+  tpalrtsSrc = ../../.;
 in
 
 {
   cmdline = "${cmdlineSrc}/script/default.nix";
   mcsl = "${mcslSrc}/nix/default.nix";
-  PRSSrc = PRSSrc;
-  benchOcamlSrc = "${PRSSrc}/bench/";
+  tpalrtsSrc = tpalrtsSrc;
+  benchOcamlSrc = "${tpalrtsSrc}/runtime/bench/";
   pbenchOcamlSrcs = pbenchOcamlSrcs;
 }
