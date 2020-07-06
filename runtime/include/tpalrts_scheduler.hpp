@@ -19,6 +19,10 @@ using nk_timer_t = struct nk_timer_s;
 using nemo_event_id_t = int;
 typedef void (*nemo_action_t)(struct excp_entry_state *, void * priv);
 extern "C"
+uint64_t nk_sched_get_realtime();
+extern "C"
+void nk_sleep(uint64_t);
+extern "C"
 nemo_event_id_t nk_nemo_register_event_action(nemo_action_t func, void * priv_data);
 extern "C"
 void nk_timer_cancel(nk_timer_t* timer);
@@ -266,38 +270,72 @@ public:
   }
 
   static
+  uint64_t last_time;
+
+  static
+  uint64_t counter;
+
+  static uint64_t start_time;
+
+  static
   void heartbeat_timer_callback(void *) {
     auto s = ping_thread_status.load();
     if (s == ping_thread_status_exit_launch) {
       nk_timer_cancel(timer);
       ping_thread_status.store(ping_thread_status_exited);
+      printk("total_time %lu count %lu\n",nk_sched_get_realtime()-start_time,counter);
+      printk("nk_heartbeat_timer_ns %lu\n",nk_heartbeat_timer_ns);
       return;
     }
     assert(s == ping_thread_status_active);
-    nk_timer_reset(timer, nk_heartbeat_timer_ns);
-    nk_timer_start(timer);
     auto nb_workers = mcsl::perworker::unique_id::get_nb_workers();
     for (std::size_t i = 0; i != nb_workers; i++) {
       nk_nemo_event_notify(id, i);
     }
+    uint64_t cur_time = nk_sched_get_realtime();
+    uint64_t cur_goal = last_time + nk_heartbeat_timer_ns;
+    uint64_t next_goal = cur_goal + nk_heartbeat_timer_ns;
+    uint64_t next_target = next_goal > cur_time ? next_goal : cur_time;
+    uint64_t deadline = next_target - cur_time;
+    last_time = cur_time;
+    //    printk("cur_time %lu cur_target %lu next_target %lu deadline %lu\n",cur_time,cur_goal,next_target,deadline);
+    nk_timer_reset(timer, deadline);
+    nk_timer_start(timer);
+    counter++;
   }
 
   static
-  void launch_ping_thread(std::size_t nb_workers) {    
+  void launch_ping_thread(std::size_t nb_workers) {
+    counter = 0;
     std::function<void(std::size_t)> f = [=] (std::size_t id) {
+      start_time = last_time = nk_sched_get_realtime();
       timer = nk_timer_create("heartbeat_timer");
       nk_timer_set(timer, nk_heartbeat_timer_ns, NK_TIMER_CALLBACK, heartbeat_timer_callback, (void*)naut_get_cur_thread(), 0);
       nk_timer_start(timer);
-      while (ping_thread_status.load() == ping_thread_status_active) { }                                           
+      while (ping_thread_status.load() == ping_thread_status_active) {
+        nk_sleep(1000000000l);
+      }
+      /*
+      while (ping_thread_status.load() == ping_thread_status_active) {
+        nk_sleep(nk_heartbeat_timer_ns);
+        auto nb_workers = mcsl::perworker::unique_id::get_nb_workers();
+        for (std::size_t i = 0; i != nb_workers; i++) {
+          nk_nemo_event_notify(id, i);
+        }
+        } */
     };
     auto p = new nk_worker_activation_type(id, f);
-    int remote_core = nb_workers;
-    nk_thread_start(nk_thread_init_fn, (void*)p, 0, 0, TSTACK_DEFAULT, 0, remote_core);
+    nk_thread_start(nk_thread_init_fn, (void*)p, 0, 0, TSTACK_DEFAULT, 0, nb_workers);
   }
   
 };
 
 nk_timer_t* ping_thread_interrupt::timer;
+
+  uint64_t ping_thread_interrupt::last_time;
+
+    uint64_t ping_thread_interrupt::start_time;
+      uint64_t ping_thread_interrupt::counter;
   
 std::atomic<ping_thread_status_type> ping_thread_interrupt::ping_thread_status(ping_thread_status_active);
 

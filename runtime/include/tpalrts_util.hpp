@@ -28,6 +28,7 @@ public:
   using counter_id_type = enum counter_id_enum {
     nb_promotions,
     nb_steals,
+    nb_heartbeats,
     nb_counters
   };
 
@@ -36,6 +37,7 @@ public:
     const char* names[nb_counters];
     names[nb_promotions] = "nb_promotions";
     names[nb_steals] = "nb_steals";
+    names[nb_heartbeats] = "nb_heartbeats";
     return names[id];
   }
   

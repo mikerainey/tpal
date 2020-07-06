@@ -2,6 +2,8 @@
 
 #include <sys/signal.h>
 
+#include "tpalrts_util.hpp"
+
 #if defined(MCSL_NAUTILUS)
 struct excp_entry_state;
 using excp_entry_t = struct excp_entry_state;
@@ -85,6 +87,7 @@ mcsl::perworker::array<nk_thread_t*> threads;
 
 void heartbeat_interrupt_handler(excp_entry_t* e, void* priv) {
   if (naut_get_cur_thread() == threads.mine()) {
+    stats::increment(stats::configuration_type::nb_heartbeats);
     // on the right thread
     struct nk_regs* r = (struct nk_regs*)((char*)e - 128);
     try_to_initiate_rollforward(rollforward_table, (register_type*)&(r->rip));
