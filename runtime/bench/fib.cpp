@@ -13,14 +13,18 @@ void launch() {
   auto bench_body_interrupt = [=] (promotable* p) {
                                 // later: fill
   };
+  tpalrts::stack_type s;
   auto bench_body_software_polling = [&] (promotable* p) {
-    auto s = tpalrts::snew();
+    s = tpalrts::snew();
     fib_software_polling_loop(n, &r, p, 128, s, fib_software_polling_entry, 0);
   }; 
   auto bench_body_serial = [&] (promotable* p) {
     r = fib_serial(n);
   };
   auto bench_post = [&]   {
+    if (s.stack != nullptr) {
+      sdelete(s);
+    }
     assert(r == fib_serial(n));
   };
   using microbench_scheduler_type = mcsl::minimal_scheduler<stats, logging, mcsl::minimal_elastic, tpal_worker>;

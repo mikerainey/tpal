@@ -86,54 +86,6 @@ void fib_software_polling_loop(uint64_t n, uint64_t* dst, tpalrts::promotable* p
   char* prmhd = s.prmhd;
   char* prmtl = s.prmtl;
 
-  void* _exitk = &&exitk;
-  void* _branch1 = &&branch1;
-  void* _branch2 = &&branch2;
-
-  auto print_stack = [=] (char* sp) {
-    printf("--------------\n");
-    while (true) {
-      void* l = sload(sp, 0, void*);
-      if (l == _exitk) {
-        printf("%p exitk\n", sp);
-        break;
-      } else if (l == _branch1) {
-        printf("%p branch1 n=%lu\n", sp, sload(sp, 1, uint64_t));
-        sfree(sp, 4);
-      } else if (l == _branch2) {
-        printf("%p branch2 f=%lu\n", sp, sload(sp, 1, uint64_t));
-        sfree(sp, 4);
-      } else {
-        printf("???\n");
-        assert(false);
-      }
-    }
-    printf("--------------\n");
-  };
-
-  auto print_prmtl = [=] (char* prmtl) {
-   printf("prmtl--------------\n");
-   while (true) {
-     if (prmtl == nullptr) {
-       break;
-     }
-     printf("%p\n", prmtl);
-     prmtl = sload(prmtl, prmhdoff, char*);
-   }
-   printf("prmtl--------------\n");
-  };
-
-  auto print_prmhd = [=] (char* prmhd) {
-   printf("prmhd--------------\n");
-   while (true) {
-     if (prmhd == nullptr) {
-       break;
-     }
-     printf("%p\n", prmhd);
-     prmhd = sload(prmhd, prmtloff, char*);
-   }
-   printf("prmhd--------------\n");
-  };
 
   uint64_t promotion_prev = mcsl::cycles::now();
   uint64_t k = K;
@@ -145,7 +97,6 @@ void fib_software_polling_loop(uint64_t n, uint64_t* dst, tpalrts::promotable* p
   }    
 
  entry:
-  printf("entry n=%lu dst=%p\n",n,dst);
   salloc(sp, 1);
   sstore(sp, 0, void*, &&exitk);
 
@@ -160,32 +111,25 @@ void fib_software_polling_loop(uint64_t n, uint64_t* dst, tpalrts::promotable* p
         if (! prmempty(prmtl, prmhd)) {
           char* sp_cont;
           uint64_t top;
-                      print_stack(sp);
-                      print_prmtl(prmtl);
-                      print_prmhd(prmhd);
           prmsplit(sp, prmtl, prmhd, sp_cont, top);
           char* sp_top = sp + top;
           uint64_t n2 = sload(sp_top, 0, uint64_t);
           sstore(sp_top, -1l, void*, &&exitk);
-                                          print_stack(sp);
+          auto dst0 = dst;
           auto dst1 = new uint64_t;
           auto dst2 = new uint64_t;
-          printf("promote n=%lu n2=%lu dst=%p dst1=%p dst2=%p\n", n, n2, dst, dst1, dst2);
+          auto s2 = tpalrts::snew();
           p->fork_join_promote([=] (tpalrts::promotable* p2) {
-                                                printf("child n=%lu dst=%p dst1=%p dst2=%p\n", n2, dst, dst1, dst2);
-            auto s2 = tpalrts::snew();
             fib_software_polling_loop(n2, dst2, p2, K, s2, fib_software_polling_entry, 0);
           }, [=] (tpalrts::promotable* p2) {
-               printf("join n=%lu dst=%p dst1=%p dst2=%p\n", n, dst, dst1, dst2);
+            sdelete(s2);
             auto f2 = *dst1 + *dst2;
             delete dst1;
             delete dst2;
-            auto s2 = s;
-            s2.sp = sp_cont;
-            fib_software_polling_loop(0, dst, p2, K, s2, fib_software_polling_retk, f2);
+            auto sj = s;
+            sj.sp = sp_cont;
+            fib_software_polling_loop(0, dst0, p2, K, sj, fib_software_polling_retk, f2);
           });
-                         printf("parent n=%lu dst=%p dst1=%p dst2=%p\n", n, dst, dst1, dst2);
-                                     print_stack(sp);
           dst = dst1;
         }
       }

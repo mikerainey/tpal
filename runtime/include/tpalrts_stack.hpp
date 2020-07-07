@@ -6,7 +6,7 @@ using word_type = void*;
 
 using stack_type = struct stack_struct {
 public:
-  stack_struct(char* stack, char* sp, char* prmhd, char* prmtl)
+  stack_struct(char* stack=nullptr, char* sp=nullptr, char* prmhd=nullptr, char* prmtl=nullptr)
     : stack(stack), sp(sp), prmhd(prmhd), prmtl(prmtl) { }
   char* stack;
   char* sp;
@@ -21,8 +21,8 @@ static inline
 stack_type snew(int stack_szb=dflt_stack_szb) {
   char* stack = (char*)malloc(stack_szb);
   char* sp = &stack[stack_szb - 1];
-  char* prmhd = NULL;
-  char* prmtl = NULL;
+  char* prmhd = nullptr;
+  char* prmtl = nullptr;
   return stack_type(stack, sp, prmhd, prmtl);
 }
 
@@ -72,41 +72,42 @@ void sdelete(stack_type s) {
 
 
 #define prmpush(sp, off, prmtl, prmhd) \
-  {if (prmtl == NULL) { \
-    sstore(sp, (off) + prmhdoff, char*, NULL); \
-    prmtl = prmhd = saddr(sp, (off) + prmhdoff); \
-  } else { \
-    sstore(sp, (off) + prmhdoff, char*, prmtl); \
-    sstore(prmtl, prmtloff, char*, saddr(sp, (off) + prmhdoff)); \
-    prmtl = saddr(sp, (off) + prmhdoff); \
+  {char* __m = saddr(sp, (off) + prmhdoff); \
+  sstore(sp, (off) + prmhdoff, char*, prmtl);  \
+  sstore(sp, (off) + prmtloff, char*, nullptr); \
+  if (prmtl != nullptr) { \
+    sstore(prmtl, prmtloff, char*, __m); \
   } \
-  sstore(sp, (off) + prmtloff, char*, NULL);}
+  prmtl = __m; \
+  if (prmhd == nullptr) { \
+    prmhd = prmtl; \
+  }}
 
 #define prmpop(sp, off, prmtl, prmhd) \
-  {if (prmtl == prmhd) { \
-    prmtl = prmhd = NULL; \
+  {char* __p = (char*)sload(prmtl, prmhdoff, void*); \
+  if (__p == nullptr) { \
+    prmhd = nullptr; \
   } else { \
-    prmtl = (char*)sload(sp, (off) + prmhdoff, void*); \
+    sstore(__p, prmtloff, char*, nullptr); \
+    sstore(prmtl, prmhdoff, char*, nullptr); \
   } \
-  sstore(sp, (off) + prmhdoff, char*, NULL);   \
-  sstore(sp, (off) + prmtloff, char*, NULL);}
+  prmtl = __p;}
 
 #define prmpophd(prmtl, prmhd) \
-  {char* __hd = prmhd; \
-  if (prmtl == prmhd) { \
-    prmtl = prmhd = NULL; \
+  {char* __p = (char*)sload(prmhd, prmtloff, void*); \
+  if (__p == nullptr) { \
+    prmtl = nullptr; \
   } else { \
-    prmhd = (char*)sload(prmhd, prmtloff, void*); \
+    sstore(__p, prmhdoff, char*, nullptr); \
+    sstore(prmhd, prmtloff, char*, nullptr); \
   } \
-  sstore(__hd, prmhdoff, char*, NULL); \
-  sstore(__hd, prmtloff, char*, NULL);}
-
+  prmhd = __p;}
 
 #define prmempty(prmtl, prmhd) \
-  (prmtl == NULL)
+  (prmtl == nullptr)
 
 #define prmsplit(sp, prmtl, prmhd, sp_cont, top) \
-  sp_cont = (char*)saddr(prmhd, 1); \
+  sp_cont = (char*)saddr(prmhd, prmtloff + 1); \
   top = (uint64_t)(prmhd - sp - sizeof(tpalrts::word_type)); \
   prmpophd(prmtl, prmhd);
   
