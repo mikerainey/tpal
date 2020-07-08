@@ -272,9 +272,6 @@ public:
   static
   uint64_t last_time;
 
-  static
-  uint64_t counter;
-
   static uint64_t start_time;
 
   static
@@ -298,12 +295,10 @@ public:
     last_time = cur_time;
     nk_timer_reset(timer, deadline);
     nk_timer_start(timer);
-    counter++;
   }
 
   static
   void launch_ping_thread(std::size_t nb_workers) {
-    counter = 0;
     std::function<void(std::size_t)> f = [=] (std::size_t id) {
       start_time = last_time = nk_sched_get_realtime();
       timer = nk_timer_create("heartbeat_timer");
@@ -324,8 +319,6 @@ nk_timer_t* ping_thread_interrupt::timer;
 uint64_t ping_thread_interrupt::last_time;
 
 uint64_t ping_thread_interrupt::start_time;
-  
-uint64_t ping_thread_interrupt::counter;
   
 std::atomic<ping_thread_status_type> ping_thread_interrupt::ping_thread_status(ping_thread_status_active);
 
