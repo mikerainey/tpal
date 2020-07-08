@@ -16,6 +16,49 @@
 /*---------------------------------------------------------------------*/
 /* Manual version */
 
+uint64_t fib_custom_stack_serial(uint64_t n, int64_t K, tpalrts::stack_type s) {
+  char* stack = s.stack;
+  char* sp = s.sp;
+  char* prmhd = s.prmhd;
+  char* prmtl = s.prmtl;
+  uint64_t f = 0;
+
+ entry:
+  salloc(sp, 1);
+  sstore(sp, 0, void*, &&exitk);
+
+ loop:
+  f = n;
+  if (n < 2) {
+    goto retk;
+  }
+  f = 0;
+  salloc(sp, 2);
+  sstore(sp, 0, void*, &&branch1);
+  sstore(sp, 1, uint64_t, n - 2);
+  n--;
+  goto loop;
+
+ branch1:
+  n = sload(sp, 1, uint64_t);
+  sstore(sp, 0, void*, &&branch2);
+  sstore(sp, 1, uint64_t, f);
+  goto loop;
+
+ branch2:
+  f += sload(sp, 1, uint64_t);
+  sfree(sp, 2);
+  goto retk;
+
+ retk:
+  goto *sload(sp, 0, void*);
+
+ exitk:
+  sfree(sp, 1);
+  return f;
+  
+}
+
 static
 uint64_t fib_serial(uint64_t n) {
   if (n < 2) {
@@ -129,7 +172,7 @@ void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
     goto entry;
   } else if (ty == fib_heartbeat_retk) {
     goto retk;
-  }    
+  }
 
  entry:
   salloc(sp, 1);
@@ -167,7 +210,6 @@ void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
   n = sload(sp, 1, uint64_t);
   sstore(sp, 0, void*, &&branch2);
   sstore(sp, 1, uint64_t, f);
-  prmpop(sp, 2, prmtl, prmhd);
   goto loop;
 
  branch2:

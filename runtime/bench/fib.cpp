@@ -22,7 +22,8 @@ void launch() {
     fib_heartbeat<heartbeat_mechanism_software_polling>(n, &r, p, 128, s, fib_heartbeat_entry, 0);
   }; 
   auto bench_body_serial = [&] (promotable* p) {
-    r = fib_serial(n);
+    s = tpalrts::snew();
+    r = fib_custom_stack_serial(n, 128, s);
   };
   auto bench_post = [&]   {
     if (s.stack != nullptr) {
