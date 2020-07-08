@@ -15,9 +15,9 @@ LINKER_PREFIX=-pthread $(HWLOC_LIBRARY_PREFIX) -lrt -L $(PAPI_PREFIX)/lib -lpapi
 
 OPT_BASE_PREFIX=-O2 -m64 -march=native -fno-asynchronous-unwind-tables -fno-omit-frame-pointer -DNDEBUG # -DNDEBUG # later: find out why uncommenting dndebug causes spmv to crash
 OPT_PREFIX=--std=c++17 $(OPT_BASE_PREFIX) $(INCLUDE_PREFIX) $(LINKER_PREFIX)
-STA_PREFIX=-DSPAWNBENCH_STATS $(OPT_PREFIX)
-LOG_PREFIX=-DSPAWNBENCH_LOGGING $(STA_PREFIX)
-DBG_PREFIX=--std=c++17 -m64 -O0 -g3 -DSPAWNBENCH_STATS -DSPAWNBENCH_LOGGING $(INCLUDE_PREFIX) $(LINKER_PREFIX) -Wno-cpp
+STA_PREFIX=-DTPALRTS_STATS $(OPT_PREFIX)
+LOG_PREFIX=-DTPALRTS_LOGGING $(STA_PREFIX)
+DBG_PREFIX=--std=c++17 -m64 -O0 -g3 -DTPALRTS_STATS -DTPALRTS_LOGGING $(INCLUDE_PREFIX) $(LINKER_PREFIX) -Wno-cpp
 
 %.opt: %.cpp $(INCLUDE_FILES)
 	$(CPP) $(OPT_PREFIX) $(basename $<)_manual.s -o $@ $< $(JEMALLOC) 
@@ -32,7 +32,7 @@ DBG_PREFIX=--std=c++17 -m64 -O0 -g3 -DSPAWNBENCH_STATS -DSPAWNBENCH_LOGGING $(IN
 	$(CPP) $(OPT_PREFIX) -fcilkplus -DUSE_CILK_PLUS $(basename $<)_manual.s -o $@ $< $(JEMALLOC) 
 
 %.dbg: %.cpp $(INCLUDE_FILES)
-	$(CPP) $(DBG_PREFIX) -DSPAWNBENCH_STATS $(basename $<)_manual.s -o $@ $<
+	$(CPP) $(DBG_PREFIX) $(basename $<)_manual.s -o $@ $<
 
 %.dbg_cilk: %.cpp $(INCLUDE_FILES)
 	$(CPP) $(DBG_PREFIX) -fcilkplus -DUSE_CILK_PLUS $(basename $<)_manual.s -o $@ $<

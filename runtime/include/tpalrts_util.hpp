@@ -17,7 +17,7 @@ uint64_t kappa_cycles;
 class stats_configuration {
 public:
 
-#ifdef SPAWNBENCH_STATS
+#ifdef TPALRTS_STATS
   static constexpr
   bool enabled = true;
 #else
@@ -48,7 +48,7 @@ using stats = mcsl::stats_base<stats_configuration>;
 /*---------------------------------------------------------------------*/
 /* Logging */
 
-#ifdef SPAWNBENCH_LOGGING
+#ifdef TPALRTS_LOGGING
 using logging = mcsl::logging_base<true>;
 #else
 using logging = mcsl::logging_base<false>;
