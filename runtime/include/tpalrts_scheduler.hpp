@@ -283,8 +283,6 @@ public:
     if (s == ping_thread_status_exit_launch) {
       nk_timer_cancel(timer);
       ping_thread_status.store(ping_thread_status_exited);
-      printk("total_time %lu count %lu\n",nk_sched_get_realtime()-start_time,counter);
-      printk("nk_heartbeat_timer_ns %lu\n",nk_heartbeat_timer_ns);
       return;
     }
     assert(s == ping_thread_status_active);
@@ -298,7 +296,6 @@ public:
     uint64_t next_target = next_goal > cur_time ? next_goal : cur_time;
     uint64_t deadline = next_target - cur_time;
     last_time = cur_time;
-    //    printk("cur_time %lu cur_target %lu next_target %lu deadline %lu\n",cur_time,cur_goal,next_target,deadline);
     nk_timer_reset(timer, deadline);
     nk_timer_start(timer);
     counter++;
@@ -315,14 +312,6 @@ public:
       while (ping_thread_status.load() == ping_thread_status_active) {
         nk_sleep(1000000000l);
       }
-      /*
-      while (ping_thread_status.load() == ping_thread_status_active) {
-        nk_sleep(nk_heartbeat_timer_ns);
-        auto nb_workers = mcsl::perworker::unique_id::get_nb_workers();
-        for (std::size_t i = 0; i != nb_workers; i++) {
-          nk_nemo_event_notify(id, i);
-        }
-        } */
     };
     auto p = new nk_worker_activation_type(id, f);
     nk_thread_start(nk_thread_init_fn, (void*)p, 0, 0, TSTACK_DEFAULT, 0, nb_workers);
@@ -332,10 +321,11 @@ public:
 
 nk_timer_t* ping_thread_interrupt::timer;
 
-  uint64_t ping_thread_interrupt::last_time;
+uint64_t ping_thread_interrupt::last_time;
 
-    uint64_t ping_thread_interrupt::start_time;
-      uint64_t ping_thread_interrupt::counter;
+uint64_t ping_thread_interrupt::start_time;
+  
+uint64_t ping_thread_interrupt::counter;
   
 std::atomic<ping_thread_status_type> ping_thread_interrupt::ping_thread_status(ping_thread_status_active);
 
