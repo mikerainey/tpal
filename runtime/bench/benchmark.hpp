@@ -105,7 +105,7 @@ void launch2(size_t nb_workers,
     if ((retval=PAPI_thread_init((unsigned long(*)(void))(pthread_self))) != PAPI_OK) {
       mcsl::die("papi initialization failed");
     }
-    launch1<tpal_worker, papi_interrupt>(nb_workers, bench_pre, bench_post, bench_body_interrupt);
+    launch1<papi_worker, mcsl::minimal_interrupt>(nb_workers, bench_pre, bench_post, bench_body_interrupt);
     PAPI_shutdown();
   });
   d.add("software_polling", [&] {

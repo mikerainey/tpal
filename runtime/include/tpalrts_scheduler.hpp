@@ -400,20 +400,21 @@ public:
 /* PAPI interrupt configuration */
 
 #if defined(MCSL_LINUX)
-  
+
 static
 void papi_interrupt_handler(int, void*, long long, void *context) {
   heartbeat_interrupt_handler(0, nullptr, context);
 }
 
-class papi_interrupt {
+class papi_worker {
 public:
 
   static
-  void initialize_signal_handler() {
-    int retval;
+  void initialize_worker() {
+    mcsl::pin_calling_worker();
+        int retval;
     int event_set = PAPI_NULL;
-    if ( (retval = PAPI_create_eventset(&event_set))!=PAPI_OK) {
+    if ( (retval = PAPI_create_eventset(&event_set)) != PAPI_OK) {
       mcsl::die("papi worker initialization failed");
     }
     if ((retval=PAPI_query_event(PAPI_TOT_CYC)) != PAPI_OK) {
@@ -428,16 +429,21 @@ public:
     if((retval = PAPI_start(event_set)) != PAPI_OK) {
       mcsl::die("papi worker initialization failed");
     }
+
   }
 
+  template <typename Body>
   static
-  void wait_to_terminate_ping_thread() { }
+  void launch_worker_thread(std::size_t i, const Body& b) {
+    mcsl::minimal_worker::launch_worker_thread(i, b);
+  }
 
-  static
-  void launch_ping_thread(std::size_t) { }
+  using worker_exit_barrier = typename mcsl::minimal_worker::worker_exit_barrier;
+  
+  using termination_detection_type = mcsl::minimal_termination_detection;
 
 };
-
+  
 #endif
 
 } // end namespace
