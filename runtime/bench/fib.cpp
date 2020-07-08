@@ -1,3 +1,5 @@
+#define TPALRTS_USE_INTERRUPT_FLAGS 1
+
 #include "benchmark.hpp"
 #include "fib.hpp"
 
@@ -9,14 +11,15 @@ void launch() {
   };
   uint64_t n = deepsea::cmdline::parse_or_default_long("n", 20);
   uint64_t r = 0;
-  auto bench_pre = [=] {  };
-  auto bench_body_interrupt = [=] (promotable* p) {
-                                // later: fill
-  };
   tpalrts::stack_type s;
+  auto bench_pre = [=] {  };
+  auto bench_body_interrupt = [&] (promotable* p) {
+    s = tpalrts::snew();
+    fib_heartbeat<heartbeat_mechanism_hardware_interrupt>(n, &r, p, 128, s, fib_heartbeat_entry, 0);
+  };
   auto bench_body_software_polling = [&] (promotable* p) {
     s = tpalrts::snew();
-    fib_software_polling_loop(n, &r, p, 128, s, fib_software_polling_entry, 0);
+    fib_heartbeat<heartbeat_mechanism_software_polling>(n, &r, p, 128, s, fib_heartbeat_entry, 0);
   }; 
   auto bench_body_serial = [&] (promotable* p) {
     r = fib_serial(n);

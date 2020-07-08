@@ -74,25 +74,60 @@ public:
 /*---------------------------------------------------------------------*/
 /* Software-polling version */
 
-using fib_software_polling_type = enum fib_software_polling_entry_type {
-  fib_software_polling_entry,
-  fib_software_polling_retk
+using fib_heartbeat_type = enum fib_heartbeat_entry_type {
+  fib_heartbeat_entry,
+  fib_heartbeat_retk
 };
 
-void fib_software_polling_loop(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
-                               tpalrts::stack_type s, fib_software_polling_type ty, uint64_t f) {
+using heartbeat_mechanism_type = enum heartbeat_mechanism_struct {
+  heartbeat_mechanism_software_polling,
+  heartbeat_mechanism_hardware_interrupt
+};
+
+template <int heartbeat=heartbeat_mechanism_software_polling>
+void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
+                   tpalrts::stack_type s, fib_heartbeat_type ty, uint64_t f) {
   char* stack = s.stack;
   char* sp = s.sp;
   char* prmhd = s.prmhd;
   char* prmtl = s.prmtl;
 
+  void* __exitk = &&exitk;
+  
+  auto try_promote = [&] {
+    if (prmempty(prmtl, prmhd)) {
+      return;
+    }
+    char* sp_cont;
+    uint64_t top;
+    prmsplit(sp, prmtl, prmhd, sp_cont, top);
+    char* sp_top = sp + top;
+    uint64_t n2 = sload(sp_top, 0, uint64_t);
+    sstore(sp_top, -1l, void*, __exitk);
+    auto dst0 = dst;
+    auto dst1 = new uint64_t;
+    auto dst2 = new uint64_t;
+    auto s2 = tpalrts::snew();
+    p->fork_join_promote([=] (tpalrts::promotable* p2) {
+      fib_heartbeat<heartbeat>(n2, dst2, p2, K, s2, fib_heartbeat_entry, 0);
+    }, [=] (tpalrts::promotable* p2) {
+      sdelete(s2);
+      auto f2 = *dst1 + *dst2;
+      delete dst1;
+      delete dst2;
+      auto sj = s;
+      sj.sp = sp_cont;
+      fib_heartbeat<heartbeat>(0, dst0, p2, K, sj, fib_heartbeat_retk, f2);
+    });
+    dst = dst1;
+  };
 
   uint64_t promotion_prev = mcsl::cycles::now();
   uint64_t k = K;
 
-  if (ty == fib_software_polling_entry) {
+  if (ty == fib_heartbeat_entry) {
     goto entry;
-  } else if (ty == fib_software_polling_retk) {
+  } else if (ty == fib_heartbeat_retk) {
     goto retk;
   }    
 
@@ -101,38 +136,19 @@ void fib_software_polling_loop(uint64_t n, uint64_t* dst, tpalrts::promotable* p
   sstore(sp, 0, void*, &&exitk);
 
  loop:
-  { // polling
+  if (heartbeat == heartbeat_mechanism_software_polling) {
     if (--k == 0) {
       k = K;
       auto cur = mcsl::cycles::now();
       if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
-        // try to promote
         promotion_prev = cur;
-        if (! prmempty(prmtl, prmhd)) {
-          char* sp_cont;
-          uint64_t top;
-          prmsplit(sp, prmtl, prmhd, sp_cont, top);
-          char* sp_top = sp + top;
-          uint64_t n2 = sload(sp_top, 0, uint64_t);
-          sstore(sp_top, -1l, void*, &&exitk);
-          auto dst0 = dst;
-          auto dst1 = new uint64_t;
-          auto dst2 = new uint64_t;
-          auto s2 = tpalrts::snew();
-          p->fork_join_promote([=] (tpalrts::promotable* p2) {
-            fib_software_polling_loop(n2, dst2, p2, K, s2, fib_software_polling_entry, 0);
-          }, [=] (tpalrts::promotable* p2) {
-            sdelete(s2);
-            auto f2 = *dst1 + *dst2;
-            delete dst1;
-            delete dst2;
-            auto sj = s;
-            sj.sp = sp_cont;
-            fib_software_polling_loop(0, dst0, p2, K, sj, fib_software_polling_retk, f2);
-          });
-          dst = dst1;
-        }
+        try_promote();
       }
+    }
+  } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
+    if (tpalrts::flags.mine().load()) {
+      tpalrts::flags.mine().store(false);
+      try_promote();
     }
   }
   f = n;

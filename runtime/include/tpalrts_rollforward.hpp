@@ -61,9 +61,16 @@ auto mk_rollforward_entry(L src, L dst) -> rollforward_table_item_type {
 };
 
 rollforward_lookup_table_type rollforward_table;
+
+#ifdef TPALRTS_USE_INTERRUPT_FLAGS
+mcsl::perworker::array<std::atomic<bool>> flags;
+#endif
   
 template <class T>
-void try_to_initiate_rollforward(const T& t, register_type* rip) {  
+void try_to_initiate_rollforward(const T& t, register_type* rip) {
+#ifdef TPALRTS_USE_INTERRUPT_FLAGS
+  flags.mine().store(true);
+#endif
   for (const auto& e : t) {
     if (*rip == e.first) {
       *rip = e.second;
