@@ -65,12 +65,7 @@ stdenv.mkDerivation rec {
     make \
        -j $NIX_BUILD_CORES \
        -C runtime/bench \
-       incr_array.opt \
-       incr_array.opt_cilk \
-       plus_reduce_array.opt \
-       plus_reduce_array.opt_cilk \
-       spmv.opt \
-       spmv.opt_cilk \
+       all \
        CPP=${gcc}/bin/g++ \
        CC=${gcc}/bin/gcc \
        CMDLINE_PATH="${cmdline}/include/" \

@@ -163,6 +163,8 @@ let benchmarks : benchmark_descr list = [
       bd_mk_input = mk_n 600000000 };
     { bd_problem = "spmv";
       bd_mk_input = mk_n 400000000 };
+    { bd_problem = "fib";
+      bd_mk_input = mk_n 45 };    
 ]
 
 let mk_benchmark_descr bd =

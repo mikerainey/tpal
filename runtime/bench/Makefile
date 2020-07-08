@@ -43,6 +43,15 @@ spmv_manual.s: spmv_manual_orig.s
 %.s: %.c $(INCLUDE_FILES)
 	$(CC) $(OPT_BASE_PREFIX) -S -o $@ $<
 
+BENCHMARKS=\
+	incr_array \
+	plus_reduce_array \
+	spmv \
+	fib
+
+all: \
+	$(BENCHMARKS:%=%.opt) $(BENCHMARKS:%=%.opt_cilk) 
+
 install:
 	cp *.opt *.opt_cilk $(INSTALL_FOLDER)
 	cp run $(INSTALL_FOLDER)
