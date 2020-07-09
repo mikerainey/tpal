@@ -283,7 +283,7 @@ void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
   if (best > best_so_far) {
     best_so_far = best;
   }
-  sfree(sp, 4);
+  sfree(sp, 6);
   goto retk;
   
  retk:
