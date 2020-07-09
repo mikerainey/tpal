@@ -588,13 +588,6 @@ let plot_for bd =
           Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" (Printf.sprintf "$P=%d$" proc))
         );
       add Latex.tabular_newline;
-      (* Header *)
-      Mk_table.cell ~escape:true ~last:false add "";
-      ~~ List.iteri procs (fun proc_i proc ->
-          ~~ List.iteri kappas_usec (fun kappa_i kappa ->
-              let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
-              Mk_table.cell ~escape:true ~last:last add (Printf.sprintf "$%d\mu s$" kappa)
-      ));
       let baseline_exectime =
         let results = Results.from_file (file_results (name_baseline bd)) in
         let [col] = (mk_baseline_runs bd) Env.empty in
@@ -625,6 +618,20 @@ let plot_for bd =
         let results = Results.filter col results in
         Results.get_mean_of "exectime" results
       in
+      Mk_table.cell ~escape:true ~last:false add "baseline (s)";
+      ~~ List.iteri procs (fun proc_i proc ->
+            let par_baseline_exectime = par_baseline_exectime_of proc in
+            let b = if proc = 1 then baseline_exectime else par_baseline_exectime in
+            let last = proc_i+1 = nb_procs in
+            Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" (Printf.sprintf "%.3f" b)));
+      (* Header *)
+      add Latex.tabular_newline;
+      Mk_table.cell ~escape:true ~last:false add "$H$";
+      ~~ List.iteri procs (fun proc_i proc ->
+          ~~ List.iteri kappas_usec (fun kappa_i kappa ->
+              let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
+              Mk_table.cell ~escape:true ~last:last add (Printf.sprintf "$%d\mu s$" kappa)
+      ));
       add Latex.tabular_newline;
       ~~ List.iteri software_polling_Ks (fun swpK_i swpK ->
           Mk_table.cell ~escape:true ~last:false add (Printf.sprintf "SWP-%d" swpK);
