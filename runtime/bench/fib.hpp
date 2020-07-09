@@ -12,6 +12,7 @@
 
 #include "tpalrts_fiber.hpp"
 #include "tpalrts_stack.hpp"
+#include "tpalrts_rollforward.hpp"
 
 /*---------------------------------------------------------------------*/
 /* Manual version */
