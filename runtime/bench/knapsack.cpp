@@ -23,8 +23,12 @@ void launch() {
   
   auto bench_pre = [=] {  };
   auto bench_body_interrupt = [&] (promotable* p) {
+    s = tpalrts::snew();
+    knapsack_heartbeat<heartbeat_mechanism_hardware_interrupt>(items, capacity, n, 0, &sol, p, s);
   };
   auto bench_body_software_polling = [&] (promotable* p) {
+    s = tpalrts::snew();
+    knapsack_heartbeat<heartbeat_mechanism_software_polling>(items, capacity, n, 0, &sol, p, s);
   }; 
   auto bench_body_serial = [&] (promotable* p) {
     s = tpalrts::snew();

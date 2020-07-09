@@ -169,6 +169,132 @@ int knapsack_custom_stack_serial(struct item *e, int c, int n, int v, tpalrts::s
   
 }
 
+using knapsack_heartbeat_type = enum knapsack_heartbeat_entry_type {
+  knapsack_heartbeat_entry,
+  knapsack_heartbeat_retk
+};
+
+using heartbeat_mechanism_type = enum heartbeat_mechanism_struct {
+  heartbeat_mechanism_software_polling,
+  heartbeat_mechanism_hardware_interrupt
+};
+
+template <int heartbeat=heartbeat_mechanism_software_polling>
+void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
+                        tpalrts::promotable* p, tpalrts::stack_type s,
+                        int64_t K=128, knapsack_heartbeat_type ty=knapsack_heartbeat_entry, int best = 0) {
+  char* stack = s.stack;
+  char* sp = s.sp;
+  char* prmhd = s.prmhd;
+  char* prmtl = s.prmtl;
+  double ub;
+
+  void* __exitk = &&exitk;
+  
+  auto try_promote = [&] {
+    if (prmempty(prmtl, prmhd)) {
+      return;
+    }
+    char* sp_cont;
+    uint64_t top;
+    prmsplit(sp, prmtl, prmhd, sp_cont, top);
+    char* sp_top = sp + top;
+    int v2 = sload(sp_top, 0, int);
+    pair_ints_type pi2 = sload(sp_top, -1l, pair_ints_type);
+    int c2 = pi2.first;
+    int n2 = pi2.second;
+    struct item* e2 = sload(sp_top, -2l, struct item*);
+    sstore(sp_top, -3l, void*, __exitk);
+    auto dst0 = dst;
+    auto dst1 = new int;
+    auto dst2 = new int;
+    auto s2 = tpalrts::snew();
+    p->fork_join_promote([=] (tpalrts::promotable* p2) {
+      knapsack_heartbeat<heartbeat>(e2, c2, n2, v2, dst2, p2, s2, K, knapsack_heartbeat_entry, 0);
+    }, [=] (tpalrts::promotable* p2) {
+      sdelete(s2);
+      auto with = *dst1;
+      auto without = *dst2;
+      auto best0 = with > without ? with : without;
+      delete dst1;
+      delete dst2;
+      auto sj = s;
+      sj.sp = sp_cont;
+      knapsack_heartbeat<heartbeat>(e, c, n, v, dst0, p2, sj, K, knapsack_heartbeat_retk, best0);
+    });
+    dst = dst1;
+  };
+
+  uint64_t promotion_prev = mcsl::cycles::now();
+  uint64_t k = K;
+
+  if (ty == knapsack_heartbeat_entry) {
+    goto entry;
+  } else if (ty == knapsack_heartbeat_retk) {
+    goto retk;
+  }
+
+ entry:
+  salloc(sp, 1);
+  sstore(sp, 0, void*, &&exitk);
+  
+ loop:
+  if (c < 0) {
+    best = INT_MIN;
+    goto retk;
+  }
+  if ((n == 0) || (c == 0)) {
+    best = v;
+    goto retk;
+  }
+  ub = (double) v + c * e->value / e->weight;
+  if (ub < best_so_far) {
+    best = INT_MIN;
+    goto retk;
+  }
+  salloc(sp, 6);
+  sstore(sp, 0, void*, &&branch1);
+  sstore(sp, 1, struct item*, e + 1);
+  {
+    auto p = std::make_pair(c - e->weight, n - 1);
+    sstore(sp, 2, pair_ints_type, p);
+  }
+  sstore(sp, 3, int, v + e->value);
+  prmpush(sp, 4, prmtl, prmhd);
+  e++;
+  n--;
+  goto loop;
+
+ branch1:
+  e = sload(sp, 1, struct item*);
+  std::tie(c, n) = sload(sp, 2, pair_ints_type);
+  v = sload(sp, 3, int);
+  sstore(sp, 0, void*, &&branch2);
+  sstore(sp, 1, int, best);
+  prmpop(sp, 4, prmtl, prmhd);
+  goto loop;
+
+ branch2:
+  {
+    auto with = best;
+    auto without = sload(sp, 1, int);
+    best = with > without ? with : without;
+  }
+  if (best > best_so_far) {
+    best_so_far = best;
+  }
+  sfree(sp, 4);
+  goto retk;
+  
+ retk:
+  goto *sload(sp, 0, void*);
+  
+ exitk:
+  sfree(sp, 1);
+  *dst = best;
+
+}
+
 int knapsack_cilk(struct item *e, int c, int n, int v) {
   int best;
 #if defined(USE_CILK_PLUS)

@@ -130,7 +130,7 @@ using heartbeat_mechanism_type = enum heartbeat_mechanism_struct {
 
 template <int heartbeat=heartbeat_mechanism_software_polling>
 void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
-                   tpalrts::stack_type s, fib_heartbeat_type ty, uint64_t f) {
+                   tpalrts::stack_type s, fib_heartbeat_type ty, uint64_t f = 0) {
   char* stack = s.stack;
   char* sp = s.sp;
   char* prmhd = s.prmhd;
