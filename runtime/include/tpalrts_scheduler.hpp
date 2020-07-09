@@ -9,11 +9,6 @@
 #include <sys/signal.h>
 #include <sys/syscall.h>
 #elif defined(MCSL_NAUTILUS)
-static constexpr
-uint64_t dflt_timer_us = 20;
-static constexpr
-uint64_t dflt_timer_ns = 1000 * dflt_timer_us;
-uint64_t nk_heartbeat_timer_ns;
 struct nk_timer_s;
 using nk_timer_t = struct nk_timer_s;
 using nemo_event_id_t = int;
@@ -287,9 +282,10 @@ public:
     for (std::size_t i = 0; i != nb_workers; i++) {
       nk_nemo_event_notify(id, i);
     }
+    uint64_t kappa_ns = (1000l * kappa_usec);
     uint64_t cur_time = nk_sched_get_realtime();
-    uint64_t cur_goal = last_time + nk_heartbeat_timer_ns;
-    uint64_t next_goal = cur_goal + nk_heartbeat_timer_ns;
+    uint64_t cur_goal = last_time + kappa_ns;
+    uint64_t next_goal = cur_goal + kappa_ns;
     uint64_t next_target = next_goal > cur_time ? next_goal : cur_time;
     uint64_t deadline = next_target - cur_time;
     last_time = cur_time;
@@ -302,10 +298,11 @@ public:
     std::function<void(std::size_t)> f = [=] (std::size_t id) {
       start_time = last_time = nk_sched_get_realtime();
       timer = nk_timer_create("heartbeat_timer");
-      nk_timer_set(timer, nk_heartbeat_timer_ns, NK_TIMER_CALLBACK, heartbeat_timer_callback, (void*)naut_get_cur_thread(), 0);
+      uint64_t kappa_ns = (1000l * kappa_usec);
+      nk_timer_set(timer, kappa_ns, NK_TIMER_CALLBACK, heartbeat_timer_callback, (void*)naut_get_cur_thread(), 0);
       nk_timer_start(timer);
       while (ping_thread_status.load() == ping_thread_status_active) {
-        nk_sleep(1000000000l);
+        //nk_sleep(10);
       }
     };
     auto p = new nk_worker_activation_type(id, f);

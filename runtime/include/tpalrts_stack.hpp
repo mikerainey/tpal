@@ -15,7 +15,7 @@ public:
 };
 
 const
-int dflt_stack_szb = 1 << 20;
+int dflt_stack_szb = 1 << 13;
 
 static inline
 stack_type snew(int stack_szb=dflt_stack_szb) {
