@@ -211,6 +211,7 @@ void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
   n = sload(sp, 1, uint64_t);
   sstore(sp, 0, void*, &&branch2);
   sstore(sp, 1, uint64_t, f);
+  prmpop(sp, 2, prmtl, prmhd);
   goto loop;
 
  branch2:
