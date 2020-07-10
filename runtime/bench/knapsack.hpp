@@ -13,9 +13,6 @@
 #include "tpalrts_fiber.hpp"
 #include "tpalrts_stack.hpp"
 
-/* every item in the knapsack has a weight and a value */
-#define MAX_ITEMS 256
-
 struct item {
   int value;
   int weight;
