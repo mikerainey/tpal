@@ -391,6 +391,7 @@ void spmv_software_polling_col_loop_par(int64_t K,
       if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
         // try to promote
         promotion_prev = cur;
+        tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
         if (k_hi-lo_outer <= 1) {
           continue;
         }
@@ -446,6 +447,7 @@ void spmv_software_polling_row_loop(double* val,
         N = K;
         auto cur = mcsl::cycles::now();
         if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
+        tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
           // try to promote
           promotion_prev = cur;
           if (i_hi-i_lo <= 1) {

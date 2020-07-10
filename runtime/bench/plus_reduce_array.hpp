@@ -136,6 +136,7 @@ void plus_reduce_array_software_polling(int64_t* a, int64_t lo, int64_t hi, int6
       if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
         // try to promote
         promotion_prev = cur;
+        tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
         if (hi-lo_outer <= 1) {
           continue;
         }

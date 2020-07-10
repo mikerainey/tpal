@@ -7,10 +7,8 @@ namespace tpalrts {
 
 /*---------------------------------------------------------------------*/
 /* Heartbeat scheduling parameter kappa */
-
-uint64_t kappa_usec;
-
-uint64_t kappa_cycles;
+  
+uint64_t kappa_usec = 100, kappa_cycles;
 
 static inline
 void set_kappa_usec(double cpu_freq_ghz, uint64_t _kappa_usec) {
