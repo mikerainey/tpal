@@ -1,7 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <string.h>
+
 #define TPALRTS_USE_INTERRUPT_FLAGS 1
 
 #include "benchmark.hpp"
 #include "knapsack.hpp"
+
+#define MAX_ITEMS 256
+
+int read_input(const char *filename, struct item *items, int *capacity, int *n)
+{
+     int i;
+     FILE *f;
+
+     if (filename == NULL) filename = "\0";
+     f = fopen(filename, "r");
+     if (f == NULL)
+     {
+       fprintf(stderr, "open_input(\"%s\") failed\n", filename);
+       exit(1);
+     }
+     /* format of the input: #items capacity value1 weight1 ... */
+     int err1 = fscanf(f, "%d", n);
+     int err2 = fscanf(f, "%d", capacity);
+
+     for (i = 0; i < *n; ++i)
+     {
+       int err3 = fscanf(f, "%d %d", &items[i].value, &items[i].weight);
+     }
+
+     fclose(f);
+
+     /* sort the items on decreasing order of value/weight */
+     /* cilk2c is fascist in dealing with pointers, whence the ugly cast */
+     qsort(items, *n, sizeof(struct item), (int (*)(const void *, const void *)) compare);
+     return 0;
+}
 
 namespace tpalrts {
   
@@ -9,20 +45,13 @@ void launch() {
   rollforward_table = {
                        // later: fill
   };
-  int n, capacity, sol;
+  int n, capacity;
+  int sol = INT_MIN;
   tpalrts::stack_type s;
-  n = deepsea::cmdline::parse_or_default_int("n", 100);
-  capacity = deepsea::cmdline::parse_or_default_int("capacity", 100);
-  struct item* items = (struct item*)malloc(sizeof(item) * n);
-  auto bench_pre = [=] {
-    uint64_t h1 = mcsl::hash(n);
-    uint64_t h2 = mcsl::hash(n+1);
-    for (std::size_t i = 0; i < n; i++) {
-      items[i].value = h1 % 1000;
-      items[i].weight = std::max(3ul, h2 % capacity);
-      h1 = mcsl::hash(h1);
-      h2 = mcsl::hash(h2);
-    }
+  std::string inputfile = deepsea::cmdline::parse_or_default_string("infile", "");
+  struct item items[MAX_ITEMS];
+  auto bench_pre = [&] {
+    read_input(inputfile.c_str(), items, &capacity, &n);
   };
   auto bench_body_interrupt = [&] (promotable* p) {
     s = tpalrts::snew();
@@ -33,11 +62,12 @@ void launch() {
     knapsack_heartbeat<heartbeat_mechanism_software_polling>(items, capacity, n, 0, &sol, p, s);
   }; 
   auto bench_body_serial = [&] (promotable* p) {
-    s = tpalrts::snew();
-    sol = knapsack_custom_stack_serial(items, capacity, n, 0, s);
+                             //knapsack_seq(items, capacity, n, 0, &sol);
+                                 s = tpalrts::snew();
+                                     sol = knapsack_custom_stack_serial(items, capacity, n, 0, s);
   };
   auto bench_post = [&]   {
-    best_so_far = INT_MIN;
+                      //    best_so_far = INT_MIN;
     //    assert(sol == knapsack_serial(items, capacity, n, 0));
   };
   using microbench_scheduler_type = mcsl::minimal_scheduler<stats, logging, mcsl::minimal_elastic, tpal_worker>;

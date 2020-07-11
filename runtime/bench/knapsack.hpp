@@ -18,64 +18,78 @@ struct item {
   int weight;
 };
 
-volatile
-int best_so_far = INT_MIN;
 
-int compare(struct item *a, struct item *b)
-{
-     double c = ((double) a->value / a->weight) -
-     ((double) b->value / b->weight);
+std::atomic<int> best_so_far(INT_MIN);
 
-     if (c > 0)
-	  return -1;
-     if (c < 0)
-	  return 1;
-     return 0;
+void update_best_so_far(int val) {
+  int curr = best_so_far.load(std::memory_order_relaxed);
+
+  while (val > curr)
+  {
+    best_so_far.compare_exchange_weak(curr, val, std::memory_order_relaxed, std::memory_order_relaxed);
+  }
+}
+
+int seq_best_so_far = INT_MIN;
+
+int compare(struct item *a, struct item *b) {
+  double c = ((double) a->value / a->weight) -
+    ((double) b->value / b->weight);
+  
+  if (c > 0)
+    return -1;
+  if (c < 0)
+    return 1;
+  return 0;
 }
 
 /*---------------------------------------------------------------------*/
 /* Manual version */
 
-int knapsack_serial(struct item *e, int c, int n, int v) {
-  int best;
+void knapsack_seq(struct item *e, int c, int n, int v, int *sol) {
+   int with, without, best;
+   double ub;
+
    /* base case: full knapsack or no items */
    if (c < 0) {
-     return INT_MIN;
+       *sol = INT_MIN;
+       return;
    }
+
+   /* feasible solution, with value v */
    if (n == 0 || c == 0) {
-     return v;		/* feasible solution, with value v */
+     *sol = v;
+     return;
    }
 
-   double ub = (double) v + c * e->value / e->weight;
+   ub = (double) v + c * e->value / e->weight;
 
-   if (ub < best_so_far) {
-     /* prune ! */
-     return INT_MIN;
+   if (ub < seq_best_so_far) {
+    /* prune ! */
+     *sol = INT_MIN;
+     return;
    }
-   /* 
-    * compute the best solution without the current item in the knapsack 
+   /*
+    * compute the best solution without the current item in the knapsack
     */
-   int without = knapsack_serial(e + 1, c, n - 1, v);
+   knapsack_seq(e + 1, c, n - 1, v, &without);
 
    /* compute the best solution with the current item in the knapsack */
-   int with = knapsack_serial(e + 1, c - e->weight, n - 1, v + e->value);
+   knapsack_seq(e + 1, c - e->weight, n - 1, v + e->value, &with);
 
    best = with > without ? with : without;
 
-   /* 
+   /*
     * notice the race condition here. The program is still
     * correct, in the sense that the best solution so far
     * is at least best_so_far. Moreover best_so_far gets updated
     * when returning, so eventually it should get the right
     * value. The program is highly non-deterministic.
     */
-   if (best > best_so_far) {
-     best_so_far = best;
-   }
-     
-     return best;
-}
+   if (best > seq_best_so_far) seq_best_so_far = best;
 
+   *sol = best;
+}
 
 template <typename Scheduler>
 class knapsack_manual : public tpalrts::fiber<Scheduler> {
@@ -121,7 +135,7 @@ int knapsack_custom_stack_serial(struct item *e, int c, int n, int v, tpalrts::s
     goto retk;
   }
   ub = (double) v + c * e->value / e->weight;
-  if (ub < best_so_far) {
+  if (ub < seq_best_so_far) {
     best = INT_MIN;
     goto retk;
   }
@@ -151,8 +165,8 @@ int knapsack_custom_stack_serial(struct item *e, int c, int n, int v, tpalrts::s
     auto without = sload(sp, 1, int);
     best = with > without ? with : without;
   }
-  if (best > best_so_far) {
-    best_so_far = best;
+  if (best > seq_best_so_far) {
+    seq_best_so_far = best;
   }
   sfree(sp, 4);
   goto retk;
@@ -236,6 +250,21 @@ void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
   sstore(sp, 0, void*, &&exitk);
   
  loop:
+  if (heartbeat == heartbeat_mechanism_software_polling) {
+    if (--k == 0) {
+      k = K;
+      auto cur = mcsl::cycles::now();
+      if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
+        promotion_prev = cur;
+        try_promote();
+      }
+    }
+  } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
+    if (tpalrts::flags.mine().load()) {
+      tpalrts::flags.mine().store(false);
+      try_promote();
+    }
+  }
   if (c < 0) {
     best = INT_MIN;
     goto retk;
@@ -245,7 +274,7 @@ void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
     goto retk;
   }
   ub = (double) v + c * e->value / e->weight;
-  if (ub < best_so_far) {
+  if (ub < best_so_far.load(std::memory_order_relaxed)) {
     best = INT_MIN;
     goto retk;
   }
@@ -277,8 +306,8 @@ void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
     auto without = sload(sp, 1, int);
     best = with > without ? with : without;
   }
-  if (best > best_so_far) {
-    best_so_far = best;
+  if (best > best_so_far.load(std::memory_order_relaxed)) {
+    update_best_so_far(v);
   }
   sfree(sp, 6);
   goto retk;
@@ -306,7 +335,7 @@ int knapsack_cilk(struct item *e, int c, int n, int v) {
 
    double ub = (double) v + c * e->value / e->weight;
 
-   if (ub < best_so_far) {
+   if (ub < best_so_far.load(std::memory_order_relaxed)) {
      /* prune ! */
      return INT_MIN;
    }
@@ -329,8 +358,8 @@ int knapsack_cilk(struct item *e, int c, int n, int v) {
     * when returning, so eventually it should get the right
     * value. The program is highly non-deterministic.
     */
-   if (best > best_so_far) {
-     best_so_far = best;
+   if (best > best_so_far.load(std::memory_order_relaxed)) {
+     update_best_so_far(v);
    }
 
 #endif
