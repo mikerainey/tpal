@@ -8,6 +8,7 @@ let system = XSys.command_must_succeed_or_virtual
 
 let arg_virtual_run = XCmd.mem_flag "virtual_run"
 let arg_virtual_build = XCmd.mem_flag "virtual_build"
+let arg_problems = XCmd.parse_or_default_list_string "problems" []
 let arg_nb_runs = XCmd.parse_or_default_int "runs" 1
 let arg_mode = Mk_runs.mode_from_command_line "mode"
 let arg_skips = XCmd.parse_or_default_list_string "skip" []
@@ -171,6 +172,12 @@ let benchmarks : benchmark_descr list = [
     { bd_problem = "knapsack";
       bd_mk_input = mk_infile "knapsack-036.input"; };
 ]
+
+let benchmarks =
+  if arg_problems = [] then
+    benchmarks
+  else
+    List.filter (fun b -> List.exists (fun a -> a = b.bd_problem) arg_problems) benchmarks
 
 let mk_benchmark_descr bd =
     (mk string "benchmark" bd.bd_problem)
