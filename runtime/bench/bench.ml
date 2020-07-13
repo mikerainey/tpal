@@ -151,6 +151,9 @@ let mk_n n =
     (mk int "n" n)
   & (mk_pretty_name (Printf.sprintf "$%s \\cdot 10^6$ items" (string_of_millions (float_of_int n))))
 
+let mk_infile f =
+  mk string "infile" f
+
 type benchmark_descr = {
     bd_problem : string;
     bd_mk_input : Params.t;
@@ -164,7 +167,9 @@ let benchmarks : benchmark_descr list = [
     { bd_problem = "spmv";
       bd_mk_input = mk_n (500 * 1000 * 1000) };
     { bd_problem = "fib";
-      bd_mk_input = mk_n 40 };    
+      bd_mk_input = mk_n 40 };
+    { bd_problem = "knapsack";
+      bd_mk_input = mk_infile "knapsack-036.input"; };
 ]
 
 let mk_benchmark_descr bd =

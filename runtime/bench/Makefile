@@ -47,7 +47,8 @@ BENCHMARKS=\
 	incr_array \
 	plus_reduce_array \
 	spmv \
-	fib
+	fib \
+	knapsack
 
 all: \
 	$(BENCHMARKS:%=%.opt) $(BENCHMARKS:%=%.opt_cilk) 
