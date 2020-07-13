@@ -3,6 +3,7 @@ ARGS="$@"
 BENCHMARK=""
 SCHEDULER_CONFIGURATION=""
 OTHER_ARGS=""
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 while [[ $# -gt 0 ]]
 do
@@ -26,7 +27,13 @@ case $key in
     shift
     shift
     ;;
-                
+
+    -infile)
+    INFILE="$2"
+    shift
+    shift
+    ;;
+
     *)
     OTHER_ARGS="$1 $2 $OTHER_ARGS"
     shift
@@ -48,9 +55,10 @@ else
 fi
 
 export NUM_THREADS=$PROCS
-SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
-$SCRIPTPATH/$BENCHMARK.$EXT $ARGS $OTHER_ARGS
+export INFILE=$SCRIPTPATH/$INFILE
+
+$SCRIPTPATH/$BENCHMARK.$EXT $OTHER_ARGS -infile $INFILE -scheduler_configuration $SCHEDULER_CONFIGURATION -proc $PROCS
 rc=$?
 # the line below is needed because for some reason prun isn't properly
 # interpreting crashes, which exit with positive exit codes
