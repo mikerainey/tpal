@@ -7,6 +7,7 @@
 
 #include "benchmark.hpp"
 #include "knapsack.hpp"
+#include "knapsack_input.hpp"
 
 #define MAX_ITEMS 256
 
@@ -39,6 +40,15 @@ int read_input(const char *filename, struct item *items, int *capacity, int *n)
      return 0;
 }
 
+void print_input(struct item* items, int capacity, int n) {
+  printf("int capacity = %d;\n", capacity);
+  printf("int n = %d;\n", n);
+  for (int i = 0; i < n; i++) {
+    printf("items[%d].value = %d;\n", i, items[i].value);
+    printf("items[%d].weight = %d;\n", i, items[i].weight);
+  }
+}
+
 namespace tpalrts {
   
 void launch() {
@@ -51,20 +61,27 @@ void launch() {
   std::string inputfile = deepsea::cmdline::parse_or_default_string("infile", "");
   struct item items[MAX_ITEMS];
   auto bench_pre = [&] {
-    read_input(inputfile.c_str(), items, &capacity, &n);
+    if (inputfile != "") {
+      read_input(inputfile.c_str(), items, &capacity, &n);
+    } else {
+      n = knapsack_n;
+      capacity = knapsack_capacity;
+      knapsack_init(items);
+    }
+    //    print_input(items, capacity, n);
   };
   auto bench_body_interrupt = [&] (promotable* p) {
     s = tpalrts::snew();
-    knapsack_heartbeat<heartbeat_mechanism_hardware_interrupt>(items, capacity, n, 0, &sol, p, s);
+    knapsack_heartbeat<knapsack_heartbeat_mechanism_hardware_interrupt>(items, capacity, n, 0, &sol, p, s);
   };
   auto bench_body_software_polling = [&] (promotable* p) {
     s = tpalrts::snew();
-    knapsack_heartbeat<heartbeat_mechanism_software_polling>(items, capacity, n, 0, &sol, p, s);
+    knapsack_heartbeat<knapsack_heartbeat_mechanism_software_polling>(items, capacity, n, 0, &sol, p, s);
   }; 
   auto bench_body_serial = [&] (promotable* p) {
                              //knapsack_seq(items, capacity, n, 0, &sol);
-                                 s = tpalrts::snew();
-                                     sol = knapsack_custom_stack_serial(items, capacity, n, 0, s);
+    s = tpalrts::snew();
+    sol = knapsack_custom_stack_serial(items, capacity, n, 0, s);
   };
   auto bench_post = [&]   {
                       //    best_so_far = INT_MIN;

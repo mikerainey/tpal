@@ -21,12 +21,15 @@ struct item {
 
 std::atomic<int> best_so_far(INT_MIN);
 
+static inline
 void update_best_so_far(int val) {
   int curr = best_so_far.load(std::memory_order_relaxed);
 
-  while (val > curr)
-  {
-    best_so_far.compare_exchange_weak(curr, val, std::memory_order_relaxed, std::memory_order_relaxed);
+  while (val > curr) {
+    bool b = best_so_far.compare_exchange_weak(curr, val, std::memory_order_relaxed, std::memory_order_relaxed);
+    if (! b) {
+      mcsl::cycles::spin_for(1l<<12);
+    }
   }
 }
 
@@ -52,8 +55,8 @@ void knapsack_seq(struct item *e, int c, int n, int v, int *sol) {
 
    /* base case: full knapsack or no items */
    if (c < 0) {
-       *sol = INT_MIN;
-       return;
+     *sol = INT_MIN;
+     return;
    }
 
    /* feasible solution, with value v */
@@ -185,12 +188,12 @@ using knapsack_heartbeat_type = enum knapsack_heartbeat_entry_type {
   knapsack_heartbeat_retk
 };
 
-using heartbeat_mechanism_type = enum heartbeat_mechanism_struct {
-  heartbeat_mechanism_software_polling,
-  heartbeat_mechanism_hardware_interrupt
+using knapsack_heartbeat_mechanism_type = enum knapsack_heartbeat_mechanism_struct {
+  knapsack_heartbeat_mechanism_software_polling,
+  knapsack_heartbeat_mechanism_hardware_interrupt
 };
 
-template <int heartbeat=heartbeat_mechanism_software_polling>
+template <int heartbeat=knapsack_heartbeat_mechanism_software_polling>
 void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
                         tpalrts::promotable* p, tpalrts::stack_type s,
                         int64_t K=128, knapsack_heartbeat_type ty=knapsack_heartbeat_entry, int best = 0) {
@@ -250,19 +253,20 @@ void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
   sstore(sp, 0, void*, &&exitk);
   
  loop:
-  if (heartbeat == heartbeat_mechanism_software_polling) {
-    if (--k == 0) {
-      k = K;
+  if (--k == 0) {
+    k = K;
+    if (heartbeat == knapsack_heartbeat_mechanism_software_polling) {
       auto cur = mcsl::cycles::now();
       if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
+        tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
         promotion_prev = cur;
         try_promote();
       }
-    }
-  } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
-    if (tpalrts::flags.mine().load()) {
-      tpalrts::flags.mine().store(false);
-      try_promote();
+    } else if (heartbeat == knapsack_heartbeat_mechanism_hardware_interrupt) {
+      if (tpalrts::flags.mine().load()) {
+        tpalrts::flags.mine().store(false);
+        try_promote();
+      }
     }
   }
   if (c < 0) {

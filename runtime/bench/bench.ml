@@ -162,7 +162,7 @@ let benchmarks : benchmark_descr list = [
     { bd_problem = "plus_reduce_array";
       bd_mk_input = mk_n (1000 * 1000 * 1000) };
     { bd_problem = "spmv";
-      bd_mk_input = mk_n (300 * 1000 * 1000) };
+      bd_mk_input = mk_n (500 * 1000 * 1000) };
     { bd_problem = "fib";
       bd_mk_input = mk_n 40 };    
 ]

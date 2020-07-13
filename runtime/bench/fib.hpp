@@ -180,19 +180,20 @@ void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
   sstore(sp, 0, void*, &&exitk);
 
  loop:
-  if (heartbeat == heartbeat_mechanism_software_polling) {
-    if (--k == 0) {
-      k = K;
+  if (--k == 0) {
+    k = K;
+    if (heartbeat == heartbeat_mechanism_software_polling) {
       auto cur = mcsl::cycles::now();
       if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
         promotion_prev = cur;
+        tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
         try_promote();
       }
-    }
-  } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
-    if (tpalrts::flags.mine().load()) {
-      tpalrts::flags.mine().store(false);
-      try_promote();
+    } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
+      if (tpalrts::flags.mine().load()) {
+        tpalrts::flags.mine().store(false);
+        try_promote();
+      }
     }
   }
   f = n;

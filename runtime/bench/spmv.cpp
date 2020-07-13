@@ -89,7 +89,8 @@ void launch() {
     spmv_software_polling(val, row_ptr, col_ind, x, y, nb_rows, p, software_polling_K);
   };
   auto bench_body_serial = [&] (promotable* p) {
-    spmv_serial(val, row_ptr, col_ind, x, y, nb_rows);
+    //spmv_serial(val, row_ptr, col_ind, x, y, nb_rows);
+    bench_body_interrupt(p);
   };
   auto bench_post = [=]   {
 #ifndef NDEBUG
