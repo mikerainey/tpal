@@ -1,0 +1,34 @@
+
+machine beast
+prog run
+scheduler_configuration serial
+benchmark fib
+n 40
+---
+timeout 1000
+pretty_name $0.000 \cdot 10^6$ items
+exectime 1.013
+killed 0
+==========
+machine beast
+prog run
+scheduler_configuration serial
+benchmark fib
+n 40
+---
+timeout 1000
+pretty_name $0.000 \cdot 10^6$ items
+exectime 0.958
+killed 0
+==========
+machine beast
+prog run
+scheduler_configuration serial
+benchmark fib
+n 40
+---
+timeout 1000
+pretty_name $0.000 \cdot 10^6$ items
+exectime 0.997
+killed 0
+==========

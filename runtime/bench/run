@@ -4,6 +4,7 @@ BENCHMARK=""
 SCHEDULER_CONFIGURATION=""
 OTHER_ARGS=""
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+EXT="opt"
 
 while [[ $# -gt 0 ]]
 do
@@ -15,13 +16,7 @@ case $key in
     shift
     shift
     ;;
-
-    -benchmark)
-    BENCHMARK="$2"
-    shift
-    shift
-    ;;
-
+    
     -scheduler_configuration)
     SCHEDULER_CONFIGURATION="$2"
     shift
@@ -34,6 +29,18 @@ case $key in
     shift
     ;;
 
+    -ext)
+    EXT="$2"
+    shift
+    shift
+    ;;
+
+    -benchmark)
+    BENCHMARK="$2"
+    shift
+    shift
+    ;;
+    
     *)
     OTHER_ARGS="$1 $2 $OTHER_ARGS"
     shift
@@ -50,8 +57,6 @@ fi
 
 if [ "$SCHEDULER_CONFIGURATION" == "cilk" ]; then
    EXT="opt_cilk"
-else
-   EXT="opt"
 fi
 
 export NUM_THREADS=$PROCS

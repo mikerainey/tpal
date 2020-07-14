@@ -30,6 +30,10 @@ let arg_proc =
 let arg_proc_step = XCmd.parse_or_default_int "proc_step" 10
 let arg_dflt_size = XCmd.parse_or_default_int "n" 600000000
 let arg_par_baseline = XCmd.parse_or_default_string "par_baseline" "cilk"
+let arg_software_polling_Ks = XCmd.parse_or_default_list_int "software_polling_K" [8;32;128;512]
+let arg_kappas_usec = XCmd.parse_or_default_list_int "kappa_usec" [20;40;100]
+let arg_output_csv = XCmd.mem_flag "output_csv"
+let arg_elide_baseline = XCmd.mem_flag "elide_baseline"
 
 let run_modes =
   Mk_runs.([
@@ -142,6 +146,18 @@ let string_of_millions v =
      else if x >= 0.1 then sprintf "%.2f" x
      else sprintf "%.3f" x 
 
+let print_csv s =
+  if arg_output_csv then
+    Printf.printf "%s, " s
+  else
+    ()
+
+let print_csv_newline () =
+  if arg_output_csv then
+    Printf.printf "\n"
+  else
+    ()
+
 (*****************************************************************************)
 (* Benchmark descriptions *)
 
@@ -182,279 +198,7 @@ let benchmarks =
 let mk_benchmark_descr bd =
     (mk string "benchmark" bd.bd_problem)
   & bd.bd_mk_input
-                                        
-(*****************************************************************************)
-(** Scaling experiment *)
-
-module ExpScaling = struct
-
-let name = "scaling"
-             
-let kappas_usec = [30;100;200;400]
-
-let mk_kappas_usec =
-  mk_list int "kappa_usec" kappas_usec
-
-let mk_software_polling_configuration =
-  (mk_scheduler_configuration "software_polling") & (mk_list int "software_polling_K" [256;])
-
-let mk_manual_configuration =
-  (mk_scheduler_configuration "manual") & (mk int "incr_array_manual_T" 2048)
-
-let mk_heartbeat_scheduler_configurations = ((
-      mk_software_polling_configuration  
-   ++ (mk_scheduler_configuration "interrupt_ping_thread")
-   ++ (mk_scheduler_configuration "interrupt_pthread")
-   ++ (mk_scheduler_configuration "interrupt_papi")) & mk_kappas_usec)
-   ++ mk_manual_configuration
-                                          
-let mk_proc1 = mk int "proc" 1
-
-let procs =
-  let rec gen p =
-    if p >= arg_proc then
-      [arg_proc]
-    else
-      p :: gen (p + arg_proc_step)
-  in
-  let procs = gen arg_proc_step in
-  match procs with
-  | 1 :: _ -> procs
-  | _ -> 1 :: procs
-
-let mk_procs = mk_list int "proc" procs
-
-let mk_progs =
-  (mk_prog prog_heartbeat) & mk_sizes
-  
-let mk_heartbeat_runs =
-   mk_progs & mk_procs & mk_heartbeat_scheduler_configurations
-  
-let mk_baseline_runs =
-  mk_progs & mk_proc1 & mk_scheduler_configuration "serial"
-
-let mk_cilk_scheduler_configuration =
-  mk_scheduler_configuration "cilk"
-  
-let mk_cilk_runs =
-  (mk_prog prog_cilk) & mk_procs & mk_sizes & mk_cilk_scheduler_configuration
-
-let name_baseline = name ^ "_baseline"
-let name_cilk = name ^ "_cilk"
-  
-let make() =
-  build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
-
-let run() = (
-  Mk_runs.(call (run_modes @ [
-    Output (file_results name);
-    Timeout 1000;
-    Args mk_heartbeat_runs]));
-  Mk_runs.(call (run_modes @ [
-    Output (file_results name_cilk);
-    Timeout 1000;
-    Args mk_cilk_runs]));
-  Mk_runs.(call (run_modes @ [
-    Output (file_results name_baseline);
-    Timeout 1000;
-    Args mk_baseline_runs])))
-  
-let check = nothing  (* do something here *)
-          
-let plot_baseline() =
-  let results_baseline = Results.from_file (file_results name_baseline) in
-  let eval_speedup = fun env all_results results ->
-    let results_baseline =
-      ~~ Results.filter_by_params results_baseline (
-           from_env (Env.filter_keys ["n";] env))
-    in
-    let v = Results.get_mean_of "exectime" results in
-    let b = Results.get_mean_of "exectime" results_baseline in
-    b /. v
-  in
-    Mk_scatter_plot.(call ([
-      Chart_opt Chart.([
-        Legend_opt Legend.([Legend_pos Bottom_right]); 
-        ]);
-      Scatter_plot_opt Scatter_plot.([
-         Draw_lines true; 
-         Y_axis [Axis.Lower (Some 0.);] ]);
-      Charts mk_sizes;
-      Series mk_heartbeat_scheduler_configurations;
-      X mk_procs;
-      Input (file_results name);
-      Y_label "exectime(serial) / exectime(*)";
-      X_label "Nb. proc";
-      Y eval_speedup;
-      Output (file_plots name);
-      Formatter formatter;
-      ] 
-     )); ()
-
-let plot_cilk() =
-  let results_baseline = Results.from_file (file_results name_cilk) in
-  let eval_speedup = fun env all_results results ->
-    let results_baseline =
-      ~~ Results.filter_by_params results_baseline (
-           from_env (Env.filter_keys ["n";] env))
-    in
-    let v = Results.get_mean_of "exectime" results in
-    let b = Results.get_mean_of "exectime" results_baseline in
-    b /. v
-  in
-    Mk_scatter_plot.(call ([
-      Chart_opt Chart.([
-        Legend_opt Legend.([Legend_pos Bottom_right]); 
-        ]);
-      Scatter_plot_opt Scatter_plot.([
-         Draw_lines true; 
-         Y_axis [Axis.Lower (Some 0.0);] ]);
-      Charts mk_sizes;
-      Series mk_heartbeat_scheduler_configurations;
-      X mk_procs;
-      X_label "Nb. proc";
-      Input (file_results name);
-      Y_label "exectime(Cilk) / exectime(*)";
-      Y eval_speedup;
-      Output (file_plots name_cilk);
-      Formatter formatter;
-      ] 
-     )); ()
-
-let plot () = (plot_baseline(); plot_cilk())
-            
-let all () = select make run check plot
-
-end
-
-(*****************************************************************************)
-(** Work-efficiency *)
-
-module ExpWorkEfficiency = struct
-
-let name = "work_efficiency"
-             
-let kappas_usec = (*[20;30;40;50;60;100;150;200;400]*)
-  [20;50;100;200;]
-
-let mk_kappas_usec =
-  mk_list int "kappa_usec" kappas_usec
-
-let mk_software_polling_configuration =
-  (mk_scheduler_configuration "software_polling") & (mk_list int "software_polling_K" [128;256;512;])
-
-let mk_heartbeat_scheduler_configurations = 
-      mk_software_polling_configuration  
-   ++ (mk_scheduler_configuration "interrupt_ping_thread")
-   ++ (mk_scheduler_configuration "interrupt_pthread")
-   ++ (mk_scheduler_configuration "interrupt_papi")
-    
-let mk_proc1 = mk int "proc" 1
-
-let mk_progs =
-  (mk_prog prog_heartbeat) & mk_proc1 & mk_sizes
-  
-let mk_heartbeat_runs =
-   mk_progs & mk_heartbeat_scheduler_configurations & mk_kappas_usec
-  
-let mk_baseline_runs =
-  mk_progs & mk_scheduler_configuration "serial"
-
-let mk_cilk_scheduler_configuration =
-  mk_scheduler_configuration "cilk"
-  
-let mk_cilk_runs =
-  (mk_prog prog_cilk) & mk_proc1 & mk_sizes & mk_cilk_scheduler_configuration
-
-let name_baseline = name ^ "_baseline"
-let name_cilk = name ^ "_cilk"
-  
-let make() =
-  build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
-
-let run() = (
-  Mk_runs.(call (run_modes @ [
-    Output (file_results name);
-    Timeout 1000;
-    Args mk_heartbeat_runs]));
-  Mk_runs.(call (run_modes @ [
-    Output (file_results name_cilk);
-    Timeout 1000;
-    Args mk_cilk_runs]));
-  Mk_runs.(call (run_modes @ [
-    Output (file_results name_baseline);
-    Timeout 1000;
-    Args mk_baseline_runs])))
-  
-
-let check = nothing  (* do something here *)
-          
-let plot_baseline() =
-  let results_baseline = Results.from_file (file_results name_baseline) in
-  let eval_work_efficiency = fun env all_results results ->
-    let results_baseline =
-      ~~ Results.filter_by_params results_baseline (
-           from_env (Env.filter_keys ["n";] env))
-    in
-    let v = Results.get_mean_of "exectime" results in
-    let b = Results.get_mean_of "exectime" results_baseline in
-    v /. b
-  in
-    Mk_scatter_plot.(call ([
-      Chart_opt Chart.([
-        Legend_opt Legend.([Legend_pos Bottom_right]); 
-        ]);
-      Scatter_plot_opt Scatter_plot.([
-         Draw_lines true; 
-         Y_axis [Axis.Lower (Some 0.8); Axis.Upper (Some 1.4)] ]);
-      Charts mk_sizes;
-      Series mk_heartbeat_scheduler_configurations;
-      X mk_kappas_usec;
-      Input (file_results name);
-      Y_label "exectime(*) / exectime(serial)";
-      X_label "heartbeat period (usec))";
-      Y eval_work_efficiency;
-      Output (file_plots name);
-      Formatter formatter;
-      ] 
-     )); ()
-
-let plot_cilk() =
-  let results_baseline = Results.from_file (file_results name_cilk) in
-  let eval_work_efficiency = fun env all_results results ->
-    let results_baseline =
-      ~~ Results.filter_by_params results_baseline (
-           from_env (Env.filter_keys ["n";] env))
-    in
-    let v = Results.get_mean_of "exectime" results in
-    let b = Results.get_mean_of "exectime" results_baseline in
-    v /. b
-  in
-    Mk_scatter_plot.(call ([
-      Chart_opt Chart.([
-        Legend_opt Legend.([Legend_pos Bottom_right]); 
-        ]);
-      Scatter_plot_opt Scatter_plot.([
-         Draw_lines true; 
-         Y_axis [Axis.Lower (Some 0.8); Axis.Upper (Some 1.4)] ]);
-      Charts mk_sizes;
-      Series mk_heartbeat_scheduler_configurations;
-      X mk_kappas_usec;
-      X_label "heartbeat period (usec))";
-      Input (file_results name);
-      Y_label "exectime(*) / exectime(Cilk)";
-      Y eval_work_efficiency;
-      Output (file_plots name_cilk);
-      Formatter formatter;
-      ] 
-     )); ()
-
-let plot () = (plot_baseline(); plot_cilk())
-            
-let all () = select make run check plot
-
-end
-
+                                       
 (*****************************************************************************)
 (** Feasibility experiment *)
 
@@ -462,18 +206,21 @@ module ExpFeasibility = struct
 
 let name_of bd = "feasibility_" ^ bd.bd_problem
          
-let kappas_usec = [20;40;100]
+let kappas_usec = arg_kappas_usec
                 
 let mk_kappas_usec =
   mk_list int "kappa_usec" kappas_usec
 
-let software_polling_Ks = [8;32;128;512]
+let software_polling_Ks = arg_software_polling_Ks
 
 let software_polling_K = "software_polling_K"
 
 let mk_software_polling_config_of k =
     (mk_scheduler_configuration "software_polling")
-  & (mk int software_polling_K k)
+    & (mk int software_polling_K k)
+
+let mk_software_polling_config_of2 k kappa =
+  (mk_software_polling_config_of k) & (mk int "kappa_usec" kappa)
     
 let mk_software_polling_configs =
   mk_all mk_software_polling_config_of software_polling_Ks
@@ -580,7 +327,6 @@ let run() = ~~ List.iter benchmarks run_for
 let check = nothing  (* do something here *)
 
 (* later: support plotting for benchmarks with multiple inputs *)
-(* later : collect latencies from stats binaries *)
 let plot_for bd =
   let tex_file = file_tables_src (name_of bd) in
   let pdf_file = file_tables (name_of bd) in
@@ -642,27 +388,35 @@ let plot_for bd =
       ~~ List.iteri procs (fun proc_i proc ->
           ~~ List.iteri kappas_usec (fun kappa_i kappa ->
               let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
-              Mk_table.cell ~escape:true ~last:last add (Printf.sprintf "$%d\mu s$" kappa)
-      ));
+              let s = Printf.sprintf "$%d\mu s$" kappa in
+              print_csv (Printf.sprintf "%d" kappa);
+              Mk_table.cell ~escape:true ~last:last add s
+        ));
+      print_csv_newline ();
       add Latex.tabular_newline;
       ~~ List.iteri software_polling_Ks (fun swpK_i swpK ->
-          Mk_table.cell ~escape:true ~last:false add (Printf.sprintf "SWP-%d" swpK);
+          let s = Printf.sprintf "SWP-%d" swpK in
+          print_csv s;
+          Mk_table.cell ~escape:true ~last:false add s;
         ~~ List.iteri procs (fun proc_i proc ->
             let par_baseline_exectime = par_baseline_exectime_of proc in
-            let heartbeat_exectime =
-              let mk_config = mk_software_polling_config_of swpK in
-              heartbeat_exectime_of mk_config proc
-            in
-            let b = if proc = 1 then baseline_exectime else par_baseline_exectime in
-            let chg = string_of_percentage_change ~show_plus:true b heartbeat_exectime in
             ~~ List.iteri kappas_usec (fun kappa_i kappa ->
+                let heartbeat_exectime =
+                  let mk_config = mk_software_polling_config_of2 swpK kappa in
+                  heartbeat_exectime_of mk_config proc
+                in
+                let b = if proc = 1 then baseline_exectime else par_baseline_exectime in
+                let chg = string_of_percentage_change ~show_plus:true b heartbeat_exectime in
                 let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
+                print_csv (Printf.sprintf "%f" heartbeat_exectime);
                 Mk_table.cell ~escape:true ~last:last add chg
-      ));
+        ));
+      print_csv_newline ();
       add Latex.tabular_newline);
       let hwis = values_of_keys_in_params mk_hardware_interrupt_configs [scheduler_configuration;] in
       ~~ List.iteri hwis (fun hwi_i [hwi] ->
           let hwi_pretty = pretty_name_of_interrupt_config hwi in
+          print_csv hwi_pretty;
           Mk_table.cell ~escape:true ~last:false add hwi_pretty;
         ~~ List.iteri procs (fun proc_i proc ->
             ~~ List.iteri kappas_usec (fun kappa_i kappa ->
@@ -674,12 +428,184 @@ let plot_for bd =
                 let b = if proc = 1 then baseline_exectime else par_baseline_exectime in
                 let chg = string_of_percentage_change ~show_plus:true b heartbeat_exectime in
                 let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
+                print_csv (Printf.sprintf "%f" heartbeat_exectime);
                 Mk_table.cell ~escape:true ~last:last add chg
-      ));
+          ));
+      print_csv_newline ();
       add Latex.tabular_newline);
       add Latex.tabular_end;)
       
 let plot () = ~~ List.iter benchmarks plot_for
+
+let all () = select make run check plot
+
+end
+
+(*****************************************************************************)
+(** Stats experiment *)
+
+module ExpStats = struct
+
+module EF = ExpFeasibility
+
+let name_of bd = "stats_" ^ bd.bd_problem
+         
+let pretty_name_of_interrupt_config = EF.pretty_name_of_interrupt_config
+  
+let mk_heartbeat_configs = EF.mk_heartbeat_configs
+
+let procs = EF.procs
+          
+let mk_prog_homegrown = EF.mk_prog_homegrown
+
+let mk_ext e = mk string "ext" e
+
+let mk_ext_sta = mk_ext "sta"
+  
+let mk_manual_runs_of bd proc =
+    mk_prog_homegrown
+  & mk int "proc" proc
+  & mk_scheduler_configuration "manual"
+  & (mk_benchmark_descr bd)
+  & mk_ext_sta
+
+let mk_manual_runs bd =
+  mk_all (mk_manual_runs_of bd) procs
+
+let mk_heartbeat_runs_of bd mk_configs proc =
+    mk_prog_homegrown
+  & mk int "proc" proc
+  & mk_configs
+  & (mk_benchmark_descr bd)
+  & mk_ext_sta
+
+let mk_heartbeat_runs bd =
+  mk_all (mk_heartbeat_runs_of bd mk_heartbeat_configs) procs
+                      
+let mk_par_baseline_runs =
+    mk_manual_runs
+
+let name_heartbeat bd = (name_of bd) ^ "_heartbeat"
+let name_manual bd = (name_of bd) ^ "_manual"
+let name_par_baseline = name_manual
+
+let make() =
+  build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
+
+let run_for bd = (
+  Mk_runs.(call (run_modes @ [
+    Output (file_results (name_heartbeat bd));
+    Timeout 90;
+    Args (mk_heartbeat_runs bd)]));
+  Mk_runs.(call (run_modes @ [
+    Output (file_results (name_par_baseline bd));
+    Timeout 400;
+    Args (mk_par_baseline_runs bd)])))
+
+let run() = ~~ List.iter benchmarks run_for
+  
+let check = nothing  (* do something here *)
+
+let plot_for stat bd =
+  let name = (name_of bd) ^ "_" ^ stat in
+  let tex_file = file_tables_src name in
+  let pdf_file = file_tables name in
+  let nb_procs = List.length procs in
+  let nb_kappas = List.length EF.kappas_usec in
+  let nb_cols = nb_procs * nb_kappas in
+  Mk_table.build_table tex_file pdf_file (fun add ->
+      let hdr =
+        let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
+        Printf.sprintf "|l|%s|" ls
+      in
+      add (Latex.tabular_begin hdr);
+      (* Proc header *)
+      Mk_table.cell ~escape:true ~last:false add "";
+      ~~ List.iteri procs (fun proc_i proc ->
+          let last = proc_i+1 = nb_procs in
+          Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" (Printf.sprintf "$P=%d$" proc))
+        );
+      add Latex.tabular_newline;
+      let manual_stat_of proc =
+        if arg_elide_baseline then
+          0.0
+        else
+          let results = Results.from_file (file_results (name_manual bd)) in
+          let [col] = (mk_manual_runs_of bd proc) Env.empty in
+          let results = Results.filter col results in
+          Results.get_mean_of stat results
+      in
+      let par_baseline_stat_of = manual_stat_of
+      in
+      let heartbeat_stat_of mk_config proc =
+        let results = Results.from_file (file_results (name_heartbeat bd)) in
+        let [col] = (mk_heartbeat_runs_of bd mk_config proc) Env.empty in
+        let results = Results.filter col results in
+        Results.get_mean_of stat results
+      in
+      Mk_table.cell ~escape:true ~last:false add "baseline (s)";
+      ~~ List.iteri procs (fun proc_i proc ->
+            let par_baseline_stat = par_baseline_stat_of proc in
+            let b = par_baseline_stat in
+            let last = proc_i+1 = nb_procs in
+            Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" (Printf.sprintf "%.3f" b)));
+      (* Header *)
+      add Latex.tabular_newline;
+      Mk_table.cell ~escape:true ~last:false add "$H$";
+      ~~ List.iteri procs (fun proc_i proc ->
+          ~~ List.iteri EF.kappas_usec (fun kappa_i kappa ->
+              let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
+              let s = Printf.sprintf "$%d\mu s$" kappa in
+              print_csv s;
+              Mk_table.cell ~escape:true ~last:last add s
+      ));
+      add Latex.tabular_newline;
+      ~~ List.iteri EF.software_polling_Ks (fun swpK_i swpK ->
+          let s = Printf.sprintf "SWP-%d" swpK in
+          print_csv s;
+          Mk_table.cell ~escape:true ~last:false add s;
+        ~~ List.iteri procs (fun proc_i proc ->
+            let par_baseline_stat = par_baseline_stat_of proc in
+            ~~ List.iteri EF.kappas_usec (fun kappa_i kappa ->
+                let heartbeat_stat =
+                  let mk_config = EF.mk_software_polling_config_of2 swpK kappa in
+                  heartbeat_stat_of mk_config proc
+                in
+                let b = par_baseline_stat in
+                let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
+                let s = Printf.sprintf "%0.f" heartbeat_stat in
+                print_csv s;
+                Mk_table.cell ~escape:true ~last:last add s
+          ));
+        print_csv_newline();
+      add Latex.tabular_newline);
+      let hwis = values_of_keys_in_params EF.mk_hardware_interrupt_configs [scheduler_configuration;] in
+      ~~ List.iteri hwis (fun hwi_i [hwi] ->
+          let hwi_pretty = pretty_name_of_interrupt_config hwi in
+          print_csv hwi_pretty;
+          Mk_table.cell ~escape:true ~last:false add hwi_pretty;
+        ~~ List.iteri procs (fun proc_i proc ->
+            ~~ List.iteri EF.kappas_usec (fun kappa_i kappa ->
+                let par_baseline_stat = par_baseline_stat_of proc in
+                let heartbeat_stat =
+                  let mk_config = EF.mk_hardware_interrupt_config_of hwi kappa in
+                  heartbeat_stat_of mk_config proc
+                in
+                let b = par_baseline_stat in
+                let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
+                let s = Printf.sprintf "%0.f" heartbeat_stat in
+                print_csv s;
+                Mk_table.cell ~escape:true ~last:last add s
+          ));
+        print_csv_newline();
+      add Latex.tabular_newline);
+      add Latex.tabular_end;)
+      
+let plot () = (
+    ~~ List.iter benchmarks (plot_for "nb_heartbeats");
+    ~~ List.iter benchmarks (plot_for "nb_promotions");
+    ~~ List.iter benchmarks (plot_for "nb_steals");
+    ())
 
 let all () = select make run check plot
 
@@ -692,8 +618,7 @@ let _ =
   let arg_actions = XCmd.get_others() in
   let bindings = [
       "feasibility", ExpFeasibility.all;
-(*      "scaling", ExpScaling.all;
-      "work_efficiency", ExpWorkEfficiency.all;*)
+      "stats", ExpStats.all;      
   ]
   in
   Pbench.execute_from_only_skip arg_actions [] bindings;

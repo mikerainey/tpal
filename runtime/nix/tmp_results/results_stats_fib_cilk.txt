@@ -1,0 +1,27 @@
+
+machine drstrange
+prog run
+proc 1
+scheduler_configuration manual
+benchmark fib
+n 40
+exit sta
+---
+timeout 400
+pretty_name $0.000 \cdot 10^6$ items
+exectime 0.000
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration manual
+benchmark fib
+n 40
+exit sta
+---
+timeout 400
+pretty_name $0.000 \cdot 10^6$ items
+exectime 0.000
+killed 0
+==========

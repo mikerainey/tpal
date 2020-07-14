@@ -122,7 +122,7 @@ void plus_reduce_array_interrupt_promote(int64_t* a, int64_t lo, int64_t* ptr_hi
 /* Software-polling version */
 
 static
-void plus_reduce_array_software_polling(int64_t* a, int64_t lo, int64_t hi, int64_t* dst, tpalrts::promotable* p,  int64_t software_polling_K = 128) {
+void plus_reduce_array_software_polling(int64_t* a, int64_t lo, int64_t hi, int64_t* dst, tpalrts::promotable* p,  int64_t software_polling_K=tpalrts::dflt_software_polling_K) {
   int64_t result = 0;
   auto K = software_polling_K;
   uint64_t promotion_prev = mcsl::cycles::now();

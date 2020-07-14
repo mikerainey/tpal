@@ -1,0 +1,907 @@
+
+machine drstrange
+prog run
+proc 1
+scheduler_configuration software_polling
+software_polling_K 8
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 25991
+nb_steals 0
+nb_heartbeats 25991
+launch_duration 1.063
+total_work_time 1.063
+total_idle_time 0.000
+utilization 1.000
+exectime 1.063
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration software_polling
+software_polling_K 8
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 12460
+nb_steals 0
+nb_heartbeats 12460
+launch_duration 1.044
+total_work_time 1.044
+total_idle_time 0.000
+utilization 1.000
+exectime 1.044
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration software_polling
+software_polling_K 8
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 5843
+nb_steals 0
+nb_heartbeats 5843
+launch_duration 1.039
+total_work_time 1.039
+total_idle_time 0.000
+utilization 1.000
+exectime 1.039
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration software_polling
+software_polling_K 32
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 27933
+nb_steals 0
+nb_heartbeats 27933
+launch_duration 1.180
+total_work_time 1.180
+total_idle_time 0.000
+utilization 1.000
+exectime 1.180
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration software_polling
+software_polling_K 32
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 13109
+nb_steals 0
+nb_heartbeats 13109
+launch_duration 1.044
+total_work_time 1.044
+total_idle_time 0.000
+utilization 1.000
+exectime 1.044
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration software_polling
+software_polling_K 32
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 5364
+nb_steals 0
+nb_heartbeats 5364
+launch_duration 1.121
+total_work_time 1.121
+total_idle_time 0.000
+utilization 1.000
+exectime 1.121
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration software_polling
+software_polling_K 128
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 34448
+nb_steals 0
+nb_heartbeats 34448
+launch_duration 1.054
+total_work_time 1.054
+total_idle_time 0.000
+utilization 1.000
+exectime 1.054
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration software_polling
+software_polling_K 128
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 12476
+nb_steals 0
+nb_heartbeats 12476
+launch_duration 1.040
+total_work_time 1.040
+total_idle_time 0.000
+utilization 1.000
+exectime 1.040
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration software_polling
+software_polling_K 128
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 4950
+nb_steals 0
+nb_heartbeats 4950
+launch_duration 1.039
+total_work_time 1.039
+total_idle_time 0.000
+utilization 1.000
+exectime 1.039
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration software_polling
+software_polling_K 512
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 25879
+nb_steals 0
+nb_heartbeats 25880
+launch_duration 1.093
+total_work_time 1.093
+total_idle_time 0.000
+utilization 1.000
+exectime 1.093
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration software_polling
+software_polling_K 512
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 12389
+nb_steals 0
+nb_heartbeats 12389
+launch_duration 1.040
+total_work_time 1.040
+total_idle_time 0.000
+utilization 1.000
+exectime 1.040
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration software_polling
+software_polling_K 512
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 4932
+nb_steals 0
+nb_heartbeats 4932
+launch_duration 1.034
+total_work_time 1.034
+total_idle_time 0.000
+utilization 1.000
+exectime 1.034
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration interrupt_ping_thread
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 77104
+nb_steals 0
+nb_heartbeats 0
+launch_duration 1.543
+total_work_time 1.543
+total_idle_time 0.000
+utilization 1.000
+exectime 1.543
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration interrupt_ping_thread
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 37637
+nb_steals 0
+nb_heartbeats 0
+launch_duration 1.506
+total_work_time 1.506
+total_idle_time 0.000
+utilization 1.000
+exectime 1.506
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration interrupt_ping_thread
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 14429
+nb_steals 0
+nb_heartbeats 0
+launch_duration 1.443
+total_work_time 1.443
+total_idle_time 0.000
+utilization 1.000
+exectime 1.443
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration interrupt_pthread
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 78257
+nb_steals 0
+nb_heartbeats 0
+launch_duration 1.566
+total_work_time 1.566
+total_idle_time 0.000
+utilization 1.000
+exectime 1.566
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration interrupt_pthread
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 37038
+nb_steals 0
+nb_heartbeats 0
+launch_duration 1.482
+total_work_time 1.482
+total_idle_time 0.000
+utilization 1.000
+exectime 1.482
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration interrupt_pthread
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 14372
+nb_steals 0
+nb_heartbeats 0
+launch_duration 1.437
+total_work_time 1.437
+total_idle_time 0.000
+utilization 1.000
+exectime 1.437
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration interrupt_papi
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 103911
+nb_steals 0
+nb_heartbeats 0
+launch_duration 1.923
+total_work_time 1.923
+total_idle_time 0.000
+utilization 1.000
+exectime 1.923
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration interrupt_papi
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 37869
+nb_steals 0
+nb_heartbeats 0
+launch_duration 1.605
+total_work_time 1.605
+total_idle_time 0.000
+utilization 1.000
+exectime 1.605
+killed 0
+==========
+machine drstrange
+prog run
+proc 1
+scheduler_configuration interrupt_papi
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 14740
+nb_steals 0
+nb_heartbeats 0
+launch_duration 1.484
+total_work_time 1.484
+total_idle_time 0.000
+utilization 1.000
+exectime 1.484
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration software_polling
+software_polling_K 8
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 31930
+nb_steals 31
+nb_heartbeats 31942
+launch_duration 0.307
+total_work_time 1.229
+total_idle_time 0.000
+utilization 1.000
+exectime 0.307
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration software_polling
+software_polling_K 8
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 17195
+nb_steals 34
+nb_heartbeats 17195
+launch_duration 0.325
+total_work_time 1.301
+total_idle_time 0.001
+utilization 0.999
+exectime 0.325
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration software_polling
+software_polling_K 8
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 7354
+nb_steals 33
+nb_heartbeats 7354
+launch_duration 0.322
+total_work_time 1.288
+total_idle_time 0.001
+utilization 0.999
+exectime 0.322
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration software_polling
+software_polling_K 32
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 35888
+nb_steals 25
+nb_heartbeats 35903
+launch_duration 0.326
+total_work_time 1.303
+total_idle_time 0.000
+utilization 1.000
+exectime 0.326
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration software_polling
+software_polling_K 32
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 18345
+nb_steals 33
+nb_heartbeats 18347
+launch_duration 0.328
+total_work_time 1.311
+total_idle_time 0.001
+utilization 1.000
+exectime 0.328
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration software_polling
+software_polling_K 32
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 7103
+nb_steals 24
+nb_heartbeats 7103
+launch_duration 0.319
+total_work_time 1.276
+total_idle_time 0.001
+utilization 0.999
+exectime 0.319
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration software_polling
+software_polling_K 128
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 35899
+nb_steals 38
+nb_heartbeats 35907
+launch_duration 0.332
+total_work_time 1.327
+total_idle_time 0.000
+utilization 1.000
+exectime 0.332
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration software_polling
+software_polling_K 128
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 17803
+nb_steals 28
+nb_heartbeats 17803
+launch_duration 0.313
+total_work_time 1.250
+total_idle_time 0.001
+utilization 1.000
+exectime 0.313
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration software_polling
+software_polling_K 128
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 6812
+nb_steals 23
+nb_heartbeats 6812
+launch_duration 0.313
+total_work_time 1.250
+total_idle_time 0.001
+utilization 0.999
+exectime 0.313
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration software_polling
+software_polling_K 512
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 34614
+nb_steals 28
+nb_heartbeats 34618
+launch_duration 0.319
+total_work_time 1.276
+total_idle_time 0.000
+utilization 1.000
+exectime 0.319
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration software_polling
+software_polling_K 512
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 18273
+nb_steals 21
+nb_heartbeats 18273
+launch_duration 0.332
+total_work_time 1.328
+total_idle_time 0.001
+utilization 1.000
+exectime 0.332
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration software_polling
+software_polling_K 512
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 7049
+nb_steals 23
+nb_heartbeats 7049
+launch_duration 0.309
+total_work_time 1.234
+total_idle_time 0.001
+utilization 0.999
+exectime 0.309
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration interrupt_ping_thread
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 95182
+nb_steals 27
+nb_heartbeats 0
+launch_duration 0.476
+total_work_time 1.905
+total_idle_time 0.000
+utilization 1.000
+exectime 0.476
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration interrupt_ping_thread
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 44190
+nb_steals 35
+nb_heartbeats 0
+launch_duration 0.442
+total_work_time 1.772
+total_idle_time 0.009
+utilization 0.995
+exectime 0.442
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration interrupt_ping_thread
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 17147
+nb_steals 40
+nb_heartbeats 0
+launch_duration 0.430
+total_work_time 1.715
+total_idle_time 0.004
+utilization 0.998
+exectime 0.430
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration interrupt_pthread
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 93479
+nb_steals 44
+nb_heartbeats 0
+launch_duration 0.468
+total_work_time 1.871
+total_idle_time 0.000
+utilization 1.000
+exectime 0.468
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration interrupt_pthread
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 44682
+nb_steals 35
+nb_heartbeats 0
+launch_duration 0.447
+total_work_time 1.788
+total_idle_time 0.000
+utilization 1.000
+exectime 0.447
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration interrupt_pthread
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 17020
+nb_steals 39
+nb_heartbeats 0
+launch_duration 0.426
+total_work_time 1.702
+total_idle_time 0.000
+utilization 1.000
+exectime 0.426
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration interrupt_papi
+kappa_usec 20
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 82322
+nb_steals 32
+nb_heartbeats 0
+launch_duration 0.530
+total_work_time 2.120
+total_idle_time 0.000
+utilization 1.000
+exectime 0.530
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration interrupt_papi
+kappa_usec 40
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 40890
+nb_steals 37
+nb_heartbeats 0
+launch_duration 0.477
+total_work_time 1.906
+total_idle_time 0.000
+utilization 1.000
+exectime 0.477
+killed 0
+==========
+machine drstrange
+prog run
+proc 4
+scheduler_configuration interrupt_papi
+kappa_usec 100
+benchmark fib
+n 40
+ext sta
+---
+timeout 90
+pretty_name $0.000 \cdot 10^6$ items
+nb_promotions 16401
+nb_steals 29
+nb_heartbeats 0
+launch_duration 0.442
+total_work_time 1.769
+total_idle_time 0.001
+utilization 1.000
+exectime 0.442
+killed 0
+==========

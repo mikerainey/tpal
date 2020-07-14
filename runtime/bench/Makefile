@@ -51,10 +51,11 @@ BENCHMARKS=\
 	knapsack
 
 all: \
-	$(BENCHMARKS:%=%.opt) $(BENCHMARKS:%=%.opt_cilk) 
+	$(BENCHMARKS:%=%.opt) $(BENCHMARKS:%=%.opt_cilk) \
+	$(BENCHMARKS:%=%.sta)
 
 install:
-	cp *.opt *.opt_cilk $(INSTALL_FOLDER)
+	cp *.opt *.opt_cilk *.sta $(INSTALL_FOLDER)
 	cp run $(INSTALL_FOLDER)
 	cp knapsack-036.input $(INSTALL_FOLDER)
 

@@ -1,0 +1,73 @@
+
+machine beast
+prog run
+proc 1
+scheduler_configuration cilk
+benchmark spmv
+n 500000000
+---
+timeout 400
+pretty_name $500 \cdot 10^6$ items
+exectime 11.454
+killed 0
+==========
+machine beast
+prog run
+proc 7
+scheduler_configuration cilk
+benchmark spmv
+n 500000000
+---
+timeout 400
+pretty_name $500 \cdot 10^6$ items
+exectime 1.744
+killed 0
+==========
+machine beast
+prog run
+proc 1
+scheduler_configuration cilk
+benchmark spmv
+n 500000000
+---
+timeout 400
+pretty_name $500 \cdot 10^6$ items
+exectime 11.620
+killed 0
+==========
+machine beast
+prog run
+proc 7
+scheduler_configuration cilk
+benchmark spmv
+n 500000000
+---
+timeout 400
+pretty_name $500 \cdot 10^6$ items
+exectime 1.760
+killed 0
+==========
+machine beast
+prog run
+proc 1
+scheduler_configuration cilk
+benchmark spmv
+n 500000000
+---
+timeout 400
+pretty_name $500 \cdot 10^6$ items
+exectime 11.708
+killed 0
+==========
+machine beast
+prog run
+proc 7
+scheduler_configuration cilk
+benchmark spmv
+n 500000000
+---
+timeout 400
+pretty_name $500 \cdot 10^6$ items
+exectime 1.955
+killed 0
+==========

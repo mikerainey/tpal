@@ -196,7 +196,7 @@ using knapsack_heartbeat_mechanism_type = enum knapsack_heartbeat_mechanism_stru
 template <int heartbeat=knapsack_heartbeat_mechanism_software_polling>
 void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
                         tpalrts::promotable* p, tpalrts::stack_type s,
-                        int64_t K=128, knapsack_heartbeat_type ty=knapsack_heartbeat_entry, int best = 0) {
+                        int64_t K=tpalrts::dflt_software_polling_K, knapsack_heartbeat_type ty=knapsack_heartbeat_entry, int best = 0) {
   char* stack = s.stack;
   char* sp = s.sp;
   char* prmhd = s.prmhd;

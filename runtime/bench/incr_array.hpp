@@ -107,7 +107,7 @@ void incr_array_interrupt_promote(int64_t* a, int64_t lo, int64_t* ptr_hi, tpalr
 /* Software-polling version */
 
 static
-int64_t* incr_array_software_polling(int64_t* a, int64_t lo, int64_t hi, tpalrts::promotable* p, int64_t K=128) {
+int64_t* incr_array_software_polling(int64_t* a, int64_t lo, int64_t hi, tpalrts::promotable* p, int64_t K=tpalrts::dflt_software_polling_K) {
   uint64_t promotion_prev = mcsl::cycles::now();
   int64_t lo_outer = lo;
   while (lo_outer != hi) {

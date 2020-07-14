@@ -424,7 +424,7 @@ void spmv_software_polling_row_loop(double* val,
                                     int64_t i_lo,
                                     int64_t i_hi,
                                     tpalrts::promotable* p,
-                                    int64_t software_polling_K = 128) {
+                                    int64_t software_polling_K=tpalrts::dflt_software_polling_K) {
   int64_t K = software_polling_K;
   uint64_t promotion_prev = mcsl::cycles::now();
   int64_t N = K;
@@ -487,7 +487,7 @@ void spmv_software_polling(double* val,
                            double* y,
                            int64_t n,
                            tpalrts::promotable* p,
-                           int64_t software_polling_K = 128) {
+                           int64_t software_polling_K=tpalrts::dflt_software_polling_K) {
   spmv_software_polling_row_loop(val, row_ptr, col_ind, x, y, 0, n, p, software_polling_K);
 }
 

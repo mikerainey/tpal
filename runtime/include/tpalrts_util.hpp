@@ -6,7 +6,7 @@
 namespace tpalrts {
 
 /*---------------------------------------------------------------------*/
-/* Heartbeat scheduling parameter kappa */
+/* Heartbeat scheduling parameters */
   
 uint64_t kappa_usec = 100, kappa_cycles;
 
@@ -17,6 +17,9 @@ void set_kappa_usec(double cpu_freq_ghz, uint64_t _kappa_usec) {
   kappa_cycles = (uint64_t)(cpu_freq_ghz * kappa_nsec);
 }
 
+static constexpr
+int dflt_software_polling_K = 128;
+  
 /*---------------------------------------------------------------------*/
 /* Stats */
 

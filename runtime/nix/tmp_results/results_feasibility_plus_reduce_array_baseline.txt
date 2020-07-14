@@ -1,0 +1,34 @@
+
+machine beast
+prog run
+scheduler_configuration serial
+benchmark plus_reduce_array
+n 1000000000
+---
+timeout 1000
+pretty_name $1000 \cdot 10^6$ items
+exectime 0.553
+killed 0
+==========
+machine beast
+prog run
+scheduler_configuration serial
+benchmark plus_reduce_array
+n 1000000000
+---
+timeout 1000
+pretty_name $1000 \cdot 10^6$ items
+exectime 0.552
+killed 0
+==========
+machine beast
+prog run
+scheduler_configuration serial
+benchmark plus_reduce_array
+n 1000000000
+---
+timeout 1000
+pretty_name $1000 \cdot 10^6$ items
+exectime 0.553
+killed 0
+==========

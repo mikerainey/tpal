@@ -82,6 +82,7 @@ void try_to_initiate_rollforward(const T& t, register_type* rip) {
 #if defined(MCSL_LINUX)
 
 void heartbeat_interrupt_handler(int, siginfo_t*, void* uap) {
+  stats::increment(stats::configuration_type::nb_heartbeats);
   mcontext_t* mctx = &((ucontext_t *)uap)->uc_mcontext;
   register_type* rip = &mctx->gregs[16];
   try_to_initiate_rollforward(rollforward_table, rip);
