@@ -5,6 +5,7 @@ SCHEDULER_CONFIGURATION=""
 OTHER_ARGS=""
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 EXT="opt"
+PROCS=1
 
 while [[ $# -gt 0 ]]
 do
