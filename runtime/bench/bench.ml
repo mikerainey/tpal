@@ -381,9 +381,13 @@ let plot_for bd =
             let par_baseline_exectime = par_baseline_exectime_of proc in
             let b = if proc = 1 then baseline_exectime else par_baseline_exectime in
             let last = proc_i+1 = nb_procs in
-            Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" (Printf.sprintf "%.3f" b)));
+            let s = Printf.sprintf "%.3f" b in
+            print_csv s;
+            Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" s));
       (* Header *)
+      print_csv_newline();
       add Latex.tabular_newline;
+      print_csv " ";
       Mk_table.cell ~escape:true ~last:false add "$H$";
       ~~ List.iteri procs (fun proc_i proc ->
           ~~ List.iteri kappas_usec (fun kappa_i kappa ->
@@ -551,14 +555,16 @@ let plot_for stat bd =
             Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" (Printf.sprintf "%.3f" b)));
       (* Header *)
       add Latex.tabular_newline;
+      print_csv " ";
       Mk_table.cell ~escape:true ~last:false add "$H$";
       ~~ List.iteri procs (fun proc_i proc ->
           ~~ List.iteri EF.kappas_usec (fun kappa_i kappa ->
               let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
               let s = Printf.sprintf "$%d\mu s$" kappa in
-              print_csv s;
+              print_csv (Printf.sprintf "%d" kappa);
               Mk_table.cell ~escape:true ~last:last add s
-      ));
+          ));
+      print_csv_newline();
       add Latex.tabular_newline;
       ~~ List.iteri EF.software_polling_Ks (fun swpK_i swpK ->
           let s = Printf.sprintf "SWP-%d" swpK in
