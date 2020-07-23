@@ -59,6 +59,8 @@ void launch0(std::size_t nb_workers,
   scheduler_type::launch(nb_workers);
   bench_post();
   printf("exectime %.3f\n", elapsed_time);
+  printf("kappa_usec %lu\n", kappa_usec);
+  printf("kappa_cycles %lu\n", kappa_cycles);
   logging::output(nb_workers);
 }
 
@@ -147,8 +149,9 @@ void launch(const Bench_pre& bench_pre,
   mcsl::initialize_machine();
   {
     double cpu_freq_ghz = mcsl::load_cpu_frequency_ghz();
-    uint64_t dflt_kappa_usec = kappa_usec = deepsea::cmdline::parse_or_default_int("kappa_usec", 100);
-    set_kappa_usec(cpu_freq_ghz, dflt_kappa_usec);
+    uint64_t cpu_freq_khz = (uint64_t)(1000000.0 * cpu_freq_ghz);
+    printf("cpu_freq_khz %lu\n", cpu_freq_khz);
+    assign_kappa(cpu_freq_khz, deepsea::cmdline::parse_or_default_int("kappa_usec", dflt_kappa_usec));
   }
   launch2(mcsl::nb_workers,
           bench_pre, bench_body_interrupt, bench_body_software_polling, bench_body_serial,
