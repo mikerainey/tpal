@@ -37,7 +37,7 @@ int nk_timer_set(nk_timer_t *t,
                  void (*callback)(void *p), 
                  void *p,
                  uint32_t cpu);
-#define NK_TIMER_CALLBACK  0x4  // thread continue immediately,
+#define NK_TIMER_CALLBACK  0x8  // thread continue immediately,
 #endif
 
 #include "mcsl_scheduler.hpp"
@@ -258,16 +258,17 @@ public:
   static
   void wait_to_terminate_ping_thread() {
     auto s = ping_thread_status.load();
-    if (s == ping_thread_status_active) {
-      ping_thread_status.compare_exchange_strong(s, ping_thread_status_exit_launch);
+    if (mcsl::perworker::unique_id::get_my_id() == 0) {
+      assert(s == ping_thread_status_active);
+      ping_thread_status.store(ping_thread_status_exit_launch);
     }
-    while (ping_thread_status.load() != ping_thread_status_exited) { }
+    while (s != ping_thread_status_exited) {
+      s = ping_thread_status.load();
+    }
   }
 
   static
-  uint64_t last_time;
-
-  static uint64_t start_time;
+  uint64_t start_time, last_time;
 
   static
   void heartbeat_timer_callback(void *) {
@@ -301,8 +302,8 @@ public:
       uint64_t kappa_ns = (1000l * kappa_usec);
       nk_timer_set(timer, kappa_ns, NK_TIMER_CALLBACK, heartbeat_timer_callback, (void*)naut_get_cur_thread(), 0);
       nk_timer_start(timer);
-      while (ping_thread_status.load() == ping_thread_status_active) {
-        //nk_sleep(10);
+      while (ping_thread_status.load() != ping_thread_status_exited) {
+        nk_sleep(100000l);
       }
     };
     auto p = new nk_worker_activation_type(id, f);
