@@ -262,7 +262,7 @@ void spmv_interrupt_promote(char* env) {
   tpalrts::promotable* p = GET_FROM_ENV(tpalrts::promotable*,SPMV_OFF10,env);
   auto n = *ptr_n;
   auto khi = *ptr_khi;
-  if (n-i >= 1) {
+  if (n-i >= 2) {
     auto mid = (n+i)/2;
     *ptr_n = mid;
     p->async_finish_promote([=] (tpalrts::promotable* p) {
@@ -279,11 +279,13 @@ void spmv_interrupt_promote(char* env) {
       spmv_interrupt_row_loop(env);
     });
   } else if (khi-k >= 2) {
-    double* r1 = new double;
-    double* r2 = new double;
+    using dst_rec_type = std::pair<double, double>;
+    dst_rec_type* dst_rec;
+    tpalrts::arena_block_type* dst_blk;
+    std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
     auto mid = (khi+k)/2;
     *ptr_khi = mid;
-    GET_FROM_ENV(double*, SPMV_OFF12, env) = r1;
+    GET_FROM_ENV(double*, SPMV_OFF12, env) = &(dst_rec->first);
     p->fork_join_promote([=] (tpalrts::promotable* p2) {
       char env2[SPMV_SZB];
       GET_FROM_ENV(double*, SPMV_OFF01, env2) = val;
@@ -296,12 +298,11 @@ void spmv_interrupt_promote(char* env) {
       GET_FROM_ENV(int64_t, SPMV_OFF08, env2) = mid;
       GET_FROM_ENV(int64_t, SPMV_OFF09, env2) = khi;
       GET_FROM_ENV(tpalrts::promotable*, SPMV_OFF10, env2) = p2;
-      GET_FROM_ENV(double*, SPMV_OFF12, env2) = r2;
+      GET_FROM_ENV(double*, SPMV_OFF12, env2) = &(dst_rec->second);
       spmv_interrupt_col_loop(env2);
     }, [=] (tpalrts::promotable*) {
-      y[i] = *r1 + *r2;
-      delete r1;
-      delete r2;
+      y[i] = dst_rec->first + dst_rec->second;
+      decr_arena_block(dst_blk);
     });
   }
 }
@@ -320,11 +321,13 @@ void spmv_col_interrupt_promote(char* env) {
   double* dst = GET_FROM_ENV(double*,SPMV_OFF12,env);
   auto khi = *ptr_khi;
   if (khi-k >= 2) {
-    double* r1 = new double;
-    double* r2 = new double;
+    using dst_rec_type = std::pair<double, double>;
+    dst_rec_type* dst_rec;
+    tpalrts::arena_block_type* dst_blk;
+    std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
     auto mid = (khi+k)/2;
     *ptr_khi = mid;
-    GET_FROM_ENV(double*, SPMV_OFF12, env) = r1;
+    GET_FROM_ENV(double*, SPMV_OFF12, env) = &(dst_rec->first);
     p->fork_join_promote([=] (tpalrts::promotable* p2) {
       char env2[SPMV_SZB];
       GET_FROM_ENV(double*, SPMV_OFF01, env2) = val;
@@ -337,12 +340,11 @@ void spmv_col_interrupt_promote(char* env) {
       GET_FROM_ENV(int64_t, SPMV_OFF08, env2) = mid;
       GET_FROM_ENV(int64_t, SPMV_OFF09, env2) = khi;
       GET_FROM_ENV(tpalrts::promotable*, SPMV_OFF10, env2) = p2;
-      GET_FROM_ENV(double*, SPMV_OFF12, env2) = r2;
+      GET_FROM_ENV(double*, SPMV_OFF12, env2) = &(dst_rec->second);
       spmv_interrupt_col_loop(env2);
     }, [=] (tpalrts::promotable*) {
-      *dst = *r1 + *r2;
-      delete r1;
-      delete r2;
+      *dst = dst_rec->first + dst_rec->second;
+      decr_arena_block(dst_blk);
     });
   }
 }
@@ -397,16 +399,17 @@ void spmv_software_polling_col_loop_par(int64_t K,
         }
         // promotion successful
         auto mid = (lo_outer+k_hi)/2;
-	auto dst1 = new double;
-	auto dst2 = new double;
+        using dst_rec_type = std::pair<double, double>;
+        dst_rec_type* dst_rec;
+        tpalrts::arena_block_type* dst_blk;
+        std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
 	auto dst0 = dst;
-	dst = dst1;
+	dst = &(dst_rec->first);
         p->fork_join_promote([=] (tpalrts::promotable* p2) {
-          spmv_software_polling_col_loop_par(K, val, row_ptr, col_ind, x, mid, k_hi, dst2, p2);
+          spmv_software_polling_col_loop_par(K, val, row_ptr, col_ind, x, mid, k_hi, &(dst_rec->second), p2);
         }, [=] (tpalrts::promotable*) {
-          *dst0 = *dst1 + *dst2;
-	  delete dst1;
-	  delete dst2;
+          *dst0 = dst_rec->first + dst_rec->second;
+          decr_arena_block(dst_blk);
 	});
         k_hi = mid;
       }
@@ -453,13 +456,16 @@ void spmv_software_polling_row_loop(double* val,
           if (i_hi-i_lo <= 1) {
             if (k_hi-k_lo >= 2) { // promote col loop
               // promotion successful
-              double* tmp = new double;
-              *tmp = 0.0;
+              using dst_rec_type = double;
+              dst_rec_type* dst_rec;
+              tpalrts::arena_block_type* dst_blk;
+              std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
+              *dst_rec = 0.0;
               p->fork_join_promote([=] (tpalrts::promotable* p2) {
-               spmv_software_polling_col_loop_par(K, val, row_ptr, col_ind, x, k_lo, k_hi, tmp, p2);
+               spmv_software_polling_col_loop_par(K, val, row_ptr, col_ind, x, k_lo, k_hi, dst_rec, p2);
               }, [=] (tpalrts::promotable*) {
-                y[i_lo] = t + *tmp;
-                delete tmp;
+                y[i_lo] = t + *dst_rec;
+                decr_arena_block(dst_blk);
               });
               return;
             } // end promote col loop

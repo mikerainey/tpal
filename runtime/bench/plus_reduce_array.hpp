@@ -105,16 +105,17 @@ void plus_reduce_array_interrupt_promote(int64_t* a, int64_t lo, int64_t* ptr_hi
   }
   auto mid = (lo+hi)/2;
   *ptr_hi = mid;
-  auto r1 = new int64_t;
-  auto r2 = new int64_t;
+  using dst_rec_type = std::pair<int64_t, int64_t>;
+  dst_rec_type* dst_rec;
+  tpalrts::arena_block_type* dst_blk;
+  std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
   auto r0 = *ptr_dst;
-  *ptr_dst = r1;
+  *ptr_dst = &(dst_rec->first);
   p->fork_join_promote([=] (tpalrts::promotable* p2) {
-    plus_reduce_array_interrupt(a, mid, hi, r2, p2);
+    plus_reduce_array_interrupt(a, mid, hi, &(dst_rec->second), p2);
   }, [=] (tpalrts::promotable*) {
-    *r0 = *r1 + *r2;
-    delete r1;
-    delete r2;
+    *r0 = dst_rec->first + dst_rec->second;
+    decr_arena_block(dst_blk);
   });
 }
 
@@ -142,16 +143,17 @@ void plus_reduce_array_software_polling(int64_t* a, int64_t lo, int64_t hi, int6
         }
         // promotion successful
         auto mid = (lo_outer+hi)/2;
-	auto dst1 = new int64_t;
-	auto dst2 = new int64_t;
+        using dst_rec_type = std::pair<int64_t, int64_t>;
+        dst_rec_type* dst_rec;
+        tpalrts::arena_block_type* dst_blk;
+        std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
 	auto dst0 = dst;
-	dst = dst1;
+	dst = &(dst_rec->first);
         p->fork_join_promote([=] (tpalrts::promotable* p2) {
-          plus_reduce_array_software_polling(a, mid, hi, dst2, p2, K);
+          plus_reduce_array_software_polling(a, mid, hi, &(dst_rec->second), p2, K);
         }, [=] (tpalrts::promotable*) {
-          *dst0 = *dst1 + *dst2;
-	  delete dst1;
-	  delete dst2;
+          *dst0 = dst_rec->first + dst_rec->second;
+          decr_arena_block(dst_blk);
 	});
         hi = mid;
       }

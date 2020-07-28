@@ -16,7 +16,8 @@ namespace tpalrts {
 
 mcsl::clock::time_point_type start_time;
 double elapsed_time;
-
+uint64_t start_cycle, elapsed_cycles;
+  
 static
 void cilk_set_nb_workers(int nb_workers) {
 #if defined(USE_CILK_PLUS)                  
@@ -26,7 +27,7 @@ void cilk_set_nb_workers(int nb_workers) {
   }
 #endif
 }
-
+  
 template <typename Scheduler, typename Worker, typename Interrupt,
           typename Bench_pre, typename Bench_post, typename Fiber_body>
 void launch0(std::size_t nb_workers,
@@ -39,9 +40,11 @@ void launch0(std::size_t nb_workers,
     auto f_pre = new fiber<Scheduler>([=] (promotable*) {
       stats::start_collecting();
       logging::log_event(mcsl::enter_algo);
-      start_time = mcsl::clock::now();                                        
+      start_time = mcsl::clock::now();
+      start_cycle = mcsl::cycles::now();
     });
     auto f_cont = new fiber<Scheduler>([=] (promotable*) {
+      elapsed_cycles = mcsl::cycles::since(start_cycle);
       elapsed_time = mcsl::clock::since(start_time);
       logging::log_event(mcsl::exit_algo);
       stats::report(nb_workers);
@@ -59,6 +62,11 @@ void launch0(std::size_t nb_workers,
   scheduler_type::launch(nb_workers);
   bench_post();
   printf("exectime %.3f\n", elapsed_time);
+  printf("execcycles %lu\n", elapsed_cycles);
+  {
+    auto et2 = mcsl::seconds_of(mcsl::load_cpu_frequency_khz(), elapsed_cycles);
+    printf("exectime_via_cycles %lu.%03lu\n", et2.seconds, et2.milliseconds);
+  }
   printf("kappa_usec %lu\n", kappa_usec);
   printf("kappa_cycles %lu\n", kappa_cycles);
   logging::output(nb_workers);
@@ -148,8 +156,7 @@ void launch(const Bench_pre& bench_pre,
             const Bench_body_cilk& bench_body_cilk) {
   mcsl::initialize_machine();
   {
-    double cpu_freq_ghz = mcsl::load_cpu_frequency_ghz();
-    uint64_t cpu_freq_khz = (uint64_t)(1000000.0 * cpu_freq_ghz);
+    auto cpu_freq_khz = mcsl::load_cpu_frequency_khz();
     printf("cpu_freq_khz %lu\n", cpu_freq_khz);
     assign_kappa(cpu_freq_khz, deepsea::cmdline::parse_or_default_int("kappa_usec", dflt_kappa_usec));
   }
@@ -157,6 +164,12 @@ void launch(const Bench_pre& bench_pre,
           bench_pre, bench_body_interrupt, bench_body_software_polling, bench_body_serial,
           bench_post, bench_body_manual, bench_body_cilk);
   mcsl::teardown_machine();
+  for (std::size_t i = 0; i != arena_blocks.size(); i++) {
+    auto b = arena_blocks[i];
+    if (b != nullptr) {
+      decr_arena_block(b);
+    }
+  }
 }
 
 } // end namespace

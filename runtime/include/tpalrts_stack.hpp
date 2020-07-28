@@ -18,9 +18,9 @@ const
 int dflt_stack_szb = 1 << 13;
 
 static inline
-stack_type snew(int stack_szb=dflt_stack_szb) {
-  char* stack = (char*)malloc(stack_szb);
-  char* sp = &stack[stack_szb - 1];
+stack_type snew() {
+  char* stack = nullptr;
+  char* sp = nullptr;
   char* prmhd = nullptr;
   char* prmtl = nullptr;
   return stack_type(stack, sp, prmhd, prmtl);
@@ -32,6 +32,16 @@ void sdelete(stack_type s) {
 }
   
 } // end namespace
+
+#define sunpack(s) \
+  if (s.stack == nullptr) { \
+    s.stack = (char*)malloc(tpalrts::dflt_stack_szb);   \
+    s.sp = &s.stack[tpalrts::dflt_stack_szb - 1]; \
+  } \
+  char* stack = s.stack; \
+  char* sp = s.sp; \
+  char* prmhd = s.prmhd; \
+  char* prmtl = s.prmtl; 
 
 #define sallocb(sp, szb) \
   sp -= szb;

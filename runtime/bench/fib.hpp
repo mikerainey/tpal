@@ -130,12 +130,9 @@ using heartbeat_mechanism_type = enum heartbeat_mechanism_struct {
 
 template <int heartbeat=heartbeat_mechanism_software_polling>
 void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
-                   tpalrts::stack_type s, fib_heartbeat_type ty, uint64_t f = 0) {
-  char* stack = s.stack;
-  char* sp = s.sp;
-  char* prmhd = s.prmhd;
-  char* prmtl = s.prmtl;
-
+                   tpalrts::stack_type& s, fib_heartbeat_type ty, uint64_t f = 0) {
+  sunpack(s);
+  
   void* __exitk = &&exitk;
   
   auto try_promote = [&] {
@@ -149,21 +146,22 @@ void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
     uint64_t n2 = sload(sp_top, 0, uint64_t);
     sstore(sp_top, -1l, void*, __exitk);
     auto dst0 = dst;
-    auto dst1 = new uint64_t;
-    auto dst2 = new uint64_t;
-    auto s2 = tpalrts::snew();
+    using dst_rec_type = std::tuple<uint64_t, uint64_t, tpalrts::stack_type>;
+    dst_rec_type* dst_rec;
+    tpalrts::arena_block_type* dst_blk;
+    std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
+    std::get<2>(*dst_rec) = tpalrts::snew();
     p->fork_join_promote([=] (tpalrts::promotable* p2) {
-      fib_heartbeat<heartbeat>(n2, dst2, p2, K, s2, fib_heartbeat_entry, 0);
+      fib_heartbeat<heartbeat>(n2, &(std::get<1>(*dst_rec)), p2, K, std::get<2>(*dst_rec), fib_heartbeat_entry, 0);
     }, [=] (tpalrts::promotable* p2) {
-      sdelete(s2);
-      auto f2 = *dst1 + *dst2;
-      delete dst1;
-      delete dst2;
+      sdelete(std::get<2>(*dst_rec));
+      auto f2 = std::get<0>(*dst_rec) + std::get<1>(*dst_rec);
+      decr_arena_block(dst_blk);
       auto sj = s;
       sj.sp = sp_cont;
       fib_heartbeat<heartbeat>(0, dst0, p2, K, sj, fib_heartbeat_retk, f2);
     });
-    dst = dst1;
+    dst = &std::get<0>(*dst_rec);
   };
 
   uint64_t promotion_prev = mcsl::cycles::now();
