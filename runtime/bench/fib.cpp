@@ -26,9 +26,6 @@ void launch() {
     r = fib_custom_stack_serial(n, tpalrts::dflt_software_polling_K, s);
   };
   auto bench_post = [&]   {
-    if (s.stack != nullptr) {
-      sdelete(s);
-    }
     assert(r == fib_serial(n));
   };
   using microbench_scheduler_type = mcsl::minimal_scheduler<stats, logging, mcsl::minimal_elastic, tpal_worker>;

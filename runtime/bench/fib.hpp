@@ -120,7 +120,8 @@ public:
 
 using fib_heartbeat_type = enum fib_heartbeat_entry_type {
   fib_heartbeat_entry,
-  fib_heartbeat_retk
+  fib_heartbeat_retk,
+  fib_heartbeat_clonek
 };
 
 using heartbeat_mechanism_type = enum heartbeat_mechanism_struct {
@@ -130,10 +131,11 @@ using heartbeat_mechanism_type = enum heartbeat_mechanism_struct {
 
 template <int heartbeat=heartbeat_mechanism_software_polling>
 void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
-                   tpalrts::stack_type& s, fib_heartbeat_type ty, uint64_t f = 0) {
+                   tpalrts::stack_type s, fib_heartbeat_type ty, uint64_t f = 0) {
   sunpack(s);
   
-  void* __exitk = &&exitk;
+  void* __joink = &&joink;
+  void* __clonek = &&clonek;
   
   auto try_promote = [&] {
     if (prmempty(prmtl, prmhd)) {
@@ -144,17 +146,24 @@ void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
     prmsplit(sp, prmtl, prmhd, sp_cont, top);
     char* sp_top = sp + top;
     uint64_t n2 = sload(sp_top, 0, uint64_t);
-    sstore(sp_top, -1l, void*, __exitk);
+    sstore(sp_top, -1l, void*, __joink);
     auto dst0 = dst;
-    using dst_rec_type = std::tuple<uint64_t, uint64_t, tpalrts::stack_type>;
+    using dst_rec_type = std::tuple<uint64_t, uint64_t>;
     dst_rec_type* dst_rec;
     tpalrts::arena_block_type* dst_blk;
     std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
-    std::get<2>(*dst_rec) = tpalrts::snew();
     p->fork_join_promote([=] (tpalrts::promotable* p2) {
-      fib_heartbeat<heartbeat>(n2, &(std::get<1>(*dst_rec)), p2, K, std::get<2>(*dst_rec), fib_heartbeat_entry, 0);
+      tpalrts::stack_type s2 = tpalrts::snew();
+      fib_heartbeat_type ty;
+      if (sload(sp_top, -1l, void*) != __clonek) { // slow clone
+        ty = fib_heartbeat_entry;
+      } else { // fast clone
+        ty = fib_heartbeat_clonek;
+        s2.stack = s.stack;
+        s2.sp = saddr(sp_top, -1l);
+      }
+      fib_heartbeat<heartbeat>(n2, &(std::get<1>(*dst_rec)), p2, K, s2, ty, 0);
     }, [=] (tpalrts::promotable* p2) {
-      sdelete(std::get<2>(*dst_rec));
       auto f2 = std::get<0>(*dst_rec) + std::get<1>(*dst_rec);
       decr_arena_block(dst_blk);
       auto sj = s;
@@ -164,13 +173,15 @@ void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
     dst = &std::get<0>(*dst_rec);
   };
 
-  uint64_t promotion_prev = mcsl::cycles::now();
+  uint64_t promotion_prev = (heartbeat == heartbeat_mechanism_software_polling) ? mcsl::cycles::now() : 0;
   uint64_t k = K;
 
   if (ty == fib_heartbeat_entry) {
     goto entry;
   } else if (ty == fib_heartbeat_retk) {
     goto retk;
+  } else if (ty == fib_heartbeat_clonek) {
+    goto clonek;
   }
 
  entry:
@@ -221,9 +232,21 @@ void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
  retk:
   goto *sload(sp, 0, void*);
 
+ joink:
+  sstore(sp, 0, void*, &&clonek);
+  sfree(sp, 1);
+  *dst = f;
+  return;
+
+ clonek:
+  salloc(sp, 1);
+  sstore(sp, 0, void*, &&joink);
+  goto loop;
+  
  exitk:
   sfree(sp, 1);
   *dst = f;
+  sdelete(s);
   
 }
 

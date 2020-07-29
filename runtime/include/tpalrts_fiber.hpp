@@ -16,9 +16,6 @@ class promotable;
 static constexpr
 int arena_block_szb = 1 << 12;
 
-  // later: refactor arena_block_type so that it's possible to pick block size
-  // later: make sure that in nautilus the leftover blocks in arena_blocks are deallocated
-  
 class arena_block_type {
 public:
 
@@ -108,7 +105,7 @@ public:
     arena_block_type* b;
     std::tie(ap, b) = alloc_arena<ty>();
     new (ap) ty(f, b);
-    async_finish_promote3(ap);
+    _async_finish_promote(ap);
   }
 
   template <typename Body, typename Combine>
@@ -131,14 +128,14 @@ public:
       new (ap) combine_ty(combine, b);
       fcombine = ap;
     }
-    fork_join_promote3(fbody, fcombine);
+    _fork_join_promote(fbody, fcombine);
   }
 
   virtual
-  void async_finish_promote3(execable*) = 0;
+  void _async_finish_promote(execable*) = 0;
 
   virtual
-  void fork_join_promote3(execable*, execable*) = 0;
+  void _fork_join_promote(execable*, execable*) = 0;
 
 };
 
@@ -229,22 +226,22 @@ public:
     return ap;
   }
 
-  void async_finish_promote3(execable* b) {
-    async_finish_promote2(arena_allocate(b));
+  void _async_finish_promote(execable* b) {
+    __async_finish_promote(arena_allocate(b));
   }
 
-  void async_finish_promote2(fiber* b) {
+  void __async_finish_promote(fiber* b) {
     add_edge(b, outedge);
     b->release();
     commit();
     stats::increment(stats_configuration::nb_promotions);
   }
     
-  void fork_join_promote3(execable* body, execable* combine) {
-    fork_join_promote2(arena_allocate(body), arena_allocate(combine));
+  void _fork_join_promote(execable* body, execable* combine) {
+    __fork_join_promote(arena_allocate(body), arena_allocate(combine));
   }
       
-  void fork_join_promote2(fiber* b, fiber* c) {
+  void __fork_join_promote(fiber* b, fiber* c) {
     c->outedge = capture_continuation();
     add_edge(this, c);
     add_edge(b, c);
@@ -253,18 +250,7 @@ public:
     commit();
     stats::increment(stats_configuration::nb_promotions);
   }
-  
-  /*
-  void* operator new(size_t size) {
-    printf("hi\n");
-    return ::operator new(size);
-  }
-
-  void operator delete(void * p) {
-    free(p); 
-  }
-  */
-  
+    
 };
 
 /* A fiber that, when executed, initiates the teardown of the 

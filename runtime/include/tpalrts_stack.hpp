@@ -17,6 +17,41 @@ public:
 const
 int dflt_stack_szb = 1 << 13;
 
+class stack_buffer_type {
+public:
+  char* stack = nullptr;
+  ~stack_buffer_type() {
+    if (stack != nullptr) {
+      free(stack);
+    }
+  }
+};
+
+mcsl::perworker::array<stack_buffer_type> stack_buffers;
+
+static inline
+char* alloc_stack() {
+  char* stack;
+  stack_buffer_type& b = stack_buffers.mine();
+  if (b.stack == nullptr) {
+    stack = (char*)malloc(tpalrts::dflt_stack_szb);
+  } else {
+    stack = b.stack;
+    b.stack = nullptr;
+  }
+  return stack;
+}
+
+static inline
+void free_stack(char* stack) {
+  stack_buffer_type& b = stack_buffers.mine();
+  if (b.stack == nullptr) {
+    b.stack = stack;
+  } else {
+    free(stack);
+  }
+}
+
 static inline
 stack_type snew() {
   char* stack = nullptr;
@@ -27,15 +62,19 @@ stack_type snew() {
 }
 
 static inline
-void sdelete(stack_type s) {
-  free(s.stack);
+void sdelete(stack_type& s) {
+  if (s.stack == nullptr) {
+    return;
+  }
+  free_stack(s.stack);
+  s.stack = nullptr;
 }
   
 } // end namespace
 
 #define sunpack(s) \
   if (s.stack == nullptr) { \
-    s.stack = (char*)malloc(tpalrts::dflt_stack_szb);   \
+    s.stack = tpalrts::alloc_stack();             \
     s.sp = &s.stack[tpalrts::dflt_stack_szb - 1]; \
   } \
   char* stack = s.stack; \
