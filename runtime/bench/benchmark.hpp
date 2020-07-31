@@ -125,6 +125,17 @@ void launch2(size_t nb_workers,
     launch1<papi_worker, mcsl::minimal_interrupt>(nb_workers, bench_pre, bench_post, bench_body_interrupt);
     papi_deinit();
   });
+  d.add("nopromote_interrupt_ping_thread", [&] {
+    launch1<ping_thread_worker, ping_thread_interrupt>(nb_workers, bench_pre, bench_post, bench_body_serial);
+  });
+  d.add("nopromote_interrupt_pthread", [&] {
+    launch1<pthread_direct_worker, pthread_direct_interrupt>(nb_workers, bench_pre, bench_post, bench_body_serial);
+  });
+  d.add("nopromote_interrupt_papi", [&] {
+    papi_init();
+    launch1<papi_worker, mcsl::minimal_interrupt>(nb_workers, bench_pre, bench_post, bench_body_serial);
+    papi_deinit();
+  });
   d.add("software_polling", [&] {
     launch1<tpal_worker, mcsl::minimal_interrupt>(nb_workers, bench_pre, bench_post, bench_body_software_polling);
   });
