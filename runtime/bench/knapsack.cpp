@@ -79,9 +79,9 @@ void launch() {
     knapsack_heartbeat<knapsack_heartbeat_mechanism_software_polling>(items, capacity, n, 0, &sol, p, s);
   }; 
   auto bench_body_serial = [&] (promotable* p) {
-                             //knapsack_seq(items, capacity, n, 0, &sol);
-    s = tpalrts::snew();
-    sol = knapsack_custom_stack_serial(items, capacity, n, 0, s);
+                             knapsack_seq(items, capacity, n, 0, &sol);
+			     //    s = tpalrts::snew();
+			     //    sol = knapsack_custom_stack_serial(items, capacity, n, 0, s);
   };
   auto bench_post = [&]   {
                       //    best_so_far = INT_MIN;

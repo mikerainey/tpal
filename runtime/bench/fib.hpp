@@ -18,10 +18,8 @@
 /* Manual version */
 
 uint64_t fib_custom_stack_serial(uint64_t n, int64_t K, tpalrts::stack_type s) {
-  char* stack = s.stack;
-  char* sp = s.sp;
-  char* prmhd = s.prmhd;
-  char* prmtl = s.prmtl;
+  sunpack(s);
+  
   uint64_t f = 0;
 
  entry:

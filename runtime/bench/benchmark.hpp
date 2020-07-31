@@ -100,6 +100,19 @@ void launch2(size_t nb_workers,
              const Bench_post& bench_post,
              Bench_body_manual bench_body_manual,
              const Bench_body_cilk& bench_body_cilk) {
+  auto papi_init = [] {
+    int retval;
+    if ((retval=PAPI_library_init(PAPI_VER_CURRENT)) != PAPI_VER_CURRENT) {
+      mcsl::die("papi initialization failed");
+    }
+    if ((retval=PAPI_thread_init((unsigned long(*)(void))(pthread_self))) != PAPI_OK) {
+      mcsl::die("papi initialization failed");
+    }
+
+  };
+  auto papi_deinit = [] {
+    PAPI_shutdown();
+  };
   deepsea::cmdline::dispatcher d;
   d.add("interrupt_ping_thread", [&] {
     launch1<ping_thread_worker, ping_thread_interrupt>(nb_workers, bench_pre, bench_post, bench_body_interrupt);
@@ -108,15 +121,9 @@ void launch2(size_t nb_workers,
     launch1<pthread_direct_worker, pthread_direct_interrupt>(nb_workers, bench_pre, bench_post, bench_body_interrupt);
   });
   d.add("interrupt_papi", [&] {
-    int retval;
-    if ((retval=PAPI_library_init(PAPI_VER_CURRENT)) != PAPI_VER_CURRENT) {
-      mcsl::die("papi initialization failed");
-    }
-    if ((retval=PAPI_thread_init((unsigned long(*)(void))(pthread_self))) != PAPI_OK) {
-      mcsl::die("papi initialization failed");
-    }
+    papi_init();
     launch1<papi_worker, mcsl::minimal_interrupt>(nb_workers, bench_pre, bench_post, bench_body_interrupt);
-    PAPI_shutdown();
+    papi_deinit();
   });
   d.add("software_polling", [&] {
     launch1<tpal_worker, mcsl::minimal_interrupt>(nb_workers, bench_pre, bench_post, bench_body_software_polling);

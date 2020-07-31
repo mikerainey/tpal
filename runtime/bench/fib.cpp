@@ -22,8 +22,9 @@ void launch() {
     fib_heartbeat<heartbeat_mechanism_software_polling>(n, &r, p, tpalrts::dflt_software_polling_K, s, fib_heartbeat_entry);
   }; 
   auto bench_body_serial = [&] (promotable* p) {
-    s = tpalrts::snew();
-    r = fib_custom_stack_serial(n, tpalrts::dflt_software_polling_K, s);
+			     //s = tpalrts::snew();
+    //    r = fib_custom_stack_serial(n, tpalrts::dflt_software_polling_K, s);
+    r = fib_serial(n);
   };
   auto bench_post = [&]   {
     assert(r == fib_serial(n));
