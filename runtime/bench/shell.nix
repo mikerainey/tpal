@@ -26,7 +26,12 @@ stdenv.mkDerivation rec {
     ++ (if jemalloc == null then [] else [ jemalloc ]);
   
   shellHook =
-    let pview = import "${pviewSrc}/default.nix" {}; in
+    let pviewExport =
+      if pviewSrc == null then ""
+      else
+        let pview = import "${pviewSrc}/default.nix" {}; in
+        "export PATH=${pview}/bin:$PATH";
+    in
     ''
     export CPP="${gcc}/bin/g++"
     export CC="${gcc}/bin/gcc"
@@ -35,7 +40,8 @@ stdenv.mkDerivation rec {
     export PAPI_PREFIX="${papi}"
     export HWLOC_INCLUDE_PREFIX="-DMCSL_HAVE_HWLOC -I${hwloc.dev}/include/"
     export HWLOC_LIBRARY_PREFIX="-L${hwloc.lib}/lib/ -lhwloc"
-    export PATH=${gcc}/bin/:${pview}/bin:$PATH
+    export PATH=${gcc}/bin/:$PATH
+    ${pviewExport}
   '';
   
 }
