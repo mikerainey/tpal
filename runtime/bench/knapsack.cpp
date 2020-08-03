@@ -59,6 +59,7 @@ void launch() {
   int sol = INT_MIN;
   tpalrts::stack_type s;
   std::string inputfile = deepsea::cmdline::parse_or_default_string("infile", "");
+  int64_t software_polling_K = deepsea::cmdline::parse_or_default_int("software_polling_K", 128);
   struct item items[MAX_ITEMS];
   auto bench_pre = [&] {
     if (inputfile != "") {
@@ -76,7 +77,7 @@ void launch() {
   };
   auto bench_body_software_polling = [&] (promotable* p) {
     s = tpalrts::snew();
-    knapsack_heartbeat<knapsack_heartbeat_mechanism_software_polling>(items, capacity, n, 0, &sol, p, s);
+    knapsack_heartbeat<knapsack_heartbeat_mechanism_software_polling>(items, capacity, n, 0, &sol, p, s, software_polling_K);
   }; 
   auto bench_body_serial = [&] (promotable* p) {
     knapsack_seq(items, capacity, n, 0, &sol);
