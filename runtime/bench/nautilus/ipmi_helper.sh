@@ -31,10 +31,10 @@ ipmi_args="-I lanplus -H "${ipmi_host}" -U root -f "/home/mrainey/pf""
 
 case "${1}" in
 	'restart')
-		ssh -t "${controlling_host}" ipmitool ${ipmi_args} power cycle
+		ssh -i ~/.ssh/id_rsa_mac -t "${controlling_host}" ipmitool ${ipmi_args} power cycle
 		;;
 	'console')
-		ssh -t "${controlling_host}" ipmitool ${ipmi_args} sol activate -e '@'
+		ssh -i ~/.ssh/id_rsa_mac -t "${controlling_host}" ipmitool ${ipmi_args} sol activate -e '@'
 		;;
 	'wait')
 		sleep 5s
@@ -45,7 +45,7 @@ case "${1}" in
 		done
 		;;
 	'ipmi')
-		ssh -t "${controlling_host}" ipmitool ${3}
+		ssh -i ~/.ssh/id_rsa_mac -t "${controlling_host}" ipmitool ${3}
 		;;
 	*)
 		echo "Do not recognize subcommand '${1}'"
