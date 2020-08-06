@@ -181,12 +181,6 @@ int knapsack_custom_stack_serial(struct item *e, int c, int n, int v, tpalrts::s
   
 }
 
-using knapsack_heartbeat_type = enum knapsack_heartbeat_entry_type {
-  knapsack_heartbeat_entry,
-  knapsack_heartbeat_retk,
-  knapsack_heartbeat_clonek
-};
-
 using knapsack_heartbeat_mechanism_type = enum knapsack_heartbeat_mechanism_struct {
   knapsack_heartbeat_mechanism_software_polling,
   knapsack_heartbeat_mechanism_hardware_interrupt
@@ -195,13 +189,17 @@ using knapsack_heartbeat_mechanism_type = enum knapsack_heartbeat_mechanism_stru
 template <int heartbeat=knapsack_heartbeat_mechanism_software_polling>
 void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
                         tpalrts::promotable* p, tpalrts::stack_type s,
-                        int64_t K=tpalrts::dflt_software_polling_K, knapsack_heartbeat_type ty=knapsack_heartbeat_entry, int best = 0) {
+                        int64_t K=tpalrts::dflt_software_polling_K, void* pc = nullptr, int best = 0) {
   sunpack(s);
   
   double ub;
 
+  void* __entry = &&entry;
+  void* __retk = &&retk;
   void* __joink = &&joink;
   void* __clonek = &&clonek;
+
+  pc = (pc == nullptr) ? __entry : pc;
   
   auto try_promote = [&] {
     if (prmempty(prmtl, prmhd)) {
@@ -224,15 +222,15 @@ void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
     std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
     p->fork_join_promote([=] (tpalrts::promotable* p2) {
       tpalrts::stack_type s2 = tpalrts::snew();
-      knapsack_heartbeat_type ty;
+      void* pc2;
       if (sload(sp_top, -1l, void*) != __clonek) { // slow clone
-        ty = knapsack_heartbeat_entry;
+        pc2 = __entry;
       } else { // fast clone
-        ty = knapsack_heartbeat_clonek;
+        pc2 = __clonek;
         s2.stack = s.stack;
         s2.sp = saddr(sp_top, -1l);
       }
-      knapsack_heartbeat<heartbeat>(e2, c2, n2, v2, &std::get<1>(*dst_rec), p2, s2, K, ty, 0);
+      knapsack_heartbeat<heartbeat>(e2, c2, n2, v2, &std::get<1>(*dst_rec), p2, s2, K, pc2, 0);
     }, [=] (tpalrts::promotable* p2) {
       auto with = std::get<0>(*dst_rec);
       auto without = std::get<1>(*dst_rec);
@@ -240,7 +238,7 @@ void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
       auto best0 = with > without ? with : without;
       auto sj = s;
       sj.sp = sp_cont;
-      knapsack_heartbeat<heartbeat>(e, c, n, v, dst0, p2, sj, K, knapsack_heartbeat_retk, best0);
+      knapsack_heartbeat<heartbeat>(e, c, n, v, dst0, p2, sj, K, __retk, best0);
     });
     dst = &std::get<0>(*dst_rec);
   };
@@ -248,14 +246,8 @@ void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
   uint64_t promotion_prev = (heartbeat == knapsack_heartbeat_mechanism_software_polling) ? mcsl::cycles::now() : 0;
   uint64_t k = K;
 
-  if (ty == knapsack_heartbeat_entry) {
-    goto entry;
-  } else if (ty == knapsack_heartbeat_retk) {
-    goto retk;
-  } else if (ty == knapsack_heartbeat_clonek) {
-    goto clonek;
-  }
-
+  goto *pc;
+  
  entry:
   salloc(sp, 1);
   sstore(sp, 0, void*, &&exitk);

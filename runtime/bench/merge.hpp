@@ -56,12 +56,6 @@ size_t lower_bound(const Item* xs, size_t lo, size_t hi, const Item& val, const 
   return std::lower_bound(first_xs + lo, first_xs + hi, val, compare) - first_xs;
 }
 
-using heartbeat_type = enum heartbeat_entry_type {
-  heartbeat_entry,
-  heartbeat_retk,
-  heartbeat_clonek
-};
-
 using heartbeat_mechanism_type = enum heartbeat_mechanism_struct {
   heartbeat_mechanism_software_polling,
   heartbeat_mechanism_hardware_interrupt
@@ -74,19 +68,23 @@ void merge_par(Item* xs, Item* ys, Item* tmp,
                size_t lo_xs, size_t hi_xs,
                size_t lo_ys, size_t hi_ys,
                size_t lo_tmp,
-               heartbeat_type ty,
                tpalrts::promotable* p,
                tpalrts::stack_type s,
-               int64_t K=tpalrts::dflt_software_polling_K) {
+               int64_t K=tpalrts::dflt_software_polling_K,
+               void* pc = nullptr) {
   sunpack(s);
   int heartbeat=heartbeat_mechanism_software_polling;
     
   size_t n1;
   size_t n2;
 
+  void* __entry = &&entry;
+  void* __retk = &&retk;
   void* __joink = &&joink;
   void* __clonek = &&clonek;
-  
+
+  pc = (pc == nullptr) ? __entry : pc;
+    
   auto try_promote = [&] {
     if (prmempty(prmtl, prmhd)) {
       return;
@@ -106,29 +104,23 @@ void merge_par(Item* xs, Item* ys, Item* tmp,
     size_t lo_tmp2 = sload(sp_top, 0, size_t);
     p->async_finish_promote([=] (tpalrts::promotable* p2) {
       tpalrts::stack_type s2 = tpalrts::snew();
-      heartbeat_type ty;
+      void* pc2;
       if (sload(sp_top, -1l, void*) != __clonek) { // slow clone
-        ty = heartbeat_entry;
+        pc2 = __entry;
       } else { // fast clone
-        ty = heartbeat_clonek;
+        pc2 = __clonek;
         s2.stack = s.stack;
         s2.sp = saddr(sp_top, -1l);
       }
-      merge_par(xs2, ys2, tmp2, lo_xs2, hi_xs2, lo_ys2, hi_ys2, lo_tmp2, ty, p2, s2, K);
+      merge_par(xs2, ys2, tmp2, lo_xs2, hi_xs2, lo_ys2, hi_ys2, lo_tmp2, p2, s2, K, pc2);
     });
   };
 
   uint64_t promotion_prev = (heartbeat == heartbeat_mechanism_software_polling) ? mcsl::cycles::now() : 0;
   uint64_t k = K;
 
-  if (ty == heartbeat_entry) {
-    goto entry;
-  } else if (ty == heartbeat_retk) {
-    goto retk;
-  } else if (ty == heartbeat_clonek) {
-    goto clonek;
-  }
-
+  goto *pc;
+  
  entry:
   salloc(sp, 1);
   sstore(sp, 0, void*, &&exitk);

@@ -27,11 +27,11 @@ void launch() {
   };
   auto bench_body_interrupt = [&] (promotable* p) {
     s = tpalrts::snew();
-    merge_par(xs, ys, tmp, 0, n, 0, n, 0, heartbeat_entry, p, s);
+    merge_par(xs, ys, tmp, 0, n, 0, n, 0, p, s);
   };
   auto bench_body_software_polling = [&] (promotable* p) {
     s = tpalrts::snew();
-    merge_par(xs, ys, tmp, 0, n, 0, n, 0, heartbeat_entry, p, s, software_polling_K);
+    merge_par(xs, ys, tmp, 0, n, 0, n, 0, p, s, software_polling_K);
   }; 
   auto bench_body_serial = [&] (promotable* p) {
     s = tpalrts::snew();

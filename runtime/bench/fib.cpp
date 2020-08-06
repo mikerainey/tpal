@@ -15,11 +15,11 @@ void launch() {
   auto bench_pre = [=] {  };
   auto bench_body_interrupt = [&] (promotable* p) {
     s = tpalrts::snew();
-    fib_heartbeat<heartbeat_mechanism_hardware_interrupt>(n, &r, p, tpalrts::dflt_software_polling_K, s, fib_heartbeat_entry);
+    fib_heartbeat<heartbeat_mechanism_hardware_interrupt>(n, &r, p, tpalrts::dflt_software_polling_K, s);
   };
   auto bench_body_software_polling = [&] (promotable* p) {
     s = tpalrts::snew();
-    fib_heartbeat<heartbeat_mechanism_software_polling>(n, &r, p, tpalrts::dflt_software_polling_K, s, fib_heartbeat_entry);
+    fib_heartbeat<heartbeat_mechanism_software_polling>(n, &r, p, tpalrts::dflt_software_polling_K, s);
   }; 
   auto bench_body_serial = [&] (promotable* p) {
 			     //s = tpalrts::snew();
