@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -o pipefail -o noclobber -o errexit -o nounset
 
 # cd to the root of the project
@@ -38,7 +38,7 @@ case "${1}" in
 		;;
 	'wait')
 		sleep 5s
-		while ! ping -t 3 -c 1 "${controlled_host_fqdn}" > /dev/null
+		while ! ping -w 3 -c 1 "${controlled_host_fqdn}" > /dev/null
 		do
 			echo Waiting
 			sleep 3s
