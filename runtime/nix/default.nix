@@ -9,7 +9,7 @@
   papi ? pkgs.papi,
   jemalloc ? pkgs.jemalloc450, # use jemalloc, unless this parameter equals null (for now, use v4.5.0, because 5.1.0 has a deadlock bug)
   buildDunePackage ? pkgs.ocamlPackages.buildDunePackage,
-  sources ? import ./local-sources.nix,
+  sources ? import ./default-sources.nix,
   tpalrtsSrc ? sources.tpalrtsSrc,
   cmdline ? import sources.cmdline {},
   mcsl ? import sources.mcsl {},
