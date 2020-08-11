@@ -39,6 +39,20 @@ try:
 except KeyboardInterrupt:
     print('keyboard interrupt')
 finally:
+    for _ in range(3):
+        child.send('\r\n')
+        print('enter')
+        time.sleep(1)
+
+    child.send('incr_array_interrupt')
+    child.send('\r\n')
+    time.sleep(1)
+    child.send('\r\n')
+    time.sleep(1)
+    child.send('\r\n')
+    time.sleep(1)
+    
+    child.expect('======', timeout=100)
     # exits the SOL session
     child.send('\n')
     child.send('@.')

@@ -47,6 +47,9 @@ case "${1}" in
 	'ipmi')
 		ssh -i ~/.ssh/id_rsa_mac -t "${controlling_host}" ipmitool ${3}
 		;;
+        'build')
+                ssh -i ~/.ssh/id_rsa_mac -t "root@${controlled_host_fqdn}" /root/mrainey/build.sh
+                ;;
 	*)
 		echo "Do not recognize subcommand '${1}'"
 esac
