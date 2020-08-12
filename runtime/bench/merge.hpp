@@ -74,9 +74,6 @@ void merge_par(Item* xs, Item* ys, Item* tmp,
                void* pc = nullptr) {
   sunpack(s);
   int heartbeat=heartbeat_mechanism_software_polling;
-    
-  size_t n1;
-  size_t n2;
 
   void* __entry = &&entry;
   void* __retk = &&retk;
@@ -142,8 +139,8 @@ void merge_par(Item* xs, Item* ys, Item* tmp,
       }
     }
   }
-  n1 = hi_xs - lo_xs;
-  n2 = hi_ys - lo_ys;
+  size_t n1 = hi_xs - lo_xs;
+  size_t n2 = hi_ys - lo_ys;
   if (n1 < n2) {
     std::swap(xs, ys);
     std::swap(lo_xs, lo_ys);
