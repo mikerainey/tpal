@@ -64,6 +64,13 @@ using heartbeat_mechanism_type = enum heartbeat_mechanism_struct {
 static constexpr
 int heartbeat_merge_thresh = 64;
 
+using merge_args_type = struct merge_args_struct {
+  Item* mg_xs; Item* mg_ys; Item* mg_tmp;
+  size_t mg_lo_xs; size_t mg_hi_xs;
+  size_t mg_lo_ys; size_t mg_hi_ys;
+  size_t mg_lo_tmp;
+};
+
 void mergesort_par(
                    Item* ms_xs,
                    Item* ms_tmp,
@@ -71,7 +78,8 @@ void mergesort_par(
                    tpalrts::promotable* p,
                    tpalrts::stack_type s,
                    int64_t K=tpalrts::dflt_software_polling_K,
-                   void* pc = nullptr) {
+                   void* pc = nullptr,
+                   merge_args_type* merge_args = nullptr) {
   sunpack(s);
   int heartbeat=heartbeat_mechanism_software_polling;
 
@@ -82,19 +90,31 @@ void mergesort_par(
   size_t mg_lo_ys; size_t mg_hi_ys;
   size_t mg_lo_tmp;
 
+  if (merge_args != nullptr) {
+    mg_xs = merge_args->mg_xs; mg_ys = merge_args->mg_ys; mg_tmp = merge_args->mg_tmp;
+    mg_lo_xs = merge_args->mg_lo_xs; mg_hi_xs = merge_args->mg_hi_xs;
+    mg_lo_ys = merge_args->mg_lo_ys; mg_hi_ys = merge_args->mg_hi_ys;
+    mg_lo_tmp = merge_args->mg_lo_tmp; 
+  }
+
   void* __ms_entry = &&ms_entry;
   void* __ms_retk = &&ms_retk;
-  //  void* __ms_joink = &&ms_joink;
-  //  void* __ms_clonek = &&ms_clonek;
+  void* __ms_joink = &&ms_joink;
+  void* __ms_clonek = &&ms_clonek;
+  void* __ms_branch1 = &&ms_branch1;
+  void* __ms_branch2 = &&ms_branch2;
+  void* __ms_branch3 = &&ms_branch3;
   
   void* __mg_entry = &&mg_entry;
+  void* __mg_entry2 = &&mg_entry2;
+  void* __mg_branch1 = &&mg_branch1;
+  void* __mg_branch2 = &&mg_branch2;
   void* __mg_retk = &&mg_retk;
   void* __mg_joink = &&mg_joink;
   void* __mg_clonek = &&mg_clonek;
 
   pc = (pc == nullptr) ? __ms_entry : pc;
 
-  /*
   auto try_promote = [&] {
     if (prmempty(prmtl, prmhd)) {
       return;
@@ -103,28 +123,60 @@ void mergesort_par(
     uint64_t top;
     prmsplit(sp, prmtl, prmhd, sp_cont, top);
     char* sp_top = sp + top;
-    sstore(sp_top, -8l, void*, __mg_joink);
-    Item* mg_xs2 = sload(sp_top, -7l, Item*);
-    Item* mg_ys2 = sload(sp_top, -6l, Item*);
-    Item* mg_tmp2 = sload(sp_top, -5l, Item*);
-    size_t mg_lo_xs2 = sload(sp_top, -4l, size_t);
-    size_t mg_hi_xs2 = sload(sp_top, -3l, size_t);
-    size_t mg_lo_ys2 = sload(sp_top, -2l, size_t);
-    size_t mg_hi_ys2 = sload(sp_top, -1l, size_t);
-    size_t mg_lo_tmp2 = sload(sp_top, 0, size_t);
-    p->async_finish_promote([=] (tpalrts::promotable* p2) {
-      tpalrts::stack_type s2 = tpalrts::snew();
-      void* pc2;
-      if (sload(sp_top, -1l, void*) != __mg_clonek) { // slow clone
-        pc2 = __mg_entry;
-      } else { // fast clone
-        pc2 = __mg_clonek;
-        s2.stack = s.stack;
-        s2.sp = saddr(sp_top, -1l);
-      }
-      mergesort_par(mg_xs2, mg_ys2, mg_tmp2, mg_lo_xs2, mg_hi_xs2, mg_lo_ys2, mg_hi_ys2, mg_lo_tmp2, p2, s2, K, pc2);
-    });
-    }; */
+    auto pc_top = sload(sp_top, 0, void*);
+    if (pc_top == __ms_branch1) { // promotion for mergesort
+      sstore(sp_top, 0, void*, __ms_joink);
+      auto ms_xs2 = sload(sp_top, 3, Item*);
+      auto ms_tmp2 = sload(sp_top, 4, Item*);
+      auto ms_lo2 = sload(sp_top, 5, size_t);
+      auto ms_hi2 = sload(sp_top, 6, size_t);
+      p->fork_join_promote([=] (tpalrts::promotable* p2) {
+        tpalrts::stack_type s2 = tpalrts::snew();
+        void* pc2;
+        if (sload(sp_top, 0, void*) != __ms_clonek) { // slow clone
+          pc2 = __ms_entry;
+        } else { // fast clone
+          pc2 = __ms_clonek;
+          s2 = s;
+          s2.sp = sp_top;
+        }
+        mergesort_par(ms_xs2, ms_tmp2, ms_lo2, ms_hi2, p2, s2, K, pc2);
+      }, [=] (tpalrts::promotable* p2) {
+        auto sj = s;
+        sj.sp = sp_top;
+        mergesort_par(ms_xs2, ms_tmp2, ms_lo2, ms_hi2, p2, sj, K, __ms_branch2);
+      });
+    } else if (pc_top == __mg_branch1) { // promotion for merge
+      sstore(sp_top, 0, void*, __mg_joink);
+      merge_args_type* merge_args2;
+      tpalrts::arena_block_type* blk;
+      std::tie(merge_args2, blk) = tpalrts::alloc_arena<merge_args_type>();
+      merge_args2->mg_xs = sload(sp_top, 3, Item*); merge_args2->mg_ys = sload(sp_top, 4, Item*);
+      merge_args2->mg_tmp = sload(sp_top, 5, Item*);
+      merge_args2->mg_lo_xs = sload(sp_top, 6, size_t); merge_args2->mg_hi_xs = sload(sp_top, 7, size_t);
+      merge_args2->mg_lo_ys = sload(sp_top, 8, size_t); merge_args2->mg_hi_ys = sload(sp_top, 9, size_t);
+      merge_args2->mg_lo_tmp = sload(sp_top, 10, size_t);
+      p->fork_join_promote([=] (tpalrts::promotable* p2) {
+        tpalrts::stack_type s2 = tpalrts::snew();
+        void* pc2;
+        if (sload(sp_top, 0, void*) != __mg_clonek) { // slow clone
+          pc2 = __mg_entry2;
+        } else { // fast clone
+          pc2 = __mg_clonek;
+          s2 = s;
+          s2.sp = sp_top;
+        }
+        mergesort_par(ms_xs, ms_tmp, ms_lo, ms_hi, p2, s2, K, pc2, merge_args2);
+      }, [=] (tpalrts::promotable* p2) {
+        decr_arena_block(blk);
+        auto sj = s;
+        sj.sp = sp_top;
+        mergesort_par(ms_xs, ms_tmp, ms_lo, ms_hi, p2, sj, K, __mg_branch2);
+      });
+    } else {
+      assert(false);
+    }
+  };
 
   uint64_t promotion_prev = (heartbeat == heartbeat_mechanism_software_polling) ? mcsl::cycles::now() : 0;
   uint64_t k = K;
@@ -138,6 +190,22 @@ void mergesort_par(
   sstore(sp, 0, void*, &&ms_exitk);
 
  ms_loop:
+  if (--k == 0) {
+    k = K;
+    if (heartbeat == heartbeat_mechanism_software_polling) {
+      auto cur = mcsl::cycles::now();
+      if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
+        promotion_prev = cur;
+        tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
+        try_promote();
+      }
+    } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
+      if (tpalrts::flags.mine().load()) {
+        tpalrts::flags.mine().store(false);
+        try_promote();
+      }
+    }
+  }
   if ((ms_hi - ms_lo) < 64) {
     std::sort(&ms_xs[ms_lo], &ms_xs[ms_hi], compare);
     goto ms_retk;
@@ -165,13 +233,6 @@ void mergesort_par(
 
  ms_branch2:
   sstore(sp, 0, void*, &&ms_branch3);
-  merge_seq(ms_xs, ms_xs, ms_tmp,
-            sload(sp, 7, size_t),
-            sload(sp, 5, size_t),
-            sload(sp, 5, size_t),
-            sload(sp, 6, size_t),
-            sload(sp, 7, size_t), compare);
-  goto ms_branch3;            
   mg_xs = ms_xs;
   mg_ys = ms_xs;
   mg_tmp = ms_tmp;
@@ -193,6 +254,16 @@ void mergesort_par(
   sfree(sp, 8);
   goto ms_retk;
 
+ ms_joink:
+  sstore(sp, 0, void*, &&ms_clonek);
+  sfree(sp, 1);
+  return;
+
+ ms_clonek:
+  salloc(sp, 1);
+  sstore(sp, 0, void*, &&ms_joink);
+  goto ms_loop;
+
  ms_retk:
   goto *sload(sp, 0, void*);
 
@@ -208,7 +279,6 @@ void mergesort_par(
   sstore(sp, 0, void*, &&mg_exitk);
   
  mg_loop:
-  /*
   if (--k == 0) {
     k = K;
     if (heartbeat == heartbeat_mechanism_software_polling) {
@@ -224,7 +294,7 @@ void mergesort_par(
         try_promote();
       }
     }
-    } */
+  } 
   n1 = mg_hi_xs - mg_lo_xs;
   n2 = mg_hi_ys - mg_lo_ys;
   if (n1 < n2) {
@@ -303,5 +373,13 @@ void mergesort_par(
  mg_exitk:
   sfree(sp, 1);
   goto mg_retk;
-  
+
+ mg_entry2:
+  salloc(sp, 1);
+  sstore(sp, 0, void*, &&mg_exitk2);
+
+ mg_exitk2:
+  sfree(sp, 1);
+  return;
+
 }
