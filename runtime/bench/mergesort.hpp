@@ -64,12 +64,17 @@ using heartbeat_mechanism_type = enum heartbeat_mechanism_struct {
 static constexpr
 int heartbeat_merge_thresh = 64;
 
+static constexpr
+int cp_chunk = 1024;
+
 using merge_args_type = struct merge_args_struct {
   Item* mg_xs; Item* mg_ys; Item* mg_tmp;
   size_t mg_lo_xs; size_t mg_hi_xs;
   size_t mg_lo_ys; size_t mg_hi_ys;
   size_t mg_lo_tmp;
 };
+
+using copy_args_type = std::pair<size_t, size_t>;
 
 void mergesort_par(
                    Item* ms_xs,
@@ -79,7 +84,8 @@ void mergesort_par(
                    tpalrts::stack_type s,
                    int64_t K=tpalrts::dflt_software_polling_K,
                    void* pc = nullptr,
-                   merge_args_type* merge_args = nullptr) {
+                   merge_args_type* merge_args = nullptr,
+                   copy_args_type* copy_args = nullptr) {
   sunpack(s);
   int heartbeat=heartbeat_mechanism_software_polling;
 
@@ -97,6 +103,13 @@ void mergesort_par(
     mg_lo_tmp = merge_args->mg_lo_tmp; 
   }
 
+  size_t cp_lo = 0, cp_hi = 0;
+
+  if (copy_args != nullptr) {
+    cp_lo = copy_args->first;
+    cp_hi = copy_args->second;
+  }
+    
   void* __ms_entry = &&ms_entry;
   void* __ms_retk = &&ms_retk;
   void* __ms_joink = &&ms_joink;
@@ -113,10 +126,40 @@ void mergesort_par(
   void* __mg_joink = &&mg_joink;
   void* __mg_clonek = &&mg_clonek;
 
+  void* __cp_par = &&cp_par;
+  void* __cp_joink = &&cp_joink;
+
   pc = (pc == nullptr) ? __ms_entry : pc;
 
   auto try_promote = [&] {
     if (prmempty(prmtl, prmhd)) {
+      if (cp_lo == cp_hi) {
+        return;
+      }
+      assert(cp_lo < cp_hi);
+      auto mid = (cp_lo + cp_hi) / 2;
+      copy_args_type* cp_args2;
+      tpalrts::arena_block_type* blk;
+      std::tie(cp_args2, blk) = tpalrts::alloc_arena<copy_args_type>();
+      cp_args2->first = mid;
+      cp_args2->second = cp_hi;
+      if (pc == __cp_par) {
+        p->async_finish_promote([=] (tpalrts::promotable* p2) {
+          tpalrts::stack_type s2 = tpalrts::snew();
+          mergesort_par(ms_xs, ms_tmp, ms_lo, ms_hi, p2, s2, K, __cp_par, nullptr, cp_args2);
+        });
+      } else {
+        p->fork_join_promote([=] (tpalrts::promotable* p2) {
+          tpalrts::stack_type s2 = tpalrts::snew();
+          mergesort_par(ms_xs, ms_tmp, ms_lo, ms_hi, p2, s2, K, __cp_par, nullptr, cp_args2);
+        }, [=] (tpalrts::promotable* p2) {
+          decr_arena_block(blk);
+          auto sj = tpalrts::stack_type(stack, sp, prmhd, prmtl);
+          mergesort_par(ms_xs, ms_tmp, ms_lo, ms_hi, p2, sj, K, __cp_joink);
+        });
+      }
+      pc = __cp_par;
+      cp_hi = mid;
       return;
     }
     char* sp_cont;
@@ -248,11 +291,9 @@ void mergesort_par(
   ms_tmp = sload(sp, 4, Item*);
   ms_lo = sload(sp, 7, size_t);
   ms_hi = sload(sp, 6, size_t);
-  if (ms_hi != ms_lo) {
-    std::copy(&ms_tmp[ms_lo], &ms_tmp[ms_hi], &ms_xs[ms_lo]);
-  }
-  sfree(sp, 8);
-  goto ms_retk;
+  cp_lo = ms_lo;
+  cp_hi = ms_hi;
+  goto cp_entry;
 
  ms_joink:
   sstore(sp, 0, void*, &&ms_clonek);
@@ -272,6 +313,72 @@ void mergesort_par(
   sdelete(s);
   return;
 
+  // start parallel copy
+
+ cp_entry:
+  if (--k == 0) {
+    k = K;
+    pc = &&cp_entry;
+    if (heartbeat == heartbeat_mechanism_software_polling) {
+      auto cur = mcsl::cycles::now();
+      if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
+        promotion_prev = cur;
+        tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
+        try_promote();
+        goto *pc;
+      }
+    } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
+      if (tpalrts::flags.mine().load()) {
+        tpalrts::flags.mine().store(false);
+        try_promote();
+        goto *pc;
+      }
+    }
+  } 
+  if (cp_lo == cp_hi) {
+    goto cp_joink;
+  }
+  {
+    size_t cp_k = std::min(cp_hi, cp_lo + cp_chunk);
+    std::copy(&ms_tmp[cp_lo], &ms_tmp[cp_k], &ms_xs[cp_lo]);
+    cp_lo = cp_k;
+  }
+  goto cp_entry;
+
+ cp_par:
+  if (--k == 0) {
+    k = K;
+    pc = &&cp_par;
+    if (heartbeat == heartbeat_mechanism_software_polling) {
+      auto cur = mcsl::cycles::now();
+      if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
+        promotion_prev = cur;
+        tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
+        try_promote();
+        goto *pc;
+      }
+    } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
+      if (tpalrts::flags.mine().load()) {
+        tpalrts::flags.mine().store(false);
+        try_promote();
+        goto *pc;
+      }
+    }
+  } 
+  if (cp_lo == cp_hi) {
+    return;
+  }
+  {
+    size_t cp_k = std::min(cp_hi, cp_lo + cp_chunk);
+    std::copy(&ms_tmp[cp_lo], &ms_tmp[cp_k], &ms_xs[cp_lo]);
+    cp_lo = cp_k;
+  }
+  goto cp_par;  
+
+ cp_joink:
+  sfree(sp, 8);
+  goto ms_retk;  
+  
   // start parallel merge
 
  mg_entry:
@@ -279,6 +386,14 @@ void mergesort_par(
   sstore(sp, 0, void*, &&mg_exitk);
   
  mg_loop:
+  n1 = mg_hi_xs - mg_lo_xs;
+  n2 = mg_hi_ys - mg_lo_ys;
+  if (n1 < n2) {
+    std::swap(mg_xs, mg_ys);
+    std::swap(mg_lo_xs, mg_lo_ys);
+    std::swap(mg_hi_xs, mg_hi_ys);
+    goto mg_loop;
+  }
   if (--k == 0) {
     k = K;
     if (heartbeat == heartbeat_mechanism_software_polling) {
@@ -294,15 +409,8 @@ void mergesort_par(
         try_promote();
       }
     }
-  } 
-  n1 = mg_hi_xs - mg_lo_xs;
-  n2 = mg_hi_ys - mg_lo_ys;
-  if (n1 < n2) {
-    std::swap(mg_xs, mg_ys);
-    std::swap(mg_lo_xs, mg_lo_ys);
-    std::swap(mg_hi_xs, mg_hi_ys);
-    goto mg_loop;
-  } else if (n1 == 0) {
+  }  
+  if (n1 == 0) {
     // mg_xs and mg_ys empty
     goto mg_retk;
   } else if (n1 == 1) {
@@ -317,7 +425,7 @@ void mergesort_par(
     goto mg_retk;
   } else if (n1 < heartbeat_merge_thresh) {
     merge_seq(mg_xs, mg_ys, mg_tmp, mg_lo_xs, mg_hi_xs, mg_lo_ys, mg_hi_ys, mg_lo_tmp, compare);
-    goto mg_retk; 
+    goto mg_retk;
   } else {
     // select pivot positions
     size_t mid_xs = (mg_lo_xs + mg_hi_xs) / 2;
@@ -377,9 +485,89 @@ void mergesort_par(
  mg_entry2:
   salloc(sp, 1);
   sstore(sp, 0, void*, &&mg_exitk2);
+  goto mg_loop;
 
  mg_exitk2:
   sfree(sp, 1);
   return;
 
+}
+
+size_t merge_cilk_cutoff = 10000;
+
+size_t mergesort_cilk_cutoff = 10000;
+
+size_t copy_cilk_cutoff = 10000;
+
+template<class InputIt, class OutputIt>
+void copy(InputIt first, InputIt last, OutputIt d_first) {
+#if defined(USE_CILK_PLUS)
+  size_t n = last - first;
+  if (n <= copy_cilk_cutoff) {
+    std::copy(first, last, d_first);
+    return;
+  }
+  size_t mid = n / 2;
+  cilk_spawn copy(first, first + mid, d_first);
+             copy(first + mid, last, d_first + mid);
+  cilk_sync;
+#endif
+}
+
+template <class Item, class Compare>
+void merge_cilk(const Item* xs, const Item* ys, Item* tmp,
+               size_t lo_xs, size_t hi_xs,
+               size_t lo_ys, size_t hi_ys,
+               size_t lo_tmp,
+               const Compare& compare) {
+#if defined(USE_CILK_PLUS)
+  size_t n1 = hi_xs - lo_xs;
+  size_t n2 = hi_ys - lo_ys;
+  if (n1 < n2) {
+    // to ensure that the first subarray being sorted is the larger or the two
+    merge_cilk(ys, xs, tmp, lo_ys, hi_ys, lo_xs, hi_xs, lo_tmp, compare);
+  } else if (n1 == 0) {
+    // xs and ys empty
+  } else if (n1 == 1) {
+    if (n2 == 0) {
+      // xs singleton; ys empty
+      tmp[lo_tmp] = xs[lo_xs];
+    } else {
+      // both singletons
+      tmp[lo_tmp+0] = std::min(xs[lo_xs], ys[lo_ys], compare);
+      tmp[lo_tmp+1] = std::max(xs[lo_xs], ys[lo_ys], compare);
+    }
+  } else if (n1 < merge_cilk_cutoff) {
+    merge_seq(xs, ys, tmp, lo_xs, hi_xs, lo_ys, hi_ys, lo_tmp, compare);
+  } else {
+    // select pivot positions
+    size_t mid_xs = (lo_xs + hi_xs) / 2;
+    size_t mid_ys = lower_bound(ys, lo_ys, hi_ys, xs[mid_xs], compare);
+    // number of items to be treated by the first parallel call
+    size_t k = (mid_xs - lo_xs) + (mid_ys - lo_ys);
+    cilk_spawn merge_cilk(xs, ys, tmp, lo_xs, mid_xs, lo_ys, mid_ys, lo_tmp, compare);
+    merge_cilk(xs, ys, tmp, mid_xs, hi_xs, mid_ys, hi_ys, lo_tmp + k, compare);
+    cilk_sync;
+  }
+#endif
+}
+
+template <class Item, class Compare>
+void mergesort_cilk(Item* xs, Item* tmp, size_t lo, size_t hi, const Compare& compare) {
+#if defined(USE_CILK_PLUS)
+  auto n = hi - lo;
+  if (n <= 1) {
+    return;
+  }
+  if (n <= mergesort_cilk_cutoff) {
+    std::sort(xs + lo, xs + hi, compare);
+    return;
+  }
+  auto mid = (hi + lo) / 2;
+  cilk_spawn mergesort_cilk(xs, tmp, lo, mid, compare);
+             mergesort_cilk(xs, tmp, mid, hi, compare);
+  cilk_sync;
+  merge_cilk(xs, xs, tmp, lo, mid, mid, hi, lo, compare);
+  copy(&tmp[lo], &tmp[hi], &xs[lo]);
+#endif
 }
