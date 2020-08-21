@@ -222,13 +222,12 @@ public:
   template <typename Body>
   static
   void launch_worker_thread(std::size_t id, const Body& b) {
-    // todo: assert that i+1 < nb_cpus
     std::function<void(std::size_t)> f = [&] (std::size_t id) {
       mcsl::perworker::unique_id::initialize_worker(id);
       b(id);
     };
     auto p = new nk_worker_activation_type(id, f);
-    int remote_core = id;
+    int remote_core = mcsl::worker_cpu_bindings[id];
     nk_thread_start(nk_thread_init_fn, (void*)p, 0, 0, TSTACK_DEFAULT, 0, remote_core);
   }
 
@@ -307,7 +306,8 @@ public:
       }
     };
     auto p = new nk_worker_activation_type(id, f);
-    nk_thread_start(nk_thread_init_fn, (void*)p, 0, 0, TSTACK_DEFAULT, 0, nb_workers);
+    int remote_core = 0;
+    nk_thread_start(nk_thread_init_fn, (void*)p, 0, 0, TSTACK_DEFAULT, 0, remote_core);
   }
   
 };
