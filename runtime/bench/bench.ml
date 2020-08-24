@@ -26,6 +26,7 @@ let arg_proc =
       in
       int_of_string str
   in
+  let default = default - 1 in
   XCmd.parse_or_default_int "proc" default
 let arg_proc_step = XCmd.parse_or_default_int "proc_step" 10
 let arg_dflt_size = XCmd.parse_or_default_int "n" 600000000
