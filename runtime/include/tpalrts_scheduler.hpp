@@ -110,6 +110,10 @@ public:
   template <typename Body>
   static
   void launch_worker_thread(std::size_t id, const Body& b) {
+    if (id == 0) {
+      b(id);
+      return;
+    }
     auto t = std::thread([id, &b] {
       mcsl::perworker::unique_id::initialize_worker(id);
       b(id);
@@ -229,6 +233,9 @@ public:
     auto p = new nk_worker_activation_type(id, f);
     int remote_core = mcsl::worker_cpu_bindings[id];
     nk_thread_start(nk_thread_init_fn, (void*)p, 0, 0, TSTACK_DEFAULT, 0, remote_core);
+    if (id == 0) {
+      nk_join_all_children(0);
+    }
   }
 
   using worker_exit_barrier = typename mcsl::minimal_worker::worker_exit_barrier;
@@ -244,14 +251,14 @@ public:
   nk_timer_t* timer;
 
   static
-  nemo_event_id_t id;
+  nemo_event_id_t nemo_event_id;
 
   static
   std::atomic<ping_thread_status_type> ping_thread_status;
   
   static
   void initialize_signal_handler() {
-    id = nk_nemo_register_event_action(heartbeat_interrupt_handler, NULL);
+    nemo_event_id = nk_nemo_register_event_action(heartbeat_interrupt_handler, NULL);
   }
   
   static
@@ -279,8 +286,9 @@ public:
     }
     assert(s == ping_thread_status_active);
     auto nb_workers = mcsl::perworker::unique_id::get_nb_workers();
-    for (std::size_t i = 0; i != nb_workers; i++) {
-      nk_nemo_event_notify(id, i);
+    for (std::size_t id = 0; id != nb_workers; id++) {
+      int remote_core = mcsl::worker_cpu_bindings[id];
+      nk_nemo_event_notify(nemo_event_id, remote_core);
     }
     uint64_t kappa_ns = (1000l * kappa_usec);
     uint64_t cur_time = nk_sched_get_realtime();
@@ -295,7 +303,7 @@ public:
 
   static
   void launch_ping_thread(std::size_t nb_workers) {
-    std::function<void(std::size_t)> f = [=] (std::size_t id) {
+    std::function<void(std::size_t)> f = [=] (std::size_t) {
       start_time = last_time = nk_sched_get_realtime();
       timer = nk_timer_create("heartbeat_timer");
       uint64_t kappa_ns = (1000l * kappa_usec);
@@ -305,7 +313,7 @@ public:
         nk_sleep(100000l);
       }
     };
-    auto p = new nk_worker_activation_type(id, f);
+    auto p = new nk_worker_activation_type(nb_workers, f);
     int remote_core = 0;
     nk_thread_start(nk_thread_init_fn, (void*)p, 0, 0, TSTACK_DEFAULT, 0, remote_core);
   }
@@ -320,7 +328,7 @@ uint64_t ping_thread_interrupt::start_time;
   
 std::atomic<ping_thread_status_type> ping_thread_interrupt::ping_thread_status(ping_thread_status_active);
 
-nemo_event_id_t ping_thread_interrupt::id;
+nemo_event_id_t ping_thread_interrupt::nemo_event_id;
   
 #endif
 
