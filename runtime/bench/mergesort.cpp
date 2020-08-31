@@ -27,11 +27,11 @@ void launch() {
   };
   auto bench_body_interrupt = [&] (promotable* p) {
     s = tpalrts::snew();
-    mergesort_par(xs, tmp, 0, n, p, s);
+    mergesort_par<heartbeat_mechanism_hardware_interrupt>(xs, tmp, 0, n, p, s);
   };
   auto bench_body_software_polling = [&] (promotable* p) {
     s = tpalrts::snew();
-
+    mergesort_par<heartbeat_mechanism_software_polling>(xs, tmp, 0, n, p, s);
   }; 
   auto bench_body_serial = [&] (promotable* p) {
     s = tpalrts::snew();

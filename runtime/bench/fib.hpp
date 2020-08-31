@@ -189,8 +189,7 @@ void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
         try_promote();
       }
     } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
-      if (tpalrts::flags.mine().load()) {
-        tpalrts::flags.mine().store(false);
+      if (tpalrts::check_heartbeat_polling_result()) {
         try_promote();
       }
     }

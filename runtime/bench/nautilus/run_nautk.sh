@@ -15,7 +15,7 @@ run_host="${run_host:-tinker-2}"
 # Build nautilus
 ###############################################################################
 
-controlled_host=${run_host} ./ipmi_helper.sh build
+#controlled_host=${run_host} ./ipmi_helper.sh build
 
 ###############################################################################
 # Set up log
@@ -23,7 +23,7 @@ controlled_host=${run_host} ./ipmi_helper.sh build
 
 # clear out log
 log=_results/results.txt
-rm "${log}"
+rm -f "${log}"
 # if [ -e "${log}" ]
 # then
 # 	if [ -n "${delete:-}" ]
@@ -41,8 +41,8 @@ rm "${log}"
 ###############################################################################
 
 controlled_host=${run_host} ./ipmi_helper.sh restart
-set +o errexit
+#set +o errexit
 ./drive_grub.py | tee -a "${log}"
-set -o errexit
+#set -o errexit
 
 controlled_host=${run_host} ./ipmi_helper.sh restart wait

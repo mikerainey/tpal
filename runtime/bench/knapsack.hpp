@@ -263,8 +263,7 @@ void knapsack_heartbeat(struct item *e, int c, int n, int v, int* dst,
         try_promote();
       }
     } else if (heartbeat == knapsack_heartbeat_mechanism_hardware_interrupt) {
-      if (tpalrts::flags.mine().load()) {
-        tpalrts::flags.mine().store(false);
+      if (tpalrts::check_heartbeat_polling_result()) {
         try_promote();
       }
     }

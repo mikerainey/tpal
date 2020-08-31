@@ -41,7 +41,6 @@ int nk_timer_set(nk_timer_t *t,
 #endif
 
 #include "mcsl_scheduler.hpp"
-#include "mcsl_machine.hpp"
 
 #include "tpalrts_util.hpp"
 #include "tpalrts_rollforward.hpp"
@@ -49,27 +48,36 @@ int nk_timer_set(nk_timer_t *t,
 namespace tpalrts {
 
 /*---------------------------------------------------------------------*/
-/* TPAL worker-thread configuration */
+/* TPAL basic worker-thread configuration */
 
-class tpal_worker {
-public:
+using tpal_worker = mcsl::minimal_worker;
 
-  static
-  void initialize_worker() {
-    mcsl::pin_calling_worker();
-  }
+/*---------------------------------------------------------------------*/
+/* Interrupt-based worker launch routine */
 
-  template <typename Body>
-  static
-  void launch_worker_thread(std::size_t i, const Body& b) {
-    mcsl::minimal_worker::launch_worker_thread(i, b);
-  }
-
-  using worker_exit_barrier = typename mcsl::minimal_worker::worker_exit_barrier;
+#if defined(MCSL_LINUX)
   
-  using termination_detection_type = mcsl::minimal_termination_detection;
+static
+mcsl::perworker::array<pthread_t> pthreads;
 
-};
+template <typename Body, typename Initialize_worker>
+void launch_interrupt_worker_thread(std::size_t id, const Body& b, const Initialize_worker& initialize_worker) {
+  auto b2 = [id, &b, &initialize_worker] {
+    mcsl::perworker::unique_id::initialize_worker(id);
+    mcsl::pin_calling_worker();
+    initialize_worker();
+    b(id);
+  };
+  if (id == 0) {
+    b2();
+    return;
+  }
+  auto t = std::thread(b2);
+  pthreads[id] = t.native_handle();
+  t.detach();
+}
+
+#endif
 
 /*---------------------------------------------------------------------*/
 /* Ping-thread scheduler configuration */
@@ -81,16 +89,12 @@ using ping_thread_status_type = enum ping_thread_status_enum {
 };
   
 #if defined(MCSL_LINUX)
-  
-static
-mcsl::perworker::array<pthread_t> pthreads;
-
+    
 class ping_thread_worker {
 public:
 
   static
   void initialize_worker() {
-    mcsl::pin_calling_worker();
     sigset_t mask, prev_mask;
     if (pthread_sigmask(SIG_SETMASK, NULL, &prev_mask)) {
       exit(0);
@@ -100,7 +104,7 @@ public:
     sa.sa_flags = SA_RESTART | SA_NODEFER | SA_SIGINFO;
     sa.sa_mask = prev_mask;
     sigdelset(&sa.sa_mask, SIGUSR1);
-    if(sigaction(SIGUSR1, &sa, &prev_sa)) {
+    if (sigaction(SIGUSR1, &sa, &prev_sa)) {
       exit(0);
     }
     sigemptyset(&mask);
@@ -110,18 +114,9 @@ public:
   template <typename Body>
   static
   void launch_worker_thread(std::size_t id, const Body& b) {
-    if (id == 0) {
-      b(id);
-      return;
-    }
-    auto t = std::thread([id, &b] {
-      mcsl::perworker::unique_id::initialize_worker(id);
-      b(id);
-    });
-    pthreads[id] = t.native_handle();
-    t.detach();
+    launch_interrupt_worker_thread(id, b, [] { initialize_worker(); });
   }
-
+  
   using worker_exit_barrier = typename mcsl::minimal_worker::worker_exit_barrier;
   
   using termination_detection_type = mcsl::minimal_termination_detection;
@@ -218,20 +213,21 @@ int ping_thread_interrupt::timerfd;
 class ping_thread_worker {
 public:
 
-  static
-  void initialize_worker() {
-    threads.mine() = naut_get_cur_thread();
-  }
-
   template <typename Body>
   static
   void launch_worker_thread(std::size_t id, const Body& b) {
-    std::function<void(std::size_t)> f = [&] (std::size_t id) {
+    std::function<void(std::size_t)> f = [=] (std::size_t id) {
       mcsl::perworker::unique_id::initialize_worker(id);
       b(id);
     };
     auto p = new nk_worker_activation_type(id, f);
-    int remote_core = mcsl::worker_cpu_bindings[id];
+    int remote_core = mcsl::cpu_pinning_assignments[id];
+    printk("rc %d %d\n",id,remote_core);
+    if (remote_core == 0) {
+      mcsl::perworker::unique_id::initialize_worker(id);
+      b(id);
+      return;
+    }
     nk_thread_start(nk_thread_init_fn, (void*)p, 0, 0, TSTACK_DEFAULT, 0, remote_core);
     if (id == 0) {
       nk_join_all_children(0);
@@ -259,6 +255,8 @@ public:
   static
   void initialize_signal_handler() {
     nemo_event_id = nk_nemo_register_event_action(heartbeat_interrupt_handler, NULL);
+    printk("initialize signal handler %d\n", nemo_event_id);
+    // todo: check for error condition
   }
   
   static
@@ -287,7 +285,7 @@ public:
     assert(s == ping_thread_status_active);
     auto nb_workers = mcsl::perworker::unique_id::get_nb_workers();
     for (std::size_t id = 0; id != nb_workers; id++) {
-      int remote_core = mcsl::worker_cpu_bindings[id];
+      int remote_core = mcsl::cpu_pinning_assignments[id];
       nk_nemo_event_notify(nemo_event_id, remote_core);
     }
     uint64_t kappa_ns = (1000l * kappa_usec);
@@ -314,7 +312,8 @@ public:
       }
     };
     auto p = new nk_worker_activation_type(nb_workers, f);
-    int remote_core = 0;
+    int remote_core = mcsl::ping_thread_remote_core;
+    printk("pt2 %d\n",remote_core);
     nk_thread_start(nk_thread_init_fn, (void*)p, 0, 0, TSTACK_DEFAULT, 0, remote_core);
   }
   
@@ -340,15 +339,8 @@ nemo_event_id_t ping_thread_interrupt::nemo_event_id;
 class pthread_direct_worker {
 public:
 
-  template <typename Body>
-  static
-  void launch_worker_thread(std::size_t id, const Body& b) {
-    mcsl::minimal_worker::launch_worker_thread(id, b);
-  }
-  
   static
   void initialize_worker() {
-    mcsl::pin_calling_worker();
     unsigned int ns;
     unsigned int sec;
     timer_t timerid;
@@ -371,6 +363,12 @@ public:
       printf("timer_create failed: %d: %s\n", errno, strerror(errno));
     }
     timer_settime(timerid, 0, &itval, NULL);
+  }
+  
+  template <typename Body>
+  static
+  void launch_worker_thread(std::size_t id, const Body& b) {
+    launch_interrupt_worker_thread(id, b, [] { initialize_worker(); });    
   }
 
   using worker_exit_barrier = typename mcsl::minimal_worker::worker_exit_barrier;
@@ -417,8 +415,7 @@ public:
 
   static
   void initialize_worker() {
-    mcsl::pin_calling_worker();
-        int retval;
+    int retval;
     int event_set = PAPI_NULL;
     if ( (retval = PAPI_create_eventset(&event_set)) != PAPI_OK) {
       mcsl::die("papi worker initialization failed");
@@ -440,8 +437,8 @@ public:
 
   template <typename Body>
   static
-  void launch_worker_thread(std::size_t i, const Body& b) {
-    mcsl::minimal_worker::launch_worker_thread(i, b);
+  void launch_worker_thread(std::size_t id, const Body& b) {
+    launch_interrupt_worker_thread(id, b, [] { initialize_worker(); });    
   }
 
   using worker_exit_barrier = typename mcsl::minimal_worker::worker_exit_barrier;

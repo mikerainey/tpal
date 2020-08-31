@@ -64,6 +64,7 @@ using heartbeat_mechanism_type = enum heartbeat_mechanism_struct {
 static constexpr
 int heartbeat_merge_thresh = 64;
 
+template <int heartbeat=heartbeat_mechanism_software_polling>
 void merge_par(Item* xs, Item* ys, Item* tmp,
                size_t lo_xs, size_t hi_xs,
                size_t lo_ys, size_t hi_ys,
@@ -73,7 +74,6 @@ void merge_par(Item* xs, Item* ys, Item* tmp,
                int64_t K=tpalrts::dflt_software_polling_K,
                void* pc = nullptr) {
   sunpack(s);
-  int heartbeat=heartbeat_mechanism_software_polling;
 
   void* __entry = &&entry;
   void* __retk = &&retk;
@@ -109,7 +109,7 @@ void merge_par(Item* xs, Item* ys, Item* tmp,
         s2.stack = s.stack;
         s2.sp = saddr(sp_top, -1l);
       }
-      merge_par(xs2, ys2, tmp2, lo_xs2, hi_xs2, lo_ys2, hi_ys2, lo_tmp2, p2, s2, K, pc2);
+      merge_par<heartbeat>(xs2, ys2, tmp2, lo_xs2, hi_xs2, lo_ys2, hi_ys2, lo_tmp2, p2, s2, K, pc2);
     });
   };
 
@@ -133,8 +133,7 @@ void merge_par(Item* xs, Item* ys, Item* tmp,
         try_promote();
       }
     } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
-      if (tpalrts::flags.mine().load()) {
-        tpalrts::flags.mine().store(false);
+      if (tpalrts::check_heartbeat_polling_result()) {
         try_promote();
       }
     }

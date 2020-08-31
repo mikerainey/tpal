@@ -76,6 +76,7 @@ using merge_args_type = struct merge_args_struct {
 
 using copy_args_type = std::pair<size_t, size_t>;
 
+template <int heartbeat=heartbeat_mechanism_software_polling>
 void mergesort_par(
                    Item* ms_xs,
                    Item* ms_tmp,
@@ -87,7 +88,6 @@ void mergesort_par(
                    merge_args_type* merge_args = nullptr,
                    copy_args_type* copy_args = nullptr) {
   sunpack(s);
-  int heartbeat=heartbeat_mechanism_software_polling;
 
   size_t mid, n1, n2;
 
@@ -146,16 +146,16 @@ void mergesort_par(
       if (pc == __cp_par) {
         p->async_finish_promote([=] (tpalrts::promotable* p2) {
           tpalrts::stack_type s2 = tpalrts::snew();
-          mergesort_par(ms_xs, ms_tmp, ms_lo, ms_hi, p2, s2, K, __cp_par, nullptr, cp_args2);
+          mergesort_par<heartbeat>(ms_xs, ms_tmp, ms_lo, ms_hi, p2, s2, K, __cp_par, nullptr, cp_args2);
         });
       } else {
         p->fork_join_promote([=] (tpalrts::promotable* p2) {
           tpalrts::stack_type s2 = tpalrts::snew();
-          mergesort_par(ms_xs, ms_tmp, ms_lo, ms_hi, p2, s2, K, __cp_par, nullptr, cp_args2);
+          mergesort_par<heartbeat>(ms_xs, ms_tmp, ms_lo, ms_hi, p2, s2, K, __cp_par, nullptr, cp_args2);
         }, [=] (tpalrts::promotable* p2) {
           decr_arena_block(blk);
           auto sj = tpalrts::stack_type(stack, sp, prmhd, prmtl);
-          mergesort_par(ms_xs, ms_tmp, ms_lo, ms_hi, p2, sj, K, __cp_joink);
+          mergesort_par<heartbeat>(ms_xs, ms_tmp, ms_lo, ms_hi, p2, sj, K, __cp_joink);
         });
       }
       pc = __cp_par;
@@ -183,11 +183,11 @@ void mergesort_par(
           s2 = s;
           s2.sp = sp_top;
         }
-        mergesort_par(ms_xs2, ms_tmp2, ms_lo2, ms_hi2, p2, s2, K, pc2);
+        mergesort_par<heartbeat>(ms_xs2, ms_tmp2, ms_lo2, ms_hi2, p2, s2, K, pc2);
       }, [=] (tpalrts::promotable* p2) {
         auto sj = s;
         sj.sp = sp_top;
-        mergesort_par(ms_xs2, ms_tmp2, ms_lo2, ms_hi2, p2, sj, K, __ms_branch2);
+        mergesort_par<heartbeat>(ms_xs2, ms_tmp2, ms_lo2, ms_hi2, p2, sj, K, __ms_branch2);
       });
     } else if (pc_top == __mg_branch1) { // promotion for merge
       sstore(sp_top, 0, void*, __mg_joink);
@@ -209,12 +209,12 @@ void mergesort_par(
           s2 = s;
           s2.sp = sp_top;
         }
-        mergesort_par(ms_xs, ms_tmp, ms_lo, ms_hi, p2, s2, K, pc2, merge_args2);
+        mergesort_par<heartbeat>(ms_xs, ms_tmp, ms_lo, ms_hi, p2, s2, K, pc2, merge_args2);
       }, [=] (tpalrts::promotable* p2) {
         decr_arena_block(blk);
         auto sj = s;
         sj.sp = sp_top;
-        mergesort_par(ms_xs, ms_tmp, ms_lo, ms_hi, p2, sj, K, __mg_branch2);
+        mergesort_par<heartbeat>(ms_xs, ms_tmp, ms_lo, ms_hi, p2, sj, K, __mg_branch2);
       });
     } else {
       assert(false);
@@ -243,8 +243,7 @@ void mergesort_par(
         try_promote();
       }
     } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
-      if (tpalrts::flags.mine().load()) {
-        tpalrts::flags.mine().store(false);
+      if (tpalrts::check_heartbeat_polling_result()) {
         try_promote();
       }
     }
@@ -328,8 +327,7 @@ void mergesort_par(
         goto *pc;
       }
     } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
-      if (tpalrts::flags.mine().load()) {
-        tpalrts::flags.mine().store(false);
+      if (tpalrts::check_heartbeat_polling_result()) {
         try_promote();
         goto *pc;
       }
@@ -358,8 +356,7 @@ void mergesort_par(
         goto *pc;
       }
     } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
-      if (tpalrts::flags.mine().load()) {
-        tpalrts::flags.mine().store(false);
+      if (tpalrts::check_heartbeat_polling_result()) {
         try_promote();
         goto *pc;
       }
@@ -404,8 +401,7 @@ void mergesort_par(
         try_promote();
       }
     } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
-      if (tpalrts::flags.mine().load()) {
-        tpalrts::flags.mine().store(false);
+      if (tpalrts::check_heartbeat_polling_result()) {
         try_promote();
       }
     }

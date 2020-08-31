@@ -41,6 +41,25 @@ struct nk_regs {
 #endif
 
 namespace tpalrts {
+
+/*---------------------------------------------------------------------*/
+/* Manually checked interrupt flags (alternative to rollforward)  */
+  
+#ifdef TPALRTS_USE_INTERRUPT_FLAGS
+using heartbeat_polling_result_type = enum heartbeat_polling_result_enum {
+          heartbeat_polling_result_ready,
+          heartbeat_polling_result_pending };
+
+mcsl::perworker::array<std::atomic<heartbeat_polling_result_type>> heartbeat_polling;
+
+heartbeat_polling_result_type check_heartbeat_polling_result() {
+  if (heartbeat_polling.mine().load() == heartbeat_polling_result_ready) {
+    heartbeat_polling.mine().store(heartbeat_polling_result_pending);
+    return heartbeat_polling_result_ready;
+  }
+  return heartbeat_polling_result_pending;
+}
+#endif
   
 /*---------------------------------------------------------------------*/
 /* Rollforward table */
@@ -61,28 +80,25 @@ auto mk_rollforward_entry(L src, L dst) -> rollforward_table_item_type {
 };
 
 rollforward_lookup_table_type rollforward_table;
-
-#ifdef TPALRTS_USE_INTERRUPT_FLAGS
-mcsl::perworker::array<std::atomic<bool>> flags;
-#endif
   
 template <class T>
 void try_to_initiate_rollforward(const T& t, register_type* rip) {
-#ifdef TPALRTS_USE_INTERRUPT_FLAGS
-  flags.mine().store(true);
-#endif
   for (const auto& e : t) {
     if (*rip == e.first) {
       *rip = e.second;
       break;
     }
   }
+#if defined(TPALRTS_USE_INTERRUPT_FLAGS) && defined(MCSL_LINUX)
+  heartbeat_polling.mine().store(heartbeat_polling_result_ready);
+#elif defined(TPALRTS_USE_INTERRUPT_FLAGS) && defined(MCSL_NAUTILUS)
+  // todo
+#endif
 }
 
 #if defined(MCSL_LINUX)
 
 void heartbeat_interrupt_handler(int, siginfo_t*, void* uap) {
-  stats::increment(stats::configuration_type::nb_heartbeats);
   mcontext_t* mctx = &((ucontext_t *)uap)->uc_mcontext;
   register_type* rip = &mctx->gregs[16];
   try_to_initiate_rollforward(rollforward_table, rip);
@@ -90,18 +106,10 @@ void heartbeat_interrupt_handler(int, siginfo_t*, void* uap) {
 
 #elif defined(MCSL_NAUTILUS)
 
-static
-mcsl::perworker::array<nk_thread_t*> threads;
-
 void heartbeat_interrupt_handler(excp_entry_t* e, void* priv) {
-  if (naut_get_cur_thread() == threads.mine()) {
-    stats::increment(stats::configuration_type::nb_heartbeats);
-    // on the right thread
-    struct nk_regs* r = (struct nk_regs*)((char*)e - 128);
-    try_to_initiate_rollforward(rollforward_table, (register_type*)&(r->rip));
-  }
+  struct nk_regs* r = (struct nk_regs*)((char*)e - 128);
+  try_to_initiate_rollforward(rollforward_table, (register_type*)&(r->rip));
 }
-
   
 #endif
   
