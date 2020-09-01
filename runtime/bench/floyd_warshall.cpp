@@ -39,11 +39,9 @@ void launch() {
     }
   };
   auto bench_body_interrupt = [&] (promotable* p) {
-    s = tpalrts::snew();
-
+    floyd_warshall_interrupt(dist, n);
   };
   auto bench_body_software_polling = [&] (promotable* p) {
-    s = tpalrts::snew();
 
   }; 
   auto bench_body_serial = [&] (promotable* p) {

@@ -13,14 +13,39 @@
 #include "tpalrts_fiber.hpp"
 #include "tpalrts_stack.hpp"
 
-// code 
+#define MIN(x, y) ((x < y) ? x : y)
 
 #ifndef max_vertices
 #define max_vertices 8192
 #endif
+
+#define SUB(array, i, j) (array[i * max_vertices + j])
+
 #define INF           INT_MAX-1
 
-int dist[max_vertices][max_vertices];
+extern "C"
+void floyd_warshall_interrupt(int* dist, int vertices);
+
+/*
+https://godbolt.org/
+
+extern
+void outer_loop_handler(int via, int* from);
+
+void floyd_warshall_interrupt(int* dist, int vertices) {
+  for(int via = 0; via < vertices; via++) {
+    for(int from = 0; from < vertices; ) {
+      for(int to = 0; to < vertices; to++) {
+        if ((from != to) && (from != via) && (to != via)) {
+          SUB(dist, from, to) = MIN(SUB(dist, from, to), SUB(dist, from, via) + SUB(dist, via, to));
+        }
+      }
+      from++;
+      if ((from % 16) == 0) { outer_loop_handler(via, &from); }
+    }
+  }
+}
+ */
 
 void floyd_warshall_serial(int vertices) {
   for(int via = 0; via < vertices; via++) {
