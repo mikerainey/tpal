@@ -14,7 +14,7 @@ let
   #   sha256 = "0c10x5jn170i9jgrafcf5y8gdrdganxb9jrjq7km8v03svcl7kya";
   # };
 
-  mcslSrc = ../../../elastic-work-stealing/mcsl;
+  mcslSrc = ../../../mcsl;
   
   pbenchSrc = pkgs.fetchFromGitHub {
     owner  = "mikerainey";
