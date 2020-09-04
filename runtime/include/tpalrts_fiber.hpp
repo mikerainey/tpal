@@ -9,7 +9,7 @@
 namespace tpalrts {
 
 /*---------------------------------------------------------------------*/
-/* Promotable fibers (signature) */
+/* Arena allocation */
 
 class promotable;
   
@@ -67,6 +67,9 @@ std::pair<M*, arena_block_type*> alloc_arena() {
   return std::make_pair((M*)p.first, p.second);
 }
 
+/*---------------------------------------------------------------------*/
+/* Executable objects (interface) */
+
 class execable {
 public:
 
@@ -94,6 +97,9 @@ public:
   }
   
 };
+
+/*---------------------------------------------------------------------*/
+/* Promotable objects (interface) */
 
 class promotable {
 public:
