@@ -54,15 +54,15 @@ plus_reduce_array_interrupt:
         subq    $8, %rsp
         cmpq    %rdx, %rsi
         jnb     .L18
-        leaq    64(%rsi), %rbp
-        movq    %rdx, %r13
         movq    %rdi, %r12
+        movq    %rdx, %r13
         movq    %r9, %r15
+.L25:
+        leaq    2048(%rsi), %rbp
         cmpq    %r13, %rbp
         cmova   %r13, %rbp
         cmpq    %rbp, %rsi
         jnb     .L26
-.L42:
         leaq    -7(%rbp), %rdx
         leaq    1(%rsi), %rax
         cmpq    %rax, %rdx
@@ -102,21 +102,17 @@ plus_reduce_array_interrupt:
 .L19:
         cmpq    %rbp, %r13
         jbe     .L18
-.L43:
+.L42:
         movl    heartbeat(%rip), %eax
         testl   %eax, %eax
         jne     .L41
 .L23:
         movq    %rbp, %rsi
-        leaq    64(%rsi), %rbp
-        cmpq    %r13, %rbp
-        cmova   %r13, %rbp
-        cmpq    %rbp, %rsi
-        jb      .L42
+        jmp     .L25
 .L26:
         movq    %rsi, %rbp
         cmpq    %rbp, %r13
-        ja      .L43
+        ja      .L42
 .L18:
         movq    %rbx, (%r14)
 .L38:

@@ -20,7 +20,7 @@ int64_t plus_reduce_array_serial(int64_t* a, uint64_t lo, uint64_t hi) {
 #define unlikely(x)    __builtin_expect(!!(x), 0)
 
 #define MIN(x, y) ((x < y) ? x : y)
-#define D 64
+#define D 2048
 
 extern
 volatile int heartbeat;
