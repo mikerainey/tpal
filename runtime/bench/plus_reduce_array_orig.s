@@ -57,7 +57,7 @@ plus_reduce_array_interrupt:
         movq    %rdi, %r12
         movq    %rdx, %r13
         movq    %r9, %r15
-.L25:
+.L19:
         leaq    2048(%rsi), %rbp
         cmpq    %r13, %rbp
         cmova   %r13, %rbp
@@ -66,11 +66,11 @@ plus_reduce_array_interrupt:
         leaq    -7(%rbp), %rdx
         leaq    1(%rsi), %rax
         cmpq    %rax, %rdx
-        jbe     .L22
+        jbe     .L23
         cmpq    $6, %rbp
-        jbe     .L22
+        jbe     .L23
         leaq    232(%r12,%rsi,8), %rcx
-.L21:
+.L22:
         movq    -224(%rcx), %rax
         addq    -232(%rcx), %rax
         prefetcht0      (%rcx)
@@ -86,33 +86,28 @@ plus_reduce_array_interrupt:
         addq    $8, %rsi
         addq    $9, %rax
         cmpq    %rax, %rdx
-        ja      .L21
+        ja      .L22
         leaq    1(%rsi), %rax
         addq    (%r12,%rsi,8), %rbx
-        cmpq    %rbp, %rax
+        cmpq    %rax, %rbp
         movq    %rax, %rsi
-        jnb     .L19
-.L40:
+        jbe     .L20
+.L41:
         incq    %rax
-.L22:
+.L23:
         addq    (%r12,%rsi,8), %rbx
-        cmpq    %rbp, %rax
+        cmpq    %rax, %rbp
         movq    %rax, %rsi
-        jb      .L40
-.L19:
-        cmpq    %rbp, %r13
-        jbe     .L18
-.L42:
+        ja      .L41
+.L20:
+        cmpq    %r13, %rbp
+        jnb     .L18
         movl    heartbeat(%rip), %eax
         testl   %eax, %eax
-        jne     .L41
-.L23:
+        jne     .L42
+.L24:
         movq    %rbp, %rsi
-        jmp     .L25
-.L26:
-        movq    %rsi, %rbp
-        cmpq    %rbp, %r13
-        ja      .L42
+        jmp     .L19
 .L18:
         movq    %rbx, (%r14)
 .L38:
@@ -124,7 +119,10 @@ plus_reduce_array_interrupt:
         popq    %r14
         popq    %r15
         ret
-.L41:
+.L26:
+        movq    %rsi, %rbp
+        jmp     .L20
+.L42:
         movq    %r15, %r9
         movq    %r14, %r8
         movq    %rbx, %rcx
@@ -133,5 +131,5 @@ plus_reduce_array_interrupt:
         movq    %r12, %rdi
         call    loop_handler
         testl   %eax, %eax
-        je      .L23
+        je      .L24
         jmp     .L38

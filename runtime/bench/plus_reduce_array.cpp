@@ -23,7 +23,7 @@ void launch() {
   auto bench_body_interrupt = [&] (promotable* p) {
     plus_reduce_array_interrupt(a, 0, nb_items, 0, &result, p);
   };
-  auto bench_body_software_polling = [&] (promotable* p) {
+  auto bench_body_software_polling = [&] (pplromotable* p) {
     plus_reduce_array_software_polling(a, 0, nb_items, &result, p, software_polling_K);
   };
   auto bench_body_serial = [&] (promotable* p) {

@@ -16,31 +16,39 @@ int64_t plus_reduce_array_serial(int64_t* a, uint64_t lo, uint64_t hi) {
   return r;
 }
 
+#define MIN(x, y) ((x < y) ? x : y)
+
 #define likely(x)      __builtin_expect(!!(x), 1)
 #define unlikely(x)    __builtin_expect(!!(x), 0)
 
-#define MIN(x, y) ((x < y) ? x : y)
 #define D 2048
 
-extern
-volatile int heartbeat;
+extern volatile
+int heartbeat;
 
 extern
 int loop_handler(int64_t* a, uint64_t lo, uint64_t hi, uint64_t r, int64_t* dst, void* p);
 
 void plus_reduce_array_interrupt(int64_t* a, uint64_t lo, uint64_t hi, uint64_t r, int64_t* dst, void* p) {
-  for (; lo < hi; ) {
-    uint64_t i2 = lo;
+  if (! (lo < hi)) {
+    goto exit;
+  }
+  for (; ; ) {
+    uint64_t lo2 = lo;
     uint64_t hi2 = MIN(lo + D, hi);
-    for (; i2 < hi2; i2++) {
-      r += a[i2];
+    for (; lo2 < hi2; lo2++) {
+      r += a[lo2];
     }
-    lo = i2;
-    if (likely(lo < hi) && unlikely(heartbeat)) { 
+    lo = lo2;
+    if (unlikely(! (lo < hi))) {
+      break;
+    }
+    if (unlikely(heartbeat)) { 
       if (loop_handler(a, lo, hi, r, dst, p)) {
         return;
       }
     }
   }
+ exit:
   *dst = r;
 }

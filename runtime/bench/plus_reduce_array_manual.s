@@ -8,10 +8,10 @@
 .type  .L19, @function
 .globl  .L19_rf
 .type  .L19_rf, @function
-.globl  .L21
-.type  .L21, @function
-.globl  .L21_rf
-.type  .L21_rf, @function
+.globl  .L20
+.type  .L20, @function
+.globl  .L20_rf
+.type  .L20_rf, @function
 .globl  .L22
 .type  .L22, @function
 .globl  .L22_rf
@@ -20,10 +20,10 @@
 .type  .L23, @function
 .globl  .L23_rf
 .type  .L23_rf, @function
-.globl  .L25
-.type  .L25, @function
-.globl  .L25_rf
-.type  .L25_rf, @function
+.globl  .L24
+.type  .L24, @function
+.globl  .L24_rf
+.type  .L24_rf, @function
 .globl  .L26
 .type  .L26, @function
 .globl  .L26_rf
@@ -40,10 +40,6 @@
 .type  .L4, @function
 .globl  .L4_rf
 .type  .L4_rf, @function
-.globl  .L40
-.type  .L40, @function
-.globl  .L40_rf
-.type  .L40_rf, @function
 .globl  .L41
 .type  .L41, @function
 .globl  .L41_rf
@@ -544,10 +540,6 @@
 .type  pra117, @function
 .globl  pra117_rf
 .type  pra117_rf, @function
-.globl  pra118
-.type  pra118, @function
-.globl  pra118_rf
-.type  pra118_rf, @function
 plus_reduce_array_serial:
 pra0:        cmpq    %rdx, %rsi
 pra1:        je      .L6
@@ -607,7 +599,7 @@ pra48:        jnb     .L18
 pra49:        movq    %rdi, %r12
 pra50:        movq    %rdx, %r13
 pra51:        movq    %r9, %r15
-.L25:
+.L19:
 pra52:        leaq    2048(%rsi), %rbp
 pra53:        cmpq    %r13, %rbp
 pra54:        cmova   %r13, %rbp
@@ -616,11 +608,11 @@ pra56:        jnb     .L26
 pra57:        leaq    -7(%rbp), %rdx
 pra58:        leaq    1(%rsi), %rax
 pra59:        cmpq    %rax, %rdx
-pra60:        jbe     .L22
+pra60:        jbe     .L23
 pra61:        cmpq    $6, %rbp
-pra62:        jbe     .L22
+pra62:        jbe     .L23
 pra63:        leaq    232(%r12,%rsi,8), %rcx
-.L21:
+.L22:
 pra64:        movq    -224(%rcx), %rax
 pra65:        addq    -232(%rcx), %rax
 pra66:        prefetcht0      (%rcx)
@@ -636,55 +628,53 @@ pra75:        movq    %rsi, %rax
 pra76:        addq    $8, %rsi
 pra77:        addq    $9, %rax
 pra78:        cmpq    %rax, %rdx
-pra79:        ja      .L21
+pra79:        ja      .L22
 pra80:        leaq    1(%rsi), %rax
 pra81:        addq    (%r12,%rsi,8), %rbx
-pra82:        cmpq    %rbp, %rax
+pra82:        cmpq    %rax, %rbp
 pra83:        movq    %rax, %rsi
-pra84:        jnb     .L19
-.L40:
+pra84:        jbe     .L20
+.L41:
 pra85:        incq    %rax
-.L22:
+.L23:
 pra86:        addq    (%r12,%rsi,8), %rbx
-pra87:        cmpq    %rbp, %rax
+pra87:        cmpq    %rax, %rbp
 pra88:        movq    %rax, %rsi
-pra89:        jb      .L40
-.L19:
-pra90:        cmpq    %rbp, %r13
-pra91:        jbe     .L18
-.L42:
+pra89:        ja      .L41
+.L20:
+pra90:        cmpq    %r13, %rbp
+pra91:        jnb     .L18
 pra92:        nop
 pra93:        nop
 pra94:        nop
-.L23:
+.L24:
 pra95:        movq    %rbp, %rsi
-pra96:        jmp     .L25
-.L26:
-pra97:        movq    %rsi, %rbp
-pra98:        cmpq    %rbp, %r13
-pra99:        ja      .L42
+pra96:        jmp     .L19
 .L18:
-pra100:        movq    %rbx, (%r14)
+pra97:        movq    %rbx, (%r14)
 .L38:
-pra101:        addq    $8, %rsp
-pra102:        popq    %rbx
-pra103:        popq    %rbp
-pra104:        popq    %r12
-pra105:        popq    %r13
-pra106:        popq    %r14
-pra107:        popq    %r15
-pra108:        ret
-.L41:
-pra109:        movq    %r15, %r9
-pra110:        movq    %r14, %r8
-pra111:        movq    %rbx, %rcx
-pra112:        movq    %r13, %rdx
-pra113:        movq    %rbp, %rsi
-pra114:        movq    %r12, %rdi
-pra115:        call    loop_handler
-pra116:        testl   %eax, %eax
-pra117:        je      .L23
-pra118:        jmp     .L38
+pra98:        addq    $8, %rsp
+pra99:        popq    %rbx
+pra100:        popq    %rbp
+pra101:        popq    %r12
+pra102:        popq    %r13
+pra103:        popq    %r14
+pra104:        popq    %r15
+pra105:        ret
+.L26:
+pra106:        movq    %rsi, %rbp
+pra107:        jmp     .L20
+.L42:
+pra108:        movq    %r15, %r9
+pra109:        movq    %r14, %r8
+pra110:        movq    %rbx, %rcx
+pra111:        movq    %r13, %rdx
+pra112:        movq    %rbp, %rsi
+pra113:        movq    %r12, %rdi
+pra114:        call    loop_handler
+pra115:        testl   %eax, %eax
+pra116:        je      .L24
+pra117:        jmp     .L38
 
 plus_reduce_array_serial_rf:
 pra0_rf:        cmpq    %rdx, %rsi
@@ -745,7 +735,7 @@ pra48_rf:        jnb     .L18_rf
 pra49_rf:        movq    %rdi, %r12
 pra50_rf:        movq    %rdx, %r13
 pra51_rf:        movq    %r9, %r15
-.L25_rf:
+.L19_rf:
 pra52_rf:        leaq    2048(%rsi), %rbp
 pra53_rf:        cmpq    %r13, %rbp
 pra54_rf:        cmova   %r13, %rbp
@@ -754,11 +744,11 @@ pra56_rf:        jnb     .L26_rf
 pra57_rf:        leaq    -7(%rbp), %rdx
 pra58_rf:        leaq    1(%rsi), %rax
 pra59_rf:        cmpq    %rax, %rdx
-pra60_rf:        jbe     .L22_rf
+pra60_rf:        jbe     .L23_rf
 pra61_rf:        cmpq    $6, %rbp
-pra62_rf:        jbe     .L22_rf
+pra62_rf:        jbe     .L23_rf
 pra63_rf:        leaq    232(%r12,%rsi,8), %rcx
-.L21_rf:
+.L22_rf:
 pra64_rf:        movq    -224(%rcx), %rax
 pra65_rf:        addq    -232(%rcx), %rax
 pra66_rf:        prefetcht0      (%rcx)
@@ -774,53 +764,51 @@ pra75_rf:        movq    %rsi, %rax
 pra76_rf:        addq    $8, %rsi
 pra77_rf:        addq    $9, %rax
 pra78_rf:        cmpq    %rax, %rdx
-pra79_rf:        ja      .L21_rf
+pra79_rf:        ja      .L22_rf
 pra80_rf:        leaq    1(%rsi), %rax
 pra81_rf:        addq    (%r12,%rsi,8), %rbx
-pra82_rf:        cmpq    %rbp, %rax
+pra82_rf:        cmpq    %rax, %rbp
 pra83_rf:        movq    %rax, %rsi
-pra84_rf:        jnb     .L19_rf
-.L40_rf:
+pra84_rf:        jbe     .L20_rf
+.L41_rf:
 pra85_rf:        incq    %rax
-.L22_rf:
+.L23_rf:
 pra86_rf:        addq    (%r12,%rsi,8), %rbx
-pra87_rf:        cmpq    %rbp, %rax
+pra87_rf:        cmpq    %rax, %rbp
 pra88_rf:        movq    %rax, %rsi
-pra89_rf:        jb      .L40_rf
-.L19_rf:
-pra90_rf:        cmpq    %rbp, %r13
-pra91_rf:        jbe     .L18_rf
-.L42_rf:
-pra92_rf:        jmp	.L41
+pra89_rf:        ja      .L41_rf
+.L20_rf:
+pra90_rf:        cmpq    %r13, %rbp
+pra91_rf:        jnb     .L18_rf
+pra92_rf:        jmp	.L42
 pra93_rf:        nop
 pra94_rf:        nop
-.L23_rf:
+.L24_rf:
 pra95_rf:        movq    %rbp, %rsi
-pra96_rf:        jmp     .L25_rf
-.L26_rf:
-pra97_rf:        movq    %rsi, %rbp
-pra98_rf:        cmpq    %rbp, %r13
-pra99_rf:        ja      .L42_rf
+pra96_rf:        jmp     .L19_rf
 .L18_rf:
-pra100_rf:        movq    %rbx, (%r14)
+pra97_rf:        movq    %rbx, (%r14)
 .L38_rf:
-pra101_rf:        addq    $8, %rsp
-pra102_rf:        popq    %rbx
-pra103_rf:        popq    %rbp
-pra104_rf:        popq    %r12
-pra105_rf:        popq    %r13
-pra106_rf:        popq    %r14
-pra107_rf:        popq    %r15
-pra108_rf:        ret
-.L41_rf:
-pra109_rf:        movq    %r15, %r9
-pra110_rf:        movq    %r14, %r8
-pra111_rf:        movq    %rbx, %rcx
-pra112_rf:        movq    %r13, %rdx
-pra113_rf:        movq    %rbp, %rsi
-pra114_rf:        movq    %r12, %rdi
-pra115_rf:        call    loop_handler
-pra116_rf:        testl   %eax, %eax
-pra117_rf:        je      .L23_rf
-pra118_rf:        jmp     .L38_rf
+pra98_rf:        addq    $8, %rsp
+pra99_rf:        popq    %rbx
+pra100_rf:        popq    %rbp
+pra101_rf:        popq    %r12
+pra102_rf:        popq    %r13
+pra103_rf:        popq    %r14
+pra104_rf:        popq    %r15
+pra105_rf:        ret
+.L26_rf:
+pra106_rf:        movq    %rsi, %rbp
+pra107_rf:        jmp     .L20_rf
+.L42_rf:
+pra108_rf:        movq    %r15, %r9
+pra109_rf:        movq    %r14, %r8
+pra110_rf:        movq    %rbx, %rcx
+pra111_rf:        movq    %r13, %rdx
+pra112_rf:        movq    %rbp, %rsi
+pra113_rf:        movq    %r12, %rdi
+pra114_rf:        call    loop_handler
+pra115_rf:        testl   %eax, %eax
+pra116_rf:        je      .L24_rf
+pra117_rf:        jmp     .L38_rf
 

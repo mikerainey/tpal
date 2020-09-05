@@ -234,5 +234,3 @@ extern "C" void pra116();
 extern "C" void pra116_rf();
 extern "C" void pra117();
 extern "C" void pra117_rf();
-extern "C" void pra118();
-extern "C" void pra118_rf();
