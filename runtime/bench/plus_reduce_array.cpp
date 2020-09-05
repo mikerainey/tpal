@@ -5,10 +5,11 @@ namespace tpalrts {
   
 void launch() {
   rollforward_table = {
-    mk_rollforward_entry(plus_reduce_array_interrupt_l0, plus_reduce_array_interrupt_rf_l0),
+    #include "plus_reduce_array_rollforward_map.hpp"
+    /*    mk_rollforward_entry(plus_reduce_array_interrupt_l0, plus_reduce_array_interrupt_rf_l0),
     mk_rollforward_entry(plus_reduce_array_interrupt_l1, plus_reduce_array_interrupt_rf_l1),
     mk_rollforward_entry(plus_reduce_array_interrupt_l2, plus_reduce_array_interrupt_rf_l2),
-    mk_rollforward_entry(plus_reduce_array_interrupt_l3, plus_reduce_array_interrupt_rf_l3),
+    mk_rollforward_entry(plus_reduce_array_interrupt_l3, plus_reduce_array_interrupt_rf_l3), */
   };
   int64_t software_polling_K = deepsea::cmdline::parse_or_default_int("software_polling_K", 128);
   uint64_t nb_items = deepsea::cmdline::parse_or_default_long("n", 20000000);
@@ -20,7 +21,7 @@ void launch() {
     }
   };
   auto bench_body_interrupt = [&] (promotable* p) {
-    plus_reduce_array_interrupt(a, 0, nb_items, &result, p);
+    plus_reduce_array_interrupt(a, 0, nb_items, 0, &result, p);
   };
   auto bench_body_software_polling = [&] (promotable* p) {
     plus_reduce_array_software_polling(a, 0, nb_items, &result, p, software_polling_K);
@@ -29,6 +30,7 @@ void launch() {
     result = plus_reduce_array_serial(a, 0, nb_items);
   };
   auto bench_post = [&]   {
+    if (result != nb_items) { printf("OOPS\n"); }
     assert(result == nb_items);
     free(a);
   };

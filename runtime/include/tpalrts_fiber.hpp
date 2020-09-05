@@ -137,11 +137,46 @@ public:
     _fork_join_promote(fbody, fcombine);
   }
 
+  template <typename Body1, typename Body2, typename Combine>
+  void fork_join_promote2(const Body1& body1, const Body2& body2, const Combine& combine) {
+    using body1_ty = execable_function<Body1>;
+    using body2_ty = execable_function<Body2>;
+    using combine_ty = execable_function<Combine>;
+    body1_ty* fbody1 = nullptr;
+    body2_ty* fbody2 = nullptr;
+    combine_ty* fcombine = nullptr;
+    {
+      body1_ty* ap;
+      arena_block_type* b;
+      std::tie(ap, b) = alloc_arena<body1_ty>();
+      new (ap) body1_ty(body1, b);
+      fbody1 = ap;
+    }
+    {
+      body2_ty* ap;
+      arena_block_type* b;
+      std::tie(ap, b) = alloc_arena<body2_ty>();
+      new (ap) body2_ty(body2, b);
+      fbody2 = ap;
+    }
+    {
+      combine_ty* ap;
+      arena_block_type* b;
+      std::tie(ap, b) = alloc_arena<combine_ty>();
+      new (ap) combine_ty(combine, b);
+      fcombine = ap;
+    }
+    _fork_join_promote2(fbody1, fbody2, fcombine);
+  }  
+
   virtual
   void _async_finish_promote(execable*) = 0;
 
   virtual
   void _fork_join_promote(execable*, execable*) = 0;
+
+  virtual
+  void _fork_join_promote2(execable*, execable*, execable*) = 0;
 
 };
 
@@ -256,7 +291,23 @@ public:
     commit();
     stats::increment(stats_configuration::nb_promotions);
   }
-    
+
+  void _fork_join_promote2(execable* body1, execable* body2, execable* combine) {
+    __fork_join_promote2(arena_allocate(body1), arena_allocate(body2), arena_allocate(combine));
+  }
+      
+  void __fork_join_promote2(fiber* b1, fiber* b2, fiber* c) {
+    c->outedge = capture_continuation();
+    add_edge(this, c);
+    add_edge(b1, c);
+    add_edge(b2, c);
+    b1->release();
+    b2->release();
+    c->release();
+    commit();
+    stats::increment(stats_configuration::nb_promotions);
+  }
+
 };
 
 /* A fiber that, when executed, initiates the teardown of the 
