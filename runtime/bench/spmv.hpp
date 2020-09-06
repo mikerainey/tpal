@@ -11,30 +11,24 @@
 
 #include "tpalrts_fiber.hpp"
 
-#include "spmv_offsets.hpp"
+#include "spmv_rollforward_decls.hpp"
 
 /*---------------------------------------------------------------------*/
 /* Manual version */
 
-void spmv_serial(double* val,
-		 int64_t* row_ptr,
-		 int64_t* col_ind,
-		 double* x,
-		 double* y,
-		 int64_t n) {
-  for (int64_t i = 0; i < n; i++) {  // row loop
-    double t = 0.0;
-    for (int64_t k = row_ptr[i]; k < row_ptr[i+1]; k++) { // col loop
-      t += val[k] * x[col_ind[k]];
-    }
-    y[i] = t;
-  }
-}
+extern "C"
+void spmv_serial(
+  double* val,
+  uint64_t* row_ptr,
+  uint64_t* col_ind,
+  double* x,
+  double* y,
+  uint64_t n);
 
 static
 void spmv_software_polling_col_loop(double* val,
-                                    int64_t* row_ptr,
-                                    int64_t* col_ind,
+                                    uint64_t* row_ptr,
+                                    uint64_t* col_ind,
                                     double* x,
                                     int64_t k_lo,
                                     int64_t k_hi,
@@ -60,13 +54,13 @@ public:
 
   trampoline_type trampoline = entry;
   
-  double* val; int64_t* row_ptr; int64_t* col_ind; double* x; double* y;
+  double* val; uint64_t* row_ptr; uint64_t* col_ind; double* x; double* y;
   int64_t i_lo; int64_t i_hi; int64_t k_lo; int64_t k_hi;
   double* dst; double dst1, dst2;
   
   spmv_manual(double* val,
-              int64_t* row_ptr,
-              int64_t* col_ind,
+              uint64_t* row_ptr,
+              uint64_t* col_ind,
               double* x,
               double* y,
               int64_t i_lo,
@@ -143,210 +137,172 @@ public:
 /* Hardware-interrupt version */
 
 extern "C"
-void spmv_l0();
-extern "C"
-void spmv_l1();
-extern "C"
-void spmv_l2();
-extern "C"
-void spmv_l3();
-extern "C"
-void spmv_l4();
-extern "C"
-void spmv_l5();
-extern "C"
-void spmv_l6();
-extern "C"
-void spmv_l7();
-extern "C"
-void spmv_l8();
-extern "C"
-void spmv_l9();
-extern "C"
-void spmv_l10();
-extern "C"
-void spmv_l11();
-extern "C"
-void spmv_l12();
-extern "C"
-void spmv_l13();
-extern "C"
-void spmv_l14();
-extern "C"
-void spmv_l15();
+void spmv_interrupt(
+  double* val,
+  uint64_t* row_ptr,
+  uint64_t* col_ind,
+  double* x,
+  double* y,
+  uint64_t row_lo,
+  uint64_t row_hi,
+  void* p);
 
 extern "C"
-void spmv_rf_l0();
-extern "C"
-void spmv_rf_l1();
-extern "C"
-void spmv_rf_l2();
-extern "C"
-void spmv_rf_l3();
-extern "C"
-void spmv_rf_l4();
-extern "C"
-void spmv_rf_l5();
-extern "C"
-void spmv_rf_l6();
-extern "C"
-void spmv_rf_l7();
-extern "C"
-void spmv_rf_l8();
-extern "C"
-void spmv_rf_l9();
-extern "C"
-void spmv_rf_l10();
-extern "C"
-void spmv_rf_l11();
-extern "C"
-void spmv_rf_l12();
-extern "C"
-void spmv_rf_l13();
-extern "C"
-void spmv_rf_l14();
-extern "C"
-void spmv_rf_l15();
+void spmv_interrupt_col_loop(
+  double* val,
+  uint64_t* row_ptr,
+  uint64_t* col_ind,
+  double* x,
+  double* y,
+  uint64_t col_lo,
+  uint64_t col_hi,
+  double t,
+  double* dst,
+  void* p);
 
-extern "C"
-void spmv_col_l0();
-extern "C"
-void spmv_col_l1();
-extern "C"
-void spmv_col_l2();
-extern "C"
-void spmv_col_l3();
-extern "C"
-void spmv_col_l4();
-extern "C"
-void spmv_col_l5();
-extern "C"
-void spmv_col_l6();
-
-extern "C"
-void spmv_col_rf_l0();
-extern "C"
-void spmv_col_rf_l1();
-extern "C"
-void spmv_col_rf_l2();
-extern "C"
-void spmv_col_rf_l3();
-extern "C"
-void spmv_col_rf_l4();
-extern "C"
-void spmv_col_rf_l5();
-extern "C"
-void spmv_col_rf_l6();
-
-extern "C"
-void spmv_interrupt(char*);
-extern "C"
-void spmv_interrupt_row_loop(char*);
-extern "C"
-void spmv_interrupt_col_loop(char*);
-extern "C"
-void spmv_interrupt_promote(char*);
-extern "C"
-void spmv_col_interrupt_promote(char*);
-
-void spmv_interrupt_promote(char* env) {
-  double* val = GET_FROM_ENV(double*,SPMV_OFF01,env);   
-  int64_t* row_ptr = GET_FROM_ENV(int64_t*,SPMV_OFF02,env); 
-  int64_t* col_ind = GET_FROM_ENV(int64_t*,SPMV_OFF03,env);
-  double* x = GET_FROM_ENV(double*,SPMV_OFF04,env);
-  double* y = GET_FROM_ENV(double*,SPMV_OFF05,env);
-  int64_t i = GET_FROM_ENV(int64_t,SPMV_OFF06,env); 
-  int64_t* ptr_n = GET_ADDR_FROM_ENV(int64_t,SPMV_OFF07,env);
-  int64_t k = GET_FROM_ENV(int64_t,SPMV_OFF08,env); 
-  int64_t* ptr_khi = GET_ADDR_FROM_ENV(int64_t,SPMV_OFF09,env);
-  tpalrts::promotable* p = GET_FROM_ENV(tpalrts::promotable*,SPMV_OFF10,env);
-  auto n = *ptr_n;
-  auto khi = *ptr_khi;
-  if (n-i >= 2) {
-    auto mid = (n+i)/2;
-    *ptr_n = mid;
-    p->async_finish_promote([=] (tpalrts::promotable* p) {
-      char env[SPMV_SZB];
-      GET_FROM_ENV(double*, SPMV_OFF01, env) = val;
-      GET_FROM_ENV(int64_t*, SPMV_OFF02, env) = row_ptr;
-      GET_FROM_ENV(int64_t*, SPMV_OFF03, env) = col_ind;
-      GET_FROM_ENV(double*, SPMV_OFF04, env) = x;
-      GET_FROM_ENV(double*, SPMV_OFF05, env) = y;
-      GET_FROM_ENV(int64_t, SPMV_OFF06, env) = mid;
-      GET_FROM_ENV(int64_t, SPMV_OFF07, env) = n;
-      GET_FROM_ENV(tpalrts::promotable*, SPMV_OFF10, env) = p;
-      GET_FROM_ENV(double*, SPMV_OFF12, env) = nullptr;
-      spmv_interrupt_row_loop(env);
-    });
-  } else if (khi-k >= 2) {
-    using dst_rec_type = std::pair<double, double>;
-    dst_rec_type* dst_rec;
-    tpalrts::arena_block_type* dst_blk;
-    std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
-    auto mid = (khi+k)/2;
-    *ptr_khi = mid;
-    GET_FROM_ENV(double*, SPMV_OFF12, env) = &(dst_rec->first);
-    p->fork_join_promote([=] (tpalrts::promotable* p2) {
-      char env2[SPMV_SZB];
-      GET_FROM_ENV(double*, SPMV_OFF01, env2) = val;
-      GET_FROM_ENV(int64_t*, SPMV_OFF02, env2) = row_ptr;
-      GET_FROM_ENV(int64_t*, SPMV_OFF03, env2) = col_ind;
-      GET_FROM_ENV(double*, SPMV_OFF04, env2) = x;
-      GET_FROM_ENV(double*, SPMV_OFF05, env2) = y;
-      GET_FROM_ENV(int64_t, SPMV_OFF06, env2) = i;
-      GET_FROM_ENV(int64_t, SPMV_OFF07, env2) = n;
-      GET_FROM_ENV(int64_t, SPMV_OFF08, env2) = mid;
-      GET_FROM_ENV(int64_t, SPMV_OFF09, env2) = khi;
-      GET_FROM_ENV(tpalrts::promotable*, SPMV_OFF10, env2) = p2;
-      GET_FROM_ENV(double*, SPMV_OFF12, env2) = &(dst_rec->second);
-      spmv_interrupt_col_loop(env2);
-    }, [=] (tpalrts::promotable*) {
-      y[i] = dst_rec->first + dst_rec->second;
-      decr_arena_block(dst_blk);
-    });
+int row_loop_handler_cpp(
+  double* val,
+  uint64_t* row_ptr,
+  uint64_t* col_ind,
+  double* x,
+  double* y,
+  uint64_t row_lo,
+  uint64_t row_hi,
+  void* _p) {
+  tpalrts::promotable* p = (tpalrts::promotable*)_p;
+  if ((row_hi - row_lo) <= 1) {
+    return 0;
   }
+  auto mid = (row_lo + row_hi) / 2;
+  p->fork_join_promote2([=] (tpalrts::promotable* p2) {
+    spmv_interrupt(val, row_ptr, col_ind, x, y, row_lo, mid, p2);
+  }, [=] (tpalrts::promotable* p2) {
+    spmv_interrupt(val, row_ptr, col_ind, x, y, mid, row_hi, p2);
+  }, [=] (tpalrts::promotable*) {
+
+  });
+  return 1;
 }
 
-void spmv_col_interrupt_promote(char* env) {
-  double* val = GET_FROM_ENV(double*,SPMV_OFF01,env);   
-  int64_t* row_ptr = GET_FROM_ENV(int64_t*,SPMV_OFF02,env); 
-  int64_t* col_ind = GET_FROM_ENV(int64_t*,SPMV_OFF03,env);
-  double* x = GET_FROM_ENV(double*,SPMV_OFF04,env);
-  double* y = GET_FROM_ENV(double*,SPMV_OFF05,env);
-  int64_t i = GET_FROM_ENV(int64_t,SPMV_OFF06,env); 
-  int64_t* ptr_n = GET_ADDR_FROM_ENV(int64_t,SPMV_OFF07,env);
-  int64_t k = GET_FROM_ENV(int64_t,SPMV_OFF08,env); 
-  int64_t* ptr_khi = GET_ADDR_FROM_ENV(int64_t,SPMV_OFF09,env);
-  tpalrts::promotable* p = GET_FROM_ENV(tpalrts::promotable*,SPMV_OFF10,env);
-  double* dst = GET_FROM_ENV(double*,SPMV_OFF12,env);
-  auto khi = *ptr_khi;
-  if (khi-k >= 2) {
-    using dst_rec_type = std::pair<double, double>;
-    dst_rec_type* dst_rec;
-    tpalrts::arena_block_type* dst_blk;
-    std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
-    auto mid = (khi+k)/2;
-    *ptr_khi = mid;
-    GET_FROM_ENV(double*, SPMV_OFF12, env) = &(dst_rec->first);
-    p->fork_join_promote([=] (tpalrts::promotable* p2) {
-      char env2[SPMV_SZB];
-      GET_FROM_ENV(double*, SPMV_OFF01, env2) = val;
-      GET_FROM_ENV(int64_t*, SPMV_OFF02, env2) = row_ptr;
-      GET_FROM_ENV(int64_t*, SPMV_OFF03, env2) = col_ind;
-      GET_FROM_ENV(double*, SPMV_OFF04, env2) = x;
-      GET_FROM_ENV(double*, SPMV_OFF05, env2) = y;
-      GET_FROM_ENV(int64_t, SPMV_OFF06, env2) = i;
-      GET_FROM_ENV(int64_t, SPMV_OFF07, env2) = *ptr_n;
-      GET_FROM_ENV(int64_t, SPMV_OFF08, env2) = mid;
-      GET_FROM_ENV(int64_t, SPMV_OFF09, env2) = khi;
-      GET_FROM_ENV(tpalrts::promotable*, SPMV_OFF10, env2) = p2;
-      GET_FROM_ENV(double*, SPMV_OFF12, env2) = &(dst_rec->second);
-      spmv_interrupt_col_loop(env2);
-    }, [=] (tpalrts::promotable*) {
-      *dst = dst_rec->first + dst_rec->second;
-      decr_arena_block(dst_blk);
-    });
+int col_loop_handler_cpp(
+  double* val,
+  uint64_t* row_ptr,
+  uint64_t* col_ind,
+  double* x,
+  double* y,
+  uint64_t row_lo,
+  uint64_t row_hi,
+  uint64_t col_lo,
+  uint64_t col_hi,
+  double t,
+  void* _p) {
+  tpalrts::promotable* p = (tpalrts::promotable*)_p;
+  auto nb_rows = row_hi - row_lo;
+  if (nb_rows == 0) {
+    return 0;
   }
+  auto cf = [=] (tpalrts::promotable* p2) {
+    spmv_interrupt_col_loop(val, row_ptr, col_ind, x, y, col_lo, col_hi, t, &y[row_lo], p2);
+  };
+  if (nb_rows == 1) {
+    p->async_finish_promote(cf);
+    return 1;
+  }
+  row_lo++;
+  if (nb_rows == 2) {
+    p->fork_join_promote2(cf, [=] (tpalrts::promotable* p2) {
+      spmv_interrupt(val, row_ptr, col_ind, x, y, row_lo, row_hi, p2);
+    }, [=] (tpalrts::promotable*) {
+      // nothing left to do
+    });
+  } else {
+    auto row_mid = (row_lo + row_hi) / 2;
+    assert((row_hi - row_lo) >= 2);
+    p->fork_join_promote3(cf, [=] (tpalrts::promotable* p2) {
+      spmv_interrupt(val, row_ptr, col_ind, x, y, row_lo, row_mid, p2);
+    }, [=] (tpalrts::promotable* p2) {
+      spmv_interrupt(val, row_ptr, col_ind, x, y, row_mid, row_hi, p2);
+    }, [=] (tpalrts::promotable*) {
+      // nothing left to do
+    });    
+  }
+  return 1;
+}
+
+int col_loop_handler_col_loop_cpp(
+  double* val,
+  uint64_t* row_ptr,
+  uint64_t* col_ind,
+  double* x,
+  double* y,
+  uint64_t col_lo,
+  uint64_t col_hi,
+  double t,
+  double* dst,
+  void* _p) {
+  tpalrts::promotable* p = (tpalrts::promotable*)_p;
+  if ((col_hi - col_lo) <= 1) {
+    return 0;
+  }
+  auto col_mid = (col_lo + col_hi) / 2;
+  using dst_rec_type = std::pair<double, double>;
+  dst_rec_type* dst_rec;
+  tpalrts::arena_block_type* dst_blk;
+  std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
+  p->fork_join_promote2([=] (tpalrts::promotable* p2) {
+    spmv_interrupt_col_loop(val, row_ptr, col_ind, x, y, col_lo, col_mid, t, &(dst_rec->first), p2);
+  }, [=] (tpalrts::promotable* p2) {
+    spmv_interrupt_col_loop(val, row_ptr, col_ind, x, y, col_mid, col_hi, 0.0, &(dst_rec->second), p2);
+  }, [=] (tpalrts::promotable*) {
+    *dst = dst_rec->first + dst_rec->second;
+    decr_arena_block(dst_blk);
+  });
+  return 1;
+}
+
+extern "C" {
+  
+  int row_loop_handler(
+    double* val,
+    uint64_t* row_ptr,
+    uint64_t* col_ind,
+    double* x,
+    double* y,
+    uint64_t row_lo,
+    uint64_t row_hi,
+    void* p) {
+    return row_loop_handler_cpp(val, row_ptr, col_ind, x, y, row_lo, row_hi, p);
+  }
+
+  int col_loop_handler(
+    double* val,
+    uint64_t* row_ptr,
+    uint64_t* col_ind,
+    double* x,
+    double* y,
+    uint64_t row_lo,
+    uint64_t row_hi,
+    uint64_t col_lo,
+    uint64_t col_hi,
+    double t,
+    void* p) {
+    return col_loop_handler_cpp(val, row_ptr, col_ind, x, y, row_lo, row_hi, col_lo, col_hi, t, p);
+  }
+
+  int col_loop_handler_col_loop(
+    double* val,
+    uint64_t* row_ptr,
+    uint64_t* col_ind,
+    double* x,
+    double* y,
+    uint64_t col_lo,
+    uint64_t col_hi,
+    double t,
+    double* dst,
+    void* p) {
+    return col_loop_handler_col_loop_cpp(val, row_ptr, col_ind, x, y, col_lo, col_hi, t, dst, p);
+  }
+
 }
 
 /*---------------------------------------------------------------------*/
@@ -354,8 +310,8 @@ void spmv_col_interrupt_promote(char* env) {
 
 static
 void spmv_software_polling_col_loop(double* val,
-                                    int64_t* row_ptr,
-                                    int64_t* col_ind,
+                                    uint64_t* row_ptr,
+                                    uint64_t* col_ind,
                                     double* x,
                                     int64_t k_lo,
                                     int64_t k_hi,
@@ -370,8 +326,8 @@ void spmv_software_polling_col_loop(double* val,
 static
 void spmv_software_polling_col_loop_par(int64_t K,
                                         double* val,
-                                        int64_t* row_ptr,
-                                        int64_t* col_ind,
+                                        uint64_t* row_ptr,
+                                        uint64_t* col_ind,
                                         double* x,
                                         int64_t k_lo,
                                         int64_t k_hi,
@@ -420,8 +376,8 @@ void spmv_software_polling_col_loop_par(int64_t K,
 
 static
 void spmv_software_polling_row_loop(double* val,
-                                    int64_t* row_ptr,
-                                    int64_t* col_ind,
+                                    uint64_t* row_ptr,
+                                    uint64_t* col_ind,
                                     double* x,
                                     double* y,
                                     int64_t i_lo,
@@ -487,8 +443,8 @@ void spmv_software_polling_row_loop(double* val,
 
 static
 void spmv_software_polling(double* val,
-                           int64_t* row_ptr,
-                           int64_t* col_ind,
+                           uint64_t* row_ptr,
+                           uint64_t* col_ind,
                            double* x,
                            double* y,
                            int64_t n,
@@ -501,8 +457,8 @@ void spmv_software_polling(double* val,
 /* Cilk version */
 
 void spmv_cilk(double* val,
-               int64_t* row_ptr,
-               int64_t* col_ind,
+               uint64_t* row_ptr,
+               uint64_t* col_ind,
                double* x,
                double* y,
                int64_t n) {

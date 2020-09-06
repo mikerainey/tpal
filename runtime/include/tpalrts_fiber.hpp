@@ -169,6 +169,47 @@ public:
     _fork_join_promote2(fbody1, fbody2, fcombine);
   }  
 
+  template <typename Body1, typename Body2, typename Body3, typename Combine>
+  void fork_join_promote3(const Body1& body1, const Body2& body2, const Body3& body3, const Combine& combine) {
+    using body1_ty = execable_function<Body1>;
+    using body2_ty = execable_function<Body2>;
+    using body3_ty = execable_function<Body3>;
+    using combine_ty = execable_function<Combine>;
+    body1_ty* fbody1 = nullptr;
+    body2_ty* fbody2 = nullptr;
+    body3_ty* fbody3 = nullptr;
+    combine_ty* fcombine = nullptr;
+    {
+      body1_ty* ap;
+      arena_block_type* b;
+      std::tie(ap, b) = alloc_arena<body1_ty>();
+      new (ap) body1_ty(body1, b);
+      fbody1 = ap;
+    }
+    {
+      body2_ty* ap;
+      arena_block_type* b;
+      std::tie(ap, b) = alloc_arena<body2_ty>();
+      new (ap) body2_ty(body2, b);
+      fbody2 = ap;
+    }
+    {
+      body3_ty* ap;
+      arena_block_type* b;
+      std::tie(ap, b) = alloc_arena<body3_ty>();
+      new (ap) body3_ty(body3, b);
+      fbody3 = ap;
+    }
+    {
+      combine_ty* ap;
+      arena_block_type* b;
+      std::tie(ap, b) = alloc_arena<combine_ty>();
+      new (ap) combine_ty(combine, b);
+      fcombine = ap;
+    }
+    _fork_join_promote3(fbody1, fbody2, fbody3, fcombine);
+  }  
+
   virtual
   void _async_finish_promote(execable*) = 0;
 
@@ -177,6 +218,9 @@ public:
 
   virtual
   void _fork_join_promote2(execable*, execable*, execable*) = 0;
+
+  virtual
+  void _fork_join_promote3(execable*, execable*, execable*, execable*) = 0;
 
 };
 
@@ -286,8 +330,8 @@ public:
     c->outedge = capture_continuation();
     add_edge(this, c);
     add_edge(b, c);
-    b->release();
     c->release();
+    b->release();
     commit();
     stats::increment(stats_configuration::nb_promotions);
   }
@@ -301,9 +345,30 @@ public:
     add_edge(this, c);
     add_edge(b1, c);
     add_edge(b2, c);
-    b1->release();
-    b2->release();
     c->release();
+    b2->release();
+    b1->release();
+    commit();
+    stats::increment(stats_configuration::nb_promotions);
+  }
+
+  void _fork_join_promote3(execable* body1, execable* body2, execable* body3, execable* combine) {
+    __fork_join_promote3(arena_allocate(body1),
+			 arena_allocate(body2),
+			 arena_allocate(body3),
+			 arena_allocate(combine));
+  }
+      
+  void __fork_join_promote3(fiber* b1, fiber* b2, fiber* b3, fiber* c) {
+    c->outedge = capture_continuation();
+    add_edge(this, c);
+    add_edge(b1, c);
+    add_edge(b2, c);
+    add_edge(b3, c);
+    c->release();
+    b3->release();
+    b2->release();
+    b1->release();
     commit();
     stats::increment(stats_configuration::nb_promotions);
   }

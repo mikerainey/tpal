@@ -17,30 +17,7 @@ uint64_t hash64(uint64_t u) {
 
 void launch() {
   rollforward_table = {
-    mk_rollforward_entry(spmv_l0, spmv_rf_l0),
-    mk_rollforward_entry(spmv_l1, spmv_rf_l1),
-    mk_rollforward_entry(spmv_l2, spmv_rf_l2),
-    mk_rollforward_entry(spmv_l3, spmv_rf_l3),
-    mk_rollforward_entry(spmv_l4, spmv_rf_l4),
-    mk_rollforward_entry(spmv_l5, spmv_rf_l5),
-    mk_rollforward_entry(spmv_l6, spmv_rf_l6),
-    mk_rollforward_entry(spmv_l7, spmv_rf_l7),
-    mk_rollforward_entry(spmv_l8, spmv_rf_l8),
-    mk_rollforward_entry(spmv_l9, spmv_rf_l9),
-    mk_rollforward_entry(spmv_l10, spmv_rf_l10),
-    mk_rollforward_entry(spmv_l11, spmv_rf_l11),
-    mk_rollforward_entry(spmv_l12, spmv_rf_l12),
-    mk_rollforward_entry(spmv_l13, spmv_rf_l13),
-    mk_rollforward_entry(spmv_l14, spmv_rf_l14),
-    mk_rollforward_entry(spmv_l15, spmv_rf_l15), 
-
-    mk_rollforward_entry(spmv_col_l0, spmv_col_rf_l0),
-    mk_rollforward_entry(spmv_col_l1, spmv_col_rf_l1),
-    mk_rollforward_entry(spmv_col_l2, spmv_col_rf_l2),
-    mk_rollforward_entry(spmv_col_l3, spmv_col_rf_l3),
-    mk_rollforward_entry(spmv_col_l4, spmv_col_rf_l4),
-    mk_rollforward_entry(spmv_col_l5, spmv_col_rf_l5),
-    mk_rollforward_entry(spmv_col_l6, spmv_col_rf_l6),
+    #include "spmv_rollforward_map.hpp"    
   };
   int64_t software_polling_K = deepsea::cmdline::parse_or_default_int("software_polling_K", 128);
   int64_t n = deepsea::cmdline::parse_or_default_long("n", 2000);
@@ -48,11 +25,10 @@ void launch() {
   size_t nb_rows = n / row_len;
   auto nb_vals = n;
   double* val = (double*)malloc(sizeof(double) * nb_vals);
-  int64_t* row_ptr = (int64_t*)malloc(sizeof(int64_t) * (nb_rows + 1));
-  int64_t* col_ind = (int64_t*)malloc(sizeof(int64_t) * nb_vals);
+  uint64_t* row_ptr = (uint64_t*)malloc(sizeof(uint64_t) * (nb_rows + 1));
+  uint64_t* col_ind = (uint64_t*)malloc(sizeof(uint64_t) * nb_vals);
   double* x = (double*)malloc(sizeof(double) * nb_rows);
   double* y = (double*)malloc(sizeof(double) * nb_rows);
-  char* env = (char*)malloc(SPMV_SZB);
   auto bench_pre = [=] {
     {
       int64_t a = 0;
@@ -74,16 +50,7 @@ void launch() {
     }
   };
   auto bench_body_interrupt = [=] (promotable* p) {
-    GET_FROM_ENV(double*, SPMV_OFF01, env) = val;
-    GET_FROM_ENV(int64_t*, SPMV_OFF02, env) = row_ptr;
-    GET_FROM_ENV(int64_t*, SPMV_OFF03, env) = col_ind;
-    GET_FROM_ENV(double*, SPMV_OFF04, env) = x;
-    GET_FROM_ENV(double*, SPMV_OFF05, env) = y;
-    GET_FROM_ENV(int64_t, SPMV_OFF06, env) = 0;
-    GET_FROM_ENV(int64_t, SPMV_OFF07, env) = nb_rows;
-    GET_FROM_ENV(promotable*, SPMV_OFF10, env) = p;
-    GET_FROM_ENV(double*, SPMV_OFF12, env) = nullptr;
-    spmv_interrupt(env);
+    spmv_interrupt(val, row_ptr, col_ind, x, y, 0, nb_rows, p);
   };
   auto bench_body_software_polling = [&] (promotable* p) {
     spmv_software_polling(val, row_ptr, col_ind, x, y, nb_rows, p, software_polling_K);
@@ -112,7 +79,6 @@ void launch() {
     printf("nb_diffs %ld\n", nb_diffs);
     free(yref);
 #endif
-    free(env);
     free(val);
     free(row_ptr);
     free(x);
