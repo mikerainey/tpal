@@ -23,49 +23,39 @@
 
 #define INF           INT_MAX-1
 
-extern "C"
-void floyd_warshall_interrupt(int* dist, int vertices);
-
-/*
-https://godbolt.org/
+extern
+void floyd_warshall_serial(int* dist, int vertices);
 
 extern
-void outer_loop_handler(int via, int* from);
+void floyd_warshall_interrupt(int* dist, int vertices);
 
-void floyd_warshall_interrupt(int* dist, int vertices) {
-  for(int via = 0; via < vertices; via++) {
-    for(int from = 0; from < vertices; ) {
-      for(int to = 0; to < vertices; to++) {
-        if ((from != to) && (from != via) && (to != via)) {
-          SUB(dist, from, to) = MIN(SUB(dist, from, to), SUB(dist, from, via) + SUB(dist, via, to));
-        }
-      }
-      from++;
-      if ((from % 16) == 0) { outer_loop_handler(via, &from); }
-    }
-  }
-}
- */
-
-void floyd_warshall_serial(int vertices) {
-  for(int via = 0; via < vertices; via++) {
-    for(int from = 0; from < vertices; from++) {
-      for(int to = 0;to < vertices; to++) {
-        if ((from != to) && (from != via) && (to != via)) {
-          dist[from][to] = std::min(dist[from][to], dist[from][via] + dist[via][to]);
-        }
-      }
-    }
-  }
+int from_loop_handler(int* dist, int vertices, int via_lo, int via_hi, int from_lo, int from_hi, void* p) {
+  return 0;
 }
 
-void floyd_warshall_cilk(int vertices) {
+int to_loop_handler(int* dist, int vertices, int via_lo, int via_hi, int from_lo, int from_hi, int to_lo, int to_hi, void* p) {
+  return 0;
+}
+
+int from_from_loop_handler(int* dist, int vertices, int via_lo, int via_hi, int from_lo, int from_hi, void* p) {
+  return 0;
+}
+
+int to_to_loop_handler(int* dist, int vertices, int via_lo, int via_hi, int from_lo, int from_hi, int to_lo, int to_hi, void* p) {
+  return 0;
+}
+
+int from_to_loop_handler(int* dist, int vertices, int via_lo, int via_hi, int from_lo, int from_hi, int to_lo, int to_hi, void* p) {
+  return 0;
+}
+
+void floyd_warshall_cilk(int* dist int vertices) {
 #if defined(USE_CILK_PLUS)
   for(int via = 0; via < vertices; via++) {
     cilk_for(int from = 0; from < vertices; from++) {
       cilk_for(int to = 0; to < vertices; to++) {
         if ((from != to) && (from != via) && (to != via)) {
-          dist[from][to] = std::min(dist[from][to], dist[from][via] + dist[via][to]);
+          SUB(dist, from, to) = std::min(SUB(dist, from, to), SUB(dist, from, via) + SUB(dist, via, to));
         }
       }
     }
