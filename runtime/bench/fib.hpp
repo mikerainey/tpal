@@ -13,57 +13,14 @@
 #include "tpalrts_fiber.hpp"
 #include "tpalrts_stack.hpp"
 #include "tpalrts_rollforward.hpp"
-
-/*---------------------------------------------------------------------*/
-/* Manual version */
-
-uint64_t fib_custom_stack_serial(uint64_t n, int64_t K, tpalrts::stack_type s) {
-  sunpack(s);
-  
-  uint64_t f = 0;
-
- entry:
-  salloc(sp, 1);
-  sstore(sp, 0, void*, &&exitk);
-
- loop:
-  f = n;
-  if (n < 2) {
-    goto retk;
-  }
-  f = 0;
-  salloc(sp, 2);
-  sstore(sp, 0, void*, &&branch1);
-  sstore(sp, 1, uint64_t, n - 2);
-  n--;
-  goto loop;
-
- branch1:
-  n = sload(sp, 1, uint64_t);
-  sstore(sp, 0, void*, &&branch2);
-  sstore(sp, 1, uint64_t, f);
-  goto loop;
-
- branch2:
-  f += sload(sp, 1, uint64_t);
-  sfree(sp, 2);
-  goto retk;
-
- retk:
-  goto *sload(sp, 0, void*);
-
- exitk:
-  sfree(sp, 1);
-  return f;
-  
-}
+#include "fib_rollforward_decls.hpp"
 
 static
-uint64_t fib_serial(uint64_t n) {
+uint64_t fib_serial2(uint64_t n) {
   if (n < 2) {
     return n;
   } else {
-    return fib_serial(n - 1) + fib_serial(n - 2);
+    return fib_serial2(n - 1) + fib_serial2(n - 2);
   }
 }
 
@@ -89,7 +46,7 @@ public:
     switch (trampoline) {
     case entry: {
       if (n <= fib_manual_T) {
-        *dst = fib_serial(n);
+        *dst = fib_serial2(n);
         break;
       }
       auto f1 = new fib_manual(n-1, &d1);
@@ -113,130 +70,53 @@ public:
 
 };
 
-/*---------------------------------------------------------------------*/
-/* Software-polling version */
+extern
+uint64_t fib_serial(uint64_t n, tpalrts::stack_type s);
 
-using heartbeat_mechanism_type = enum heartbeat_mechanism_struct {
-  heartbeat_mechanism_software_polling,
-  heartbeat_mechanism_hardware_interrupt
-};
+extern
+void fib_interrupt(uint64_t n, uint64_t* dst,
+                   tpalrts::stack_type s, void* p, void* pc, uint64_t f);
 
-template <int heartbeat=heartbeat_mechanism_software_polling>
-void fib_heartbeat(uint64_t n, uint64_t* dst, tpalrts::promotable* p, int64_t K,
-                   tpalrts::stack_type s, void* pc = nullptr, uint64_t f = 0) {
-  sunpack(s);
-
-  void* __entry = &&entry;
-  void* __retk = &&retk;
-  void* __joink = &&joink;
-  void* __clonek = &&clonek;
-
-  pc = (pc == nullptr) ? __entry : pc;
-  
-  auto try_promote = [&] {
-    if (prmempty(prmtl, prmhd)) {
-      return;
-    }
-    char* sp_cont;
-    uint64_t top;
-    prmsplit(sp, prmtl, prmhd, sp_cont, top);
-    char* sp_top = sp + top;
-    uint64_t n2 = sload(sp_top, 0, uint64_t);
-    sstore(sp_top, -1l, void*, __joink);
-    auto dst0 = dst;
-    using dst_rec_type = std::tuple<uint64_t, uint64_t>;
-    dst_rec_type* dst_rec;
-    tpalrts::arena_block_type* dst_blk;
-    std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
-    p->fork_join_promote([=] (tpalrts::promotable* p2) {
-      tpalrts::stack_type s2 = tpalrts::snew();
-      void* pc2;
-      if (sload(sp_top, -1l, void*) != __clonek) { // slow clone
-        pc2 = __entry;
-      } else { // fast clone
-        pc2 = __clonek;
-        s2.stack = s.stack;
-        s2.sp = saddr(sp_top, -1l);
-      }
-      fib_heartbeat<heartbeat>(n2, &(std::get<1>(*dst_rec)), p2, K, s2, pc2, 0);
-    }, [=] (tpalrts::promotable* p2) {
-      auto f2 = std::get<0>(*dst_rec) + std::get<1>(*dst_rec);
-      decr_arena_block(dst_blk);
-      auto sj = s;
-      sj.sp = sp_cont;
-      fib_heartbeat<heartbeat>(0, dst0, p2, K, sj, __retk, f2);
-    });
-    dst = &std::get<0>(*dst_rec);
-  };
-
-  uint64_t promotion_prev = (heartbeat == heartbeat_mechanism_software_polling) ? mcsl::cycles::now() : 0;
-  uint64_t k = K;
-
-  goto *pc;
-    
- entry:
-  salloc(sp, 1);
-  sstore(sp, 0, void*, &&exitk);
-
- loop:
-  if (--k == 0) {
-    k = K;
-    if (heartbeat == heartbeat_mechanism_software_polling) {
-      auto cur = mcsl::cycles::now();
-      if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
-        promotion_prev = cur;
-        tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
-        try_promote();
-      }
-    } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {
-      if (tpalrts::check_heartbeat_polling_result()) {
-        try_promote();
-      }
-    }
+int fib_handler(uint64_t n, uint64_t*& dst,
+		tpalrts::stack_type s, char*& sp, char*& prmhd, char*& prmtl,
+		void* pc, uint64_t f,
+		void* __entry, void* __retk, void* __joink, void* __clonek,
+		void* _p) {
+  tpalrts::promotable* p = (tpalrts::promotable*)_p;
+  if (prmempty(prmtl, prmhd)) {
+    return 0;
   }
-  f = n;
-  if (n < 2) {
-    goto retk;
-  }
-  f = 0;
-  salloc(sp, 4);
-  sstore(sp, 0, void*, &&branch1);
-  sstore(sp, 1, uint64_t, n - 2);
-  prmpush(sp, 2, prmtl, prmhd);
-  n--;
-  goto loop;
-
- branch1:
-  n = sload(sp, 1, uint64_t);
-  sstore(sp, 0, void*, &&branch2);
-  sstore(sp, 1, uint64_t, f);
-  prmpop(sp, 2, prmtl, prmhd);
-  goto loop;
-
- branch2:
-  f += sload(sp, 1, uint64_t);
-  sfree(sp, 4);
-  goto retk;
-
- retk:
-  goto *sload(sp, 0, void*);
-
- joink:
-  sstore(sp, 0, void*, &&clonek);
-  sfree(sp, 1);
-  *dst = f;
-  return;
-
- clonek:
-  salloc(sp, 1);
-  sstore(sp, 0, void*, &&joink);
-  goto loop;
-  
- exitk:
-  sfree(sp, 1);
-  *dst = f;
-  sdelete(s);
-  
+  char* sp_cont;
+  uint64_t top;
+  prmsplit(sp, prmtl, prmhd, sp_cont, top);
+  char* sp_top = sp + top;
+  uint64_t n2 = sload(sp_top, 0, uint64_t);
+  sstore(sp_top, -1l, void*, __joink);
+  auto dst0 = dst;
+  using dst_rec_type = std::tuple<uint64_t, uint64_t>;
+  dst_rec_type* dst_rec;
+  tpalrts::arena_block_type* dst_blk;
+  std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
+  p->fork_join_promote([=] (tpalrts::promotable* p2) {
+    tpalrts::stack_type s2 = tpalrts::snew();
+    void* pc2;
+    if (sload(sp_top, -1l, void*) != __clonek) { // slow clone
+      pc2 = __entry;
+    } else { // fast clone
+      pc2 = __clonek;
+      s2.stack = s.stack;
+      s2.sp = saddr(sp_top, -1l);
+    }
+    fib_interrupt(n2, &(std::get<1>(*dst_rec)), s2, p2, pc2, 0);
+  }, [=] (tpalrts::promotable* p2) {
+    auto f2 = std::get<0>(*dst_rec) + std::get<1>(*dst_rec);
+    decr_arena_block(dst_blk);
+    auto sj = s;
+    sj.sp = sp_cont;
+    fib_interrupt(0, dst0, sj, p2, __retk, f2);
+  });
+  dst = &std::get<0>(*dst_rec);
+  return 1;
 }
 
 /*---------------------------------------------------------------------*/

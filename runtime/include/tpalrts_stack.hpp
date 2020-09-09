@@ -29,7 +29,6 @@ public:
 
 mcsl::perworker::array<stack_buffer_type> stack_buffers;
 
-static inline
 char* alloc_stack() {
   char* stack;
   stack_buffer_type& b = stack_buffers.mine();
@@ -42,7 +41,6 @@ char* alloc_stack() {
   return stack;
 }
 
-static inline
 void free_stack(char* stack) {
   stack_buffer_type& b = stack_buffers.mine();
   if (b.stack == nullptr) {
@@ -52,7 +50,6 @@ void free_stack(char* stack) {
   }
 }
 
-static inline
 stack_type snew() {
   char* stack = nullptr;
   char* sp = nullptr;
@@ -61,7 +58,6 @@ stack_type snew() {
   return stack_type(stack, sp, prmhd, prmtl);
 }
 
-static inline
 void sdelete(stack_type& s) {
   if (s.stack == nullptr) {
     return;
