@@ -1,9 +1,13 @@
 .text
 .p2align 4,,15
-.globl  .L100
-.type  .L100, @function
-.globl  .L100_rf
-.type  .L100_rf, @function
+.globl  .L101
+.type  .L101, @function
+.globl  .L101_rf
+.type  .L101_rf, @function
+.globl  .L102
+.type  .L102, @function
+.globl  .L102_rf
+.type  .L102_rf, @function
 .globl  .L103
 .type  .L103, @function
 .globl  .L103_rf
@@ -12,30 +16,22 @@
 .type  .L104, @function
 .globl  .L104_rf
 .type  .L104_rf, @function
-.globl  .L105
-.type  .L105, @function
-.globl  .L105_rf
-.type  .L105_rf, @function
 .globl  .L106
 .type  .L106, @function
 .globl  .L106_rf
 .type  .L106_rf, @function
-.globl  .L108
-.type  .L108, @function
-.globl  .L108_rf
-.type  .L108_rf, @function
-.globl  .L109
-.type  .L109, @function
-.globl  .L109_rf
-.type  .L109_rf, @function
+.globl  .L107
+.type  .L107, @function
+.globl  .L107_rf
+.type  .L107_rf, @function
+.globl  .L118
+.type  .L118, @function
+.globl  .L118_rf
+.type  .L118_rf, @function
 .globl  .L120
 .type  .L120, @function
 .globl  .L120_rf
 .type  .L120_rf, @function
-.globl  .L122
-.type  .L122, @function
-.globl  .L122_rf
-.type  .L122_rf, @function
 .globl  .L17
 .type  .L17, @function
 .globl  .L17_rf
@@ -44,18 +40,10 @@
 .type  .L19, @function
 .globl  .L19_rf
 .type  .L19_rf, @function
-.globl  .L2
-.type  .L2, @function
-.globl  .L2_rf
-.type  .L2_rf, @function
 .globl  .L23
 .type  .L23, @function
 .globl  .L23_rf
 .type  .L23_rf, @function
-.globl  .L25
-.type  .L25, @function
-.globl  .L25_rf
-.type  .L25_rf, @function
 .globl  .L27
 .type  .L27, @function
 .globl  .L27_rf
@@ -108,6 +96,10 @@
 .type  .L40, @function
 .globl  .L40_rf
 .type  .L40_rf, @function
+.globl  .L41
+.type  .L41, @function
+.globl  .L41_rf
+.type  .L41_rf, @function
 .globl  .L5
 .type  .L5, @function
 .globl  .L5_rf
@@ -140,6 +132,10 @@
 .type  .L67, @function
 .globl  .L67_rf
 .type  .L67_rf, @function
+.globl  .L7
+.type  .L7, @function
+.globl  .L7_rf
+.type  .L7_rf, @function
 .globl  .L71
 .type  .L71, @function
 .globl  .L71_rf
@@ -176,10 +172,18 @@
 .type  .L8, @function
 .globl  .L8_rf
 .type  .L8_rf, @function
+.globl  .L93
+.type  .L93, @function
+.globl  .L93_rf
+.type  .L93_rf, @function
 .globl  .L95
 .type  .L95, @function
 .globl  .L95_rf
 .type  .L95_rf, @function
+.globl  .L96
+.type  .L96, @function
+.globl  .L96_rf
+.type  .L96_rf, @function
 .globl  .L97
 .type  .L97, @function
 .globl  .L97_rf
@@ -188,10 +192,6 @@
 .type  .L98, @function
 .globl  .L98_rf
 .type  .L98_rf, @function
-.globl  .L99
-.type  .L99, @function
-.globl  .L99_rf
-.type  .L99_rf, @function
 .globl  _Z21floyd_warshall_serialPii
 .type  _Z21floyd_warshall_serialPii, @function
 .globl  _Z21floyd_warshall_serialPii_rf
@@ -1816,943 +1816,913 @@
 .type  fwl401, @function
 .globl  fwl401_rf
 .type  fwl401_rf, @function
-.globl  fwl402
-.type  fwl402, @function
-.globl  fwl402_rf
-.type  fwl402_rf, @function
-.globl  fwl403
-.type  fwl403, @function
-.globl  fwl403_rf
-.type  fwl403_rf, @function
-.globl  fwl404
-.type  fwl404, @function
-.globl  fwl404_rf
-.type  fwl404_rf, @function
-.globl  fwl405
-.type  fwl405, @function
-.globl  fwl405_rf
-.type  fwl405_rf, @function
-.globl  fwl406
-.type  fwl406, @function
-.globl  fwl406_rf
-.type  fwl406_rf, @function
 _Z21floyd_warshall_serialPii:
 fwl0:        testl   %esi, %esi
-fwl1:        movq    %rdi, %r8
-fwl2:        movl    %esi, %edi
-fwl3:        jle     .L19
-fwl4:        pushq   %r13
-fwl5:        xorl    %esi, %esi
-fwl6:        pushq   %r12
-fwl7:        pushq   %rbp
+fwl1:        jle     .L19
+fwl2:        pushq   %r12
+fwl3:        movq    %rdi, %r9
+fwl4:        movl    %esi, %r8d
+fwl5:        xorl    %edi, %edi
+fwl6:        pushq   %rbp
+fwl7:        xorl    %ebp, %ebp
 fwl8:        pushq   %rbx
-.L2:
-fwl9:        movl    %esi, %ebx
-fwl10:        movl    %esi, %ebp
-fwl11:        xorl    %ecx, %ecx
-fwl12:        sall    $13, %ebx
+.L7:
+fwl9:        xorl    %r11d, %r11d
+fwl10:        xorl    %esi, %esi
 .L5:
-fwl13:        movl    %ecx, %r11d
-fwl14:        movslq  %ebp, %rax
-fwl15:        sall    $13, %r11d
-fwl16:        cmpl    %ecx, %esi
-fwl17:        leaq    (%r8,%rax,4), %r10
-fwl18:        setne   %r9b
-fwl19:        xorl    %eax, %eax
-fwl20:        jmp     .L4
+fwl11:        leal    (%rdi,%r11), %eax
+fwl12:        cmpl    %edi, %esi
+fwl13:        setne   %r10b
+fwl14:        cltq
+fwl15:        leaq    (%r9,%rax,4), %rbx
+fwl16:        xorl    %eax, %eax
+fwl17:        jmp     .L4
 .L8:
-fwl21:        movl    %edx, %eax
+fwl18:        movl    %edx, %eax
 .L4:
-fwl22:        cmpl    %ecx, %eax
-fwl23:        setne   %r12b
-fwl24:        cmpl    %esi, %eax
-fwl25:        setne   %dl
-fwl26:        testb   %dl, %r12b
-fwl27:        je      .L3
-fwl28:        testb   %r9b, %r9b
-fwl29:        je      .L3
-fwl30:        leal    (%r11,%rax), %edx
-fwl31:        leal    (%rbx,%rax), %r12d
-fwl32:        movslq  %edx, %rdx
-fwl33:        movslq  %r12d, %r12
-fwl34:        leaq    (%r8,%rdx,4), %r13
-fwl35:        movl    (%r10), %edx
-fwl36:        addl    (%r8,%r12,4), %edx
-fwl37:        movl    0(%r13), %r12d
-fwl38:        cmpl    %r12d, %edx
-fwl39:        cmovg   %r12d, %edx
-fwl40:        movl    %edx, 0(%r13)
+fwl19:        cmpl    %eax, %esi
+fwl20:        setne   %cl
+fwl21:        cmpl    %eax, %edi
+fwl22:        setne   %dl
+fwl23:        testb   %dl, %cl
+fwl24:        je      .L3
+fwl25:        testb   %r10b, %r10b
+fwl26:        je      .L3
+fwl27:        leal    (%r11,%rax), %edx
+fwl28:        leal    0(%rbp,%rax), %ecx
+fwl29:        movslq  %edx, %rdx
+fwl30:        movslq  %ecx, %rcx
+fwl31:        leaq    (%r9,%rdx,4), %r12
+fwl32:        movl    (%rbx), %edx
+fwl33:        addl    (%r9,%rcx,4), %edx
+fwl34:        movl    (%r12), %ecx
+fwl35:        cmpl    %ecx, %edx
+fwl36:        cmovg   %ecx, %edx
+fwl37:        movl    %edx, (%r12)
 .L3:
-fwl41:        leal    1(%rax), %edx
-fwl42:        cmpl    %edx, %edi
-fwl43:        jne     .L8
-fwl44:        addl    $8192, %ebp
-fwl45:        cmpl    %ecx, %eax
-fwl46:        leal    1(%rcx), %edx
-fwl47:        je      .L23
-fwl48:        movl    %edx, %ecx
-fwl49:        jmp     .L5
+fwl38:        leal    1(%rax), %edx
+fwl39:        cmpl    %edx, %r8d
+fwl40:        jne     .L8
+fwl41:        addl    %r8d, %r11d
+fwl42:        cmpl    %eax, %esi
+fwl43:        leal    1(%rsi), %edx
+fwl44:        je      .L23
+fwl45:        movl    %edx, %esi
+fwl46:        jmp     .L5
 .L23:
-fwl50:        cmpl    %esi, %eax
-fwl51:        leal    1(%rsi), %edx
-fwl52:        je      .L17
-fwl53:        movl    %edx, %esi
-fwl54:        jmp     .L2
+fwl47:        addl    %r8d, %ebp
+fwl48:        cmpl    %esi, %edi
+fwl49:        leal    1(%rdi), %eax
+fwl50:        je      .L17
+fwl51:        movl    %eax, %edi
+fwl52:        jmp     .L7
 .L17:
-fwl55:        popq    %rbx
-fwl56:        popq    %rbp
-fwl57:        popq    %r12
-fwl58:        popq    %r13
-fwl59:        ret
+fwl53:        popq    %rbx
+fwl54:        popq    %rbp
+fwl55:        popq    %r12
+fwl56:        ret
 .L19:
-fwl60:        rep ret
+fwl57:        rep ret
 _Z24floyd_warshall_interruptPiiiiPv:
-fwl61:        pushq   %r15
-fwl62:        pushq   %r14
-fwl63:        pushq   %r13
-fwl64:        pushq   %r12
-fwl65:        pushq   %rbp
-fwl66:        pushq   %rbx
-fwl67:        subq    $72, %rsp
-fwl68:        testl   %esi, %esi
-fwl69:        movl    %ecx, 52(%rsp)
-fwl70:        movq    %r8, 56(%rsp)
-fwl71:        jle     .L58
-fwl72:        cmpl    %ecx, %edx
-fwl73:        movq    %rdi, %r15
-fwl74:        movl    %esi, %r9d
-fwl75:        movl    %edx, %r12d
-fwl76:        jge     .L58
-.L25:
-fwl77:        movl    %r12d, %r14d
-fwl78:        movq    %r15, %rax
-fwl79:        xorl    %ebp, %ebp
-fwl80:        sall    $13, %r14d
-fwl81:        movl    %r14d, %r15d
-fwl82:        movq    %rax, %r14
-.L27:
-fwl83:        leal    512(%rbp), %eax
-fwl84:        cmpl    %r9d, %eax
-fwl85:        cmovg   %r9d, %eax
-fwl86:        cmpl    %eax, %ebp
-fwl87:        movl    %eax, 48(%rsp)
-fwl88:        jge     .L39
-.L36:
-fwl89:        movl    %ebp, %r13d
-fwl90:        movq    %r14, %rdi
-fwl91:        sall    $13, %r13d
-fwl92:        leal    (%r12,%r13), %eax
-fwl93:        cltq
-fwl94:        leaq    (%r14,%rax,4), %r10
-fwl95:        movl    %r13d, %r14d
-fwl96:        xorl    %eax, %eax
-fwl97:        movq    %r10, %r13
-.L29:
-fwl98:        leal    1024(%rax), %ebx
-fwl99:        cmpl    %r9d, %ebx
-fwl100:        cmovg   %r9d, %ebx
-fwl101:        cmpl    %ebx, %eax
-fwl102:        jge     .L40
-fwl103:        cmpl    %r12d, %ebp
-fwl104:        setne   %sil
-.L32:
-fwl105:        cmpl    %eax, %ebp
-fwl106:        setne   %cl
-fwl107:        cmpl    %r12d, %eax
-fwl108:        setne   %dl
-fwl109:        testb   %dl, %cl
-fwl110:        je      .L31
-fwl111:        testb   %sil, %sil
-fwl112:        je      .L31
-fwl113:        leal    (%r14,%rax), %edx
-fwl114:        leal    (%r15,%rax), %ecx
-fwl115:        movslq  %edx, %rdx
-fwl116:        movslq  %ecx, %rcx
-fwl117:        leaq    (%rdi,%rdx,4), %r8
-fwl118:        movl    0(%r13), %edx
-fwl119:        addl    (%rdi,%rcx,4), %edx
-fwl120:        movl    (%r8), %ecx
-fwl121:        cmpl    %ecx, %edx
-fwl122:        cmovg   %ecx, %edx
-fwl123:        movl    %edx, (%r8)
-.L31:
-fwl124:        incl    %eax
-fwl125:        cmpl    %eax, %ebx
-fwl126:        jne     .L32
-fwl127:        cmpl    %ebx, %r9d
-fwl128:        jle     .L33
-.L61:
-fwl129:        movl    heartbeat(%rip), %eax
-fwl130:        testl   %eax, %eax
-fwl131:        jne     .L60
-.L34:
-fwl132:        movl    %ebx, %eax
-fwl133:        jmp     .L29
-.L60:
-fwl134:        movq    56(%rsp), %rax
-fwl135:        movl    52(%rsp), %ecx
-fwl136:        movl    %r9d, %esi
-fwl137:        movl    %r9d, 8(%rsp)
-fwl138:        movl    %ebx, (%rsp)
-fwl139:        movl    %ebp, %r8d
-fwl140:        movl    %r12d, %edx
-fwl141:        movl    %r9d, 44(%rsp)
-fwl142:        movq    %rdi, 32(%rsp)
-fwl143:        movq    %rax, 16(%rsp)
-fwl144:        call    _Z15to_loop_handlerPiiiiiiiiPv
-fwl145:        testl   %eax, %eax
-fwl146:        movq    32(%rsp), %rdi
-fwl147:        movl    44(%rsp), %r9d
-fwl148:        je      .L34
-.L58:
-fwl149:        addq    $72, %rsp
-fwl150:        popq    %rbx
-fwl151:        popq    %rbp
-fwl152:        popq    %r12
-fwl153:        popq    %r13
-fwl154:        popq    %r14
-fwl155:        popq    %r15
-fwl156:        ret
-.L40:
-fwl157:        movl    %eax, %ebx
-fwl158:        cmpl    %ebx, %r9d
-fwl159:        jg      .L61
-.L33:
-fwl160:        incl    %ebp
-fwl161:        cmpl    %ebp, 48(%rsp)
-fwl162:        movq    %rdi, %r14
-fwl163:        jne     .L36
-fwl164:        cmpl    48(%rsp), %r9d
-fwl165:        jle     .L37
-.L63:
-fwl166:        movl    heartbeat(%rip), %eax
-fwl167:        testl   %eax, %eax
-fwl168:        jne     .L62
-.L38:
-fwl169:        movl    48(%rsp), %ebp
-fwl170:        jmp     .L27
+fwl58:        pushq   %r15
+fwl59:        pushq   %r14
+fwl60:        pushq   %r13
+fwl61:        pushq   %r12
+fwl62:        pushq   %rbp
+fwl63:        pushq   %rbx
+fwl64:        subq    $72, %rsp
+fwl65:        testl   %esi, %esi
+fwl66:        movl    %ecx, 52(%rsp)
+fwl67:        movq    %r8, 56(%rsp)
+fwl68:        jle     .L58
+fwl69:        cmpl    %ecx, %edx
+fwl70:        movl    %edx, %r15d
+fwl71:        movq    %rdi, %r14
+fwl72:        setge   %al
+fwl73:        movl    %esi, %r9d
+fwl74:        movl    %edx, %r12d
+fwl75:        imull   %esi, %r15d
+fwl76:        testb   %al, %al
+fwl77:        jne     .L58
 .L39:
-fwl171:        movl    %ebp, 48(%rsp)
-fwl172:        cmpl    48(%rsp), %r9d
-fwl173:        jg      .L63
+fwl78:        xorl    %ebp, %ebp
+.L27:
+fwl79:        leal    64(%rbp), %eax
+fwl80:        cmpl    %r9d, %eax
+fwl81:        cmovg   %r9d, %eax
+fwl82:        cmpl    %eax, %ebp
+fwl83:        movl    %eax, 48(%rsp)
+fwl84:        jge     .L40
+fwl85:        movl    %ebp, %r13d
+fwl86:        imull   %r9d, %r13d
+.L36:
+fwl87:        leal    (%r12,%r13), %eax
+fwl88:        cltq
+fwl89:        leaq    (%r14,%rax,4), %r10
+fwl90:        xorl    %eax, %eax
+.L29:
+fwl91:        leal    128(%rax), %ebx
+fwl92:        cmpl    %r9d, %ebx
+fwl93:        cmovg   %r9d, %ebx
+fwl94:        cmpl    %ebx, %eax
+fwl95:        jge     .L41
+fwl96:        cmpl    %r12d, %ebp
+fwl97:        setne   %sil
+.L32:
+fwl98:        cmpl    %eax, %ebp
+fwl99:        setne   %cl
+fwl100:        cmpl    %r12d, %eax
+fwl101:        setne   %dl
+fwl102:        testb   %dl, %cl
+fwl103:        je      .L31
+fwl104:        testb   %sil, %sil
+fwl105:        je      .L31
+fwl106:        leal    0(%r13,%rax), %edx
+fwl107:        leal    (%r15,%rax), %ecx
+fwl108:        movslq  %edx, %rdx
+fwl109:        movslq  %ecx, %rcx
+fwl110:        leaq    (%r14,%rdx,4), %rdi
+fwl111:        movl    (%r10), %edx
+fwl112:        addl    (%r14,%rcx,4), %edx
+fwl113:        movl    (%rdi), %ecx
+fwl114:        cmpl    %ecx, %edx
+fwl115:        cmovg   %ecx, %edx
+fwl116:        movl    %edx, (%rdi)
+.L31:
+fwl117:        incl    %eax
+fwl118:        cmpl    %eax, %ebx
+fwl119:        jne     .L32
+fwl120:        cmpl    %ebx, %r9d
+fwl121:        jle     .L33
+.L61:
+fwl122:        nop
+fwl123:        nop
+fwl124:        nop
+.L34:
+fwl125:        movl    %ebx, %eax
+fwl126:        jmp     .L29
+.L60:
+fwl127:        movq    56(%rsp), %rax
+fwl128:        movl    52(%rsp), %ecx
+fwl129:        movl    %r9d, %esi
+fwl130:        movl    %r9d, 8(%rsp)
+fwl131:        movl    %ebx, (%rsp)
+fwl132:        movl    %ebp, %r8d
+fwl133:        movl    %r12d, %edx
+fwl134:        movq    %r14, %rdi
+fwl135:        movq    %r10, 40(%rsp)
+fwl136:        movq    %rax, 16(%rsp)
+fwl137:        movl    %r9d, 36(%rsp)
+fwl138:        call    _Z15to_loop_handlerPiiiiiiiiPv
+fwl139:        testl   %eax, %eax
+fwl140:        movl    36(%rsp), %r9d
+fwl141:        movq    40(%rsp), %r10
+fwl142:        je      .L34
+.L58:
+fwl143:        addq    $72, %rsp
+fwl144:        popq    %rbx
+fwl145:        popq    %rbp
+fwl146:        popq    %r12
+fwl147:        popq    %r13
+fwl148:        popq    %r14
+fwl149:        popq    %r15
+fwl150:        ret
+.L41:
+fwl151:        movl    %eax, %ebx
+fwl152:        cmpl    %ebx, %r9d
+fwl153:        jg      .L61
+.L33:
+fwl154:        incl    %ebp
+fwl155:        addl    %r9d, %r13d
+fwl156:        cmpl    %ebp, 48(%rsp)
+fwl157:        jne     .L36
+fwl158:        cmpl    48(%rsp), %r9d
+fwl159:        jle     .L37
+.L63:
+fwl160:        nop
+fwl161:        nop
+fwl162:        nop
+.L38:
+fwl163:        movl    48(%rsp), %ebp
+fwl164:        jmp     .L27
+.L40:
+fwl165:        movl    %ebp, 48(%rsp)
+fwl166:        cmpl    48(%rsp), %r9d
+fwl167:        jg      .L63
 .L37:
-fwl174:        incl    %r12d
-fwl175:        cmpl    %r12d, 52(%rsp)
-fwl176:        movq    %r14, %r15
-fwl177:        jg      .L25
-fwl178:        jmp     .L58
+fwl168:        incl    %r12d
+fwl169:        addl    %r9d, %r15d
+fwl170:        cmpl    %r12d, 52(%rsp)
+fwl171:        jg      .L39
+fwl172:        jmp     .L58
 .L62:
-fwl179:        movq    56(%rsp), %rax
-fwl180:        movl    48(%rsp), %r8d
-fwl181:        movl    %r9d, %esi
-fwl182:        movl    52(%rsp), %ecx
-fwl183:        movl    %r12d, %edx
-fwl184:        movq    %r14, %rdi
-fwl185:        movl    %r9d, 32(%rsp)
-fwl186:        movq    %rax, (%rsp)
-fwl187:        call    _Z17from_loop_handlerPiiiiiiPv
-fwl188:        testl   %eax, %eax
-fwl189:        movl    32(%rsp), %r9d
-fwl190:        je      .L38
-fwl191:        jmp     .L58
+fwl173:        movq    56(%rsp), %rax
+fwl174:        movl    48(%rsp), %r8d
+fwl175:        movl    %r9d, %esi
+fwl176:        movl    52(%rsp), %ecx
+fwl177:        movl    %r12d, %edx
+fwl178:        movq    %r14, %rdi
+fwl179:        movl    %r9d, 36(%rsp)
+fwl180:        movq    %rax, (%rsp)
+fwl181:        call    _Z17from_loop_handlerPiiiiiiPv
+fwl182:        testl   %eax, %eax
+fwl183:        movl    36(%rsp), %r9d
+fwl184:        je      .L38
+fwl185:        jmp     .L58
 _Z29floyd_warshall_interrupt_fromPiiiiiiPv:
-fwl192:        pushq   %r15
-fwl193:        movl    %edx, %r15d
-fwl194:        sall    $13, %r15d
-fwl195:        pushq   %r14
-fwl196:        pushq   %r13
-fwl197:        pushq   %r12
-fwl198:        pushq   %rbp
-fwl199:        pushq   %rbx
-fwl200:        subq    $72, %rsp
-fwl201:        cmpl    %r9d, %r8d
-fwl202:        movl    %ecx, 60(%rsp)
-fwl203:        jge     .L95
-fwl204:        movq    %rdi, %r13
-fwl205:        movl    %edx, %r12d
-fwl206:        movl    %r8d, %ebp
-fwl207:        movl    %r15d, %r10d
+fwl186:        pushq   %r15
+fwl187:        pushq   %r14
+fwl188:        pushq   %r13
+fwl189:        pushq   %r12
+fwl190:        pushq   %rbp
+fwl191:        pushq   %rbx
+fwl192:        subq    $72, %rsp
+fwl193:        cmpl    %r9d, %r8d
+fwl194:        movl    %ecx, 60(%rsp)
+fwl195:        jge     .L93
+fwl196:        movl    %esi, %r15d
+fwl197:        movq    %rdi, %r13
+fwl198:        movl    %edx, %r12d
+fwl199:        imull   %edx, %r15d
+fwl200:        movl    %r8d, %ebp
+fwl201:        movl    %r15d, %r10d
 .L66:
-fwl208:        leal    512(%rbp), %eax
-fwl209:        cmpl    %r9d, %eax
-fwl210:        cmovg   %r9d, %eax
-fwl211:        cmpl    %eax, %ebp
-fwl212:        movl    %eax, 56(%rsp)
-fwl213:        jge     .L77
-fwl214:        testl   %esi, %esi
-fwl215:        jle     .L95
+fwl202:        leal    64(%rbp), %eax
+fwl203:        cmpl    %r9d, %eax
+fwl204:        cmovg   %r9d, %eax
+fwl205:        cmpl    %eax, %ebp
+fwl206:        movl    %eax, 56(%rsp)
+fwl207:        jge     .L77
+fwl208:        testl   %esi, %esi
+fwl209:        jle     .L93
+fwl210:        movl    %ebp, %r14d
+fwl211:        imull   %esi, %r14d
 .L75:
-fwl216:        movl    %ebp, %r14d
-fwl217:        sall    $13, %r14d
-fwl218:        leal    (%r12,%r14), %eax
-fwl219:        cltq
-fwl220:        leaq    0(%r13,%rax,4), %r15
-fwl221:        xorl    %eax, %eax
-fwl222:        leal    1024(%rax), %ebx
-fwl223:        cmpl    %esi, %ebx
-fwl224:        cmovg   %esi, %ebx
-fwl225:        cmpl    %ebx, %eax
-fwl226:        jge     .L78
-.L98:
-fwl227:        cmpl    %r12d, %ebp
-fwl228:        setne   %cl
+fwl212:        leal    (%r12,%r14), %eax
+fwl213:        cltq
+fwl214:        leaq    0(%r13,%rax,4), %r15
+fwl215:        xorl    %eax, %eax
+fwl216:        leal    128(%rax), %ebx
+fwl217:        cmpl    %esi, %ebx
+fwl218:        cmovg   %esi, %ebx
+fwl219:        cmpl    %ebx, %eax
+fwl220:        jge     .L78
+.L96:
+fwl221:        cmpl    %r12d, %ebp
+fwl222:        setne   %cl
 .L72:
-fwl229:        cmpl    %eax, %ebp
-fwl230:        setne   %dil
-fwl231:        cmpl    %r12d, %eax
-fwl232:        setne   %dl
-fwl233:        testb   %dl, %dil
-fwl234:        je      .L71
-fwl235:        testb   %cl, %cl
-fwl236:        je      .L71
-fwl237:        leal    (%r14,%rax), %edx
-fwl238:        leal    (%r10,%rax), %r8d
-fwl239:        movslq  %edx, %rdx
-fwl240:        movslq  %r8d, %r8
-fwl241:        leaq    0(%r13,%rdx,4), %rdi
-fwl242:        movl    (%r15), %edx
-fwl243:        addl    0(%r13,%r8,4), %edx
-fwl244:        movl    (%rdi), %r8d
-fwl245:        cmpl    %r8d, %edx
-fwl246:        cmovg   %r8d, %edx
-fwl247:        movl    %edx, (%rdi)
+fwl223:        cmpl    %eax, %ebp
+fwl224:        setne   %dil
+fwl225:        cmpl    %r12d, %eax
+fwl226:        setne   %dl
+fwl227:        testb   %dl, %dil
+fwl228:        je      .L71
+fwl229:        testb   %cl, %cl
+fwl230:        je      .L71
+fwl231:        leal    (%r14,%rax), %edx
+fwl232:        leal    (%r10,%rax), %r8d
+fwl233:        movslq  %edx, %rdx
+fwl234:        movslq  %r8d, %r8
+fwl235:        leaq    0(%r13,%rdx,4), %rdi
+fwl236:        movl    (%r15), %edx
+fwl237:        addl    0(%r13,%r8,4), %edx
+fwl238:        movl    (%rdi), %r8d
+fwl239:        cmpl    %r8d, %edx
+fwl240:        cmovg   %r8d, %edx
+fwl241:        movl    %edx, (%rdi)
 .L71:
-fwl248:        incl    %eax
-fwl249:        cmpl    %eax, %ebx
-fwl250:        jne     .L72
-fwl251:        cmpl    %esi, %ebx
-fwl252:        jge     .L73
-.L99:
-fwl253:        movl    heartbeat(%rip), %eax
-fwl254:        testl   %eax, %eax
-fwl255:        jne     .L97
-.L74:
-fwl256:        movl    %ebx, %eax
-fwl257:        leal    1024(%rax), %ebx
-fwl258:        cmpl    %esi, %ebx
-fwl259:        cmovg   %esi, %ebx
-fwl260:        cmpl    %ebx, %eax
-fwl261:        jl      .L98
-.L78:
-fwl262:        movl    %eax, %ebx
-fwl263:        cmpl    %esi, %ebx
-fwl264:        jl      .L99
-.L73:
-fwl265:        incl    %ebp
-fwl266:        cmpl    %ebp, 56(%rsp)
-fwl267:        jne     .L75
-.L67:
-fwl268:        cmpl    %r9d, 56(%rsp)
-fwl269:        jge     .L95
-fwl270:        movl    heartbeat(%rip), %eax
-fwl271:        testl   %eax, %eax
-fwl272:        jne     .L100
-.L76:
-fwl273:        movl    56(%rsp), %ebp
-fwl274:        jmp     .L66
+fwl242:        incl    %eax
+fwl243:        cmpl    %eax, %ebx
+fwl244:        jne     .L72
+fwl245:        cmpl    %esi, %ebx
+fwl246:        jge     .L73
 .L97:
-fwl275:        movq    128(%rsp), %rax
-fwl276:        movl    60(%rsp), %ecx
-fwl277:        movl    %ebp, %r8d
-fwl278:        movl    %esi, 8(%rsp)
-fwl279:        movl    %ebx, (%rsp)
-fwl280:        movl    %r12d, %edx
-fwl281:        movq    %r13, %rdi
-fwl282:        movl    %r10d, 52(%rsp)
-fwl283:        movl    %r9d, 48(%rsp)
-fwl284:        movq    %rax, 16(%rsp)
-fwl285:        movl    %esi, 44(%rsp)
-fwl286:        call    _Z20from_to_loop_handlerPiiiiiiiiPv
-fwl287:        testl   %eax, %eax
-fwl288:        movl    44(%rsp), %esi
-fwl289:        movl    48(%rsp), %r9d
-fwl290:        movl    52(%rsp), %r10d
-fwl291:        je      .L74
+fwl247:        nop
+fwl248:        nop
+fwl249:        nop
+.L74:
+fwl250:        movl    %ebx, %eax
+fwl251:        leal    128(%rax), %ebx
+fwl252:        cmpl    %esi, %ebx
+fwl253:        cmovg   %esi, %ebx
+fwl254:        cmpl    %ebx, %eax
+fwl255:        jl      .L96
+.L78:
+fwl256:        movl    %eax, %ebx
+fwl257:        cmpl    %esi, %ebx
+fwl258:        jl      .L97
+.L73:
+fwl259:        incl    %ebp
+fwl260:        addl    %esi, %r14d
+fwl261:        cmpl    %ebp, 56(%rsp)
+fwl262:        jne     .L75
+.L67:
+fwl263:        cmpl    %r9d, 56(%rsp)
+fwl264:        jge     .L93
+fwl265:        nop
+fwl266:        nop
+fwl267:        nop
+.L76:
+fwl268:        movl    56(%rsp), %ebp
+fwl269:        jmp     .L66
 .L95:
-fwl292:        addq    $72, %rsp
-fwl293:        popq    %rbx
-fwl294:        popq    %rbp
-fwl295:        popq    %r12
-fwl296:        popq    %r13
-fwl297:        popq    %r14
-fwl298:        popq    %r15
-fwl299:        ret
+fwl270:        movq    128(%rsp), %rax
+fwl271:        movl    60(%rsp), %ecx
+fwl272:        movl    %ebp, %r8d
+fwl273:        movl    %esi, 8(%rsp)
+fwl274:        movl    %ebx, (%rsp)
+fwl275:        movl    %r12d, %edx
+fwl276:        movq    %r13, %rdi
+fwl277:        movl    %r10d, 52(%rsp)
+fwl278:        movl    %r9d, 48(%rsp)
+fwl279:        movq    %rax, 16(%rsp)
+fwl280:        movl    %esi, 44(%rsp)
+fwl281:        call    _Z20from_to_loop_handlerPiiiiiiiiPv
+fwl282:        testl   %eax, %eax
+fwl283:        movl    44(%rsp), %esi
+fwl284:        movl    48(%rsp), %r9d
+fwl285:        movl    52(%rsp), %r10d
+fwl286:        je      .L74
+.L93:
+fwl287:        addq    $72, %rsp
+fwl288:        popq    %rbx
+fwl289:        popq    %rbp
+fwl290:        popq    %r12
+fwl291:        popq    %r13
+fwl292:        popq    %r14
+fwl293:        popq    %r15
+fwl294:        ret
 .L77:
-fwl300:        movl    %ebp, 56(%rsp)
-fwl301:        jmp     .L67
-.L100:
-fwl302:        movq    128(%rsp), %rax
-fwl303:        movl    56(%rsp), %r8d
-fwl304:        movl    %r12d, %edx
-fwl305:        movl    60(%rsp), %ecx
-fwl306:        movq    %r13, %rdi
-fwl307:        movl    %r10d, 52(%rsp)
-fwl308:        movl    %r9d, 48(%rsp)
-fwl309:        movl    %esi, 44(%rsp)
-fwl310:        movq    %rax, (%rsp)
-fwl311:        call    _Z22from_from_loop_handlerPiiiiiiPv
-fwl312:        testl   %eax, %eax
-fwl313:        movl    44(%rsp), %esi
-fwl314:        movl    48(%rsp), %r9d
-fwl315:        movl    52(%rsp), %r10d
-fwl316:        je      .L76
-fwl317:        jmp     .L95
+fwl295:        movl    %ebp, 56(%rsp)
+fwl296:        jmp     .L67
+.L98:
+fwl297:        movq    128(%rsp), %rax
+fwl298:        movl    56(%rsp), %r8d
+fwl299:        movl    %r12d, %edx
+fwl300:        movl    60(%rsp), %ecx
+fwl301:        movq    %r13, %rdi
+fwl302:        movl    %r10d, 52(%rsp)
+fwl303:        movl    %r9d, 48(%rsp)
+fwl304:        movl    %esi, 44(%rsp)
+fwl305:        movq    %rax, (%rsp)
+fwl306:        call    _Z22from_from_loop_handlerPiiiiiiPv
+fwl307:        testl   %eax, %eax
+fwl308:        movl    44(%rsp), %esi
+fwl309:        movl    48(%rsp), %r9d
+fwl310:        movl    52(%rsp), %r10d
+fwl311:        je      .L76
+fwl312:        jmp     .L93
 _Z27floyd_warshall_interrupt_toPiiiiiiiiPv:
-fwl318:        pushq   %r15
-fwl319:        pushq   %r14
-fwl320:        pushq   %r13
-fwl321:        pushq   %r12
-fwl322:        pushq   %rbp
-fwl323:        pushq   %rbx
-fwl324:        subq    $56, %rsp
-fwl325:        movl    112(%rsp), %eax
-fwl326:        movl    120(%rsp), %r14d
-fwl327:        movl    %esi, 32(%rsp)
-fwl328:        cmpl    %r14d, %eax
-fwl329:        jge     .L120
-fwl330:        movl    %r8d, %r15d
-fwl331:        movl    %edx, %ebp
-fwl332:        movq    %rdi, %r13
-fwl333:        sall    $13, %r15d
-fwl334:        movl    %ebp, %r10d
-fwl335:        movl    %r8d, %r12d
-fwl336:        leal    (%rdx,%r15), %edx
-fwl337:        sall    $13, %r10d
-fwl338:        movslq  %edx, %rdx
-fwl339:        leaq    (%rdi,%rdx,4), %r11
-fwl340:        movq    %r11, %r14
-fwl341:        movl    120(%rsp), %r11d
-.L103:
-fwl342:        leal    1024(%rax), %ebx
-fwl343:        cmpl    %r11d, %ebx
-fwl344:        cmovg   %r11d, %ebx
-fwl345:        cmpl    %ebx, %eax
-fwl346:        jge     .L109
-fwl347:        cmpl    %ebp, %r12d
-fwl348:        setne   %dil
-.L106:
-fwl349:        cmpl    %r12d, %eax
-fwl350:        setne   %sil
-fwl351:        cmpl    %ebp, %eax
-fwl352:        setne   %dl
-fwl353:        testb   %dl, %sil
-fwl354:        je      .L105
-fwl355:        testb   %dil, %dil
-fwl356:        je      .L105
-fwl357:        leal    (%r15,%rax), %edx
-fwl358:        leal    (%r10,%rax), %r8d
-fwl359:        movslq  %edx, %rdx
-fwl360:        movslq  %r8d, %r8
-fwl361:        leaq    0(%r13,%rdx,4), %rsi
-fwl362:        movl    (%r14), %edx
-fwl363:        addl    0(%r13,%r8,4), %edx
-fwl364:        movl    (%rsi), %r8d
-fwl365:        cmpl    %r8d, %edx
-fwl366:        cmovg   %r8d, %edx
-fwl367:        movl    %edx, (%rsi)
-.L105:
-fwl368:        incl    %eax
-fwl369:        cmpl    %eax, %ebx
-fwl370:        jne     .L106
+fwl313:        pushq   %r15
+fwl314:        pushq   %r14
+fwl315:        pushq   %r13
+fwl316:        pushq   %r12
+fwl317:        pushq   %rbp
+fwl318:        pushq   %rbx
+fwl319:        subq    $56, %rsp
+fwl320:        movl    112(%rsp), %eax
+fwl321:        movl    120(%rsp), %r14d
+fwl322:        movl    %ecx, 32(%rsp)
+fwl323:        cmpl    %r14d, %eax
+fwl324:        jge     .L118
+fwl325:        movl    %r8d, %r15d
+fwl326:        movl    %edx, %ebp
+fwl327:        movl    %esi, %r10d
+fwl328:        imull   %esi, %r15d
+fwl329:        movq    %rdi, %r13
+fwl330:        movl    %r8d, %r12d
+fwl331:        imull   %ebp, %r10d
+fwl332:        leal    (%r15,%rdx), %edx
+fwl333:        movslq  %edx, %rdx
+fwl334:        leaq    (%rdi,%rdx,4), %r11
+fwl335:        movq    %r11, %r14
+fwl336:        movl    120(%rsp), %r11d
+.L101:
+fwl337:        leal    128(%rax), %ebx
+fwl338:        cmpl    %r11d, %ebx
+fwl339:        cmovg   %r11d, %ebx
+fwl340:        cmpl    %ebx, %eax
+fwl341:        jge     .L107
+fwl342:        cmpl    %ebp, %r12d
+fwl343:        setne   %dil
 .L104:
-fwl371:        cmpl    %ebx, %r11d
-fwl372:        jle     .L120
-fwl373:        movl    heartbeat(%rip), %eax
-fwl374:        testl   %eax, %eax
-fwl375:        jne     .L122
-.L108:
-fwl376:        movl    %ebx, %eax
-fwl377:        jmp     .L103
-.L122:
-fwl378:        movq    128(%rsp), %rax
-fwl379:        movl    32(%rsp), %esi
-fwl380:        movl    %r12d, %r8d
-fwl381:        movl    %r11d, 8(%rsp)
-fwl382:        movl    %ebx, (%rsp)
-fwl383:        movl    %ebp, %edx
-fwl384:        movq    %r13, %rdi
-fwl385:        movl    %r10d, 44(%rsp)
-fwl386:        movl    %r11d, 120(%rsp)
-fwl387:        movq    %rax, 16(%rsp)
-fwl388:        movl    %r9d, 40(%rsp)
-fwl389:        movl    %ecx, 36(%rsp)
-fwl390:        call    _Z18to_to_loop_handlerPiiiiiiiiPv
-fwl391:        testl   %eax, %eax
-fwl392:        movl    36(%rsp), %ecx
-fwl393:        movl    40(%rsp), %r9d
-fwl394:        movl    120(%rsp), %r11d
-fwl395:        movl    44(%rsp), %r10d
-fwl396:        je      .L108
+fwl344:        cmpl    %r12d, %eax
+fwl345:        setne   %cl
+fwl346:        cmpl    %ebp, %eax
+fwl347:        setne   %dl
+fwl348:        testb   %dl, %cl
+fwl349:        je      .L103
+fwl350:        testb   %dil, %dil
+fwl351:        je      .L103
+fwl352:        leal    (%r15,%rax), %edx
+fwl353:        leal    (%r10,%rax), %r8d
+fwl354:        movslq  %edx, %rdx
+fwl355:        movslq  %r8d, %r8
+fwl356:        leaq    0(%r13,%rdx,4), %rcx
+fwl357:        movl    (%r14), %edx
+fwl358:        addl    0(%r13,%r8,4), %edx
+fwl359:        movl    (%rcx), %r8d
+fwl360:        cmpl    %r8d, %edx
+fwl361:        cmovg   %r8d, %edx
+fwl362:        movl    %edx, (%rcx)
+.L103:
+fwl363:        incl    %eax
+fwl364:        cmpl    %eax, %ebx
+fwl365:        jne     .L104
+.L102:
+fwl366:        cmpl    %ebx, %r11d
+fwl367:        jle     .L118
+fwl368:        nop
+fwl369:        nop
+fwl370:        nop
+.L106:
+fwl371:        movl    %ebx, %eax
+fwl372:        jmp     .L101
 .L120:
-fwl397:        addq    $56, %rsp
-fwl398:        popq    %rbx
-fwl399:        popq    %rbp
-fwl400:        popq    %r12
-fwl401:        popq    %r13
-fwl402:        popq    %r14
-fwl403:        popq    %r15
-fwl404:        ret
-.L109:
-fwl405:        movl    %eax, %ebx
-fwl406:        jmp     .L104
+fwl373:        movq    128(%rsp), %rax
+fwl374:        movl    32(%rsp), %ecx
+fwl375:        movl    %r12d, %r8d
+fwl376:        movl    %r11d, 8(%rsp)
+fwl377:        movl    %ebx, (%rsp)
+fwl378:        movl    %ebp, %edx
+fwl379:        movq    %r13, %rdi
+fwl380:        movl    %r10d, 44(%rsp)
+fwl381:        movl    %r11d, 120(%rsp)
+fwl382:        movq    %rax, 16(%rsp)
+fwl383:        movl    %r9d, 40(%rsp)
+fwl384:        movl    %esi, 36(%rsp)
+fwl385:        call    _Z18to_to_loop_handlerPiiiiiiiiPv
+fwl386:        testl   %eax, %eax
+fwl387:        movl    36(%rsp), %esi
+fwl388:        movl    40(%rsp), %r9d
+fwl389:        movl    120(%rsp), %r11d
+fwl390:        movl    44(%rsp), %r10d
+fwl391:        je      .L106
+.L118:
+fwl392:        addq    $56, %rsp
+fwl393:        popq    %rbx
+fwl394:        popq    %rbp
+fwl395:        popq    %r12
+fwl396:        popq    %r13
+fwl397:        popq    %r14
+fwl398:        popq    %r15
+fwl399:        ret
+.L107:
+fwl400:        movl    %eax, %ebx
+fwl401:        jmp     .L102
 
 _Z21floyd_warshall_serialPii_rf:
 fwl0_rf:        testl   %esi, %esi
-fwl1_rf:        movq    %rdi, %r8
-fwl2_rf:        movl    %esi, %edi
-fwl3_rf:        jle     .L19_rf
-fwl4_rf:        pushq   %r13
-fwl5_rf:        xorl    %esi, %esi
-fwl6_rf:        pushq   %r12
-fwl7_rf:        pushq   %rbp
+fwl1_rf:        jle     .L19_rf
+fwl2_rf:        pushq   %r12
+fwl3_rf:        movq    %rdi, %r9
+fwl4_rf:        movl    %esi, %r8d
+fwl5_rf:        xorl    %edi, %edi
+fwl6_rf:        pushq   %rbp
+fwl7_rf:        xorl    %ebp, %ebp
 fwl8_rf:        pushq   %rbx
-.L2_rf:
-fwl9_rf:        movl    %esi, %ebx
-fwl10_rf:        movl    %esi, %ebp
-fwl11_rf:        xorl    %ecx, %ecx
-fwl12_rf:        sall    $13, %ebx
+.L7_rf:
+fwl9_rf:        xorl    %r11d, %r11d
+fwl10_rf:        xorl    %esi, %esi
 .L5_rf:
-fwl13_rf:        movl    %ecx, %r11d
-fwl14_rf:        movslq  %ebp, %rax
-fwl15_rf:        sall    $13, %r11d
-fwl16_rf:        cmpl    %ecx, %esi
-fwl17_rf:        leaq    (%r8,%rax,4), %r10
-fwl18_rf:        setne   %r9b
-fwl19_rf:        xorl    %eax, %eax
-fwl20_rf:        jmp     .L4_rf
+fwl11_rf:        leal    (%rdi,%r11), %eax
+fwl12_rf:        cmpl    %edi, %esi
+fwl13_rf:        setne   %r10b
+fwl14_rf:        cltq
+fwl15_rf:        leaq    (%r9,%rax,4), %rbx
+fwl16_rf:        xorl    %eax, %eax
+fwl17_rf:        jmp     .L4_rf
 .L8_rf:
-fwl21_rf:        movl    %edx, %eax
+fwl18_rf:        movl    %edx, %eax
 .L4_rf:
-fwl22_rf:        cmpl    %ecx, %eax
-fwl23_rf:        setne   %r12b
-fwl24_rf:        cmpl    %esi, %eax
-fwl25_rf:        setne   %dl
-fwl26_rf:        testb   %dl, %r12b
-fwl27_rf:        je      .L3_rf
-fwl28_rf:        testb   %r9b, %r9b
-fwl29_rf:        je      .L3_rf
-fwl30_rf:        leal    (%r11,%rax), %edx
-fwl31_rf:        leal    (%rbx,%rax), %r12d
-fwl32_rf:        movslq  %edx, %rdx
-fwl33_rf:        movslq  %r12d, %r12
-fwl34_rf:        leaq    (%r8,%rdx,4), %r13
-fwl35_rf:        movl    (%r10), %edx
-fwl36_rf:        addl    (%r8,%r12,4), %edx
-fwl37_rf:        movl    0(%r13), %r12d
-fwl38_rf:        cmpl    %r12d, %edx
-fwl39_rf:        cmovg   %r12d, %edx
-fwl40_rf:        movl    %edx, 0(%r13)
+fwl19_rf:        cmpl    %eax, %esi
+fwl20_rf:        setne   %cl
+fwl21_rf:        cmpl    %eax, %edi
+fwl22_rf:        setne   %dl
+fwl23_rf:        testb   %dl, %cl
+fwl24_rf:        je      .L3_rf
+fwl25_rf:        testb   %r10b, %r10b
+fwl26_rf:        je      .L3_rf
+fwl27_rf:        leal    (%r11,%rax), %edx
+fwl28_rf:        leal    0(%rbp,%rax), %ecx
+fwl29_rf:        movslq  %edx, %rdx
+fwl30_rf:        movslq  %ecx, %rcx
+fwl31_rf:        leaq    (%r9,%rdx,4), %r12
+fwl32_rf:        movl    (%rbx), %edx
+fwl33_rf:        addl    (%r9,%rcx,4), %edx
+fwl34_rf:        movl    (%r12), %ecx
+fwl35_rf:        cmpl    %ecx, %edx
+fwl36_rf:        cmovg   %ecx, %edx
+fwl37_rf:        movl    %edx, (%r12)
 .L3_rf:
-fwl41_rf:        leal    1(%rax), %edx
-fwl42_rf:        cmpl    %edx, %edi
-fwl43_rf:        jne     .L8_rf
-fwl44_rf:        addl    $8192, %ebp
-fwl45_rf:        cmpl    %ecx, %eax
-fwl46_rf:        leal    1(%rcx), %edx
-fwl47_rf:        je      .L23_rf
-fwl48_rf:        movl    %edx, %ecx
-fwl49_rf:        jmp     .L5_rf
+fwl38_rf:        leal    1(%rax), %edx
+fwl39_rf:        cmpl    %edx, %r8d
+fwl40_rf:        jne     .L8_rf
+fwl41_rf:        addl    %r8d, %r11d
+fwl42_rf:        cmpl    %eax, %esi
+fwl43_rf:        leal    1(%rsi), %edx
+fwl44_rf:        je      .L23_rf
+fwl45_rf:        movl    %edx, %esi
+fwl46_rf:        jmp     .L5_rf
 .L23_rf:
-fwl50_rf:        cmpl    %esi, %eax
-fwl51_rf:        leal    1(%rsi), %edx
-fwl52_rf:        je      .L17_rf
-fwl53_rf:        movl    %edx, %esi
-fwl54_rf:        jmp     .L2_rf
+fwl47_rf:        addl    %r8d, %ebp
+fwl48_rf:        cmpl    %esi, %edi
+fwl49_rf:        leal    1(%rdi), %eax
+fwl50_rf:        je      .L17_rf
+fwl51_rf:        movl    %eax, %edi
+fwl52_rf:        jmp     .L7_rf
 .L17_rf:
-fwl55_rf:        popq    %rbx
-fwl56_rf:        popq    %rbp
-fwl57_rf:        popq    %r12
-fwl58_rf:        popq    %r13
-fwl59_rf:        ret
+fwl53_rf:        popq    %rbx
+fwl54_rf:        popq    %rbp
+fwl55_rf:        popq    %r12
+fwl56_rf:        ret
 .L19_rf:
-fwl60_rf:        rep ret
+fwl57_rf:        rep ret
 _Z24floyd_warshall_interruptPiiiiPv_rf:
-fwl61_rf:        pushq   %r15
-fwl62_rf:        pushq   %r14
-fwl63_rf:        pushq   %r13
-fwl64_rf:        pushq   %r12
-fwl65_rf:        pushq   %rbp
-fwl66_rf:        pushq   %rbx
-fwl67_rf:        subq    $72, %rsp
-fwl68_rf:        testl   %esi, %esi
-fwl69_rf:        movl    %ecx, 52(%rsp)
-fwl70_rf:        movq    %r8, 56(%rsp)
-fwl71_rf:        jle     .L58_rf
-fwl72_rf:        cmpl    %ecx, %edx
-fwl73_rf:        movq    %rdi, %r15
-fwl74_rf:        movl    %esi, %r9d
-fwl75_rf:        movl    %edx, %r12d
-fwl76_rf:        jge     .L58_rf
-.L25_rf:
-fwl77_rf:        movl    %r12d, %r14d
-fwl78_rf:        movq    %r15, %rax
-fwl79_rf:        xorl    %ebp, %ebp
-fwl80_rf:        sall    $13, %r14d
-fwl81_rf:        movl    %r14d, %r15d
-fwl82_rf:        movq    %rax, %r14
-.L27_rf:
-fwl83_rf:        leal    512(%rbp), %eax
-fwl84_rf:        cmpl    %r9d, %eax
-fwl85_rf:        cmovg   %r9d, %eax
-fwl86_rf:        cmpl    %eax, %ebp
-fwl87_rf:        movl    %eax, 48(%rsp)
-fwl88_rf:        jge     .L39_rf
-.L36_rf:
-fwl89_rf:        movl    %ebp, %r13d
-fwl90_rf:        movq    %r14, %rdi
-fwl91_rf:        sall    $13, %r13d
-fwl92_rf:        leal    (%r12,%r13), %eax
-fwl93_rf:        cltq
-fwl94_rf:        leaq    (%r14,%rax,4), %r10
-fwl95_rf:        movl    %r13d, %r14d
-fwl96_rf:        xorl    %eax, %eax
-fwl97_rf:        movq    %r10, %r13
-.L29_rf:
-fwl98_rf:        leal    1024(%rax), %ebx
-fwl99_rf:        cmpl    %r9d, %ebx
-fwl100_rf:        cmovg   %r9d, %ebx
-fwl101_rf:        cmpl    %ebx, %eax
-fwl102_rf:        jge     .L40_rf
-fwl103_rf:        cmpl    %r12d, %ebp
-fwl104_rf:        setne   %sil
-.L32_rf:
-fwl105_rf:        cmpl    %eax, %ebp
-fwl106_rf:        setne   %cl
-fwl107_rf:        cmpl    %r12d, %eax
-fwl108_rf:        setne   %dl
-fwl109_rf:        testb   %dl, %cl
-fwl110_rf:        je      .L31_rf
-fwl111_rf:        testb   %sil, %sil
-fwl112_rf:        je      .L31_rf
-fwl113_rf:        leal    (%r14,%rax), %edx
-fwl114_rf:        leal    (%r15,%rax), %ecx
-fwl115_rf:        movslq  %edx, %rdx
-fwl116_rf:        movslq  %ecx, %rcx
-fwl117_rf:        leaq    (%rdi,%rdx,4), %r8
-fwl118_rf:        movl    0(%r13), %edx
-fwl119_rf:        addl    (%rdi,%rcx,4), %edx
-fwl120_rf:        movl    (%r8), %ecx
-fwl121_rf:        cmpl    %ecx, %edx
-fwl122_rf:        cmovg   %ecx, %edx
-fwl123_rf:        movl    %edx, (%r8)
-.L31_rf:
-fwl124_rf:        incl    %eax
-fwl125_rf:        cmpl    %eax, %ebx
-fwl126_rf:        jne     .L32_rf
-fwl127_rf:        cmpl    %ebx, %r9d
-fwl128_rf:        jle     .L33_rf
-.L61_rf:
-fwl129_rf:        movl    heartbeat(%rip), %eax
-fwl130_rf:        testl   %eax, %eax
-fwl131_rf:        jne     .L60_rf
-.L34_rf:
-fwl132_rf:        movl    %ebx, %eax
-fwl133_rf:        jmp     .L29_rf
-.L60_rf:
-fwl134_rf:        movq    56(%rsp), %rax
-fwl135_rf:        movl    52(%rsp), %ecx
-fwl136_rf:        movl    %r9d, %esi
-fwl137_rf:        movl    %r9d, 8(%rsp)
-fwl138_rf:        movl    %ebx, (%rsp)
-fwl139_rf:        movl    %ebp, %r8d
-fwl140_rf:        movl    %r12d, %edx
-fwl141_rf:        movl    %r9d, 44(%rsp)
-fwl142_rf:        movq    %rdi, 32(%rsp)
-fwl143_rf:        movq    %rax, 16(%rsp)
-fwl144_rf:        call    _Z15to_loop_handlerPiiiiiiiiPv
-fwl145_rf:        testl   %eax, %eax
-fwl146_rf:        movq    32(%rsp), %rdi
-fwl147_rf:        movl    44(%rsp), %r9d
-fwl148_rf:        je      .L34_rf
-.L58_rf:
-fwl149_rf:        addq    $72, %rsp
-fwl150_rf:        popq    %rbx
-fwl151_rf:        popq    %rbp
-fwl152_rf:        popq    %r12
-fwl153_rf:        popq    %r13
-fwl154_rf:        popq    %r14
-fwl155_rf:        popq    %r15
-fwl156_rf:        ret
-.L40_rf:
-fwl157_rf:        movl    %eax, %ebx
-fwl158_rf:        cmpl    %ebx, %r9d
-fwl159_rf:        jg      .L61_rf
-.L33_rf:
-fwl160_rf:        incl    %ebp
-fwl161_rf:        cmpl    %ebp, 48(%rsp)
-fwl162_rf:        movq    %rdi, %r14
-fwl163_rf:        jne     .L36_rf
-fwl164_rf:        cmpl    48(%rsp), %r9d
-fwl165_rf:        jle     .L37_rf
-.L63_rf:
-fwl166_rf:        movl    heartbeat(%rip), %eax
-fwl167_rf:        testl   %eax, %eax
-fwl168_rf:        jne     .L62_rf
-.L38_rf:
-fwl169_rf:        movl    48(%rsp), %ebp
-fwl170_rf:        jmp     .L27_rf
+fwl58_rf:        pushq   %r15
+fwl59_rf:        pushq   %r14
+fwl60_rf:        pushq   %r13
+fwl61_rf:        pushq   %r12
+fwl62_rf:        pushq   %rbp
+fwl63_rf:        pushq   %rbx
+fwl64_rf:        subq    $72, %rsp
+fwl65_rf:        testl   %esi, %esi
+fwl66_rf:        movl    %ecx, 52(%rsp)
+fwl67_rf:        movq    %r8, 56(%rsp)
+fwl68_rf:        jle     .L58_rf
+fwl69_rf:        cmpl    %ecx, %edx
+fwl70_rf:        movl    %edx, %r15d
+fwl71_rf:        movq    %rdi, %r14
+fwl72_rf:        setge   %al
+fwl73_rf:        movl    %esi, %r9d
+fwl74_rf:        movl    %edx, %r12d
+fwl75_rf:        imull   %esi, %r15d
+fwl76_rf:        testb   %al, %al
+fwl77_rf:        jne     .L58_rf
 .L39_rf:
-fwl171_rf:        movl    %ebp, 48(%rsp)
-fwl172_rf:        cmpl    48(%rsp), %r9d
-fwl173_rf:        jg      .L63_rf
+fwl78_rf:        xorl    %ebp, %ebp
+.L27_rf:
+fwl79_rf:        leal    64(%rbp), %eax
+fwl80_rf:        cmpl    %r9d, %eax
+fwl81_rf:        cmovg   %r9d, %eax
+fwl82_rf:        cmpl    %eax, %ebp
+fwl83_rf:        movl    %eax, 48(%rsp)
+fwl84_rf:        jge     .L40_rf
+fwl85_rf:        movl    %ebp, %r13d
+fwl86_rf:        imull   %r9d, %r13d
+.L36_rf:
+fwl87_rf:        leal    (%r12,%r13), %eax
+fwl88_rf:        cltq
+fwl89_rf:        leaq    (%r14,%rax,4), %r10
+fwl90_rf:        xorl    %eax, %eax
+.L29_rf:
+fwl91_rf:        leal    128(%rax), %ebx
+fwl92_rf:        cmpl    %r9d, %ebx
+fwl93_rf:        cmovg   %r9d, %ebx
+fwl94_rf:        cmpl    %ebx, %eax
+fwl95_rf:        jge     .L41_rf
+fwl96_rf:        cmpl    %r12d, %ebp
+fwl97_rf:        setne   %sil
+.L32_rf:
+fwl98_rf:        cmpl    %eax, %ebp
+fwl99_rf:        setne   %cl
+fwl100_rf:        cmpl    %r12d, %eax
+fwl101_rf:        setne   %dl
+fwl102_rf:        testb   %dl, %cl
+fwl103_rf:        je      .L31_rf
+fwl104_rf:        testb   %sil, %sil
+fwl105_rf:        je      .L31_rf
+fwl106_rf:        leal    0(%r13,%rax), %edx
+fwl107_rf:        leal    (%r15,%rax), %ecx
+fwl108_rf:        movslq  %edx, %rdx
+fwl109_rf:        movslq  %ecx, %rcx
+fwl110_rf:        leaq    (%r14,%rdx,4), %rdi
+fwl111_rf:        movl    (%r10), %edx
+fwl112_rf:        addl    (%r14,%rcx,4), %edx
+fwl113_rf:        movl    (%rdi), %ecx
+fwl114_rf:        cmpl    %ecx, %edx
+fwl115_rf:        cmovg   %ecx, %edx
+fwl116_rf:        movl    %edx, (%rdi)
+.L31_rf:
+fwl117_rf:        incl    %eax
+fwl118_rf:        cmpl    %eax, %ebx
+fwl119_rf:        jne     .L32_rf
+fwl120_rf:        cmpl    %ebx, %r9d
+fwl121_rf:        jle     .L33_rf
+.L61_rf:
+fwl122_rf:        jmp     .L60
+fwl123_rf:        nop
+fwl124_rf:        nop
+.L34_rf:
+fwl125_rf:        movl    %ebx, %eax
+fwl126_rf:        jmp     .L29_rf
+.L60_rf:
+fwl127_rf:        movq    56(%rsp), %rax
+fwl128_rf:        movl    52(%rsp), %ecx
+fwl129_rf:        movl    %r9d, %esi
+fwl130_rf:        movl    %r9d, 8(%rsp)
+fwl131_rf:        movl    %ebx, (%rsp)
+fwl132_rf:        movl    %ebp, %r8d
+fwl133_rf:        movl    %r12d, %edx
+fwl134_rf:        movq    %r14, %rdi
+fwl135_rf:        movq    %r10, 40(%rsp)
+fwl136_rf:        movq    %rax, 16(%rsp)
+fwl137_rf:        movl    %r9d, 36(%rsp)
+fwl138_rf:        call    _Z15to_loop_handlerPiiiiiiiiPv
+fwl139_rf:        testl   %eax, %eax
+fwl140_rf:        movl    36(%rsp), %r9d
+fwl141_rf:        movq    40(%rsp), %r10
+fwl142_rf:        je      .L34_rf
+.L58_rf:
+fwl143_rf:        addq    $72, %rsp
+fwl144_rf:        popq    %rbx
+fwl145_rf:        popq    %rbp
+fwl146_rf:        popq    %r12
+fwl147_rf:        popq    %r13
+fwl148_rf:        popq    %r14
+fwl149_rf:        popq    %r15
+fwl150_rf:        ret
+.L41_rf:
+fwl151_rf:        movl    %eax, %ebx
+fwl152_rf:        cmpl    %ebx, %r9d
+fwl153_rf:        jg      .L61_rf
+.L33_rf:
+fwl154_rf:        incl    %ebp
+fwl155_rf:        addl    %r9d, %r13d
+fwl156_rf:        cmpl    %ebp, 48(%rsp)
+fwl157_rf:        jne     .L36_rf
+fwl158_rf:        cmpl    48(%rsp), %r9d
+fwl159_rf:        jle     .L37_rf
+.L63_rf:
+fwl160_rf:        jmp     .L62
+fwl161_rf:        nop
+fwl162_rf:        nop
+.L38_rf:
+fwl163_rf:        movl    48(%rsp), %ebp
+fwl164_rf:        jmp     .L27_rf
+.L40_rf:
+fwl165_rf:        movl    %ebp, 48(%rsp)
+fwl166_rf:        cmpl    48(%rsp), %r9d
+fwl167_rf:        jg      .L63_rf
 .L37_rf:
-fwl174_rf:        incl    %r12d
-fwl175_rf:        cmpl    %r12d, 52(%rsp)
-fwl176_rf:        movq    %r14, %r15
-fwl177_rf:        jg      .L25_rf
-fwl178_rf:        jmp     .L58_rf
+fwl168_rf:        incl    %r12d
+fwl169_rf:        addl    %r9d, %r15d
+fwl170_rf:        cmpl    %r12d, 52(%rsp)
+fwl171_rf:        jg      .L39_rf
+fwl172_rf:        jmp     .L58_rf
 .L62_rf:
-fwl179_rf:        movq    56(%rsp), %rax
-fwl180_rf:        movl    48(%rsp), %r8d
-fwl181_rf:        movl    %r9d, %esi
-fwl182_rf:        movl    52(%rsp), %ecx
-fwl183_rf:        movl    %r12d, %edx
-fwl184_rf:        movq    %r14, %rdi
-fwl185_rf:        movl    %r9d, 32(%rsp)
-fwl186_rf:        movq    %rax, (%rsp)
-fwl187_rf:        call    _Z17from_loop_handlerPiiiiiiPv
-fwl188_rf:        testl   %eax, %eax
-fwl189_rf:        movl    32(%rsp), %r9d
-fwl190_rf:        je      .L38_rf
-fwl191_rf:        jmp     .L58_rf
+fwl173_rf:        movq    56(%rsp), %rax
+fwl174_rf:        movl    48(%rsp), %r8d
+fwl175_rf:        movl    %r9d, %esi
+fwl176_rf:        movl    52(%rsp), %ecx
+fwl177_rf:        movl    %r12d, %edx
+fwl178_rf:        movq    %r14, %rdi
+fwl179_rf:        movl    %r9d, 36(%rsp)
+fwl180_rf:        movq    %rax, (%rsp)
+fwl181_rf:        call    _Z17from_loop_handlerPiiiiiiPv
+fwl182_rf:        testl   %eax, %eax
+fwl183_rf:        movl    36(%rsp), %r9d
+fwl184_rf:        je      .L38_rf
+fwl185_rf:        jmp     .L58_rf
 _Z29floyd_warshall_interrupt_fromPiiiiiiPv_rf:
-fwl192_rf:        pushq   %r15
-fwl193_rf:        movl    %edx, %r15d
-fwl194_rf:        sall    $13, %r15d
-fwl195_rf:        pushq   %r14
-fwl196_rf:        pushq   %r13
-fwl197_rf:        pushq   %r12
-fwl198_rf:        pushq   %rbp
-fwl199_rf:        pushq   %rbx
-fwl200_rf:        subq    $72, %rsp
-fwl201_rf:        cmpl    %r9d, %r8d
-fwl202_rf:        movl    %ecx, 60(%rsp)
-fwl203_rf:        jge     .L95_rf
-fwl204_rf:        movq    %rdi, %r13
-fwl205_rf:        movl    %edx, %r12d
-fwl206_rf:        movl    %r8d, %ebp
-fwl207_rf:        movl    %r15d, %r10d
+fwl186_rf:        pushq   %r15
+fwl187_rf:        pushq   %r14
+fwl188_rf:        pushq   %r13
+fwl189_rf:        pushq   %r12
+fwl190_rf:        pushq   %rbp
+fwl191_rf:        pushq   %rbx
+fwl192_rf:        subq    $72, %rsp
+fwl193_rf:        cmpl    %r9d, %r8d
+fwl194_rf:        movl    %ecx, 60(%rsp)
+fwl195_rf:        jge     .L93_rf
+fwl196_rf:        movl    %esi, %r15d
+fwl197_rf:        movq    %rdi, %r13
+fwl198_rf:        movl    %edx, %r12d
+fwl199_rf:        imull   %edx, %r15d
+fwl200_rf:        movl    %r8d, %ebp
+fwl201_rf:        movl    %r15d, %r10d
 .L66_rf:
-fwl208_rf:        leal    512(%rbp), %eax
-fwl209_rf:        cmpl    %r9d, %eax
-fwl210_rf:        cmovg   %r9d, %eax
-fwl211_rf:        cmpl    %eax, %ebp
-fwl212_rf:        movl    %eax, 56(%rsp)
-fwl213_rf:        jge     .L77_rf
-fwl214_rf:        testl   %esi, %esi
-fwl215_rf:        jle     .L95_rf
+fwl202_rf:        leal    64(%rbp), %eax
+fwl203_rf:        cmpl    %r9d, %eax
+fwl204_rf:        cmovg   %r9d, %eax
+fwl205_rf:        cmpl    %eax, %ebp
+fwl206_rf:        movl    %eax, 56(%rsp)
+fwl207_rf:        jge     .L77_rf
+fwl208_rf:        testl   %esi, %esi
+fwl209_rf:        jle     .L93_rf
+fwl210_rf:        movl    %ebp, %r14d
+fwl211_rf:        imull   %esi, %r14d
 .L75_rf:
-fwl216_rf:        movl    %ebp, %r14d
-fwl217_rf:        sall    $13, %r14d
-fwl218_rf:        leal    (%r12,%r14), %eax
-fwl219_rf:        cltq
-fwl220_rf:        leaq    0(%r13,%rax,4), %r15
-fwl221_rf:        xorl    %eax, %eax
-fwl222_rf:        leal    1024(%rax), %ebx
-fwl223_rf:        cmpl    %esi, %ebx
-fwl224_rf:        cmovg   %esi, %ebx
-fwl225_rf:        cmpl    %ebx, %eax
-fwl226_rf:        jge     .L78_rf
-.L98_rf:
-fwl227_rf:        cmpl    %r12d, %ebp
-fwl228_rf:        setne   %cl
+fwl212_rf:        leal    (%r12,%r14), %eax
+fwl213_rf:        cltq
+fwl214_rf:        leaq    0(%r13,%rax,4), %r15
+fwl215_rf:        xorl    %eax, %eax
+fwl216_rf:        leal    128(%rax), %ebx
+fwl217_rf:        cmpl    %esi, %ebx
+fwl218_rf:        cmovg   %esi, %ebx
+fwl219_rf:        cmpl    %ebx, %eax
+fwl220_rf:        jge     .L78_rf
+.L96_rf:
+fwl221_rf:        cmpl    %r12d, %ebp
+fwl222_rf:        setne   %cl
 .L72_rf:
-fwl229_rf:        cmpl    %eax, %ebp
-fwl230_rf:        setne   %dil
-fwl231_rf:        cmpl    %r12d, %eax
-fwl232_rf:        setne   %dl
-fwl233_rf:        testb   %dl, %dil
-fwl234_rf:        je      .L71_rf
-fwl235_rf:        testb   %cl, %cl
-fwl236_rf:        je      .L71_rf
-fwl237_rf:        leal    (%r14,%rax), %edx
-fwl238_rf:        leal    (%r10,%rax), %r8d
-fwl239_rf:        movslq  %edx, %rdx
-fwl240_rf:        movslq  %r8d, %r8
-fwl241_rf:        leaq    0(%r13,%rdx,4), %rdi
-fwl242_rf:        movl    (%r15), %edx
-fwl243_rf:        addl    0(%r13,%r8,4), %edx
-fwl244_rf:        movl    (%rdi), %r8d
-fwl245_rf:        cmpl    %r8d, %edx
-fwl246_rf:        cmovg   %r8d, %edx
-fwl247_rf:        movl    %edx, (%rdi)
+fwl223_rf:        cmpl    %eax, %ebp
+fwl224_rf:        setne   %dil
+fwl225_rf:        cmpl    %r12d, %eax
+fwl226_rf:        setne   %dl
+fwl227_rf:        testb   %dl, %dil
+fwl228_rf:        je      .L71_rf
+fwl229_rf:        testb   %cl, %cl
+fwl230_rf:        je      .L71_rf
+fwl231_rf:        leal    (%r14,%rax), %edx
+fwl232_rf:        leal    (%r10,%rax), %r8d
+fwl233_rf:        movslq  %edx, %rdx
+fwl234_rf:        movslq  %r8d, %r8
+fwl235_rf:        leaq    0(%r13,%rdx,4), %rdi
+fwl236_rf:        movl    (%r15), %edx
+fwl237_rf:        addl    0(%r13,%r8,4), %edx
+fwl238_rf:        movl    (%rdi), %r8d
+fwl239_rf:        cmpl    %r8d, %edx
+fwl240_rf:        cmovg   %r8d, %edx
+fwl241_rf:        movl    %edx, (%rdi)
 .L71_rf:
-fwl248_rf:        incl    %eax
-fwl249_rf:        cmpl    %eax, %ebx
-fwl250_rf:        jne     .L72_rf
-fwl251_rf:        cmpl    %esi, %ebx
-fwl252_rf:        jge     .L73_rf
-.L99_rf:
-fwl253_rf:        movl    heartbeat(%rip), %eax
-fwl254_rf:        testl   %eax, %eax
-fwl255_rf:        jne     .L97_rf
-.L74_rf:
-fwl256_rf:        movl    %ebx, %eax
-fwl257_rf:        leal    1024(%rax), %ebx
-fwl258_rf:        cmpl    %esi, %ebx
-fwl259_rf:        cmovg   %esi, %ebx
-fwl260_rf:        cmpl    %ebx, %eax
-fwl261_rf:        jl      .L98_rf
-.L78_rf:
-fwl262_rf:        movl    %eax, %ebx
-fwl263_rf:        cmpl    %esi, %ebx
-fwl264_rf:        jl      .L99_rf
-.L73_rf:
-fwl265_rf:        incl    %ebp
-fwl266_rf:        cmpl    %ebp, 56(%rsp)
-fwl267_rf:        jne     .L75_rf
-.L67_rf:
-fwl268_rf:        cmpl    %r9d, 56(%rsp)
-fwl269_rf:        jge     .L95_rf
-fwl270_rf:        movl    heartbeat(%rip), %eax
-fwl271_rf:        testl   %eax, %eax
-fwl272_rf:        jne     .L100_rf
-.L76_rf:
-fwl273_rf:        movl    56(%rsp), %ebp
-fwl274_rf:        jmp     .L66_rf
+fwl242_rf:        incl    %eax
+fwl243_rf:        cmpl    %eax, %ebx
+fwl244_rf:        jne     .L72_rf
+fwl245_rf:        cmpl    %esi, %ebx
+fwl246_rf:        jge     .L73_rf
 .L97_rf:
-fwl275_rf:        movq    128(%rsp), %rax
-fwl276_rf:        movl    60(%rsp), %ecx
-fwl277_rf:        movl    %ebp, %r8d
-fwl278_rf:        movl    %esi, 8(%rsp)
-fwl279_rf:        movl    %ebx, (%rsp)
-fwl280_rf:        movl    %r12d, %edx
-fwl281_rf:        movq    %r13, %rdi
-fwl282_rf:        movl    %r10d, 52(%rsp)
-fwl283_rf:        movl    %r9d, 48(%rsp)
-fwl284_rf:        movq    %rax, 16(%rsp)
-fwl285_rf:        movl    %esi, 44(%rsp)
-fwl286_rf:        call    _Z20from_to_loop_handlerPiiiiiiiiPv
-fwl287_rf:        testl   %eax, %eax
-fwl288_rf:        movl    44(%rsp), %esi
-fwl289_rf:        movl    48(%rsp), %r9d
-fwl290_rf:        movl    52(%rsp), %r10d
-fwl291_rf:        je      .L74_rf
+fwl247_rf:        jmp     .L95
+fwl248_rf:        nop
+fwl249_rf:        nop
+.L74_rf:
+fwl250_rf:        movl    %ebx, %eax
+fwl251_rf:        leal    128(%rax), %ebx
+fwl252_rf:        cmpl    %esi, %ebx
+fwl253_rf:        cmovg   %esi, %ebx
+fwl254_rf:        cmpl    %ebx, %eax
+fwl255_rf:        jl      .L96_rf
+.L78_rf:
+fwl256_rf:        movl    %eax, %ebx
+fwl257_rf:        cmpl    %esi, %ebx
+fwl258_rf:        jl      .L97_rf
+.L73_rf:
+fwl259_rf:        incl    %ebp
+fwl260_rf:        addl    %esi, %r14d
+fwl261_rf:        cmpl    %ebp, 56(%rsp)
+fwl262_rf:        jne     .L75_rf
+.L67_rf:
+fwl263_rf:        cmpl    %r9d, 56(%rsp)
+fwl264_rf:        jge     .L93_rf
+fwl265_rf:        jmp     .L98
+fwl266_rf:        nop
+fwl267_rf:        nop
+.L76_rf:
+fwl268_rf:        movl    56(%rsp), %ebp
+fwl269_rf:        jmp     .L66_rf
 .L95_rf:
-fwl292_rf:        addq    $72, %rsp
-fwl293_rf:        popq    %rbx
-fwl294_rf:        popq    %rbp
-fwl295_rf:        popq    %r12
-fwl296_rf:        popq    %r13
-fwl297_rf:        popq    %r14
-fwl298_rf:        popq    %r15
-fwl299_rf:        ret
+fwl270_rf:        movq    128(%rsp), %rax
+fwl271_rf:        movl    60(%rsp), %ecx
+fwl272_rf:        movl    %ebp, %r8d
+fwl273_rf:        movl    %esi, 8(%rsp)
+fwl274_rf:        movl    %ebx, (%rsp)
+fwl275_rf:        movl    %r12d, %edx
+fwl276_rf:        movq    %r13, %rdi
+fwl277_rf:        movl    %r10d, 52(%rsp)
+fwl278_rf:        movl    %r9d, 48(%rsp)
+fwl279_rf:        movq    %rax, 16(%rsp)
+fwl280_rf:        movl    %esi, 44(%rsp)
+fwl281_rf:        call    _Z20from_to_loop_handlerPiiiiiiiiPv
+fwl282_rf:        testl   %eax, %eax
+fwl283_rf:        movl    44(%rsp), %esi
+fwl284_rf:        movl    48(%rsp), %r9d
+fwl285_rf:        movl    52(%rsp), %r10d
+fwl286_rf:        je      .L74_rf
+.L93_rf:
+fwl287_rf:        addq    $72, %rsp
+fwl288_rf:        popq    %rbx
+fwl289_rf:        popq    %rbp
+fwl290_rf:        popq    %r12
+fwl291_rf:        popq    %r13
+fwl292_rf:        popq    %r14
+fwl293_rf:        popq    %r15
+fwl294_rf:        ret
 .L77_rf:
-fwl300_rf:        movl    %ebp, 56(%rsp)
-fwl301_rf:        jmp     .L67_rf
-.L100_rf:
-fwl302_rf:        movq    128(%rsp), %rax
-fwl303_rf:        movl    56(%rsp), %r8d
-fwl304_rf:        movl    %r12d, %edx
-fwl305_rf:        movl    60(%rsp), %ecx
-fwl306_rf:        movq    %r13, %rdi
-fwl307_rf:        movl    %r10d, 52(%rsp)
-fwl308_rf:        movl    %r9d, 48(%rsp)
-fwl309_rf:        movl    %esi, 44(%rsp)
-fwl310_rf:        movq    %rax, (%rsp)
-fwl311_rf:        call    _Z22from_from_loop_handlerPiiiiiiPv
-fwl312_rf:        testl   %eax, %eax
-fwl313_rf:        movl    44(%rsp), %esi
-fwl314_rf:        movl    48(%rsp), %r9d
-fwl315_rf:        movl    52(%rsp), %r10d
-fwl316_rf:        je      .L76_rf
-fwl317_rf:        jmp     .L95_rf
+fwl295_rf:        movl    %ebp, 56(%rsp)
+fwl296_rf:        jmp     .L67_rf
+.L98_rf:
+fwl297_rf:        movq    128(%rsp), %rax
+fwl298_rf:        movl    56(%rsp), %r8d
+fwl299_rf:        movl    %r12d, %edx
+fwl300_rf:        movl    60(%rsp), %ecx
+fwl301_rf:        movq    %r13, %rdi
+fwl302_rf:        movl    %r10d, 52(%rsp)
+fwl303_rf:        movl    %r9d, 48(%rsp)
+fwl304_rf:        movl    %esi, 44(%rsp)
+fwl305_rf:        movq    %rax, (%rsp)
+fwl306_rf:        call    _Z22from_from_loop_handlerPiiiiiiPv
+fwl307_rf:        testl   %eax, %eax
+fwl308_rf:        movl    44(%rsp), %esi
+fwl309_rf:        movl    48(%rsp), %r9d
+fwl310_rf:        movl    52(%rsp), %r10d
+fwl311_rf:        je      .L76_rf
+fwl312_rf:        jmp     .L93_rf
 _Z27floyd_warshall_interrupt_toPiiiiiiiiPv_rf:
-fwl318_rf:        pushq   %r15
-fwl319_rf:        pushq   %r14
-fwl320_rf:        pushq   %r13
-fwl321_rf:        pushq   %r12
-fwl322_rf:        pushq   %rbp
-fwl323_rf:        pushq   %rbx
-fwl324_rf:        subq    $56, %rsp
-fwl325_rf:        movl    112(%rsp), %eax
-fwl326_rf:        movl    120(%rsp), %r14d
-fwl327_rf:        movl    %esi, 32(%rsp)
-fwl328_rf:        cmpl    %r14d, %eax
-fwl329_rf:        jge     .L120_rf
-fwl330_rf:        movl    %r8d, %r15d
-fwl331_rf:        movl    %edx, %ebp
-fwl332_rf:        movq    %rdi, %r13
-fwl333_rf:        sall    $13, %r15d
-fwl334_rf:        movl    %ebp, %r10d
-fwl335_rf:        movl    %r8d, %r12d
-fwl336_rf:        leal    (%rdx,%r15), %edx
-fwl337_rf:        sall    $13, %r10d
-fwl338_rf:        movslq  %edx, %rdx
-fwl339_rf:        leaq    (%rdi,%rdx,4), %r11
-fwl340_rf:        movq    %r11, %r14
-fwl341_rf:        movl    120(%rsp), %r11d
-.L103_rf:
-fwl342_rf:        leal    1024(%rax), %ebx
-fwl343_rf:        cmpl    %r11d, %ebx
-fwl344_rf:        cmovg   %r11d, %ebx
-fwl345_rf:        cmpl    %ebx, %eax
-fwl346_rf:        jge     .L109_rf
-fwl347_rf:        cmpl    %ebp, %r12d
-fwl348_rf:        setne   %dil
-.L106_rf:
-fwl349_rf:        cmpl    %r12d, %eax
-fwl350_rf:        setne   %sil
-fwl351_rf:        cmpl    %ebp, %eax
-fwl352_rf:        setne   %dl
-fwl353_rf:        testb   %dl, %sil
-fwl354_rf:        je      .L105_rf
-fwl355_rf:        testb   %dil, %dil
-fwl356_rf:        je      .L105_rf
-fwl357_rf:        leal    (%r15,%rax), %edx
-fwl358_rf:        leal    (%r10,%rax), %r8d
-fwl359_rf:        movslq  %edx, %rdx
-fwl360_rf:        movslq  %r8d, %r8
-fwl361_rf:        leaq    0(%r13,%rdx,4), %rsi
-fwl362_rf:        movl    (%r14), %edx
-fwl363_rf:        addl    0(%r13,%r8,4), %edx
-fwl364_rf:        movl    (%rsi), %r8d
-fwl365_rf:        cmpl    %r8d, %edx
-fwl366_rf:        cmovg   %r8d, %edx
-fwl367_rf:        movl    %edx, (%rsi)
-.L105_rf:
-fwl368_rf:        incl    %eax
-fwl369_rf:        cmpl    %eax, %ebx
-fwl370_rf:        jne     .L106_rf
+fwl313_rf:        pushq   %r15
+fwl314_rf:        pushq   %r14
+fwl315_rf:        pushq   %r13
+fwl316_rf:        pushq   %r12
+fwl317_rf:        pushq   %rbp
+fwl318_rf:        pushq   %rbx
+fwl319_rf:        subq    $56, %rsp
+fwl320_rf:        movl    112(%rsp), %eax
+fwl321_rf:        movl    120(%rsp), %r14d
+fwl322_rf:        movl    %ecx, 32(%rsp)
+fwl323_rf:        cmpl    %r14d, %eax
+fwl324_rf:        jge     .L118_rf
+fwl325_rf:        movl    %r8d, %r15d
+fwl326_rf:        movl    %edx, %ebp
+fwl327_rf:        movl    %esi, %r10d
+fwl328_rf:        imull   %esi, %r15d
+fwl329_rf:        movq    %rdi, %r13
+fwl330_rf:        movl    %r8d, %r12d
+fwl331_rf:        imull   %ebp, %r10d
+fwl332_rf:        leal    (%r15,%rdx), %edx
+fwl333_rf:        movslq  %edx, %rdx
+fwl334_rf:        leaq    (%rdi,%rdx,4), %r11
+fwl335_rf:        movq    %r11, %r14
+fwl336_rf:        movl    120(%rsp), %r11d
+.L101_rf:
+fwl337_rf:        leal    128(%rax), %ebx
+fwl338_rf:        cmpl    %r11d, %ebx
+fwl339_rf:        cmovg   %r11d, %ebx
+fwl340_rf:        cmpl    %ebx, %eax
+fwl341_rf:        jge     .L107_rf
+fwl342_rf:        cmpl    %ebp, %r12d
+fwl343_rf:        setne   %dil
 .L104_rf:
-fwl371_rf:        cmpl    %ebx, %r11d
-fwl372_rf:        jle     .L120_rf
-fwl373_rf:        movl    heartbeat(%rip), %eax
-fwl374_rf:        testl   %eax, %eax
-fwl375_rf:        jne     .L122_rf
-.L108_rf:
-fwl376_rf:        movl    %ebx, %eax
-fwl377_rf:        jmp     .L103_rf
-.L122_rf:
-fwl378_rf:        movq    128(%rsp), %rax
-fwl379_rf:        movl    32(%rsp), %esi
-fwl380_rf:        movl    %r12d, %r8d
-fwl381_rf:        movl    %r11d, 8(%rsp)
-fwl382_rf:        movl    %ebx, (%rsp)
-fwl383_rf:        movl    %ebp, %edx
-fwl384_rf:        movq    %r13, %rdi
-fwl385_rf:        movl    %r10d, 44(%rsp)
-fwl386_rf:        movl    %r11d, 120(%rsp)
-fwl387_rf:        movq    %rax, 16(%rsp)
-fwl388_rf:        movl    %r9d, 40(%rsp)
-fwl389_rf:        movl    %ecx, 36(%rsp)
-fwl390_rf:        call    _Z18to_to_loop_handlerPiiiiiiiiPv
-fwl391_rf:        testl   %eax, %eax
-fwl392_rf:        movl    36(%rsp), %ecx
-fwl393_rf:        movl    40(%rsp), %r9d
-fwl394_rf:        movl    120(%rsp), %r11d
-fwl395_rf:        movl    44(%rsp), %r10d
-fwl396_rf:        je      .L108_rf
+fwl344_rf:        cmpl    %r12d, %eax
+fwl345_rf:        setne   %cl
+fwl346_rf:        cmpl    %ebp, %eax
+fwl347_rf:        setne   %dl
+fwl348_rf:        testb   %dl, %cl
+fwl349_rf:        je      .L103_rf
+fwl350_rf:        testb   %dil, %dil
+fwl351_rf:        je      .L103_rf
+fwl352_rf:        leal    (%r15,%rax), %edx
+fwl353_rf:        leal    (%r10,%rax), %r8d
+fwl354_rf:        movslq  %edx, %rdx
+fwl355_rf:        movslq  %r8d, %r8
+fwl356_rf:        leaq    0(%r13,%rdx,4), %rcx
+fwl357_rf:        movl    (%r14), %edx
+fwl358_rf:        addl    0(%r13,%r8,4), %edx
+fwl359_rf:        movl    (%rcx), %r8d
+fwl360_rf:        cmpl    %r8d, %edx
+fwl361_rf:        cmovg   %r8d, %edx
+fwl362_rf:        movl    %edx, (%rcx)
+.L103_rf:
+fwl363_rf:        incl    %eax
+fwl364_rf:        cmpl    %eax, %ebx
+fwl365_rf:        jne     .L104_rf
+.L102_rf:
+fwl366_rf:        cmpl    %ebx, %r11d
+fwl367_rf:        jle     .L118_rf
+fwl368_rf:        jmp     .L120
+fwl369_rf:        nop
+fwl370_rf:        nop
+.L106_rf:
+fwl371_rf:        movl    %ebx, %eax
+fwl372_rf:        jmp     .L101_rf
 .L120_rf:
-fwl397_rf:        addq    $56, %rsp
-fwl398_rf:        popq    %rbx
-fwl399_rf:        popq    %rbp
-fwl400_rf:        popq    %r12
-fwl401_rf:        popq    %r13
-fwl402_rf:        popq    %r14
-fwl403_rf:        popq    %r15
-fwl404_rf:        ret
-.L109_rf:
-fwl405_rf:        movl    %eax, %ebx
-fwl406_rf:        jmp     .L104_rf
+fwl373_rf:        movq    128(%rsp), %rax
+fwl374_rf:        movl    32(%rsp), %ecx
+fwl375_rf:        movl    %r12d, %r8d
+fwl376_rf:        movl    %r11d, 8(%rsp)
+fwl377_rf:        movl    %ebx, (%rsp)
+fwl378_rf:        movl    %ebp, %edx
+fwl379_rf:        movq    %r13, %rdi
+fwl380_rf:        movl    %r10d, 44(%rsp)
+fwl381_rf:        movl    %r11d, 120(%rsp)
+fwl382_rf:        movq    %rax, 16(%rsp)
+fwl383_rf:        movl    %r9d, 40(%rsp)
+fwl384_rf:        movl    %esi, 36(%rsp)
+fwl385_rf:        call    _Z18to_to_loop_handlerPiiiiiiiiPv
+fwl386_rf:        testl   %eax, %eax
+fwl387_rf:        movl    36(%rsp), %esi
+fwl388_rf:        movl    40(%rsp), %r9d
+fwl389_rf:        movl    120(%rsp), %r11d
+fwl390_rf:        movl    44(%rsp), %r10d
+fwl391_rf:        je      .L106_rf
+.L118_rf:
+fwl392_rf:        addq    $56, %rsp
+fwl393_rf:        popq    %rbx
+fwl394_rf:        popq    %rbp
+fwl395_rf:        popq    %r12
+fwl396_rf:        popq    %r13
+fwl397_rf:        popq    %r14
+fwl398_rf:        popq    %r15
+fwl399_rf:        ret
+.L107_rf:
+fwl400_rf:        movl    %eax, %ebx
+fwl401_rf:        jmp     .L102_rf
 
