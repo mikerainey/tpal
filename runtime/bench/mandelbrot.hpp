@@ -76,7 +76,6 @@ int row_loop_handler(
     });
   } else {
     auto col_mid = (col_lo + col_hi) / 2;
-    assert((col_hi - col_lo) >= 2);
     p->fork_join_promote3(rf, [=] (tpalrts::promotable* p2) {
       mandelbrot_interrupt_col_loop(x0, y0, x1, y1, width, height, max_depth, output, xstep, ystep, col_lo, col_mid, p2);
     }, [=] (tpalrts::promotable* p2) {
