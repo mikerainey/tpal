@@ -11,6 +11,21 @@
 
 #define MAX_ITEMS 256
 
+int seq_best_so_far = INT_MIN;
+
+std::atomic<int> best_so_far(INT_MIN);
+
+int compare(struct item *a, struct item *b) {
+  double c = ((double) a->value / a->weight) -
+    ((double) b->value / b->weight);
+  
+  if (c > 0)
+    return -1;
+  if (c < 0)
+    return 1;
+  return 0;
+}
+
 int read_input(const char *filename, struct item *items, int *capacity, int *n)
 {
      int i;
@@ -53,7 +68,7 @@ namespace tpalrts {
   
 void launch() {
   rollforward_table = {
-                       // later: fill
+    #include "knapsack_rollforward_map.hpp"
   };
   int n, capacity;
   int sol = INT_MIN;
@@ -73,16 +88,15 @@ void launch() {
   };
   auto bench_body_interrupt = [&] (promotable* p) {
     s = tpalrts::snew();
-    knapsack_heartbeat<knapsack_heartbeat_mechanism_hardware_interrupt>(items, capacity, n, 0, &sol, p, s);
+    knapsack_interrupt(best_so_far, items, capacity, n, 0, &sol, p, s, nullptr, 0);
   };
   auto bench_body_software_polling = [&] (promotable* p) {
-    s = tpalrts::snew();
-    knapsack_heartbeat<knapsack_heartbeat_mechanism_software_polling>(items, capacity, n, 0, &sol, p, s, software_polling_K);
+
   }; 
   auto bench_body_serial = [&] (promotable* p) {
-    knapsack_seq(items, capacity, n, 0, &sol);
-    //    s = tpalrts::snew();
-    //    sol = knapsack_custom_stack_serial(items, capacity, n, 0, s);
+    //    knapsack_serial2(items, capacity, n, 0, &sol);
+    s = tpalrts::snew();
+    sol = knapsack_serial(seq_best_so_far, items, capacity, n, 0, s);
   };
   auto bench_post = [&]   {
                       //    best_so_far = INT_MIN;
