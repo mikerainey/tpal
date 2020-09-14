@@ -100,7 +100,8 @@ int fib_handler(uint64_t n, uint64_t*& dst,
   p->fork_join_promote([=] (tpalrts::promotable* p2) {
     tpalrts::stack_type s2 = tpalrts::snew();
     void* pc2;
-    if (sload(sp_top, -1l, void*) != __clonek) { // slow clone
+    auto t = tpalrts::reverse_lookup_rollforward_entry(sload(sp_top, -1l, void*));
+    if (t != __clonek) { // slow clone
       pc2 = __entry;
     } else { // fast clone
       pc2 = __clonek;
