@@ -5,10 +5,7 @@ namespace tpalrts {
   
 void launch() {
   rollforward_table = {
-    mk_rollforward_entry(incr_array_interrupt_l0, incr_array_interrupt_rf_l0),
-    mk_rollforward_entry(incr_array_interrupt_l1, incr_array_interrupt_rf_l1),
-    mk_rollforward_entry(incr_array_interrupt_l2, incr_array_interrupt_rf_l2),
-    mk_rollforward_entry(incr_array_interrupt_l3, incr_array_interrupt_rf_l3),
+    #include "incr_array_rollforward_map.hpp"
   };
   uint64_t nb_items = deepsea::cmdline::parse_or_default_long("n", 20000000);
   int64_t* a = (int64_t*)malloc(sizeof(int64_t)*nb_items);
@@ -27,11 +24,13 @@ void launch() {
     incr_array_serial(a, 0, nb_items);
   };
   auto bench_post = [=]   {
+#ifndef NDEBUG
     int64_t m = 0;
     for (int64_t i = 0; i < nb_items; i++) {
       m += a[i];
     }
     assert(m == nb_items);
+#endif
     free(a);
   };
   incr_array_manual_T = deepsea::cmdline::parse_or_default_int("incr_array_manual_T", incr_array_manual_T);

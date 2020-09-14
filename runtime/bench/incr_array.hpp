@@ -6,16 +6,13 @@
 
 #include "tpalrts_fiber.hpp"
 
+#include "incr_array_rollforward_decls.hpp"
+
 /*---------------------------------------------------------------------*/
 /* Manual version */
 
-static
-int64_t* incr_array_serial(int64_t* a, int64_t lo, int64_t hi) {
-  for (int64_t i = lo; i != hi; i++) {
-    a[i]++;
-  }
-  return a;
-}
+extern
+int64_t* incr_array_serial(int64_t* a, uint64_t lo, uint64_t hi);
 
 static
 int64_t incr_array_manual_T = 8096;
@@ -28,9 +25,9 @@ public:
 
   trampoline_type trampoline = entry;
   
-  int64_t* a; int64_t lo; int64_t hi;
+  int64_t* a; uint64_t lo; uint64_t hi;
 
-  incr_array_manual(int64_t* a, int64_t lo, int64_t hi)
+  incr_array_manual(int64_t* a, uint64_t lo, uint64_t hi)
     : tpalrts::fiber<Scheduler>([] (tpalrts::promotable*) { return mcsl::fiber_status_finish; }),
       a(a), lo(lo), hi(hi)
   { }
@@ -41,7 +38,7 @@ public:
       if (hi-lo <= incr_array_manual_T) {
         incr_array_serial(a, lo, hi);
       } else {
-        int64_t mid = (lo+hi)/2;
+        auto mid = (lo+hi)/2;
         auto f1 = new incr_array_manual(a, lo, mid);
         auto f2 = new incr_array_manual(a, mid, hi);
         tpalrts::fiber<Scheduler>::add_edge(f1, this);
@@ -67,40 +64,20 @@ public:
 /*---------------------------------------------------------------------*/
 /* Hardware-interrupt version */
 
-extern "C"
-void incr_array_interrupt_l0();
-extern "C"
-void incr_array_interrupt_l1();
-extern "C"
-void incr_array_interrupt_l2();
-extern "C"
-void incr_array_interrupt_l3();
+extern
+void incr_array_interrupt(int64_t* a, uint64_t lo, uint64_t hi, void* p);
 
-extern "C"
-void incr_array_interrupt_rf_l0();
-extern "C"
-void incr_array_interrupt_rf_l1();
-extern "C"
-void incr_array_interrupt_rf_l2();
-extern "C"
-void incr_array_interrupt_rf_l3();
-
-extern "C"
-int64_t* incr_array_interrupt(int64_t*, int64_t, int64_t, tpalrts::promotable*);
-
-extern "C"
-void incr_array_interrupt_promote(int64_t* a, int64_t lo, int64_t* ptr_hi, tpalrts::promotable* p);
-
-void incr_array_interrupt_promote(int64_t* a, int64_t lo, int64_t* ptr_hi, tpalrts::promotable* p) {
-  auto hi = *ptr_hi;
-  if (hi-lo <= 1) {
-    return;
+int incr_array_handler(int64_t* a, uint64_t lo, uint64_t& hi, void* _p) {
+  auto p = (tpalrts::promotable*)_p;
+  if (hi - lo <= 1) {
+    return 0;
   }
-  auto mid = (lo+hi)/2;
-  *ptr_hi = mid;
-  p->async_finish_promote([=] (tpalrts::promotable* p) {
-    incr_array_interrupt(a, mid, hi, p);
+  auto mid = (lo + hi) / 2;
+  p->async_finish_promote([=] (tpalrts::promotable* p2) {
+    incr_array_interrupt(a, mid, hi, p2);
   });
+  hi = mid;
+  return 1;
 }
 
 /*---------------------------------------------------------------------*/
