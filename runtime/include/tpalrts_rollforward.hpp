@@ -43,25 +43,6 @@ struct nk_regs {
 namespace tpalrts {
 
 /*---------------------------------------------------------------------*/
-/* Manually checked interrupt flags (alternative to rollforward)  */
-  
-#ifdef TPALRTS_USE_INTERRUPT_FLAGS
-using heartbeat_polling_result_type = enum heartbeat_polling_result_enum {
-          heartbeat_polling_result_ready,
-          heartbeat_polling_result_pending };
-
-mcsl::perworker::array<std::atomic<heartbeat_polling_result_type>> heartbeat_polling;
-
-heartbeat_polling_result_type check_heartbeat_polling_result() {
-  if (heartbeat_polling.mine().load() == heartbeat_polling_result_ready) {
-    heartbeat_polling.mine().store(heartbeat_polling_result_pending);
-    return heartbeat_polling_result_ready;
-  }
-  return heartbeat_polling_result_pending;
-}
-#endif
-  
-/*---------------------------------------------------------------------*/
 /* Rollforward table */
 
 #if defined(MCSL_LINUX)
@@ -70,6 +51,8 @@ using register_type = greg_t;
 using register_type = ulong_t*;
 #endif
 
+// later: implement lookup on logarithmic time
+
 using rollforward_table_item_type = std::pair<register_type, register_type>;
 
 using rollforward_lookup_table_type = std::vector<rollforward_table_item_type>;
@@ -77,25 +60,43 @@ using rollforward_lookup_table_type = std::vector<rollforward_table_item_type>;
 template <typename L>
 auto mk_rollforward_entry(L src, L dst) -> rollforward_table_item_type {
   return std::make_pair((register_type)src, (register_type)dst);
-};
+}
 
-rollforward_lookup_table_type rollforward_table;
+// returns the entry dst, if (src, dst) is in the rollforward table t, and src otherwise
+auto lookup_rollforward_entry(const rollforward_lookup_table_type& t, register_type src) -> register_type {
+  for (const auto& p : t) {
+    if (src == p.first) {
+      return p.second;
+    }
+  }
+  return src;
+}
+
+// returns the entry src, if (src, dst) is in the rollforward table t, and dst otherwise
+auto reverse_lookup_rollforward_entry(const rollforward_lookup_table_type& t, register_type dst) -> register_type {
+  for (const auto& p : t) {
+    if (dst == p.second) {
+      return p.first;
+    }
+  }
+  return dst;
+}
   
 template <class T>
 void try_to_initiate_rollforward(const T& t, register_type* rip) {
-  for (const auto& e : t) {
-    if (*rip == e.first) {
-      *rip = e.second;
-      break;
-    }
+  auto ip = *rip;
+  auto dst = lookup_rollforward_entry(t, ip);
+  if (dst != ip) {
+    *rip = dst;
   }
-#if defined(TPALRTS_USE_INTERRUPT_FLAGS) && defined(MCSL_LINUX)
-  heartbeat_polling.mine().store(heartbeat_polling_result_ready);
-#elif defined(TPALRTS_USE_INTERRUPT_FLAGS) && defined(MCSL_NAUTILUS)
-  // todo
-#endif
 }
 
+rollforward_lookup_table_type rollforward_table;
+
+auto reverse_lookup_rollforward_entry(void* dst) -> void* {
+  return (void*)reverse_lookup_rollforward_entry(rollforward_table, (register_type)dst);
+}
+  
 #if defined(MCSL_LINUX)
 
 void heartbeat_interrupt_handler(int, siginfo_t*, void* uap) {
