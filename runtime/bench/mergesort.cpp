@@ -1,5 +1,3 @@
-#define TPALRTS_USE_INTERRUPT_FLAGS 1
-
 #include "benchmark.hpp"
 #include "mergesort.hpp"
 
@@ -7,7 +5,7 @@ namespace tpalrts {
   
 void launch() {
   rollforward_table = {
-                       // later: fill
+    #include "mergesort_rollforward_map.hpp"
   };
   uint64_t n = deepsea::cmdline::parse_or_default_long("n", 20);
   int64_t software_polling_K = deepsea::cmdline::parse_or_default_int("software_polling_K", 128);
@@ -27,11 +25,10 @@ void launch() {
   };
   auto bench_body_interrupt = [&] (promotable* p) {
     s = tpalrts::snew();
-    mergesort_par<heartbeat_mechanism_hardware_interrupt>(xs, tmp, 0, n, p, s);
+    mergesort_interrupt(xs, tmp, 0, n, p, s, nullptr, nullptr, nullptr);
   };
   auto bench_body_software_polling = [&] (promotable* p) {
-    s = tpalrts::snew();
-    mergesort_par<heartbeat_mechanism_software_polling>(xs, tmp, 0, n, p, s);
+
   }; 
   auto bench_body_serial = [&] (promotable* p) {
     s = tpalrts::snew();
