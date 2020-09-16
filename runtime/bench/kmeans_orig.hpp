@@ -43,7 +43,7 @@ int find_nearest_point(float  *pt,          /* [nfeatures] */
   return(index);
 }
 
-float** kmeans_serial(float **feature,    /* in: [npoints][nfeatures] */
+float** kmeans_interrupt(float **feature,    /* in: [npoints][nfeatures] */
                           int     nfeatures,
                           int     npoints,
                           int     nclusters,
