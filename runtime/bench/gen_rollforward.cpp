@@ -103,6 +103,14 @@ int main() {
     return result;
   };
 
+  auto remove_comment_from_line = [] (std::string& line) {
+    auto pos = line.find_first_of("#");
+    if (pos == std::string::npos) {
+      return line;
+    }
+    return line.erase(pos);
+  };
+
   auto relabel_line = [&] (const std::string& line) {
     auto tokens = lex_asm_line(line);
     std::string result;
@@ -121,6 +129,7 @@ int main() {
     std::size_t instr_line_nb = 0; // not counting lines w/ labels
     std::istringstream iss(asm_str);
     for (std::string line; std::getline(iss, line); ) {
+      line = remove_comment_from_line(line);
       if (is_label(line)) {
 	auto l = label_of_decl(line);
 	result += relabel_line(l) + ":\n";
