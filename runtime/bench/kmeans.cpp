@@ -5,9 +5,9 @@ namespace tpalrts {
   
 void launch() {
   rollforward_table = {
-
+    #include "kmeans_rollforward_map.hpp"
   };
-  int numObjects = deepsea::cmdline::parse_or_default_int("n", 2000000);
+  int numObjects = deepsea::cmdline::parse_or_default_int("n", 1000);
   auto in = kmeans_inputgen(numObjects);
   float** attributes = in.attributes;
   int numAttributes = in.nFeat;
@@ -16,14 +16,14 @@ void launch() {
   float **cluster_centres=NULL;
   auto bench_pre = [=] {
   };
-  auto bench_body_interrupt = [=] (promotable* p) {
-
+  auto bench_body_interrupt = [&] (promotable* p) {
+    cluster_interrupt(numObjects, numAttributes, attributes, nclusters, threshold, &cluster_centres, p);
   };
   auto bench_body_software_polling = [=] (promotable* p) {
 
   };
   auto bench_body_serial = [&] (promotable* p) {
-    //cluster_serial(numObjects, numAttributes, attributes, nclusters, threshold, &cluster_centres);
+    cluster_serial(numObjects, numAttributes, attributes, nclusters, threshold, &cluster_centres);
   };
   auto bench_post = [=]   {
   };
