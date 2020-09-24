@@ -3,8 +3,6 @@
 #include <limits.h>
 #include <string.h>
 
-#define TPALRTS_USE_INTERRUPT_FLAGS 1
-
 #include "benchmark.hpp"
 #include "knapsack.hpp"
 #include "knapsack_input.hpp"

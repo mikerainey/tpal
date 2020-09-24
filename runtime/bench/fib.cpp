@@ -1,5 +1,3 @@
-#define TPALRTS_USE_INTERRUPT_FLAGS 1
-
 #include "benchmark.hpp"
 #include "fib.hpp"
 
