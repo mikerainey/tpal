@@ -1,65 +1,5 @@
 .text
 .p2align 4,,15
-.globl  .L18
-.type  .L18, @function
-.globl  .L18_rf
-.type  .L18_rf, @function
-.globl  .L19
-.type  .L19, @function
-.globl  .L19_rf
-.type  .L19_rf, @function
-.globl  .L20
-.type  .L20, @function
-.globl  .L20_rf
-.type  .L20_rf, @function
-.globl  .L22
-.type  .L22, @function
-.globl  .L22_rf
-.type  .L22_rf, @function
-.globl  .L23
-.type  .L23, @function
-.globl  .L23_rf
-.type  .L23_rf, @function
-.globl  .L24
-.type  .L24, @function
-.globl  .L24_rf
-.type  .L24_rf, @function
-.globl  .L26
-.type  .L26, @function
-.globl  .L26_rf
-.type  .L26_rf, @function
-.globl  .L3
-.type  .L3, @function
-.globl  .L3_rf
-.type  .L3_rf, @function
-.globl  .L38
-.type  .L38, @function
-.globl  .L38_rf
-.type  .L38_rf, @function
-.globl  .L4
-.type  .L4, @function
-.globl  .L4_rf
-.type  .L4_rf, @function
-.globl  .L41
-.type  .L41, @function
-.globl  .L41_rf
-.type  .L41_rf, @function
-.globl  .L42
-.type  .L42, @function
-.globl  .L42_rf
-.type  .L42_rf, @function
-.globl  .L5
-.type  .L5, @function
-.globl  .L5_rf
-.type  .L5_rf, @function
-.globl  .L6
-.type  .L6, @function
-.globl  .L6_rf
-.type  .L6_rf, @function
-.globl  .L7
-.type  .L7, @function
-.globl  .L7_rf
-.type  .L7_rf, @function
 .globl  plus_reduce_array_interrupt
 .type  plus_reduce_array_interrupt, @function
 .globl  plus_reduce_array_interrupt_rf
@@ -780,7 +720,7 @@ pra89_rf:        ja      .L41_rf
 .L20_rf:
 pra90_rf:        cmpq    %r13, %rbp
 pra91_rf:        jnb     .L18_rf
-pra92_rf:        jmp	.L42
+pra92_rf:        jmp     .L42
 pra93_rf:        nop
 pra94_rf:        nop
 .L24_rf:

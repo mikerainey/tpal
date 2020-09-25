@@ -34,20 +34,21 @@ void launch0(std::size_t nb_workers,
 	     const Bench_pre& bench_pre,
 	     const Bench_post& bench_post,
 	     Fiber_body f_body) {
-  bench_pre();
   logging::initialize();
   {
-    auto f_pre = new fiber<Scheduler>([=] (promotable*) {
+    auto f_pre = new fiber<Scheduler>([=] (promotable* p) {
+      bench_pre(p);
       stats::start_collecting();
       logging::log_event(mcsl::enter_algo);
       start_time = mcsl::clock::now();
       start_cycle = mcsl::cycles::now();
     });
-    auto f_cont = new fiber<Scheduler>([=] (promotable*) {
+    auto f_cont = new fiber<Scheduler>([=] (promotable* p) {
       elapsed_cycles = mcsl::cycles::since(start_cycle);
       elapsed_time = mcsl::clock::since(start_time);
       logging::log_event(mcsl::exit_algo);
       stats::report(nb_workers);
+      bench_post(p);
     });
     auto f_term = new terminal_fiber<Scheduler>();
     fiber<Scheduler>::add_edge(f_pre, f_body);
@@ -60,7 +61,6 @@ void launch0(std::size_t nb_workers,
   }
   using scheduler_type = mcsl::chase_lev_work_stealing_scheduler<Scheduler, fiber, stats, logging, mcsl::minimal_elastic, Worker, Interrupt>;
   scheduler_type::launch(nb_workers);
-  bench_post();
   printf("exectime %.3f\n", elapsed_time);
   printf("execcycles %lu\n", elapsed_cycles);
   {
@@ -145,12 +145,12 @@ void launch2(size_t nb_workers,
   });
   d.add("cilk", [&] {
     cilk_set_nb_workers(nb_workers);
-    bench_pre();
+    bench_pre(nullptr);
     start_time = mcsl::clock::now();
     bench_body_cilk();
     elapsed_time = mcsl::clock::since(start_time);
     printf("exectime %.3f\n", elapsed_time);
-    bench_post();
+    bench_post(nullptr);
   });
   d.add("serial", [&] {
     launch1<tpal_worker, mcsl::minimal_interrupt>(nb_workers, bench_pre, bench_post, bench_body_serial);
@@ -179,8 +179,13 @@ void launch(const Bench_pre& bench_pre,
     assign_kappa(cpu_freq_khz, deepsea::cmdline::parse_or_default_int("kappa_usec", dflt_kappa_usec));
   }
   launch2(mcsl::nb_workers,
-          bench_pre, bench_body_interrupt, bench_body_software_polling, bench_body_serial,
-          bench_post, bench_body_manual, bench_body_cilk);
+          std::function<void(promotable*)>(bench_pre),
+	  std::function<void(promotable*)>(bench_body_interrupt),
+	  std::function<void(promotable*)>(bench_body_software_polling),
+	  std::function<void(promotable*)>(bench_body_serial),
+	  std::function<void(promotable*)>(bench_post),
+	  bench_body_manual,
+	  std::function<void()>(bench_body_cilk));
   mcsl::teardown_machine();
   for (std::size_t i = 0; i != arena_blocks.size(); i++) {
     auto b = arena_blocks[i];

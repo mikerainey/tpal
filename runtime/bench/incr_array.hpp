@@ -126,3 +126,54 @@ int64_t* incr_array_cilk(int64_t* a, int64_t lo, int64_t hi) {
 #endif
   return a;
 }
+
+/*---------------------------------------------------------------------*/
+
+namespace tpalrts {
+namespace incr_array {
+  
+uint64_t nb_items = 1000 * 1000 * 100;
+int64_t* a;
+  
+auto bench_pre(promotable*) -> void {
+  a = (int64_t*)malloc(sizeof(int64_t)*nb_items);
+  if (a == nullptr) {
+    return;
+  }
+  for (int64_t i = 0; i < nb_items; i++) {
+    a[i] = 0;
+  }
+}
+
+auto bench_body_interrupt(promotable* p) -> void {
+  rollforward_table = {
+    #include "incr_array_rollforward_map.hpp"
+  };
+  incr_array_interrupt(a, 0, nb_items, p);
+}
+
+auto bench_body_software_polling(promotable* p) -> void {
+  incr_array_software_polling(a, 0, nb_items, p);
+}
+
+auto bench_body_serial(promotable* p) -> void {
+  incr_array_serial(a, 0, nb_items);
+}
+
+auto bench_post(promotable*) -> void {
+#ifndef NDEBUG
+  int64_t m = 0;
+  for (int64_t i = 0; i < nb_items; i++) {
+    m += a[i];
+  }
+  assert(m == nb_items);
+#endif
+  free(a);
+}
+
+auto bench_body_cilk() {
+  incr_array_cilk(a, 0, nb_items);
+};
+
+} // incr_array
+}

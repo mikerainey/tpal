@@ -222,7 +222,6 @@ public:
     };
     auto p = new nk_worker_activation_type(id, f);
     int remote_core = mcsl::cpu_pinning_assignments[id];
-    printk("rc %d %d\n",id,remote_core);
     if (remote_core == 0) {
       mcsl::perworker::unique_id::initialize_worker(id);
       b(id);
@@ -255,7 +254,6 @@ public:
   static
   void initialize_signal_handler() {
     nemo_event_id = nk_nemo_register_event_action(heartbeat_interrupt_handler, NULL);
-    printk("initialize signal handler %d\n", nemo_event_id);
     // todo: check for error condition
   }
   
@@ -313,7 +311,6 @@ public:
     };
     auto p = new nk_worker_activation_type(nb_workers, f);
     int remote_core = mcsl::ping_thread_remote_core;
-    printk("pt2 %d\n",remote_core);
     nk_thread_start(nk_thread_init_fn, (void*)p, 0, 0, TSTACK_DEFAULT, 0, remote_core);
   }
   

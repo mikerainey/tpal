@@ -148,7 +148,10 @@ int main() {
   };
 
   auto gen_asm_decls = [&] {
-    for (auto l : source_labels) {
+    for (auto l : source_labels) { 
+      if (l[0] == '.') {
+	continue;
+      }
       gen_label_decl(l);
       gen_label_decl(mk_rollforward_label(l));
     }

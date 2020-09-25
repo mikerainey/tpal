@@ -159,3 +159,50 @@ int64_t plus_reduce_array_cilk(int64_t* a, int64_t lo, int64_t hi) {
 #endif
   return 0;
 }
+
+/*---------------------------------------------------------------------*/
+
+namespace plus_reduce_array {
+
+using namespace tpalrts;
+  
+uint64_t nb_items = 1000 * 1000 * 100;
+int64_t* a;
+int64_t result = 0;
+  
+auto bench_pre(promotable*) -> void {
+  a = (int64_t*)malloc(sizeof(int64_t)*nb_items);
+  for (int64_t i = 0; i < nb_items; i++) {
+    a[i] = 1;
+  }
+}
+
+auto bench_body_interrupt(promotable* p) -> void {
+  rollforward_table = {
+    #include "plus_reduce_array_rollforward_map.hpp"
+  };
+  plus_reduce_array_interrupt(a, 0, nb_items, 0, &result, p);
+}
+
+auto bench_body_software_polling(promotable* p) -> void {
+  //  plus_reduce_array_software_polling(a, 0, nb_items, &result, p);
+}
+
+auto bench_body_serial(promotable* p) -> void {
+  result = plus_reduce_array_serial(a, 0, nb_items);
+}
+
+auto bench_post(promotable*) -> void {
+  int64_t m = 0;
+  for (int64_t i = 0; i < nb_items; i++) {
+    m += a[i];
+  }
+  assert(m == nb_items);
+  free(a);
+}
+
+  auto bench_body_cilk() {
+  result = plus_reduce_array_cilk(a, 0, nb_items);
+};
+
+} // plus_reduce_array
