@@ -16,7 +16,7 @@
 /*---------------------------------------------------------------------*/
 /* Manual version */
 
-extern "C"
+extern
 void spmv_serial(
   double* val,
   uint64_t* row_ptr,
@@ -136,7 +136,7 @@ public:
 /*---------------------------------------------------------------------*/
 /* Hardware-interrupt version */
 
-extern "C"
+extern
 void spmv_interrupt(
   double* val,
   uint64_t* row_ptr,
@@ -147,7 +147,7 @@ void spmv_interrupt(
   uint64_t row_hi,
   void* p);
 
-extern "C"
+extern
 void spmv_interrupt_col_loop(
   double* val,
   uint64_t* row_ptr,
@@ -160,7 +160,7 @@ void spmv_interrupt_col_loop(
   double* dst,
   void* p);
 
-int row_loop_handler_cpp(
+int row_loop_handler(
   double* val,
   uint64_t* row_ptr,
   uint64_t* col_ind,
@@ -184,7 +184,7 @@ int row_loop_handler_cpp(
   return 1;
 }
 
-int col_loop_handler_cpp(
+int col_loop_handler(
   double* val,
   uint64_t* row_ptr,
   uint64_t* col_ind,
@@ -229,7 +229,7 @@ int col_loop_handler_cpp(
   return 1;
 }
 
-int col_loop_handler_col_loop_cpp(
+int col_loop_handler_col_loop(
   double* val,
   uint64_t* row_ptr,
   uint64_t* col_ind,
@@ -258,51 +258,6 @@ int col_loop_handler_col_loop_cpp(
     decr_arena_block(dst_blk);
   });
   return 1;
-}
-
-extern "C" {
-  
-  int row_loop_handler(
-    double* val,
-    uint64_t* row_ptr,
-    uint64_t* col_ind,
-    double* x,
-    double* y,
-    uint64_t row_lo,
-    uint64_t row_hi,
-    void* p) {
-    return row_loop_handler_cpp(val, row_ptr, col_ind, x, y, row_lo, row_hi, p);
-  }
-
-  int col_loop_handler(
-    double* val,
-    uint64_t* row_ptr,
-    uint64_t* col_ind,
-    double* x,
-    double* y,
-    uint64_t row_lo,
-    uint64_t row_hi,
-    uint64_t col_lo,
-    uint64_t col_hi,
-    double t,
-    void* p) {
-    return col_loop_handler_cpp(val, row_ptr, col_ind, x, y, row_lo, row_hi, col_lo, col_hi, t, p);
-  }
-
-  int col_loop_handler_col_loop(
-    double* val,
-    uint64_t* row_ptr,
-    uint64_t* col_ind,
-    double* x,
-    double* y,
-    uint64_t col_lo,
-    uint64_t col_hi,
-    double t,
-    double* dst,
-    void* p) {
-    return col_loop_handler_col_loop_cpp(val, row_ptr, col_ind, x, y, col_lo, col_hi, t, dst, p);
-  }
-
 }
 
 /*---------------------------------------------------------------------*/
@@ -493,7 +448,7 @@ uint64_t hash64(uint64_t u) {
 
 using namespace tpalrts;
   
-uint64_t n = 1 * 1000 * 1000;
+uint64_t n = 700 * 1000 * 1000;
 uint64_t row_len = 1000;
 uint64_t nb_rows;
 uint64_t nb_vals;
@@ -507,7 +462,6 @@ auto bench_pre(promotable*) {
   nb_rows = n / row_len;
   nb_vals = n;
   val = (double*)malloc(sizeof(double) * nb_vals);
-  return;
   row_ptr = (uint64_t*)malloc(sizeof(uint64_t) * (nb_rows + 1));
   col_ind = (uint64_t*)malloc(sizeof(uint64_t) * nb_vals);
   x = (double*)malloc(sizeof(double) * nb_rows);
@@ -533,11 +487,6 @@ auto bench_pre(promotable*) {
 };
   
 auto bench_body_interrupt(promotable* p) {
-  if (val == nullptr || row_ptr == nullptr || col_ind == nullptr || x == nullptr || y == nullptr) {
-    printk("PROBLEM\n");
-    return;
-  }
-  return;
   rollforward_table = {
     #include "spmv_rollforward_map.hpp"    
   };
@@ -553,7 +502,6 @@ auto bench_body_serial(promotable*) {
 };
   
 auto bench_post(promotable*) {
-  return;
 #ifndef NDEBUG
   double* yref = (double*)malloc(sizeof(double) * nb_rows);
   {

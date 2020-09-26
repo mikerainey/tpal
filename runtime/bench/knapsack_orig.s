@@ -21,23 +21,22 @@ _Z15knapsack_serialRiP4itemiiiN7tpalrts12stack_structE:
         je      .L6
         movl    0(%r13), %ecx
         movl    4(%r13), %esi
-        vcvtsi2sdl      %r8d, %xmm2, %xmm2
-        vcvtsi2sdl      (%rdi), %xmm1, %xmm1
+        cvtsi2sdl       %r8d, %xmm2
+        cvtsi2sdl       (%rdi), %xmm1
         movl    %ecx, %eax
         imull   %ebx, %eax
         cltd
         idivl   %esi
-        vcvtsi2sdl      %eax, %xmm0, %xmm0
-        vaddsd  %xmm2, %xmm0, %xmm0
-        vcomisd %xmm0, %xmm1
+        cvtsi2sdl       %eax, %xmm0
+        addsd   %xmm2, %xmm0
+        comisd  %xmm0, %xmm1
         jbe     .L19
 .L12:
         movl    $-2147483648, %r8d
         jmp     *(%r9)
 .L3:
-        movl    %r8d, %eax
-        vzeroupper
         addq    $16, %rsp
+        movl    %r8d, %eax
         popq    %rbx
         popq    %rbp
         popq    %r13
@@ -128,13 +127,12 @@ _Z18knapsack_interruptRSt6atomicIiEP4itemiiiPiPvN7tpalrts12stack_structES5_i:
         movq    (%rax), %rax
         jmp     *%rax
 .L26:
-        addq    $8, 136(%rsp)
         movq    120(%rsp), %rax
         leaq    232(%rsp), %rdi
+        addq    $8, 136(%rsp)
         movl    %r15d, (%rax)
-        vzeroupper
         call    _ZN7tpalrts7sdeleteERNS_12stack_structE
-.L54:
+.L20:
         addq    $168, %rsp
         popq    %rbx
         popq    %rbp
@@ -151,25 +149,25 @@ _Z18knapsack_interruptRSt6atomicIiEP4itemiiiPiPvN7tpalrts12stack_structES5_i:
 .L28:
         movl    heartbeat(%rip), %eax
         testl   %eax, %eax
-        jne     .L57
+        jne     .L56
 .L29:
         testl   %ebp, %ebp
         js      .L47
-.L58:
+.L57:
         testl   %r12d, %r12d
         je      .L46
         testl   %ebp, %ebp
         je      .L46
         movl    (%rbx), %eax
-        vcvtsi2sdl      %r13d, %xmm1, %xmm1
+        cvtsi2sdl       %r13d, %xmm1
         imull   %ebp, %eax
         cltd
         idivl   4(%rbx)
-        vcvtsi2sdl      %eax, %xmm0, %xmm0
+        cvtsi2sdl       %eax, %xmm0
         movl    (%rdi), %eax
-        vaddsd  %xmm1, %xmm0, %xmm0
-        vcvtsi2sdl      %eax, %xmm1, %xmm1
-        vcomisd %xmm0, %xmm1
+        addsd   %xmm1, %xmm0
+        cvtsi2sdl       %eax, %xmm1
+        comisd  %xmm0, %xmm1
         ja      .L47
         movq    136(%rsp), %rax
         addq    $8, %rbx
@@ -201,24 +199,24 @@ _Z18knapsack_interruptRSt6atomicIiEP4itemiiiPiPvN7tpalrts12stack_structES5_i:
         movq    %rcx, 144(%rsp)
         testl   %eax, %eax
         je      .L29
-.L57:
+.L56:
         movq    224(%rsp), %rax
         leaq    120(%rsp), %r9
-        movl    %r13d, %r8d
-        movl    %r12d, %ecx
-        movl    %ebp, %edx
-        movq    %rbx, %rsi
+        movq    %rdi, 112(%rsp)
         movl    %r15d, 96(%rsp)
         movq    %r14, 88(%rsp)
-        movq    %rax, 104(%rsp)
-        leaq    152(%rsp), %rax
+        movl    %r13d, %r8d
         movq    $.L30, 80(%rsp)
         movq    $.L31, 72(%rsp)
+        movl    %r12d, %ecx
+        movq    %rax, 104(%rsp)
+        leaq    152(%rsp), %rax
         movq    $.L32, 64(%rsp)
+        movq    $.L21, 56(%rsp)
+        movl    %ebp, %edx
+        movq    %rbx, %rsi
         movq    %rax, 48(%rsp)
         leaq    144(%rsp), %rax
-        movq    $.L21, 56(%rsp)
-        movq    %rdi, 112(%rsp)
         movq    %rax, 40(%rsp)
         leaq    136(%rsp), %rax
         movq    %rax, 32(%rsp)
@@ -230,11 +228,10 @@ _Z18knapsack_interruptRSt6atomicIiEP4itemiiiPiPvN7tpalrts12stack_structES5_i:
         movq    %rax, 16(%rsp)
         movq    256(%rsp), %rax
         movq    %rax, 24(%rsp)
-        vzeroupper
         call    _Z16knapsack_handlerRSt6atomicIiEP4itemiiiRPiN7tpalrts12stack_structERPcS9_S9_PvSA_SA_SA_SA_iSA_
         testl   %ebp, %ebp
         movq    112(%rsp), %rdi
-        jns     .L58
+        jns     .L57
 .L47:
         movq    136(%rsp), %rax
         movl    $-2147483648, %r15d
@@ -245,8 +242,7 @@ _Z18knapsack_interruptRSt6atomicIiEP4itemiiiPiPvN7tpalrts12stack_structES5_i:
         movq    $.L30, (%rax)
         movq    120(%rsp), %rax
         movl    %r15d, (%rax)
-        vzeroupper
-        jmp     .L54
+        jmp     .L20
 .L33:
         movq    136(%rsp), %rax
         movq    $.L36, (%rax)
@@ -259,7 +255,7 @@ _Z18knapsack_interruptRSt6atomicIiEP4itemiiiPiPvN7tpalrts12stack_structES5_i:
         movl    %r15d, 8(%rax)
         movq    (%rdx), %rax
         testq   %rax, %rax
-        je      .L59
+        je      .L58
         movq    $0, 8(%rax)
         movq    $0, (%rdx)
 .L38:
@@ -276,7 +272,7 @@ _Z18knapsack_interruptRSt6atomicIiEP4itemiiiPiPvN7tpalrts12stack_structES5_i:
         movl    %r13d, %r15d
         movq    (%rax), %rax
         jmp     *%rax
-.L59:
+.L58:
         movq    $0, 144(%rsp)
         jmp     .L38
 .L39:

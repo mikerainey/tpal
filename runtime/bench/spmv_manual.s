@@ -1,141 +1,17 @@
 .text
 .p2align 4,,15
-.globl  .L24
-.type  .L24, @function
-.globl  .L24_rf
-.type  .L24_rf, @function
-.globl  .L28
-.type  .L28, @function
-.globl  .L28_rf
-.type  .L28_rf, @function
-.globl  .L29
-.type  .L29, @function
-.globl  .L29_rf
-.type  .L29_rf, @function
-.globl  .L31
-.type  .L31, @function
-.globl  .L31_rf
-.type  .L31_rf, @function
-.globl  .L32
-.type  .L32, @function
-.globl  .L32_rf
-.type  .L32_rf, @function
-.globl  .L33
-.type  .L33, @function
-.globl  .L33_rf
-.type  .L33_rf, @function
-.globl  .L34
-.type  .L34, @function
-.globl  .L34_rf
-.type  .L34_rf, @function
-.globl  .L35
-.type  .L35, @function
-.globl  .L35_rf
-.type  .L35_rf, @function
-.globl  .L37
-.type  .L37, @function
-.globl  .L37_rf
-.type  .L37_rf, @function
-.globl  .L38
-.type  .L38, @function
-.globl  .L38_rf
-.type  .L38_rf, @function
-.globl  .L39
-.type  .L39, @function
-.globl  .L39_rf
-.type  .L39_rf, @function
-.globl  .L41
-.type  .L41, @function
-.globl  .L41_rf
-.type  .L41_rf, @function
-.globl  .L44
-.type  .L44, @function
-.globl  .L44_rf
-.type  .L44_rf, @function
-.globl  .L5
-.type  .L5, @function
-.globl  .L5_rf
-.type  .L5_rf, @function
-.globl  .L6
-.type  .L6, @function
-.globl  .L6_rf
-.type  .L6_rf, @function
-.globl  .L65
-.type  .L65, @function
-.globl  .L65_rf
-.type  .L65_rf, @function
-.globl  .L67
-.type  .L67, @function
-.globl  .L67_rf
-.type  .L67_rf, @function
-.globl  .L68
-.type  .L68, @function
-.globl  .L68_rf
-.type  .L68_rf, @function
-.globl  .L7
-.type  .L7, @function
-.globl  .L7_rf
-.type  .L7_rf, @function
-.globl  .L70
-.type  .L70, @function
-.globl  .L70_rf
-.type  .L70_rf, @function
-.globl  .L71
-.type  .L71, @function
-.globl  .L71_rf
-.type  .L71_rf, @function
-.globl  .L72
-.type  .L72, @function
-.globl  .L72_rf
-.type  .L72_rf, @function
-.globl  .L74
-.type  .L74, @function
-.globl  .L74_rf
-.type  .L74_rf, @function
-.globl  .L75
-.type  .L75, @function
-.globl  .L75_rf
-.type  .L75_rf, @function
-.globl  .L76
-.type  .L76, @function
-.globl  .L76_rf
-.type  .L76_rf, @function
-.globl  .L78
-.type  .L78, @function
-.globl  .L78_rf
-.type  .L78_rf, @function
-.globl  .L8
-.type  .L8, @function
-.globl  .L8_rf
-.type  .L8_rf, @function
-.globl  .L9
-.type  .L9, @function
-.globl  .L9_rf
-.type  .L9_rf, @function
-.globl  .L90
-.type  .L90, @function
-.globl  .L90_rf
-.type  .L90_rf, @function
-.globl  .L93
-.type  .L93, @function
-.globl  .L93_rf
-.type  .L93_rf, @function
-.globl  .L94
-.type  .L94, @function
-.globl  .L94_rf
-.type  .L94_rf, @function
-.globl  spmv_interrupt
-.type  spmv_interrupt, @function
-.globl  spmv_interrupt_rf
-.type  spmv_interrupt_rf, @function
-.globl  spmv_interrupt_col_loop
-.type  spmv_interrupt_col_loop, @function
-.globl  spmv_interrupt_col_loop_rf
-.type  spmv_interrupt_col_loop_rf, @function
-.globl  spmv_serial
-.type  spmv_serial, @function
-.globl  spmv_serial_rf
-.type  spmv_serial_rf, @function
+.globl  _Z11spmv_serialPdPmS0_S_S_m
+.type  _Z11spmv_serialPdPmS0_S_S_m, @function
+.globl  _Z11spmv_serialPdPmS0_S_S_m_rf
+.type  _Z11spmv_serialPdPmS0_S_S_m_rf, @function
+.globl  _Z14spmv_interruptPdPmS0_S_S_mmPv
+.type  _Z14spmv_interruptPdPmS0_S_S_mmPv, @function
+.globl  _Z14spmv_interruptPdPmS0_S_S_mmPv_rf
+.type  _Z14spmv_interruptPdPmS0_S_S_mmPv_rf, @function
+.globl  _Z23spmv_interrupt_col_loopPdPmS0_S_S_mmdS_Pv
+.type  _Z23spmv_interrupt_col_loopPdPmS0_S_S_mmdS_Pv, @function
+.globl  _Z23spmv_interrupt_col_loopPdPmS0_S_S_mmdS_Pv_rf
+.type  _Z23spmv_interrupt_col_loopPdPmS0_S_S_mmdS_Pv_rf, @function
 .globl  spmv0
 .type  spmv0, @function
 .globl  spmv0_rf
@@ -1604,23 +1480,11 @@
 .type  spmv366, @function
 .globl  spmv366_rf
 .type  spmv366_rf, @function
-.globl  spmv367
-.type  spmv367, @function
-.globl  spmv367_rf
-.type  spmv367_rf, @function
-.globl  spmv368
-.type  spmv368, @function
-.globl  spmv368_rf
-.type  spmv368_rf, @function
-.globl  spmv369
-.type  spmv369, @function
-.globl  spmv369_rf
-.type  spmv369_rf, @function
-spmv_serial:
+_Z11spmv_serialPdPmS0_S_S_m:
 spmv0:        testq   %r9, %r9
-spmv1:        je      .L24
+spmv1:        je      .L23
 spmv2:        pushq   %r14
-spmv3:        vxorpd  %xmm2, %xmm2, %xmm2
+spmv3:        xorpd   %xmm2, %xmm2
 spmv4:        pushq   %r13
 spmv5:        pushq   %r12
 spmv6:        xorl    %r12d, %r12d
@@ -1641,7 +1505,7 @@ spmv19:        jbe     .L9
 spmv20:        cmpq    $6, %rdx
 spmv21:        jbe     .L9
 spmv22:        leaq    128(,%rbx,8), %rax
-spmv23:        vmovsd  %xmm2, %xmm2, %xmm1
+spmv23:        movsd   %xmm2, %xmm1
 spmv24:        leaq    (%rdi,%rax), %r11
 spmv25:        addq    %rsi, %rax
 .L5:
@@ -1652,58 +1516,58 @@ spmv29:        addq    $9, %r13
 spmv30:        addq    $64, %r11
 spmv31:        prefetcht0      (%rax)
 spmv32:        addq    $64, %rax
-spmv33:        vmovsd  (%rcx,%r10,8), %xmm0
+spmv33:        movlpd  (%rcx,%r10,8), %xmm0
 spmv34:        movq    -184(%rax), %r10
-spmv35:        vmulsd  -192(%r11), %xmm0, %xmm0
-spmv36:        vaddsd  %xmm1, %xmm0, %xmm1
-spmv37:        vmovsd  (%rcx,%r10,8), %xmm0
+spmv35:        mulsd   -192(%r11), %xmm0
+spmv36:        addsd   %xmm0, %xmm1
+spmv37:        movlpd  (%rcx,%r10,8), %xmm0
 spmv38:        movq    -176(%rax), %r10
-spmv39:        vmulsd  -184(%r11), %xmm0, %xmm0
-spmv40:        vaddsd  %xmm1, %xmm0, %xmm0
-spmv41:        vmovsd  (%rcx,%r10,8), %xmm1
+spmv39:        mulsd   -184(%r11), %xmm0
+spmv40:        addsd   %xmm1, %xmm0
+spmv41:        movlpd  (%rcx,%r10,8), %xmm1
 spmv42:        movq    -168(%rax), %r10
-spmv43:        vmulsd  -176(%r11), %xmm1, %xmm1
-spmv44:        vaddsd  %xmm0, %xmm1, %xmm0
-spmv45:        vmovsd  (%rcx,%r10,8), %xmm1
+spmv43:        mulsd   -176(%r11), %xmm1
+spmv44:        addsd   %xmm1, %xmm0
+spmv45:        movlpd  (%rcx,%r10,8), %xmm1
 spmv46:        movq    -160(%rax), %r10
-spmv47:        vmulsd  -168(%r11), %xmm1, %xmm1
-spmv48:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv49:        vmovsd  (%rcx,%r10,8), %xmm0
+spmv47:        mulsd   -168(%r11), %xmm1
+spmv48:        addsd   %xmm0, %xmm1
+spmv49:        movlpd  (%rcx,%r10,8), %xmm0
 spmv50:        movq    -152(%rax), %r10
-spmv51:        vmulsd  -160(%r11), %xmm0, %xmm0
-spmv52:        vaddsd  %xmm1, %xmm0, %xmm1
-spmv53:        vmovsd  (%rcx,%r10,8), %xmm0
+spmv51:        mulsd   -160(%r11), %xmm0
+spmv52:        addsd   %xmm0, %xmm1
+spmv53:        movlpd  (%rcx,%r10,8), %xmm0
 spmv54:        movq    -144(%rax), %r10
-spmv55:        vmulsd  -152(%r11), %xmm0, %xmm0
-spmv56:        vaddsd  %xmm1, %xmm0, %xmm0
-spmv57:        vmovsd  (%rcx,%r10,8), %xmm1
+spmv55:        mulsd   -152(%r11), %xmm0
+spmv56:        addsd   %xmm1, %xmm0
+spmv57:        movlpd  (%rcx,%r10,8), %xmm1
 spmv58:        movq    -136(%rax), %r10
-spmv59:        vmulsd  -144(%r11), %xmm1, %xmm1
-spmv60:        vaddsd  %xmm0, %xmm1, %xmm0
-spmv61:        vmovsd  (%rcx,%r10,8), %xmm1
+spmv59:        mulsd   -144(%r11), %xmm1
+spmv60:        addsd   %xmm1, %xmm0
+spmv61:        movlpd  (%rcx,%r10,8), %xmm1
 spmv62:        leaq    8(%rbx), %r10
-spmv63:        vmulsd  -136(%r11), %xmm1, %xmm1
+spmv63:        mulsd   -136(%r11), %xmm1
 spmv64:        cmpq    %r13, %r14
 spmv65:        movq    %r10, %rbx
-spmv66:        vaddsd  %xmm0, %xmm1, %xmm1
+spmv66:        addsd   %xmm0, %xmm1
 spmv67:        ja      .L5
 spmv68:        leaq    1(%r10), %rax
 spmv69:        jmp     .L6
-.L28:
+.L27:
 spmv70:        incq    %rax
 .L6:
 spmv71:        movq    (%rsi,%r10,8), %r11
 spmv72:        cmpq    %rax, %rdx
-spmv73:        vmovsd  (%rcx,%r11,8), %xmm0
-spmv74:        vmulsd  (%rdi,%r10,8), %xmm0, %xmm0
+spmv73:        movlpd  (%rcx,%r11,8), %xmm0
+spmv74:        mulsd   (%rdi,%r10,8), %xmm0
 spmv75:        movq    %rax, %r10
-spmv76:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv77:        ja      .L28
-spmv78:        vmovsd  %xmm1, (%r8,%r12,8)
+spmv76:        addsd   %xmm0, %xmm1
+spmv77:        ja      .L27
+spmv78:        movsd   %xmm1, (%r8,%r12,8)
 spmv79:        incq    %r12
 spmv80:        cmpq    %r9, %r12
 spmv81:        jne     .L7
-.L29:
+.L28:
 spmv82:        popq    %rbx
 spmv83:        popq    %rbp
 spmv84:        popq    %r12
@@ -1711,321 +1575,319 @@ spmv85:        popq    %r13
 spmv86:        popq    %r14
 spmv87:        ret
 .L8:
-spmv88:        vmovsd  %xmm2, %xmm2, %xmm1
-spmv89:        vmovsd  %xmm1, (%r8,%r12,8)
+spmv88:        movsd   %xmm2, %xmm1
+spmv89:        movsd   %xmm1, (%r8,%r12,8)
 spmv90:        incq    %r12
 spmv91:        cmpq    %r9, %r12
 spmv92:        jne     .L7
-spmv93:        jmp     .L29
+spmv93:        jmp     .L28
 .L9:
-spmv94:        vmovsd  %xmm2, %xmm2, %xmm1
+spmv94:        movsd   %xmm2, %xmm1
 spmv95:        jmp     .L6
-.L24:
+.L23:
 spmv96:        rep ret
-spmv_interrupt:
+_Z14spmv_interruptPdPmS0_S_S_mmPv:
 spmv97:        pushq   %r15
-spmv98:        vxorpd  %xmm2, %xmm2, %xmm2
-spmv99:        movq    %r9, %r15
-spmv100:        pushq   %r14
-spmv101:        pushq   %r13
-spmv102:        movq    %rdi, %r13
-spmv103:        pushq   %r12
-spmv104:        movq    %rdx, %r12
-spmv105:        pushq   %rbp
-spmv106:        movq    %rcx, %rbp
-spmv107:        pushq   %rbx
-spmv108:        subq    $88, %rsp
-spmv109:        cmpq    144(%rsp), %r9
-spmv110:        jnb     .L65
+spmv98:        pushq   %r14
+spmv99:        pushq   %r13
+spmv100:        pushq   %r12
+spmv101:        pushq   %rbp
+spmv102:        pushq   %rbx
+spmv103:        subq    $72, %rsp
+spmv104:        cmpq    128(%rsp), %r9
+spmv105:        jnb     .L29
+spmv106:        movq    %rdi, %r12
+spmv107:        movq    %rdx, %r13
+spmv108:        movq    %rcx, %rbp
+spmv109:        jmp     .L40
 .L31:
-spmv111:        leaq    2048(%r15), %r10
-spmv112:        cmpq    144(%rsp), %r10
-spmv113:        cmova   144(%rsp), %r10
-spmv114:        cmpq    %r10, %r15
-spmv115:        jb      .L41
-spmv116:        jmp     .L32
-.L33:
-spmv117:        cmpq    %r10, %r15
-spmv118:        vmovsd  %xmm1, -8(%r8,%r15,8)
-spmv119:        jnb     .L32
+spmv110:        cmpq    128(%rsp), %r15
+spmv111:        movsd   %xmm1, -8(%r8,%r15,8)
+spmv112:        jnb     .L29
+spmv113:        nop
+spmv114:        nop
+spmv115:        nop
 .L41:
-spmv120:        movq    (%rsi,%r15,8), %rax
-spmv121:        movq    %r15, %r9
-spmv122:        incq    %r15
-spmv123:        movq    (%rsi,%r15,8), %r14
-spmv124:        vmovsd  %xmm2, %xmm2, %xmm1
-spmv125:        cmpq    %r14, %rax
-spmv126:        jnb     .L33
-.L34:
-spmv127:        leaq    2048(%rax), %rbx
-spmv128:        cmpq    %r14, %rbx
-spmv129:        cmova   %r14, %rbx
-spmv130:        cmpq    %rbx, %rax
-spmv131:        jnb     .L44
-spmv132:        leaq    -7(%rbx), %rdi
-spmv133:        leaq    1(%rax), %rdx
-spmv134:        cmpq    %rdx, %rdi
-spmv135:        jbe     .L38
-spmv136:        cmpq    $6, %rbx
-spmv137:        jbe     .L38
-spmv138:        leaq    128(,%rax,8), %rdx
-spmv139:        leaq    0(%r13,%rdx), %rcx
-spmv140:        addq    %r12, %rdx
-.L37:
-spmv141:        movq    -128(%rdx), %r11
-spmv142:        prefetcht0      (%rcx)
-spmv143:        prefetcht0      (%rdx)
-spmv144:        addq    $64, %rcx
-spmv145:        addq    $64, %rdx
-spmv146:        vmovsd  0(%rbp,%r11,8), %xmm0
-spmv147:        movq    -184(%rdx), %r11
-spmv148:        vmulsd  -192(%rcx), %xmm0, %xmm0
-spmv149:        vaddsd  %xmm1, %xmm0, %xmm1
-spmv150:        vmovsd  0(%rbp,%r11,8), %xmm0
-spmv151:        movq    -176(%rdx), %r11
-spmv152:        vmulsd  -184(%rcx), %xmm0, %xmm0
-spmv153:        vaddsd  %xmm1, %xmm0, %xmm3
-spmv154:        vmovsd  0(%rbp,%r11,8), %xmm0
-spmv155:        movq    -168(%rdx), %r11
-spmv156:        vmulsd  -176(%rcx), %xmm0, %xmm1
-spmv157:        vaddsd  %xmm3, %xmm1, %xmm0
-spmv158:        vmovsd  0(%rbp,%r11,8), %xmm1
-spmv159:        movq    -160(%rdx), %r11
-spmv160:        vmulsd  -168(%rcx), %xmm1, %xmm1
-spmv161:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv162:        vmovsd  0(%rbp,%r11,8), %xmm0
-spmv163:        movq    -152(%rdx), %r11
-spmv164:        vmulsd  -160(%rcx), %xmm0, %xmm0
-spmv165:        vaddsd  %xmm1, %xmm0, %xmm1
-spmv166:        vmovsd  0(%rbp,%r11,8), %xmm0
-spmv167:        movq    -144(%rdx), %r11
-spmv168:        vmulsd  -152(%rcx), %xmm0, %xmm0
-spmv169:        vaddsd  %xmm1, %xmm0, %xmm0
-spmv170:        vmovsd  0(%rbp,%r11,8), %xmm1
-spmv171:        movq    -136(%rdx), %r11
-spmv172:        vmulsd  -144(%rcx), %xmm1, %xmm1
-spmv173:        vaddsd  %xmm0, %xmm1, %xmm0
-spmv174:        vmovsd  0(%rbp,%r11,8), %xmm1
-spmv175:        movq    %rax, %r11
-spmv176:        addq    $9, %r11
-spmv177:        addq    $8, %rax
-spmv178:        vmulsd  -136(%rcx), %xmm1, %xmm1
-spmv179:        cmpq    %r11, %rdi
-spmv180:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv181:        ja      .L37
-spmv182:        leaq    1(%rax), %rdx
-spmv183:        jmp     .L38
-.L67:
-spmv184:        incq    %rdx
-.L38:
-spmv185:        movq    (%r12,%rax,8), %rcx
-spmv186:        cmpq    %rdx, %rbx
-spmv187:        vmovsd  0(%rbp,%rcx,8), %xmm0
-spmv188:        vmulsd  0(%r13,%rax,8), %xmm0, %xmm0
-spmv189:        movq    %rdx, %rax
-spmv190:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv191:        ja      .L67
+spmv116:        movq    %r15, %r9
+.L40:
+spmv117:        xorpd   %xmm1, %xmm1
+spmv118:        leaq    1(%r9), %r15
+spmv119:        movq    (%rsi,%r9,8), %rax
+spmv120:        movq    (%rsi,%r15,8), %r14
+spmv121:        cmpq    %rax, %r14
+spmv122:        jbe     .L31
+spmv123:        movq    %r15, 56(%rsp)
+spmv124:        movq    %rsi, %r15
+.L32:
+spmv125:        leaq    1024(%rax), %rbx
+spmv126:        cmpq    %r14, %rbx
+spmv127:        cmova   %r14, %rbx
+spmv128:        cmpq    %rbx, %rax
+spmv129:        jnb     .L43
+spmv130:        leaq    -7(%rbx), %r10
+spmv131:        leaq    1(%rax), %rdx
+spmv132:        cmpq    %rdx, %r10
+spmv133:        jbe     .L36
+spmv134:        cmpq    $6, %rbx
+spmv135:        jbe     .L36
+spmv136:        leaq    128(,%rax,8), %rdx
+spmv137:        leaq    (%r12,%rdx), %rcx
+spmv138:        addq    %r13, %rdx
 .L35:
-spmv192:        cmpq    %r14, %rbx
-spmv193:        jnb     .L33
-spmv194:        nop
+spmv139:        movq    -128(%rdx), %rsi
+spmv140:        prefetcht0      (%rcx)
+spmv141:        prefetcht0      (%rdx)
+spmv142:        addq    $64, %rcx
+spmv143:        addq    $64, %rdx
+spmv144:        movlpd  0(%rbp,%rsi,8), %xmm0
+spmv145:        movq    -184(%rdx), %rsi
+spmv146:        mulsd   -192(%rcx), %xmm0
+spmv147:        addsd   %xmm0, %xmm1
+spmv148:        movlpd  0(%rbp,%rsi,8), %xmm0
+spmv149:        movq    -176(%rdx), %rsi
+spmv150:        mulsd   -184(%rcx), %xmm0
+spmv151:        movsd   %xmm0, %xmm2
+spmv152:        movlpd  0(%rbp,%rsi,8), %xmm0
+spmv153:        movq    -168(%rdx), %rsi
+spmv154:        addsd   %xmm1, %xmm2
+spmv155:        movlpd  -176(%rcx), %xmm1
+spmv156:        mulsd   %xmm0, %xmm1
+spmv157:        addsd   %xmm2, %xmm1
+spmv158:        movsd   %xmm1, %xmm0
+spmv159:        movlpd  0(%rbp,%rsi,8), %xmm1
+spmv160:        movq    -160(%rdx), %rsi
+spmv161:        mulsd   -168(%rcx), %xmm1
+spmv162:        addsd   %xmm0, %xmm1
+spmv163:        movlpd  0(%rbp,%rsi,8), %xmm0
+spmv164:        movq    -152(%rdx), %rsi
+spmv165:        mulsd   -160(%rcx), %xmm0
+spmv166:        addsd   %xmm0, %xmm1
+spmv167:        movlpd  0(%rbp,%rsi,8), %xmm0
+spmv168:        movq    -144(%rdx), %rsi
+spmv169:        mulsd   -152(%rcx), %xmm0
+spmv170:        addsd   %xmm1, %xmm0
+spmv171:        movlpd  0(%rbp,%rsi,8), %xmm1
+spmv172:        movq    -136(%rdx), %rsi
+spmv173:        mulsd   -144(%rcx), %xmm1
+spmv174:        addsd   %xmm1, %xmm0
+spmv175:        movlpd  0(%rbp,%rsi,8), %xmm1
+spmv176:        movq    %rax, %rsi
+spmv177:        addq    $9, %rsi
+spmv178:        addq    $8, %rax
+spmv179:        mulsd   -136(%rcx), %xmm1
+spmv180:        cmpq    %rsi, %r10
+spmv181:        addsd   %xmm0, %xmm1
+spmv182:        ja      .L35
+spmv183:        leaq    1(%rax), %rdx
+spmv184:        jmp     .L36
+.L63:
+spmv185:        incq    %rdx
+.L36:
+spmv186:        movq    0(%r13,%rax,8), %rcx
+spmv187:        cmpq    %rdx, %rbx
+spmv188:        movlpd  0(%rbp,%rcx,8), %xmm0
+spmv189:        mulsd   (%r12,%rax,8), %xmm0
+spmv190:        movq    %rdx, %rax
+spmv191:        addsd   %xmm0, %xmm1
+spmv192:        ja      .L63
+spmv193:        cmpq    %rbx, %r14
+spmv194:        jbe     .L61
+.L65:
 spmv195:        nop
 spmv196:        nop
+spmv197:        nop
+.L37:
+spmv198:        movq    %rbx, %rax
+spmv199:        jmp     .L32
+.L43:
+spmv200:        movq    %rax, %rbx
+spmv201:        cmpq    %rbx, %r14
+spmv202:        ja      .L65
+.L61:
+spmv203:        movq    %r15, %rsi
+spmv204:        movq    56(%rsp), %r15
+spmv205:        jmp     .L31
+.L64:
+spmv206:        movq    136(%rsp), %rax
+spmv207:        movsd   %xmm1, %xmm0
+spmv208:        movq    %r14, 16(%rsp)
+spmv209:        movq    %rbx, 8(%rsp)
+spmv210:        movq    %rbp, %rcx
+spmv211:        movq    %r13, %rdx
+spmv212:        movq    %r15, %rsi
+spmv213:        movq    %r12, %rdi
+spmv214:        movsd   %xmm1, 48(%rsp)
+spmv215:        movq    %rax, 24(%rsp)
+spmv216:        movq    128(%rsp), %rax
+spmv217:        movq    %r9, 40(%rsp)
+spmv218:        movq    %r8, 32(%rsp)
+spmv219:        movq    %rax, (%rsp)
+spmv220:        call    _Z16col_loop_handlerPdPmS0_S_S_mmmmdPv
+spmv221:        testl   %eax, %eax
+spmv222:        movq    32(%rsp), %r8
+spmv223:        movq    40(%rsp), %r9
+spmv224:        movlpd  48(%rsp), %xmm1
+spmv225:        je      .L37
+.L29:
+spmv226:        addq    $72, %rsp
+spmv227:        popq    %rbx
+spmv228:        popq    %rbp
+spmv229:        popq    %r12
+spmv230:        popq    %r13
+spmv231:        popq    %r14
+spmv232:        popq    %r15
+spmv233:        ret
 .L39:
-spmv197:        movq    %rbx, %rax
-spmv198:        jmp     .L34
-.L44:
-spmv199:        movq    %rax, %rbx
-spmv200:        jmp     .L35
+spmv234:        movq    136(%rsp), %rax
+spmv235:        movq    %r15, %r9
+spmv236:        movq    %rbp, %rcx
+spmv237:        movq    %r13, %rdx
+spmv238:        movq    %r12, %rdi
+spmv239:        movq    %r8, 40(%rsp)
+spmv240:        movq    %rsi, 32(%rsp)
+spmv241:        movq    %rax, 8(%rsp)
+spmv242:        movq    128(%rsp), %rax
+spmv243:        movq    %rax, (%rsp)
+spmv244:        call    _Z16row_loop_handlerPdPmS0_S_S_mmPv
+spmv245:        testl   %eax, %eax
+spmv246:        movq    32(%rsp), %rsi
+spmv247:        movq    40(%rsp), %r8
+spmv248:        je      .L41
+spmv249:        jmp     .L29
+_Z23spmv_interrupt_col_loopPdPmS0_S_S_mmdS_Pv:
+spmv250:        pushq   %r15
+spmv251:        pushq   %r14
+spmv252:        pushq   %r13
+spmv253:        pushq   %r12
+spmv254:        pushq   %rbp
+spmv255:        pushq   %rbx
+spmv256:        subq    $56, %rsp
+spmv257:        movq    112(%rsp), %r15
+spmv258:        cmpq    %r15, %r9
+spmv259:        jnb     .L67
+spmv260:        movq    %rdi, %r13
+spmv261:        movq    %rsi, %r14
+spmv262:        movq    %rdx, %r12
+spmv263:        movq    %rcx, %rbp
 .L68:
-spmv201:        movq    152(%rsp), %rax
-spmv202:        vmovsd  %xmm1, %xmm1, %xmm0
-spmv203:        movq    %r14, 16(%rsp)
-spmv204:        movq    %rbx, 8(%rsp)
-spmv205:        movq    %rbp, %rcx
-spmv206:        movq    %r12, %rdx
-spmv207:        movq    %r13, %rdi
-spmv208:        vmovsd  %xmm1, 64(%rsp)
-spmv209:        movq    %r10, 72(%rsp)
-spmv210:        movq    %rax, 24(%rsp)
-spmv211:        movq    144(%rsp), %rax
-spmv212:        movq    %r9, 56(%rsp)
-spmv213:        movq    %r8, 48(%rsp)
-spmv214:        movq    %rsi, 40(%rsp)
-spmv215:        movq    %rax, (%rsp)
-spmv216:        call    col_loop_handler
-spmv217:        testl   %eax, %eax
-spmv218:        movq    40(%rsp), %rsi
-spmv219:        movq    48(%rsp), %r8
-spmv220:        movq    56(%rsp), %r9
-spmv221:        vxorpd  %xmm2, %xmm2, %xmm2
-spmv222:        movq    72(%rsp), %r10
-spmv223:        vmovsd  64(%rsp), %xmm1
-spmv224:        je      .L39
-.L65:
-spmv225:        addq    $88, %rsp
-spmv226:        popq    %rbx
-spmv227:        popq    %rbp
-spmv228:        popq    %r12
-spmv229:        popq    %r13
-spmv230:        popq    %r14
-spmv231:        popq    %r15
-spmv232:        ret
-.L32:
-spmv233:        cmpq    144(%rsp), %r15
-spmv234:        jnb     .L65
-spmv235:        jmp	.L31
-spmv236:        nop
-spmv237:        nop
-spmv238:        movq    152(%rsp), %rax
-spmv239:        movq    %r15, %r9
-spmv240:        movq    %rbp, %rcx
-spmv241:        movq    %r12, %rdx
-spmv242:        movq    %r13, %rdi
-spmv243:        movq    %r8, 48(%rsp)
-spmv244:        movq    %rsi, 40(%rsp)
-spmv245:        movq    %rax, 8(%rsp)
-spmv246:        movq    144(%rsp), %rax
-spmv247:        movq    %rax, (%rsp)
-spmv248:        call    row_loop_handler
-spmv249:        testl   %eax, %eax
-spmv250:        movq    40(%rsp), %rsi
-spmv251:        movq    48(%rsp), %r8
-spmv252:        vxorpd  %xmm2, %xmm2, %xmm2
-spmv253:        je      .L31
-spmv254:        jmp     .L65
-spmv_interrupt_col_loop:
-spmv255:        pushq   %r15
-spmv256:        pushq   %r14
-spmv257:        pushq   %r13
-spmv258:        pushq   %r12
-spmv259:        pushq   %rbp
-spmv260:        pushq   %rbx
-spmv261:        subq    $72, %rsp
-spmv262:        movq    128(%rsp), %r15
-spmv263:        movq    136(%rsp), %r14
-spmv264:        cmpq    %r15, %r9
-spmv265:        jnb     .L70
-spmv266:        movq    %rdi, %r13
-spmv267:        movq    %rdx, %r12
-spmv268:        movq    %rcx, %rbp
+spmv264:        leaq    1024(%r9), %rbx
+spmv265:        cmpq    %r15, %rbx
+spmv266:        cmova   %r15, %rbx
+spmv267:        cmpq    %rbx, %r9
+spmv268:        jnb     .L75
+spmv269:        leaq    -7(%rbx), %rdi
+spmv270:        leaq    1(%r9), %rax
+spmv271:        cmpq    %rax, %rdi
+spmv272:        jbe     .L72
+spmv273:        cmpq    $6, %rbx
+spmv274:        jbe     .L72
+spmv275:        leaq    128(,%r9,8), %rax
+spmv276:        leaq    0(%r13,%rax), %rdx
+spmv277:        addq    %r12, %rax
 .L71:
-spmv269:        leaq    2048(%r9), %rbx
-spmv270:        cmpq    %r15, %rbx
-spmv271:        cmova   %r15, %rbx
-spmv272:        cmpq    %rbx, %r9
-spmv273:        jnb     .L78
-spmv274:        leaq    -7(%rbx), %rcx
-spmv275:        leaq    1(%r9), %rax
-spmv276:        cmpq    %rax, %rcx
-spmv277:        jbe     .L75
-spmv278:        cmpq    $6, %rbx
-spmv279:        jbe     .L75
-spmv280:        leaq    128(,%r9,8), %rax
-spmv281:        leaq    0(%r13,%rax), %rdi
-spmv282:        addq    %r12, %rax
-.L74:
-spmv283:        movq    -128(%rax), %rdx
-spmv284:        prefetcht0      (%rdi)
-spmv285:        prefetcht0      (%rax)
-spmv286:        addq    $64, %rdi
-spmv287:        addq    $64, %rax
-spmv288:        vmovsd  0(%rbp,%rdx,8), %xmm1
-spmv289:        movq    -184(%rax), %rdx
-spmv290:        vmulsd  -192(%rdi), %xmm1, %xmm1
-spmv291:        vaddsd  %xmm0, %xmm1, %xmm0
-spmv292:        vmovsd  0(%rbp,%rdx,8), %xmm1
-spmv293:        movq    -176(%rax), %rdx
-spmv294:        vmulsd  -184(%rdi), %xmm1, %xmm1
-spmv295:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv296:        vmovsd  0(%rbp,%rdx,8), %xmm0
-spmv297:        movq    -168(%rax), %rdx
-spmv298:        vmulsd  -176(%rdi), %xmm0, %xmm0
-spmv299:        vaddsd  %xmm1, %xmm0, %xmm1
-spmv300:        vmovsd  0(%rbp,%rdx,8), %xmm0
-spmv301:        movq    -160(%rax), %rdx
-spmv302:        vmulsd  -168(%rdi), %xmm0, %xmm0
-spmv303:        vaddsd  %xmm1, %xmm0, %xmm0
-spmv304:        vmovsd  0(%rbp,%rdx,8), %xmm1
-spmv305:        movq    -152(%rax), %rdx
-spmv306:        vmulsd  -160(%rdi), %xmm1, %xmm1
-spmv307:        vaddsd  %xmm0, %xmm1, %xmm0
-spmv308:        vmovsd  0(%rbp,%rdx,8), %xmm1
-spmv309:        movq    -144(%rax), %rdx
-spmv310:        vmulsd  -152(%rdi), %xmm1, %xmm1
-spmv311:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv312:        vmovsd  0(%rbp,%rdx,8), %xmm0
-spmv313:        movq    -136(%rax), %rdx
-spmv314:        vmulsd  -144(%rdi), %xmm0, %xmm0
-spmv315:        vaddsd  %xmm1, %xmm0, %xmm1
-spmv316:        vmovsd  0(%rbp,%rdx,8), %xmm0
-spmv317:        movq    %r9, %rdx
-spmv318:        addq    $9, %rdx
-spmv319:        addq    $8, %r9
-spmv320:        vmulsd  -136(%rdi), %xmm0, %xmm0
-spmv321:        cmpq    %rdx, %rcx
-spmv322:        vaddsd  %xmm1, %xmm0, %xmm0
-spmv323:        ja      .L74
-spmv324:        leaq    1(%r9), %rax
-spmv325:        jmp     .L75
-.L93:
-spmv326:        incq    %rax
-.L75:
-spmv327:        movq    (%r12,%r9,8), %rdx
-spmv328:        cmpq    %rax, %rbx
-spmv329:        vmovsd  0(%rbp,%rdx,8), %xmm1
-spmv330:        vmulsd  0(%r13,%r9,8), %xmm1, %xmm1
-spmv331:        movq    %rax, %r9
-spmv332:        vaddsd  %xmm1, %xmm0, %xmm0
-spmv333:        ja      .L93
+spmv278:        movq    -128(%rax), %rcx
+spmv279:        prefetcht0      (%rdx)
+spmv280:        prefetcht0      (%rax)
+spmv281:        addq    $64, %rdx
+spmv282:        addq    $64, %rax
+spmv283:        movlpd  0(%rbp,%rcx,8), %xmm1
+spmv284:        movq    -184(%rax), %rcx
+spmv285:        mulsd   -192(%rdx), %xmm1
+spmv286:        addsd   %xmm1, %xmm0
+spmv287:        movlpd  0(%rbp,%rcx,8), %xmm1
+spmv288:        movq    -176(%rax), %rcx
+spmv289:        mulsd   -184(%rdx), %xmm1
+spmv290:        addsd   %xmm0, %xmm1
+spmv291:        movlpd  0(%rbp,%rcx,8), %xmm0
+spmv292:        movq    -168(%rax), %rcx
+spmv293:        mulsd   -176(%rdx), %xmm0
+spmv294:        addsd   %xmm0, %xmm1
+spmv295:        movlpd  0(%rbp,%rcx,8), %xmm0
+spmv296:        movq    -160(%rax), %rcx
+spmv297:        mulsd   -168(%rdx), %xmm0
+spmv298:        addsd   %xmm1, %xmm0
+spmv299:        movlpd  0(%rbp,%rcx,8), %xmm1
+spmv300:        movq    -152(%rax), %rcx
+spmv301:        mulsd   -160(%rdx), %xmm1
+spmv302:        addsd   %xmm1, %xmm0
+spmv303:        movlpd  0(%rbp,%rcx,8), %xmm1
+spmv304:        movq    -144(%rax), %rcx
+spmv305:        mulsd   -152(%rdx), %xmm1
+spmv306:        addsd   %xmm0, %xmm1
+spmv307:        movlpd  0(%rbp,%rcx,8), %xmm0
+spmv308:        movq    -136(%rax), %rcx
+spmv309:        mulsd   -144(%rdx), %xmm0
+spmv310:        addsd   %xmm0, %xmm1
+spmv311:        movlpd  0(%rbp,%rcx,8), %xmm0
+spmv312:        movq    %r9, %rcx
+spmv313:        addq    $9, %rcx
+spmv314:        addq    $8, %r9
+spmv315:        mulsd   -136(%rdx), %xmm0
+spmv316:        cmpq    %rcx, %rdi
+spmv317:        addsd   %xmm1, %xmm0
+spmv318:        ja      .L71
+spmv319:        leaq    1(%r9), %rax
+spmv320:        jmp     .L72
+.L89:
+spmv321:        incq    %rax
 .L72:
-spmv334:        cmpq    %r15, %rbx
-spmv335:        jnb     .L70
-spmv336:        nop
-spmv337:        nop
-spmv338:        nop
-.L76:
-spmv339:        movq    %rbx, %r9
-spmv340:        jmp     .L71
-.L70:
-spmv341:        vmovsd  %xmm0, (%r14)
+spmv322:        movq    (%r12,%r9,8), %rdx
+spmv323:        cmpq    %rax, %rbx
+spmv324:        movlpd  0(%rbp,%rdx,8), %xmm1
+spmv325:        mulsd   0(%r13,%r9,8), %xmm1
+spmv326:        movq    %rax, %r9
+spmv327:        addsd   %xmm1, %xmm0
+spmv328:        ja      .L89
+spmv329:        cmpq    %rbx, %r15
+spmv330:        jbe     .L67
+.L91:
+spmv331:        nop
+spmv332:        nop
+spmv333:        nop
+.L73:
+spmv334:        movq    %rbx, %r9
+spmv335:        jmp     .L68
+.L75:
+spmv336:        movq    %r9, %rbx
+spmv337:        cmpq    %rbx, %r15
+spmv338:        ja      .L91
+.L67:
+spmv339:        movq    120(%rsp), %rax
+spmv340:        movsd   %xmm0, (%rax)
+.L66:
+spmv341:        addq    $56, %rsp
+spmv342:        popq    %rbx
+spmv343:        popq    %rbp
+spmv344:        popq    %r12
+spmv345:        popq    %r13
+spmv346:        popq    %r14
+spmv347:        popq    %r15
+spmv348:        ret
 .L90:
-spmv342:        addq    $72, %rsp
-spmv343:        popq    %rbx
-spmv344:        popq    %rbp
-spmv345:        popq    %r12
-spmv346:        popq    %r13
-spmv347:        popq    %r14
-spmv348:        popq    %r15
-spmv349:        ret
-.L78:
-spmv350:        movq    %r9, %rbx
-spmv351:        jmp     .L72
-.L94:
-spmv352:        movq    144(%rsp), %rax
-spmv353:        movq    %r14, 8(%rsp)
-spmv354:        movq    %rbx, %r9
-spmv355:        movq    %r15, (%rsp)
-spmv356:        movq    %rbp, %rcx
-spmv357:        movq    %r12, %rdx
-spmv358:        movq    %r13, %rdi
-spmv359:        vmovsd  %xmm0, 56(%rsp)
-spmv360:        movq    %r8, 48(%rsp)
-spmv361:        movq    %rax, 16(%rsp)
-spmv362:        movq    %rsi, 40(%rsp)
-spmv363:        call    col_loop_handler_col_loop
-spmv364:        testl   %eax, %eax
-spmv365:        movq    40(%rsp), %rsi
-spmv366:        movq    48(%rsp), %r8
-spmv367:        vmovsd  56(%rsp), %xmm0
-spmv368:        je      .L76
-spmv369:        jmp     .L90
+spmv349:        movq    128(%rsp), %rax
+spmv350:        movq    %r15, (%rsp)
+spmv351:        movq    %rbx, %r9
+spmv352:        movq    %rbp, %rcx
+spmv353:        movq    %r12, %rdx
+spmv354:        movq    %r14, %rsi
+spmv355:        movq    %r13, %rdi
+spmv356:        movsd   %xmm0, 40(%rsp)
+spmv357:        movq    %r8, 32(%rsp)
+spmv358:        movq    %rax, 16(%rsp)
+spmv359:        movq    120(%rsp), %rax
+spmv360:        movq    %rax, 8(%rsp)
+spmv361:        call    _Z25col_loop_handler_col_loopPdPmS0_S_S_mmdS_Pv
+spmv362:        testl   %eax, %eax
+spmv363:        movq    32(%rsp), %r8
+spmv364:        movlpd  40(%rsp), %xmm0
+spmv365:        je      .L73
+spmv366:        jmp     .L66
 
-spmv_serial_rf:
+_Z11spmv_serialPdPmS0_S_S_m_rf:
 spmv0_rf:        testq   %r9, %r9
-spmv1_rf:        je      .L24_rf
+spmv1_rf:        je      .L23_rf
 spmv2_rf:        pushq   %r14
-spmv3_rf:        vxorpd  %xmm2, %xmm2, %xmm2
+spmv3_rf:        xorpd   %xmm2, %xmm2
 spmv4_rf:        pushq   %r13
 spmv5_rf:        pushq   %r12
 spmv6_rf:        xorl    %r12d, %r12d
@@ -2046,7 +1908,7 @@ spmv19_rf:        jbe     .L9_rf
 spmv20_rf:        cmpq    $6, %rdx
 spmv21_rf:        jbe     .L9_rf
 spmv22_rf:        leaq    128(,%rbx,8), %rax
-spmv23_rf:        vmovsd  %xmm2, %xmm2, %xmm1
+spmv23_rf:        movsd   %xmm2, %xmm1
 spmv24_rf:        leaq    (%rdi,%rax), %r11
 spmv25_rf:        addq    %rsi, %rax
 .L5_rf:
@@ -2057,58 +1919,58 @@ spmv29_rf:        addq    $9, %r13
 spmv30_rf:        addq    $64, %r11
 spmv31_rf:        prefetcht0      (%rax)
 spmv32_rf:        addq    $64, %rax
-spmv33_rf:        vmovsd  (%rcx,%r10,8), %xmm0
+spmv33_rf:        movlpd  (%rcx,%r10,8), %xmm0
 spmv34_rf:        movq    -184(%rax), %r10
-spmv35_rf:        vmulsd  -192(%r11), %xmm0, %xmm0
-spmv36_rf:        vaddsd  %xmm1, %xmm0, %xmm1
-spmv37_rf:        vmovsd  (%rcx,%r10,8), %xmm0
+spmv35_rf:        mulsd   -192(%r11), %xmm0
+spmv36_rf:        addsd   %xmm0, %xmm1
+spmv37_rf:        movlpd  (%rcx,%r10,8), %xmm0
 spmv38_rf:        movq    -176(%rax), %r10
-spmv39_rf:        vmulsd  -184(%r11), %xmm0, %xmm0
-spmv40_rf:        vaddsd  %xmm1, %xmm0, %xmm0
-spmv41_rf:        vmovsd  (%rcx,%r10,8), %xmm1
+spmv39_rf:        mulsd   -184(%r11), %xmm0
+spmv40_rf:        addsd   %xmm1, %xmm0
+spmv41_rf:        movlpd  (%rcx,%r10,8), %xmm1
 spmv42_rf:        movq    -168(%rax), %r10
-spmv43_rf:        vmulsd  -176(%r11), %xmm1, %xmm1
-spmv44_rf:        vaddsd  %xmm0, %xmm1, %xmm0
-spmv45_rf:        vmovsd  (%rcx,%r10,8), %xmm1
+spmv43_rf:        mulsd   -176(%r11), %xmm1
+spmv44_rf:        addsd   %xmm1, %xmm0
+spmv45_rf:        movlpd  (%rcx,%r10,8), %xmm1
 spmv46_rf:        movq    -160(%rax), %r10
-spmv47_rf:        vmulsd  -168(%r11), %xmm1, %xmm1
-spmv48_rf:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv49_rf:        vmovsd  (%rcx,%r10,8), %xmm0
+spmv47_rf:        mulsd   -168(%r11), %xmm1
+spmv48_rf:        addsd   %xmm0, %xmm1
+spmv49_rf:        movlpd  (%rcx,%r10,8), %xmm0
 spmv50_rf:        movq    -152(%rax), %r10
-spmv51_rf:        vmulsd  -160(%r11), %xmm0, %xmm0
-spmv52_rf:        vaddsd  %xmm1, %xmm0, %xmm1
-spmv53_rf:        vmovsd  (%rcx,%r10,8), %xmm0
+spmv51_rf:        mulsd   -160(%r11), %xmm0
+spmv52_rf:        addsd   %xmm0, %xmm1
+spmv53_rf:        movlpd  (%rcx,%r10,8), %xmm0
 spmv54_rf:        movq    -144(%rax), %r10
-spmv55_rf:        vmulsd  -152(%r11), %xmm0, %xmm0
-spmv56_rf:        vaddsd  %xmm1, %xmm0, %xmm0
-spmv57_rf:        vmovsd  (%rcx,%r10,8), %xmm1
+spmv55_rf:        mulsd   -152(%r11), %xmm0
+spmv56_rf:        addsd   %xmm1, %xmm0
+spmv57_rf:        movlpd  (%rcx,%r10,8), %xmm1
 spmv58_rf:        movq    -136(%rax), %r10
-spmv59_rf:        vmulsd  -144(%r11), %xmm1, %xmm1
-spmv60_rf:        vaddsd  %xmm0, %xmm1, %xmm0
-spmv61_rf:        vmovsd  (%rcx,%r10,8), %xmm1
+spmv59_rf:        mulsd   -144(%r11), %xmm1
+spmv60_rf:        addsd   %xmm1, %xmm0
+spmv61_rf:        movlpd  (%rcx,%r10,8), %xmm1
 spmv62_rf:        leaq    8(%rbx), %r10
-spmv63_rf:        vmulsd  -136(%r11), %xmm1, %xmm1
+spmv63_rf:        mulsd   -136(%r11), %xmm1
 spmv64_rf:        cmpq    %r13, %r14
 spmv65_rf:        movq    %r10, %rbx
-spmv66_rf:        vaddsd  %xmm0, %xmm1, %xmm1
+spmv66_rf:        addsd   %xmm0, %xmm1
 spmv67_rf:        ja      .L5_rf
 spmv68_rf:        leaq    1(%r10), %rax
 spmv69_rf:        jmp     .L6_rf
-.L28_rf:
+.L27_rf:
 spmv70_rf:        incq    %rax
 .L6_rf:
 spmv71_rf:        movq    (%rsi,%r10,8), %r11
 spmv72_rf:        cmpq    %rax, %rdx
-spmv73_rf:        vmovsd  (%rcx,%r11,8), %xmm0
-spmv74_rf:        vmulsd  (%rdi,%r10,8), %xmm0, %xmm0
+spmv73_rf:        movlpd  (%rcx,%r11,8), %xmm0
+spmv74_rf:        mulsd   (%rdi,%r10,8), %xmm0
 spmv75_rf:        movq    %rax, %r10
-spmv76_rf:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv77_rf:        ja      .L28_rf
-spmv78_rf:        vmovsd  %xmm1, (%r8,%r12,8)
+spmv76_rf:        addsd   %xmm0, %xmm1
+spmv77_rf:        ja      .L27_rf
+spmv78_rf:        movsd   %xmm1, (%r8,%r12,8)
 spmv79_rf:        incq    %r12
 spmv80_rf:        cmpq    %r9, %r12
 spmv81_rf:        jne     .L7_rf
-.L29_rf:
+.L28_rf:
 spmv82_rf:        popq    %rbx
 spmv83_rf:        popq    %rbp
 spmv84_rf:        popq    %r12
@@ -2116,313 +1978,311 @@ spmv85_rf:        popq    %r13
 spmv86_rf:        popq    %r14
 spmv87_rf:        ret
 .L8_rf:
-spmv88_rf:        vmovsd  %xmm2, %xmm2, %xmm1
-spmv89_rf:        vmovsd  %xmm1, (%r8,%r12,8)
+spmv88_rf:        movsd   %xmm2, %xmm1
+spmv89_rf:        movsd   %xmm1, (%r8,%r12,8)
 spmv90_rf:        incq    %r12
 spmv91_rf:        cmpq    %r9, %r12
 spmv92_rf:        jne     .L7_rf
-spmv93_rf:        jmp     .L29_rf
+spmv93_rf:        jmp     .L28_rf
 .L9_rf:
-spmv94_rf:        vmovsd  %xmm2, %xmm2, %xmm1
+spmv94_rf:        movsd   %xmm2, %xmm1
 spmv95_rf:        jmp     .L6_rf
-.L24_rf:
+.L23_rf:
 spmv96_rf:        rep ret
-spmv_interrupt_rf:
+_Z14spmv_interruptPdPmS0_S_S_mmPv_rf:
 spmv97_rf:        pushq   %r15
-spmv98_rf:        vxorpd  %xmm2, %xmm2, %xmm2
-spmv99_rf:        movq    %r9, %r15
-spmv100_rf:        pushq   %r14
-spmv101_rf:        pushq   %r13
-spmv102_rf:        movq    %rdi, %r13
-spmv103_rf:        pushq   %r12
-spmv104_rf:        movq    %rdx, %r12
-spmv105_rf:        pushq   %rbp
-spmv106_rf:        movq    %rcx, %rbp
-spmv107_rf:        pushq   %rbx
-spmv108_rf:        subq    $88, %rsp
-spmv109_rf:        cmpq    144(%rsp), %r9
-spmv110_rf:        jnb     .L65_rf
+spmv98_rf:        pushq   %r14
+spmv99_rf:        pushq   %r13
+spmv100_rf:        pushq   %r12
+spmv101_rf:        pushq   %rbp
+spmv102_rf:        pushq   %rbx
+spmv103_rf:        subq    $72, %rsp
+spmv104_rf:        cmpq    128(%rsp), %r9
+spmv105_rf:        jnb     .L29_rf
+spmv106_rf:        movq    %rdi, %r12
+spmv107_rf:        movq    %rdx, %r13
+spmv108_rf:        movq    %rcx, %rbp
+spmv109_rf:        jmp     .L40_rf
 .L31_rf:
-spmv111_rf:        leaq    2048(%r15), %r10
-spmv112_rf:        cmpq    144(%rsp), %r10
-spmv113_rf:        cmova   144(%rsp), %r10
-spmv114_rf:        cmpq    %r10, %r15
-spmv115_rf:        jb      .L41_rf
-spmv116_rf:        jmp     .L32_rf
-.L33_rf:
-spmv117_rf:        cmpq    %r10, %r15
-spmv118_rf:        vmovsd  %xmm1, -8(%r8,%r15,8)
-spmv119_rf:        jnb     .L32_rf
+spmv110_rf:        cmpq    128(%rsp), %r15
+spmv111_rf:        movsd   %xmm1, -8(%r8,%r15,8)
+spmv112_rf:        jnb     .L29_rf
+spmv113_rf:        nop
+spmv114_rf:        nop
+spmv115_rf:        jmp     .L39
 .L41_rf:
-spmv120_rf:        movq    (%rsi,%r15,8), %rax
-spmv121_rf:        movq    %r15, %r9
-spmv122_rf:        incq    %r15
-spmv123_rf:        movq    (%rsi,%r15,8), %r14
-spmv124_rf:        vmovsd  %xmm2, %xmm2, %xmm1
-spmv125_rf:        cmpq    %r14, %rax
-spmv126_rf:        jnb     .L33_rf
-.L34_rf:
-spmv127_rf:        leaq    2048(%rax), %rbx
-spmv128_rf:        cmpq    %r14, %rbx
-spmv129_rf:        cmova   %r14, %rbx
-spmv130_rf:        cmpq    %rbx, %rax
-spmv131_rf:        jnb     .L44_rf
-spmv132_rf:        leaq    -7(%rbx), %rdi
-spmv133_rf:        leaq    1(%rax), %rdx
-spmv134_rf:        cmpq    %rdx, %rdi
-spmv135_rf:        jbe     .L38_rf
-spmv136_rf:        cmpq    $6, %rbx
-spmv137_rf:        jbe     .L38_rf
-spmv138_rf:        leaq    128(,%rax,8), %rdx
-spmv139_rf:        leaq    0(%r13,%rdx), %rcx
-spmv140_rf:        addq    %r12, %rdx
-.L37_rf:
-spmv141_rf:        movq    -128(%rdx), %r11
-spmv142_rf:        prefetcht0      (%rcx)
-spmv143_rf:        prefetcht0      (%rdx)
-spmv144_rf:        addq    $64, %rcx
-spmv145_rf:        addq    $64, %rdx
-spmv146_rf:        vmovsd  0(%rbp,%r11,8), %xmm0
-spmv147_rf:        movq    -184(%rdx), %r11
-spmv148_rf:        vmulsd  -192(%rcx), %xmm0, %xmm0
-spmv149_rf:        vaddsd  %xmm1, %xmm0, %xmm1
-spmv150_rf:        vmovsd  0(%rbp,%r11,8), %xmm0
-spmv151_rf:        movq    -176(%rdx), %r11
-spmv152_rf:        vmulsd  -184(%rcx), %xmm0, %xmm0
-spmv153_rf:        vaddsd  %xmm1, %xmm0, %xmm3
-spmv154_rf:        vmovsd  0(%rbp,%r11,8), %xmm0
-spmv155_rf:        movq    -168(%rdx), %r11
-spmv156_rf:        vmulsd  -176(%rcx), %xmm0, %xmm1
-spmv157_rf:        vaddsd  %xmm3, %xmm1, %xmm0
-spmv158_rf:        vmovsd  0(%rbp,%r11,8), %xmm1
-spmv159_rf:        movq    -160(%rdx), %r11
-spmv160_rf:        vmulsd  -168(%rcx), %xmm1, %xmm1
-spmv161_rf:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv162_rf:        vmovsd  0(%rbp,%r11,8), %xmm0
-spmv163_rf:        movq    -152(%rdx), %r11
-spmv164_rf:        vmulsd  -160(%rcx), %xmm0, %xmm0
-spmv165_rf:        vaddsd  %xmm1, %xmm0, %xmm1
-spmv166_rf:        vmovsd  0(%rbp,%r11,8), %xmm0
-spmv167_rf:        movq    -144(%rdx), %r11
-spmv168_rf:        vmulsd  -152(%rcx), %xmm0, %xmm0
-spmv169_rf:        vaddsd  %xmm1, %xmm0, %xmm0
-spmv170_rf:        vmovsd  0(%rbp,%r11,8), %xmm1
-spmv171_rf:        movq    -136(%rdx), %r11
-spmv172_rf:        vmulsd  -144(%rcx), %xmm1, %xmm1
-spmv173_rf:        vaddsd  %xmm0, %xmm1, %xmm0
-spmv174_rf:        vmovsd  0(%rbp,%r11,8), %xmm1
-spmv175_rf:        movq    %rax, %r11
-spmv176_rf:        addq    $9, %r11
-spmv177_rf:        addq    $8, %rax
-spmv178_rf:        vmulsd  -136(%rcx), %xmm1, %xmm1
-spmv179_rf:        cmpq    %r11, %rdi
-spmv180_rf:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv181_rf:        ja      .L37_rf
-spmv182_rf:        leaq    1(%rax), %rdx
-spmv183_rf:        jmp     .L38_rf
-.L67_rf:
-spmv184_rf:        incq    %rdx
-.L38_rf:
-spmv185_rf:        movq    (%r12,%rax,8), %rcx
-spmv186_rf:        cmpq    %rdx, %rbx
-spmv187_rf:        vmovsd  0(%rbp,%rcx,8), %xmm0
-spmv188_rf:        vmulsd  0(%r13,%rax,8), %xmm0, %xmm0
-spmv189_rf:        movq    %rdx, %rax
-spmv190_rf:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv191_rf:        ja      .L67_rf
+spmv116_rf:        movq    %r15, %r9
+.L40_rf:
+spmv117_rf:        xorpd   %xmm1, %xmm1
+spmv118_rf:        leaq    1(%r9), %r15
+spmv119_rf:        movq    (%rsi,%r9,8), %rax
+spmv120_rf:        movq    (%rsi,%r15,8), %r14
+spmv121_rf:        cmpq    %rax, %r14
+spmv122_rf:        jbe     .L31_rf
+spmv123_rf:        movq    %r15, 56(%rsp)
+spmv124_rf:        movq    %rsi, %r15
+.L32_rf:
+spmv125_rf:        leaq    1024(%rax), %rbx
+spmv126_rf:        cmpq    %r14, %rbx
+spmv127_rf:        cmova   %r14, %rbx
+spmv128_rf:        cmpq    %rbx, %rax
+spmv129_rf:        jnb     .L43_rf
+spmv130_rf:        leaq    -7(%rbx), %r10
+spmv131_rf:        leaq    1(%rax), %rdx
+spmv132_rf:        cmpq    %rdx, %r10
+spmv133_rf:        jbe     .L36_rf
+spmv134_rf:        cmpq    $6, %rbx
+spmv135_rf:        jbe     .L36_rf
+spmv136_rf:        leaq    128(,%rax,8), %rdx
+spmv137_rf:        leaq    (%r12,%rdx), %rcx
+spmv138_rf:        addq    %r13, %rdx
 .L35_rf:
-spmv192_rf:        cmpq    %r14, %rbx
-spmv193_rf:        jnb     .L33_rf
-spmv194_rf:        jmp     .L68
+spmv139_rf:        movq    -128(%rdx), %rsi
+spmv140_rf:        prefetcht0      (%rcx)
+spmv141_rf:        prefetcht0      (%rdx)
+spmv142_rf:        addq    $64, %rcx
+spmv143_rf:        addq    $64, %rdx
+spmv144_rf:        movlpd  0(%rbp,%rsi,8), %xmm0
+spmv145_rf:        movq    -184(%rdx), %rsi
+spmv146_rf:        mulsd   -192(%rcx), %xmm0
+spmv147_rf:        addsd   %xmm0, %xmm1
+spmv148_rf:        movlpd  0(%rbp,%rsi,8), %xmm0
+spmv149_rf:        movq    -176(%rdx), %rsi
+spmv150_rf:        mulsd   -184(%rcx), %xmm0
+spmv151_rf:        movsd   %xmm0, %xmm2
+spmv152_rf:        movlpd  0(%rbp,%rsi,8), %xmm0
+spmv153_rf:        movq    -168(%rdx), %rsi
+spmv154_rf:        addsd   %xmm1, %xmm2
+spmv155_rf:        movlpd  -176(%rcx), %xmm1
+spmv156_rf:        mulsd   %xmm0, %xmm1
+spmv157_rf:        addsd   %xmm2, %xmm1
+spmv158_rf:        movsd   %xmm1, %xmm0
+spmv159_rf:        movlpd  0(%rbp,%rsi,8), %xmm1
+spmv160_rf:        movq    -160(%rdx), %rsi
+spmv161_rf:        mulsd   -168(%rcx), %xmm1
+spmv162_rf:        addsd   %xmm0, %xmm1
+spmv163_rf:        movlpd  0(%rbp,%rsi,8), %xmm0
+spmv164_rf:        movq    -152(%rdx), %rsi
+spmv165_rf:        mulsd   -160(%rcx), %xmm0
+spmv166_rf:        addsd   %xmm0, %xmm1
+spmv167_rf:        movlpd  0(%rbp,%rsi,8), %xmm0
+spmv168_rf:        movq    -144(%rdx), %rsi
+spmv169_rf:        mulsd   -152(%rcx), %xmm0
+spmv170_rf:        addsd   %xmm1, %xmm0
+spmv171_rf:        movlpd  0(%rbp,%rsi,8), %xmm1
+spmv172_rf:        movq    -136(%rdx), %rsi
+spmv173_rf:        mulsd   -144(%rcx), %xmm1
+spmv174_rf:        addsd   %xmm1, %xmm0
+spmv175_rf:        movlpd  0(%rbp,%rsi,8), %xmm1
+spmv176_rf:        movq    %rax, %rsi
+spmv177_rf:        addq    $9, %rsi
+spmv178_rf:        addq    $8, %rax
+spmv179_rf:        mulsd   -136(%rcx), %xmm1
+spmv180_rf:        cmpq    %rsi, %r10
+spmv181_rf:        addsd   %xmm0, %xmm1
+spmv182_rf:        ja      .L35_rf
+spmv183_rf:        leaq    1(%rax), %rdx
+spmv184_rf:        jmp     .L36_rf
+.L63_rf:
+spmv185_rf:        incq    %rdx
+.L36_rf:
+spmv186_rf:        movq    0(%r13,%rax,8), %rcx
+spmv187_rf:        cmpq    %rdx, %rbx
+spmv188_rf:        movlpd  0(%rbp,%rcx,8), %xmm0
+spmv189_rf:        mulsd   (%r12,%rax,8), %xmm0
+spmv190_rf:        movq    %rdx, %rax
+spmv191_rf:        addsd   %xmm0, %xmm1
+spmv192_rf:        ja      .L63_rf
+spmv193_rf:        cmpq    %rbx, %r14
+spmv194_rf:        jbe     .L61_rf
+.L65_rf:
 spmv195_rf:        nop
 spmv196_rf:        nop
+spmv197_rf:        jmp     .L64
+.L37_rf:
+spmv198_rf:        movq    %rbx, %rax
+spmv199_rf:        jmp     .L32_rf
+.L43_rf:
+spmv200_rf:        movq    %rax, %rbx
+spmv201_rf:        cmpq    %rbx, %r14
+spmv202_rf:        ja      .L65_rf
+.L61_rf:
+spmv203_rf:        movq    %r15, %rsi
+spmv204_rf:        movq    56(%rsp), %r15
+spmv205_rf:        jmp     .L31_rf
+.L64_rf:
+spmv206_rf:        movq    136(%rsp), %rax
+spmv207_rf:        movsd   %xmm1, %xmm0
+spmv208_rf:        movq    %r14, 16(%rsp)
+spmv209_rf:        movq    %rbx, 8(%rsp)
+spmv210_rf:        movq    %rbp, %rcx
+spmv211_rf:        movq    %r13, %rdx
+spmv212_rf:        movq    %r15, %rsi
+spmv213_rf:        movq    %r12, %rdi
+spmv214_rf:        movsd   %xmm1, 48(%rsp)
+spmv215_rf:        movq    %rax, 24(%rsp)
+spmv216_rf:        movq    128(%rsp), %rax
+spmv217_rf:        movq    %r9, 40(%rsp)
+spmv218_rf:        movq    %r8, 32(%rsp)
+spmv219_rf:        movq    %rax, (%rsp)
+spmv220_rf:        call    _Z16col_loop_handlerPdPmS0_S_S_mmmmdPv
+spmv221_rf:        testl   %eax, %eax
+spmv222_rf:        movq    32(%rsp), %r8
+spmv223_rf:        movq    40(%rsp), %r9
+spmv224_rf:        movlpd  48(%rsp), %xmm1
+spmv225_rf:        je      .L37_rf
+.L29_rf:
+spmv226_rf:        addq    $72, %rsp
+spmv227_rf:        popq    %rbx
+spmv228_rf:        popq    %rbp
+spmv229_rf:        popq    %r12
+spmv230_rf:        popq    %r13
+spmv231_rf:        popq    %r14
+spmv232_rf:        popq    %r15
+spmv233_rf:        ret
 .L39_rf:
-spmv197_rf:        movq    %rbx, %rax
-spmv198_rf:        jmp     .L34_rf
-.L44_rf:
-spmv199_rf:        movq    %rax, %rbx
-spmv200_rf:        jmp     .L35_rf
+spmv234_rf:        movq    136(%rsp), %rax
+spmv235_rf:        movq    %r15, %r9
+spmv236_rf:        movq    %rbp, %rcx
+spmv237_rf:        movq    %r13, %rdx
+spmv238_rf:        movq    %r12, %rdi
+spmv239_rf:        movq    %r8, 40(%rsp)
+spmv240_rf:        movq    %rsi, 32(%rsp)
+spmv241_rf:        movq    %rax, 8(%rsp)
+spmv242_rf:        movq    128(%rsp), %rax
+spmv243_rf:        movq    %rax, (%rsp)
+spmv244_rf:        call    _Z16row_loop_handlerPdPmS0_S_S_mmPv
+spmv245_rf:        testl   %eax, %eax
+spmv246_rf:        movq    32(%rsp), %rsi
+spmv247_rf:        movq    40(%rsp), %r8
+spmv248_rf:        je      .L41_rf
+spmv249_rf:        jmp     .L29_rf
+_Z23spmv_interrupt_col_loopPdPmS0_S_S_mmdS_Pv_rf:
+spmv250_rf:        pushq   %r15
+spmv251_rf:        pushq   %r14
+spmv252_rf:        pushq   %r13
+spmv253_rf:        pushq   %r12
+spmv254_rf:        pushq   %rbp
+spmv255_rf:        pushq   %rbx
+spmv256_rf:        subq    $56, %rsp
+spmv257_rf:        movq    112(%rsp), %r15
+spmv258_rf:        cmpq    %r15, %r9
+spmv259_rf:        jnb     .L67_rf
+spmv260_rf:        movq    %rdi, %r13
+spmv261_rf:        movq    %rsi, %r14
+spmv262_rf:        movq    %rdx, %r12
+spmv263_rf:        movq    %rcx, %rbp
 .L68_rf:
-spmv201_rf:        movq    152(%rsp), %rax
-spmv202_rf:        vmovsd  %xmm1, %xmm1, %xmm0
-spmv203_rf:        movq    %r14, 16(%rsp)
-spmv204_rf:        movq    %rbx, 8(%rsp)
-spmv205_rf:        movq    %rbp, %rcx
-spmv206_rf:        movq    %r12, %rdx
-spmv207_rf:        movq    %r13, %rdi
-spmv208_rf:        vmovsd  %xmm1, 64(%rsp)
-spmv209_rf:        movq    %r10, 72(%rsp)
-spmv210_rf:        movq    %rax, 24(%rsp)
-spmv211_rf:        movq    144(%rsp), %rax
-spmv212_rf:        movq    %r9, 56(%rsp)
-spmv213_rf:        movq    %r8, 48(%rsp)
-spmv214_rf:        movq    %rsi, 40(%rsp)
-spmv215_rf:        movq    %rax, (%rsp)
-spmv216_rf:        call    col_loop_handler
-spmv217_rf:        testl   %eax, %eax
-spmv218_rf:        movq    40(%rsp), %rsi
-spmv219_rf:        movq    48(%rsp), %r8
-spmv220_rf:        movq    56(%rsp), %r9
-spmv221_rf:        vxorpd  %xmm2, %xmm2, %xmm2
-spmv222_rf:        movq    72(%rsp), %r10
-spmv223_rf:        vmovsd  64(%rsp), %xmm1
-spmv224_rf:        je      .L39_rf
-.L65_rf:
-spmv225_rf:        addq    $88, %rsp
-spmv226_rf:        popq    %rbx
-spmv227_rf:        popq    %rbp
-spmv228_rf:        popq    %r12
-spmv229_rf:        popq    %r13
-spmv230_rf:        popq    %r14
-spmv231_rf:        popq    %r15
-spmv232_rf:        ret
-.L32_rf:
-spmv233_rf:        cmpq    144(%rsp), %r15
-spmv234_rf:        jnb     .L65_rf
-spmv235_rf:        jmp     spmv238_rf
-spmv236_rf:        nop
-spmv237_rf:        nop
-spmv238_rf:        movq    152(%rsp), %rax
-spmv239_rf:        movq    %r15, %r9
-spmv240_rf:        movq    %rbp, %rcx
-spmv241_rf:        movq    %r12, %rdx
-spmv242_rf:        movq    %r13, %rdi
-spmv243_rf:        movq    %r8, 48(%rsp)
-spmv244_rf:        movq    %rsi, 40(%rsp)
-spmv245_rf:        movq    %rax, 8(%rsp)
-spmv246_rf:        movq    144(%rsp), %rax
-spmv247_rf:        movq    %rax, (%rsp)
-spmv248_rf:        call    row_loop_handler
-spmv249_rf:        testl   %eax, %eax
-spmv250_rf:        movq    40(%rsp), %rsi
-spmv251_rf:        movq    48(%rsp), %r8
-spmv252_rf:        vxorpd  %xmm2, %xmm2, %xmm2
-spmv253_rf:        je      .L31_rf
-spmv254_rf:        jmp     .L65_rf
-spmv_interrupt_col_loop_rf:
-spmv255_rf:        pushq   %r15
-spmv256_rf:        pushq   %r14
-spmv257_rf:        pushq   %r13
-spmv258_rf:        pushq   %r12
-spmv259_rf:        pushq   %rbp
-spmv260_rf:        pushq   %rbx
-spmv261_rf:        subq    $72, %rsp
-spmv262_rf:        movq    128(%rsp), %r15
-spmv263_rf:        movq    136(%rsp), %r14
-spmv264_rf:        cmpq    %r15, %r9
-spmv265_rf:        jnb     .L70_rf
-spmv266_rf:        movq    %rdi, %r13
-spmv267_rf:        movq    %rdx, %r12
-spmv268_rf:        movq    %rcx, %rbp
+spmv264_rf:        leaq    1024(%r9), %rbx
+spmv265_rf:        cmpq    %r15, %rbx
+spmv266_rf:        cmova   %r15, %rbx
+spmv267_rf:        cmpq    %rbx, %r9
+spmv268_rf:        jnb     .L75_rf
+spmv269_rf:        leaq    -7(%rbx), %rdi
+spmv270_rf:        leaq    1(%r9), %rax
+spmv271_rf:        cmpq    %rax, %rdi
+spmv272_rf:        jbe     .L72_rf
+spmv273_rf:        cmpq    $6, %rbx
+spmv274_rf:        jbe     .L72_rf
+spmv275_rf:        leaq    128(,%r9,8), %rax
+spmv276_rf:        leaq    0(%r13,%rax), %rdx
+spmv277_rf:        addq    %r12, %rax
 .L71_rf:
-spmv269_rf:        leaq    2048(%r9), %rbx
-spmv270_rf:        cmpq    %r15, %rbx
-spmv271_rf:        cmova   %r15, %rbx
-spmv272_rf:        cmpq    %rbx, %r9
-spmv273_rf:        jnb     .L78_rf
-spmv274_rf:        leaq    -7(%rbx), %rcx
-spmv275_rf:        leaq    1(%r9), %rax
-spmv276_rf:        cmpq    %rax, %rcx
-spmv277_rf:        jbe     .L75_rf
-spmv278_rf:        cmpq    $6, %rbx
-spmv279_rf:        jbe     .L75_rf
-spmv280_rf:        leaq    128(,%r9,8), %rax
-spmv281_rf:        leaq    0(%r13,%rax), %rdi
-spmv282_rf:        addq    %r12, %rax
-.L74_rf:
-spmv283_rf:        movq    -128(%rax), %rdx
-spmv284_rf:        prefetcht0      (%rdi)
-spmv285_rf:        prefetcht0      (%rax)
-spmv286_rf:        addq    $64, %rdi
-spmv287_rf:        addq    $64, %rax
-spmv288_rf:        vmovsd  0(%rbp,%rdx,8), %xmm1
-spmv289_rf:        movq    -184(%rax), %rdx
-spmv290_rf:        vmulsd  -192(%rdi), %xmm1, %xmm1
-spmv291_rf:        vaddsd  %xmm0, %xmm1, %xmm0
-spmv292_rf:        vmovsd  0(%rbp,%rdx,8), %xmm1
-spmv293_rf:        movq    -176(%rax), %rdx
-spmv294_rf:        vmulsd  -184(%rdi), %xmm1, %xmm1
-spmv295_rf:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv296_rf:        vmovsd  0(%rbp,%rdx,8), %xmm0
-spmv297_rf:        movq    -168(%rax), %rdx
-spmv298_rf:        vmulsd  -176(%rdi), %xmm0, %xmm0
-spmv299_rf:        vaddsd  %xmm1, %xmm0, %xmm1
-spmv300_rf:        vmovsd  0(%rbp,%rdx,8), %xmm0
-spmv301_rf:        movq    -160(%rax), %rdx
-spmv302_rf:        vmulsd  -168(%rdi), %xmm0, %xmm0
-spmv303_rf:        vaddsd  %xmm1, %xmm0, %xmm0
-spmv304_rf:        vmovsd  0(%rbp,%rdx,8), %xmm1
-spmv305_rf:        movq    -152(%rax), %rdx
-spmv306_rf:        vmulsd  -160(%rdi), %xmm1, %xmm1
-spmv307_rf:        vaddsd  %xmm0, %xmm1, %xmm0
-spmv308_rf:        vmovsd  0(%rbp,%rdx,8), %xmm1
-spmv309_rf:        movq    -144(%rax), %rdx
-spmv310_rf:        vmulsd  -152(%rdi), %xmm1, %xmm1
-spmv311_rf:        vaddsd  %xmm0, %xmm1, %xmm1
-spmv312_rf:        vmovsd  0(%rbp,%rdx,8), %xmm0
-spmv313_rf:        movq    -136(%rax), %rdx
-spmv314_rf:        vmulsd  -144(%rdi), %xmm0, %xmm0
-spmv315_rf:        vaddsd  %xmm1, %xmm0, %xmm1
-spmv316_rf:        vmovsd  0(%rbp,%rdx,8), %xmm0
-spmv317_rf:        movq    %r9, %rdx
-spmv318_rf:        addq    $9, %rdx
-spmv319_rf:        addq    $8, %r9
-spmv320_rf:        vmulsd  -136(%rdi), %xmm0, %xmm0
-spmv321_rf:        cmpq    %rdx, %rcx
-spmv322_rf:        vaddsd  %xmm1, %xmm0, %xmm0
-spmv323_rf:        ja      .L74_rf
-spmv324_rf:        leaq    1(%r9), %rax
-spmv325_rf:        jmp     .L75_rf
-.L93_rf:
-spmv326_rf:        incq    %rax
-.L75_rf:
-spmv327_rf:        movq    (%r12,%r9,8), %rdx
-spmv328_rf:        cmpq    %rax, %rbx
-spmv329_rf:        vmovsd  0(%rbp,%rdx,8), %xmm1
-spmv330_rf:        vmulsd  0(%r13,%r9,8), %xmm1, %xmm1
-spmv331_rf:        movq    %rax, %r9
-spmv332_rf:        vaddsd  %xmm1, %xmm0, %xmm0
-spmv333_rf:        ja      .L93_rf
+spmv278_rf:        movq    -128(%rax), %rcx
+spmv279_rf:        prefetcht0      (%rdx)
+spmv280_rf:        prefetcht0      (%rax)
+spmv281_rf:        addq    $64, %rdx
+spmv282_rf:        addq    $64, %rax
+spmv283_rf:        movlpd  0(%rbp,%rcx,8), %xmm1
+spmv284_rf:        movq    -184(%rax), %rcx
+spmv285_rf:        mulsd   -192(%rdx), %xmm1
+spmv286_rf:        addsd   %xmm1, %xmm0
+spmv287_rf:        movlpd  0(%rbp,%rcx,8), %xmm1
+spmv288_rf:        movq    -176(%rax), %rcx
+spmv289_rf:        mulsd   -184(%rdx), %xmm1
+spmv290_rf:        addsd   %xmm0, %xmm1
+spmv291_rf:        movlpd  0(%rbp,%rcx,8), %xmm0
+spmv292_rf:        movq    -168(%rax), %rcx
+spmv293_rf:        mulsd   -176(%rdx), %xmm0
+spmv294_rf:        addsd   %xmm0, %xmm1
+spmv295_rf:        movlpd  0(%rbp,%rcx,8), %xmm0
+spmv296_rf:        movq    -160(%rax), %rcx
+spmv297_rf:        mulsd   -168(%rdx), %xmm0
+spmv298_rf:        addsd   %xmm1, %xmm0
+spmv299_rf:        movlpd  0(%rbp,%rcx,8), %xmm1
+spmv300_rf:        movq    -152(%rax), %rcx
+spmv301_rf:        mulsd   -160(%rdx), %xmm1
+spmv302_rf:        addsd   %xmm1, %xmm0
+spmv303_rf:        movlpd  0(%rbp,%rcx,8), %xmm1
+spmv304_rf:        movq    -144(%rax), %rcx
+spmv305_rf:        mulsd   -152(%rdx), %xmm1
+spmv306_rf:        addsd   %xmm0, %xmm1
+spmv307_rf:        movlpd  0(%rbp,%rcx,8), %xmm0
+spmv308_rf:        movq    -136(%rax), %rcx
+spmv309_rf:        mulsd   -144(%rdx), %xmm0
+spmv310_rf:        addsd   %xmm0, %xmm1
+spmv311_rf:        movlpd  0(%rbp,%rcx,8), %xmm0
+spmv312_rf:        movq    %r9, %rcx
+spmv313_rf:        addq    $9, %rcx
+spmv314_rf:        addq    $8, %r9
+spmv315_rf:        mulsd   -136(%rdx), %xmm0
+spmv316_rf:        cmpq    %rcx, %rdi
+spmv317_rf:        addsd   %xmm1, %xmm0
+spmv318_rf:        ja      .L71_rf
+spmv319_rf:        leaq    1(%r9), %rax
+spmv320_rf:        jmp     .L72_rf
+.L89_rf:
+spmv321_rf:        incq    %rax
 .L72_rf:
-spmv334_rf:        cmpq    %r15, %rbx
-spmv335_rf:        jnb     .L70_rf
-spmv336_rf:        jmp     .L94
-spmv337_rf:        nop
-spmv338_rf:        nop
-.L76_rf:
-spmv339_rf:        movq    %rbx, %r9
-spmv340_rf:        jmp     .L71_rf
-.L70_rf:
-spmv341_rf:        vmovsd  %xmm0, (%r14)
+spmv322_rf:        movq    (%r12,%r9,8), %rdx
+spmv323_rf:        cmpq    %rax, %rbx
+spmv324_rf:        movlpd  0(%rbp,%rdx,8), %xmm1
+spmv325_rf:        mulsd   0(%r13,%r9,8), %xmm1
+spmv326_rf:        movq    %rax, %r9
+spmv327_rf:        addsd   %xmm1, %xmm0
+spmv328_rf:        ja      .L89_rf
+spmv329_rf:        cmpq    %rbx, %r15
+spmv330_rf:        jbe     .L67_rf
+.L91_rf:
+spmv331_rf:        nop
+spmv332_rf:        nop
+spmv333_rf:        jmp     .L90
+.L73_rf:
+spmv334_rf:        movq    %rbx, %r9
+spmv335_rf:        jmp     .L68_rf
+.L75_rf:
+spmv336_rf:        movq    %r9, %rbx
+spmv337_rf:        cmpq    %rbx, %r15
+spmv338_rf:        ja      .L91_rf
+.L67_rf:
+spmv339_rf:        movq    120(%rsp), %rax
+spmv340_rf:        movsd   %xmm0, (%rax)
+.L66_rf:
+spmv341_rf:        addq    $56, %rsp
+spmv342_rf:        popq    %rbx
+spmv343_rf:        popq    %rbp
+spmv344_rf:        popq    %r12
+spmv345_rf:        popq    %r13
+spmv346_rf:        popq    %r14
+spmv347_rf:        popq    %r15
+spmv348_rf:        ret
 .L90_rf:
-spmv342_rf:        addq    $72, %rsp
-spmv343_rf:        popq    %rbx
-spmv344_rf:        popq    %rbp
-spmv345_rf:        popq    %r12
-spmv346_rf:        popq    %r13
-spmv347_rf:        popq    %r14
-spmv348_rf:        popq    %r15
-spmv349_rf:        ret
-.L78_rf:
-spmv350_rf:        movq    %r9, %rbx
-spmv351_rf:        jmp     .L72_rf
-.L94_rf:
-spmv352_rf:        movq    144(%rsp), %rax
-spmv353_rf:        movq    %r14, 8(%rsp)
-spmv354_rf:        movq    %rbx, %r9
-spmv355_rf:        movq    %r15, (%rsp)
-spmv356_rf:        movq    %rbp, %rcx
-spmv357_rf:        movq    %r12, %rdx
-spmv358_rf:        movq    %r13, %rdi
-spmv359_rf:        vmovsd  %xmm0, 56(%rsp)
-spmv360_rf:        movq    %r8, 48(%rsp)
-spmv361_rf:        movq    %rax, 16(%rsp)
-spmv362_rf:        movq    %rsi, 40(%rsp)
-spmv363_rf:        call    col_loop_handler_col_loop
-spmv364_rf:        testl   %eax, %eax
-spmv365_rf:        movq    40(%rsp), %rsi
-spmv366_rf:        movq    48(%rsp), %r8
-spmv367_rf:        vmovsd  56(%rsp), %xmm0
-spmv368_rf:        je      .L76_rf
-spmv369_rf:        jmp     .L90_rf
+spmv349_rf:        movq    128(%rsp), %rax
+spmv350_rf:        movq    %r15, (%rsp)
+spmv351_rf:        movq    %rbx, %r9
+spmv352_rf:        movq    %rbp, %rcx
+spmv353_rf:        movq    %r12, %rdx
+spmv354_rf:        movq    %r14, %rsi
+spmv355_rf:        movq    %r13, %rdi
+spmv356_rf:        movsd   %xmm0, 40(%rsp)
+spmv357_rf:        movq    %r8, 32(%rsp)
+spmv358_rf:        movq    %rax, 16(%rsp)
+spmv359_rf:        movq    120(%rsp), %rax
+spmv360_rf:        movq    %rax, 8(%rsp)
+spmv361_rf:        call    _Z25col_loop_handler_col_loopPdPmS0_S_S_mmdS_Pv
+spmv362_rf:        testl   %eax, %eax
+spmv363_rf:        movq    32(%rsp), %r8
+spmv364_rf:        movlpd  40(%rsp), %xmm0
+spmv365_rf:        je      .L73_rf
+spmv366_rf:        jmp     .L66_rf
 

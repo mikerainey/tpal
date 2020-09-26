@@ -12,7 +12,8 @@ unsigned char* mandelbrot_serial(double x0, double y0, double x1, double y1,
                                  int width, int height, int max_depth) {
   double xstep = (x1 - x0) / width;
   double ystep = (y1 - y0) / height;
-  unsigned char* output = static_cast<unsigned char*>(_mm_malloc(width * height * sizeof(unsigned char), 64));
+  //  unsigned char* output = static_cast<unsigned char*>(_mm_malloc(width * height * sizeof(unsigned char), 64));
+  unsigned char* output = malloc(width * height * sizeof(unsigned char));
   for(int j = 0; j < height; ++j) { // col loop
     for (int i = 0; i < width; ++i) { // row loop
       double z_real = x0 + i*xstep;
@@ -172,7 +173,8 @@ unsigned char* mandelbrot_interrupt(double x0, double y0, double x1, double y1,
                                  int width, int height, int max_depth, void* p) {
   double xstep = (x1 - x0) / width;
   double ystep = (y1 - y0) / height;
-  unsigned char* output = static_cast<unsigned char*>(_mm_malloc(width * height * sizeof(unsigned char), 64));
+  //unsigned char* output = static_cast<unsigned char*>(_mm_malloc(width * height * sizeof(unsigned char), 64));
+  unsigned char* output = malloc(width * height * sizeof(unsigned char));
   mandelbrot_interrupt_col_loop(x0, y0, x1, y1, width, height, max_depth, output, xstep, ystep, 0, height, p);
   return output;
 }

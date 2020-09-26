@@ -194,7 +194,6 @@ int knapsack_serial(int& best_so_far, struct item *e, int c, int n, int v, tpalr
   
 }
 
-#define likely(x)      __builtin_expect(!!(x), 1)
 #define unlikely(x)    __builtin_expect(!!(x), 0)
 
 static inline

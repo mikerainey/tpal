@@ -1,7 +1,5 @@
 #pragma once
 
-#include "knapsack.hpp"
-
 int knapsack_capacity = 915;
 int knapsack_n = 36;
 

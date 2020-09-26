@@ -16,6 +16,8 @@
 
 #include "mergesort_rollforward_decls.hpp"
 
+size_t mergesort_cilk_cutoff = 24;
+
 template <typename Scheduler>
 class mergesort_manual : public tpalrts::fiber<Scheduler> {
 public:
@@ -123,6 +125,25 @@ void merge_serial(const Item* xs, const Item* ys, Item* tmp,
                const Compare& compare) {
   stl_merge(&xs[lo_xs], &xs[hi_xs], &ys[lo_ys], &ys[hi_ys], &tmp[lo_tmp], compare);
 }
+
+template <class Item, class Compare>
+void mergesort_serial(Item* xs, Item* tmp, size_t lo, size_t hi, const Compare& compare) {
+  auto n = hi - lo;
+  if (n <= 1) {
+    return;
+  }
+  if (n <= mergesort_cilk_cutoff) {
+    insertion_sort(&xs[lo], n, compare);
+    //std::sort(xs + lo, xs + hi, compare);
+    return;
+  }
+  auto mid = (hi + lo) / 2;
+  mergesort_serial(xs, tmp, lo, mid, compare);
+  mergesort_serial(xs, tmp, mid, hi, compare);
+  merge_serial(xs, xs, tmp, lo, mid, mid, hi, lo, compare);
+  stl_copy(&tmp[lo], &tmp[hi], &xs[lo]);
+}
+
 
 template <class Item, class Compare>
 size_t lower_bound(const Item* xs, size_t lo, size_t hi, const Item& val, const Compare& compare) {
@@ -265,7 +286,7 @@ int mergesort_handler(
       mergesort_interrupt(ms_xs, ms_tmp, ms_lo, ms_hi, p2, sj, __mg_branch2, nullptr, nullptr);
     });
   } else {
-    printf("pc_top=%p b2=%p\n",pc_top, __mg_branch2);
+    //aprintf("pc_top=%p b2=%p\n",pc_top, __mg_branch2);
     assert(false);
     return 0;
   }
@@ -273,8 +294,6 @@ int mergesort_handler(
 }
 
 size_t merge_cilk_cutoff = 2000;
-
-size_t mergesort_cilk_cutoff = 24;
 
 size_t copy_cilk_cutoff = 2000;
 
@@ -350,4 +369,70 @@ void mergesort_cilk(Item* xs, Item* tmp, size_t lo, size_t hi, const Compare& co
   merge_cilk(xs, xs, tmp, lo, mid, mid, hi, lo, compare);
   copy(&tmp[lo], &tmp[hi], &xs[lo]);
 #endif
+}
+
+namespace mergesort {
+
+using namespace tpalrts;
+
+uint64_t n = 50000000;
+uint64_t* xs;
+uint64_t* tmp;
+auto compare = std::less<uint64_t>();
+
+tpalrts::stack_type s;
+
+auto fill_xs(uint64_t* _xs) {
+  uint64_t xs_i = 0;
+  for (std::size_t i = 0; i != n; i++) {
+    _xs[i] = xs_i;
+    xs_i = mcsl::hash(xs_i) % 1000;
+  }
+};
+
+auto bench_pre(promotable* p) {
+  xs = (uint64_t*)malloc(sizeof(uint64_t) * n);
+  tmp = (uint64_t*)malloc(sizeof(uint64_t) * n);
+  fill_xs(xs);
+};
+
+auto bench_body_interrupt(promotable* p) {
+  rollforward_table = {
+    #include "mergesort_rollforward_map.hpp"
+  };
+  s = tpalrts::snew();
+  mergesort_interrupt(xs, tmp, 0, n, p, s, nullptr, nullptr, nullptr);
+};
+
+auto bench_body_software_polling(promotable* p) {
+
+};
+
+auto bench_body_serial(promotable* p) {
+  mergesort_serial(xs, tmp, 0, n, compare);
+};
+
+auto bench_post(promotable* p) {
+#ifndef NDEBUG
+  uint64_t* xs2 = (uint64_t*)malloc(sizeof(uint64_t) * n);
+  fill_xs(xs2);
+  std::sort(&xs2[0], &xs2[n], compare);
+  std::size_t nb_diffs = 0;
+  for (std::size_t i = 0; i != n; i++) {
+    if (xs[i] != xs2[i]) {
+      nb_diffs++;
+    }
+  }
+  printf("nb_diffs %lu\n", nb_diffs);
+  free(xs2);
+#endif
+  free(xs);
+  free(tmp);
+};
+
+auto bench_body_cilk() {
+  mergesort_cilk(xs, tmp, 0, n, compare);
+};
+
+  
 }
