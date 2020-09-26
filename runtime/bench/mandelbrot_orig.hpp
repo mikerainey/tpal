@@ -3,7 +3,7 @@ https://github.com/neboat/cilkbench/tree/master/intel/Mandelbrot_12_17_14
 compiled using
 https://godbolt.org/
 gcc 9.3
--O3 --std=c++17 -m64 -march=x86-64 -mtune=x86-64 -fopt-info-vec -mavx -fomit-frame-pointer -DNDEBUG
+
  */
 
 #include <emmintrin.h>

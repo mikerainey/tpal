@@ -1,501 +1,5 @@
 .text
 .p2align 4,,15
-.globl  .L10
-.type  .L10, @function
-.globl  .L10_rf
-.type  .L10_rf, @function
-.globl  .L100
-.type  .L100, @function
-.globl  .L100_rf
-.type  .L100_rf, @function
-.globl  .L101
-.type  .L101, @function
-.globl  .L101_rf
-.type  .L101_rf, @function
-.globl  .L102
-.type  .L102, @function
-.globl  .L102_rf
-.type  .L102_rf, @function
-.globl  .L104
-.type  .L104, @function
-.globl  .L104_rf
-.type  .L104_rf, @function
-.globl  .L106
-.type  .L106, @function
-.globl  .L106_rf
-.type  .L106_rf, @function
-.globl  .L107
-.type  .L107, @function
-.globl  .L107_rf
-.type  .L107_rf, @function
-.globl  .L108
-.type  .L108, @function
-.globl  .L108_rf
-.type  .L108_rf, @function
-.globl  .L109
-.type  .L109, @function
-.globl  .L109_rf
-.type  .L109_rf, @function
-.globl  .L110
-.type  .L110, @function
-.globl  .L110_rf
-.type  .L110_rf, @function
-.globl  .L111
-.type  .L111, @function
-.globl  .L111_rf
-.type  .L111_rf, @function
-.globl  .L116
-.type  .L116, @function
-.globl  .L116_rf
-.type  .L116_rf, @function
-.globl  .L118
-.type  .L118, @function
-.globl  .L118_rf
-.type  .L118_rf, @function
-.globl  .L119
-.type  .L119, @function
-.globl  .L119_rf
-.type  .L119_rf, @function
-.globl  .L12
-.type  .L12, @function
-.globl  .L12_rf
-.type  .L12_rf, @function
-.globl  .L120
-.type  .L120, @function
-.globl  .L120_rf
-.type  .L120_rf, @function
-.globl  .L121
-.type  .L121, @function
-.globl  .L121_rf
-.type  .L121_rf, @function
-.globl  .L122
-.type  .L122, @function
-.globl  .L122_rf
-.type  .L122_rf, @function
-.globl  .L123
-.type  .L123, @function
-.globl  .L123_rf
-.type  .L123_rf, @function
-.globl  .L125
-.type  .L125, @function
-.globl  .L125_rf
-.type  .L125_rf, @function
-.globl  .L126
-.type  .L126, @function
-.globl  .L126_rf
-.type  .L126_rf, @function
-.globl  .L128
-.type  .L128, @function
-.globl  .L128_rf
-.type  .L128_rf, @function
-.globl  .L129
-.type  .L129, @function
-.globl  .L129_rf
-.type  .L129_rf, @function
-.globl  .L13
-.type  .L13, @function
-.globl  .L13_rf
-.type  .L13_rf, @function
-.globl  .L130
-.type  .L130, @function
-.globl  .L130_rf
-.type  .L130_rf, @function
-.globl  .L133
-.type  .L133, @function
-.globl  .L133_rf
-.type  .L133_rf, @function
-.globl  .L135
-.type  .L135, @function
-.globl  .L135_rf
-.type  .L135_rf, @function
-.globl  .L136
-.type  .L136, @function
-.globl  .L136_rf
-.type  .L136_rf, @function
-.globl  .L139
-.type  .L139, @function
-.globl  .L139_rf
-.type  .L139_rf, @function
-.globl  .L14
-.type  .L14, @function
-.globl  .L14_rf
-.type  .L14_rf, @function
-.globl  .L140
-.type  .L140, @function
-.globl  .L140_rf
-.type  .L140_rf, @function
-.globl  .L141
-.type  .L141, @function
-.globl  .L141_rf
-.type  .L141_rf, @function
-.globl  .L142
-.type  .L142, @function
-.globl  .L142_rf
-.type  .L142_rf, @function
-.globl  .L144
-.type  .L144, @function
-.globl  .L144_rf
-.type  .L144_rf, @function
-.globl  .L145
-.type  .L145, @function
-.globl  .L145_rf
-.type  .L145_rf, @function
-.globl  .L146
-.type  .L146, @function
-.globl  .L146_rf
-.type  .L146_rf, @function
-.globl  .L147
-.type  .L147, @function
-.globl  .L147_rf
-.type  .L147_rf, @function
-.globl  .L149
-.type  .L149, @function
-.globl  .L149_rf
-.type  .L149_rf, @function
-.globl  .L150
-.type  .L150, @function
-.globl  .L150_rf
-.type  .L150_rf, @function
-.globl  .L151
-.type  .L151, @function
-.globl  .L151_rf
-.type  .L151_rf, @function
-.globl  .L174
-.type  .L174, @function
-.globl  .L174_rf
-.type  .L174_rf, @function
-.globl  .L175
-.type  .L175, @function
-.globl  .L175_rf
-.type  .L175_rf, @function
-.globl  .L176
-.type  .L176, @function
-.globl  .L176_rf
-.type  .L176_rf, @function
-.globl  .L177
-.type  .L177, @function
-.globl  .L177_rf
-.type  .L177_rf, @function
-.globl  .L178
-.type  .L178, @function
-.globl  .L178_rf
-.type  .L178_rf, @function
-.globl  .L18
-.type  .L18, @function
-.globl  .L18_rf
-.type  .L18_rf, @function
-.globl  .L182
-.type  .L182, @function
-.globl  .L182_rf
-.type  .L182_rf, @function
-.globl  .L183
-.type  .L183, @function
-.globl  .L183_rf
-.type  .L183_rf, @function
-.globl  .L184
-.type  .L184, @function
-.globl  .L184_rf
-.type  .L184_rf, @function
-.globl  .L185
-.type  .L185, @function
-.globl  .L185_rf
-.type  .L185_rf, @function
-.globl  .L186
-.type  .L186, @function
-.globl  .L186_rf
-.type  .L186_rf, @function
-.globl  .L187
-.type  .L187, @function
-.globl  .L187_rf
-.type  .L187_rf, @function
-.globl  .L188
-.type  .L188, @function
-.globl  .L188_rf
-.type  .L188_rf, @function
-.globl  .L189
-.type  .L189, @function
-.globl  .L189_rf
-.type  .L189_rf, @function
-.globl  .L19
-.type  .L19, @function
-.globl  .L19_rf
-.type  .L19_rf, @function
-.globl  .L194
-.type  .L194, @function
-.globl  .L194_rf
-.type  .L194_rf, @function
-.globl  .L195
-.type  .L195, @function
-.globl  .L195_rf
-.type  .L195_rf, @function
-.globl  .L196
-.type  .L196, @function
-.globl  .L196_rf
-.type  .L196_rf, @function
-.globl  .L197
-.type  .L197, @function
-.globl  .L197_rf
-.type  .L197_rf, @function
-.globl  .L198
-.type  .L198, @function
-.globl  .L198_rf
-.type  .L198_rf, @function
-.globl  .L199
-.type  .L199, @function
-.globl  .L199_rf
-.type  .L199_rf, @function
-.globl  .L20
-.type  .L20, @function
-.globl  .L20_rf
-.type  .L20_rf, @function
-.globl  .L201
-.type  .L201, @function
-.globl  .L201_rf
-.type  .L201_rf, @function
-.globl  .L202
-.type  .L202, @function
-.globl  .L202_rf
-.type  .L202_rf, @function
-.globl  .L204
-.type  .L204, @function
-.globl  .L204_rf
-.type  .L204_rf, @function
-.globl  .L205
-.type  .L205, @function
-.globl  .L205_rf
-.type  .L205_rf, @function
-.globl  .L206
-.type  .L206, @function
-.globl  .L206_rf
-.type  .L206_rf, @function
-.globl  .L207
-.type  .L207, @function
-.globl  .L207_rf
-.type  .L207_rf, @function
-.globl  .L209
-.type  .L209, @function
-.globl  .L209_rf
-.type  .L209_rf, @function
-.globl  .L21
-.type  .L21, @function
-.globl  .L21_rf
-.type  .L21_rf, @function
-.globl  .L210
-.type  .L210, @function
-.globl  .L210_rf
-.type  .L210_rf, @function
-.globl  .L211
-.type  .L211, @function
-.globl  .L211_rf
-.type  .L211_rf, @function
-.globl  .L212
-.type  .L212, @function
-.globl  .L212_rf
-.type  .L212_rf, @function
-.globl  .L214
-.type  .L214, @function
-.globl  .L214_rf
-.type  .L214_rf, @function
-.globl  .L215
-.type  .L215, @function
-.globl  .L215_rf
-.type  .L215_rf, @function
-.globl  .L22
-.type  .L22, @function
-.globl  .L22_rf
-.type  .L22_rf, @function
-.globl  .L23
-.type  .L23, @function
-.globl  .L23_rf
-.type  .L23_rf, @function
-.globl  .L232
-.type  .L232, @function
-.globl  .L232_rf
-.type  .L232_rf, @function
-.globl  .L234
-.type  .L234, @function
-.globl  .L234_rf
-.type  .L234_rf, @function
-.globl  .L235
-.type  .L235, @function
-.globl  .L235_rf
-.type  .L235_rf, @function
-.globl  .L24
-.type  .L24, @function
-.globl  .L24_rf
-.type  .L24_rf, @function
-.globl  .L25
-.type  .L25, @function
-.globl  .L25_rf
-.type  .L25_rf, @function
-.globl  .L28
-.type  .L28, @function
-.globl  .L28_rf
-.type  .L28_rf, @function
-.globl  .L30
-.type  .L30, @function
-.globl  .L30_rf
-.type  .L30_rf, @function
-.globl  .L31
-.type  .L31, @function
-.globl  .L31_rf
-.type  .L31_rf, @function
-.globl  .L32
-.type  .L32, @function
-.globl  .L32_rf
-.type  .L32_rf, @function
-.globl  .L33
-.type  .L33, @function
-.globl  .L33_rf
-.type  .L33_rf, @function
-.globl  .L34
-.type  .L34, @function
-.globl  .L34_rf
-.type  .L34_rf, @function
-.globl  .L35
-.type  .L35, @function
-.globl  .L35_rf
-.type  .L35_rf, @function
-.globl  .L4
-.type  .L4, @function
-.globl  .L4_rf
-.type  .L4_rf, @function
-.globl  .L40
-.type  .L40, @function
-.globl  .L40_rf
-.type  .L40_rf, @function
-.globl  .L42
-.type  .L42, @function
-.globl  .L42_rf
-.type  .L42_rf, @function
-.globl  .L43
-.type  .L43, @function
-.globl  .L43_rf
-.type  .L43_rf, @function
-.globl  .L44
-.type  .L44, @function
-.globl  .L44_rf
-.type  .L44_rf, @function
-.globl  .L45
-.type  .L45, @function
-.globl  .L45_rf
-.type  .L45_rf, @function
-.globl  .L46
-.type  .L46, @function
-.globl  .L46_rf
-.type  .L46_rf, @function
-.globl  .L47
-.type  .L47, @function
-.globl  .L47_rf
-.type  .L47_rf, @function
-.globl  .L48
-.type  .L48, @function
-.globl  .L48_rf
-.type  .L48_rf, @function
-.globl  .L5
-.type  .L5, @function
-.globl  .L5_rf
-.type  .L5_rf, @function
-.globl  .L51
-.type  .L51, @function
-.globl  .L51_rf
-.type  .L51_rf, @function
-.globl  .L52
-.type  .L52, @function
-.globl  .L52_rf
-.type  .L52_rf, @function
-.globl  .L55
-.type  .L55, @function
-.globl  .L55_rf
-.type  .L55_rf, @function
-.globl  .L56
-.type  .L56, @function
-.globl  .L56_rf
-.type  .L56_rf, @function
-.globl  .L57
-.type  .L57, @function
-.globl  .L57_rf
-.type  .L57_rf, @function
-.globl  .L58
-.type  .L58, @function
-.globl  .L58_rf
-.type  .L58_rf, @function
-.globl  .L59
-.type  .L59, @function
-.globl  .L59_rf
-.type  .L59_rf, @function
-.globl  .L6
-.type  .L6, @function
-.globl  .L6_rf
-.type  .L6_rf, @function
-.globl  .L60
-.type  .L60, @function
-.globl  .L60_rf
-.type  .L60_rf, @function
-.globl  .L62
-.type  .L62, @function
-.globl  .L62_rf
-.type  .L62_rf, @function
-.globl  .L63
-.type  .L63, @function
-.globl  .L63_rf
-.type  .L63_rf, @function
-.globl  .L64
-.type  .L64, @function
-.globl  .L64_rf
-.type  .L64_rf, @function
-.globl  .L65
-.type  .L65, @function
-.globl  .L65_rf
-.type  .L65_rf, @function
-.globl  .L66
-.type  .L66, @function
-.globl  .L66_rf
-.type  .L66_rf, @function
-.globl  .L68
-.type  .L68, @function
-.globl  .L68_rf
-.type  .L68_rf, @function
-.globl  .L69
-.type  .L69, @function
-.globl  .L69_rf
-.type  .L69_rf, @function
-.globl  .L7
-.type  .L7, @function
-.globl  .L7_rf
-.type  .L7_rf, @function
-.globl  .L70
-.type  .L70, @function
-.globl  .L70_rf
-.type  .L70_rf, @function
-.globl  .L8
-.type  .L8, @function
-.globl  .L8_rf
-.type  .L8_rf, @function
-.globl  .L9
-.type  .L9, @function
-.globl  .L9_rf
-.type  .L9_rf, @function
-.globl  .L95
-.type  .L95, @function
-.globl  .L95_rf
-.type  .L95_rf, @function
-.globl  .L98
-.type  .L98, @function
-.globl  .L98_rf
-.type  .L98_rf, @function
-.globl  .L99
-.type  .L99, @function
-.globl  .L99_rf
-.type  .L99_rf, @function
-.globl  .LC1
-.type  .LC1, @function
-.globl  .LC1_rf
-.type  .LC1_rf, @function
-.globl  .LC2
-.type  .LC2, @function
-.globl  .LC2_rf
-.type  .LC2_rf, @function
 .globl  _Z12kmeans_innerPPfiiifPiS_S0_S1_S0_iiPv
 .type  _Z12kmeans_innerPPfiiifPiS_S0_S1_S0_iiPv, @function
 .globl  _Z12kmeans_innerPPfiiifPiS_S0_S1_S0_iiPv_rf
@@ -508,6 +12,10 @@
 .type  _Z13kmeans_serialPPfiiifPi, @function
 .globl  _Z13kmeans_serialPPfiiifPi_rf
 .type  _Z13kmeans_serialPPfiiifPi_rf, @function
+.globl  _Z8mycallocm
+.type  _Z8mycallocm, @function
+.globl  _Z8mycallocm_rf
+.type  _Z8mycallocm_rf, @function
 .globl  kms0
 .type  kms0, @function
 .globl  kms0_rf
@@ -7584,4241 +7092,3809 @@
 .type  kms1768, @function
 .globl  kms1768_rf
 .type  kms1768_rf, @function
-.globl  kms1769
-.type  kms1769, @function
-.globl  kms1769_rf
-.type  kms1769_rf, @function
-.globl  kms1770
-.type  kms1770, @function
-.globl  kms1770_rf
-.type  kms1770_rf, @function
-.globl  kms1771
-.type  kms1771, @function
-.globl  kms1771_rf
-.type  kms1771_rf, @function
-.globl  kms1772
-.type  kms1772, @function
-.globl  kms1772_rf
-.type  kms1772_rf, @function
-.globl  kms1773
-.type  kms1773, @function
-.globl  kms1773_rf
-.type  kms1773_rf, @function
-.globl  kms1774
-.type  kms1774, @function
-.globl  kms1774_rf
-.type  kms1774_rf, @function
-.globl  kms1775
-.type  kms1775, @function
-.globl  kms1775_rf
-.type  kms1775_rf, @function
-.globl  kms1776
-.type  kms1776, @function
-.globl  kms1776_rf
-.type  kms1776_rf, @function
-.globl  kms1777
-.type  kms1777, @function
-.globl  kms1777_rf
-.type  kms1777_rf, @function
-.globl  kms1778
-.type  kms1778, @function
-.globl  kms1778_rf
-.type  kms1778_rf, @function
-.globl  kms1779
-.type  kms1779, @function
-.globl  kms1779_rf
-.type  kms1779_rf, @function
-.globl  kms1780
-.type  kms1780, @function
-.globl  kms1780_rf
-.type  kms1780_rf, @function
-.globl  kms1781
-.type  kms1781, @function
-.globl  kms1781_rf
-.type  kms1781_rf, @function
-.globl  kms1782
-.type  kms1782, @function
-.globl  kms1782_rf
-.type  kms1782_rf, @function
-.globl  kms1783
-.type  kms1783, @function
-.globl  kms1783_rf
-.type  kms1783_rf, @function
-.globl  kms1784
-.type  kms1784, @function
-.globl  kms1784_rf
-.type  kms1784_rf, @function
-.globl  kms1785
-.type  kms1785, @function
-.globl  kms1785_rf
-.type  kms1785_rf, @function
-.globl  kms1786
-.type  kms1786, @function
-.globl  kms1786_rf
-.type  kms1786_rf, @function
-.globl  kms1787
-.type  kms1787, @function
-.globl  kms1787_rf
-.type  kms1787_rf, @function
-.globl  kms1788
-.type  kms1788, @function
-.globl  kms1788_rf
-.type  kms1788_rf, @function
-.globl  kms1789
-.type  kms1789, @function
-.globl  kms1789_rf
-.type  kms1789_rf, @function
-.globl  kms1790
-.type  kms1790, @function
-.globl  kms1790_rf
-.type  kms1790_rf, @function
-.globl  kms1791
-.type  kms1791, @function
-.globl  kms1791_rf
-.type  kms1791_rf, @function
-.globl  kms1792
-.type  kms1792, @function
-.globl  kms1792_rf
-.type  kms1792_rf, @function
-.globl  kms1793
-.type  kms1793, @function
-.globl  kms1793_rf
-.type  kms1793_rf, @function
-.globl  kms1794
-.type  kms1794, @function
-.globl  kms1794_rf
-.type  kms1794_rf, @function
-.globl  kms1795
-.type  kms1795, @function
-.globl  kms1795_rf
-.type  kms1795_rf, @function
-.globl  kms1796
-.type  kms1796, @function
-.globl  kms1796_rf
-.type  kms1796_rf, @function
-.globl  kms1797
-.type  kms1797, @function
-.globl  kms1797_rf
-.type  kms1797_rf, @function
-.globl  kms1798
-.type  kms1798, @function
-.globl  kms1798_rf
-.type  kms1798_rf, @function
-.globl  kms1799
-.type  kms1799, @function
-.globl  kms1799_rf
-.type  kms1799_rf, @function
-.globl  kms1800
-.type  kms1800, @function
-.globl  kms1800_rf
-.type  kms1800_rf, @function
-.globl  kms1801
-.type  kms1801, @function
-.globl  kms1801_rf
-.type  kms1801_rf, @function
-.globl  kms1802
-.type  kms1802, @function
-.globl  kms1802_rf
-.type  kms1802_rf, @function
-.globl  kms1803
-.type  kms1803, @function
-.globl  kms1803_rf
-.type  kms1803_rf, @function
-.globl  kms1804
-.type  kms1804, @function
-.globl  kms1804_rf
-.type  kms1804_rf, @function
-.globl  kms1805
-.type  kms1805, @function
-.globl  kms1805_rf
-.type  kms1805_rf, @function
-.globl  kms1806
-.type  kms1806, @function
-.globl  kms1806_rf
-.type  kms1806_rf, @function
-.globl  kms1807
-.type  kms1807, @function
-.globl  kms1807_rf
-.type  kms1807_rf, @function
-.globl  kms1808
-.type  kms1808, @function
-.globl  kms1808_rf
-.type  kms1808_rf, @function
-.globl  kms1809
-.type  kms1809, @function
-.globl  kms1809_rf
-.type  kms1809_rf, @function
-.globl  kms1810
-.type  kms1810, @function
-.globl  kms1810_rf
-.type  kms1810_rf, @function
-.globl  kms1811
-.type  kms1811, @function
-.globl  kms1811_rf
-.type  kms1811_rf, @function
-.globl  kms1812
-.type  kms1812, @function
-.globl  kms1812_rf
-.type  kms1812_rf, @function
-.globl  kms1813
-.type  kms1813, @function
-.globl  kms1813_rf
-.type  kms1813_rf, @function
-.globl  kms1814
-.type  kms1814, @function
-.globl  kms1814_rf
-.type  kms1814_rf, @function
-.globl  kms1815
-.type  kms1815, @function
-.globl  kms1815_rf
-.type  kms1815_rf, @function
-.globl  kms1816
-.type  kms1816, @function
-.globl  kms1816_rf
-.type  kms1816_rf, @function
-.globl  kms1817
-.type  kms1817, @function
-.globl  kms1817_rf
-.type  kms1817_rf, @function
-.globl  kms1818
-.type  kms1818, @function
-.globl  kms1818_rf
-.type  kms1818_rf, @function
-.globl  kms1819
-.type  kms1819, @function
-.globl  kms1819_rf
-.type  kms1819_rf, @function
-.globl  kms1820
-.type  kms1820, @function
-.globl  kms1820_rf
-.type  kms1820_rf, @function
-.globl  kms1821
-.type  kms1821, @function
-.globl  kms1821_rf
-.type  kms1821_rf, @function
-.globl  kms1822
-.type  kms1822, @function
-.globl  kms1822_rf
-.type  kms1822_rf, @function
-.globl  kms1823
-.type  kms1823, @function
-.globl  kms1823_rf
-.type  kms1823_rf, @function
-.globl  kms1824
-.type  kms1824, @function
-.globl  kms1824_rf
-.type  kms1824_rf, @function
-.globl  kms1825
-.type  kms1825, @function
-.globl  kms1825_rf
-.type  kms1825_rf, @function
-.globl  kms1826
-.type  kms1826, @function
-.globl  kms1826_rf
-.type  kms1826_rf, @function
-.globl  kms1827
-.type  kms1827, @function
-.globl  kms1827_rf
-.type  kms1827_rf, @function
-.globl  kms1828
-.type  kms1828, @function
-.globl  kms1828_rf
-.type  kms1828_rf, @function
-.globl  kms1829
-.type  kms1829, @function
-.globl  kms1829_rf
-.type  kms1829_rf, @function
-.globl  kms1830
-.type  kms1830, @function
-.globl  kms1830_rf
-.type  kms1830_rf, @function
-.globl  kms1831
-.type  kms1831, @function
-.globl  kms1831_rf
-.type  kms1831_rf, @function
-.globl  kms1832
-.type  kms1832, @function
-.globl  kms1832_rf
-.type  kms1832_rf, @function
-.globl  kms1833
-.type  kms1833, @function
-.globl  kms1833_rf
-.type  kms1833_rf, @function
-.globl  kms1834
-.type  kms1834, @function
-.globl  kms1834_rf
-.type  kms1834_rf, @function
-.globl  kms1835
-.type  kms1835, @function
-.globl  kms1835_rf
-.type  kms1835_rf, @function
-.globl  kms1836
-.type  kms1836, @function
-.globl  kms1836_rf
-.type  kms1836_rf, @function
-.globl  kms1837
-.type  kms1837, @function
-.globl  kms1837_rf
-.type  kms1837_rf, @function
-.globl  kms1838
-.type  kms1838, @function
-.globl  kms1838_rf
-.type  kms1838_rf, @function
-.globl  kms1839
-.type  kms1839, @function
-.globl  kms1839_rf
-.type  kms1839_rf, @function
-.globl  kms1840
-.type  kms1840, @function
-.globl  kms1840_rf
-.type  kms1840_rf, @function
-.globl  kms1841
-.type  kms1841, @function
-.globl  kms1841_rf
-.type  kms1841_rf, @function
-.globl  kms1842
-.type  kms1842, @function
-.globl  kms1842_rf
-.type  kms1842_rf, @function
+_Z8mycallocm:
+kms0:        pushq   %rbx
+kms1:        movq    %rdi, %rbx
+kms2:        call    malloc
+kms3:        shrq    $2, %rbx
+kms4:        movq    %rax, %r8
+kms5:        je      .L1
+kms6:        leaq    0(,%rbx,4), %rdx
+kms7:        xorl    %esi, %esi
+kms8:        movq    %rax, %rdi
+kms9:        call    memset
+kms10:        movq    %rax, %r8
+.L1:
+kms11:        movq    %r8, %rax
+kms12:        popq    %rbx
+kms13:        ret
 _Z13kmeans_serialPPfiiifPi:
-kms0:        pushq   %rbp
-kms1:        movslq  %ecx, %rax
-kms2:        movq    %rsp, %rbp
-kms3:        pushq   %r15
-kms4:        pushq   %r14
-kms5:        movq    %rax, %r14
-kms6:        pushq   %r13
-kms7:        leaq    0(,%rax,8), %r13
-kms8:        pushq   %r12
-kms9:        pushq   %rbx
-kms10:        movl    %esi, %ebx
-kms11:        andq    $-32, %rsp
-kms12:        subq    $160, %rsp
-kms13:        movq    %rdi, 88(%rsp)
-kms14:        movq    %r13, %rdi
-kms15:        vmovss  %xmm0, 28(%rsp)
-kms16:        movl    %edx, 96(%rsp)
-kms17:        movq    %r8, 120(%rsp)
-kms18:        movq    %rax, 144(%rsp)
-kms19:        call    malloc
-kms20:        movl    %r14d, 136(%rsp)
-kms21:        movq    %rax, %r15
-kms22:        imull   %ebx, %r14d
-kms23:        movslq  %r14d, %r14
-kms24:        leaq    0(,%r14,4), %rdi
-kms25:        call    malloc
-kms26:        cmpl    $1, 136(%rsp)
-kms27:        movq    %rax, (%r15)
-kms28:        jle     .L98
-kms29:        movl    136(%rsp), %esi
-kms30:        movslq  %ebx, %rcx
-kms31:        leaq    0(,%rcx,4), %rdi
-kms32:        cmpl    $9, %esi
-kms33:        jle     .L60
-kms34:        movq    %rcx, %r11
-kms35:        movq    %rcx, %r9
-kms36:        leaq    0(,%rcx,8), %r10
-kms37:        subl    $10, %esi
-kms38:        leaq    (%rcx,%rcx,2), %rcx
-kms39:        salq    $5, %r11
-kms40:        salq    $4, %r9
-kms41:        andl    $-8, %esi
-kms42:        movq    %r11, 152(%rsp)
-kms43:        addl    $9, %esi
-kms44:        leaq    192(%r15), %rdx
-kms45:        leaq    (%rax,%r9), %r8
-kms46:        leaq    0(,%rcx,4), %r11
-kms47:        movl    %esi, 140(%rsp)
-kms48:        movl    $1, %esi
-.L7:
-kms49:        leaq    (%rdi,%rax), %rcx
-kms50:        movq    %r8, -160(%rdx)
-kms51:        addq    %rdi, %r8
-kms52:        movq    %r8, -152(%rdx)
-kms53:        addq    %rdi, %r8
-kms54:        addl    $8, %esi
-kms55:        movq    %rcx, -184(%rdx)
-kms56:        leaq    (%rax,%r10), %rcx
-kms57:        movq    %r8, -144(%rdx)
-kms58:        addq    %rdi, %r8
-kms59:        prefetcht0      (%rdx)
-kms60:        addq    $64, %rdx
-kms61:        movq    %rcx, -240(%rdx)
-kms62:        leaq    (%rax,%r11), %rcx
-kms63:        movq    %r8, -200(%rdx)
-kms64:        addq    %rdi, %r8
-kms65:        addq    152(%rsp), %rax
-kms66:        movq    %r8, -192(%rdx)
-kms67:        movq    %rcx, -232(%rdx)
-kms68:        addq    %r9, %r8
-kms69:        cmpl    140(%rsp), %esi
-kms70:        jne     .L7
-.L6:
-kms71:        movslq  %esi, %rsi
-kms72:        addq    %rdi, %rax
-.L9:
-kms73:        movq    %rax, (%r15,%rsi,8)
-kms74:        incq    %rsi
-kms75:        addq    %rdi, %rax
-kms76:        cmpl    %esi, 136(%rsp)
-kms77:        jg      .L9
-.L8:
-kms78:        testl   %ebx, %ebx
-kms79:        jle     .L99
-kms80:        movl    %ebx, %r8d
-kms81:        movl    %ebx, %r10d
-kms82:        xorl    %r9d, %r9d
-kms83:        andl    $-8, %r8d
-kms84:        shrl    $3, %r10d
-kms85:        leal    1(%r8), %eax
-kms86:        movl    %r8d, %r11d
-kms87:        salq    $5, %r10
-kms88:        salq    $2, %r11
-kms89:        movl    %eax, 140(%rsp)
-kms90:        salq    $2, %rax
-kms91:        movq    %rax, 64(%rsp)
-kms92:        leal    2(%r8), %eax
-kms93:        movl    %eax, 128(%rsp)
-kms94:        salq    $2, %rax
-kms95:        movq    %rax, 56(%rsp)
-kms96:        leal    3(%r8), %eax
-kms97:        movl    %eax, 112(%rsp)
-kms98:        salq    $2, %rax
-kms99:        movq    %rax, 48(%rsp)
-kms100:        leal    4(%r8), %eax
-kms101:        movl    %eax, 104(%rsp)
-kms102:        salq    $2, %rax
-kms103:        movq    %rax, 40(%rsp)
-kms104:        leal    5(%r8), %eax
-kms105:        movl    %eax, 100(%rsp)
-kms106:        salq    $2, %rax
-kms107:        movq    %rax, 32(%rsp)
-kms108:        leal    6(%r8), %eax
-kms109:        movl    %eax, 72(%rsp)
-kms110:        salq    $2, %rax
-kms111:        movq    %rax, 80(%rsp)
-kms112:        leal    -1(%rbx), %eax
-kms113:        movl    %eax, 152(%rsp)
-kms114:        leal    -17(%rbx), %eax
-kms115:        andl    $-16, %eax
-kms116:        addl    $16, %eax
-kms117:        movl    %eax, 24(%rsp)
-.L5:
-kms118:        movq    88(%rsp), %rax
-kms119:        movq    (%r15,%r9,8), %rsi
-kms120:        movq    (%rax,%r9,8), %rcx
-kms121:        leaq    31(%rcx), %rax
-kms122:        subq    %rsi, %rax
-kms123:        cmpq    $62, %rax
-kms124:        jbe     .L12
-kms125:        xorl    %eax, %eax
-kms126:        cmpl    $6, 152(%rsp)
-kms127:        jbe     .L12
-.L10:
-kms128:        vmovups (%rcx,%rax), %ymm0
-kms129:        vmovups %ymm0, (%rsi,%rax)
-kms130:        addq    $32, %rax
-kms131:        cmpq    %r10, %rax
-kms132:        jne     .L10
-kms133:        cmpl    %r8d, %ebx
-kms134:        je      .L20
-kms135:        cmpl    140(%rsp), %ebx
-kms136:        vmovss  (%rcx,%r11), %xmm0
-kms137:        vmovss  %xmm0, (%rsi,%r11)
-kms138:        jle     .L20
-kms139:        movq    64(%rsp), %rax
-kms140:        cmpl    128(%rsp), %ebx
-kms141:        vmovss  (%rcx,%rax), %xmm0
-kms142:        vmovss  %xmm0, (%rsi,%rax)
-kms143:        jle     .L20
-kms144:        movq    56(%rsp), %rax
-kms145:        cmpl    112(%rsp), %ebx
-kms146:        vmovss  (%rcx,%rax), %xmm0
-kms147:        vmovss  %xmm0, (%rsi,%rax)
-kms148:        jle     .L20
-kms149:        movq    48(%rsp), %rax
-kms150:        cmpl    104(%rsp), %ebx
-kms151:        vmovss  (%rcx,%rax), %xmm0
-kms152:        vmovss  %xmm0, (%rsi,%rax)
-kms153:        jle     .L20
-kms154:        movq    40(%rsp), %rax
-kms155:        cmpl    100(%rsp), %ebx
-kms156:        vmovss  (%rcx,%rax), %xmm0
-kms157:        vmovss  %xmm0, (%rsi,%rax)
-kms158:        jle     .L20
-kms159:        movq    32(%rsp), %rax
-kms160:        cmpl    72(%rsp), %ebx
-kms161:        vmovss  (%rcx,%rax), %xmm0
-kms162:        vmovss  %xmm0, (%rsi,%rax)
-kms163:        jle     .L20
-kms164:        movq    80(%rsp), %rax
-kms165:        vmovss  (%rcx,%rax), %xmm0
-kms166:        vmovss  %xmm0, (%rsi,%rax)
-.L20:
-kms167:        incq    %r9
-kms168:        cmpl    %r9d, 136(%rsp)
-kms169:        jg      .L5
-kms170:        vzeroupper
-.L4:
-kms171:        movl    96(%rsp), %esi
-kms172:        testl   %esi, %esi
-kms173:        jle     .L22
-.L13:
-kms174:        movl    96(%rsp), %eax
-kms175:        movq    120(%rsp), %rdi
-kms176:        movl    $255, %esi
-kms177:        decl    %eax
-kms178:        leaq    4(,%rax,4), %rdx
-kms179:        call    memset
-.L22:
-kms180:        movq    144(%rsp), %rdi
-kms181:        movl    $4, %esi
-kms182:        call    calloc
-kms183:        movq    %r13, %rdi
-kms184:        movq    %rax, 104(%rsp)
-kms185:        call    malloc
-kms186:        movl    $4, %esi
-kms187:        movq    %r14, %rdi
-kms188:        movq    %rax, %r13
-kms189:        movq    %rax, 112(%rsp)
-kms190:        call    calloc
-kms191:        cmpl    $1, 136(%rsp)
-kms192:        movq    %rax, 72(%rsp)
-kms193:        movq    %rax, 0(%r13)
-kms194:        jle     .L14
-kms195:        movl    136(%rsp), %r10d
-kms196:        movslq  %ebx, %rdx
-kms197:        leaq    0(,%rdx,4), %rcx
-kms198:        cmpl    $9, %r10d
-kms199:        jle     .L63
-kms200:        movq    %rax, %r14
-kms201:        leal    -10(%r10), %esi
-kms202:        movq    %rdx, %r8
-kms203:        movq    112(%rsp), %rax
-kms204:        movq    %rdx, %r11
-kms205:        leaq    0(,%rdx,8), %r9
-kms206:        salq    $4, %r8
-kms207:        leaq    (%rdx,%rdx,2), %rdx
-kms208:        andl    $-8, %esi
-kms209:        leaq    (%r14,%r8), %rdi
-kms210:        leal    9(%rsi), %r13d
-kms211:        salq    $5, %r11
-kms212:        leaq    0(,%rdx,4), %r10
-kms213:        addq    $192, %rax
-kms214:        movl    $1, %edx
-kms215:        movq    %r14, %rsi
-.L24:
-kms216:        leaq    (%rcx,%rsi), %r14
-kms217:        movq    %rdi, -160(%rax)
-kms218:        addq    %rcx, %rdi
-kms219:        movq    %rdi, -152(%rax)
-kms220:        addq    %rcx, %rdi
-kms221:        addl    $8, %edx
-kms222:        movq    %r14, -184(%rax)
-kms223:        leaq    (%rsi,%r9), %r14
-kms224:        movq    %rdi, -144(%rax)
-kms225:        addq    %rcx, %rdi
-kms226:        prefetcht0      (%rax)
-kms227:        addq    $64, %rax
-kms228:        movq    %r14, -240(%rax)
-kms229:        leaq    (%rsi,%r10), %r14
-kms230:        movq    %rdi, -200(%rax)
-kms231:        addq    %rcx, %rdi
-kms232:        addq    %r11, %rsi
-kms233:        movq    %rdi, -192(%rax)
-kms234:        movq    %r14, -232(%rax)
-kms235:        addq    %r8, %rdi
-kms236:        cmpl    %r13d, %edx
-kms237:        jne     .L24
-kms238:        movq    %rsi, 72(%rsp)
-kms239:        movq    %rsi, %rax
-.L23:
-kms240:        movslq  %edx, %rdx
-kms241:        addq    %rcx, %rax
-.L25:
-kms242:        movq    112(%rsp), %rsi
-kms243:        movq    %rax, (%rsi,%rdx,8)
-kms244:        incq    %rdx
-kms245:        addq    %rcx, %rax
-kms246:        cmpl    %edx, 136(%rsp)
-kms247:        jg      .L25
-kms248:        movq    (%rsi), %rax
-kms249:        movq    %rax, 72(%rsp)
+kms14:        pushq   %r15
+kms15:        movslq  %ecx, %rax
+kms16:        leaq    0(,%rax,8), %r15
+kms17:        pushq   %r14
+kms18:        movl    %ecx, %r14d
+kms19:        pushq   %r13
+kms20:        pushq   %r12
+kms21:        pushq   %rbp
+kms22:        movl    %esi, %ebp
+kms23:        pushq   %rbx
+kms24:        movq    %rax, %rbx
+kms25:        imull   %ebp, %ebx
+kms26:        subq    $120, %rsp
+kms27:        movq    %rdi, 56(%rsp)
+kms28:        movq    %r15, %rdi
+kms29:        movss   %xmm0, 92(%rsp)
+kms30:        movslq  %ebx, %rbx
+kms31:        movl    %edx, 88(%rsp)
+kms32:        movl    %ecx, 28(%rsp)
+kms33:        salq    $2, %rbx
+kms34:        movq    %r8, 8(%rsp)
+kms35:        movq    %rax, (%rsp)
+kms36:        call    malloc
+kms37:        movq    %rbx, %rdi
+kms38:        movq    %rax, %r13
+kms39:        call    malloc
+kms40:        decl    %r14d
+kms41:        movq    %rax, 0(%r13)
+kms42:        jle     .L118
+kms43:        movl    28(%rsp), %r11d
+kms44:        movslq  %ebp, %rsi
+kms45:        movq    %rax, %rdx
+kms46:        leaq    0(,%rsi,4), %rdi
+kms47:        cmpl    $9, %r11d
+kms48:        jle     .L72
+kms49:        leal    -10(%r11), %r8d
+kms50:        movq    %rsi, %r9
+kms51:        movq    %rsi, %r14
+kms52:        leaq    0(,%rsi,8), %r10
+kms53:        salq    $4, %r9
+kms54:        leaq    (%rsi,%rsi,2), %rsi
+kms55:        andl    $-8, %r8d
+kms56:        leaq    192(%r13), %rcx
+kms57:        leaq    (%rax,%r9), %rax
+kms58:        leal    9(%r8), %r11d
+kms59:        salq    $5, %r14
+kms60:        movl    %r11d, 24(%rsp)
+kms61:        leaq    0(,%rsi,4), %r11
+kms62:        movl    $1, %esi
 .L14:
-kms250:        vxorps  %xmm4, %xmm4, %xmm4
-kms251:        movl    %ebx, %r13d
-kms252:        movl    %ebx, %r14d
-kms253:        shrl    $3, %r13d
-kms254:        andl    $-8, %r14d
-kms255:        leal    -1(%r13), %eax
-kms256:        movl    %eax, 144(%rsp)
-kms257:        leal    -3(%r13), %eax
-kms258:        andl    $-2, %eax
-kms259:        movl    %eax, 140(%rsp)
-kms260:        addl    $2, %eax
-kms261:        movl    %eax, 100(%rsp)
-kms262:        movl    152(%rsp), %eax
-kms263:        leaq    4(,%rax,4), %rax
-kms264:        movq    %rax, 56(%rsp)
-kms265:        movl    96(%rsp), %eax
-kms266:        decl    %eax
-kms267:        movl    %eax, 48(%rsp)
-.L28:
-kms268:        movl    96(%rsp), %ecx
-kms269:        testl   %ecx, %ecx
-kms270:        jle     .L100
-kms271:        vmovaps %xmm4, %xmm5
-kms272:        movl    48(%rsp), %eax
-kms273:        movq    $0, 128(%rsp)
-kms274:        movq    128(%rsp), %rdi
-kms275:        vmovss  .LC1(%rip), %xmm6
-kms276:        vmovss  .LC2(%rip), %xmm7
-kms277:        movq    %rax, 80(%rsp)
-kms278:        movl    136(%rsp), %eax
-kms279:        leal    -1(%rax), %r11d
-.L43:
-kms280:        movl    136(%rsp), %edx
-kms281:        movq    88(%rsp), %rax
-kms282:        testl   %edx, %edx
-kms283:        movq    (%rax,%rdi,8), %r8
-kms284:        jle     .L30
-kms285:        xorl    %r9d, %r9d
-kms286:        testl   %ebx, %ebx
-kms287:        vmovaps %xmm6, %xmm3
-kms288:        movq    (%r15,%r9,8), %rdi
-kms289:        movl    %r9d, %r10d
-kms290:        jle     .L64
-.L101:
-kms291:        cmpl    $6, 152(%rsp)
-kms292:        jbe     .L65
-kms293:        cmpl    $1, 144(%rsp)
-kms294:        movq    %rdi, %rcx
-kms295:        movq    %r8, %rsi
-kms296:        jbe     .L66
-kms297:        vmovaps %xmm4, %xmm0
-kms298:        xorl    %eax, %eax
-.L34:
-kms299:        vmovups (%rsi), %ymm1
-kms300:        movl    %eax, %edx
-kms301:        prefetcht0      384(%rsi)
-kms302:        addl    $2, %eax
-kms303:        addq    $64, %rsi
-kms304:        prefetcht0      384(%rcx)
-kms305:        vsubps  (%rcx), %ymm1, %ymm1
-kms306:        addq    $64, %rcx
-kms307:        vmulps  %ymm1, %ymm1, %ymm1
-kms308:        vaddss  %xmm0, %xmm1, %xmm0
-kms309:        vshufps $85, %xmm1, %xmm1, %xmm8
-kms310:        vshufps $255, %xmm1, %xmm1, %xmm2
-kms311:        vaddss  %xmm0, %xmm8, %xmm8
-kms312:        vunpckhps       %xmm1, %xmm1, %xmm0
-kms313:        vextractf128    $0x1, %ymm1, %xmm1
-kms314:        vaddss  %xmm8, %xmm0, %xmm0
-kms315:        vaddss  %xmm0, %xmm2, %xmm2
-kms316:        vshufps $85, %xmm1, %xmm1, %xmm0
-kms317:        vaddss  %xmm2, %xmm1, %xmm2
-kms318:        vaddss  %xmm2, %xmm0, %xmm2
-kms319:        vunpckhps       %xmm1, %xmm1, %xmm0
-kms320:        vshufps $255, %xmm1, %xmm1, %xmm1
-kms321:        vaddss  %xmm2, %xmm0, %xmm0
-kms322:        vaddss  %xmm1, %xmm0, %xmm0
-kms323:        vmovups -32(%rsi), %ymm1
-kms324:        vsubps  -32(%rcx), %ymm1, %ymm1
-kms325:        cmpl    140(%rsp), %edx
-kms326:        vmulps  %ymm1, %ymm1, %ymm1
-kms327:        vaddss  %xmm1, %xmm0, %xmm0
-kms328:        vshufps $85, %xmm1, %xmm1, %xmm8
-kms329:        vshufps $255, %xmm1, %xmm1, %xmm2
-kms330:        vaddss  %xmm8, %xmm0, %xmm0
-kms331:        vunpckhps       %xmm1, %xmm1, %xmm8
-kms332:        vextractf128    $0x1, %ymm1, %xmm1
-kms333:        vaddss  %xmm8, %xmm0, %xmm0
-kms334:        vaddss  %xmm2, %xmm0, %xmm0
-kms335:        vshufps $85, %xmm1, %xmm1, %xmm2
-kms336:        vaddss  %xmm1, %xmm0, %xmm0
-kms337:        vaddss  %xmm2, %xmm0, %xmm0
-kms338:        vunpckhps       %xmm1, %xmm1, %xmm2
-kms339:        vshufps $255, %xmm1, %xmm1, %xmm1
-kms340:        vaddss  %xmm2, %xmm0, %xmm0
-kms341:        vaddss  %xmm1, %xmm0, %xmm0
-kms342:        jne     .L34
-kms343:        movl    100(%rsp), %edx
-.L33:
-kms344:        xorl    %eax, %eax
-.L35:
-kms345:        vmovups (%rsi,%rax), %ymm1
-kms346:        incl    %edx
-kms347:        vsubps  (%rcx,%rax), %ymm1, %ymm1
-kms348:        addq    $32, %rax
-kms349:        cmpl    %edx, %r13d
-kms350:        vmulps  %ymm1, %ymm1, %ymm2
-kms351:        vaddss  %xmm2, %xmm0, %xmm0
-kms352:        vshufps $85, %xmm2, %xmm2, %xmm1
-kms353:        vshufps $255, %xmm2, %xmm2, %xmm8
-kms354:        vaddss  %xmm1, %xmm0, %xmm0
-kms355:        vunpckhps       %xmm2, %xmm2, %xmm1
-kms356:        vaddss  %xmm1, %xmm0, %xmm0
-kms357:        vextractf128    $0x1, %ymm2, %xmm1
-kms358:        vshufps $85, %xmm1, %xmm1, %xmm2
-kms359:        vaddss  %xmm8, %xmm0, %xmm0
-kms360:        vaddss  %xmm1, %xmm0, %xmm0
-kms361:        vaddss  %xmm2, %xmm0, %xmm0
-kms362:        vunpckhps       %xmm1, %xmm1, %xmm2
-kms363:        vshufps $255, %xmm1, %xmm1, %xmm1
-kms364:        vaddss  %xmm2, %xmm0, %xmm0
-kms365:        vaddss  %xmm1, %xmm0, %xmm0
-kms366:        ja      .L35
-kms367:        cmpl    %ebx, %r14d
-kms368:        je      .L31
-kms369:        movl    %r14d, %edx
-.L32:
-kms370:        movslq  %edx, %rcx
-kms371:        vmovss  (%r8,%rcx,4), %xmm1
-kms372:        leaq    0(,%rcx,4), %rax
-kms373:        vsubss  (%rdi,%rcx,4), %xmm1, %xmm1
-kms374:        leal    1(%rdx), %ecx
-kms375:        cmpl    %ecx, %ebx
-kms376:        vmulss  %xmm1, %xmm1, %xmm1
-kms377:        vaddss  %xmm1, %xmm0, %xmm0
-kms378:        jle     .L31
-kms379:        vmovss  4(%r8,%rax), %xmm1
-kms380:        leal    2(%rdx), %ecx
-kms381:        vsubss  4(%rdi,%rax), %xmm1, %xmm1
-kms382:        cmpl    %ecx, %ebx
-kms383:        vmulss  %xmm1, %xmm1, %xmm1
-kms384:        vaddss  %xmm1, %xmm0, %xmm0
-kms385:        jle     .L31
-kms386:        vmovss  8(%r8,%rax), %xmm1
-kms387:        leal    3(%rdx), %ecx
-kms388:        vsubss  8(%rdi,%rax), %xmm1, %xmm1
-kms389:        cmpl    %ecx, %ebx
-kms390:        vmulss  %xmm1, %xmm1, %xmm1
-kms391:        vaddss  %xmm1, %xmm0, %xmm0
-kms392:        jle     .L31
-kms393:        vmovss  12(%r8,%rax), %xmm1
-kms394:        leal    4(%rdx), %ecx
-kms395:        vsubss  12(%rdi,%rax), %xmm1, %xmm1
-kms396:        cmpl    %ecx, %ebx
-kms397:        vmulss  %xmm1, %xmm1, %xmm1
-kms398:        vaddss  %xmm1, %xmm0, %xmm0
-kms399:        jle     .L31
-kms400:        vmovss  16(%r8,%rax), %xmm1
-kms401:        leal    5(%rdx), %ecx
-kms402:        vsubss  16(%rdi,%rax), %xmm1, %xmm1
-kms403:        cmpl    %ecx, %ebx
-kms404:        vmulss  %xmm1, %xmm1, %xmm1
-kms405:        vaddss  %xmm1, %xmm0, %xmm0
-kms406:        jle     .L31
-kms407:        vmovss  20(%r8,%rax), %xmm1
-kms408:        addl    $6, %edx
-kms409:        vsubss  20(%rdi,%rax), %xmm1, %xmm1
-kms410:        cmpl    %edx, %ebx
-kms411:        vmulss  %xmm1, %xmm1, %xmm1
-kms412:        vaddss  %xmm1, %xmm0, %xmm0
-kms413:        jle     .L31
-kms414:        vmovss  24(%r8,%rax), %xmm1
-kms415:        vsubss  24(%rdi,%rax), %xmm1, %xmm1
-kms416:        vmulss  %xmm1, %xmm1, %xmm1
-kms417:        vaddss  %xmm1, %xmm0, %xmm0
-.L31:
-kms418:        vcomiss %xmm0, %xmm3
-kms419:        leaq    1(%r9), %rax
-kms420:        vminss  %xmm3, %xmm0, %xmm3
-kms421:        cmova   %r10d, %r12d
-kms422:        cmpq    %r9, %r11
-kms423:        je      .L30
-kms424:        movq    %rax, %r9
-kms425:        testl   %ebx, %ebx
-kms426:        movq    (%r15,%r9,8), %rdi
-kms427:        movl    %r9d, %r10d
-kms428:        jg      .L101
-.L64:
-kms429:        vmovaps %xmm4, %xmm0
-kms430:        jmp     .L31
+kms63:        leaq    (%rdi,%rdx), %r8
+kms64:        movq    %rax, -160(%rcx)
+kms65:        addq    %rdi, %rax
+kms66:        movq    %rax, -152(%rcx)
+kms67:        addq    %rdi, %rax
+kms68:        addl    $8, %esi
+kms69:        movq    %r8, -184(%rcx)
+kms70:        leaq    (%rdx,%r10), %r8
+kms71:        movq    %rax, -144(%rcx)
+kms72:        addq    %rdi, %rax
+kms73:        prefetcht0      (%rcx)
+kms74:        addq    $64, %rcx
+kms75:        movq    %r8, -240(%rcx)
+kms76:        leaq    (%rdx,%r11), %r8
+kms77:        movq    %rax, -200(%rcx)
+kms78:        addq    %rdi, %rax
+kms79:        addq    %r14, %rdx
+kms80:        movq    %rax, -192(%rcx)
+kms81:        movq    %r8, -232(%rcx)
+kms82:        addq    %r9, %rax
+kms83:        cmpl    24(%rsp), %esi
+kms84:        jne     .L14
+.L13:
+kms85:        movslq  %esi, %rsi
+kms86:        addq    %rdi, %rdx
+.L16:
+kms87:        movq    %rdx, 0(%r13,%rsi,8)
+kms88:        incq    %rsi
+kms89:        addq    %rdi, %rdx
+kms90:        cmpl    %esi, 28(%rsp)
+kms91:        jg      .L16
+.L15:
+kms92:        testl   %ebp, %ebp
+kms93:        jle     .L117
+kms94:        movl    %ebp, %r9d
+kms95:        movl    %ebp, %r11d
+kms96:        xorl    %r10d, %r10d
+kms97:        shrl    $2, %r9d
+kms98:        andl    $-4, %r11d
+kms99:        leal    -5(%r9), %eax
+kms100:        movl    %r11d, %r14d
+kms101:        salq    $2, %r14
+kms102:        andl    $-4, %eax
+kms103:        movl    %eax, 64(%rsp)
+kms104:        addl    $4, %eax
+kms105:        movl    %eax, 72(%rsp)
+kms106:        leal    1(%r11), %eax
+kms107:        movl    %eax, 32(%rsp)
+kms108:        salq    $2, %rax
+kms109:        movq    %rax, 40(%rsp)
+kms110:        leal    2(%r11), %eax
+kms111:        movl    %eax, 16(%rsp)
+kms112:        salq    $2, %rax
+kms113:        movq    %rax, 48(%rsp)
+kms114:        leal    -1(%rbp), %eax
+kms115:        movl    %eax, 24(%rsp)
+kms116:        leal    -17(%rbp), %eax
+kms117:        andl    $-16, %eax
+kms118:        addl    $16, %eax
+kms119:        movl    %eax, 80(%rsp)
 .L12:
-kms431:        cmpl    $16, %ebx
-kms432:        jle     .L62
-kms433:        leaq    100(%rcx), %rdx
-kms434:        leaq    100(%rsi), %rax
-kms435:        xorl    %edi, %edi
-.L19:
-kms436:        vmovss  -100(%rdx), %xmm0
-kms437:        prefetcht0      (%rdx)
-kms438:        prefetcht0      (%rax)
-kms439:        vmovss  %xmm0, -100(%rax)
-kms440:        addl    $16, %edi
-kms441:        addq    $64, %rdx
-kms442:        addq    $64, %rax
-kms443:        vmovss  -160(%rdx), %xmm0
-kms444:        vmovss  %xmm0, -160(%rax)
-kms445:        vmovss  -156(%rdx), %xmm0
-kms446:        vmovss  %xmm0, -156(%rax)
-kms447:        vmovss  -152(%rdx), %xmm0
-kms448:        vmovss  %xmm0, -152(%rax)
-kms449:        vmovss  -148(%rdx), %xmm0
-kms450:        vmovss  %xmm0, -148(%rax)
-kms451:        vmovss  -144(%rdx), %xmm0
-kms452:        vmovss  %xmm0, -144(%rax)
-kms453:        vmovss  -140(%rdx), %xmm0
-kms454:        vmovss  %xmm0, -140(%rax)
-kms455:        vmovss  -136(%rdx), %xmm0
-kms456:        vmovss  %xmm0, -136(%rax)
-kms457:        vmovss  -132(%rdx), %xmm0
-kms458:        vmovss  %xmm0, -132(%rax)
-kms459:        vmovss  -128(%rdx), %xmm0
-kms460:        vmovss  %xmm0, -128(%rax)
-kms461:        vmovss  -124(%rdx), %xmm0
-kms462:        vmovss  %xmm0, -124(%rax)
-kms463:        vmovss  -120(%rdx), %xmm0
-kms464:        vmovss  %xmm0, -120(%rax)
-kms465:        vmovss  -116(%rdx), %xmm0
-kms466:        vmovss  %xmm0, -116(%rax)
-kms467:        vmovss  -112(%rdx), %xmm0
-kms468:        vmovss  %xmm0, -112(%rax)
-kms469:        vmovss  -108(%rdx), %xmm0
-kms470:        vmovss  %xmm0, -108(%rax)
-kms471:        vmovss  -104(%rdx), %xmm0
-kms472:        vmovss  %xmm0, -104(%rax)
-kms473:        cmpl    24(%rsp), %edi
-kms474:        jne     .L19
-.L18:
-kms475:        movslq  %edi, %rdi
+kms120:        movq    56(%rsp), %rax
+kms121:        movq    0(%r13,%r10,8), %r8
+kms122:        movq    (%rax,%r10,8), %rdi
+kms123:        leaq    15(%rdi), %rax
+kms124:        subq    %r8, %rax
+kms125:        cmpq    $30, %rax
+kms126:        jbe     .L19
+kms127:        cmpl    $8, 24(%rsp)
+kms128:        jbe     .L19
+kms129:        cmpl    $4, %r9d
+kms130:        movq    %r8, %rdx
+kms131:        movq    %rdi, %rcx
+kms132:        jbe     .L73
+kms133:        xorl    %eax, %eax
+.L24:
+kms134:        movlps  (%rcx), %xmm0
+kms135:        prefetcht0      464(%rcx)
+kms136:        movl    %eax, %esi
+kms137:        addq    $64, %rcx
+kms138:        addl    $4, %eax
+kms139:        prefetcht0      464(%rdx)
+kms140:        movhps  -56(%rcx), %xmm0
+kms141:        addq    $64, %rdx
+kms142:        movlps  %xmm0, -64(%rdx)
+kms143:        movhps  %xmm0, -56(%rdx)
+kms144:        movlps  -48(%rcx), %xmm0
+kms145:        movhps  -40(%rcx), %xmm0
+kms146:        movlps  %xmm0, -48(%rdx)
+kms147:        movhps  %xmm0, -40(%rdx)
+kms148:        movlps  -32(%rcx), %xmm0
+kms149:        movhps  -24(%rcx), %xmm0
+kms150:        movlps  %xmm0, -32(%rdx)
+kms151:        movhps  %xmm0, -24(%rdx)
+kms152:        movlps  -16(%rcx), %xmm0
+kms153:        movhps  -8(%rcx), %xmm0
+kms154:        movlps  %xmm0, -16(%rdx)
+kms155:        movhps  %xmm0, -8(%rdx)
+kms156:        cmpl    64(%rsp), %esi
+kms157:        jne     .L24
+kms158:        movl    72(%rsp), %esi
+.L23:
+kms159:        xorl    %eax, %eax
+.L25:
+kms160:        movlps  (%rcx,%rax), %xmm0
+kms161:        incl    %esi
+kms162:        movhps  8(%rcx,%rax), %xmm0
+kms163:        movlps  %xmm0, (%rdx,%rax)
+kms164:        movhps  %xmm0, 8(%rdx,%rax)
+kms165:        addq    $16, %rax
+kms166:        cmpl    %esi, %r9d
+kms167:        ja      .L25
+kms168:        cmpl    %r11d, %ebp
+kms169:        je      .L29
+kms170:        cmpl    32(%rsp), %ebp
+kms171:        movss   (%rdi,%r14), %xmm0
+kms172:        movss   %xmm0, (%r8,%r14)
+kms173:        jle     .L29
+kms174:        movq    40(%rsp), %rax
+kms175:        cmpl    16(%rsp), %ebp
+kms176:        movss   (%rdi,%rax), %xmm0
+kms177:        movss   %xmm0, (%r8,%rax)
+kms178:        jle     .L29
+kms179:        movq    48(%rsp), %rax
+kms180:        movss   (%rdi,%rax), %xmm0
+kms181:        movss   %xmm0, (%r8,%rax)
+.L29:
+kms182:        incq    %r10
+kms183:        cmpl    %r10d, 28(%rsp)
+kms184:        jg      .L12
+.L10:
+kms185:        movl    88(%rsp), %ecx
+kms186:        testl   %ecx, %ecx
+kms187:        jle     .L31
+kms188:        movl    88(%rsp), %eax
+kms189:        movq    8(%rsp), %rdi
+kms190:        movl    $255, %esi
+kms191:        decl    %eax
+kms192:        leaq    4(,%rax,4), %rdx
+kms193:        call    memset
+.L31:
+kms194:        movq    (%rsp), %r14
+kms195:        salq    $2, %r14
+kms196:        movq    %r14, %rdi
+kms197:        call    malloc
+kms198:        movq    %r14, %rdx
+kms199:        movq    %rax, 40(%rsp)
+kms200:        shrq    $2, %rdx
+kms201:        je      .L21
+kms202:        movq    %rax, %rdi
+kms203:        salq    $2, %rdx
+kms204:        xorl    %esi, %esi
+kms205:        call    memset
 .L21:
-kms476:        vmovss  (%rcx,%rdi,4), %xmm0
-kms477:        vmovss  %xmm0, (%rsi,%rdi,4)
-kms478:        incq    %rdi
-kms479:        cmpl    %edi, %ebx
-kms480:        jg      .L21
-kms481:        jmp     .L20
-.L30:
-kms482:        movq    120(%rsp), %rax
-kms483:        movq    128(%rsp), %rdi
-kms484:        cmpl    %r12d, (%rax,%rdi,4)
-kms485:        je      .L40
-kms486:        vaddss  %xmm7, %xmm5, %xmm5
-.L40:
-kms487:        movq    120(%rsp), %rax
-kms488:        movq    128(%rsp), %rdi
-kms489:        movq    104(%rsp), %rsi
-kms490:        movl    %r12d, (%rax,%rdi,4)
-kms491:        movslq  %r12d, %rax
-kms492:        incl    (%rsi,%rax,4)
-kms493:        testl   %ebx, %ebx
-kms494:        jle     .L47
-kms495:        cmpl    $6, 152(%rsp)
-kms496:        movq    112(%rsp), %rdi
-kms497:        movq    (%rdi,%rax,8), %r9
-kms498:        jbe     .L68
-kms499:        cmpl    $1, 144(%rsp)
-kms500:        jbe     .L69
-kms501:        movq    %r8, %rsi
-kms502:        movq    %r9, %rcx
-kms503:        xorl    %eax, %eax
-.L46:
-kms504:        vmovups (%rcx), %ymm0
-kms505:        prefetcht0      640(%rsi)
-kms506:        movl    %eax, %edx
-kms507:        addq    $64, %rsi
-kms508:        addl    $2, %eax
-kms509:        prefetcht0      640(%rcx)
-kms510:        vaddps  -64(%rsi), %ymm0, %ymm0
-kms511:        addq    $64, %rcx
-kms512:        vmovups %ymm0, -64(%rcx)
-kms513:        vmovups -32(%rsi), %ymm0
-kms514:        vaddps  -32(%rcx), %ymm0, %ymm0
-kms515:        vmovups %ymm0, -32(%rcx)
-kms516:        cmpl    140(%rsp), %edx
-kms517:        movq    %rcx, %rdi
-kms518:        jne     .L46
-kms519:        movl    100(%rsp), %edx
-.L45:
-kms520:        xorl    %eax, %eax
-.L48:
-kms521:        vmovups (%rsi,%rax), %ymm0
-kms522:        incl    %edx
-kms523:        vaddps  (%rcx,%rax), %ymm0, %ymm0
-kms524:        vmovups %ymm0, (%rdi,%rax)
-kms525:        addq    $32, %rax
-kms526:        cmpl    %edx, %r13d
-kms527:        ja      .L48
-kms528:        cmpl    %ebx, %r14d
-kms529:        je      .L47
-kms530:        movl    %r14d, %edx
-.L44:
-kms531:        movslq  %edx, %rsi
-kms532:        leaq    0(,%rsi,4), %rax
-kms533:        leaq    (%r9,%rax), %rcx
-kms534:        vmovss  (%rcx), %xmm0
-kms535:        vaddss  (%r8,%rsi,4), %xmm0, %xmm0
-kms536:        vmovss  %xmm0, (%rcx)
-kms537:        leal    1(%rdx), %ecx
-kms538:        cmpl    %ecx, %ebx
-kms539:        jle     .L47
-kms540:        leaq    4(%r9,%rax), %rcx
-kms541:        vmovss  (%rcx), %xmm0
-kms542:        vaddss  4(%r8,%rax), %xmm0, %xmm0
-kms543:        vmovss  %xmm0, (%rcx)
-kms544:        leal    2(%rdx), %ecx
-kms545:        cmpl    %ecx, %ebx
-kms546:        jle     .L47
-kms547:        leaq    8(%r9,%rax), %rcx
-kms548:        vmovss  (%rcx), %xmm0
-kms549:        vaddss  8(%r8,%rax), %xmm0, %xmm0
-kms550:        vmovss  %xmm0, (%rcx)
-kms551:        leal    3(%rdx), %ecx
-kms552:        cmpl    %ecx, %ebx
-kms553:        jle     .L47
-kms554:        leaq    12(%r9,%rax), %rcx
-kms555:        vmovss  (%rcx), %xmm0
-kms556:        vaddss  12(%r8,%rax), %xmm0, %xmm0
-kms557:        vmovss  %xmm0, (%rcx)
-kms558:        leal    4(%rdx), %ecx
-kms559:        cmpl    %ebx, %ecx
-kms560:        jge     .L47
-kms561:        leaq    16(%r9,%rax), %rcx
-kms562:        vmovss  (%rcx), %xmm0
-kms563:        vaddss  16(%r8,%rax), %xmm0, %xmm0
-kms564:        vmovss  %xmm0, (%rcx)
-kms565:        leal    5(%rdx), %ecx
-kms566:        cmpl    %ebx, %ecx
-kms567:        jge     .L47
-kms568:        leaq    20(%r9,%rax), %rcx
-kms569:        addl    $6, %edx
-kms570:        cmpl    %edx, %ebx
-kms571:        vmovss  (%rcx), %xmm0
-kms572:        vaddss  20(%r8,%rax), %xmm0, %xmm0
-kms573:        vmovss  %xmm0, (%rcx)
-kms574:        jle     .L47
-kms575:        leaq    24(%r9,%rax), %rdx
-kms576:        vmovss  (%rdx), %xmm0
-kms577:        vaddss  24(%r8,%rax), %xmm0, %xmm0
-kms578:        vmovss  %xmm0, (%rdx)
-.L47:
-kms579:        movq    128(%rsp), %rdi
-kms580:        cmpq    %rdi, 80(%rsp)
-kms581:        leaq    1(%rdi), %rax
-kms582:        je      .L42
-kms583:        movq    %rax, 128(%rsp)
-kms584:        movq    %rax, %rdi
-kms585:        jmp     .L43
-.L65:
-kms586:        vmovaps %xmm4, %xmm0
-kms587:        xorl    %edx, %edx
-kms588:        jmp     .L32
-.L66:
-kms589:        vmovaps %xmm4, %xmm0
-kms590:        xorl    %edx, %edx
-kms591:        jmp     .L33
-.L100:
-kms592:        vmovaps %xmm4, %xmm5
-.L42:
-kms593:        movl    136(%rsp), %eax
-kms594:        leal    -17(%rbx), %edi
-kms595:        xorl    %ecx, %ecx
-kms596:        movl    %edi, 64(%rsp)
-kms597:        leal    -1(%rax), %esi
-kms598:        testl   %eax, %eax
-kms599:        movq    %rsi, 128(%rsp)
-kms600:        jle     .L51
-kms601:        movl    %r12d, 40(%rsp)
-kms602:        movl    %r13d, 24(%rsp)
-kms603:        movq    112(%rsp), %r12
-kms604:        movq    104(%rsp), %r13
-kms605:        movl    %r14d, 32(%rsp)
-kms606:        movq    %rcx, %r14
-.L52:
-kms607:        testl   %ebx, %ebx
-kms608:        jle     .L57
-kms609:        movl    0(%r13,%r14,4), %edx
-kms610:        movq    (%r12,%r14,8), %rdi
-kms611:        testl   %edx, %edx
-kms612:        jle     .L102
-kms613:        cmpl    $16, %ebx
-kms614:        jle     .L70
-kms615:        movl    64(%rsp), %r10d
-kms616:        vcvtsi2ssl      %edx, %xmm1, %xmm1
-kms617:        movq    (%r15,%r14,8), %rdx
-kms618:        leaq    40(%rdi), %rsi
-kms619:        movl    $40, %r9d
-kms620:        xorl    %eax, %eax
-kms621:        andl    $-16, %r10d
+kms206:        movq    %r15, %rdi
+kms207:        call    malloc
+kms208:        movq    %rbx, %rdi
+kms209:        movq    %rax, 32(%rsp)
+kms210:        call    malloc
+kms211:        shrq    $2, %rbx
+kms212:        movq    %rax, 72(%rsp)
+kms213:        movq    %rbx, %rdx
+kms214:        je      .L32
+kms215:        movq    %rax, %rdi
+kms216:        salq    $2, %rdx
+kms217:        xorl    %esi, %esi
+kms218:        call    memset
+.L32:
+kms219:        cmpl    $1, 28(%rsp)
+kms220:        movq    32(%rsp), %rax
+kms221:        movq    72(%rsp), %rbx
+kms222:        movq    %rbx, (%rax)
+kms223:        jle     .L34
+kms224:        movl    28(%rsp), %ebx
+kms225:        movslq  %ebp, %rdx
+kms226:        leaq    0(,%rdx,4), %rcx
+kms227:        cmpl    $9, %ebx
+kms228:        jle     .L75
+kms229:        movq    72(%rsp), %r15
+kms230:        leal    -10(%rbx), %esi
+kms231:        movq    %rdx, %r8
+kms232:        movq    %rdx, %r11
+kms233:        leaq    0(,%rdx,8), %r9
+kms234:        salq    $4, %r8
+kms235:        leaq    (%rdx,%rdx,2), %rdx
+kms236:        andl    $-8, %esi
+kms237:        addq    $192, %rax
+kms238:        leaq    (%r15,%r8), %rdi
+kms239:        leal    9(%rsi), %ebx
+kms240:        salq    $5, %r11
+kms241:        leaq    0(,%rdx,4), %r10
+kms242:        movq    %r15, %rsi
+kms243:        movl    $1, %edx
+.L37:
+kms244:        leaq    (%rcx,%rsi), %r14
+kms245:        movq    %rdi, -160(%rax)
+kms246:        addq    %rcx, %rdi
+kms247:        movq    %rdi, -152(%rax)
+kms248:        addq    %rcx, %rdi
+kms249:        addl    $8, %edx
+kms250:        movq    %r14, -184(%rax)
+kms251:        leaq    (%rsi,%r9), %r14
+kms252:        movq    %rdi, -144(%rax)
+kms253:        addq    %rcx, %rdi
+kms254:        prefetcht0      (%rax)
+kms255:        addq    $64, %rax
+kms256:        movq    %r14, -240(%rax)
+kms257:        leaq    (%rsi,%r10), %r14
+kms258:        movq    %rdi, -200(%rax)
+kms259:        addq    %rcx, %rdi
+kms260:        addq    %r11, %rsi
+kms261:        movq    %rdi, -192(%rax)
+kms262:        movq    %r14, -232(%rax)
+kms263:        addq    %r8, %rdi
+kms264:        cmpl    %ebx, %edx
+kms265:        jne     .L37
+kms266:        movq    %rsi, 72(%rsp)
+.L36:
+kms267:        movq    72(%rsp), %rax
+kms268:        movslq  %edx, %rdx
+kms269:        addq    %rcx, %rax
+.L38:
+kms270:        movq    32(%rsp), %rbx
+kms271:        movq    %rax, (%rbx,%rdx,8)
+kms272:        incq    %rdx
+kms273:        addq    %rcx, %rax
+kms274:        cmpl    %edx, 28(%rsp)
+kms275:        jg      .L38
+kms276:        movq    (%rbx), %rax
+kms277:        movq    %rax, 72(%rsp)
+.L34:
+kms278:        xorps   %xmm4, %xmm4
+kms279:        movl    %ebp, %ebx
+kms280:        movl    %ebp, %r15d
+kms281:        shrl    $2, %ebx
+kms282:        andl    $-4, %r15d
+kms283:        leal    -5(%rbx), %eax
+kms284:        andl    $-4, %eax
+kms285:        movl    %eax, (%rsp)
+kms286:        addl    $4, %eax
+kms287:        movl    %eax, 48(%rsp)
+kms288:        movl    24(%rsp), %eax
+kms289:        leaq    4(,%rax,4), %rax
+kms290:        movq    %rax, 80(%rsp)
+kms291:        movl    88(%rsp), %eax
+kms292:        decl    %eax
+kms293:        movl    %eax, 96(%rsp)
+.L41:
+kms294:        movl    88(%rsp), %edx
+kms295:        testl   %edx, %edx
+kms296:        jle     .L119
+kms297:        movaps  %xmm4, %xmm5
+kms298:        movl    96(%rsp), %eax
+kms299:        xorl    %r14d, %r14d
+kms300:        movss   .LC1(%rip), %xmm6
+kms301:        movss   .LC2(%rip), %xmm7
+kms302:        movq    %rax, 64(%rsp)
+kms303:        movl    28(%rsp), %eax
+kms304:        leal    -1(%rax), %r11d
 .L56:
-kms622:        vmovss  -40(%rsi), %xmm0
-kms623:        prefetcht0      (%rsi)
-kms624:        movl    $0x00000000, -40(%rsi)
-kms625:        vdivss  %xmm1, %xmm0, %xmm0
-kms626:        movl    %eax, %ecx
-kms627:        addq    $64, %rsi
-kms628:        addl    $16, %eax
-kms629:        vmovss  %xmm0, -40(%rdx,%r9)
-kms630:        vmovss  -100(%rsi), %xmm0
-kms631:        movl    $0x00000000, -100(%rsi)
-kms632:        vdivss  %xmm1, %xmm0, %xmm0
-kms633:        vmovss  %xmm0, -36(%rdx,%r9)
-kms634:        vmovss  -96(%rsi), %xmm0
-kms635:        movl    $0x00000000, -96(%rsi)
-kms636:        vdivss  %xmm1, %xmm0, %xmm0
-kms637:        vmovss  %xmm0, -32(%rdx,%r9)
-kms638:        vmovss  -92(%rsi), %xmm0
-kms639:        movl    $0x00000000, -92(%rsi)
-kms640:        vdivss  %xmm1, %xmm0, %xmm0
-kms641:        vmovss  %xmm0, -28(%rdx,%r9)
-kms642:        vmovss  -88(%rsi), %xmm0
-kms643:        movl    $0x00000000, -88(%rsi)
-kms644:        vdivss  %xmm1, %xmm0, %xmm0
-kms645:        vmovss  %xmm0, -24(%rdx,%r9)
-kms646:        vmovss  -84(%rsi), %xmm0
-kms647:        movl    $0x00000000, -84(%rsi)
-kms648:        vdivss  %xmm1, %xmm0, %xmm0
-kms649:        vmovss  %xmm0, -20(%rdx,%r9)
-kms650:        vmovss  -80(%rsi), %xmm0
-kms651:        movl    $0x00000000, -80(%rsi)
-kms652:        vdivss  %xmm1, %xmm0, %xmm0
-kms653:        vmovss  %xmm0, -16(%rdx,%r9)
-kms654:        vmovss  -76(%rsi), %xmm0
-kms655:        movl    $0x00000000, -76(%rsi)
-kms656:        vdivss  %xmm1, %xmm0, %xmm0
-kms657:        vmovss  %xmm0, -12(%rdx,%r9)
-kms658:        vmovss  -72(%rsi), %xmm0
-kms659:        movl    $0x00000000, -72(%rsi)
-kms660:        vdivss  %xmm1, %xmm0, %xmm0
-kms661:        vmovss  %xmm0, -8(%rdx,%r9)
-kms662:        vmovss  -68(%rsi), %xmm0
-kms663:        movl    $0x00000000, -68(%rsi)
-kms664:        vdivss  %xmm1, %xmm0, %xmm0
-kms665:        vmovss  %xmm0, -4(%rdx,%r9)
-kms666:        vmovss  -64(%rsi), %xmm0
-kms667:        vdivss  %xmm1, %xmm0, %xmm0
-kms668:        vmovss  %xmm0, (%rdx,%r9)
-kms669:        movl    $0x00000000, -64(%rsi)
-kms670:        vmovss  -60(%rsi), %xmm0
-kms671:        movl    $0x00000000, -60(%rsi)
-kms672:        vdivss  %xmm1, %xmm0, %xmm0
-kms673:        vmovss  %xmm0, 4(%rdx,%r9)
-kms674:        vmovss  -56(%rsi), %xmm0
-kms675:        movl    $0x00000000, -56(%rsi)
-kms676:        vdivss  %xmm1, %xmm0, %xmm0
-kms677:        vmovss  %xmm0, 8(%rdx,%r9)
-kms678:        vmovss  -52(%rsi), %xmm0
-kms679:        movl    $0x00000000, -52(%rsi)
-kms680:        vdivss  %xmm1, %xmm0, %xmm0
-kms681:        vmovss  %xmm0, 12(%rdx,%r9)
-kms682:        vmovss  -48(%rsi), %xmm0
-kms683:        movl    $0x00000000, -48(%rsi)
-kms684:        vdivss  %xmm1, %xmm0, %xmm0
-kms685:        vmovss  %xmm0, 16(%rdx,%r9)
-kms686:        vmovss  -44(%rsi), %xmm0
-kms687:        movl    $0x00000000, -44(%rsi)
-kms688:        vdivss  %xmm1, %xmm0, %xmm0
-kms689:        vmovss  %xmm0, 20(%rdx,%r9)
-kms690:        addq    $64, %r9
-kms691:        cmpl    %ecx, %r10d
-kms692:        jne     .L56
-.L55:
-kms693:        cltq
-.L58:
-kms694:        vmovss  (%rdi,%rax,4), %xmm0
-kms695:        movl    $0x00000000, (%rdi,%rax,4)
-kms696:        vdivss  %xmm1, %xmm0, %xmm0
-kms697:        vmovss  %xmm0, (%rdx,%rax,4)
-kms698:        incq    %rax
-kms699:        cmpl    %eax, %ebx
-kms700:        jg      .L58
-.L57:
-kms701:        cmpq    %r14, 128(%rsp)
-kms702:        leaq    1(%r14), %rax
-kms703:        movl    $0, 0(%r13,%r14,4)
-kms704:        je      .L95
-kms705:        movq    %rax, %r14
-kms706:        jmp     .L52
-.L102:
-kms707:        movq    56(%rsp), %rdx
-kms708:        xorl    %esi, %esi
-kms709:        vmovss  %xmm5, 80(%rsp)
-kms710:        vzeroupper
-kms711:        call    memset
-kms712:        vxorps  %xmm4, %xmm4, %xmm4
-kms713:        vmovss  80(%rsp), %xmm5
-kms714:        jmp     .L57
-.L95:
-kms715:        movl    40(%rsp), %r12d
-kms716:        movl    32(%rsp), %r14d
-kms717:        movl    24(%rsp), %r13d
-.L51:
-kms718:        vcomiss 28(%rsp), %xmm5
-kms719:        ja      .L28
-kms720:        movq    72(%rsp), %rdi
-kms721:        vzeroupper
-kms722:        call    free
-kms723:        movq    112(%rsp), %rdi
-kms724:        call    free
-kms725:        movq    104(%rsp), %rdi
-kms726:        call    free
-kms727:        leaq    -40(%rbp), %rsp
-kms728:        movq    %r15, %rax
-kms729:        popq    %rbx
-kms730:        popq    %r12
-kms731:        popq    %r13
-kms732:        popq    %r14
-kms733:        popq    %r15
-kms734:        popq    %rbp
-kms735:        ret
-.L68:
-kms736:        xorl    %edx, %edx
-kms737:        jmp     .L44
-.L69:
-kms738:        movq    %r9, %rdi
-kms739:        movq    %r8, %rsi
-kms740:        movq    %r9, %rcx
-kms741:        xorl    %edx, %edx
-kms742:        jmp     .L45
-.L70:
-kms743:        vcvtsi2ssl      %edx, %xmm1, %xmm1
-kms744:        xorl    %eax, %eax
-kms745:        movq    (%r15,%r14,8), %rdx
-kms746:        jmp     .L55
-.L98:
-kms747:        je      .L8
-kms748:        movl    96(%rsp), %eax
-kms749:        testl   %eax, %eax
-kms750:        jle     .L59
-kms751:        leal    -1(%rbx), %eax
-kms752:        movl    %eax, 152(%rsp)
-kms753:        jmp     .L13
-.L60:
-kms754:        movl    $1, %esi
-kms755:        jmp     .L6
-.L62:
-kms756:        xorl    %edi, %edi
-kms757:        jmp     .L18
-.L63:
-kms758:        movl    $1, %edx
-kms759:        jmp     .L23
-.L99:
-kms760:        leal    -1(%rbx), %eax
-kms761:        movl    %eax, 152(%rsp)
-kms762:        jmp     .L4
-.L59:
-kms763:        movq    144(%rsp), %rdi
-kms764:        movl    $4, %esi
-kms765:        call    calloc
-kms766:        movq    %r13, %rdi
-kms767:        movq    %rax, 104(%rsp)
-kms768:        call    malloc
-kms769:        movl    $4, %esi
-kms770:        movq    %rax, %r13
-kms771:        movq    %r14, %rdi
-kms772:        movq    %rax, 112(%rsp)
-kms773:        call    calloc
-kms774:        movq    %rax, 72(%rsp)
-kms775:        movq    %rax, 0(%r13)
-kms776:        leal    -1(%rbx), %eax
-kms777:        movl    %eax, 152(%rsp)
-kms778:        jmp     .L14
-_Z12kmeans_outerPPfiiifPifS0_S1_S0_Pv:
-kms779:        pushq   %rbp
-kms780:        movq    %rsp, %rbp
-kms781:        pushq   %r15
-kms782:        movq    %r9, %r15
-kms783:        pushq   %r14
-kms784:        movl    %esi, %r14d
-kms785:        andl    $-8, %r14d
-kms786:        pushq   %r13
-kms787:        pushq   %r12
-kms788:        movl    %esi, %r12d
-kms789:        shrl    $3, %r12d
-kms790:        pushq   %rbx
-kms791:        leal    -1(%r12), %eax
-kms792:        movl    %esi, %ebx
-kms793:        andq    $-32, %rsp
-kms794:        subq    $208, %rsp
-kms795:        movl    %eax, 200(%rsp)
-kms796:        leal    -3(%r12), %eax
-kms797:        movq    %rdi, 160(%rsp)
-kms798:        leal    -1(%rsi), %edi
-kms799:        vmovss  %xmm0, 72(%rsp)
-kms800:        movl    %edx, 76(%rsp)
-kms801:        andl    $-2, %eax
-kms802:        movl    %ecx, 172(%rsp)
-kms803:        movq    %r8, 176(%rsp)
-kms804:        movl    %eax, 196(%rsp)
-kms805:        addl    $2, %eax
-kms806:        movl    %eax, 168(%rsp)
-kms807:        movslq  %r14d, %rax
-kms808:        movl    %edi, 204(%rsp)
-kms809:        salq    $2, %rax
-kms810:        movq    %rax, 152(%rsp)
-kms811:        leal    1(%r14), %eax
-kms812:        movl    %eax, 148(%rsp)
-kms813:        cltq
-kms814:        salq    $2, %rax
-kms815:        movq    %rax, 136(%rsp)
-kms816:        leal    2(%r14), %eax
-kms817:        movl    %eax, 144(%rsp)
-kms818:        cltq
-kms819:        salq    $2, %rax
-kms820:        movq    %rax, 128(%rsp)
-kms821:        leal    3(%r14), %eax
-kms822:        movl    %eax, 124(%rsp)
-kms823:        cltq
-kms824:        salq    $2, %rax
-kms825:        movq    %rax, 112(%rsp)
-kms826:        leal    4(%r14), %eax
-kms827:        movl    %eax, 120(%rsp)
-kms828:        cltq
-kms829:        salq    $2, %rax
-kms830:        movq    %rax, 104(%rsp)
-kms831:        leal    5(%r14), %eax
-kms832:        movl    %eax, 100(%rsp)
-kms833:        cltq
-kms834:        salq    $2, %rax
-kms835:        movq    %rax, 80(%rsp)
-kms836:        leal    6(%r14), %eax
-kms837:        movl    %eax, 96(%rsp)
-kms838:        cltq
-kms839:        salq    $2, %rax
-kms840:        movq    %rax, 88(%rsp)
-kms841:        movl    %edi, %eax
-kms842:        leaq    4(,%rax,4), %rax
-kms843:        movq    %rax, 64(%rsp)
-kms844:        leal    -17(%rsi), %eax
-kms845:        andl    $-16, %eax
-kms846:        movl    %eax, 60(%rsp)
-kms847:        addl    $16, %eax
-kms848:        movl    %eax, 56(%rsp)
-.L133:
-kms849:        movl    76(%rsp), %edx
-kms850:        testl   %edx, %edx
-kms851:        jle     .L174
-kms852:        vxorps  %xmm4, %xmm4, %xmm4
-kms853:        xorl    %eax, %eax
-kms854:        vmovaps %xmm4, %xmm1
-.L104:
-kms855:        movl    76(%rsp), %esi
-kms856:        leal    64(%rax), %edx
-kms857:        cmpl    %esi, %edx
-kms858:        cmovg   %esi, %edx
-kms859:        cmpl    %edx, %eax
-kms860:        movl    %edx, 192(%rsp)
-kms861:        jge     .L144
-kms862:        movq    %rax, 184(%rsp)
-kms863:        movl    172(%rsp), %eax
-kms864:        leal    -1(%rax), %r11d
-.L118:
-kms865:        movq    160(%rsp), %rax
-kms866:        movq    184(%rsp), %rdi
-kms867:        movq    (%rax,%rdi,8), %r8
-kms868:        movl    172(%rsp), %eax
-kms869:        testl   %eax, %eax
-kms870:        jle     .L106
-kms871:        xorl    %r9d, %r9d
-kms872:        testl   %ebx, %ebx
-kms873:        vmovss  .LC1(%rip), %xmm5
-kms874:        movq    (%r15,%r9,8), %rdi
-kms875:        movl    %r9d, %r10d
-kms876:        jle     .L145
-.L175:
-kms877:        cmpl    $6, 204(%rsp)
-kms878:        jbe     .L146
-kms879:        cmpl    $1, 200(%rsp)
-kms880:        movq    %rdi, %rcx
-kms881:        movq    %r8, %rsi
-kms882:        jbe     .L147
-kms883:        vmovaps %xmm4, %xmm0
-kms884:        xorl    %eax, %eax
-.L110:
-kms885:        vmovups (%rsi), %ymm3
-kms886:        movl    %eax, %edx
-kms887:        prefetcht0      384(%rsi)
-kms888:        addl    $2, %eax
-kms889:        addq    $64, %rsi
-kms890:        prefetcht0      384(%rcx)
-kms891:        vsubps  (%rcx), %ymm3, %ymm3
-kms892:        addq    $64, %rcx
-kms893:        vmulps  %ymm3, %ymm3, %ymm3
-kms894:        vaddss  %xmm0, %xmm3, %xmm0
-kms895:        vshufps $85, %xmm3, %xmm3, %xmm2
-kms896:        vshufps $255, %xmm3, %xmm3, %xmm6
-kms897:        vaddss  %xmm2, %xmm0, %xmm0
-kms898:        vunpckhps       %xmm3, %xmm3, %xmm2
-kms899:        vaddss  %xmm0, %xmm2, %xmm2
-kms900:        vextractf128    $0x1, %ymm3, %xmm0
-kms901:        vshufps $85, %xmm0, %xmm0, %xmm3
-kms902:        vaddss  %xmm6, %xmm2, %xmm2
-kms903:        vaddss  %xmm0, %xmm2, %xmm2
-kms904:        vaddss  %xmm3, %xmm2, %xmm2
-kms905:        vunpckhps       %xmm0, %xmm0, %xmm3
-kms906:        vshufps $255, %xmm0, %xmm0, %xmm0
-kms907:        vaddss  %xmm3, %xmm2, %xmm2
-kms908:        vmovups -32(%rsi), %ymm3
-kms909:        vsubps  -32(%rcx), %ymm3, %ymm3
-kms910:        cmpl    196(%rsp), %edx
-kms911:        vaddss  %xmm0, %xmm2, %xmm2
-kms912:        vmulps  %ymm3, %ymm3, %ymm3
-kms913:        vaddss  %xmm3, %xmm2, %xmm2
-kms914:        vshufps $85, %xmm3, %xmm3, %xmm6
-kms915:        vshufps $255, %xmm3, %xmm3, %xmm0
-kms916:        vaddss  %xmm6, %xmm2, %xmm2
-kms917:        vunpckhps       %xmm3, %xmm3, %xmm6
-kms918:        vextractf128    $0x1, %ymm3, %xmm3
-kms919:        vaddss  %xmm6, %xmm2, %xmm2
-kms920:        vaddss  %xmm0, %xmm2, %xmm2
-kms921:        vshufps $85, %xmm3, %xmm3, %xmm0
-kms922:        vaddss  %xmm3, %xmm2, %xmm2
-kms923:        vaddss  %xmm0, %xmm2, %xmm2
-kms924:        vunpckhps       %xmm3, %xmm3, %xmm0
-kms925:        vaddss  %xmm0, %xmm2, %xmm2
-kms926:        vshufps $255, %xmm3, %xmm3, %xmm0
-kms927:        vaddss  %xmm0, %xmm2, %xmm0
-kms928:        jne     .L110
-kms929:        movl    168(%rsp), %edx
-.L109:
-kms930:        xorl    %eax, %eax
-.L111:
-kms931:        vmovups (%rsi,%rax), %ymm2
-kms932:        incl    %edx
-kms933:        vsubps  (%rcx,%rax), %ymm2, %ymm2
-kms934:        addq    $32, %rax
-kms935:        cmpl    %edx, %r12d
-kms936:        vmulps  %ymm2, %ymm2, %ymm3
-kms937:        vaddss  %xmm3, %xmm0, %xmm0
-kms938:        vshufps $85, %xmm3, %xmm3, %xmm2
-kms939:        vshufps $255, %xmm3, %xmm3, %xmm6
-kms940:        vaddss  %xmm2, %xmm0, %xmm0
-kms941:        vunpckhps       %xmm3, %xmm3, %xmm2
-kms942:        vaddss  %xmm2, %xmm0, %xmm0
-kms943:        vextractf128    $0x1, %ymm3, %xmm2
-kms944:        vshufps $85, %xmm2, %xmm2, %xmm3
-kms945:        vaddss  %xmm6, %xmm0, %xmm0
-kms946:        vaddss  %xmm2, %xmm0, %xmm0
-kms947:        vaddss  %xmm3, %xmm0, %xmm0
-kms948:        vunpckhps       %xmm2, %xmm2, %xmm3
-kms949:        vshufps $255, %xmm2, %xmm2, %xmm2
-kms950:        vaddss  %xmm3, %xmm0, %xmm0
-kms951:        vaddss  %xmm2, %xmm0, %xmm0
-kms952:        ja      .L111
-kms953:        cmpl    %r14d, %ebx
-kms954:        je      .L107
-kms955:        movl    %r14d, %edx
-.L108:
-kms956:        movslq  %edx, %rcx
-kms957:        vmovss  (%r8,%rcx,4), %xmm2
-kms958:        leaq    0(,%rcx,4), %rax
-kms959:        vsubss  (%rdi,%rcx,4), %xmm2, %xmm2
-kms960:        leal    1(%rdx), %ecx
-kms961:        cmpl    %ecx, %ebx
-kms962:        vmulss  %xmm2, %xmm2, %xmm2
-kms963:        vaddss  %xmm2, %xmm0, %xmm0
-kms964:        jle     .L107
-kms965:        vmovss  4(%r8,%rax), %xmm2
-kms966:        leal    2(%rdx), %ecx
-kms967:        vsubss  4(%rdi,%rax), %xmm2, %xmm2
-kms968:        cmpl    %ecx, %ebx
-kms969:        vmulss  %xmm2, %xmm2, %xmm2
-kms970:        vaddss  %xmm2, %xmm0, %xmm0
-kms971:        jle     .L107
-kms972:        vmovss  8(%r8,%rax), %xmm2
-kms973:        leal    3(%rdx), %ecx
-kms974:        vsubss  8(%rdi,%rax), %xmm2, %xmm2
-kms975:        cmpl    %ecx, %ebx
-kms976:        vmulss  %xmm2, %xmm2, %xmm2
-kms977:        vaddss  %xmm2, %xmm0, %xmm0
-kms978:        jle     .L107
-kms979:        vmovss  12(%r8,%rax), %xmm2
-kms980:        leal    4(%rdx), %ecx
-kms981:        vsubss  12(%rdi,%rax), %xmm2, %xmm2
-kms982:        cmpl    %ecx, %ebx
-kms983:        vmulss  %xmm2, %xmm2, %xmm2
-kms984:        vaddss  %xmm2, %xmm0, %xmm0
-kms985:        jle     .L107
-kms986:        vmovss  16(%r8,%rax), %xmm2
-kms987:        leal    5(%rdx), %ecx
-kms988:        vsubss  16(%rdi,%rax), %xmm2, %xmm2
-kms989:        cmpl    %ecx, %ebx
-kms990:        vmulss  %xmm2, %xmm2, %xmm2
-kms991:        vaddss  %xmm2, %xmm0, %xmm0
-kms992:        jle     .L107
-kms993:        vmovss  20(%r8,%rax), %xmm2
-kms994:        addl    $6, %edx
-kms995:        vsubss  20(%rdi,%rax), %xmm2, %xmm2
-kms996:        cmpl    %edx, %ebx
-kms997:        vmulss  %xmm2, %xmm2, %xmm2
-kms998:        vaddss  %xmm2, %xmm0, %xmm0
-kms999:        jle     .L107
-kms1000:        vmovss  24(%r8,%rax), %xmm2
-kms1001:        vsubss  24(%rdi,%rax), %xmm2, %xmm2
-kms1002:        vmulss  %xmm2, %xmm2, %xmm2
-kms1003:        vaddss  %xmm2, %xmm0, %xmm0
-.L107:
-kms1004:        vcomiss %xmm0, %xmm5
-kms1005:        leaq    1(%r9), %rax
-kms1006:        vminss  %xmm5, %xmm0, %xmm5
-kms1007:        cmova   %r10d, %r13d
-kms1008:        cmpq    %r11, %r9
-kms1009:        je      .L106
-kms1010:        movq    %rax, %r9
-kms1011:        testl   %ebx, %ebx
-kms1012:        movq    (%r15,%r9,8), %rdi
-kms1013:        movl    %r9d, %r10d
-kms1014:        jg      .L175
-.L145:
-kms1015:        vmovaps %xmm4, %xmm0
-kms1016:        jmp     .L107
-.L106:
-kms1017:        movq    176(%rsp), %rax
-kms1018:        movq    184(%rsp), %rdi
-kms1019:        cmpl    %r13d, (%rax,%rdi,4)
-kms1020:        je      .L116
-kms1021:        vaddss  .LC2(%rip), %xmm1, %xmm1
-.L116:
-kms1022:        movq    176(%rsp), %rax
-kms1023:        movq    184(%rsp), %rdi
-kms1024:        movl    %r13d, (%rax,%rdi,4)
-kms1025:        movq    16(%rbp), %rdi
-kms1026:        movslq  %r13d, %rax
-kms1027:        incl    (%rdi,%rax,4)
-kms1028:        testl   %ebx, %ebx
-kms1029:        jle     .L122
-kms1030:        movq    24(%rbp), %rdi
-kms1031:        movq    (%rdi,%rax,8), %rcx
-kms1032:        leaq    31(%r8), %rax
-kms1033:        subq    %rcx, %rax
-kms1034:        cmpq    $62, %rax
-kms1035:        jbe     .L119
-kms1036:        cmpl    $6, 204(%rsp)
-kms1037:        jbe     .L119
-kms1038:        cmpl    $1, 200(%rsp)
-kms1039:        jbe     .L149
-kms1040:        movq    %r8, %rdi
-kms1041:        movq    %rcx, %rsi
-kms1042:        xorl    %eax, %eax
+kms305:        movq    56(%rsp), %rax
+kms306:        movq    (%rax,%r14,8), %r9
+kms307:        movl    28(%rsp), %eax
+kms308:        testl   %eax, %eax
+kms309:        jle     .L43
+kms310:        movaps  %xmm6, %xmm3
+kms311:        xorl    %edi, %edi
+kms312:        testl   %ebp, %ebp
+kms313:        movq    %r14, 16(%rsp)
+kms314:        movq    0(%r13,%rdi,8), %r8
+kms315:        movl    %edi, %r10d
+kms316:        movl    24(%rsp), %r14d
+kms317:        jle     .L76
 .L121:
-kms1043:        vmovups (%rsi), %ymm0
-kms1044:        prefetcht0      640(%rdi)
-kms1045:        movl    %eax, %edx
-kms1046:        addq    $64, %rdi
-kms1047:        addl    $2, %eax
-kms1048:        prefetcht0      640(%rsi)
-kms1049:        vaddps  -64(%rdi), %ymm0, %ymm0
-kms1050:        addq    $64, %rsi
-kms1051:        vmovups %ymm0, -64(%rsi)
-kms1052:        vmovups -32(%rdi), %ymm0
-kms1053:        vaddps  -32(%rsi), %ymm0, %ymm0
-kms1054:        vmovups %ymm0, -32(%rsi)
-kms1055:        cmpl    196(%rsp), %edx
-kms1056:        movq    %rsi, %r9
-kms1057:        jne     .L121
-kms1058:        movl    168(%rsp), %edx
+kms318:        cmpl    $2, %r14d
+kms319:        jbe     .L77
+kms320:        cmpl    $4, %ebx
+kms321:        movq    %r8, %rdx
+kms322:        movq    %r9, %rcx
+kms323:        jbe     .L78
+kms324:        movaps  %xmm4, %xmm1
+kms325:        xorl    %eax, %eax
+.L47:
+kms326:        movlps  (%rcx), %xmm8
+kms327:        movlps  (%rdx), %xmm0
+kms328:        movl    %eax, %esi
+kms329:        prefetcht0      256(%rcx)
+kms330:        addl    $4, %eax
+kms331:        addq    $64, %rcx
+kms332:        movhps  8(%rdx), %xmm0
+kms333:        movhps  -56(%rcx), %xmm8
+kms334:        prefetcht0      256(%rdx)
+kms335:        addq    $64, %rdx
+kms336:        subps   %xmm0, %xmm8
+kms337:        mulps   %xmm8, %xmm8
+kms338:        addss   %xmm8, %xmm1
+kms339:        movaps  %xmm8, %xmm2
+kms340:        shufps  $85, %xmm8, %xmm2
+kms341:        addss   %xmm2, %xmm1
+kms342:        movaps  %xmm8, %xmm2
+kms343:        unpckhps        %xmm8, %xmm2
+kms344:        shufps  $255, %xmm8, %xmm8
+kms345:        movaps  %xmm2, %xmm0
+kms346:        movlps  -48(%rdx), %xmm2
+kms347:        addss   %xmm1, %xmm0
+kms348:        movlps  -48(%rcx), %xmm1
+kms349:        movhps  -40(%rdx), %xmm2
+kms350:        movhps  -40(%rcx), %xmm1
+kms351:        subps   %xmm2, %xmm1
+kms352:        addss   %xmm8, %xmm0
+kms353:        mulps   %xmm1, %xmm1
+kms354:        addss   %xmm1, %xmm0
+kms355:        movaps  %xmm1, %xmm2
+kms356:        shufps  $85, %xmm1, %xmm2
+kms357:        addss   %xmm2, %xmm0
+kms358:        movaps  %xmm1, %xmm2
+kms359:        unpckhps        %xmm1, %xmm2
+kms360:        shufps  $255, %xmm1, %xmm1
+kms361:        addss   %xmm2, %xmm0
+kms362:        movlps  -32(%rdx), %xmm2
+kms363:        movhps  -24(%rdx), %xmm2
+kms364:        addss   %xmm1, %xmm0
+kms365:        movlps  -32(%rcx), %xmm1
+kms366:        movhps  -24(%rcx), %xmm1
+kms367:        subps   %xmm2, %xmm1
+kms368:        mulps   %xmm1, %xmm1
+kms369:        addss   %xmm1, %xmm0
+kms370:        movaps  %xmm1, %xmm2
+kms371:        shufps  $85, %xmm1, %xmm2
+kms372:        addss   %xmm2, %xmm0
+kms373:        movaps  %xmm1, %xmm2
+kms374:        unpckhps        %xmm1, %xmm2
+kms375:        shufps  $255, %xmm1, %xmm1
+kms376:        addss   %xmm2, %xmm0
+kms377:        movlps  -16(%rcx), %xmm2
+kms378:        movhps  -8(%rcx), %xmm2
+kms379:        addss   %xmm1, %xmm0
+kms380:        movlps  -16(%rdx), %xmm1
+kms381:        movhps  -8(%rdx), %xmm1
+kms382:        cmpl    (%rsp), %esi
+kms383:        subps   %xmm1, %xmm2
+kms384:        mulps   %xmm2, %xmm2
+kms385:        addss   %xmm2, %xmm0
+kms386:        movaps  %xmm2, %xmm1
+kms387:        shufps  $85, %xmm2, %xmm1
+kms388:        addss   %xmm1, %xmm0
+kms389:        movaps  %xmm2, %xmm1
+kms390:        unpckhps        %xmm2, %xmm1
+kms391:        shufps  $255, %xmm2, %xmm2
+kms392:        addss   %xmm1, %xmm0
+kms393:        movaps  %xmm2, %xmm1
+kms394:        addss   %xmm0, %xmm1
+kms395:        jne     .L47
+kms396:        movl    48(%rsp), %esi
+.L46:
+kms397:        xorl    %eax, %eax
+.L48:
+kms398:        movlps  (%rcx,%rax), %xmm0
+kms399:        movlps  (%rdx,%rax), %xmm2
+kms400:        incl    %esi
+kms401:        movhps  8(%rdx,%rax), %xmm2
+kms402:        movhps  8(%rcx,%rax), %xmm0
+kms403:        addq    $16, %rax
+kms404:        cmpl    %esi, %ebx
+kms405:        subps   %xmm2, %xmm0
+kms406:        mulps   %xmm0, %xmm0
+kms407:        addss   %xmm0, %xmm1
+kms408:        movaps  %xmm0, %xmm2
+kms409:        shufps  $85, %xmm0, %xmm2
+kms410:        addss   %xmm2, %xmm1
+kms411:        movaps  %xmm0, %xmm2
+kms412:        unpckhps        %xmm0, %xmm2
+kms413:        shufps  $255, %xmm0, %xmm0
+kms414:        addss   %xmm2, %xmm1
+kms415:        addss   %xmm0, %xmm1
+kms416:        ja      .L48
+kms417:        cmpl    %ebp, %r15d
+kms418:        movl    %r15d, %eax
+kms419:        je      .L44
+.L45:
+kms420:        movslq  %eax, %rcx
+kms421:        movss   (%r9,%rcx,4), %xmm0
+kms422:        leaq    0(,%rcx,4), %rdx
+kms423:        subss   (%r8,%rcx,4), %xmm0
+kms424:        leal    1(%rax), %ecx
+kms425:        cmpl    %ecx, %ebp
+kms426:        mulss   %xmm0, %xmm0
+kms427:        addss   %xmm0, %xmm1
+kms428:        jle     .L44
+kms429:        movss   4(%r9,%rdx), %xmm0
+kms430:        addl    $2, %eax
+kms431:        subss   4(%r8,%rdx), %xmm0
+kms432:        cmpl    %eax, %ebp
+kms433:        mulss   %xmm0, %xmm0
+kms434:        addss   %xmm0, %xmm1
+kms435:        jle     .L44
+kms436:        movss   8(%r9,%rdx), %xmm0
+kms437:        subss   8(%r8,%rdx), %xmm0
+kms438:        mulss   %xmm0, %xmm0
+kms439:        addss   %xmm0, %xmm1
+.L44:
+kms440:        comiss  %xmm1, %xmm3
+kms441:        minss   %xmm3, %xmm1
+kms442:        leaq    1(%rdi), %rax
+kms443:        cmova   %r10d, %r12d
+kms444:        cmpq    %rdi, %r11
+kms445:        movaps  %xmm1, %xmm3
+kms446:        je      .L120
+kms447:        movq    %rax, %rdi
+kms448:        testl   %ebp, %ebp
+kms449:        movq    0(%r13,%rdi,8), %r8
+kms450:        movl    %edi, %r10d
+kms451:        jg      .L121
+.L76:
+kms452:        movaps  %xmm4, %xmm1
+kms453:        jmp     .L44
+.L19:
+kms454:        cmpl    $16, %ebp
+kms455:        jle     .L74
+kms456:        leaq    100(%rdi), %rdx
+kms457:        leaq    100(%r8), %rax
+kms458:        xorl    %ecx, %ecx
+.L28:
+kms459:        movss   -100(%rdx), %xmm0
+kms460:        prefetcht0      (%rdx)
+kms461:        prefetcht0      (%rax)
+kms462:        movss   %xmm0, -100(%rax)
+kms463:        addl    $16, %ecx
+kms464:        addq    $64, %rdx
+kms465:        addq    $64, %rax
+kms466:        movss   -160(%rdx), %xmm0
+kms467:        movss   %xmm0, -160(%rax)
+kms468:        movss   -156(%rdx), %xmm0
+kms469:        movss   %xmm0, -156(%rax)
+kms470:        movss   -152(%rdx), %xmm0
+kms471:        movss   %xmm0, -152(%rax)
+kms472:        movss   -148(%rdx), %xmm0
+kms473:        movss   %xmm0, -148(%rax)
+kms474:        movss   -144(%rdx), %xmm0
+kms475:        movss   %xmm0, -144(%rax)
+kms476:        movss   -140(%rdx), %xmm0
+kms477:        movss   %xmm0, -140(%rax)
+kms478:        movss   -136(%rdx), %xmm0
+kms479:        movss   %xmm0, -136(%rax)
+kms480:        movss   -132(%rdx), %xmm0
+kms481:        movss   %xmm0, -132(%rax)
+kms482:        movss   -128(%rdx), %xmm0
+kms483:        movss   %xmm0, -128(%rax)
+kms484:        movss   -124(%rdx), %xmm0
+kms485:        movss   %xmm0, -124(%rax)
+kms486:        movss   -120(%rdx), %xmm0
+kms487:        movss   %xmm0, -120(%rax)
+kms488:        movss   -116(%rdx), %xmm0
+kms489:        movss   %xmm0, -116(%rax)
+kms490:        movss   -112(%rdx), %xmm0
+kms491:        movss   %xmm0, -112(%rax)
+kms492:        movss   -108(%rdx), %xmm0
+kms493:        movss   %xmm0, -108(%rax)
+kms494:        movss   -104(%rdx), %xmm0
+kms495:        movss   %xmm0, -104(%rax)
+kms496:        cmpl    80(%rsp), %ecx
+kms497:        jne     .L28
+.L27:
+kms498:        movslq  %ecx, %rcx
+.L30:
+kms499:        movss   (%rdi,%rcx,4), %xmm0
+kms500:        movss   %xmm0, (%r8,%rcx,4)
+kms501:        incq    %rcx
+kms502:        cmpl    %ecx, %ebp
+kms503:        jg      .L30
+kms504:        jmp     .L29
 .L120:
-kms1059:        xorl    %eax, %eax
-.L123:
-kms1060:        vmovups (%rdi,%rax), %ymm0
-kms1061:        incl    %edx
-kms1062:        vaddps  (%rsi,%rax), %ymm0, %ymm0
-kms1063:        vmovups %ymm0, (%r9,%rax)
-kms1064:        addq    $32, %rax
-kms1065:        cmpl    %edx, %r12d
-kms1066:        ja      .L123
-kms1067:        cmpl    %r14d, %ebx
-kms1068:        je      .L122
-kms1069:        movq    152(%rsp), %rdi
-kms1070:        cmpl    148(%rsp), %ebx
-kms1071:        leaq    (%rcx,%rdi), %rax
-kms1072:        vmovss  (%rax), %xmm0
-kms1073:        vaddss  (%r8,%rdi), %xmm0, %xmm0
-kms1074:        vmovss  %xmm0, (%rax)
-kms1075:        jle     .L122
-kms1076:        movq    136(%rsp), %rsi
-kms1077:        cmpl    144(%rsp), %ebx
-kms1078:        leaq    (%rcx,%rsi), %rax
-kms1079:        vmovss  (%rax), %xmm0
-kms1080:        vaddss  (%r8,%rsi), %xmm0, %xmm0
-kms1081:        vmovss  %xmm0, (%rax)
-kms1082:        jle     .L122
-kms1083:        movq    128(%rsp), %rsi
-kms1084:        cmpl    124(%rsp), %ebx
-kms1085:        leaq    (%rcx,%rsi), %rax
-kms1086:        vmovss  (%rax), %xmm0
-kms1087:        vaddss  (%r8,%rsi), %xmm0, %xmm0
-kms1088:        vmovss  %xmm0, (%rax)
-kms1089:        jle     .L122
-kms1090:        movq    112(%rsp), %rdi
-kms1091:        cmpl    120(%rsp), %ebx
-kms1092:        leaq    (%rcx,%rdi), %rax
-kms1093:        vmovss  (%rax), %xmm0
-kms1094:        vaddss  (%r8,%rdi), %xmm0, %xmm0
-kms1095:        vmovss  %xmm0, (%rax)
-kms1096:        jle     .L122
-kms1097:        movq    104(%rsp), %rsi
-kms1098:        cmpl    100(%rsp), %ebx
-kms1099:        leaq    (%rcx,%rsi), %rax
-kms1100:        vmovss  (%rax), %xmm0
-kms1101:        vaddss  (%r8,%rsi), %xmm0, %xmm0
-kms1102:        vmovss  %xmm0, (%rax)
-kms1103:        jle     .L122
-kms1104:        movq    80(%rsp), %rdi
-kms1105:        cmpl    96(%rsp), %ebx
-kms1106:        leaq    (%rcx,%rdi), %rax
-kms1107:        vmovss  (%rax), %xmm0
-kms1108:        vaddss  (%r8,%rdi), %xmm0, %xmm0
-kms1109:        vmovss  %xmm0, (%rax)
-kms1110:        jle     .L122
-kms1111:        movq    88(%rsp), %rax
-kms1112:        addq    %rax, %rcx
-kms1113:        vmovss  (%rcx), %xmm0
-kms1114:        vaddss  (%r8,%rax), %xmm0, %xmm0
-kms1115:        vmovss  %xmm0, (%rcx)
-.L122:
-kms1116:        incq    184(%rsp)
-kms1117:        movq    184(%rsp), %rax
-kms1118:        cmpl    %eax, 192(%rsp)
-kms1119:        jg      .L118
-kms1120:        movl    192(%rsp), %esi
-kms1121:        cmpl    %esi, 76(%rsp)
-kms1122:        jle     .L129
-.L177:
-kms1123:        nop
-kms1124:        nop
-kms1125:        nop
-.L130:
-kms1126:        movslq  192(%rsp), %rax
-kms1127:        jmp     .L104
-.L146:
-kms1128:        vmovaps %xmm4, %xmm0
-kms1129:        xorl    %edx, %edx
-kms1130:        jmp     .L108
-.L147:
-kms1131:        vmovaps %xmm4, %xmm0
-kms1132:        xorl    %edx, %edx
-kms1133:        jmp     .L109
+kms505:        movq    16(%rsp), %r14
+.L43:
+kms506:        movq    8(%rsp), %rax
+kms507:        cmpl    %r12d, (%rax,%r14,4)
+kms508:        je      .L53
+kms509:        addss   %xmm7, %xmm5
+.L53:
+kms510:        movq    8(%rsp), %rax
+kms511:        movq    40(%rsp), %rdi
+kms512:        movl    %r12d, (%rax,%r14,4)
+kms513:        movslq  %r12d, %rax
+kms514:        incl    (%rdi,%rax,4)
+kms515:        testl   %ebp, %ebp
+kms516:        jle     .L60
+kms517:        cmpl    $2, 24(%rsp)
+kms518:        movq    32(%rsp), %rdi
+kms519:        movq    (%rdi,%rax,8), %r8
+kms520:        jbe     .L80
+kms521:        cmpl    $4, %ebx
+kms522:        jbe     .L81
+kms523:        movq    %r9, %rcx
+kms524:        movq    %r8, %rdx
+kms525:        xorl    %esi, %esi
+.L59:
+kms526:        movlps  (%rcx), %xmm0
+kms527:        movlps  (%rdx), %xmm1
+kms528:        prefetcht0      320(%rcx)
+kms529:        movl    %esi, %eax
+kms530:        addq    $64, %rcx
+kms531:        addl    $4, %esi
+kms532:        movhps  8(%rdx), %xmm1
+kms533:        movhps  -56(%rcx), %xmm0
+kms534:        prefetcht0      320(%rdx)
+kms535:        addq    $64, %rdx
+kms536:        addps   %xmm1, %xmm0
+kms537:        movlps  -48(%rcx), %xmm1
+kms538:        movhps  -40(%rcx), %xmm1
+kms539:        movlps  %xmm0, -64(%rdx)
+kms540:        movhps  %xmm0, -56(%rdx)
+kms541:        movlps  -48(%rdx), %xmm0
+kms542:        movhps  -40(%rdx), %xmm0
+kms543:        addps   %xmm1, %xmm0
+kms544:        movlps  -32(%rcx), %xmm1
+kms545:        movhps  -24(%rcx), %xmm1
+kms546:        movlps  %xmm0, -48(%rdx)
+kms547:        movhps  %xmm0, -40(%rdx)
+kms548:        movlps  -32(%rdx), %xmm0
+kms549:        movhps  -24(%rdx), %xmm0
+kms550:        addps   %xmm1, %xmm0
+kms551:        movlps  -16(%rcx), %xmm1
+kms552:        movhps  -8(%rcx), %xmm1
+kms553:        movlps  %xmm0, -32(%rdx)
+kms554:        movhps  %xmm0, -24(%rdx)
+kms555:        movlps  -16(%rdx), %xmm0
+kms556:        movhps  -8(%rdx), %xmm0
+kms557:        addps   %xmm1, %xmm0
+kms558:        movlps  %xmm0, -16(%rdx)
+kms559:        movhps  %xmm0, -8(%rdx)
+kms560:        cmpl    (%rsp), %eax
+kms561:        movq    %rdx, %rdi
+kms562:        jne     .L59
+kms563:        movl    48(%rsp), %esi
+.L58:
+kms564:        xorl    %eax, %eax
+.L61:
+kms565:        movlps  (%rdx,%rax), %xmm0
+kms566:        movlps  (%rcx,%rax), %xmm1
+kms567:        incl    %esi
+kms568:        movhps  8(%rdx,%rax), %xmm0
+kms569:        movhps  8(%rcx,%rax), %xmm1
+kms570:        addps   %xmm1, %xmm0
+kms571:        movlps  %xmm0, (%rdi,%rax)
+kms572:        movhps  %xmm0, 8(%rdi,%rax)
+kms573:        addq    $16, %rax
+kms574:        cmpl    %esi, %ebx
+kms575:        ja      .L61
+kms576:        cmpl    %ebp, %r15d
+kms577:        movl    %r15d, %eax
+kms578:        je      .L60
+.L57:
+kms579:        movslq  %eax, %rsi
+kms580:        leaq    0(,%rsi,4), %rdx
+kms581:        leaq    (%r8,%rdx), %rcx
+kms582:        movss   (%rcx), %xmm0
+kms583:        addss   (%r9,%rsi,4), %xmm0
+kms584:        movss   %xmm0, (%rcx)
+kms585:        leal    1(%rax), %ecx
+kms586:        cmpl    %ecx, %ebp
+kms587:        jle     .L60
+kms588:        leaq    4(%r8,%rdx), %rcx
+kms589:        addl    $2, %eax
+kms590:        cmpl    %eax, %ebp
+kms591:        movss   (%rcx), %xmm0
+kms592:        addss   4(%r9,%rdx), %xmm0
+kms593:        movss   %xmm0, (%rcx)
+kms594:        jle     .L60
+kms595:        leaq    8(%r8,%rdx), %rax
+kms596:        movss   (%rax), %xmm0
+kms597:        addss   8(%r9,%rdx), %xmm0
+kms598:        movss   %xmm0, (%rax)
+.L60:
+kms599:        cmpq    %r14, 64(%rsp)
+kms600:        leaq    1(%r14), %rax
+kms601:        je      .L55
+kms602:        movq    %rax, %r14
+kms603:        jmp     .L56
+.L77:
+kms604:        movaps  %xmm4, %xmm1
+kms605:        xorl    %eax, %eax
+kms606:        jmp     .L45
+.L78:
+kms607:        movaps  %xmm4, %xmm1
+kms608:        xorl    %esi, %esi
+kms609:        jmp     .L46
 .L119:
-kms1134:        cmpl    $16, %ebx
-kms1135:        jle     .L150
-kms1136:        leaq    80(%rcx), %rax
-kms1137:        leaq    80(%r8), %rdx
-kms1138:        xorl    %esi, %esi
-.L126:
-kms1139:        vmovss  -80(%rax), %xmm0
-kms1140:        prefetcht0      (%rdx)
-kms1141:        prefetcht0      (%rax)
-kms1142:        vaddss  -80(%rdx), %xmm0, %xmm0
-kms1143:        addl    $16, %esi
-kms1144:        addq    $64, %rax
-kms1145:        addq    $64, %rdx
-kms1146:        vmovss  %xmm0, -144(%rax)
-kms1147:        vmovss  -140(%rax), %xmm0
-kms1148:        vaddss  -140(%rdx), %xmm0, %xmm0
-kms1149:        vmovss  %xmm0, -140(%rax)
-kms1150:        vmovss  -136(%rax), %xmm0
-kms1151:        vaddss  -136(%rdx), %xmm0, %xmm0
-kms1152:        vmovss  %xmm0, -136(%rax)
-kms1153:        vmovss  -132(%rax), %xmm0
-kms1154:        vaddss  -132(%rdx), %xmm0, %xmm0
-kms1155:        vmovss  %xmm0, -132(%rax)
-kms1156:        vmovss  -128(%rax), %xmm0
-kms1157:        vaddss  -128(%rdx), %xmm0, %xmm0
-kms1158:        vmovss  %xmm0, -128(%rax)
-kms1159:        vmovss  -124(%rax), %xmm0
-kms1160:        vaddss  -124(%rdx), %xmm0, %xmm0
-kms1161:        vmovss  %xmm0, -124(%rax)
-kms1162:        vmovss  -120(%rax), %xmm0
-kms1163:        vaddss  -120(%rdx), %xmm0, %xmm0
-kms1164:        vmovss  %xmm0, -120(%rax)
-kms1165:        vmovss  -116(%rax), %xmm0
-kms1166:        vaddss  -116(%rdx), %xmm0, %xmm0
-kms1167:        vmovss  %xmm0, -116(%rax)
-kms1168:        vmovss  -112(%rax), %xmm0
-kms1169:        vaddss  -112(%rdx), %xmm0, %xmm0
-kms1170:        vmovss  %xmm0, -112(%rax)
-kms1171:        vmovss  -108(%rax), %xmm0
-kms1172:        vaddss  -108(%rdx), %xmm0, %xmm0
-kms1173:        vmovss  %xmm0, -108(%rax)
-kms1174:        vmovss  -104(%rax), %xmm0
-kms1175:        vaddss  -104(%rdx), %xmm0, %xmm0
-kms1176:        vmovss  %xmm0, -104(%rax)
-kms1177:        vmovss  -100(%rax), %xmm0
-kms1178:        vaddss  -100(%rdx), %xmm0, %xmm0
-kms1179:        vmovss  %xmm0, -100(%rax)
-kms1180:        vmovss  -96(%rax), %xmm0
-kms1181:        vaddss  -96(%rdx), %xmm0, %xmm0
-kms1182:        vmovss  %xmm0, -96(%rax)
-kms1183:        vmovss  -92(%rax), %xmm0
-kms1184:        vaddss  -92(%rdx), %xmm0, %xmm0
-kms1185:        vmovss  %xmm0, -92(%rax)
-kms1186:        vmovss  -88(%rax), %xmm0
-kms1187:        vaddss  -88(%rdx), %xmm0, %xmm0
-kms1188:        vmovss  %xmm0, -88(%rax)
-kms1189:        vmovss  -84(%rax), %xmm0
-kms1190:        vaddss  -84(%rdx), %xmm0, %xmm0
-kms1191:        vmovss  %xmm0, -84(%rax)
-kms1192:        cmpl    56(%rsp), %esi
-kms1193:        jne     .L126
-.L125:
-kms1194:        movslq  %esi, %rax
-.L128:
-kms1195:        vmovss  (%rcx,%rax,4), %xmm0
-kms1196:        vaddss  (%r8,%rax,4), %xmm0, %xmm0
-kms1197:        vmovss  %xmm0, (%rcx,%rax,4)
-kms1198:        incq    %rax
-kms1199:        cmpl    %eax, %ebx
-kms1200:        jg      .L128
-kms1201:        jmp     .L122
-.L149:
-kms1202:        movq    %rcx, %r9
-kms1203:        movq    %r8, %rdi
-kms1204:        movq    %rcx, %rsi
-kms1205:        xorl    %edx, %edx
-kms1206:        jmp     .L120
-.L150:
-kms1207:        xorl    %esi, %esi
-kms1208:        jmp     .L125
-.L144:
-kms1209:        movl    %eax, 192(%rsp)
-kms1210:        movl    192(%rsp), %esi
-kms1211:        cmpl    %esi, 76(%rsp)
-kms1212:        jg      .L177
+kms610:        movaps  %xmm4, %xmm5
+.L55:
+kms611:        movl    28(%rsp), %eax
+kms612:        xorl    %r14d, %r14d
+kms613:        leal    -1(%rax), %edi
+kms614:        testl   %eax, %eax
+kms615:        movq    %rdi, %rsi
+kms616:        leal    -17(%rbp), %edi
+kms617:        movl    %edi, 64(%rsp)
+kms618:        jle     .L64
+kms619:        movl    %r15d, 104(%rsp)
+kms620:        movl    %ebx, 108(%rsp)
+kms621:        movq    40(%rsp), %r15
+kms622:        movq    32(%rsp), %rbx
+kms623:        movl    %r12d, 100(%rsp)
+kms624:        movq    %rsi, %r12
+.L65:
+kms625:        testl   %ebp, %ebp
+kms626:        jle     .L70
+kms627:        movl    (%r15,%r14,4), %edx
+kms628:        movq    (%rbx,%r14,8), %rdi
+kms629:        testl   %edx, %edx
+kms630:        jle     .L122
+kms631:        cmpl    $16, %ebp
+kms632:        jle     .L82
+kms633:        movl    64(%rsp), %r10d
+kms634:        cvtsi2ssl       %edx, %xmm1
+kms635:        movq    0(%r13,%r14,8), %rdx
+kms636:        leaq    40(%rdi), %rsi
+kms637:        movl    $40, %r9d
+kms638:        xorl    %eax, %eax
+kms639:        andl    $-16, %r10d
+.L69:
+kms640:        movss   -40(%rsi), %xmm0
+kms641:        prefetcht0      (%rsi)
+kms642:        movl    $0x00000000, -40(%rsi)
+kms643:        divss   %xmm1, %xmm0
+kms644:        movl    %eax, %ecx
+kms645:        addq    $64, %rsi
+kms646:        addl    $16, %eax
+kms647:        movss   %xmm0, -40(%rdx,%r9)
+kms648:        movss   -100(%rsi), %xmm0
+kms649:        movl    $0x00000000, -100(%rsi)
+kms650:        divss   %xmm1, %xmm0
+kms651:        movss   %xmm0, -36(%rdx,%r9)
+kms652:        movss   -96(%rsi), %xmm0
+kms653:        movl    $0x00000000, -96(%rsi)
+kms654:        divss   %xmm1, %xmm0
+kms655:        movss   %xmm0, -32(%rdx,%r9)
+kms656:        movss   -92(%rsi), %xmm0
+kms657:        movl    $0x00000000, -92(%rsi)
+kms658:        divss   %xmm1, %xmm0
+kms659:        movss   %xmm0, -28(%rdx,%r9)
+kms660:        movss   -88(%rsi), %xmm0
+kms661:        movl    $0x00000000, -88(%rsi)
+kms662:        divss   %xmm1, %xmm0
+kms663:        movss   %xmm0, -24(%rdx,%r9)
+kms664:        movss   -84(%rsi), %xmm0
+kms665:        movl    $0x00000000, -84(%rsi)
+kms666:        divss   %xmm1, %xmm0
+kms667:        movss   %xmm0, -20(%rdx,%r9)
+kms668:        movss   -80(%rsi), %xmm0
+kms669:        movl    $0x00000000, -80(%rsi)
+kms670:        divss   %xmm1, %xmm0
+kms671:        movss   %xmm0, -16(%rdx,%r9)
+kms672:        movss   -76(%rsi), %xmm0
+kms673:        movl    $0x00000000, -76(%rsi)
+kms674:        divss   %xmm1, %xmm0
+kms675:        movss   %xmm0, -12(%rdx,%r9)
+kms676:        movss   -72(%rsi), %xmm0
+kms677:        movl    $0x00000000, -72(%rsi)
+kms678:        divss   %xmm1, %xmm0
+kms679:        movss   %xmm0, -8(%rdx,%r9)
+kms680:        movss   -68(%rsi), %xmm0
+kms681:        movl    $0x00000000, -68(%rsi)
+kms682:        divss   %xmm1, %xmm0
+kms683:        movss   %xmm0, -4(%rdx,%r9)
+kms684:        movss   -64(%rsi), %xmm0
+kms685:        divss   %xmm1, %xmm0
+kms686:        movss   %xmm0, (%rdx,%r9)
+kms687:        movl    $0x00000000, -64(%rsi)
+kms688:        movss   -60(%rsi), %xmm0
+kms689:        movl    $0x00000000, -60(%rsi)
+kms690:        divss   %xmm1, %xmm0
+kms691:        movss   %xmm0, 4(%rdx,%r9)
+kms692:        movss   -56(%rsi), %xmm0
+kms693:        movl    $0x00000000, -56(%rsi)
+kms694:        divss   %xmm1, %xmm0
+kms695:        movss   %xmm0, 8(%rdx,%r9)
+kms696:        movss   -52(%rsi), %xmm0
+kms697:        movl    $0x00000000, -52(%rsi)
+kms698:        divss   %xmm1, %xmm0
+kms699:        movss   %xmm0, 12(%rdx,%r9)
+kms700:        movss   -48(%rsi), %xmm0
+kms701:        movl    $0x00000000, -48(%rsi)
+kms702:        divss   %xmm1, %xmm0
+kms703:        movss   %xmm0, 16(%rdx,%r9)
+kms704:        movss   -44(%rsi), %xmm0
+kms705:        movl    $0x00000000, -44(%rsi)
+kms706:        divss   %xmm1, %xmm0
+kms707:        movss   %xmm0, 20(%rdx,%r9)
+kms708:        addq    $64, %r9
+kms709:        cmpl    %ecx, %r10d
+kms710:        jne     .L69
+.L68:
+kms711:        cltq
+.L71:
+kms712:        movss   (%rdi,%rax,4), %xmm0
+kms713:        movl    $0x00000000, (%rdi,%rax,4)
+kms714:        divss   %xmm1, %xmm0
+kms715:        movss   %xmm0, (%rdx,%rax,4)
+kms716:        incq    %rax
+kms717:        cmpl    %eax, %ebp
+kms718:        jg      .L71
+.L70:
+kms719:        cmpq    %r14, %r12
+kms720:        leaq    1(%r14), %rax
+kms721:        movl    $0, (%r15,%r14,4)
+kms722:        je      .L115
+kms723:        movq    %rax, %r14
+kms724:        jmp     .L65
+.L122:
+kms725:        movq    80(%rsp), %rdx
+kms726:        xorl    %esi, %esi
+kms727:        movss   %xmm5, 16(%rsp)
+kms728:        call    memset
+kms729:        xorps   %xmm4, %xmm4
+kms730:        movss   16(%rsp), %xmm5
+kms731:        jmp     .L70
+.L115:
+kms732:        movl    100(%rsp), %r12d
+kms733:        movl    104(%rsp), %r15d
+kms734:        movl    108(%rsp), %ebx
+.L64:
+kms735:        comiss  92(%rsp), %xmm5
+kms736:        ja      .L41
+kms737:        movq    72(%rsp), %rdi
+kms738:        call    free
+kms739:        movq    32(%rsp), %rdi
+kms740:        call    free
+kms741:        movq    40(%rsp), %rdi
+kms742:        call    free
+kms743:        addq    $120, %rsp
+kms744:        movq    %r13, %rax
+kms745:        popq    %rbx
+kms746:        popq    %rbp
+kms747:        popq    %r12
+kms748:        popq    %r13
+kms749:        popq    %r14
+kms750:        popq    %r15
+kms751:        ret
+.L80:
+kms752:        xorl    %eax, %eax
+kms753:        jmp     .L57
+.L81:
+kms754:        movq    %r8, %rdi
+kms755:        movq    %r9, %rcx
+kms756:        movq    %r8, %rdx
+kms757:        xorl    %esi, %esi
+kms758:        jmp     .L58
+.L82:
+kms759:        cvtsi2ssl       %edx, %xmm1
+kms760:        xorl    %eax, %eax
+kms761:        movq    0(%r13,%r14,8), %rdx
+kms762:        jmp     .L68
+.L73:
+kms763:        xorl    %esi, %esi
+kms764:        jmp     .L23
+.L118:
+kms765:        je      .L15
+.L117:
+kms766:        leal    -1(%rbp), %eax
+kms767:        movl    %eax, 24(%rsp)
+kms768:        jmp     .L10
+.L72:
+kms769:        movl    $1, %esi
+kms770:        jmp     .L13
+.L74:
+kms771:        xorl    %ecx, %ecx
+kms772:        jmp     .L27
+.L75:
+kms773:        movl    $1, %edx
+kms774:        jmp     .L36
+_Z12kmeans_outerPPfiiifPifS0_S1_S0_Pv:
+kms775:        pushq   %r15
+kms776:        pushq   %r14
+kms777:        movq    %r9, %r14
+kms778:        pushq   %r13
+kms779:        movl    %esi, %r13d
+kms780:        andl    $-4, %r13d
+kms781:        pushq   %r12
+kms782:        pushq   %rbp
+kms783:        movl    %esi, %ebp
+kms784:        pushq   %rbx
+kms785:        movl    %esi, %ebx
+kms786:        shrl    $2, %ebx
+kms787:        leal    -5(%rbx), %eax
+kms788:        subq    $168, %rsp
+kms789:        movq    %rdi, 80(%rsp)
+kms790:        leal    -1(%rsi), %edi
+kms791:        movss   %xmm0, 136(%rsp)
+kms792:        andl    $-4, %eax
+kms793:        movl    %edx, 124(%rsp)
+kms794:        movl    %ecx, 76(%rsp)
+kms795:        movl    %eax, 52(%rsp)
+kms796:        addl    $4, %eax
+kms797:        movl    %eax, 96(%rsp)
+kms798:        movslq  %r13d, %rax
+kms799:        movq    %r8, 64(%rsp)
+kms800:        salq    $2, %rax
+kms801:        movl    %edi, 140(%rsp)
+kms802:        movq    %rax, 88(%rsp)
+kms803:        leal    1(%r13), %eax
+kms804:        movl    %eax, 100(%rsp)
+kms805:        cltq
+kms806:        salq    $2, %rax
+kms807:        movq    %rax, 104(%rsp)
+kms808:        leal    2(%r13), %eax
+kms809:        movl    %eax, 120(%rsp)
+kms810:        cltq
+kms811:        salq    $2, %rax
+kms812:        movq    %rax, 112(%rsp)
+kms813:        movl    %edi, %eax
+kms814:        leaq    4(,%rax,4), %rax
+kms815:        movq    %rax, 128(%rsp)
+kms816:        leal    -17(%rsi), %eax
+kms817:        andl    $-16, %eax
+kms818:        movl    %eax, 144(%rsp)
+kms819:        addl    $16, %eax
+kms820:        movl    %eax, 148(%rsp)
+.L153:
+kms821:        movl    124(%rsp), %edx
+kms822:        testl   %edx, %edx
+kms823:        jle     .L123
+kms824:        xorps   %xmm4, %xmm4
+kms825:        movq    %r14, %r9
+kms826:        movl    140(%rsp), %r14d
+kms827:        xorl    %r15d, %r15d
+kms828:        movaps  %xmm4, %xmm1
+.L124:
+kms829:        movl    124(%rsp), %edi
+kms830:        leal    64(%r15), %eax
+kms831:        cmpl    %edi, %eax
+kms832:        cmovg   %edi, %eax
+kms833:        cmpl    %eax, %r15d
+kms834:        movl    %eax, 72(%rsp)
+kms835:        jge     .L164
+kms836:        movslq  %r15d, %rax
+kms837:        movq    %rax, 56(%rsp)
+kms838:        movl    76(%rsp), %eax
+kms839:        leal    -1(%rax), %r15d
+.L138:
+kms840:        movq    80(%rsp), %rax
+kms841:        movq    56(%rsp), %rdi
+kms842:        movq    (%rax,%rdi,8), %r10
+kms843:        movl    76(%rsp), %eax
+kms844:        testl   %eax, %eax
+kms845:        jle     .L126
+kms846:        xorl    %edi, %edi
+kms847:        testl   %ebp, %ebp
+kms848:        movss   .LC1(%rip), %xmm5
+kms849:        movq    (%r9,%rdi,8), %r8
+kms850:        movl    %edi, %r11d
+kms851:        jle     .L165
+.L193:
+kms852:        cmpl    $2, %r14d
+kms853:        jbe     .L166
+kms854:        cmpl    $4, %ebx
+kms855:        movq    %r8, %rdx
+kms856:        movq    %r10, %rcx
+kms857:        jbe     .L167
+kms858:        movaps  %xmm4, %xmm2
+kms859:        xorl    %eax, %eax
+.L130:
+kms860:        movlps  (%rcx), %xmm3
+kms861:        movlps  (%rdx), %xmm0
+kms862:        movl    %eax, %esi
+kms863:        prefetcht0      256(%rcx)
+kms864:        addl    $4, %eax
+kms865:        addq    $64, %rcx
+kms866:        movhps  8(%rdx), %xmm0
+kms867:        movhps  -56(%rcx), %xmm3
+kms868:        prefetcht0      256(%rdx)
+kms869:        addq    $64, %rdx
+kms870:        subps   %xmm0, %xmm3
+kms871:        mulps   %xmm3, %xmm3
+kms872:        movaps  %xmm3, %xmm0
+kms873:        addss   %xmm2, %xmm0
+kms874:        movaps  %xmm3, %xmm2
+kms875:        shufps  $85, %xmm3, %xmm2
+kms876:        addss   %xmm2, %xmm0
+kms877:        movaps  %xmm3, %xmm2
+kms878:        unpckhps        %xmm3, %xmm2
+kms879:        shufps  $255, %xmm3, %xmm3
+kms880:        addss   %xmm2, %xmm0
+kms881:        movlps  -48(%rcx), %xmm2
+kms882:        movhps  -40(%rcx), %xmm2
+kms883:        addss   %xmm3, %xmm0
+kms884:        movlps  -48(%rdx), %xmm3
+kms885:        movhps  -40(%rdx), %xmm3
+kms886:        subps   %xmm3, %xmm2
+kms887:        mulps   %xmm2, %xmm2
+kms888:        addss   %xmm2, %xmm0
+kms889:        movaps  %xmm2, %xmm3
+kms890:        shufps  $85, %xmm2, %xmm3
+kms891:        addss   %xmm3, %xmm0
+kms892:        movaps  %xmm2, %xmm3
+kms893:        unpckhps        %xmm2, %xmm3
+kms894:        shufps  $255, %xmm2, %xmm2
+kms895:        addss   %xmm3, %xmm0
+kms896:        movlps  -32(%rdx), %xmm3
+kms897:        movhps  -24(%rdx), %xmm3
+kms898:        addss   %xmm2, %xmm0
+kms899:        movlps  -32(%rcx), %xmm2
+kms900:        movhps  -24(%rcx), %xmm2
+kms901:        subps   %xmm3, %xmm2
+kms902:        mulps   %xmm2, %xmm2
+kms903:        addss   %xmm2, %xmm0
+kms904:        movaps  %xmm2, %xmm3
+kms905:        shufps  $85, %xmm2, %xmm3
+kms906:        addss   %xmm3, %xmm0
+kms907:        movaps  %xmm2, %xmm3
+kms908:        unpckhps        %xmm2, %xmm3
+kms909:        shufps  $255, %xmm2, %xmm2
+kms910:        addss   %xmm3, %xmm0
+kms911:        movlps  -16(%rcx), %xmm3
+kms912:        movhps  -8(%rcx), %xmm3
+kms913:        addss   %xmm2, %xmm0
+kms914:        movlps  -16(%rdx), %xmm2
+kms915:        movhps  -8(%rdx), %xmm2
+kms916:        cmpl    52(%rsp), %esi
+kms917:        subps   %xmm2, %xmm3
+kms918:        mulps   %xmm3, %xmm3
+kms919:        addss   %xmm3, %xmm0
+kms920:        movaps  %xmm3, %xmm2
+kms921:        shufps  $85, %xmm3, %xmm2
+kms922:        addss   %xmm2, %xmm0
+kms923:        movaps  %xmm3, %xmm2
+kms924:        unpckhps        %xmm3, %xmm2
+kms925:        shufps  $255, %xmm3, %xmm3
+kms926:        addss   %xmm2, %xmm0
+kms927:        movaps  %xmm3, %xmm2
+kms928:        addss   %xmm0, %xmm2
+kms929:        jne     .L130
+kms930:        movl    96(%rsp), %esi
 .L129:
-kms1213:        movl    172(%rsp), %eax
-kms1214:        xorl    %r9d, %r9d
-kms1215:        leal    -1(%rax), %edi
-kms1216:        testl   %eax, %eax
-kms1217:        movq    %rdi, 184(%rsp)
-kms1218:        jle     .L135
+kms931:        xorl    %eax, %eax
+.L131:
+kms932:        movlps  (%rcx,%rax), %xmm0
+kms933:        movlps  (%rdx,%rax), %xmm3
+kms934:        incl    %esi
+kms935:        movhps  8(%rdx,%rax), %xmm3
+kms936:        movhps  8(%rcx,%rax), %xmm0
+kms937:        addq    $16, %rax
+kms938:        cmpl    %esi, %ebx
+kms939:        subps   %xmm3, %xmm0
+kms940:        mulps   %xmm0, %xmm0
+kms941:        addss   %xmm0, %xmm2
+kms942:        movaps  %xmm0, %xmm3
+kms943:        shufps  $85, %xmm0, %xmm3
+kms944:        addss   %xmm3, %xmm2
+kms945:        movaps  %xmm0, %xmm3
+kms946:        unpckhps        %xmm0, %xmm3
+kms947:        shufps  $255, %xmm0, %xmm0
+kms948:        addss   %xmm3, %xmm2
+kms949:        addss   %xmm0, %xmm2
+kms950:        ja      .L131
+kms951:        cmpl    %r13d, %ebp
+kms952:        movl    %r13d, %eax
+kms953:        je      .L127
+.L128:
+kms954:        movslq  %eax, %rcx
+kms955:        movss   (%r10,%rcx,4), %xmm0
+kms956:        leaq    0(,%rcx,4), %rdx
+kms957:        subss   (%r8,%rcx,4), %xmm0
+kms958:        leal    1(%rax), %ecx
+kms959:        cmpl    %ecx, %ebp
+kms960:        mulss   %xmm0, %xmm0
+kms961:        addss   %xmm0, %xmm2
+kms962:        jle     .L127
+kms963:        movss   4(%r10,%rdx), %xmm0
+kms964:        addl    $2, %eax
+kms965:        subss   4(%r8,%rdx), %xmm0
+kms966:        cmpl    %eax, %ebp
+kms967:        mulss   %xmm0, %xmm0
+kms968:        addss   %xmm0, %xmm2
+kms969:        jle     .L127
+kms970:        movss   8(%r10,%rdx), %xmm0
+kms971:        subss   8(%r8,%rdx), %xmm0
+kms972:        mulss   %xmm0, %xmm0
+kms973:        addss   %xmm0, %xmm2
+.L127:
+kms974:        comiss  %xmm2, %xmm5
+kms975:        minss   %xmm5, %xmm2
+kms976:        leaq    1(%rdi), %rax
+kms977:        cmova   %r11d, %r12d
+kms978:        cmpq    %r15, %rdi
+kms979:        movaps  %xmm2, %xmm5
+kms980:        je      .L126
+kms981:        movq    %rax, %rdi
+kms982:        testl   %ebp, %ebp
+kms983:        movq    (%r9,%rdi,8), %r8
+kms984:        movl    %edi, %r11d
+kms985:        jg      .L193
+.L165:
+kms986:        movaps  %xmm4, %xmm2
+kms987:        jmp     .L127
+.L126:
+kms988:        movq    64(%rsp), %rax
+kms989:        movq    56(%rsp), %rdi
+kms990:        cmpl    %r12d, (%rax,%rdi,4)
+kms991:        je      .L136
+kms992:        addss   .LC2(%rip), %xmm1
 .L136:
-kms1219:        testl   %ebx, %ebx
-kms1220:        jle     .L141
-kms1221:        movq    16(%rbp), %rax
-kms1222:        movl    (%rax,%r9,4), %ecx
-kms1223:        movq    24(%rbp), %rax
-kms1224:        testl   %ecx, %ecx
-kms1225:        movq    (%rax,%r9,8), %rdi
-kms1226:        jle     .L178
-kms1227:        cmpl    $16, %ebx
-kms1228:        jle     .L151
-kms1229:        vcvtsi2ssl      %ecx, %xmm0, %xmm0
-kms1230:        movq    (%r15,%r9,8), %rcx
-kms1231:        leaq    40(%rdi), %rdx
-kms1232:        movl    $40, %esi
-kms1233:        xorl    %eax, %eax
-.L140:
-kms1234:        vmovss  -40(%rdx), %xmm2
-kms1235:        prefetcht0      (%rdx)
-kms1236:        movl    %eax, %r8d
-kms1237:        vdivss  %xmm0, %xmm2, %xmm2
-kms1238:        addl    $16, %eax
-kms1239:        addq    $64, %rdx
-kms1240:        vmovss  %xmm2, -40(%rcx,%rsi)
-kms1241:        movl    $0x00000000, -104(%rdx)
-kms1242:        vmovss  -100(%rdx), %xmm2
-kms1243:        vdivss  %xmm0, %xmm2, %xmm2
-kms1244:        vmovss  %xmm2, -36(%rcx,%rsi)
-kms1245:        movl    $0x00000000, -100(%rdx)
-kms1246:        vmovss  -96(%rdx), %xmm2
-kms1247:        vdivss  %xmm0, %xmm2, %xmm2
-kms1248:        vmovss  %xmm2, -32(%rcx,%rsi)
-kms1249:        movl    $0x00000000, -96(%rdx)
-kms1250:        vmovss  -92(%rdx), %xmm2
-kms1251:        vdivss  %xmm0, %xmm2, %xmm2
-kms1252:        vmovss  %xmm2, -28(%rcx,%rsi)
-kms1253:        movl    $0x00000000, -92(%rdx)
-kms1254:        vmovss  -88(%rdx), %xmm2
-kms1255:        vdivss  %xmm0, %xmm2, %xmm2
-kms1256:        vmovss  %xmm2, -24(%rcx,%rsi)
-kms1257:        movl    $0x00000000, -88(%rdx)
-kms1258:        vmovss  -84(%rdx), %xmm2
-kms1259:        vdivss  %xmm0, %xmm2, %xmm2
-kms1260:        vmovss  %xmm2, -20(%rcx,%rsi)
-kms1261:        movl    $0x00000000, -84(%rdx)
-kms1262:        vmovss  -80(%rdx), %xmm2
-kms1263:        vdivss  %xmm0, %xmm2, %xmm2
-kms1264:        vmovss  %xmm2, -16(%rcx,%rsi)
-kms1265:        movl    $0x00000000, -80(%rdx)
-kms1266:        vmovss  -76(%rdx), %xmm2
-kms1267:        vdivss  %xmm0, %xmm2, %xmm2
-kms1268:        vmovss  %xmm2, -12(%rcx,%rsi)
-kms1269:        movl    $0x00000000, -76(%rdx)
-kms1270:        vmovss  -72(%rdx), %xmm2
-kms1271:        vdivss  %xmm0, %xmm2, %xmm2
-kms1272:        vmovss  %xmm2, -8(%rcx,%rsi)
-kms1273:        movl    $0x00000000, -72(%rdx)
-kms1274:        vmovss  -68(%rdx), %xmm2
-kms1275:        vdivss  %xmm0, %xmm2, %xmm2
-kms1276:        vmovss  %xmm2, -4(%rcx,%rsi)
-kms1277:        movl    $0x00000000, -68(%rdx)
-kms1278:        vmovss  -64(%rdx), %xmm2
-kms1279:        vdivss  %xmm0, %xmm2, %xmm2
-kms1280:        vmovss  %xmm2, (%rcx,%rsi)
-kms1281:        movl    $0x00000000, -64(%rdx)
-kms1282:        vmovss  -60(%rdx), %xmm2
-kms1283:        vdivss  %xmm0, %xmm2, %xmm2
-kms1284:        vmovss  %xmm2, 4(%rcx,%rsi)
-kms1285:        movl    $0x00000000, -60(%rdx)
-kms1286:        vmovss  -56(%rdx), %xmm2
-kms1287:        vdivss  %xmm0, %xmm2, %xmm2
-kms1288:        vmovss  %xmm2, 8(%rcx,%rsi)
-kms1289:        movl    $0x00000000, -56(%rdx)
-kms1290:        vmovss  -52(%rdx), %xmm2
-kms1291:        vdivss  %xmm0, %xmm2, %xmm2
-kms1292:        vmovss  %xmm2, 12(%rcx,%rsi)
-kms1293:        movl    $0x00000000, -52(%rdx)
-kms1294:        vmovss  -48(%rdx), %xmm2
-kms1295:        vdivss  %xmm0, %xmm2, %xmm2
-kms1296:        vmovss  %xmm2, 16(%rcx,%rsi)
-kms1297:        movl    $0x00000000, -48(%rdx)
-kms1298:        vmovss  -44(%rdx), %xmm2
-kms1299:        vdivss  %xmm0, %xmm2, %xmm2
-kms1300:        vmovss  %xmm2, 20(%rcx,%rsi)
-kms1301:        movl    $0x00000000, -44(%rdx)
-kms1302:        addq    $64, %rsi
-kms1303:        cmpl    %r8d, 60(%rsp)
-kms1304:        jne     .L140
-.L139:
-kms1305:        cltq
-.L142:
-kms1306:        vmovss  (%rdi,%rax,4), %xmm2
-kms1307:        vdivss  %xmm0, %xmm2, %xmm2
-kms1308:        vmovss  %xmm2, (%rcx,%rax,4)
-kms1309:        movl    $0x00000000, (%rdi,%rax,4)
-kms1310:        incq    %rax
-kms1311:        cmpl    %eax, %ebx
-kms1312:        jg      .L142
+kms993:        movq    64(%rsp), %rax
+kms994:        movq    56(%rsp), %rdi
+kms995:        movl    %r12d, (%rax,%rdi,4)
+kms996:        movq    224(%rsp), %rdi
+kms997:        movslq  %r12d, %rax
+kms998:        incl    (%rdi,%rax,4)
+kms999:        testl   %ebp, %ebp
+kms1000:        jle     .L142
+kms1001:        movq    232(%rsp), %rdi
+kms1002:        movq    (%rdi,%rax,8), %r8
+kms1003:        leaq    15(%r10), %rax
+kms1004:        subq    %r8, %rax
+kms1005:        cmpq    $30, %rax
+kms1006:        jbe     .L139
+kms1007:        cmpl    $3, %r14d
+kms1008:        jbe     .L139
+kms1009:        cmpl    $4, %ebx
+kms1010:        jbe     .L169
+kms1011:        movq    %r10, %rcx
+kms1012:        movq    %r8, %rdx
+kms1013:        xorl    %esi, %esi
 .L141:
-kms1313:        cmpq    %r9, 184(%rsp)
-kms1314:        movq    16(%rbp), %rax
-kms1315:        movl    $0, (%rax,%r9,4)
-kms1316:        leaq    1(%r9), %rax
-kms1317:        je      .L135
-kms1318:        movq    %rax, %r9
-kms1319:        jmp     .L136
-.L176:
-kms1320:        movq    32(%rbp), %rax
-kms1321:        movl    76(%rsp), %edx
-kms1322:        movq    %r15, %r9
-kms1323:        movq    176(%rsp), %r8
-kms1324:        movl    172(%rsp), %ecx
-kms1325:        vmovss  %xmm1, 184(%rsp)
-kms1326:        movq    160(%rsp), %rdi
-kms1327:        movl    %esi, 16(%rsp)
-kms1328:        movl    %ebx, %esi
-kms1329:        movq    %rax, 32(%rsp)
-kms1330:        movq    24(%rbp), %rax
-kms1331:        vmovss  72(%rsp), %xmm0
-kms1332:        movl    %edx, 24(%rsp)
-kms1333:        movq    %rax, 8(%rsp)
-kms1334:        movq    16(%rbp), %rax
-kms1335:        movq    %rax, (%rsp)
-kms1336:        vzeroupper
-kms1337:        call    _Z20kmeans_outer_handlerPPfiiifPifS0_S1_S0_iiPv
-kms1338:        testl   %eax, %eax
-kms1339:        vxorps  %xmm4, %xmm4, %xmm4
-kms1340:        vmovss  184(%rsp), %xmm1
-kms1341:        je      .L130
-kms1342:        leaq    -40(%rbp), %rsp
-kms1343:        popq    %rbx
-kms1344:        popq    %r12
-kms1345:        popq    %r13
-kms1346:        popq    %r14
-kms1347:        popq    %r15
-kms1348:        popq    %rbp
-kms1349:        ret
-.L178:
-kms1350:        movq    64(%rsp), %rdx
-kms1351:        xorl    %esi, %esi
-kms1352:        vmovss  %xmm1, 192(%rsp)
-kms1353:        movq    %r9, 48(%rsp)
-kms1354:        vzeroupper
-kms1355:        call    memset
-kms1356:        movq    48(%rsp), %r9
-kms1357:        vmovss  192(%rsp), %xmm1
-kms1358:        jmp     .L141
-.L135:
-kms1359:        vcomiss 72(%rsp), %xmm1
-kms1360:        ja      .L133
-.L174:
-kms1361:        vzeroupper
-kms1362:        leaq    -40(%rbp), %rsp
-kms1363:        popq    %rbx
-kms1364:        popq    %r12
-kms1365:        popq    %r13
-kms1366:        popq    %r14
-kms1367:        popq    %r15
-kms1368:        popq    %rbp
-kms1369:        ret
-.L151:
-kms1370:        vcvtsi2ssl      %ecx, %xmm0, %xmm0
-kms1371:        xorl    %eax, %eax
-kms1372:        movq    (%r15,%r9,8), %rcx
-kms1373:        jmp     .L139
-_Z12kmeans_innerPPfiiifPiS_S0_S1_S0_iiPv:
-kms1374:        pushq   %rbp
-kms1375:        movq    %rsp, %rbp
-kms1376:        pushq   %r15
-kms1377:        pushq   %r14
-kms1378:        pushq   %r13
-kms1379:        pushq   %r12
-kms1380:        pushq   %rbx
-kms1381:        andq    $-32, %rsp
-kms1382:        subq    $208, %rsp
-kms1383:        movq    16(%rbp), %r15
-kms1384:        movl    %edx, 68(%rsp)
-kms1385:        movl    40(%rbp), %edx
-kms1386:        cmpl    48(%rbp), %edx
-kms1387:        movq    %rdi, 160(%rsp)
-kms1388:        movl    %ecx, 172(%rsp)
-kms1389:        movq    %r8, 176(%rsp)
-kms1390:        movq    %r9, 72(%rsp)
-kms1391:        jge     .L232
-kms1392:        leal    -1(%rsi), %eax
-kms1393:        movl    %esi, %ebx
-kms1394:        movl    %esi, %r13d
-kms1395:        shrl    $3, %ebx
-kms1396:        andl    $-8, %r13d
-kms1397:        movl    %esi, %r14d
-kms1398:        movl    %eax, 204(%rsp)
-kms1399:        leal    -1(%rbx), %eax
-kms1400:        vmovaps %xmm0, %xmm6
-kms1401:        vmovss  (%r9), %xmm5
-kms1402:        movl    %eax, 200(%rsp)
-kms1403:        leal    -3(%rbx), %eax
-kms1404:        andl    $-2, %eax
-kms1405:        movl    %eax, 196(%rsp)
-kms1406:        addl    $2, %eax
-kms1407:        movl    %eax, 168(%rsp)
-kms1408:        movslq  %r13d, %rax
-kms1409:        salq    $2, %rax
-kms1410:        movq    %rax, 144(%rsp)
-kms1411:        leal    1(%r13), %eax
-kms1412:        movl    %eax, 156(%rsp)
-kms1413:        cltq
-kms1414:        salq    $2, %rax
-kms1415:        movq    %rax, 136(%rsp)
-kms1416:        leal    2(%r13), %eax
-kms1417:        movl    %eax, 152(%rsp)
-kms1418:        cltq
-kms1419:        salq    $2, %rax
-kms1420:        movq    %rax, 128(%rsp)
-kms1421:        leal    3(%r13), %eax
-kms1422:        movl    %eax, 124(%rsp)
-kms1423:        cltq
-kms1424:        salq    $2, %rax
-kms1425:        movq    %rax, 112(%rsp)
-kms1426:        leal    4(%r13), %eax
-kms1427:        movl    %eax, 120(%rsp)
-kms1428:        cltq
-kms1429:        salq    $2, %rax
-kms1430:        movq    %rax, 104(%rsp)
-kms1431:        leal    5(%r13), %eax
-kms1432:        movl    %eax, 100(%rsp)
-kms1433:        cltq
-kms1434:        salq    $2, %rax
-kms1435:        movq    %rax, 80(%rsp)
-kms1436:        leal    6(%r13), %eax
-kms1437:        movl    %eax, 96(%rsp)
-kms1438:        cltq
-kms1439:        salq    $2, %rax
-kms1440:        movq    %rax, 88(%rsp)
-kms1441:        leal    -17(%rsi), %eax
-kms1442:        andl    $-16, %eax
-kms1443:        addl    $16, %eax
-kms1444:        movl    %eax, 64(%rsp)
-.L182:
-kms1445:        leal    64(%rdx), %eax
-kms1446:        cmpl    48(%rbp), %eax
-kms1447:        cmovg   48(%rbp), %eax
-kms1448:        cmpl    %eax, %edx
-kms1449:        movl    %eax, 192(%rsp)
-kms1450:        jge     .L209
-kms1451:        movslq  %edx, %rax
-kms1452:        movq    %rax, 184(%rsp)
-kms1453:        movl    172(%rsp), %eax
-kms1454:        leal    -1(%rax), %r11d
-.L205:
-kms1455:        movq    160(%rsp), %rax
-kms1456:        movq    184(%rsp), %rdi
-kms1457:        movq    (%rax,%rdi,8), %r8
-kms1458:        movl    172(%rsp), %eax
-kms1459:        testl   %eax, %eax
-kms1460:        jle     .L184
-kms1461:        xorl    %r9d, %r9d
-kms1462:        testl   %r14d, %r14d
-kms1463:        vxorps  %xmm4, %xmm4, %xmm4
-kms1464:        movq    (%r15,%r9,8), %rdi
-kms1465:        movl    %r9d, %r10d
-kms1466:        vmovss  .LC1(%rip), %xmm3
-kms1467:        jle     .L210
-.L234:
-kms1468:        cmpl    $6, 204(%rsp)
-kms1469:        jbe     .L211
-kms1470:        cmpl    $1, 200(%rsp)
-kms1471:        movq    %rdi, %rsi
-kms1472:        movq    %r8, %rcx
-kms1473:        jbe     .L212
-kms1474:        vmovaps %xmm4, %xmm0
-kms1475:        xorl    %eax, %eax
-.L188:
-kms1476:        vmovups (%rcx), %ymm1
-kms1477:        movl    %eax, %edx
-kms1478:        prefetcht0      384(%rcx)
-kms1479:        addl    $2, %eax
-kms1480:        addq    $64, %rcx
-kms1481:        prefetcht0      384(%rsi)
-kms1482:        vsubps  (%rsi), %ymm1, %ymm1
-kms1483:        addq    $64, %rsi
-kms1484:        vmulps  %ymm1, %ymm1, %ymm2
-kms1485:        vaddss  %xmm2, %xmm0, %xmm0
-kms1486:        vshufps $85, %xmm2, %xmm2, %xmm1
-kms1487:        vshufps $255, %xmm2, %xmm2, %xmm7
-kms1488:        vaddss  %xmm1, %xmm0, %xmm0
-kms1489:        vunpckhps       %xmm2, %xmm2, %xmm1
-kms1490:        vaddss  %xmm1, %xmm0, %xmm0
-kms1491:        vextractf128    $0x1, %ymm2, %xmm1
-kms1492:        vshufps $85, %xmm1, %xmm1, %xmm2
-kms1493:        vaddss  %xmm7, %xmm0, %xmm0
-kms1494:        vaddss  %xmm1, %xmm0, %xmm0
-kms1495:        vaddss  %xmm2, %xmm0, %xmm0
-kms1496:        vunpckhps       %xmm1, %xmm1, %xmm2
-kms1497:        vshufps $255, %xmm1, %xmm1, %xmm1
-kms1498:        vaddss  %xmm2, %xmm0, %xmm0
-kms1499:        vaddss  %xmm1, %xmm0, %xmm0
-kms1500:        vmovups -32(%rcx), %ymm1
-kms1501:        vsubps  -32(%rsi), %ymm1, %ymm1
-kms1502:        cmpl    196(%rsp), %edx
-kms1503:        vmulps  %ymm1, %ymm1, %ymm1
-kms1504:        vaddss  %xmm1, %xmm0, %xmm0
-kms1505:        vshufps $85, %xmm1, %xmm1, %xmm7
-kms1506:        vshufps $255, %xmm1, %xmm1, %xmm2
-kms1507:        vaddss  %xmm7, %xmm0, %xmm0
-kms1508:        vunpckhps       %xmm1, %xmm1, %xmm7
-kms1509:        vextractf128    $0x1, %ymm1, %xmm1
-kms1510:        vaddss  %xmm7, %xmm0, %xmm0
-kms1511:        vaddss  %xmm2, %xmm0, %xmm0
-kms1512:        vshufps $85, %xmm1, %xmm1, %xmm2
-kms1513:        vaddss  %xmm1, %xmm0, %xmm0
-kms1514:        vaddss  %xmm2, %xmm0, %xmm0
-kms1515:        vunpckhps       %xmm1, %xmm1, %xmm2
-kms1516:        vshufps $255, %xmm1, %xmm1, %xmm1
-kms1517:        vaddss  %xmm2, %xmm0, %xmm0
-kms1518:        vaddss  %xmm1, %xmm0, %xmm0
-kms1519:        jne     .L188
-kms1520:        movl    168(%rsp), %edx
-.L187:
-kms1521:        xorl    %eax, %eax
-.L189:
-kms1522:        vmovups (%rcx,%rax), %ymm1
-kms1523:        incl    %edx
-kms1524:        vsubps  (%rsi,%rax), %ymm1, %ymm1
-kms1525:        addq    $32, %rax
-kms1526:        cmpl    %edx, %ebx
-kms1527:        vmulps  %ymm1, %ymm1, %ymm2
-kms1528:        vaddss  %xmm2, %xmm0, %xmm0
-kms1529:        vshufps $85, %xmm2, %xmm2, %xmm1
-kms1530:        vshufps $255, %xmm2, %xmm2, %xmm7
-kms1531:        vaddss  %xmm1, %xmm0, %xmm0
-kms1532:        vunpckhps       %xmm2, %xmm2, %xmm1
-kms1533:        vaddss  %xmm1, %xmm0, %xmm0
-kms1534:        vextractf128    $0x1, %ymm2, %xmm1
-kms1535:        vshufps $85, %xmm1, %xmm1, %xmm2
-kms1536:        vaddss  %xmm7, %xmm0, %xmm0
-kms1537:        vaddss  %xmm1, %xmm0, %xmm0
-kms1538:        vaddss  %xmm2, %xmm0, %xmm0
-kms1539:        vunpckhps       %xmm1, %xmm1, %xmm2
-kms1540:        vshufps $255, %xmm1, %xmm1, %xmm1
-kms1541:        vaddss  %xmm2, %xmm0, %xmm0
-kms1542:        vaddss  %xmm1, %xmm0, %xmm0
-kms1543:        ja      .L189
-kms1544:        cmpl    %r13d, %r14d
-kms1545:        je      .L185
-kms1546:        movl    %r13d, %edx
-.L186:
-kms1547:        movslq  %edx, %rcx
-kms1548:        vmovss  (%r8,%rcx,4), %xmm1
-kms1549:        leaq    0(,%rcx,4), %rax
-kms1550:        vsubss  (%rdi,%rcx,4), %xmm1, %xmm1
-kms1551:        leal    1(%rdx), %ecx
-kms1552:        cmpl    %ecx, %r14d
-kms1553:        vmulss  %xmm1, %xmm1, %xmm1
-kms1554:        vaddss  %xmm1, %xmm0, %xmm0
-kms1555:        jle     .L185
-kms1556:        vmovss  4(%r8,%rax), %xmm1
-kms1557:        leal    2(%rdx), %ecx
-kms1558:        vsubss  4(%rdi,%rax), %xmm1, %xmm1
-kms1559:        cmpl    %ecx, %r14d
-kms1560:        vmulss  %xmm1, %xmm1, %xmm1
-kms1561:        vaddss  %xmm1, %xmm0, %xmm0
-kms1562:        jle     .L185
-kms1563:        vmovss  8(%r8,%rax), %xmm1
-kms1564:        leal    3(%rdx), %ecx
-kms1565:        vsubss  8(%rdi,%rax), %xmm1, %xmm1
-kms1566:        cmpl    %ecx, %r14d
-kms1567:        vmulss  %xmm1, %xmm1, %xmm1
-kms1568:        vaddss  %xmm1, %xmm0, %xmm0
-kms1569:        jle     .L185
-kms1570:        vmovss  12(%r8,%rax), %xmm1
-kms1571:        leal    4(%rdx), %ecx
-kms1572:        vsubss  12(%rdi,%rax), %xmm1, %xmm1
-kms1573:        cmpl    %ecx, %r14d
-kms1574:        vmulss  %xmm1, %xmm1, %xmm1
-kms1575:        vaddss  %xmm1, %xmm0, %xmm0
-kms1576:        jle     .L185
-kms1577:        vmovss  16(%r8,%rax), %xmm1
-kms1578:        leal    5(%rdx), %ecx
-kms1579:        vsubss  16(%rdi,%rax), %xmm1, %xmm1
-kms1580:        cmpl    %ecx, %r14d
-kms1581:        vmulss  %xmm1, %xmm1, %xmm1
-kms1582:        vaddss  %xmm1, %xmm0, %xmm0
-kms1583:        jle     .L185
-kms1584:        vmovss  20(%r8,%rax), %xmm1
-kms1585:        addl    $6, %edx
-kms1586:        vsubss  20(%rdi,%rax), %xmm1, %xmm1
-kms1587:        cmpl    %edx, %r14d
-kms1588:        vmulss  %xmm1, %xmm1, %xmm1
-kms1589:        vaddss  %xmm1, %xmm0, %xmm0
-kms1590:        jle     .L185
-kms1591:        vmovss  24(%r8,%rax), %xmm1
-kms1592:        vsubss  24(%rdi,%rax), %xmm1, %xmm1
-kms1593:        vmulss  %xmm1, %xmm1, %xmm1
-kms1594:        vaddss  %xmm1, %xmm0, %xmm0
-.L185:
-kms1595:        vcomiss %xmm0, %xmm3
-kms1596:        leaq    1(%r9), %rax
-kms1597:        vminss  %xmm3, %xmm0, %xmm3
-kms1598:        cmova   %r10d, %r12d
-kms1599:        cmpq    %r11, %r9
-kms1600:        je      .L184
-kms1601:        movq    %rax, %r9
-kms1602:        testl   %r14d, %r14d
-kms1603:        movq    (%r15,%r9,8), %rdi
-kms1604:        movl    %r9d, %r10d
-kms1605:        jg      .L234
-.L210:
-kms1606:        vmovaps %xmm4, %xmm0
-kms1607:        jmp     .L185
-.L184:
-kms1608:        movq    176(%rsp), %rax
-kms1609:        movq    184(%rsp), %rdi
-kms1610:        cmpl    %r12d, (%rax,%rdi,4)
-kms1611:        je      .L194
-kms1612:        vaddss  .LC2(%rip), %xmm5, %xmm5
-.L194:
-kms1613:        movq    176(%rsp), %rax
-kms1614:        movq    184(%rsp), %rdi
-kms1615:        movl    %r12d, (%rax,%rdi,4)
-kms1616:        movq    24(%rbp), %rdi
-kms1617:        movslq  %r12d, %rax
-kms1618:        incl    (%rdi,%rax,4)
-kms1619:        testl   %r14d, %r14d
-kms1620:        jle     .L195
-kms1621:        movq    32(%rbp), %rdi
-kms1622:        movq    (%rdi,%rax,8), %rcx
-kms1623:        leaq    31(%r8), %rax
-kms1624:        subq    %rcx, %rax
-kms1625:        cmpq    $62, %rax
-kms1626:        jbe     .L196
-kms1627:        cmpl    $6, 204(%rsp)
-kms1628:        jbe     .L196
-kms1629:        cmpl    $1, 200(%rsp)
-kms1630:        jbe     .L214
-kms1631:        movq    %r8, %rdi
-kms1632:        movq    %rcx, %rsi
-kms1633:        xorl    %eax, %eax
-.L198:
-kms1634:        vmovups (%rsi), %ymm0
-kms1635:        prefetcht0      640(%rdi)
-kms1636:        movl    %eax, %edx
-kms1637:        addq    $64, %rdi
-kms1638:        addl    $2, %eax
-kms1639:        prefetcht0      640(%rsi)
-kms1640:        vaddps  -64(%rdi), %ymm0, %ymm0
-kms1641:        addq    $64, %rsi
-kms1642:        vmovups %ymm0, -64(%rsi)
-kms1643:        vmovups -32(%rdi), %ymm0
-kms1644:        vaddps  -32(%rsi), %ymm0, %ymm0
-kms1645:        vmovups %ymm0, -32(%rsi)
-kms1646:        cmpl    196(%rsp), %edx
-kms1647:        movq    %rsi, %r9
-kms1648:        jne     .L198
-kms1649:        movl    168(%rsp), %edx
-.L197:
-kms1650:        xorl    %eax, %eax
-.L199:
-kms1651:        vmovups (%rdi,%rax), %ymm0
-kms1652:        incl    %edx
-kms1653:        vaddps  (%rsi,%rax), %ymm0, %ymm0
-kms1654:        vmovups %ymm0, (%r9,%rax)
-kms1655:        addq    $32, %rax
-kms1656:        cmpl    %edx, %ebx
-kms1657:        ja      .L199
-kms1658:        cmpl    %r13d, %r14d
-kms1659:        je      .L195
-kms1660:        movq    144(%rsp), %rdi
-kms1661:        cmpl    156(%rsp), %r14d
-kms1662:        leaq    (%rcx,%rdi), %rax
-kms1663:        vmovss  (%rax), %xmm0
-kms1664:        vaddss  (%r8,%rdi), %xmm0, %xmm0
-kms1665:        vmovss  %xmm0, (%rax)
-kms1666:        jle     .L195
-kms1667:        movq    136(%rsp), %rsi
-kms1668:        cmpl    152(%rsp), %r14d
-kms1669:        leaq    (%rcx,%rsi), %rax
-kms1670:        vmovss  (%rax), %xmm0
-kms1671:        vaddss  (%r8,%rsi), %xmm0, %xmm0
-kms1672:        vmovss  %xmm0, (%rax)
-kms1673:        jle     .L195
-kms1674:        movq    128(%rsp), %rsi
-kms1675:        cmpl    124(%rsp), %r14d
-kms1676:        leaq    (%rcx,%rsi), %rax
-kms1677:        vmovss  (%rax), %xmm0
-kms1678:        vaddss  (%r8,%rsi), %xmm0, %xmm0
-kms1679:        vmovss  %xmm0, (%rax)
-kms1680:        jle     .L195
-kms1681:        movq    112(%rsp), %rdi
-kms1682:        cmpl    120(%rsp), %r14d
-kms1683:        leaq    (%rcx,%rdi), %rax
-kms1684:        vmovss  (%rax), %xmm0
-kms1685:        vaddss  (%r8,%rdi), %xmm0, %xmm0
-kms1686:        vmovss  %xmm0, (%rax)
-kms1687:        jle     .L195
-kms1688:        movq    104(%rsp), %rsi
-kms1689:        cmpl    100(%rsp), %r14d
-kms1690:        leaq    (%rcx,%rsi), %rax
-kms1691:        vmovss  (%rax), %xmm0
-kms1692:        vaddss  (%r8,%rsi), %xmm0, %xmm0
-kms1693:        vmovss  %xmm0, (%rax)
-kms1694:        jle     .L195
-kms1695:        movq    80(%rsp), %rdi
-kms1696:        cmpl    96(%rsp), %r14d
-kms1697:        leaq    (%rcx,%rdi), %rax
-kms1698:        vmovss  (%rax), %xmm0
-kms1699:        vaddss  (%r8,%rdi), %xmm0, %xmm0
-kms1700:        vmovss  %xmm0, (%rax)
-kms1701:        jle     .L195
-kms1702:        movq    88(%rsp), %rax
-kms1703:        addq    %rax, %rcx
-kms1704:        vmovss  (%rcx), %xmm0
-kms1705:        vaddss  (%r8,%rax), %xmm0, %xmm0
-kms1706:        vmovss  %xmm0, (%rcx)
+kms1014:        movlps  (%rcx), %xmm0
+kms1015:        movlps  (%rdx), %xmm2
+kms1016:        prefetcht0      320(%rcx)
+kms1017:        movl    %esi, %eax
+kms1018:        addq    $64, %rcx
+kms1019:        addl    $4, %esi
+kms1020:        movhps  -56(%rcx), %xmm0
+kms1021:        movhps  8(%rdx), %xmm2
+kms1022:        prefetcht0      320(%rdx)
+kms1023:        addq    $64, %rdx
+kms1024:        addps   %xmm2, %xmm0
+kms1025:        movlps  %xmm0, -64(%rdx)
+kms1026:        movhps  %xmm0, -56(%rdx)
+kms1027:        movlps  -48(%rdx), %xmm0
+kms1028:        movlps  -48(%rcx), %xmm2
+kms1029:        movhps  -40(%rdx), %xmm0
+kms1030:        movhps  -40(%rcx), %xmm2
+kms1031:        addps   %xmm2, %xmm0
+kms1032:        movlps  %xmm0, -48(%rdx)
+kms1033:        movhps  %xmm0, -40(%rdx)
+kms1034:        movlps  -32(%rdx), %xmm0
+kms1035:        movlps  -32(%rcx), %xmm2
+kms1036:        movhps  -24(%rdx), %xmm0
+kms1037:        movhps  -24(%rcx), %xmm2
+kms1038:        addps   %xmm2, %xmm0
+kms1039:        movlps  %xmm0, -32(%rdx)
+kms1040:        movhps  %xmm0, -24(%rdx)
+kms1041:        movlps  -16(%rdx), %xmm0
+kms1042:        movlps  -16(%rcx), %xmm2
+kms1043:        movhps  -8(%rdx), %xmm0
+kms1044:        movhps  -8(%rcx), %xmm2
+kms1045:        addps   %xmm2, %xmm0
+kms1046:        movlps  %xmm0, -16(%rdx)
+kms1047:        movhps  %xmm0, -8(%rdx)
+kms1048:        cmpl    52(%rsp), %eax
+kms1049:        movq    %rdx, %rdi
+kms1050:        jne     .L141
+kms1051:        movl    96(%rsp), %esi
+.L140:
+kms1052:        xorl    %eax, %eax
+.L143:
+kms1053:        movlps  (%rdx,%rax), %xmm0
+kms1054:        movlps  (%rcx,%rax), %xmm2
+kms1055:        incl    %esi
+kms1056:        movhps  8(%rdx,%rax), %xmm0
+kms1057:        movhps  8(%rcx,%rax), %xmm2
+kms1058:        addps   %xmm2, %xmm0
+kms1059:        movlps  %xmm0, (%rdi,%rax)
+kms1060:        movhps  %xmm0, 8(%rdi,%rax)
+kms1061:        addq    $16, %rax
+kms1062:        cmpl    %esi, %ebx
+kms1063:        ja      .L143
+kms1064:        cmpl    %r13d, %ebp
+kms1065:        je      .L142
+kms1066:        movq    88(%rsp), %rdi
+kms1067:        cmpl    100(%rsp), %ebp
+kms1068:        leaq    (%r8,%rdi), %rax
+kms1069:        movss   (%rax), %xmm0
+kms1070:        addss   (%r10,%rdi), %xmm0
+kms1071:        movss   %xmm0, (%rax)
+kms1072:        jle     .L142
+kms1073:        movq    104(%rsp), %rdi
+kms1074:        cmpl    120(%rsp), %ebp
+kms1075:        leaq    (%r8,%rdi), %rax
+kms1076:        movss   (%rax), %xmm0
+kms1077:        addss   (%r10,%rdi), %xmm0
+kms1078:        movss   %xmm0, (%rax)
+kms1079:        jle     .L142
+kms1080:        movq    112(%rsp), %rax
+kms1081:        addq    %rax, %r8
+kms1082:        movss   (%r8), %xmm0
+kms1083:        addss   (%r10,%rax), %xmm0
+kms1084:        movss   %xmm0, (%r8)
+.L142:
+kms1085:        incq    56(%rsp)
+kms1086:        movq    56(%rsp), %rax
+kms1087:        cmpl    %eax, 72(%rsp)
+kms1088:        jg      .L138
+kms1089:        movl    72(%rsp), %edi
+kms1090:        cmpl    %edi, 124(%rsp)
+kms1091:        jle     .L149
 .L195:
-kms1707:        incq    184(%rsp)
-kms1708:        movq    184(%rsp), %rax
-kms1709:        cmpl    %eax, 192(%rsp)
-kms1710:        jg      .L205
-.L183:
-kms1711:        movl    192(%rsp), %eax
-kms1712:        cmpl    %eax, 48(%rbp)
-kms1713:        jle     .L206
-kms1714:        nop
-kms1715:        nop
-kms1716:        nop
-.L207:
-kms1717:        movl    192(%rsp), %edx
-kms1718:        jmp     .L182
-.L211:
-kms1719:        vmovaps %xmm4, %xmm0
-kms1720:        xorl    %edx, %edx
-kms1721:        jmp     .L186
-.L212:
-kms1722:        vmovaps %xmm4, %xmm0
-kms1723:        xorl    %edx, %edx
-kms1724:        jmp     .L187
+kms1092:        nop
+kms1093:        nop
+kms1094:        nop
+.L150:
+kms1095:        movl    72(%rsp), %r15d
+kms1096:        jmp     .L124
+.L166:
+kms1097:        movaps  %xmm4, %xmm2
+kms1098:        xorl    %eax, %eax
+kms1099:        jmp     .L128
+.L167:
+kms1100:        movaps  %xmm4, %xmm2
+kms1101:        xorl    %esi, %esi
+kms1102:        jmp     .L129
+.L139:
+kms1103:        cmpl    $16, %ebp
+kms1104:        jle     .L170
+kms1105:        leaq    80(%r8), %rax
+kms1106:        leaq    80(%r10), %rdx
+kms1107:        xorl    %ecx, %ecx
+.L146:
+kms1108:        movss   -80(%rax), %xmm0
+kms1109:        prefetcht0      (%rdx)
+kms1110:        prefetcht0      (%rax)
+kms1111:        addss   -80(%rdx), %xmm0
+kms1112:        addl    $16, %ecx
+kms1113:        addq    $64, %rax
+kms1114:        addq    $64, %rdx
+kms1115:        movss   %xmm0, -144(%rax)
+kms1116:        movss   -140(%rax), %xmm0
+kms1117:        addss   -140(%rdx), %xmm0
+kms1118:        movss   %xmm0, -140(%rax)
+kms1119:        movss   -136(%rax), %xmm0
+kms1120:        addss   -136(%rdx), %xmm0
+kms1121:        movss   %xmm0, -136(%rax)
+kms1122:        movss   -132(%rax), %xmm0
+kms1123:        addss   -132(%rdx), %xmm0
+kms1124:        movss   %xmm0, -132(%rax)
+kms1125:        movss   -128(%rax), %xmm0
+kms1126:        addss   -128(%rdx), %xmm0
+kms1127:        movss   %xmm0, -128(%rax)
+kms1128:        movss   -124(%rax), %xmm0
+kms1129:        addss   -124(%rdx), %xmm0
+kms1130:        movss   %xmm0, -124(%rax)
+kms1131:        movss   -120(%rax), %xmm0
+kms1132:        addss   -120(%rdx), %xmm0
+kms1133:        movss   %xmm0, -120(%rax)
+kms1134:        movss   -116(%rax), %xmm0
+kms1135:        addss   -116(%rdx), %xmm0
+kms1136:        movss   %xmm0, -116(%rax)
+kms1137:        movss   -112(%rax), %xmm0
+kms1138:        addss   -112(%rdx), %xmm0
+kms1139:        movss   %xmm0, -112(%rax)
+kms1140:        movss   -108(%rax), %xmm0
+kms1141:        addss   -108(%rdx), %xmm0
+kms1142:        movss   %xmm0, -108(%rax)
+kms1143:        movss   -104(%rax), %xmm0
+kms1144:        addss   -104(%rdx), %xmm0
+kms1145:        movss   %xmm0, -104(%rax)
+kms1146:        movss   -100(%rax), %xmm0
+kms1147:        addss   -100(%rdx), %xmm0
+kms1148:        movss   %xmm0, -100(%rax)
+kms1149:        movss   -96(%rax), %xmm0
+kms1150:        addss   -96(%rdx), %xmm0
+kms1151:        movss   %xmm0, -96(%rax)
+kms1152:        movss   -92(%rax), %xmm0
+kms1153:        addss   -92(%rdx), %xmm0
+kms1154:        movss   %xmm0, -92(%rax)
+kms1155:        movss   -88(%rax), %xmm0
+kms1156:        addss   -88(%rdx), %xmm0
+kms1157:        movss   %xmm0, -88(%rax)
+kms1158:        movss   -84(%rax), %xmm0
+kms1159:        addss   -84(%rdx), %xmm0
+kms1160:        movss   %xmm0, -84(%rax)
+kms1161:        cmpl    148(%rsp), %ecx
+kms1162:        jne     .L146
+.L145:
+kms1163:        movslq  %ecx, %rax
+.L148:
+kms1164:        movss   (%r8,%rax,4), %xmm0
+kms1165:        addss   (%r10,%rax,4), %xmm0
+kms1166:        movss   %xmm0, (%r8,%rax,4)
+kms1167:        incq    %rax
+kms1168:        cmpl    %eax, %ebp
+kms1169:        jg      .L148
+kms1170:        jmp     .L142
+.L169:
+kms1171:        movq    %r8, %rdi
+kms1172:        movq    %r10, %rcx
+kms1173:        movq    %r8, %rdx
+kms1174:        xorl    %esi, %esi
+kms1175:        jmp     .L140
+.L170:
+kms1176:        xorl    %ecx, %ecx
+kms1177:        jmp     .L145
+.L164:
+kms1178:        movl    %r15d, 72(%rsp)
+kms1179:        movl    72(%rsp), %edi
+kms1180:        cmpl    %edi, 124(%rsp)
+kms1181:        jg      .L195
+.L149:
+kms1182:        movl    76(%rsp), %eax
+kms1183:        xorl    %r15d, %r15d
+kms1184:        movq    %r9, %r14
+kms1185:        leal    -1(%rax), %edi
+kms1186:        testl   %eax, %eax
+kms1187:        movq    %rdi, 56(%rsp)
+kms1188:        jle     .L155
+.L156:
+kms1189:        testl   %ebp, %ebp
+kms1190:        jle     .L161
+kms1191:        movq    224(%rsp), %rax
+kms1192:        movl    (%rax,%r15,4), %ecx
+kms1193:        movq    232(%rsp), %rax
+kms1194:        testl   %ecx, %ecx
+kms1195:        movq    (%rax,%r15,8), %rdi
+kms1196:        jle     .L196
+kms1197:        cmpl    $16, %ebp
+kms1198:        jle     .L171
+kms1199:        cvtsi2ssl       %ecx, %xmm0
+kms1200:        movq    (%r14,%r15,8), %rcx
+kms1201:        leaq    40(%rdi), %rdx
+kms1202:        movl    $40, %esi
+kms1203:        xorl    %eax, %eax
+.L160:
+kms1204:        movss   -40(%rdx), %xmm2
+kms1205:        prefetcht0      (%rdx)
+kms1206:        movl    %eax, %r8d
+kms1207:        divss   %xmm0, %xmm2
+kms1208:        addl    $16, %eax
+kms1209:        addq    $64, %rdx
+kms1210:        movss   %xmm2, -40(%rcx,%rsi)
+kms1211:        movl    $0x00000000, -104(%rdx)
+kms1212:        movss   -100(%rdx), %xmm2
+kms1213:        divss   %xmm0, %xmm2
+kms1214:        movss   %xmm2, -36(%rcx,%rsi)
+kms1215:        movl    $0x00000000, -100(%rdx)
+kms1216:        movss   -96(%rdx), %xmm2
+kms1217:        divss   %xmm0, %xmm2
+kms1218:        movss   %xmm2, -32(%rcx,%rsi)
+kms1219:        movl    $0x00000000, -96(%rdx)
+kms1220:        movss   -92(%rdx), %xmm2
+kms1221:        divss   %xmm0, %xmm2
+kms1222:        movss   %xmm2, -28(%rcx,%rsi)
+kms1223:        movl    $0x00000000, -92(%rdx)
+kms1224:        movss   -88(%rdx), %xmm2
+kms1225:        divss   %xmm0, %xmm2
+kms1226:        movss   %xmm2, -24(%rcx,%rsi)
+kms1227:        movl    $0x00000000, -88(%rdx)
+kms1228:        movss   -84(%rdx), %xmm2
+kms1229:        divss   %xmm0, %xmm2
+kms1230:        movss   %xmm2, -20(%rcx,%rsi)
+kms1231:        movl    $0x00000000, -84(%rdx)
+kms1232:        movss   -80(%rdx), %xmm2
+kms1233:        divss   %xmm0, %xmm2
+kms1234:        movss   %xmm2, -16(%rcx,%rsi)
+kms1235:        movl    $0x00000000, -80(%rdx)
+kms1236:        movss   -76(%rdx), %xmm2
+kms1237:        divss   %xmm0, %xmm2
+kms1238:        movss   %xmm2, -12(%rcx,%rsi)
+kms1239:        movl    $0x00000000, -76(%rdx)
+kms1240:        movss   -72(%rdx), %xmm2
+kms1241:        divss   %xmm0, %xmm2
+kms1242:        movss   %xmm2, -8(%rcx,%rsi)
+kms1243:        movl    $0x00000000, -72(%rdx)
+kms1244:        movss   -68(%rdx), %xmm2
+kms1245:        divss   %xmm0, %xmm2
+kms1246:        movss   %xmm2, -4(%rcx,%rsi)
+kms1247:        movl    $0x00000000, -68(%rdx)
+kms1248:        movss   -64(%rdx), %xmm2
+kms1249:        divss   %xmm0, %xmm2
+kms1250:        movss   %xmm2, (%rcx,%rsi)
+kms1251:        movl    $0x00000000, -64(%rdx)
+kms1252:        movss   -60(%rdx), %xmm2
+kms1253:        divss   %xmm0, %xmm2
+kms1254:        movss   %xmm2, 4(%rcx,%rsi)
+kms1255:        movl    $0x00000000, -60(%rdx)
+kms1256:        movss   -56(%rdx), %xmm2
+kms1257:        divss   %xmm0, %xmm2
+kms1258:        movss   %xmm2, 8(%rcx,%rsi)
+kms1259:        movl    $0x00000000, -56(%rdx)
+kms1260:        movss   -52(%rdx), %xmm2
+kms1261:        divss   %xmm0, %xmm2
+kms1262:        movss   %xmm2, 12(%rcx,%rsi)
+kms1263:        movl    $0x00000000, -52(%rdx)
+kms1264:        movss   -48(%rdx), %xmm2
+kms1265:        divss   %xmm0, %xmm2
+kms1266:        movss   %xmm2, 16(%rcx,%rsi)
+kms1267:        movl    $0x00000000, -48(%rdx)
+kms1268:        movss   -44(%rdx), %xmm2
+kms1269:        divss   %xmm0, %xmm2
+kms1270:        movss   %xmm2, 20(%rcx,%rsi)
+kms1271:        movl    $0x00000000, -44(%rdx)
+kms1272:        addq    $64, %rsi
+kms1273:        cmpl    %r8d, 144(%rsp)
+kms1274:        jne     .L160
+.L159:
+kms1275:        cltq
+.L162:
+kms1276:        movss   (%rdi,%rax,4), %xmm2
+kms1277:        divss   %xmm0, %xmm2
+kms1278:        movss   %xmm2, (%rcx,%rax,4)
+kms1279:        movl    $0x00000000, (%rdi,%rax,4)
+kms1280:        incq    %rax
+kms1281:        cmpl    %eax, %ebp
+kms1282:        jg      .L162
+.L161:
+kms1283:        cmpq    %r15, 56(%rsp)
+kms1284:        movq    224(%rsp), %rax
+kms1285:        movl    $0, (%rax,%r15,4)
+kms1286:        leaq    1(%r15), %rax
+kms1287:        je      .L155
+kms1288:        movq    %rax, %r15
+kms1289:        jmp     .L156
+.L194:
+kms1290:        movq    240(%rsp), %rax
+kms1291:        movl    124(%rsp), %edx
+kms1292:        movl    %ebp, %esi
+kms1293:        movl    %edi, 16(%rsp)
+kms1294:        movq    64(%rsp), %r8
+kms1295:        movss   %xmm1, 56(%rsp)
+kms1296:        movl    76(%rsp), %ecx
+kms1297:        movq    80(%rsp), %rdi
+kms1298:        movq    %rax, 32(%rsp)
+kms1299:        movq    232(%rsp), %rax
+kms1300:        movl    %edx, 24(%rsp)
+kms1301:        movss   136(%rsp), %xmm0
+kms1302:        movq    %r9, 152(%rsp)
+kms1303:        movq    %rax, 8(%rsp)
+kms1304:        movq    224(%rsp), %rax
+kms1305:        movq    %rax, (%rsp)
+kms1306:        call    _Z20kmeans_outer_handlerPPfiiifPifS0_S1_S0_iiPv
+kms1307:        testl   %eax, %eax
+kms1308:        movq    152(%rsp), %r9
+kms1309:        xorps   %xmm4, %xmm4
+kms1310:        movss   56(%rsp), %xmm1
+kms1311:        je      .L150
+.L123:
+kms1312:        addq    $168, %rsp
+kms1313:        popq    %rbx
+kms1314:        popq    %rbp
+kms1315:        popq    %r12
+kms1316:        popq    %r13
+kms1317:        popq    %r14
+kms1318:        popq    %r15
+kms1319:        ret
 .L196:
-kms1725:        cmpl    $16, %r14d
-kms1726:        jle     .L215
-kms1727:        leaq    80(%rcx), %rax
-kms1728:        leaq    80(%r8), %rdx
-kms1729:        xorl    %esi, %esi
-.L202:
-kms1730:        vmovss  -80(%rax), %xmm0
-kms1731:        prefetcht0      (%rdx)
-kms1732:        prefetcht0      (%rax)
-kms1733:        vaddss  -80(%rdx), %xmm0, %xmm0
-kms1734:        addl    $16, %esi
-kms1735:        addq    $64, %rax
-kms1736:        addq    $64, %rdx
-kms1737:        vmovss  %xmm0, -144(%rax)
-kms1738:        vmovss  -140(%rax), %xmm0
-kms1739:        vaddss  -140(%rdx), %xmm0, %xmm0
-kms1740:        vmovss  %xmm0, -140(%rax)
-kms1741:        vmovss  -136(%rax), %xmm0
-kms1742:        vaddss  -136(%rdx), %xmm0, %xmm0
-kms1743:        vmovss  %xmm0, -136(%rax)
-kms1744:        vmovss  -132(%rax), %xmm0
-kms1745:        vaddss  -132(%rdx), %xmm0, %xmm0
-kms1746:        vmovss  %xmm0, -132(%rax)
-kms1747:        vmovss  -128(%rax), %xmm0
-kms1748:        vaddss  -128(%rdx), %xmm0, %xmm0
-kms1749:        vmovss  %xmm0, -128(%rax)
-kms1750:        vmovss  -124(%rax), %xmm0
-kms1751:        vaddss  -124(%rdx), %xmm0, %xmm0
-kms1752:        vmovss  %xmm0, -124(%rax)
-kms1753:        vmovss  -120(%rax), %xmm0
-kms1754:        vaddss  -120(%rdx), %xmm0, %xmm0
-kms1755:        vmovss  %xmm0, -120(%rax)
-kms1756:        vmovss  -116(%rax), %xmm0
-kms1757:        vaddss  -116(%rdx), %xmm0, %xmm0
-kms1758:        vmovss  %xmm0, -116(%rax)
-kms1759:        vmovss  -112(%rax), %xmm0
-kms1760:        vaddss  -112(%rdx), %xmm0, %xmm0
-kms1761:        vmovss  %xmm0, -112(%rax)
-kms1762:        vmovss  -108(%rax), %xmm0
-kms1763:        vaddss  -108(%rdx), %xmm0, %xmm0
-kms1764:        vmovss  %xmm0, -108(%rax)
-kms1765:        vmovss  -104(%rax), %xmm0
-kms1766:        vaddss  -104(%rdx), %xmm0, %xmm0
-kms1767:        vmovss  %xmm0, -104(%rax)
-kms1768:        vmovss  -100(%rax), %xmm0
-kms1769:        vaddss  -100(%rdx), %xmm0, %xmm0
-kms1770:        vmovss  %xmm0, -100(%rax)
-kms1771:        vmovss  -96(%rax), %xmm0
-kms1772:        vaddss  -96(%rdx), %xmm0, %xmm0
-kms1773:        vmovss  %xmm0, -96(%rax)
-kms1774:        vmovss  -92(%rax), %xmm0
-kms1775:        vaddss  -92(%rdx), %xmm0, %xmm0
-kms1776:        vmovss  %xmm0, -92(%rax)
-kms1777:        vmovss  -88(%rax), %xmm0
-kms1778:        vaddss  -88(%rdx), %xmm0, %xmm0
-kms1779:        vmovss  %xmm0, -88(%rax)
-kms1780:        vmovss  -84(%rax), %xmm0
-kms1781:        vaddss  -84(%rdx), %xmm0, %xmm0
-kms1782:        vmovss  %xmm0, -84(%rax)
-kms1783:        cmpl    64(%rsp), %esi
-kms1784:        jne     .L202
-.L201:
-kms1785:        movslq  %esi, %rax
-.L204:
-kms1786:        vmovss  (%rcx,%rax,4), %xmm0
-kms1787:        vaddss  (%r8,%rax,4), %xmm0, %xmm0
-kms1788:        vmovss  %xmm0, (%rcx,%rax,4)
-kms1789:        incq    %rax
-kms1790:        cmpl    %eax, %r14d
-kms1791:        jg      .L204
-kms1792:        jmp     .L195
-.L214:
-kms1793:        movq    %rcx, %r9
-kms1794:        movq    %r8, %rdi
-kms1795:        movq    %rcx, %rsi
-kms1796:        xorl    %edx, %edx
-kms1797:        jmp     .L197
+kms1320:        movq    128(%rsp), %rdx
+kms1321:        xorl    %esi, %esi
+kms1322:        movss   %xmm1, 72(%rsp)
+kms1323:        call    memset
+kms1324:        movss   72(%rsp), %xmm1
+kms1325:        jmp     .L161
+.L155:
+kms1326:        comiss  136(%rsp), %xmm1
+kms1327:        ja      .L153
+kms1328:        jmp     .L123
+.L171:
+kms1329:        cvtsi2ssl       %ecx, %xmm0
+kms1330:        xorl    %eax, %eax
+kms1331:        movq    (%r14,%r15,8), %rcx
+kms1332:        jmp     .L159
+_Z12kmeans_innerPPfiiifPiS_S0_S1_S0_iiPv:
+kms1333:        pushq   %r15
+kms1334:        pushq   %r14
+kms1335:        pushq   %r13
+kms1336:        pushq   %r12
+kms1337:        pushq   %rbp
+kms1338:        pushq   %rbx
+kms1339:        subq    $152, %rsp
+kms1340:        movl    %edx, 132(%rsp)
+kms1341:        movl    232(%rsp), %edx
+kms1342:        cmpl    240(%rsp), %edx
+kms1343:        movq    208(%rsp), %r15
+kms1344:        movq    %rdi, 80(%rsp)
+kms1345:        movl    %ecx, 76(%rsp)
+kms1346:        movq    %r8, 64(%rsp)
+kms1347:        movq    %r9, 120(%rsp)
+kms1348:        jge     .L197
+kms1349:        movl    %esi, %ebx
+kms1350:        movl    %esi, %r12d
+kms1351:        leal    -1(%rsi), %r13d
+kms1352:        shrl    $2, %ebx
+kms1353:        andl    $-4, %r12d
+kms1354:        movl    %esi, %r14d
+kms1355:        leal    -5(%rbx), %eax
+kms1356:        movaps  %xmm0, %xmm6
+kms1357:        movss   (%r9), %xmm5
+kms1358:        andl    $-4, %eax
+kms1359:        movl    %eax, 52(%rsp)
+kms1360:        addl    $4, %eax
+kms1361:        movl    %eax, 88(%rsp)
+kms1362:        movslq  %r12d, %rax
+kms1363:        salq    $2, %rax
+kms1364:        movq    %rax, 96(%rsp)
+kms1365:        leal    1(%r12), %eax
+kms1366:        movl    %eax, 92(%rsp)
+kms1367:        cltq
+kms1368:        salq    $2, %rax
+kms1369:        movq    %rax, 104(%rsp)
+kms1370:        leal    2(%r12), %eax
+kms1371:        movl    %eax, 128(%rsp)
+kms1372:        cltq
+kms1373:        salq    $2, %rax
+kms1374:        movq    %rax, 112(%rsp)
+kms1375:        leal    -17(%rsi), %eax
+kms1376:        andl    $-16, %eax
+kms1377:        addl    $16, %eax
+kms1378:        movl    %eax, 136(%rsp)
+.L200:
+kms1379:        leal    64(%rdx), %eax
+kms1380:        cmpl    240(%rsp), %eax
+kms1381:        cmovg   240(%rsp), %eax
+kms1382:        cmpl    %eax, %edx
+kms1383:        movl    %eax, 72(%rsp)
+kms1384:        jge     .L227
+kms1385:        movslq  %edx, %rax
+kms1386:        movq    %rax, 56(%rsp)
+kms1387:        movl    76(%rsp), %eax
+kms1388:        leal    -1(%rax), %r11d
+.L223:
+kms1389:        movq    80(%rsp), %rax
+kms1390:        movq    56(%rsp), %rdi
+kms1391:        movq    (%rax,%rdi,8), %r9
+kms1392:        movl    76(%rsp), %eax
+kms1393:        testl   %eax, %eax
+kms1394:        jle     .L202
+kms1395:        xorl    %edi, %edi
+kms1396:        testl   %r14d, %r14d
+kms1397:        xorps   %xmm4, %xmm4
+kms1398:        movq    (%r15,%rdi,8), %r8
+kms1399:        movl    %edi, %r10d
+kms1400:        movss   .LC1(%rip), %xmm3
+kms1401:        jle     .L228
+.L251:
+kms1402:        cmpl    $2, %r13d
+kms1403:        jbe     .L229
+kms1404:        cmpl    $4, %ebx
+kms1405:        movq    %r8, %rcx
+kms1406:        movq    %r9, %rdx
+kms1407:        jbe     .L230
+kms1408:        movaps  %xmm4, %xmm1
+kms1409:        xorl    %eax, %eax
 .L206:
-kms1798:        movq    72(%rsp), %rax
-kms1799:        vmovss  %xmm5, (%rax)
-kms1800:        vzeroupper
-.L232:
-kms1801:        leaq    -40(%rbp), %rsp
-kms1802:        popq    %rbx
-kms1803:        popq    %r12
-kms1804:        popq    %r13
-kms1805:        popq    %r14
-kms1806:        popq    %r15
-kms1807:        popq    %rbp
-kms1808:        ret
+kms1410:        movlps  (%rdx), %xmm2
+kms1411:        movlps  (%rcx), %xmm0
+kms1412:        movl    %eax, %esi
+kms1413:        prefetcht0      256(%rdx)
+kms1414:        addl    $4, %eax
+kms1415:        addq    $64, %rdx
+kms1416:        movhps  8(%rcx), %xmm0
+kms1417:        movhps  -56(%rdx), %xmm2
+kms1418:        prefetcht0      256(%rcx)
+kms1419:        addq    $64, %rcx
+kms1420:        subps   %xmm0, %xmm2
+kms1421:        mulps   %xmm2, %xmm2
+kms1422:        movaps  %xmm2, %xmm0
+kms1423:        addss   %xmm1, %xmm0
+kms1424:        movaps  %xmm2, %xmm1
+kms1425:        shufps  $85, %xmm2, %xmm1
+kms1426:        addss   %xmm1, %xmm0
+kms1427:        movaps  %xmm2, %xmm1
+kms1428:        unpckhps        %xmm2, %xmm1
+kms1429:        shufps  $255, %xmm2, %xmm2
+kms1430:        addss   %xmm1, %xmm0
+kms1431:        movlps  -48(%rdx), %xmm1
+kms1432:        movhps  -40(%rdx), %xmm1
+kms1433:        addss   %xmm2, %xmm0
+kms1434:        movlps  -48(%rcx), %xmm2
+kms1435:        movhps  -40(%rcx), %xmm2
+kms1436:        subps   %xmm2, %xmm1
+kms1437:        mulps   %xmm1, %xmm1
+kms1438:        addss   %xmm1, %xmm0
+kms1439:        movaps  %xmm1, %xmm2
+kms1440:        shufps  $85, %xmm1, %xmm2
+kms1441:        addss   %xmm2, %xmm0
+kms1442:        movaps  %xmm1, %xmm2
+kms1443:        unpckhps        %xmm1, %xmm2
+kms1444:        shufps  $255, %xmm1, %xmm1
+kms1445:        addss   %xmm2, %xmm0
+kms1446:        movlps  -32(%rcx), %xmm2
+kms1447:        movhps  -24(%rcx), %xmm2
+kms1448:        addss   %xmm1, %xmm0
+kms1449:        movlps  -32(%rdx), %xmm1
+kms1450:        movhps  -24(%rdx), %xmm1
+kms1451:        subps   %xmm2, %xmm1
+kms1452:        mulps   %xmm1, %xmm1
+kms1453:        addss   %xmm1, %xmm0
+kms1454:        movaps  %xmm1, %xmm2
+kms1455:        shufps  $85, %xmm1, %xmm2
+kms1456:        addss   %xmm2, %xmm0
+kms1457:        movaps  %xmm1, %xmm2
+kms1458:        unpckhps        %xmm1, %xmm2
+kms1459:        shufps  $255, %xmm1, %xmm1
+kms1460:        addss   %xmm2, %xmm0
+kms1461:        movlps  -16(%rdx), %xmm2
+kms1462:        movhps  -8(%rdx), %xmm2
+kms1463:        addss   %xmm1, %xmm0
+kms1464:        movlps  -16(%rcx), %xmm1
+kms1465:        movhps  -8(%rcx), %xmm1
+kms1466:        cmpl    52(%rsp), %esi
+kms1467:        subps   %xmm1, %xmm2
+kms1468:        mulps   %xmm2, %xmm2
+kms1469:        addss   %xmm2, %xmm0
+kms1470:        movaps  %xmm2, %xmm1
+kms1471:        shufps  $85, %xmm2, %xmm1
+kms1472:        addss   %xmm1, %xmm0
+kms1473:        movaps  %xmm2, %xmm1
+kms1474:        unpckhps        %xmm2, %xmm1
+kms1475:        shufps  $255, %xmm2, %xmm2
+kms1476:        addss   %xmm1, %xmm0
+kms1477:        movaps  %xmm2, %xmm1
+kms1478:        addss   %xmm0, %xmm1
+kms1479:        jne     .L206
+kms1480:        movl    88(%rsp), %esi
+.L205:
+kms1481:        xorl    %eax, %eax
+.L207:
+kms1482:        movlps  (%rdx,%rax), %xmm0
+kms1483:        movlps  (%rcx,%rax), %xmm2
+kms1484:        incl    %esi
+kms1485:        movhps  8(%rcx,%rax), %xmm2
+kms1486:        movhps  8(%rdx,%rax), %xmm0
+kms1487:        addq    $16, %rax
+kms1488:        cmpl    %esi, %ebx
+kms1489:        subps   %xmm2, %xmm0
+kms1490:        mulps   %xmm0, %xmm0
+kms1491:        addss   %xmm0, %xmm1
+kms1492:        movaps  %xmm0, %xmm2
+kms1493:        shufps  $85, %xmm0, %xmm2
+kms1494:        addss   %xmm2, %xmm1
+kms1495:        movaps  %xmm0, %xmm2
+kms1496:        unpckhps        %xmm0, %xmm2
+kms1497:        shufps  $255, %xmm0, %xmm0
+kms1498:        addss   %xmm2, %xmm1
+kms1499:        addss   %xmm0, %xmm1
+kms1500:        ja      .L207
+kms1501:        cmpl    %r12d, %r14d
+kms1502:        movl    %r12d, %eax
+kms1503:        je      .L203
+.L204:
+kms1504:        movslq  %eax, %rcx
+kms1505:        movss   (%r9,%rcx,4), %xmm0
+kms1506:        leaq    0(,%rcx,4), %rdx
+kms1507:        subss   (%r8,%rcx,4), %xmm0
+kms1508:        leal    1(%rax), %ecx
+kms1509:        cmpl    %ecx, %r14d
+kms1510:        mulss   %xmm0, %xmm0
+kms1511:        addss   %xmm0, %xmm1
+kms1512:        jle     .L203
+kms1513:        movss   4(%r9,%rdx), %xmm0
+kms1514:        addl    $2, %eax
+kms1515:        subss   4(%r8,%rdx), %xmm0
+kms1516:        cmpl    %eax, %r14d
+kms1517:        mulss   %xmm0, %xmm0
+kms1518:        addss   %xmm0, %xmm1
+kms1519:        jle     .L203
+kms1520:        movss   8(%r9,%rdx), %xmm0
+kms1521:        subss   8(%r8,%rdx), %xmm0
+kms1522:        mulss   %xmm0, %xmm0
+kms1523:        addss   %xmm0, %xmm1
+.L203:
+kms1524:        comiss  %xmm1, %xmm3
+kms1525:        minss   %xmm3, %xmm1
+kms1526:        leaq    1(%rdi), %rax
+kms1527:        cmova   %r10d, %ebp
+kms1528:        cmpq    %r11, %rdi
+kms1529:        movaps  %xmm1, %xmm3
+kms1530:        je      .L202
+kms1531:        movq    %rax, %rdi
+kms1532:        testl   %r14d, %r14d
+kms1533:        movq    (%r15,%rdi,8), %r8
+kms1534:        movl    %edi, %r10d
+kms1535:        jg      .L251
+.L228:
+kms1536:        movaps  %xmm4, %xmm1
+kms1537:        jmp     .L203
+.L202:
+kms1538:        movq    64(%rsp), %rax
+kms1539:        movq    56(%rsp), %rdi
+kms1540:        cmpl    %ebp, (%rax,%rdi,4)
+kms1541:        je      .L212
+kms1542:        addss   .LC2(%rip), %xmm5
+.L212:
+kms1543:        movq    64(%rsp), %rax
+kms1544:        movq    56(%rsp), %rdi
+kms1545:        movl    %ebp, (%rax,%rdi,4)
+kms1546:        movq    216(%rsp), %rdi
+kms1547:        movslq  %ebp, %rax
+kms1548:        incl    (%rdi,%rax,4)
+kms1549:        testl   %r14d, %r14d
+kms1550:        jle     .L213
+kms1551:        movq    224(%rsp), %rdi
+kms1552:        movq    (%rdi,%rax,8), %r8
+kms1553:        leaq    15(%r9), %rax
+kms1554:        subq    %r8, %rax
+kms1555:        cmpq    $30, %rax
+kms1556:        jbe     .L214
+kms1557:        cmpl    $3, %r13d
+kms1558:        jbe     .L214
+kms1559:        cmpl    $4, %ebx
+kms1560:        jbe     .L232
+kms1561:        movq    %r9, %rcx
+kms1562:        movq    %r8, %rdx
+kms1563:        xorl    %esi, %esi
+.L216:
+kms1564:        movlps  (%rcx), %xmm0
+kms1565:        movlps  (%rdx), %xmm1
+kms1566:        prefetcht0      320(%rcx)
+kms1567:        movl    %esi, %eax
+kms1568:        addq    $64, %rcx
+kms1569:        addl    $4, %esi
+kms1570:        movhps  -56(%rcx), %xmm0
+kms1571:        movhps  8(%rdx), %xmm1
+kms1572:        prefetcht0      320(%rdx)
+kms1573:        addq    $64, %rdx
+kms1574:        addps   %xmm1, %xmm0
+kms1575:        movlps  %xmm0, -64(%rdx)
+kms1576:        movhps  %xmm0, -56(%rdx)
+kms1577:        movlps  -48(%rdx), %xmm0
+kms1578:        movlps  -48(%rcx), %xmm1
+kms1579:        movhps  -40(%rdx), %xmm0
+kms1580:        movhps  -40(%rcx), %xmm1
+kms1581:        addps   %xmm1, %xmm0
+kms1582:        movlps  %xmm0, -48(%rdx)
+kms1583:        movhps  %xmm0, -40(%rdx)
+kms1584:        movlps  -32(%rdx), %xmm0
+kms1585:        movlps  -32(%rcx), %xmm1
+kms1586:        movhps  -24(%rdx), %xmm0
+kms1587:        movhps  -24(%rcx), %xmm1
+kms1588:        addps   %xmm1, %xmm0
+kms1589:        movlps  %xmm0, -32(%rdx)
+kms1590:        movhps  %xmm0, -24(%rdx)
+kms1591:        movlps  -16(%rdx), %xmm0
+kms1592:        movlps  -16(%rcx), %xmm1
+kms1593:        movhps  -8(%rdx), %xmm0
+kms1594:        movhps  -8(%rcx), %xmm1
+kms1595:        addps   %xmm1, %xmm0
+kms1596:        movlps  %xmm0, -16(%rdx)
+kms1597:        movhps  %xmm0, -8(%rdx)
+kms1598:        cmpl    52(%rsp), %eax
+kms1599:        movq    %rdx, %rdi
+kms1600:        jne     .L216
+kms1601:        movl    88(%rsp), %esi
 .L215:
-kms1809:        xorl    %esi, %esi
-kms1810:        jmp     .L201
-.L209:
-kms1811:        movl    %edx, 192(%rsp)
-kms1812:        jmp     .L183
-.L235:
-kms1813:        movq    56(%rbp), %rax
-kms1814:        movq    72(%rsp), %r9
-kms1815:        movl    %r14d, %esi
-kms1816:        movq    176(%rsp), %r8
-kms1817:        movl    172(%rsp), %ecx
-kms1818:        vmovss  %xmm5, 60(%rsp)
-kms1819:        movl    68(%rsp), %edx
-kms1820:        movq    160(%rsp), %rdi
-kms1821:        vmovss  %xmm6, 184(%rsp)
-kms1822:        vmovss  %xmm5, (%r9)
-kms1823:        movq    %rax, 40(%rsp)
-kms1824:        movl    48(%rbp), %eax
-kms1825:        vmovaps %xmm6, %xmm0
-kms1826:        movq    %r15, (%rsp)
-kms1827:        movl    %eax, 32(%rsp)
-kms1828:        movl    192(%rsp), %eax
-kms1829:        movl    %eax, 24(%rsp)
-kms1830:        movq    32(%rbp), %rax
-kms1831:        movq    %rax, 16(%rsp)
-kms1832:        movq    24(%rbp), %rax
-kms1833:        movq    %rax, 8(%rsp)
-kms1834:        vzeroupper
-kms1835:        call    _Z20kmeans_inner_handlerPPfiiifPiS_S0_S1_S0_iiPv
-kms1836:        testl   %eax, %eax
-kms1837:        vmovss  184(%rsp), %xmm6
-kms1838:        vmovss  60(%rsp), %xmm5
-kms1839:        je      .L207
-kms1840:        jmp     .L232
+kms1602:        xorl    %eax, %eax
+.L217:
+kms1603:        movlps  (%rdx,%rax), %xmm0
+kms1604:        movlps  (%rcx,%rax), %xmm1
+kms1605:        incl    %esi
+kms1606:        movhps  8(%rdx,%rax), %xmm0
+kms1607:        movhps  8(%rcx,%rax), %xmm1
+kms1608:        addps   %xmm1, %xmm0
+kms1609:        movlps  %xmm0, (%rdi,%rax)
+kms1610:        movhps  %xmm0, 8(%rdi,%rax)
+kms1611:        addq    $16, %rax
+kms1612:        cmpl    %esi, %ebx
+kms1613:        ja      .L217
+kms1614:        cmpl    %r12d, %r14d
+kms1615:        je      .L213
+kms1616:        movq    96(%rsp), %rdi
+kms1617:        cmpl    92(%rsp), %r14d
+kms1618:        leaq    (%r8,%rdi), %rax
+kms1619:        movss   (%rax), %xmm0
+kms1620:        addss   (%r9,%rdi), %xmm0
+kms1621:        movss   %xmm0, (%rax)
+kms1622:        jle     .L213
+kms1623:        movq    104(%rsp), %rdi
+kms1624:        cmpl    128(%rsp), %r14d
+kms1625:        leaq    (%r8,%rdi), %rax
+kms1626:        movss   (%rax), %xmm0
+kms1627:        addss   (%r9,%rdi), %xmm0
+kms1628:        movss   %xmm0, (%rax)
+kms1629:        jle     .L213
+kms1630:        movq    112(%rsp), %rax
+kms1631:        addq    %rax, %r8
+kms1632:        movss   (%r8), %xmm0
+kms1633:        addss   (%r9,%rax), %xmm0
+kms1634:        movss   %xmm0, (%r8)
+.L213:
+kms1635:        incq    56(%rsp)
+kms1636:        movq    56(%rsp), %rax
+kms1637:        cmpl    %eax, 72(%rsp)
+kms1638:        jg      .L223
+.L201:
+kms1639:        movl    72(%rsp), %eax
+kms1640:        cmpl    %eax, 240(%rsp)
+kms1641:        jle     .L224
+kms1642:        nop
+kms1643:        nop
+kms1644:        nop
+.L225:
+kms1645:        movl    72(%rsp), %edx
+kms1646:        jmp     .L200
+.L229:
+kms1647:        movaps  %xmm4, %xmm1
+kms1648:        xorl    %eax, %eax
+kms1649:        jmp     .L204
+.L230:
+kms1650:        movaps  %xmm4, %xmm1
+kms1651:        xorl    %esi, %esi
+kms1652:        jmp     .L205
+.L214:
+kms1653:        cmpl    $16, %r14d
+kms1654:        jle     .L233
+kms1655:        leaq    80(%r8), %rax
+kms1656:        leaq    80(%r9), %rdx
+kms1657:        xorl    %ecx, %ecx
+.L220:
+kms1658:        movss   -80(%rax), %xmm0
+kms1659:        prefetcht0      (%rdx)
+kms1660:        prefetcht0      (%rax)
+kms1661:        addss   -80(%rdx), %xmm0
+kms1662:        addl    $16, %ecx
+kms1663:        addq    $64, %rax
+kms1664:        addq    $64, %rdx
+kms1665:        movss   %xmm0, -144(%rax)
+kms1666:        movss   -140(%rax), %xmm0
+kms1667:        addss   -140(%rdx), %xmm0
+kms1668:        movss   %xmm0, -140(%rax)
+kms1669:        movss   -136(%rax), %xmm0
+kms1670:        addss   -136(%rdx), %xmm0
+kms1671:        movss   %xmm0, -136(%rax)
+kms1672:        movss   -132(%rax), %xmm0
+kms1673:        addss   -132(%rdx), %xmm0
+kms1674:        movss   %xmm0, -132(%rax)
+kms1675:        movss   -128(%rax), %xmm0
+kms1676:        addss   -128(%rdx), %xmm0
+kms1677:        movss   %xmm0, -128(%rax)
+kms1678:        movss   -124(%rax), %xmm0
+kms1679:        addss   -124(%rdx), %xmm0
+kms1680:        movss   %xmm0, -124(%rax)
+kms1681:        movss   -120(%rax), %xmm0
+kms1682:        addss   -120(%rdx), %xmm0
+kms1683:        movss   %xmm0, -120(%rax)
+kms1684:        movss   -116(%rax), %xmm0
+kms1685:        addss   -116(%rdx), %xmm0
+kms1686:        movss   %xmm0, -116(%rax)
+kms1687:        movss   -112(%rax), %xmm0
+kms1688:        addss   -112(%rdx), %xmm0
+kms1689:        movss   %xmm0, -112(%rax)
+kms1690:        movss   -108(%rax), %xmm0
+kms1691:        addss   -108(%rdx), %xmm0
+kms1692:        movss   %xmm0, -108(%rax)
+kms1693:        movss   -104(%rax), %xmm0
+kms1694:        addss   -104(%rdx), %xmm0
+kms1695:        movss   %xmm0, -104(%rax)
+kms1696:        movss   -100(%rax), %xmm0
+kms1697:        addss   -100(%rdx), %xmm0
+kms1698:        movss   %xmm0, -100(%rax)
+kms1699:        movss   -96(%rax), %xmm0
+kms1700:        addss   -96(%rdx), %xmm0
+kms1701:        movss   %xmm0, -96(%rax)
+kms1702:        movss   -92(%rax), %xmm0
+kms1703:        addss   -92(%rdx), %xmm0
+kms1704:        movss   %xmm0, -92(%rax)
+kms1705:        movss   -88(%rax), %xmm0
+kms1706:        addss   -88(%rdx), %xmm0
+kms1707:        movss   %xmm0, -88(%rax)
+kms1708:        movss   -84(%rax), %xmm0
+kms1709:        addss   -84(%rdx), %xmm0
+kms1710:        movss   %xmm0, -84(%rax)
+kms1711:        cmpl    136(%rsp), %ecx
+kms1712:        jne     .L220
+.L219:
+kms1713:        movslq  %ecx, %rax
+.L222:
+kms1714:        movss   (%r8,%rax,4), %xmm0
+kms1715:        addss   (%r9,%rax,4), %xmm0
+kms1716:        movss   %xmm0, (%r8,%rax,4)
+kms1717:        incq    %rax
+kms1718:        cmpl    %eax, %r14d
+kms1719:        jg      .L222
+kms1720:        jmp     .L213
+.L232:
+kms1721:        movq    %r8, %rdi
+kms1722:        movq    %r9, %rcx
+kms1723:        movq    %r8, %rdx
+kms1724:        xorl    %esi, %esi
+kms1725:        jmp     .L215
+.L224:
+kms1726:        movq    120(%rsp), %rax
+kms1727:        movss   %xmm5, (%rax)
+.L197:
+kms1728:        addq    $152, %rsp
+kms1729:        popq    %rbx
+kms1730:        popq    %rbp
+kms1731:        popq    %r12
+kms1732:        popq    %r13
+kms1733:        popq    %r14
+kms1734:        popq    %r15
+kms1735:        ret
+.L233:
+kms1736:        xorl    %ecx, %ecx
+kms1737:        jmp     .L219
+.L227:
+kms1738:        movl    %edx, 72(%rsp)
+kms1739:        jmp     .L201
+.L252:
+kms1740:        movq    248(%rsp), %rax
+kms1741:        movq    120(%rsp), %r9
+kms1742:        movl    %r14d, %esi
+kms1743:        movq    64(%rsp), %r8
+kms1744:        movl    76(%rsp), %ecx
+kms1745:        movss   %xmm5, 140(%rsp)
+kms1746:        movl    132(%rsp), %edx
+kms1747:        movq    80(%rsp), %rdi
+kms1748:        movss   %xmm6, 56(%rsp)
+kms1749:        movss   %xmm5, (%r9)
+kms1750:        movq    %rax, 40(%rsp)
+kms1751:        movl    240(%rsp), %eax
+kms1752:        movaps  %xmm6, %xmm0
+kms1753:        movq    %r15, (%rsp)
+kms1754:        movl    %eax, 32(%rsp)
+kms1755:        movl    72(%rsp), %eax
+kms1756:        movl    %eax, 24(%rsp)
+kms1757:        movq    224(%rsp), %rax
+kms1758:        movq    %rax, 16(%rsp)
+kms1759:        movq    216(%rsp), %rax
+kms1760:        movq    %rax, 8(%rsp)
+kms1761:        call    _Z20kmeans_inner_handlerPPfiiifPiS_S0_S1_S0_iiPv
+kms1762:        testl   %eax, %eax
+kms1763:        movss   56(%rsp), %xmm6
+kms1764:        movss   140(%rsp), %xmm5
+kms1765:        je      .L225
+kms1766:        jmp     .L197
 .LC1:
-kms1841:        .long   2139095039
+kms1767:        .long   2139095039
 .LC2:
-kms1842:        .long   1065353216
+kms1768:        .long   1065353216
 
+_Z8mycallocm_rf:
+kms0_rf:        pushq   %rbx
+kms1_rf:        movq    %rdi, %rbx
+kms2_rf:        call    malloc
+kms3_rf:        shrq    $2, %rbx
+kms4_rf:        movq    %rax, %r8
+kms5_rf:        je      .L1_rf
+kms6_rf:        leaq    0(,%rbx,4), %rdx
+kms7_rf:        xorl    %esi, %esi
+kms8_rf:        movq    %rax, %rdi
+kms9_rf:        call    memset
+kms10_rf:        movq    %rax, %r8
+.L1_rf:
+kms11_rf:        movq    %r8, %rax
+kms12_rf:        popq    %rbx
+kms13_rf:        ret
 _Z13kmeans_serialPPfiiifPi_rf:
-kms0_rf:        pushq   %rbp
-kms1_rf:        movslq  %ecx, %rax
-kms2_rf:        movq    %rsp, %rbp
-kms3_rf:        pushq   %r15
-kms4_rf:        pushq   %r14
-kms5_rf:        movq    %rax, %r14
-kms6_rf:        pushq   %r13
-kms7_rf:        leaq    0(,%rax,8), %r13
-kms8_rf:        pushq   %r12
-kms9_rf:        pushq   %rbx
-kms10_rf:        movl    %esi, %ebx
-kms11_rf:        andq    $-32, %rsp
-kms12_rf:        subq    $160, %rsp
-kms13_rf:        movq    %rdi, 88(%rsp)
-kms14_rf:        movq    %r13, %rdi
-kms15_rf:        vmovss  %xmm0, 28(%rsp)
-kms16_rf:        movl    %edx, 96(%rsp)
-kms17_rf:        movq    %r8, 120(%rsp)
-kms18_rf:        movq    %rax, 144(%rsp)
-kms19_rf:        call    malloc
-kms20_rf:        movl    %r14d, 136(%rsp)
-kms21_rf:        movq    %rax, %r15
-kms22_rf:        imull   %ebx, %r14d
-kms23_rf:        movslq  %r14d, %r14
-kms24_rf:        leaq    0(,%r14,4), %rdi
-kms25_rf:        call    malloc
-kms26_rf:        cmpl    $1, 136(%rsp)
-kms27_rf:        movq    %rax, (%r15)
-kms28_rf:        jle     .L98_rf
-kms29_rf:        movl    136(%rsp), %esi
-kms30_rf:        movslq  %ebx, %rcx
-kms31_rf:        leaq    0(,%rcx,4), %rdi
-kms32_rf:        cmpl    $9, %esi
-kms33_rf:        jle     .L60_rf
-kms34_rf:        movq    %rcx, %r11
-kms35_rf:        movq    %rcx, %r9
-kms36_rf:        leaq    0(,%rcx,8), %r10
-kms37_rf:        subl    $10, %esi
-kms38_rf:        leaq    (%rcx,%rcx,2), %rcx
-kms39_rf:        salq    $5, %r11
-kms40_rf:        salq    $4, %r9
-kms41_rf:        andl    $-8, %esi
-kms42_rf:        movq    %r11, 152(%rsp)
-kms43_rf:        addl    $9, %esi
-kms44_rf:        leaq    192(%r15), %rdx
-kms45_rf:        leaq    (%rax,%r9), %r8
-kms46_rf:        leaq    0(,%rcx,4), %r11
-kms47_rf:        movl    %esi, 140(%rsp)
-kms48_rf:        movl    $1, %esi
-.L7_rf:
-kms49_rf:        leaq    (%rdi,%rax), %rcx
-kms50_rf:        movq    %r8, -160(%rdx)
-kms51_rf:        addq    %rdi, %r8
-kms52_rf:        movq    %r8, -152(%rdx)
-kms53_rf:        addq    %rdi, %r8
-kms54_rf:        addl    $8, %esi
-kms55_rf:        movq    %rcx, -184(%rdx)
-kms56_rf:        leaq    (%rax,%r10), %rcx
-kms57_rf:        movq    %r8, -144(%rdx)
-kms58_rf:        addq    %rdi, %r8
-kms59_rf:        prefetcht0      (%rdx)
-kms60_rf:        addq    $64, %rdx
-kms61_rf:        movq    %rcx, -240(%rdx)
-kms62_rf:        leaq    (%rax,%r11), %rcx
-kms63_rf:        movq    %r8, -200(%rdx)
-kms64_rf:        addq    %rdi, %r8
-kms65_rf:        addq    152(%rsp), %rax
-kms66_rf:        movq    %r8, -192(%rdx)
-kms67_rf:        movq    %rcx, -232(%rdx)
-kms68_rf:        addq    %r9, %r8
-kms69_rf:        cmpl    140(%rsp), %esi
-kms70_rf:        jne     .L7_rf
-.L6_rf:
-kms71_rf:        movslq  %esi, %rsi
-kms72_rf:        addq    %rdi, %rax
-.L9_rf:
-kms73_rf:        movq    %rax, (%r15,%rsi,8)
-kms74_rf:        incq    %rsi
-kms75_rf:        addq    %rdi, %rax
-kms76_rf:        cmpl    %esi, 136(%rsp)
-kms77_rf:        jg      .L9_rf
-.L8_rf:
-kms78_rf:        testl   %ebx, %ebx
-kms79_rf:        jle     .L99_rf
-kms80_rf:        movl    %ebx, %r8d
-kms81_rf:        movl    %ebx, %r10d
-kms82_rf:        xorl    %r9d, %r9d
-kms83_rf:        andl    $-8, %r8d
-kms84_rf:        shrl    $3, %r10d
-kms85_rf:        leal    1(%r8), %eax
-kms86_rf:        movl    %r8d, %r11d
-kms87_rf:        salq    $5, %r10
-kms88_rf:        salq    $2, %r11
-kms89_rf:        movl    %eax, 140(%rsp)
-kms90_rf:        salq    $2, %rax
-kms91_rf:        movq    %rax, 64(%rsp)
-kms92_rf:        leal    2(%r8), %eax
-kms93_rf:        movl    %eax, 128(%rsp)
-kms94_rf:        salq    $2, %rax
-kms95_rf:        movq    %rax, 56(%rsp)
-kms96_rf:        leal    3(%r8), %eax
-kms97_rf:        movl    %eax, 112(%rsp)
-kms98_rf:        salq    $2, %rax
-kms99_rf:        movq    %rax, 48(%rsp)
-kms100_rf:        leal    4(%r8), %eax
-kms101_rf:        movl    %eax, 104(%rsp)
-kms102_rf:        salq    $2, %rax
-kms103_rf:        movq    %rax, 40(%rsp)
-kms104_rf:        leal    5(%r8), %eax
-kms105_rf:        movl    %eax, 100(%rsp)
-kms106_rf:        salq    $2, %rax
-kms107_rf:        movq    %rax, 32(%rsp)
-kms108_rf:        leal    6(%r8), %eax
-kms109_rf:        movl    %eax, 72(%rsp)
-kms110_rf:        salq    $2, %rax
-kms111_rf:        movq    %rax, 80(%rsp)
-kms112_rf:        leal    -1(%rbx), %eax
-kms113_rf:        movl    %eax, 152(%rsp)
-kms114_rf:        leal    -17(%rbx), %eax
-kms115_rf:        andl    $-16, %eax
-kms116_rf:        addl    $16, %eax
-kms117_rf:        movl    %eax, 24(%rsp)
-.L5_rf:
-kms118_rf:        movq    88(%rsp), %rax
-kms119_rf:        movq    (%r15,%r9,8), %rsi
-kms120_rf:        movq    (%rax,%r9,8), %rcx
-kms121_rf:        leaq    31(%rcx), %rax
-kms122_rf:        subq    %rsi, %rax
-kms123_rf:        cmpq    $62, %rax
-kms124_rf:        jbe     .L12_rf
-kms125_rf:        xorl    %eax, %eax
-kms126_rf:        cmpl    $6, 152(%rsp)
-kms127_rf:        jbe     .L12_rf
-.L10_rf:
-kms128_rf:        vmovups (%rcx,%rax), %ymm0
-kms129_rf:        vmovups %ymm0, (%rsi,%rax)
-kms130_rf:        addq    $32, %rax
-kms131_rf:        cmpq    %r10, %rax
-kms132_rf:        jne     .L10_rf
-kms133_rf:        cmpl    %r8d, %ebx
-kms134_rf:        je      .L20_rf
-kms135_rf:        cmpl    140(%rsp), %ebx
-kms136_rf:        vmovss  (%rcx,%r11), %xmm0
-kms137_rf:        vmovss  %xmm0, (%rsi,%r11)
-kms138_rf:        jle     .L20_rf
-kms139_rf:        movq    64(%rsp), %rax
-kms140_rf:        cmpl    128(%rsp), %ebx
-kms141_rf:        vmovss  (%rcx,%rax), %xmm0
-kms142_rf:        vmovss  %xmm0, (%rsi,%rax)
-kms143_rf:        jle     .L20_rf
-kms144_rf:        movq    56(%rsp), %rax
-kms145_rf:        cmpl    112(%rsp), %ebx
-kms146_rf:        vmovss  (%rcx,%rax), %xmm0
-kms147_rf:        vmovss  %xmm0, (%rsi,%rax)
-kms148_rf:        jle     .L20_rf
-kms149_rf:        movq    48(%rsp), %rax
-kms150_rf:        cmpl    104(%rsp), %ebx
-kms151_rf:        vmovss  (%rcx,%rax), %xmm0
-kms152_rf:        vmovss  %xmm0, (%rsi,%rax)
-kms153_rf:        jle     .L20_rf
-kms154_rf:        movq    40(%rsp), %rax
-kms155_rf:        cmpl    100(%rsp), %ebx
-kms156_rf:        vmovss  (%rcx,%rax), %xmm0
-kms157_rf:        vmovss  %xmm0, (%rsi,%rax)
-kms158_rf:        jle     .L20_rf
-kms159_rf:        movq    32(%rsp), %rax
-kms160_rf:        cmpl    72(%rsp), %ebx
-kms161_rf:        vmovss  (%rcx,%rax), %xmm0
-kms162_rf:        vmovss  %xmm0, (%rsi,%rax)
-kms163_rf:        jle     .L20_rf
-kms164_rf:        movq    80(%rsp), %rax
-kms165_rf:        vmovss  (%rcx,%rax), %xmm0
-kms166_rf:        vmovss  %xmm0, (%rsi,%rax)
-.L20_rf:
-kms167_rf:        incq    %r9
-kms168_rf:        cmpl    %r9d, 136(%rsp)
-kms169_rf:        jg      .L5_rf
-kms170_rf:        vzeroupper
-.L4_rf:
-kms171_rf:        movl    96(%rsp), %esi
-kms172_rf:        testl   %esi, %esi
-kms173_rf:        jle     .L22_rf
-.L13_rf:
-kms174_rf:        movl    96(%rsp), %eax
-kms175_rf:        movq    120(%rsp), %rdi
-kms176_rf:        movl    $255, %esi
-kms177_rf:        decl    %eax
-kms178_rf:        leaq    4(,%rax,4), %rdx
-kms179_rf:        call    memset
-.L22_rf:
-kms180_rf:        movq    144(%rsp), %rdi
-kms181_rf:        movl    $4, %esi
-kms182_rf:        call    calloc
-kms183_rf:        movq    %r13, %rdi
-kms184_rf:        movq    %rax, 104(%rsp)
-kms185_rf:        call    malloc
-kms186_rf:        movl    $4, %esi
-kms187_rf:        movq    %r14, %rdi
-kms188_rf:        movq    %rax, %r13
-kms189_rf:        movq    %rax, 112(%rsp)
-kms190_rf:        call    calloc
-kms191_rf:        cmpl    $1, 136(%rsp)
-kms192_rf:        movq    %rax, 72(%rsp)
-kms193_rf:        movq    %rax, 0(%r13)
-kms194_rf:        jle     .L14_rf
-kms195_rf:        movl    136(%rsp), %r10d
-kms196_rf:        movslq  %ebx, %rdx
-kms197_rf:        leaq    0(,%rdx,4), %rcx
-kms198_rf:        cmpl    $9, %r10d
-kms199_rf:        jle     .L63_rf
-kms200_rf:        movq    %rax, %r14
-kms201_rf:        leal    -10(%r10), %esi
-kms202_rf:        movq    %rdx, %r8
-kms203_rf:        movq    112(%rsp), %rax
-kms204_rf:        movq    %rdx, %r11
-kms205_rf:        leaq    0(,%rdx,8), %r9
-kms206_rf:        salq    $4, %r8
-kms207_rf:        leaq    (%rdx,%rdx,2), %rdx
-kms208_rf:        andl    $-8, %esi
-kms209_rf:        leaq    (%r14,%r8), %rdi
-kms210_rf:        leal    9(%rsi), %r13d
-kms211_rf:        salq    $5, %r11
-kms212_rf:        leaq    0(,%rdx,4), %r10
-kms213_rf:        addq    $192, %rax
-kms214_rf:        movl    $1, %edx
-kms215_rf:        movq    %r14, %rsi
-.L24_rf:
-kms216_rf:        leaq    (%rcx,%rsi), %r14
-kms217_rf:        movq    %rdi, -160(%rax)
-kms218_rf:        addq    %rcx, %rdi
-kms219_rf:        movq    %rdi, -152(%rax)
-kms220_rf:        addq    %rcx, %rdi
-kms221_rf:        addl    $8, %edx
-kms222_rf:        movq    %r14, -184(%rax)
-kms223_rf:        leaq    (%rsi,%r9), %r14
-kms224_rf:        movq    %rdi, -144(%rax)
-kms225_rf:        addq    %rcx, %rdi
-kms226_rf:        prefetcht0      (%rax)
-kms227_rf:        addq    $64, %rax
-kms228_rf:        movq    %r14, -240(%rax)
-kms229_rf:        leaq    (%rsi,%r10), %r14
-kms230_rf:        movq    %rdi, -200(%rax)
-kms231_rf:        addq    %rcx, %rdi
-kms232_rf:        addq    %r11, %rsi
-kms233_rf:        movq    %rdi, -192(%rax)
-kms234_rf:        movq    %r14, -232(%rax)
-kms235_rf:        addq    %r8, %rdi
-kms236_rf:        cmpl    %r13d, %edx
-kms237_rf:        jne     .L24_rf
-kms238_rf:        movq    %rsi, 72(%rsp)
-kms239_rf:        movq    %rsi, %rax
-.L23_rf:
-kms240_rf:        movslq  %edx, %rdx
-kms241_rf:        addq    %rcx, %rax
-.L25_rf:
-kms242_rf:        movq    112(%rsp), %rsi
-kms243_rf:        movq    %rax, (%rsi,%rdx,8)
-kms244_rf:        incq    %rdx
-kms245_rf:        addq    %rcx, %rax
-kms246_rf:        cmpl    %edx, 136(%rsp)
-kms247_rf:        jg      .L25_rf
-kms248_rf:        movq    (%rsi), %rax
-kms249_rf:        movq    %rax, 72(%rsp)
+kms14_rf:        pushq   %r15
+kms15_rf:        movslq  %ecx, %rax
+kms16_rf:        leaq    0(,%rax,8), %r15
+kms17_rf:        pushq   %r14
+kms18_rf:        movl    %ecx, %r14d
+kms19_rf:        pushq   %r13
+kms20_rf:        pushq   %r12
+kms21_rf:        pushq   %rbp
+kms22_rf:        movl    %esi, %ebp
+kms23_rf:        pushq   %rbx
+kms24_rf:        movq    %rax, %rbx
+kms25_rf:        imull   %ebp, %ebx
+kms26_rf:        subq    $120, %rsp
+kms27_rf:        movq    %rdi, 56(%rsp)
+kms28_rf:        movq    %r15, %rdi
+kms29_rf:        movss   %xmm0, 92(%rsp)
+kms30_rf:        movslq  %ebx, %rbx
+kms31_rf:        movl    %edx, 88(%rsp)
+kms32_rf:        movl    %ecx, 28(%rsp)
+kms33_rf:        salq    $2, %rbx
+kms34_rf:        movq    %r8, 8(%rsp)
+kms35_rf:        movq    %rax, (%rsp)
+kms36_rf:        call    malloc
+kms37_rf:        movq    %rbx, %rdi
+kms38_rf:        movq    %rax, %r13
+kms39_rf:        call    malloc
+kms40_rf:        decl    %r14d
+kms41_rf:        movq    %rax, 0(%r13)
+kms42_rf:        jle     .L118_rf
+kms43_rf:        movl    28(%rsp), %r11d
+kms44_rf:        movslq  %ebp, %rsi
+kms45_rf:        movq    %rax, %rdx
+kms46_rf:        leaq    0(,%rsi,4), %rdi
+kms47_rf:        cmpl    $9, %r11d
+kms48_rf:        jle     .L72_rf
+kms49_rf:        leal    -10(%r11), %r8d
+kms50_rf:        movq    %rsi, %r9
+kms51_rf:        movq    %rsi, %r14
+kms52_rf:        leaq    0(,%rsi,8), %r10
+kms53_rf:        salq    $4, %r9
+kms54_rf:        leaq    (%rsi,%rsi,2), %rsi
+kms55_rf:        andl    $-8, %r8d
+kms56_rf:        leaq    192(%r13), %rcx
+kms57_rf:        leaq    (%rax,%r9), %rax
+kms58_rf:        leal    9(%r8), %r11d
+kms59_rf:        salq    $5, %r14
+kms60_rf:        movl    %r11d, 24(%rsp)
+kms61_rf:        leaq    0(,%rsi,4), %r11
+kms62_rf:        movl    $1, %esi
 .L14_rf:
-kms250_rf:        vxorps  %xmm4, %xmm4, %xmm4
-kms251_rf:        movl    %ebx, %r13d
-kms252_rf:        movl    %ebx, %r14d
-kms253_rf:        shrl    $3, %r13d
-kms254_rf:        andl    $-8, %r14d
-kms255_rf:        leal    -1(%r13), %eax
-kms256_rf:        movl    %eax, 144(%rsp)
-kms257_rf:        leal    -3(%r13), %eax
-kms258_rf:        andl    $-2, %eax
-kms259_rf:        movl    %eax, 140(%rsp)
-kms260_rf:        addl    $2, %eax
-kms261_rf:        movl    %eax, 100(%rsp)
-kms262_rf:        movl    152(%rsp), %eax
-kms263_rf:        leaq    4(,%rax,4), %rax
-kms264_rf:        movq    %rax, 56(%rsp)
-kms265_rf:        movl    96(%rsp), %eax
-kms266_rf:        decl    %eax
-kms267_rf:        movl    %eax, 48(%rsp)
-.L28_rf:
-kms268_rf:        movl    96(%rsp), %ecx
-kms269_rf:        testl   %ecx, %ecx
-kms270_rf:        jle     .L100_rf
-kms271_rf:        vmovaps %xmm4, %xmm5
-kms272_rf:        movl    48(%rsp), %eax
-kms273_rf:        movq    $0, 128(%rsp)
-kms274_rf:        movq    128(%rsp), %rdi
-kms275_rf:        vmovss  .LC1_rf(%rip), %xmm6
-kms276_rf:        vmovss  .LC2_rf(%rip), %xmm7
-kms277_rf:        movq    %rax, 80(%rsp)
-kms278_rf:        movl    136(%rsp), %eax
-kms279_rf:        leal    -1(%rax), %r11d
-.L43_rf:
-kms280_rf:        movl    136(%rsp), %edx
-kms281_rf:        movq    88(%rsp), %rax
-kms282_rf:        testl   %edx, %edx
-kms283_rf:        movq    (%rax,%rdi,8), %r8
-kms284_rf:        jle     .L30_rf
-kms285_rf:        xorl    %r9d, %r9d
-kms286_rf:        testl   %ebx, %ebx
-kms287_rf:        vmovaps %xmm6, %xmm3
-kms288_rf:        movq    (%r15,%r9,8), %rdi
-kms289_rf:        movl    %r9d, %r10d
-kms290_rf:        jle     .L64_rf
-.L101_rf:
-kms291_rf:        cmpl    $6, 152(%rsp)
-kms292_rf:        jbe     .L65_rf
-kms293_rf:        cmpl    $1, 144(%rsp)
-kms294_rf:        movq    %rdi, %rcx
-kms295_rf:        movq    %r8, %rsi
-kms296_rf:        jbe     .L66_rf
-kms297_rf:        vmovaps %xmm4, %xmm0
-kms298_rf:        xorl    %eax, %eax
-.L34_rf:
-kms299_rf:        vmovups (%rsi), %ymm1
-kms300_rf:        movl    %eax, %edx
-kms301_rf:        prefetcht0      384(%rsi)
-kms302_rf:        addl    $2, %eax
-kms303_rf:        addq    $64, %rsi
-kms304_rf:        prefetcht0      384(%rcx)
-kms305_rf:        vsubps  (%rcx), %ymm1, %ymm1
-kms306_rf:        addq    $64, %rcx
-kms307_rf:        vmulps  %ymm1, %ymm1, %ymm1
-kms308_rf:        vaddss  %xmm0, %xmm1, %xmm0
-kms309_rf:        vshufps $85, %xmm1, %xmm1, %xmm8
-kms310_rf:        vshufps $255, %xmm1, %xmm1, %xmm2
-kms311_rf:        vaddss  %xmm0, %xmm8, %xmm8
-kms312_rf:        vunpckhps       %xmm1, %xmm1, %xmm0
-kms313_rf:        vextractf128    $0x1, %ymm1, %xmm1
-kms314_rf:        vaddss  %xmm8, %xmm0, %xmm0
-kms315_rf:        vaddss  %xmm0, %xmm2, %xmm2
-kms316_rf:        vshufps $85, %xmm1, %xmm1, %xmm0
-kms317_rf:        vaddss  %xmm2, %xmm1, %xmm2
-kms318_rf:        vaddss  %xmm2, %xmm0, %xmm2
-kms319_rf:        vunpckhps       %xmm1, %xmm1, %xmm0
-kms320_rf:        vshufps $255, %xmm1, %xmm1, %xmm1
-kms321_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms322_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms323_rf:        vmovups -32(%rsi), %ymm1
-kms324_rf:        vsubps  -32(%rcx), %ymm1, %ymm1
-kms325_rf:        cmpl    140(%rsp), %edx
-kms326_rf:        vmulps  %ymm1, %ymm1, %ymm1
-kms327_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms328_rf:        vshufps $85, %xmm1, %xmm1, %xmm8
-kms329_rf:        vshufps $255, %xmm1, %xmm1, %xmm2
-kms330_rf:        vaddss  %xmm8, %xmm0, %xmm0
-kms331_rf:        vunpckhps       %xmm1, %xmm1, %xmm8
-kms332_rf:        vextractf128    $0x1, %ymm1, %xmm1
-kms333_rf:        vaddss  %xmm8, %xmm0, %xmm0
-kms334_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms335_rf:        vshufps $85, %xmm1, %xmm1, %xmm2
-kms336_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms337_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms338_rf:        vunpckhps       %xmm1, %xmm1, %xmm2
-kms339_rf:        vshufps $255, %xmm1, %xmm1, %xmm1
-kms340_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms341_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms342_rf:        jne     .L34_rf
-kms343_rf:        movl    100(%rsp), %edx
-.L33_rf:
-kms344_rf:        xorl    %eax, %eax
-.L35_rf:
-kms345_rf:        vmovups (%rsi,%rax), %ymm1
-kms346_rf:        incl    %edx
-kms347_rf:        vsubps  (%rcx,%rax), %ymm1, %ymm1
-kms348_rf:        addq    $32, %rax
-kms349_rf:        cmpl    %edx, %r13d
-kms350_rf:        vmulps  %ymm1, %ymm1, %ymm2
-kms351_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms352_rf:        vshufps $85, %xmm2, %xmm2, %xmm1
-kms353_rf:        vshufps $255, %xmm2, %xmm2, %xmm8
-kms354_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms355_rf:        vunpckhps       %xmm2, %xmm2, %xmm1
-kms356_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms357_rf:        vextractf128    $0x1, %ymm2, %xmm1
-kms358_rf:        vshufps $85, %xmm1, %xmm1, %xmm2
-kms359_rf:        vaddss  %xmm8, %xmm0, %xmm0
-kms360_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms361_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms362_rf:        vunpckhps       %xmm1, %xmm1, %xmm2
-kms363_rf:        vshufps $255, %xmm1, %xmm1, %xmm1
-kms364_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms365_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms366_rf:        ja      .L35_rf
-kms367_rf:        cmpl    %ebx, %r14d
-kms368_rf:        je      .L31_rf
-kms369_rf:        movl    %r14d, %edx
-.L32_rf:
-kms370_rf:        movslq  %edx, %rcx
-kms371_rf:        vmovss  (%r8,%rcx,4), %xmm1
-kms372_rf:        leaq    0(,%rcx,4), %rax
-kms373_rf:        vsubss  (%rdi,%rcx,4), %xmm1, %xmm1
-kms374_rf:        leal    1(%rdx), %ecx
-kms375_rf:        cmpl    %ecx, %ebx
-kms376_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms377_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms378_rf:        jle     .L31_rf
-kms379_rf:        vmovss  4(%r8,%rax), %xmm1
-kms380_rf:        leal    2(%rdx), %ecx
-kms381_rf:        vsubss  4(%rdi,%rax), %xmm1, %xmm1
-kms382_rf:        cmpl    %ecx, %ebx
-kms383_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms384_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms385_rf:        jle     .L31_rf
-kms386_rf:        vmovss  8(%r8,%rax), %xmm1
-kms387_rf:        leal    3(%rdx), %ecx
-kms388_rf:        vsubss  8(%rdi,%rax), %xmm1, %xmm1
-kms389_rf:        cmpl    %ecx, %ebx
-kms390_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms391_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms392_rf:        jle     .L31_rf
-kms393_rf:        vmovss  12(%r8,%rax), %xmm1
-kms394_rf:        leal    4(%rdx), %ecx
-kms395_rf:        vsubss  12(%rdi,%rax), %xmm1, %xmm1
-kms396_rf:        cmpl    %ecx, %ebx
-kms397_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms398_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms399_rf:        jle     .L31_rf
-kms400_rf:        vmovss  16(%r8,%rax), %xmm1
-kms401_rf:        leal    5(%rdx), %ecx
-kms402_rf:        vsubss  16(%rdi,%rax), %xmm1, %xmm1
-kms403_rf:        cmpl    %ecx, %ebx
-kms404_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms405_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms406_rf:        jle     .L31_rf
-kms407_rf:        vmovss  20(%r8,%rax), %xmm1
-kms408_rf:        addl    $6, %edx
-kms409_rf:        vsubss  20(%rdi,%rax), %xmm1, %xmm1
-kms410_rf:        cmpl    %edx, %ebx
-kms411_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms412_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms413_rf:        jle     .L31_rf
-kms414_rf:        vmovss  24(%r8,%rax), %xmm1
-kms415_rf:        vsubss  24(%rdi,%rax), %xmm1, %xmm1
-kms416_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms417_rf:        vaddss  %xmm1, %xmm0, %xmm0
-.L31_rf:
-kms418_rf:        vcomiss %xmm0, %xmm3
-kms419_rf:        leaq    1(%r9), %rax
-kms420_rf:        vminss  %xmm3, %xmm0, %xmm3
-kms421_rf:        cmova   %r10d, %r12d
-kms422_rf:        cmpq    %r9, %r11
-kms423_rf:        je      .L30_rf
-kms424_rf:        movq    %rax, %r9
-kms425_rf:        testl   %ebx, %ebx
-kms426_rf:        movq    (%r15,%r9,8), %rdi
-kms427_rf:        movl    %r9d, %r10d
-kms428_rf:        jg      .L101_rf
-.L64_rf:
-kms429_rf:        vmovaps %xmm4, %xmm0
-kms430_rf:        jmp     .L31_rf
+kms63_rf:        leaq    (%rdi,%rdx), %r8
+kms64_rf:        movq    %rax, -160(%rcx)
+kms65_rf:        addq    %rdi, %rax
+kms66_rf:        movq    %rax, -152(%rcx)
+kms67_rf:        addq    %rdi, %rax
+kms68_rf:        addl    $8, %esi
+kms69_rf:        movq    %r8, -184(%rcx)
+kms70_rf:        leaq    (%rdx,%r10), %r8
+kms71_rf:        movq    %rax, -144(%rcx)
+kms72_rf:        addq    %rdi, %rax
+kms73_rf:        prefetcht0      (%rcx)
+kms74_rf:        addq    $64, %rcx
+kms75_rf:        movq    %r8, -240(%rcx)
+kms76_rf:        leaq    (%rdx,%r11), %r8
+kms77_rf:        movq    %rax, -200(%rcx)
+kms78_rf:        addq    %rdi, %rax
+kms79_rf:        addq    %r14, %rdx
+kms80_rf:        movq    %rax, -192(%rcx)
+kms81_rf:        movq    %r8, -232(%rcx)
+kms82_rf:        addq    %r9, %rax
+kms83_rf:        cmpl    24(%rsp), %esi
+kms84_rf:        jne     .L14_rf
+.L13_rf:
+kms85_rf:        movslq  %esi, %rsi
+kms86_rf:        addq    %rdi, %rdx
+.L16_rf:
+kms87_rf:        movq    %rdx, 0(%r13,%rsi,8)
+kms88_rf:        incq    %rsi
+kms89_rf:        addq    %rdi, %rdx
+kms90_rf:        cmpl    %esi, 28(%rsp)
+kms91_rf:        jg      .L16_rf
+.L15_rf:
+kms92_rf:        testl   %ebp, %ebp
+kms93_rf:        jle     .L117_rf
+kms94_rf:        movl    %ebp, %r9d
+kms95_rf:        movl    %ebp, %r11d
+kms96_rf:        xorl    %r10d, %r10d
+kms97_rf:        shrl    $2, %r9d
+kms98_rf:        andl    $-4, %r11d
+kms99_rf:        leal    -5(%r9), %eax
+kms100_rf:        movl    %r11d, %r14d
+kms101_rf:        salq    $2, %r14
+kms102_rf:        andl    $-4, %eax
+kms103_rf:        movl    %eax, 64(%rsp)
+kms104_rf:        addl    $4, %eax
+kms105_rf:        movl    %eax, 72(%rsp)
+kms106_rf:        leal    1(%r11), %eax
+kms107_rf:        movl    %eax, 32(%rsp)
+kms108_rf:        salq    $2, %rax
+kms109_rf:        movq    %rax, 40(%rsp)
+kms110_rf:        leal    2(%r11), %eax
+kms111_rf:        movl    %eax, 16(%rsp)
+kms112_rf:        salq    $2, %rax
+kms113_rf:        movq    %rax, 48(%rsp)
+kms114_rf:        leal    -1(%rbp), %eax
+kms115_rf:        movl    %eax, 24(%rsp)
+kms116_rf:        leal    -17(%rbp), %eax
+kms117_rf:        andl    $-16, %eax
+kms118_rf:        addl    $16, %eax
+kms119_rf:        movl    %eax, 80(%rsp)
 .L12_rf:
-kms431_rf:        cmpl    $16, %ebx
-kms432_rf:        jle     .L62_rf
-kms433_rf:        leaq    100(%rcx), %rdx
-kms434_rf:        leaq    100(%rsi), %rax
-kms435_rf:        xorl    %edi, %edi
-.L19_rf:
-kms436_rf:        vmovss  -100(%rdx), %xmm0
-kms437_rf:        prefetcht0      (%rdx)
-kms438_rf:        prefetcht0      (%rax)
-kms439_rf:        vmovss  %xmm0, -100(%rax)
-kms440_rf:        addl    $16, %edi
-kms441_rf:        addq    $64, %rdx
-kms442_rf:        addq    $64, %rax
-kms443_rf:        vmovss  -160(%rdx), %xmm0
-kms444_rf:        vmovss  %xmm0, -160(%rax)
-kms445_rf:        vmovss  -156(%rdx), %xmm0
-kms446_rf:        vmovss  %xmm0, -156(%rax)
-kms447_rf:        vmovss  -152(%rdx), %xmm0
-kms448_rf:        vmovss  %xmm0, -152(%rax)
-kms449_rf:        vmovss  -148(%rdx), %xmm0
-kms450_rf:        vmovss  %xmm0, -148(%rax)
-kms451_rf:        vmovss  -144(%rdx), %xmm0
-kms452_rf:        vmovss  %xmm0, -144(%rax)
-kms453_rf:        vmovss  -140(%rdx), %xmm0
-kms454_rf:        vmovss  %xmm0, -140(%rax)
-kms455_rf:        vmovss  -136(%rdx), %xmm0
-kms456_rf:        vmovss  %xmm0, -136(%rax)
-kms457_rf:        vmovss  -132(%rdx), %xmm0
-kms458_rf:        vmovss  %xmm0, -132(%rax)
-kms459_rf:        vmovss  -128(%rdx), %xmm0
-kms460_rf:        vmovss  %xmm0, -128(%rax)
-kms461_rf:        vmovss  -124(%rdx), %xmm0
-kms462_rf:        vmovss  %xmm0, -124(%rax)
-kms463_rf:        vmovss  -120(%rdx), %xmm0
-kms464_rf:        vmovss  %xmm0, -120(%rax)
-kms465_rf:        vmovss  -116(%rdx), %xmm0
-kms466_rf:        vmovss  %xmm0, -116(%rax)
-kms467_rf:        vmovss  -112(%rdx), %xmm0
-kms468_rf:        vmovss  %xmm0, -112(%rax)
-kms469_rf:        vmovss  -108(%rdx), %xmm0
-kms470_rf:        vmovss  %xmm0, -108(%rax)
-kms471_rf:        vmovss  -104(%rdx), %xmm0
-kms472_rf:        vmovss  %xmm0, -104(%rax)
-kms473_rf:        cmpl    24(%rsp), %edi
-kms474_rf:        jne     .L19_rf
-.L18_rf:
-kms475_rf:        movslq  %edi, %rdi
+kms120_rf:        movq    56(%rsp), %rax
+kms121_rf:        movq    0(%r13,%r10,8), %r8
+kms122_rf:        movq    (%rax,%r10,8), %rdi
+kms123_rf:        leaq    15(%rdi), %rax
+kms124_rf:        subq    %r8, %rax
+kms125_rf:        cmpq    $30, %rax
+kms126_rf:        jbe     .L19_rf
+kms127_rf:        cmpl    $8, 24(%rsp)
+kms128_rf:        jbe     .L19_rf
+kms129_rf:        cmpl    $4, %r9d
+kms130_rf:        movq    %r8, %rdx
+kms131_rf:        movq    %rdi, %rcx
+kms132_rf:        jbe     .L73_rf
+kms133_rf:        xorl    %eax, %eax
+.L24_rf:
+kms134_rf:        movlps  (%rcx), %xmm0
+kms135_rf:        prefetcht0      464(%rcx)
+kms136_rf:        movl    %eax, %esi
+kms137_rf:        addq    $64, %rcx
+kms138_rf:        addl    $4, %eax
+kms139_rf:        prefetcht0      464(%rdx)
+kms140_rf:        movhps  -56(%rcx), %xmm0
+kms141_rf:        addq    $64, %rdx
+kms142_rf:        movlps  %xmm0, -64(%rdx)
+kms143_rf:        movhps  %xmm0, -56(%rdx)
+kms144_rf:        movlps  -48(%rcx), %xmm0
+kms145_rf:        movhps  -40(%rcx), %xmm0
+kms146_rf:        movlps  %xmm0, -48(%rdx)
+kms147_rf:        movhps  %xmm0, -40(%rdx)
+kms148_rf:        movlps  -32(%rcx), %xmm0
+kms149_rf:        movhps  -24(%rcx), %xmm0
+kms150_rf:        movlps  %xmm0, -32(%rdx)
+kms151_rf:        movhps  %xmm0, -24(%rdx)
+kms152_rf:        movlps  -16(%rcx), %xmm0
+kms153_rf:        movhps  -8(%rcx), %xmm0
+kms154_rf:        movlps  %xmm0, -16(%rdx)
+kms155_rf:        movhps  %xmm0, -8(%rdx)
+kms156_rf:        cmpl    64(%rsp), %esi
+kms157_rf:        jne     .L24_rf
+kms158_rf:        movl    72(%rsp), %esi
+.L23_rf:
+kms159_rf:        xorl    %eax, %eax
+.L25_rf:
+kms160_rf:        movlps  (%rcx,%rax), %xmm0
+kms161_rf:        incl    %esi
+kms162_rf:        movhps  8(%rcx,%rax), %xmm0
+kms163_rf:        movlps  %xmm0, (%rdx,%rax)
+kms164_rf:        movhps  %xmm0, 8(%rdx,%rax)
+kms165_rf:        addq    $16, %rax
+kms166_rf:        cmpl    %esi, %r9d
+kms167_rf:        ja      .L25_rf
+kms168_rf:        cmpl    %r11d, %ebp
+kms169_rf:        je      .L29_rf
+kms170_rf:        cmpl    32(%rsp), %ebp
+kms171_rf:        movss   (%rdi,%r14), %xmm0
+kms172_rf:        movss   %xmm0, (%r8,%r14)
+kms173_rf:        jle     .L29_rf
+kms174_rf:        movq    40(%rsp), %rax
+kms175_rf:        cmpl    16(%rsp), %ebp
+kms176_rf:        movss   (%rdi,%rax), %xmm0
+kms177_rf:        movss   %xmm0, (%r8,%rax)
+kms178_rf:        jle     .L29_rf
+kms179_rf:        movq    48(%rsp), %rax
+kms180_rf:        movss   (%rdi,%rax), %xmm0
+kms181_rf:        movss   %xmm0, (%r8,%rax)
+.L29_rf:
+kms182_rf:        incq    %r10
+kms183_rf:        cmpl    %r10d, 28(%rsp)
+kms184_rf:        jg      .L12_rf
+.L10_rf:
+kms185_rf:        movl    88(%rsp), %ecx
+kms186_rf:        testl   %ecx, %ecx
+kms187_rf:        jle     .L31_rf
+kms188_rf:        movl    88(%rsp), %eax
+kms189_rf:        movq    8(%rsp), %rdi
+kms190_rf:        movl    $255, %esi
+kms191_rf:        decl    %eax
+kms192_rf:        leaq    4(,%rax,4), %rdx
+kms193_rf:        call    memset
+.L31_rf:
+kms194_rf:        movq    (%rsp), %r14
+kms195_rf:        salq    $2, %r14
+kms196_rf:        movq    %r14, %rdi
+kms197_rf:        call    malloc
+kms198_rf:        movq    %r14, %rdx
+kms199_rf:        movq    %rax, 40(%rsp)
+kms200_rf:        shrq    $2, %rdx
+kms201_rf:        je      .L21_rf
+kms202_rf:        movq    %rax, %rdi
+kms203_rf:        salq    $2, %rdx
+kms204_rf:        xorl    %esi, %esi
+kms205_rf:        call    memset
 .L21_rf:
-kms476_rf:        vmovss  (%rcx,%rdi,4), %xmm0
-kms477_rf:        vmovss  %xmm0, (%rsi,%rdi,4)
-kms478_rf:        incq    %rdi
-kms479_rf:        cmpl    %edi, %ebx
-kms480_rf:        jg      .L21_rf
-kms481_rf:        jmp     .L20_rf
-.L30_rf:
-kms482_rf:        movq    120(%rsp), %rax
-kms483_rf:        movq    128(%rsp), %rdi
-kms484_rf:        cmpl    %r12d, (%rax,%rdi,4)
-kms485_rf:        je      .L40_rf
-kms486_rf:        vaddss  %xmm7, %xmm5, %xmm5
-.L40_rf:
-kms487_rf:        movq    120(%rsp), %rax
-kms488_rf:        movq    128(%rsp), %rdi
-kms489_rf:        movq    104(%rsp), %rsi
-kms490_rf:        movl    %r12d, (%rax,%rdi,4)
-kms491_rf:        movslq  %r12d, %rax
-kms492_rf:        incl    (%rsi,%rax,4)
-kms493_rf:        testl   %ebx, %ebx
-kms494_rf:        jle     .L47_rf
-kms495_rf:        cmpl    $6, 152(%rsp)
-kms496_rf:        movq    112(%rsp), %rdi
-kms497_rf:        movq    (%rdi,%rax,8), %r9
-kms498_rf:        jbe     .L68_rf
-kms499_rf:        cmpl    $1, 144(%rsp)
-kms500_rf:        jbe     .L69_rf
-kms501_rf:        movq    %r8, %rsi
-kms502_rf:        movq    %r9, %rcx
-kms503_rf:        xorl    %eax, %eax
-.L46_rf:
-kms504_rf:        vmovups (%rcx), %ymm0
-kms505_rf:        prefetcht0      640(%rsi)
-kms506_rf:        movl    %eax, %edx
-kms507_rf:        addq    $64, %rsi
-kms508_rf:        addl    $2, %eax
-kms509_rf:        prefetcht0      640(%rcx)
-kms510_rf:        vaddps  -64(%rsi), %ymm0, %ymm0
-kms511_rf:        addq    $64, %rcx
-kms512_rf:        vmovups %ymm0, -64(%rcx)
-kms513_rf:        vmovups -32(%rsi), %ymm0
-kms514_rf:        vaddps  -32(%rcx), %ymm0, %ymm0
-kms515_rf:        vmovups %ymm0, -32(%rcx)
-kms516_rf:        cmpl    140(%rsp), %edx
-kms517_rf:        movq    %rcx, %rdi
-kms518_rf:        jne     .L46_rf
-kms519_rf:        movl    100(%rsp), %edx
-.L45_rf:
-kms520_rf:        xorl    %eax, %eax
-.L48_rf:
-kms521_rf:        vmovups (%rsi,%rax), %ymm0
-kms522_rf:        incl    %edx
-kms523_rf:        vaddps  (%rcx,%rax), %ymm0, %ymm0
-kms524_rf:        vmovups %ymm0, (%rdi,%rax)
-kms525_rf:        addq    $32, %rax
-kms526_rf:        cmpl    %edx, %r13d
-kms527_rf:        ja      .L48_rf
-kms528_rf:        cmpl    %ebx, %r14d
-kms529_rf:        je      .L47_rf
-kms530_rf:        movl    %r14d, %edx
-.L44_rf:
-kms531_rf:        movslq  %edx, %rsi
-kms532_rf:        leaq    0(,%rsi,4), %rax
-kms533_rf:        leaq    (%r9,%rax), %rcx
-kms534_rf:        vmovss  (%rcx), %xmm0
-kms535_rf:        vaddss  (%r8,%rsi,4), %xmm0, %xmm0
-kms536_rf:        vmovss  %xmm0, (%rcx)
-kms537_rf:        leal    1(%rdx), %ecx
-kms538_rf:        cmpl    %ecx, %ebx
-kms539_rf:        jle     .L47_rf
-kms540_rf:        leaq    4(%r9,%rax), %rcx
-kms541_rf:        vmovss  (%rcx), %xmm0
-kms542_rf:        vaddss  4(%r8,%rax), %xmm0, %xmm0
-kms543_rf:        vmovss  %xmm0, (%rcx)
-kms544_rf:        leal    2(%rdx), %ecx
-kms545_rf:        cmpl    %ecx, %ebx
-kms546_rf:        jle     .L47_rf
-kms547_rf:        leaq    8(%r9,%rax), %rcx
-kms548_rf:        vmovss  (%rcx), %xmm0
-kms549_rf:        vaddss  8(%r8,%rax), %xmm0, %xmm0
-kms550_rf:        vmovss  %xmm0, (%rcx)
-kms551_rf:        leal    3(%rdx), %ecx
-kms552_rf:        cmpl    %ecx, %ebx
-kms553_rf:        jle     .L47_rf
-kms554_rf:        leaq    12(%r9,%rax), %rcx
-kms555_rf:        vmovss  (%rcx), %xmm0
-kms556_rf:        vaddss  12(%r8,%rax), %xmm0, %xmm0
-kms557_rf:        vmovss  %xmm0, (%rcx)
-kms558_rf:        leal    4(%rdx), %ecx
-kms559_rf:        cmpl    %ebx, %ecx
-kms560_rf:        jge     .L47_rf
-kms561_rf:        leaq    16(%r9,%rax), %rcx
-kms562_rf:        vmovss  (%rcx), %xmm0
-kms563_rf:        vaddss  16(%r8,%rax), %xmm0, %xmm0
-kms564_rf:        vmovss  %xmm0, (%rcx)
-kms565_rf:        leal    5(%rdx), %ecx
-kms566_rf:        cmpl    %ebx, %ecx
-kms567_rf:        jge     .L47_rf
-kms568_rf:        leaq    20(%r9,%rax), %rcx
-kms569_rf:        addl    $6, %edx
-kms570_rf:        cmpl    %edx, %ebx
-kms571_rf:        vmovss  (%rcx), %xmm0
-kms572_rf:        vaddss  20(%r8,%rax), %xmm0, %xmm0
-kms573_rf:        vmovss  %xmm0, (%rcx)
-kms574_rf:        jle     .L47_rf
-kms575_rf:        leaq    24(%r9,%rax), %rdx
-kms576_rf:        vmovss  (%rdx), %xmm0
-kms577_rf:        vaddss  24(%r8,%rax), %xmm0, %xmm0
-kms578_rf:        vmovss  %xmm0, (%rdx)
-.L47_rf:
-kms579_rf:        movq    128(%rsp), %rdi
-kms580_rf:        cmpq    %rdi, 80(%rsp)
-kms581_rf:        leaq    1(%rdi), %rax
-kms582_rf:        je      .L42_rf
-kms583_rf:        movq    %rax, 128(%rsp)
-kms584_rf:        movq    %rax, %rdi
-kms585_rf:        jmp     .L43_rf
-.L65_rf:
-kms586_rf:        vmovaps %xmm4, %xmm0
-kms587_rf:        xorl    %edx, %edx
-kms588_rf:        jmp     .L32_rf
-.L66_rf:
-kms589_rf:        vmovaps %xmm4, %xmm0
-kms590_rf:        xorl    %edx, %edx
-kms591_rf:        jmp     .L33_rf
-.L100_rf:
-kms592_rf:        vmovaps %xmm4, %xmm5
-.L42_rf:
-kms593_rf:        movl    136(%rsp), %eax
-kms594_rf:        leal    -17(%rbx), %edi
-kms595_rf:        xorl    %ecx, %ecx
-kms596_rf:        movl    %edi, 64(%rsp)
-kms597_rf:        leal    -1(%rax), %esi
-kms598_rf:        testl   %eax, %eax
-kms599_rf:        movq    %rsi, 128(%rsp)
-kms600_rf:        jle     .L51_rf
-kms601_rf:        movl    %r12d, 40(%rsp)
-kms602_rf:        movl    %r13d, 24(%rsp)
-kms603_rf:        movq    112(%rsp), %r12
-kms604_rf:        movq    104(%rsp), %r13
-kms605_rf:        movl    %r14d, 32(%rsp)
-kms606_rf:        movq    %rcx, %r14
-.L52_rf:
-kms607_rf:        testl   %ebx, %ebx
-kms608_rf:        jle     .L57_rf
-kms609_rf:        movl    0(%r13,%r14,4), %edx
-kms610_rf:        movq    (%r12,%r14,8), %rdi
-kms611_rf:        testl   %edx, %edx
-kms612_rf:        jle     .L102_rf
-kms613_rf:        cmpl    $16, %ebx
-kms614_rf:        jle     .L70_rf
-kms615_rf:        movl    64(%rsp), %r10d
-kms616_rf:        vcvtsi2ssl      %edx, %xmm1, %xmm1
-kms617_rf:        movq    (%r15,%r14,8), %rdx
-kms618_rf:        leaq    40(%rdi), %rsi
-kms619_rf:        movl    $40, %r9d
-kms620_rf:        xorl    %eax, %eax
-kms621_rf:        andl    $-16, %r10d
+kms206_rf:        movq    %r15, %rdi
+kms207_rf:        call    malloc
+kms208_rf:        movq    %rbx, %rdi
+kms209_rf:        movq    %rax, 32(%rsp)
+kms210_rf:        call    malloc
+kms211_rf:        shrq    $2, %rbx
+kms212_rf:        movq    %rax, 72(%rsp)
+kms213_rf:        movq    %rbx, %rdx
+kms214_rf:        je      .L32_rf
+kms215_rf:        movq    %rax, %rdi
+kms216_rf:        salq    $2, %rdx
+kms217_rf:        xorl    %esi, %esi
+kms218_rf:        call    memset
+.L32_rf:
+kms219_rf:        cmpl    $1, 28(%rsp)
+kms220_rf:        movq    32(%rsp), %rax
+kms221_rf:        movq    72(%rsp), %rbx
+kms222_rf:        movq    %rbx, (%rax)
+kms223_rf:        jle     .L34_rf
+kms224_rf:        movl    28(%rsp), %ebx
+kms225_rf:        movslq  %ebp, %rdx
+kms226_rf:        leaq    0(,%rdx,4), %rcx
+kms227_rf:        cmpl    $9, %ebx
+kms228_rf:        jle     .L75_rf
+kms229_rf:        movq    72(%rsp), %r15
+kms230_rf:        leal    -10(%rbx), %esi
+kms231_rf:        movq    %rdx, %r8
+kms232_rf:        movq    %rdx, %r11
+kms233_rf:        leaq    0(,%rdx,8), %r9
+kms234_rf:        salq    $4, %r8
+kms235_rf:        leaq    (%rdx,%rdx,2), %rdx
+kms236_rf:        andl    $-8, %esi
+kms237_rf:        addq    $192, %rax
+kms238_rf:        leaq    (%r15,%r8), %rdi
+kms239_rf:        leal    9(%rsi), %ebx
+kms240_rf:        salq    $5, %r11
+kms241_rf:        leaq    0(,%rdx,4), %r10
+kms242_rf:        movq    %r15, %rsi
+kms243_rf:        movl    $1, %edx
+.L37_rf:
+kms244_rf:        leaq    (%rcx,%rsi), %r14
+kms245_rf:        movq    %rdi, -160(%rax)
+kms246_rf:        addq    %rcx, %rdi
+kms247_rf:        movq    %rdi, -152(%rax)
+kms248_rf:        addq    %rcx, %rdi
+kms249_rf:        addl    $8, %edx
+kms250_rf:        movq    %r14, -184(%rax)
+kms251_rf:        leaq    (%rsi,%r9), %r14
+kms252_rf:        movq    %rdi, -144(%rax)
+kms253_rf:        addq    %rcx, %rdi
+kms254_rf:        prefetcht0      (%rax)
+kms255_rf:        addq    $64, %rax
+kms256_rf:        movq    %r14, -240(%rax)
+kms257_rf:        leaq    (%rsi,%r10), %r14
+kms258_rf:        movq    %rdi, -200(%rax)
+kms259_rf:        addq    %rcx, %rdi
+kms260_rf:        addq    %r11, %rsi
+kms261_rf:        movq    %rdi, -192(%rax)
+kms262_rf:        movq    %r14, -232(%rax)
+kms263_rf:        addq    %r8, %rdi
+kms264_rf:        cmpl    %ebx, %edx
+kms265_rf:        jne     .L37_rf
+kms266_rf:        movq    %rsi, 72(%rsp)
+.L36_rf:
+kms267_rf:        movq    72(%rsp), %rax
+kms268_rf:        movslq  %edx, %rdx
+kms269_rf:        addq    %rcx, %rax
+.L38_rf:
+kms270_rf:        movq    32(%rsp), %rbx
+kms271_rf:        movq    %rax, (%rbx,%rdx,8)
+kms272_rf:        incq    %rdx
+kms273_rf:        addq    %rcx, %rax
+kms274_rf:        cmpl    %edx, 28(%rsp)
+kms275_rf:        jg      .L38_rf
+kms276_rf:        movq    (%rbx), %rax
+kms277_rf:        movq    %rax, 72(%rsp)
+.L34_rf:
+kms278_rf:        xorps   %xmm4, %xmm4
+kms279_rf:        movl    %ebp, %ebx
+kms280_rf:        movl    %ebp, %r15d
+kms281_rf:        shrl    $2, %ebx
+kms282_rf:        andl    $-4, %r15d
+kms283_rf:        leal    -5(%rbx), %eax
+kms284_rf:        andl    $-4, %eax
+kms285_rf:        movl    %eax, (%rsp)
+kms286_rf:        addl    $4, %eax
+kms287_rf:        movl    %eax, 48(%rsp)
+kms288_rf:        movl    24(%rsp), %eax
+kms289_rf:        leaq    4(,%rax,4), %rax
+kms290_rf:        movq    %rax, 80(%rsp)
+kms291_rf:        movl    88(%rsp), %eax
+kms292_rf:        decl    %eax
+kms293_rf:        movl    %eax, 96(%rsp)
+.L41_rf:
+kms294_rf:        movl    88(%rsp), %edx
+kms295_rf:        testl   %edx, %edx
+kms296_rf:        jle     .L119_rf
+kms297_rf:        movaps  %xmm4, %xmm5
+kms298_rf:        movl    96(%rsp), %eax
+kms299_rf:        xorl    %r14d, %r14d
+kms300_rf:        movss   .LC1_rf(%rip), %xmm6
+kms301_rf:        movss   .LC2_rf(%rip), %xmm7
+kms302_rf:        movq    %rax, 64(%rsp)
+kms303_rf:        movl    28(%rsp), %eax
+kms304_rf:        leal    -1(%rax), %r11d
 .L56_rf:
-kms622_rf:        vmovss  -40(%rsi), %xmm0
-kms623_rf:        prefetcht0      (%rsi)
-kms624_rf:        movl    $0x00000000, -40(%rsi)
-kms625_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms626_rf:        movl    %eax, %ecx
-kms627_rf:        addq    $64, %rsi
-kms628_rf:        addl    $16, %eax
-kms629_rf:        vmovss  %xmm0, -40(%rdx,%r9)
-kms630_rf:        vmovss  -100(%rsi), %xmm0
-kms631_rf:        movl    $0x00000000, -100(%rsi)
-kms632_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms633_rf:        vmovss  %xmm0, -36(%rdx,%r9)
-kms634_rf:        vmovss  -96(%rsi), %xmm0
-kms635_rf:        movl    $0x00000000, -96(%rsi)
-kms636_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms637_rf:        vmovss  %xmm0, -32(%rdx,%r9)
-kms638_rf:        vmovss  -92(%rsi), %xmm0
-kms639_rf:        movl    $0x00000000, -92(%rsi)
-kms640_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms641_rf:        vmovss  %xmm0, -28(%rdx,%r9)
-kms642_rf:        vmovss  -88(%rsi), %xmm0
-kms643_rf:        movl    $0x00000000, -88(%rsi)
-kms644_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms645_rf:        vmovss  %xmm0, -24(%rdx,%r9)
-kms646_rf:        vmovss  -84(%rsi), %xmm0
-kms647_rf:        movl    $0x00000000, -84(%rsi)
-kms648_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms649_rf:        vmovss  %xmm0, -20(%rdx,%r9)
-kms650_rf:        vmovss  -80(%rsi), %xmm0
-kms651_rf:        movl    $0x00000000, -80(%rsi)
-kms652_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms653_rf:        vmovss  %xmm0, -16(%rdx,%r9)
-kms654_rf:        vmovss  -76(%rsi), %xmm0
-kms655_rf:        movl    $0x00000000, -76(%rsi)
-kms656_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms657_rf:        vmovss  %xmm0, -12(%rdx,%r9)
-kms658_rf:        vmovss  -72(%rsi), %xmm0
-kms659_rf:        movl    $0x00000000, -72(%rsi)
-kms660_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms661_rf:        vmovss  %xmm0, -8(%rdx,%r9)
-kms662_rf:        vmovss  -68(%rsi), %xmm0
-kms663_rf:        movl    $0x00000000, -68(%rsi)
-kms664_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms665_rf:        vmovss  %xmm0, -4(%rdx,%r9)
-kms666_rf:        vmovss  -64(%rsi), %xmm0
-kms667_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms668_rf:        vmovss  %xmm0, (%rdx,%r9)
-kms669_rf:        movl    $0x00000000, -64(%rsi)
-kms670_rf:        vmovss  -60(%rsi), %xmm0
-kms671_rf:        movl    $0x00000000, -60(%rsi)
-kms672_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms673_rf:        vmovss  %xmm0, 4(%rdx,%r9)
-kms674_rf:        vmovss  -56(%rsi), %xmm0
-kms675_rf:        movl    $0x00000000, -56(%rsi)
-kms676_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms677_rf:        vmovss  %xmm0, 8(%rdx,%r9)
-kms678_rf:        vmovss  -52(%rsi), %xmm0
-kms679_rf:        movl    $0x00000000, -52(%rsi)
-kms680_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms681_rf:        vmovss  %xmm0, 12(%rdx,%r9)
-kms682_rf:        vmovss  -48(%rsi), %xmm0
-kms683_rf:        movl    $0x00000000, -48(%rsi)
-kms684_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms685_rf:        vmovss  %xmm0, 16(%rdx,%r9)
-kms686_rf:        vmovss  -44(%rsi), %xmm0
-kms687_rf:        movl    $0x00000000, -44(%rsi)
-kms688_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms689_rf:        vmovss  %xmm0, 20(%rdx,%r9)
-kms690_rf:        addq    $64, %r9
-kms691_rf:        cmpl    %ecx, %r10d
-kms692_rf:        jne     .L56_rf
-.L55_rf:
-kms693_rf:        cltq
-.L58_rf:
-kms694_rf:        vmovss  (%rdi,%rax,4), %xmm0
-kms695_rf:        movl    $0x00000000, (%rdi,%rax,4)
-kms696_rf:        vdivss  %xmm1, %xmm0, %xmm0
-kms697_rf:        vmovss  %xmm0, (%rdx,%rax,4)
-kms698_rf:        incq    %rax
-kms699_rf:        cmpl    %eax, %ebx
-kms700_rf:        jg      .L58_rf
-.L57_rf:
-kms701_rf:        cmpq    %r14, 128(%rsp)
-kms702_rf:        leaq    1(%r14), %rax
-kms703_rf:        movl    $0, 0(%r13,%r14,4)
-kms704_rf:        je      .L95_rf
-kms705_rf:        movq    %rax, %r14
-kms706_rf:        jmp     .L52_rf
-.L102_rf:
-kms707_rf:        movq    56(%rsp), %rdx
-kms708_rf:        xorl    %esi, %esi
-kms709_rf:        vmovss  %xmm5, 80(%rsp)
-kms710_rf:        vzeroupper
-kms711_rf:        call    memset
-kms712_rf:        vxorps  %xmm4, %xmm4, %xmm4
-kms713_rf:        vmovss  80(%rsp), %xmm5
-kms714_rf:        jmp     .L57_rf
-.L95_rf:
-kms715_rf:        movl    40(%rsp), %r12d
-kms716_rf:        movl    32(%rsp), %r14d
-kms717_rf:        movl    24(%rsp), %r13d
-.L51_rf:
-kms718_rf:        vcomiss 28(%rsp), %xmm5
-kms719_rf:        ja      .L28_rf
-kms720_rf:        movq    72(%rsp), %rdi
-kms721_rf:        vzeroupper
-kms722_rf:        call    free
-kms723_rf:        movq    112(%rsp), %rdi
-kms724_rf:        call    free
-kms725_rf:        movq    104(%rsp), %rdi
-kms726_rf:        call    free
-kms727_rf:        leaq    -40(%rbp), %rsp
-kms728_rf:        movq    %r15, %rax
-kms729_rf:        popq    %rbx
-kms730_rf:        popq    %r12
-kms731_rf:        popq    %r13
-kms732_rf:        popq    %r14
-kms733_rf:        popq    %r15
-kms734_rf:        popq    %rbp
-kms735_rf:        ret
-.L68_rf:
-kms736_rf:        xorl    %edx, %edx
-kms737_rf:        jmp     .L44_rf
-.L69_rf:
-kms738_rf:        movq    %r9, %rdi
-kms739_rf:        movq    %r8, %rsi
-kms740_rf:        movq    %r9, %rcx
-kms741_rf:        xorl    %edx, %edx
-kms742_rf:        jmp     .L45_rf
-.L70_rf:
-kms743_rf:        vcvtsi2ssl      %edx, %xmm1, %xmm1
-kms744_rf:        xorl    %eax, %eax
-kms745_rf:        movq    (%r15,%r14,8), %rdx
-kms746_rf:        jmp     .L55_rf
-.L98_rf:
-kms747_rf:        je      .L8_rf
-kms748_rf:        movl    96(%rsp), %eax
-kms749_rf:        testl   %eax, %eax
-kms750_rf:        jle     .L59_rf
-kms751_rf:        leal    -1(%rbx), %eax
-kms752_rf:        movl    %eax, 152(%rsp)
-kms753_rf:        jmp     .L13_rf
-.L60_rf:
-kms754_rf:        movl    $1, %esi
-kms755_rf:        jmp     .L6_rf
-.L62_rf:
-kms756_rf:        xorl    %edi, %edi
-kms757_rf:        jmp     .L18_rf
-.L63_rf:
-kms758_rf:        movl    $1, %edx
-kms759_rf:        jmp     .L23_rf
-.L99_rf:
-kms760_rf:        leal    -1(%rbx), %eax
-kms761_rf:        movl    %eax, 152(%rsp)
-kms762_rf:        jmp     .L4_rf
-.L59_rf:
-kms763_rf:        movq    144(%rsp), %rdi
-kms764_rf:        movl    $4, %esi
-kms765_rf:        call    calloc
-kms766_rf:        movq    %r13, %rdi
-kms767_rf:        movq    %rax, 104(%rsp)
-kms768_rf:        call    malloc
-kms769_rf:        movl    $4, %esi
-kms770_rf:        movq    %rax, %r13
-kms771_rf:        movq    %r14, %rdi
-kms772_rf:        movq    %rax, 112(%rsp)
-kms773_rf:        call    calloc
-kms774_rf:        movq    %rax, 72(%rsp)
-kms775_rf:        movq    %rax, 0(%r13)
-kms776_rf:        leal    -1(%rbx), %eax
-kms777_rf:        movl    %eax, 152(%rsp)
-kms778_rf:        jmp     .L14_rf
-_Z12kmeans_outerPPfiiifPifS0_S1_S0_Pv_rf:
-kms779_rf:        pushq   %rbp
-kms780_rf:        movq    %rsp, %rbp
-kms781_rf:        pushq   %r15
-kms782_rf:        movq    %r9, %r15
-kms783_rf:        pushq   %r14
-kms784_rf:        movl    %esi, %r14d
-kms785_rf:        andl    $-8, %r14d
-kms786_rf:        pushq   %r13
-kms787_rf:        pushq   %r12
-kms788_rf:        movl    %esi, %r12d
-kms789_rf:        shrl    $3, %r12d
-kms790_rf:        pushq   %rbx
-kms791_rf:        leal    -1(%r12), %eax
-kms792_rf:        movl    %esi, %ebx
-kms793_rf:        andq    $-32, %rsp
-kms794_rf:        subq    $208, %rsp
-kms795_rf:        movl    %eax, 200(%rsp)
-kms796_rf:        leal    -3(%r12), %eax
-kms797_rf:        movq    %rdi, 160(%rsp)
-kms798_rf:        leal    -1(%rsi), %edi
-kms799_rf:        vmovss  %xmm0, 72(%rsp)
-kms800_rf:        movl    %edx, 76(%rsp)
-kms801_rf:        andl    $-2, %eax
-kms802_rf:        movl    %ecx, 172(%rsp)
-kms803_rf:        movq    %r8, 176(%rsp)
-kms804_rf:        movl    %eax, 196(%rsp)
-kms805_rf:        addl    $2, %eax
-kms806_rf:        movl    %eax, 168(%rsp)
-kms807_rf:        movslq  %r14d, %rax
-kms808_rf:        movl    %edi, 204(%rsp)
-kms809_rf:        salq    $2, %rax
-kms810_rf:        movq    %rax, 152(%rsp)
-kms811_rf:        leal    1(%r14), %eax
-kms812_rf:        movl    %eax, 148(%rsp)
-kms813_rf:        cltq
-kms814_rf:        salq    $2, %rax
-kms815_rf:        movq    %rax, 136(%rsp)
-kms816_rf:        leal    2(%r14), %eax
-kms817_rf:        movl    %eax, 144(%rsp)
-kms818_rf:        cltq
-kms819_rf:        salq    $2, %rax
-kms820_rf:        movq    %rax, 128(%rsp)
-kms821_rf:        leal    3(%r14), %eax
-kms822_rf:        movl    %eax, 124(%rsp)
-kms823_rf:        cltq
-kms824_rf:        salq    $2, %rax
-kms825_rf:        movq    %rax, 112(%rsp)
-kms826_rf:        leal    4(%r14), %eax
-kms827_rf:        movl    %eax, 120(%rsp)
-kms828_rf:        cltq
-kms829_rf:        salq    $2, %rax
-kms830_rf:        movq    %rax, 104(%rsp)
-kms831_rf:        leal    5(%r14), %eax
-kms832_rf:        movl    %eax, 100(%rsp)
-kms833_rf:        cltq
-kms834_rf:        salq    $2, %rax
-kms835_rf:        movq    %rax, 80(%rsp)
-kms836_rf:        leal    6(%r14), %eax
-kms837_rf:        movl    %eax, 96(%rsp)
-kms838_rf:        cltq
-kms839_rf:        salq    $2, %rax
-kms840_rf:        movq    %rax, 88(%rsp)
-kms841_rf:        movl    %edi, %eax
-kms842_rf:        leaq    4(,%rax,4), %rax
-kms843_rf:        movq    %rax, 64(%rsp)
-kms844_rf:        leal    -17(%rsi), %eax
-kms845_rf:        andl    $-16, %eax
-kms846_rf:        movl    %eax, 60(%rsp)
-kms847_rf:        addl    $16, %eax
-kms848_rf:        movl    %eax, 56(%rsp)
-.L133_rf:
-kms849_rf:        movl    76(%rsp), %edx
-kms850_rf:        testl   %edx, %edx
-kms851_rf:        jle     .L174_rf
-kms852_rf:        vxorps  %xmm4, %xmm4, %xmm4
-kms853_rf:        xorl    %eax, %eax
-kms854_rf:        vmovaps %xmm4, %xmm1
-.L104_rf:
-kms855_rf:        movl    76(%rsp), %esi
-kms856_rf:        leal    64(%rax), %edx
-kms857_rf:        cmpl    %esi, %edx
-kms858_rf:        cmovg   %esi, %edx
-kms859_rf:        cmpl    %edx, %eax
-kms860_rf:        movl    %edx, 192(%rsp)
-kms861_rf:        jge     .L144_rf
-kms862_rf:        movq    %rax, 184(%rsp)
-kms863_rf:        movl    172(%rsp), %eax
-kms864_rf:        leal    -1(%rax), %r11d
-.L118_rf:
-kms865_rf:        movq    160(%rsp), %rax
-kms866_rf:        movq    184(%rsp), %rdi
-kms867_rf:        movq    (%rax,%rdi,8), %r8
-kms868_rf:        movl    172(%rsp), %eax
-kms869_rf:        testl   %eax, %eax
-kms870_rf:        jle     .L106_rf
-kms871_rf:        xorl    %r9d, %r9d
-kms872_rf:        testl   %ebx, %ebx
-kms873_rf:        vmovss  .LC1_rf(%rip), %xmm5
-kms874_rf:        movq    (%r15,%r9,8), %rdi
-kms875_rf:        movl    %r9d, %r10d
-kms876_rf:        jle     .L145_rf
-.L175_rf:
-kms877_rf:        cmpl    $6, 204(%rsp)
-kms878_rf:        jbe     .L146_rf
-kms879_rf:        cmpl    $1, 200(%rsp)
-kms880_rf:        movq    %rdi, %rcx
-kms881_rf:        movq    %r8, %rsi
-kms882_rf:        jbe     .L147_rf
-kms883_rf:        vmovaps %xmm4, %xmm0
-kms884_rf:        xorl    %eax, %eax
-.L110_rf:
-kms885_rf:        vmovups (%rsi), %ymm3
-kms886_rf:        movl    %eax, %edx
-kms887_rf:        prefetcht0      384(%rsi)
-kms888_rf:        addl    $2, %eax
-kms889_rf:        addq    $64, %rsi
-kms890_rf:        prefetcht0      384(%rcx)
-kms891_rf:        vsubps  (%rcx), %ymm3, %ymm3
-kms892_rf:        addq    $64, %rcx
-kms893_rf:        vmulps  %ymm3, %ymm3, %ymm3
-kms894_rf:        vaddss  %xmm0, %xmm3, %xmm0
-kms895_rf:        vshufps $85, %xmm3, %xmm3, %xmm2
-kms896_rf:        vshufps $255, %xmm3, %xmm3, %xmm6
-kms897_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms898_rf:        vunpckhps       %xmm3, %xmm3, %xmm2
-kms899_rf:        vaddss  %xmm0, %xmm2, %xmm2
-kms900_rf:        vextractf128    $0x1, %ymm3, %xmm0
-kms901_rf:        vshufps $85, %xmm0, %xmm0, %xmm3
-kms902_rf:        vaddss  %xmm6, %xmm2, %xmm2
-kms903_rf:        vaddss  %xmm0, %xmm2, %xmm2
-kms904_rf:        vaddss  %xmm3, %xmm2, %xmm2
-kms905_rf:        vunpckhps       %xmm0, %xmm0, %xmm3
-kms906_rf:        vshufps $255, %xmm0, %xmm0, %xmm0
-kms907_rf:        vaddss  %xmm3, %xmm2, %xmm2
-kms908_rf:        vmovups -32(%rsi), %ymm3
-kms909_rf:        vsubps  -32(%rcx), %ymm3, %ymm3
-kms910_rf:        cmpl    196(%rsp), %edx
-kms911_rf:        vaddss  %xmm0, %xmm2, %xmm2
-kms912_rf:        vmulps  %ymm3, %ymm3, %ymm3
-kms913_rf:        vaddss  %xmm3, %xmm2, %xmm2
-kms914_rf:        vshufps $85, %xmm3, %xmm3, %xmm6
-kms915_rf:        vshufps $255, %xmm3, %xmm3, %xmm0
-kms916_rf:        vaddss  %xmm6, %xmm2, %xmm2
-kms917_rf:        vunpckhps       %xmm3, %xmm3, %xmm6
-kms918_rf:        vextractf128    $0x1, %ymm3, %xmm3
-kms919_rf:        vaddss  %xmm6, %xmm2, %xmm2
-kms920_rf:        vaddss  %xmm0, %xmm2, %xmm2
-kms921_rf:        vshufps $85, %xmm3, %xmm3, %xmm0
-kms922_rf:        vaddss  %xmm3, %xmm2, %xmm2
-kms923_rf:        vaddss  %xmm0, %xmm2, %xmm2
-kms924_rf:        vunpckhps       %xmm3, %xmm3, %xmm0
-kms925_rf:        vaddss  %xmm0, %xmm2, %xmm2
-kms926_rf:        vshufps $255, %xmm3, %xmm3, %xmm0
-kms927_rf:        vaddss  %xmm0, %xmm2, %xmm0
-kms928_rf:        jne     .L110_rf
-kms929_rf:        movl    168(%rsp), %edx
-.L109_rf:
-kms930_rf:        xorl    %eax, %eax
-.L111_rf:
-kms931_rf:        vmovups (%rsi,%rax), %ymm2
-kms932_rf:        incl    %edx
-kms933_rf:        vsubps  (%rcx,%rax), %ymm2, %ymm2
-kms934_rf:        addq    $32, %rax
-kms935_rf:        cmpl    %edx, %r12d
-kms936_rf:        vmulps  %ymm2, %ymm2, %ymm3
-kms937_rf:        vaddss  %xmm3, %xmm0, %xmm0
-kms938_rf:        vshufps $85, %xmm3, %xmm3, %xmm2
-kms939_rf:        vshufps $255, %xmm3, %xmm3, %xmm6
-kms940_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms941_rf:        vunpckhps       %xmm3, %xmm3, %xmm2
-kms942_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms943_rf:        vextractf128    $0x1, %ymm3, %xmm2
-kms944_rf:        vshufps $85, %xmm2, %xmm2, %xmm3
-kms945_rf:        vaddss  %xmm6, %xmm0, %xmm0
-kms946_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms947_rf:        vaddss  %xmm3, %xmm0, %xmm0
-kms948_rf:        vunpckhps       %xmm2, %xmm2, %xmm3
-kms949_rf:        vshufps $255, %xmm2, %xmm2, %xmm2
-kms950_rf:        vaddss  %xmm3, %xmm0, %xmm0
-kms951_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms952_rf:        ja      .L111_rf
-kms953_rf:        cmpl    %r14d, %ebx
-kms954_rf:        je      .L107_rf
-kms955_rf:        movl    %r14d, %edx
-.L108_rf:
-kms956_rf:        movslq  %edx, %rcx
-kms957_rf:        vmovss  (%r8,%rcx,4), %xmm2
-kms958_rf:        leaq    0(,%rcx,4), %rax
-kms959_rf:        vsubss  (%rdi,%rcx,4), %xmm2, %xmm2
-kms960_rf:        leal    1(%rdx), %ecx
-kms961_rf:        cmpl    %ecx, %ebx
-kms962_rf:        vmulss  %xmm2, %xmm2, %xmm2
-kms963_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms964_rf:        jle     .L107_rf
-kms965_rf:        vmovss  4(%r8,%rax), %xmm2
-kms966_rf:        leal    2(%rdx), %ecx
-kms967_rf:        vsubss  4(%rdi,%rax), %xmm2, %xmm2
-kms968_rf:        cmpl    %ecx, %ebx
-kms969_rf:        vmulss  %xmm2, %xmm2, %xmm2
-kms970_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms971_rf:        jle     .L107_rf
-kms972_rf:        vmovss  8(%r8,%rax), %xmm2
-kms973_rf:        leal    3(%rdx), %ecx
-kms974_rf:        vsubss  8(%rdi,%rax), %xmm2, %xmm2
-kms975_rf:        cmpl    %ecx, %ebx
-kms976_rf:        vmulss  %xmm2, %xmm2, %xmm2
-kms977_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms978_rf:        jle     .L107_rf
-kms979_rf:        vmovss  12(%r8,%rax), %xmm2
-kms980_rf:        leal    4(%rdx), %ecx
-kms981_rf:        vsubss  12(%rdi,%rax), %xmm2, %xmm2
-kms982_rf:        cmpl    %ecx, %ebx
-kms983_rf:        vmulss  %xmm2, %xmm2, %xmm2
-kms984_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms985_rf:        jle     .L107_rf
-kms986_rf:        vmovss  16(%r8,%rax), %xmm2
-kms987_rf:        leal    5(%rdx), %ecx
-kms988_rf:        vsubss  16(%rdi,%rax), %xmm2, %xmm2
-kms989_rf:        cmpl    %ecx, %ebx
-kms990_rf:        vmulss  %xmm2, %xmm2, %xmm2
-kms991_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms992_rf:        jle     .L107_rf
-kms993_rf:        vmovss  20(%r8,%rax), %xmm2
-kms994_rf:        addl    $6, %edx
-kms995_rf:        vsubss  20(%rdi,%rax), %xmm2, %xmm2
-kms996_rf:        cmpl    %edx, %ebx
-kms997_rf:        vmulss  %xmm2, %xmm2, %xmm2
-kms998_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms999_rf:        jle     .L107_rf
-kms1000_rf:        vmovss  24(%r8,%rax), %xmm2
-kms1001_rf:        vsubss  24(%rdi,%rax), %xmm2, %xmm2
-kms1002_rf:        vmulss  %xmm2, %xmm2, %xmm2
-kms1003_rf:        vaddss  %xmm2, %xmm0, %xmm0
-.L107_rf:
-kms1004_rf:        vcomiss %xmm0, %xmm5
-kms1005_rf:        leaq    1(%r9), %rax
-kms1006_rf:        vminss  %xmm5, %xmm0, %xmm5
-kms1007_rf:        cmova   %r10d, %r13d
-kms1008_rf:        cmpq    %r11, %r9
-kms1009_rf:        je      .L106_rf
-kms1010_rf:        movq    %rax, %r9
-kms1011_rf:        testl   %ebx, %ebx
-kms1012_rf:        movq    (%r15,%r9,8), %rdi
-kms1013_rf:        movl    %r9d, %r10d
-kms1014_rf:        jg      .L175_rf
-.L145_rf:
-kms1015_rf:        vmovaps %xmm4, %xmm0
-kms1016_rf:        jmp     .L107_rf
-.L106_rf:
-kms1017_rf:        movq    176(%rsp), %rax
-kms1018_rf:        movq    184(%rsp), %rdi
-kms1019_rf:        cmpl    %r13d, (%rax,%rdi,4)
-kms1020_rf:        je      .L116_rf
-kms1021_rf:        vaddss  .LC2_rf(%rip), %xmm1, %xmm1
-.L116_rf:
-kms1022_rf:        movq    176(%rsp), %rax
-kms1023_rf:        movq    184(%rsp), %rdi
-kms1024_rf:        movl    %r13d, (%rax,%rdi,4)
-kms1025_rf:        movq    16(%rbp), %rdi
-kms1026_rf:        movslq  %r13d, %rax
-kms1027_rf:        incl    (%rdi,%rax,4)
-kms1028_rf:        testl   %ebx, %ebx
-kms1029_rf:        jle     .L122_rf
-kms1030_rf:        movq    24(%rbp), %rdi
-kms1031_rf:        movq    (%rdi,%rax,8), %rcx
-kms1032_rf:        leaq    31(%r8), %rax
-kms1033_rf:        subq    %rcx, %rax
-kms1034_rf:        cmpq    $62, %rax
-kms1035_rf:        jbe     .L119_rf
-kms1036_rf:        cmpl    $6, 204(%rsp)
-kms1037_rf:        jbe     .L119_rf
-kms1038_rf:        cmpl    $1, 200(%rsp)
-kms1039_rf:        jbe     .L149_rf
-kms1040_rf:        movq    %r8, %rdi
-kms1041_rf:        movq    %rcx, %rsi
-kms1042_rf:        xorl    %eax, %eax
+kms305_rf:        movq    56(%rsp), %rax
+kms306_rf:        movq    (%rax,%r14,8), %r9
+kms307_rf:        movl    28(%rsp), %eax
+kms308_rf:        testl   %eax, %eax
+kms309_rf:        jle     .L43_rf
+kms310_rf:        movaps  %xmm6, %xmm3
+kms311_rf:        xorl    %edi, %edi
+kms312_rf:        testl   %ebp, %ebp
+kms313_rf:        movq    %r14, 16(%rsp)
+kms314_rf:        movq    0(%r13,%rdi,8), %r8
+kms315_rf:        movl    %edi, %r10d
+kms316_rf:        movl    24(%rsp), %r14d
+kms317_rf:        jle     .L76_rf
 .L121_rf:
-kms1043_rf:        vmovups (%rsi), %ymm0
-kms1044_rf:        prefetcht0      640(%rdi)
-kms1045_rf:        movl    %eax, %edx
-kms1046_rf:        addq    $64, %rdi
-kms1047_rf:        addl    $2, %eax
-kms1048_rf:        prefetcht0      640(%rsi)
-kms1049_rf:        vaddps  -64(%rdi), %ymm0, %ymm0
-kms1050_rf:        addq    $64, %rsi
-kms1051_rf:        vmovups %ymm0, -64(%rsi)
-kms1052_rf:        vmovups -32(%rdi), %ymm0
-kms1053_rf:        vaddps  -32(%rsi), %ymm0, %ymm0
-kms1054_rf:        vmovups %ymm0, -32(%rsi)
-kms1055_rf:        cmpl    196(%rsp), %edx
-kms1056_rf:        movq    %rsi, %r9
-kms1057_rf:        jne     .L121_rf
-kms1058_rf:        movl    168(%rsp), %edx
+kms318_rf:        cmpl    $2, %r14d
+kms319_rf:        jbe     .L77_rf
+kms320_rf:        cmpl    $4, %ebx
+kms321_rf:        movq    %r8, %rdx
+kms322_rf:        movq    %r9, %rcx
+kms323_rf:        jbe     .L78_rf
+kms324_rf:        movaps  %xmm4, %xmm1
+kms325_rf:        xorl    %eax, %eax
+.L47_rf:
+kms326_rf:        movlps  (%rcx), %xmm8
+kms327_rf:        movlps  (%rdx), %xmm0
+kms328_rf:        movl    %eax, %esi
+kms329_rf:        prefetcht0      256(%rcx)
+kms330_rf:        addl    $4, %eax
+kms331_rf:        addq    $64, %rcx
+kms332_rf:        movhps  8(%rdx), %xmm0
+kms333_rf:        movhps  -56(%rcx), %xmm8
+kms334_rf:        prefetcht0      256(%rdx)
+kms335_rf:        addq    $64, %rdx
+kms336_rf:        subps   %xmm0, %xmm8
+kms337_rf:        mulps   %xmm8, %xmm8
+kms338_rf:        addss   %xmm8, %xmm1
+kms339_rf:        movaps  %xmm8, %xmm2
+kms340_rf:        shufps  $85, %xmm8, %xmm2
+kms341_rf:        addss   %xmm2, %xmm1
+kms342_rf:        movaps  %xmm8, %xmm2
+kms343_rf:        unpckhps        %xmm8, %xmm2
+kms344_rf:        shufps  $255, %xmm8, %xmm8
+kms345_rf:        movaps  %xmm2, %xmm0
+kms346_rf:        movlps  -48(%rdx), %xmm2
+kms347_rf:        addss   %xmm1, %xmm0
+kms348_rf:        movlps  -48(%rcx), %xmm1
+kms349_rf:        movhps  -40(%rdx), %xmm2
+kms350_rf:        movhps  -40(%rcx), %xmm1
+kms351_rf:        subps   %xmm2, %xmm1
+kms352_rf:        addss   %xmm8, %xmm0
+kms353_rf:        mulps   %xmm1, %xmm1
+kms354_rf:        addss   %xmm1, %xmm0
+kms355_rf:        movaps  %xmm1, %xmm2
+kms356_rf:        shufps  $85, %xmm1, %xmm2
+kms357_rf:        addss   %xmm2, %xmm0
+kms358_rf:        movaps  %xmm1, %xmm2
+kms359_rf:        unpckhps        %xmm1, %xmm2
+kms360_rf:        shufps  $255, %xmm1, %xmm1
+kms361_rf:        addss   %xmm2, %xmm0
+kms362_rf:        movlps  -32(%rdx), %xmm2
+kms363_rf:        movhps  -24(%rdx), %xmm2
+kms364_rf:        addss   %xmm1, %xmm0
+kms365_rf:        movlps  -32(%rcx), %xmm1
+kms366_rf:        movhps  -24(%rcx), %xmm1
+kms367_rf:        subps   %xmm2, %xmm1
+kms368_rf:        mulps   %xmm1, %xmm1
+kms369_rf:        addss   %xmm1, %xmm0
+kms370_rf:        movaps  %xmm1, %xmm2
+kms371_rf:        shufps  $85, %xmm1, %xmm2
+kms372_rf:        addss   %xmm2, %xmm0
+kms373_rf:        movaps  %xmm1, %xmm2
+kms374_rf:        unpckhps        %xmm1, %xmm2
+kms375_rf:        shufps  $255, %xmm1, %xmm1
+kms376_rf:        addss   %xmm2, %xmm0
+kms377_rf:        movlps  -16(%rcx), %xmm2
+kms378_rf:        movhps  -8(%rcx), %xmm2
+kms379_rf:        addss   %xmm1, %xmm0
+kms380_rf:        movlps  -16(%rdx), %xmm1
+kms381_rf:        movhps  -8(%rdx), %xmm1
+kms382_rf:        cmpl    (%rsp), %esi
+kms383_rf:        subps   %xmm1, %xmm2
+kms384_rf:        mulps   %xmm2, %xmm2
+kms385_rf:        addss   %xmm2, %xmm0
+kms386_rf:        movaps  %xmm2, %xmm1
+kms387_rf:        shufps  $85, %xmm2, %xmm1
+kms388_rf:        addss   %xmm1, %xmm0
+kms389_rf:        movaps  %xmm2, %xmm1
+kms390_rf:        unpckhps        %xmm2, %xmm1
+kms391_rf:        shufps  $255, %xmm2, %xmm2
+kms392_rf:        addss   %xmm1, %xmm0
+kms393_rf:        movaps  %xmm2, %xmm1
+kms394_rf:        addss   %xmm0, %xmm1
+kms395_rf:        jne     .L47_rf
+kms396_rf:        movl    48(%rsp), %esi
+.L46_rf:
+kms397_rf:        xorl    %eax, %eax
+.L48_rf:
+kms398_rf:        movlps  (%rcx,%rax), %xmm0
+kms399_rf:        movlps  (%rdx,%rax), %xmm2
+kms400_rf:        incl    %esi
+kms401_rf:        movhps  8(%rdx,%rax), %xmm2
+kms402_rf:        movhps  8(%rcx,%rax), %xmm0
+kms403_rf:        addq    $16, %rax
+kms404_rf:        cmpl    %esi, %ebx
+kms405_rf:        subps   %xmm2, %xmm0
+kms406_rf:        mulps   %xmm0, %xmm0
+kms407_rf:        addss   %xmm0, %xmm1
+kms408_rf:        movaps  %xmm0, %xmm2
+kms409_rf:        shufps  $85, %xmm0, %xmm2
+kms410_rf:        addss   %xmm2, %xmm1
+kms411_rf:        movaps  %xmm0, %xmm2
+kms412_rf:        unpckhps        %xmm0, %xmm2
+kms413_rf:        shufps  $255, %xmm0, %xmm0
+kms414_rf:        addss   %xmm2, %xmm1
+kms415_rf:        addss   %xmm0, %xmm1
+kms416_rf:        ja      .L48_rf
+kms417_rf:        cmpl    %ebp, %r15d
+kms418_rf:        movl    %r15d, %eax
+kms419_rf:        je      .L44_rf
+.L45_rf:
+kms420_rf:        movslq  %eax, %rcx
+kms421_rf:        movss   (%r9,%rcx,4), %xmm0
+kms422_rf:        leaq    0(,%rcx,4), %rdx
+kms423_rf:        subss   (%r8,%rcx,4), %xmm0
+kms424_rf:        leal    1(%rax), %ecx
+kms425_rf:        cmpl    %ecx, %ebp
+kms426_rf:        mulss   %xmm0, %xmm0
+kms427_rf:        addss   %xmm0, %xmm1
+kms428_rf:        jle     .L44_rf
+kms429_rf:        movss   4(%r9,%rdx), %xmm0
+kms430_rf:        addl    $2, %eax
+kms431_rf:        subss   4(%r8,%rdx), %xmm0
+kms432_rf:        cmpl    %eax, %ebp
+kms433_rf:        mulss   %xmm0, %xmm0
+kms434_rf:        addss   %xmm0, %xmm1
+kms435_rf:        jle     .L44_rf
+kms436_rf:        movss   8(%r9,%rdx), %xmm0
+kms437_rf:        subss   8(%r8,%rdx), %xmm0
+kms438_rf:        mulss   %xmm0, %xmm0
+kms439_rf:        addss   %xmm0, %xmm1
+.L44_rf:
+kms440_rf:        comiss  %xmm1, %xmm3
+kms441_rf:        minss   %xmm3, %xmm1
+kms442_rf:        leaq    1(%rdi), %rax
+kms443_rf:        cmova   %r10d, %r12d
+kms444_rf:        cmpq    %rdi, %r11
+kms445_rf:        movaps  %xmm1, %xmm3
+kms446_rf:        je      .L120_rf
+kms447_rf:        movq    %rax, %rdi
+kms448_rf:        testl   %ebp, %ebp
+kms449_rf:        movq    0(%r13,%rdi,8), %r8
+kms450_rf:        movl    %edi, %r10d
+kms451_rf:        jg      .L121_rf
+.L76_rf:
+kms452_rf:        movaps  %xmm4, %xmm1
+kms453_rf:        jmp     .L44_rf
+.L19_rf:
+kms454_rf:        cmpl    $16, %ebp
+kms455_rf:        jle     .L74_rf
+kms456_rf:        leaq    100(%rdi), %rdx
+kms457_rf:        leaq    100(%r8), %rax
+kms458_rf:        xorl    %ecx, %ecx
+.L28_rf:
+kms459_rf:        movss   -100(%rdx), %xmm0
+kms460_rf:        prefetcht0      (%rdx)
+kms461_rf:        prefetcht0      (%rax)
+kms462_rf:        movss   %xmm0, -100(%rax)
+kms463_rf:        addl    $16, %ecx
+kms464_rf:        addq    $64, %rdx
+kms465_rf:        addq    $64, %rax
+kms466_rf:        movss   -160(%rdx), %xmm0
+kms467_rf:        movss   %xmm0, -160(%rax)
+kms468_rf:        movss   -156(%rdx), %xmm0
+kms469_rf:        movss   %xmm0, -156(%rax)
+kms470_rf:        movss   -152(%rdx), %xmm0
+kms471_rf:        movss   %xmm0, -152(%rax)
+kms472_rf:        movss   -148(%rdx), %xmm0
+kms473_rf:        movss   %xmm0, -148(%rax)
+kms474_rf:        movss   -144(%rdx), %xmm0
+kms475_rf:        movss   %xmm0, -144(%rax)
+kms476_rf:        movss   -140(%rdx), %xmm0
+kms477_rf:        movss   %xmm0, -140(%rax)
+kms478_rf:        movss   -136(%rdx), %xmm0
+kms479_rf:        movss   %xmm0, -136(%rax)
+kms480_rf:        movss   -132(%rdx), %xmm0
+kms481_rf:        movss   %xmm0, -132(%rax)
+kms482_rf:        movss   -128(%rdx), %xmm0
+kms483_rf:        movss   %xmm0, -128(%rax)
+kms484_rf:        movss   -124(%rdx), %xmm0
+kms485_rf:        movss   %xmm0, -124(%rax)
+kms486_rf:        movss   -120(%rdx), %xmm0
+kms487_rf:        movss   %xmm0, -120(%rax)
+kms488_rf:        movss   -116(%rdx), %xmm0
+kms489_rf:        movss   %xmm0, -116(%rax)
+kms490_rf:        movss   -112(%rdx), %xmm0
+kms491_rf:        movss   %xmm0, -112(%rax)
+kms492_rf:        movss   -108(%rdx), %xmm0
+kms493_rf:        movss   %xmm0, -108(%rax)
+kms494_rf:        movss   -104(%rdx), %xmm0
+kms495_rf:        movss   %xmm0, -104(%rax)
+kms496_rf:        cmpl    80(%rsp), %ecx
+kms497_rf:        jne     .L28_rf
+.L27_rf:
+kms498_rf:        movslq  %ecx, %rcx
+.L30_rf:
+kms499_rf:        movss   (%rdi,%rcx,4), %xmm0
+kms500_rf:        movss   %xmm0, (%r8,%rcx,4)
+kms501_rf:        incq    %rcx
+kms502_rf:        cmpl    %ecx, %ebp
+kms503_rf:        jg      .L30_rf
+kms504_rf:        jmp     .L29_rf
 .L120_rf:
-kms1059_rf:        xorl    %eax, %eax
-.L123_rf:
-kms1060_rf:        vmovups (%rdi,%rax), %ymm0
-kms1061_rf:        incl    %edx
-kms1062_rf:        vaddps  (%rsi,%rax), %ymm0, %ymm0
-kms1063_rf:        vmovups %ymm0, (%r9,%rax)
-kms1064_rf:        addq    $32, %rax
-kms1065_rf:        cmpl    %edx, %r12d
-kms1066_rf:        ja      .L123_rf
-kms1067_rf:        cmpl    %r14d, %ebx
-kms1068_rf:        je      .L122_rf
-kms1069_rf:        movq    152(%rsp), %rdi
-kms1070_rf:        cmpl    148(%rsp), %ebx
-kms1071_rf:        leaq    (%rcx,%rdi), %rax
-kms1072_rf:        vmovss  (%rax), %xmm0
-kms1073_rf:        vaddss  (%r8,%rdi), %xmm0, %xmm0
-kms1074_rf:        vmovss  %xmm0, (%rax)
-kms1075_rf:        jle     .L122_rf
-kms1076_rf:        movq    136(%rsp), %rsi
-kms1077_rf:        cmpl    144(%rsp), %ebx
-kms1078_rf:        leaq    (%rcx,%rsi), %rax
-kms1079_rf:        vmovss  (%rax), %xmm0
-kms1080_rf:        vaddss  (%r8,%rsi), %xmm0, %xmm0
-kms1081_rf:        vmovss  %xmm0, (%rax)
-kms1082_rf:        jle     .L122_rf
-kms1083_rf:        movq    128(%rsp), %rsi
-kms1084_rf:        cmpl    124(%rsp), %ebx
-kms1085_rf:        leaq    (%rcx,%rsi), %rax
-kms1086_rf:        vmovss  (%rax), %xmm0
-kms1087_rf:        vaddss  (%r8,%rsi), %xmm0, %xmm0
-kms1088_rf:        vmovss  %xmm0, (%rax)
-kms1089_rf:        jle     .L122_rf
-kms1090_rf:        movq    112(%rsp), %rdi
-kms1091_rf:        cmpl    120(%rsp), %ebx
-kms1092_rf:        leaq    (%rcx,%rdi), %rax
-kms1093_rf:        vmovss  (%rax), %xmm0
-kms1094_rf:        vaddss  (%r8,%rdi), %xmm0, %xmm0
-kms1095_rf:        vmovss  %xmm0, (%rax)
-kms1096_rf:        jle     .L122_rf
-kms1097_rf:        movq    104(%rsp), %rsi
-kms1098_rf:        cmpl    100(%rsp), %ebx
-kms1099_rf:        leaq    (%rcx,%rsi), %rax
-kms1100_rf:        vmovss  (%rax), %xmm0
-kms1101_rf:        vaddss  (%r8,%rsi), %xmm0, %xmm0
-kms1102_rf:        vmovss  %xmm0, (%rax)
-kms1103_rf:        jle     .L122_rf
-kms1104_rf:        movq    80(%rsp), %rdi
-kms1105_rf:        cmpl    96(%rsp), %ebx
-kms1106_rf:        leaq    (%rcx,%rdi), %rax
-kms1107_rf:        vmovss  (%rax), %xmm0
-kms1108_rf:        vaddss  (%r8,%rdi), %xmm0, %xmm0
-kms1109_rf:        vmovss  %xmm0, (%rax)
-kms1110_rf:        jle     .L122_rf
-kms1111_rf:        movq    88(%rsp), %rax
-kms1112_rf:        addq    %rax, %rcx
-kms1113_rf:        vmovss  (%rcx), %xmm0
-kms1114_rf:        vaddss  (%r8,%rax), %xmm0, %xmm0
-kms1115_rf:        vmovss  %xmm0, (%rcx)
-.L122_rf:
-kms1116_rf:        incq    184(%rsp)
-kms1117_rf:        movq    184(%rsp), %rax
-kms1118_rf:        cmpl    %eax, 192(%rsp)
-kms1119_rf:        jg      .L118_rf
-kms1120_rf:        movl    192(%rsp), %esi
-kms1121_rf:        cmpl    %esi, 76(%rsp)
-kms1122_rf:        jle     .L129_rf
-.L177_rf:
-kms1123_rf:        nop
-kms1124_rf:        nop
-kms1125_rf:        jmp     .L176
-.L130_rf:
-kms1126_rf:        movslq  192(%rsp), %rax
-kms1127_rf:        jmp     .L104_rf
-.L146_rf:
-kms1128_rf:        vmovaps %xmm4, %xmm0
-kms1129_rf:        xorl    %edx, %edx
-kms1130_rf:        jmp     .L108_rf
-.L147_rf:
-kms1131_rf:        vmovaps %xmm4, %xmm0
-kms1132_rf:        xorl    %edx, %edx
-kms1133_rf:        jmp     .L109_rf
+kms505_rf:        movq    16(%rsp), %r14
+.L43_rf:
+kms506_rf:        movq    8(%rsp), %rax
+kms507_rf:        cmpl    %r12d, (%rax,%r14,4)
+kms508_rf:        je      .L53_rf
+kms509_rf:        addss   %xmm7, %xmm5
+.L53_rf:
+kms510_rf:        movq    8(%rsp), %rax
+kms511_rf:        movq    40(%rsp), %rdi
+kms512_rf:        movl    %r12d, (%rax,%r14,4)
+kms513_rf:        movslq  %r12d, %rax
+kms514_rf:        incl    (%rdi,%rax,4)
+kms515_rf:        testl   %ebp, %ebp
+kms516_rf:        jle     .L60_rf
+kms517_rf:        cmpl    $2, 24(%rsp)
+kms518_rf:        movq    32(%rsp), %rdi
+kms519_rf:        movq    (%rdi,%rax,8), %r8
+kms520_rf:        jbe     .L80_rf
+kms521_rf:        cmpl    $4, %ebx
+kms522_rf:        jbe     .L81_rf
+kms523_rf:        movq    %r9, %rcx
+kms524_rf:        movq    %r8, %rdx
+kms525_rf:        xorl    %esi, %esi
+.L59_rf:
+kms526_rf:        movlps  (%rcx), %xmm0
+kms527_rf:        movlps  (%rdx), %xmm1
+kms528_rf:        prefetcht0      320(%rcx)
+kms529_rf:        movl    %esi, %eax
+kms530_rf:        addq    $64, %rcx
+kms531_rf:        addl    $4, %esi
+kms532_rf:        movhps  8(%rdx), %xmm1
+kms533_rf:        movhps  -56(%rcx), %xmm0
+kms534_rf:        prefetcht0      320(%rdx)
+kms535_rf:        addq    $64, %rdx
+kms536_rf:        addps   %xmm1, %xmm0
+kms537_rf:        movlps  -48(%rcx), %xmm1
+kms538_rf:        movhps  -40(%rcx), %xmm1
+kms539_rf:        movlps  %xmm0, -64(%rdx)
+kms540_rf:        movhps  %xmm0, -56(%rdx)
+kms541_rf:        movlps  -48(%rdx), %xmm0
+kms542_rf:        movhps  -40(%rdx), %xmm0
+kms543_rf:        addps   %xmm1, %xmm0
+kms544_rf:        movlps  -32(%rcx), %xmm1
+kms545_rf:        movhps  -24(%rcx), %xmm1
+kms546_rf:        movlps  %xmm0, -48(%rdx)
+kms547_rf:        movhps  %xmm0, -40(%rdx)
+kms548_rf:        movlps  -32(%rdx), %xmm0
+kms549_rf:        movhps  -24(%rdx), %xmm0
+kms550_rf:        addps   %xmm1, %xmm0
+kms551_rf:        movlps  -16(%rcx), %xmm1
+kms552_rf:        movhps  -8(%rcx), %xmm1
+kms553_rf:        movlps  %xmm0, -32(%rdx)
+kms554_rf:        movhps  %xmm0, -24(%rdx)
+kms555_rf:        movlps  -16(%rdx), %xmm0
+kms556_rf:        movhps  -8(%rdx), %xmm0
+kms557_rf:        addps   %xmm1, %xmm0
+kms558_rf:        movlps  %xmm0, -16(%rdx)
+kms559_rf:        movhps  %xmm0, -8(%rdx)
+kms560_rf:        cmpl    (%rsp), %eax
+kms561_rf:        movq    %rdx, %rdi
+kms562_rf:        jne     .L59_rf
+kms563_rf:        movl    48(%rsp), %esi
+.L58_rf:
+kms564_rf:        xorl    %eax, %eax
+.L61_rf:
+kms565_rf:        movlps  (%rdx,%rax), %xmm0
+kms566_rf:        movlps  (%rcx,%rax), %xmm1
+kms567_rf:        incl    %esi
+kms568_rf:        movhps  8(%rdx,%rax), %xmm0
+kms569_rf:        movhps  8(%rcx,%rax), %xmm1
+kms570_rf:        addps   %xmm1, %xmm0
+kms571_rf:        movlps  %xmm0, (%rdi,%rax)
+kms572_rf:        movhps  %xmm0, 8(%rdi,%rax)
+kms573_rf:        addq    $16, %rax
+kms574_rf:        cmpl    %esi, %ebx
+kms575_rf:        ja      .L61_rf
+kms576_rf:        cmpl    %ebp, %r15d
+kms577_rf:        movl    %r15d, %eax
+kms578_rf:        je      .L60_rf
+.L57_rf:
+kms579_rf:        movslq  %eax, %rsi
+kms580_rf:        leaq    0(,%rsi,4), %rdx
+kms581_rf:        leaq    (%r8,%rdx), %rcx
+kms582_rf:        movss   (%rcx), %xmm0
+kms583_rf:        addss   (%r9,%rsi,4), %xmm0
+kms584_rf:        movss   %xmm0, (%rcx)
+kms585_rf:        leal    1(%rax), %ecx
+kms586_rf:        cmpl    %ecx, %ebp
+kms587_rf:        jle     .L60_rf
+kms588_rf:        leaq    4(%r8,%rdx), %rcx
+kms589_rf:        addl    $2, %eax
+kms590_rf:        cmpl    %eax, %ebp
+kms591_rf:        movss   (%rcx), %xmm0
+kms592_rf:        addss   4(%r9,%rdx), %xmm0
+kms593_rf:        movss   %xmm0, (%rcx)
+kms594_rf:        jle     .L60_rf
+kms595_rf:        leaq    8(%r8,%rdx), %rax
+kms596_rf:        movss   (%rax), %xmm0
+kms597_rf:        addss   8(%r9,%rdx), %xmm0
+kms598_rf:        movss   %xmm0, (%rax)
+.L60_rf:
+kms599_rf:        cmpq    %r14, 64(%rsp)
+kms600_rf:        leaq    1(%r14), %rax
+kms601_rf:        je      .L55_rf
+kms602_rf:        movq    %rax, %r14
+kms603_rf:        jmp     .L56_rf
+.L77_rf:
+kms604_rf:        movaps  %xmm4, %xmm1
+kms605_rf:        xorl    %eax, %eax
+kms606_rf:        jmp     .L45_rf
+.L78_rf:
+kms607_rf:        movaps  %xmm4, %xmm1
+kms608_rf:        xorl    %esi, %esi
+kms609_rf:        jmp     .L46_rf
 .L119_rf:
-kms1134_rf:        cmpl    $16, %ebx
-kms1135_rf:        jle     .L150_rf
-kms1136_rf:        leaq    80(%rcx), %rax
-kms1137_rf:        leaq    80(%r8), %rdx
-kms1138_rf:        xorl    %esi, %esi
-.L126_rf:
-kms1139_rf:        vmovss  -80(%rax), %xmm0
-kms1140_rf:        prefetcht0      (%rdx)
-kms1141_rf:        prefetcht0      (%rax)
-kms1142_rf:        vaddss  -80(%rdx), %xmm0, %xmm0
-kms1143_rf:        addl    $16, %esi
-kms1144_rf:        addq    $64, %rax
-kms1145_rf:        addq    $64, %rdx
-kms1146_rf:        vmovss  %xmm0, -144(%rax)
-kms1147_rf:        vmovss  -140(%rax), %xmm0
-kms1148_rf:        vaddss  -140(%rdx), %xmm0, %xmm0
-kms1149_rf:        vmovss  %xmm0, -140(%rax)
-kms1150_rf:        vmovss  -136(%rax), %xmm0
-kms1151_rf:        vaddss  -136(%rdx), %xmm0, %xmm0
-kms1152_rf:        vmovss  %xmm0, -136(%rax)
-kms1153_rf:        vmovss  -132(%rax), %xmm0
-kms1154_rf:        vaddss  -132(%rdx), %xmm0, %xmm0
-kms1155_rf:        vmovss  %xmm0, -132(%rax)
-kms1156_rf:        vmovss  -128(%rax), %xmm0
-kms1157_rf:        vaddss  -128(%rdx), %xmm0, %xmm0
-kms1158_rf:        vmovss  %xmm0, -128(%rax)
-kms1159_rf:        vmovss  -124(%rax), %xmm0
-kms1160_rf:        vaddss  -124(%rdx), %xmm0, %xmm0
-kms1161_rf:        vmovss  %xmm0, -124(%rax)
-kms1162_rf:        vmovss  -120(%rax), %xmm0
-kms1163_rf:        vaddss  -120(%rdx), %xmm0, %xmm0
-kms1164_rf:        vmovss  %xmm0, -120(%rax)
-kms1165_rf:        vmovss  -116(%rax), %xmm0
-kms1166_rf:        vaddss  -116(%rdx), %xmm0, %xmm0
-kms1167_rf:        vmovss  %xmm0, -116(%rax)
-kms1168_rf:        vmovss  -112(%rax), %xmm0
-kms1169_rf:        vaddss  -112(%rdx), %xmm0, %xmm0
-kms1170_rf:        vmovss  %xmm0, -112(%rax)
-kms1171_rf:        vmovss  -108(%rax), %xmm0
-kms1172_rf:        vaddss  -108(%rdx), %xmm0, %xmm0
-kms1173_rf:        vmovss  %xmm0, -108(%rax)
-kms1174_rf:        vmovss  -104(%rax), %xmm0
-kms1175_rf:        vaddss  -104(%rdx), %xmm0, %xmm0
-kms1176_rf:        vmovss  %xmm0, -104(%rax)
-kms1177_rf:        vmovss  -100(%rax), %xmm0
-kms1178_rf:        vaddss  -100(%rdx), %xmm0, %xmm0
-kms1179_rf:        vmovss  %xmm0, -100(%rax)
-kms1180_rf:        vmovss  -96(%rax), %xmm0
-kms1181_rf:        vaddss  -96(%rdx), %xmm0, %xmm0
-kms1182_rf:        vmovss  %xmm0, -96(%rax)
-kms1183_rf:        vmovss  -92(%rax), %xmm0
-kms1184_rf:        vaddss  -92(%rdx), %xmm0, %xmm0
-kms1185_rf:        vmovss  %xmm0, -92(%rax)
-kms1186_rf:        vmovss  -88(%rax), %xmm0
-kms1187_rf:        vaddss  -88(%rdx), %xmm0, %xmm0
-kms1188_rf:        vmovss  %xmm0, -88(%rax)
-kms1189_rf:        vmovss  -84(%rax), %xmm0
-kms1190_rf:        vaddss  -84(%rdx), %xmm0, %xmm0
-kms1191_rf:        vmovss  %xmm0, -84(%rax)
-kms1192_rf:        cmpl    56(%rsp), %esi
-kms1193_rf:        jne     .L126_rf
-.L125_rf:
-kms1194_rf:        movslq  %esi, %rax
-.L128_rf:
-kms1195_rf:        vmovss  (%rcx,%rax,4), %xmm0
-kms1196_rf:        vaddss  (%r8,%rax,4), %xmm0, %xmm0
-kms1197_rf:        vmovss  %xmm0, (%rcx,%rax,4)
-kms1198_rf:        incq    %rax
-kms1199_rf:        cmpl    %eax, %ebx
-kms1200_rf:        jg      .L128_rf
-kms1201_rf:        jmp     .L122_rf
-.L149_rf:
-kms1202_rf:        movq    %rcx, %r9
-kms1203_rf:        movq    %r8, %rdi
-kms1204_rf:        movq    %rcx, %rsi
-kms1205_rf:        xorl    %edx, %edx
-kms1206_rf:        jmp     .L120_rf
-.L150_rf:
-kms1207_rf:        xorl    %esi, %esi
-kms1208_rf:        jmp     .L125_rf
-.L144_rf:
-kms1209_rf:        movl    %eax, 192(%rsp)
-kms1210_rf:        movl    192(%rsp), %esi
-kms1211_rf:        cmpl    %esi, 76(%rsp)
-kms1212_rf:        jg      .L177_rf
+kms610_rf:        movaps  %xmm4, %xmm5
+.L55_rf:
+kms611_rf:        movl    28(%rsp), %eax
+kms612_rf:        xorl    %r14d, %r14d
+kms613_rf:        leal    -1(%rax), %edi
+kms614_rf:        testl   %eax, %eax
+kms615_rf:        movq    %rdi, %rsi
+kms616_rf:        leal    -17(%rbp), %edi
+kms617_rf:        movl    %edi, 64(%rsp)
+kms618_rf:        jle     .L64_rf
+kms619_rf:        movl    %r15d, 104(%rsp)
+kms620_rf:        movl    %ebx, 108(%rsp)
+kms621_rf:        movq    40(%rsp), %r15
+kms622_rf:        movq    32(%rsp), %rbx
+kms623_rf:        movl    %r12d, 100(%rsp)
+kms624_rf:        movq    %rsi, %r12
+.L65_rf:
+kms625_rf:        testl   %ebp, %ebp
+kms626_rf:        jle     .L70_rf
+kms627_rf:        movl    (%r15,%r14,4), %edx
+kms628_rf:        movq    (%rbx,%r14,8), %rdi
+kms629_rf:        testl   %edx, %edx
+kms630_rf:        jle     .L122_rf
+kms631_rf:        cmpl    $16, %ebp
+kms632_rf:        jle     .L82_rf
+kms633_rf:        movl    64(%rsp), %r10d
+kms634_rf:        cvtsi2ssl       %edx, %xmm1
+kms635_rf:        movq    0(%r13,%r14,8), %rdx
+kms636_rf:        leaq    40(%rdi), %rsi
+kms637_rf:        movl    $40, %r9d
+kms638_rf:        xorl    %eax, %eax
+kms639_rf:        andl    $-16, %r10d
+.L69_rf:
+kms640_rf:        movss   -40(%rsi), %xmm0
+kms641_rf:        prefetcht0      (%rsi)
+kms642_rf:        movl    $0x00000000, -40(%rsi)
+kms643_rf:        divss   %xmm1, %xmm0
+kms644_rf:        movl    %eax, %ecx
+kms645_rf:        addq    $64, %rsi
+kms646_rf:        addl    $16, %eax
+kms647_rf:        movss   %xmm0, -40(%rdx,%r9)
+kms648_rf:        movss   -100(%rsi), %xmm0
+kms649_rf:        movl    $0x00000000, -100(%rsi)
+kms650_rf:        divss   %xmm1, %xmm0
+kms651_rf:        movss   %xmm0, -36(%rdx,%r9)
+kms652_rf:        movss   -96(%rsi), %xmm0
+kms653_rf:        movl    $0x00000000, -96(%rsi)
+kms654_rf:        divss   %xmm1, %xmm0
+kms655_rf:        movss   %xmm0, -32(%rdx,%r9)
+kms656_rf:        movss   -92(%rsi), %xmm0
+kms657_rf:        movl    $0x00000000, -92(%rsi)
+kms658_rf:        divss   %xmm1, %xmm0
+kms659_rf:        movss   %xmm0, -28(%rdx,%r9)
+kms660_rf:        movss   -88(%rsi), %xmm0
+kms661_rf:        movl    $0x00000000, -88(%rsi)
+kms662_rf:        divss   %xmm1, %xmm0
+kms663_rf:        movss   %xmm0, -24(%rdx,%r9)
+kms664_rf:        movss   -84(%rsi), %xmm0
+kms665_rf:        movl    $0x00000000, -84(%rsi)
+kms666_rf:        divss   %xmm1, %xmm0
+kms667_rf:        movss   %xmm0, -20(%rdx,%r9)
+kms668_rf:        movss   -80(%rsi), %xmm0
+kms669_rf:        movl    $0x00000000, -80(%rsi)
+kms670_rf:        divss   %xmm1, %xmm0
+kms671_rf:        movss   %xmm0, -16(%rdx,%r9)
+kms672_rf:        movss   -76(%rsi), %xmm0
+kms673_rf:        movl    $0x00000000, -76(%rsi)
+kms674_rf:        divss   %xmm1, %xmm0
+kms675_rf:        movss   %xmm0, -12(%rdx,%r9)
+kms676_rf:        movss   -72(%rsi), %xmm0
+kms677_rf:        movl    $0x00000000, -72(%rsi)
+kms678_rf:        divss   %xmm1, %xmm0
+kms679_rf:        movss   %xmm0, -8(%rdx,%r9)
+kms680_rf:        movss   -68(%rsi), %xmm0
+kms681_rf:        movl    $0x00000000, -68(%rsi)
+kms682_rf:        divss   %xmm1, %xmm0
+kms683_rf:        movss   %xmm0, -4(%rdx,%r9)
+kms684_rf:        movss   -64(%rsi), %xmm0
+kms685_rf:        divss   %xmm1, %xmm0
+kms686_rf:        movss   %xmm0, (%rdx,%r9)
+kms687_rf:        movl    $0x00000000, -64(%rsi)
+kms688_rf:        movss   -60(%rsi), %xmm0
+kms689_rf:        movl    $0x00000000, -60(%rsi)
+kms690_rf:        divss   %xmm1, %xmm0
+kms691_rf:        movss   %xmm0, 4(%rdx,%r9)
+kms692_rf:        movss   -56(%rsi), %xmm0
+kms693_rf:        movl    $0x00000000, -56(%rsi)
+kms694_rf:        divss   %xmm1, %xmm0
+kms695_rf:        movss   %xmm0, 8(%rdx,%r9)
+kms696_rf:        movss   -52(%rsi), %xmm0
+kms697_rf:        movl    $0x00000000, -52(%rsi)
+kms698_rf:        divss   %xmm1, %xmm0
+kms699_rf:        movss   %xmm0, 12(%rdx,%r9)
+kms700_rf:        movss   -48(%rsi), %xmm0
+kms701_rf:        movl    $0x00000000, -48(%rsi)
+kms702_rf:        divss   %xmm1, %xmm0
+kms703_rf:        movss   %xmm0, 16(%rdx,%r9)
+kms704_rf:        movss   -44(%rsi), %xmm0
+kms705_rf:        movl    $0x00000000, -44(%rsi)
+kms706_rf:        divss   %xmm1, %xmm0
+kms707_rf:        movss   %xmm0, 20(%rdx,%r9)
+kms708_rf:        addq    $64, %r9
+kms709_rf:        cmpl    %ecx, %r10d
+kms710_rf:        jne     .L69_rf
+.L68_rf:
+kms711_rf:        cltq
+.L71_rf:
+kms712_rf:        movss   (%rdi,%rax,4), %xmm0
+kms713_rf:        movl    $0x00000000, (%rdi,%rax,4)
+kms714_rf:        divss   %xmm1, %xmm0
+kms715_rf:        movss   %xmm0, (%rdx,%rax,4)
+kms716_rf:        incq    %rax
+kms717_rf:        cmpl    %eax, %ebp
+kms718_rf:        jg      .L71_rf
+.L70_rf:
+kms719_rf:        cmpq    %r14, %r12
+kms720_rf:        leaq    1(%r14), %rax
+kms721_rf:        movl    $0, (%r15,%r14,4)
+kms722_rf:        je      .L115_rf
+kms723_rf:        movq    %rax, %r14
+kms724_rf:        jmp     .L65_rf
+.L122_rf:
+kms725_rf:        movq    80(%rsp), %rdx
+kms726_rf:        xorl    %esi, %esi
+kms727_rf:        movss   %xmm5, 16(%rsp)
+kms728_rf:        call    memset
+kms729_rf:        xorps   %xmm4, %xmm4
+kms730_rf:        movss   16(%rsp), %xmm5
+kms731_rf:        jmp     .L70_rf
+.L115_rf:
+kms732_rf:        movl    100(%rsp), %r12d
+kms733_rf:        movl    104(%rsp), %r15d
+kms734_rf:        movl    108(%rsp), %ebx
+.L64_rf:
+kms735_rf:        comiss  92(%rsp), %xmm5
+kms736_rf:        ja      .L41_rf
+kms737_rf:        movq    72(%rsp), %rdi
+kms738_rf:        call    free
+kms739_rf:        movq    32(%rsp), %rdi
+kms740_rf:        call    free
+kms741_rf:        movq    40(%rsp), %rdi
+kms742_rf:        call    free
+kms743_rf:        addq    $120, %rsp
+kms744_rf:        movq    %r13, %rax
+kms745_rf:        popq    %rbx
+kms746_rf:        popq    %rbp
+kms747_rf:        popq    %r12
+kms748_rf:        popq    %r13
+kms749_rf:        popq    %r14
+kms750_rf:        popq    %r15
+kms751_rf:        ret
+.L80_rf:
+kms752_rf:        xorl    %eax, %eax
+kms753_rf:        jmp     .L57_rf
+.L81_rf:
+kms754_rf:        movq    %r8, %rdi
+kms755_rf:        movq    %r9, %rcx
+kms756_rf:        movq    %r8, %rdx
+kms757_rf:        xorl    %esi, %esi
+kms758_rf:        jmp     .L58_rf
+.L82_rf:
+kms759_rf:        cvtsi2ssl       %edx, %xmm1
+kms760_rf:        xorl    %eax, %eax
+kms761_rf:        movq    0(%r13,%r14,8), %rdx
+kms762_rf:        jmp     .L68_rf
+.L73_rf:
+kms763_rf:        xorl    %esi, %esi
+kms764_rf:        jmp     .L23_rf
+.L118_rf:
+kms765_rf:        je      .L15_rf
+.L117_rf:
+kms766_rf:        leal    -1(%rbp), %eax
+kms767_rf:        movl    %eax, 24(%rsp)
+kms768_rf:        jmp     .L10_rf
+.L72_rf:
+kms769_rf:        movl    $1, %esi
+kms770_rf:        jmp     .L13_rf
+.L74_rf:
+kms771_rf:        xorl    %ecx, %ecx
+kms772_rf:        jmp     .L27_rf
+.L75_rf:
+kms773_rf:        movl    $1, %edx
+kms774_rf:        jmp     .L36_rf
+_Z12kmeans_outerPPfiiifPifS0_S1_S0_Pv_rf:
+kms775_rf:        pushq   %r15
+kms776_rf:        pushq   %r14
+kms777_rf:        movq    %r9, %r14
+kms778_rf:        pushq   %r13
+kms779_rf:        movl    %esi, %r13d
+kms780_rf:        andl    $-4, %r13d
+kms781_rf:        pushq   %r12
+kms782_rf:        pushq   %rbp
+kms783_rf:        movl    %esi, %ebp
+kms784_rf:        pushq   %rbx
+kms785_rf:        movl    %esi, %ebx
+kms786_rf:        shrl    $2, %ebx
+kms787_rf:        leal    -5(%rbx), %eax
+kms788_rf:        subq    $168, %rsp
+kms789_rf:        movq    %rdi, 80(%rsp)
+kms790_rf:        leal    -1(%rsi), %edi
+kms791_rf:        movss   %xmm0, 136(%rsp)
+kms792_rf:        andl    $-4, %eax
+kms793_rf:        movl    %edx, 124(%rsp)
+kms794_rf:        movl    %ecx, 76(%rsp)
+kms795_rf:        movl    %eax, 52(%rsp)
+kms796_rf:        addl    $4, %eax
+kms797_rf:        movl    %eax, 96(%rsp)
+kms798_rf:        movslq  %r13d, %rax
+kms799_rf:        movq    %r8, 64(%rsp)
+kms800_rf:        salq    $2, %rax
+kms801_rf:        movl    %edi, 140(%rsp)
+kms802_rf:        movq    %rax, 88(%rsp)
+kms803_rf:        leal    1(%r13), %eax
+kms804_rf:        movl    %eax, 100(%rsp)
+kms805_rf:        cltq
+kms806_rf:        salq    $2, %rax
+kms807_rf:        movq    %rax, 104(%rsp)
+kms808_rf:        leal    2(%r13), %eax
+kms809_rf:        movl    %eax, 120(%rsp)
+kms810_rf:        cltq
+kms811_rf:        salq    $2, %rax
+kms812_rf:        movq    %rax, 112(%rsp)
+kms813_rf:        movl    %edi, %eax
+kms814_rf:        leaq    4(,%rax,4), %rax
+kms815_rf:        movq    %rax, 128(%rsp)
+kms816_rf:        leal    -17(%rsi), %eax
+kms817_rf:        andl    $-16, %eax
+kms818_rf:        movl    %eax, 144(%rsp)
+kms819_rf:        addl    $16, %eax
+kms820_rf:        movl    %eax, 148(%rsp)
+.L153_rf:
+kms821_rf:        movl    124(%rsp), %edx
+kms822_rf:        testl   %edx, %edx
+kms823_rf:        jle     .L123_rf
+kms824_rf:        xorps   %xmm4, %xmm4
+kms825_rf:        movq    %r14, %r9
+kms826_rf:        movl    140(%rsp), %r14d
+kms827_rf:        xorl    %r15d, %r15d
+kms828_rf:        movaps  %xmm4, %xmm1
+.L124_rf:
+kms829_rf:        movl    124(%rsp), %edi
+kms830_rf:        leal    64(%r15), %eax
+kms831_rf:        cmpl    %edi, %eax
+kms832_rf:        cmovg   %edi, %eax
+kms833_rf:        cmpl    %eax, %r15d
+kms834_rf:        movl    %eax, 72(%rsp)
+kms835_rf:        jge     .L164_rf
+kms836_rf:        movslq  %r15d, %rax
+kms837_rf:        movq    %rax, 56(%rsp)
+kms838_rf:        movl    76(%rsp), %eax
+kms839_rf:        leal    -1(%rax), %r15d
+.L138_rf:
+kms840_rf:        movq    80(%rsp), %rax
+kms841_rf:        movq    56(%rsp), %rdi
+kms842_rf:        movq    (%rax,%rdi,8), %r10
+kms843_rf:        movl    76(%rsp), %eax
+kms844_rf:        testl   %eax, %eax
+kms845_rf:        jle     .L126_rf
+kms846_rf:        xorl    %edi, %edi
+kms847_rf:        testl   %ebp, %ebp
+kms848_rf:        movss   .LC1_rf(%rip), %xmm5
+kms849_rf:        movq    (%r9,%rdi,8), %r8
+kms850_rf:        movl    %edi, %r11d
+kms851_rf:        jle     .L165_rf
+.L193_rf:
+kms852_rf:        cmpl    $2, %r14d
+kms853_rf:        jbe     .L166_rf
+kms854_rf:        cmpl    $4, %ebx
+kms855_rf:        movq    %r8, %rdx
+kms856_rf:        movq    %r10, %rcx
+kms857_rf:        jbe     .L167_rf
+kms858_rf:        movaps  %xmm4, %xmm2
+kms859_rf:        xorl    %eax, %eax
+.L130_rf:
+kms860_rf:        movlps  (%rcx), %xmm3
+kms861_rf:        movlps  (%rdx), %xmm0
+kms862_rf:        movl    %eax, %esi
+kms863_rf:        prefetcht0      256(%rcx)
+kms864_rf:        addl    $4, %eax
+kms865_rf:        addq    $64, %rcx
+kms866_rf:        movhps  8(%rdx), %xmm0
+kms867_rf:        movhps  -56(%rcx), %xmm3
+kms868_rf:        prefetcht0      256(%rdx)
+kms869_rf:        addq    $64, %rdx
+kms870_rf:        subps   %xmm0, %xmm3
+kms871_rf:        mulps   %xmm3, %xmm3
+kms872_rf:        movaps  %xmm3, %xmm0
+kms873_rf:        addss   %xmm2, %xmm0
+kms874_rf:        movaps  %xmm3, %xmm2
+kms875_rf:        shufps  $85, %xmm3, %xmm2
+kms876_rf:        addss   %xmm2, %xmm0
+kms877_rf:        movaps  %xmm3, %xmm2
+kms878_rf:        unpckhps        %xmm3, %xmm2
+kms879_rf:        shufps  $255, %xmm3, %xmm3
+kms880_rf:        addss   %xmm2, %xmm0
+kms881_rf:        movlps  -48(%rcx), %xmm2
+kms882_rf:        movhps  -40(%rcx), %xmm2
+kms883_rf:        addss   %xmm3, %xmm0
+kms884_rf:        movlps  -48(%rdx), %xmm3
+kms885_rf:        movhps  -40(%rdx), %xmm3
+kms886_rf:        subps   %xmm3, %xmm2
+kms887_rf:        mulps   %xmm2, %xmm2
+kms888_rf:        addss   %xmm2, %xmm0
+kms889_rf:        movaps  %xmm2, %xmm3
+kms890_rf:        shufps  $85, %xmm2, %xmm3
+kms891_rf:        addss   %xmm3, %xmm0
+kms892_rf:        movaps  %xmm2, %xmm3
+kms893_rf:        unpckhps        %xmm2, %xmm3
+kms894_rf:        shufps  $255, %xmm2, %xmm2
+kms895_rf:        addss   %xmm3, %xmm0
+kms896_rf:        movlps  -32(%rdx), %xmm3
+kms897_rf:        movhps  -24(%rdx), %xmm3
+kms898_rf:        addss   %xmm2, %xmm0
+kms899_rf:        movlps  -32(%rcx), %xmm2
+kms900_rf:        movhps  -24(%rcx), %xmm2
+kms901_rf:        subps   %xmm3, %xmm2
+kms902_rf:        mulps   %xmm2, %xmm2
+kms903_rf:        addss   %xmm2, %xmm0
+kms904_rf:        movaps  %xmm2, %xmm3
+kms905_rf:        shufps  $85, %xmm2, %xmm3
+kms906_rf:        addss   %xmm3, %xmm0
+kms907_rf:        movaps  %xmm2, %xmm3
+kms908_rf:        unpckhps        %xmm2, %xmm3
+kms909_rf:        shufps  $255, %xmm2, %xmm2
+kms910_rf:        addss   %xmm3, %xmm0
+kms911_rf:        movlps  -16(%rcx), %xmm3
+kms912_rf:        movhps  -8(%rcx), %xmm3
+kms913_rf:        addss   %xmm2, %xmm0
+kms914_rf:        movlps  -16(%rdx), %xmm2
+kms915_rf:        movhps  -8(%rdx), %xmm2
+kms916_rf:        cmpl    52(%rsp), %esi
+kms917_rf:        subps   %xmm2, %xmm3
+kms918_rf:        mulps   %xmm3, %xmm3
+kms919_rf:        addss   %xmm3, %xmm0
+kms920_rf:        movaps  %xmm3, %xmm2
+kms921_rf:        shufps  $85, %xmm3, %xmm2
+kms922_rf:        addss   %xmm2, %xmm0
+kms923_rf:        movaps  %xmm3, %xmm2
+kms924_rf:        unpckhps        %xmm3, %xmm2
+kms925_rf:        shufps  $255, %xmm3, %xmm3
+kms926_rf:        addss   %xmm2, %xmm0
+kms927_rf:        movaps  %xmm3, %xmm2
+kms928_rf:        addss   %xmm0, %xmm2
+kms929_rf:        jne     .L130_rf
+kms930_rf:        movl    96(%rsp), %esi
 .L129_rf:
-kms1213_rf:        movl    172(%rsp), %eax
-kms1214_rf:        xorl    %r9d, %r9d
-kms1215_rf:        leal    -1(%rax), %edi
-kms1216_rf:        testl   %eax, %eax
-kms1217_rf:        movq    %rdi, 184(%rsp)
-kms1218_rf:        jle     .L135_rf
+kms931_rf:        xorl    %eax, %eax
+.L131_rf:
+kms932_rf:        movlps  (%rcx,%rax), %xmm0
+kms933_rf:        movlps  (%rdx,%rax), %xmm3
+kms934_rf:        incl    %esi
+kms935_rf:        movhps  8(%rdx,%rax), %xmm3
+kms936_rf:        movhps  8(%rcx,%rax), %xmm0
+kms937_rf:        addq    $16, %rax
+kms938_rf:        cmpl    %esi, %ebx
+kms939_rf:        subps   %xmm3, %xmm0
+kms940_rf:        mulps   %xmm0, %xmm0
+kms941_rf:        addss   %xmm0, %xmm2
+kms942_rf:        movaps  %xmm0, %xmm3
+kms943_rf:        shufps  $85, %xmm0, %xmm3
+kms944_rf:        addss   %xmm3, %xmm2
+kms945_rf:        movaps  %xmm0, %xmm3
+kms946_rf:        unpckhps        %xmm0, %xmm3
+kms947_rf:        shufps  $255, %xmm0, %xmm0
+kms948_rf:        addss   %xmm3, %xmm2
+kms949_rf:        addss   %xmm0, %xmm2
+kms950_rf:        ja      .L131_rf
+kms951_rf:        cmpl    %r13d, %ebp
+kms952_rf:        movl    %r13d, %eax
+kms953_rf:        je      .L127_rf
+.L128_rf:
+kms954_rf:        movslq  %eax, %rcx
+kms955_rf:        movss   (%r10,%rcx,4), %xmm0
+kms956_rf:        leaq    0(,%rcx,4), %rdx
+kms957_rf:        subss   (%r8,%rcx,4), %xmm0
+kms958_rf:        leal    1(%rax), %ecx
+kms959_rf:        cmpl    %ecx, %ebp
+kms960_rf:        mulss   %xmm0, %xmm0
+kms961_rf:        addss   %xmm0, %xmm2
+kms962_rf:        jle     .L127_rf
+kms963_rf:        movss   4(%r10,%rdx), %xmm0
+kms964_rf:        addl    $2, %eax
+kms965_rf:        subss   4(%r8,%rdx), %xmm0
+kms966_rf:        cmpl    %eax, %ebp
+kms967_rf:        mulss   %xmm0, %xmm0
+kms968_rf:        addss   %xmm0, %xmm2
+kms969_rf:        jle     .L127_rf
+kms970_rf:        movss   8(%r10,%rdx), %xmm0
+kms971_rf:        subss   8(%r8,%rdx), %xmm0
+kms972_rf:        mulss   %xmm0, %xmm0
+kms973_rf:        addss   %xmm0, %xmm2
+.L127_rf:
+kms974_rf:        comiss  %xmm2, %xmm5
+kms975_rf:        minss   %xmm5, %xmm2
+kms976_rf:        leaq    1(%rdi), %rax
+kms977_rf:        cmova   %r11d, %r12d
+kms978_rf:        cmpq    %r15, %rdi
+kms979_rf:        movaps  %xmm2, %xmm5
+kms980_rf:        je      .L126_rf
+kms981_rf:        movq    %rax, %rdi
+kms982_rf:        testl   %ebp, %ebp
+kms983_rf:        movq    (%r9,%rdi,8), %r8
+kms984_rf:        movl    %edi, %r11d
+kms985_rf:        jg      .L193_rf
+.L165_rf:
+kms986_rf:        movaps  %xmm4, %xmm2
+kms987_rf:        jmp     .L127_rf
+.L126_rf:
+kms988_rf:        movq    64(%rsp), %rax
+kms989_rf:        movq    56(%rsp), %rdi
+kms990_rf:        cmpl    %r12d, (%rax,%rdi,4)
+kms991_rf:        je      .L136_rf
+kms992_rf:        addss   .LC2_rf(%rip), %xmm1
 .L136_rf:
-kms1219_rf:        testl   %ebx, %ebx
-kms1220_rf:        jle     .L141_rf
-kms1221_rf:        movq    16(%rbp), %rax
-kms1222_rf:        movl    (%rax,%r9,4), %ecx
-kms1223_rf:        movq    24(%rbp), %rax
-kms1224_rf:        testl   %ecx, %ecx
-kms1225_rf:        movq    (%rax,%r9,8), %rdi
-kms1226_rf:        jle     .L178_rf
-kms1227_rf:        cmpl    $16, %ebx
-kms1228_rf:        jle     .L151_rf
-kms1229_rf:        vcvtsi2ssl      %ecx, %xmm0, %xmm0
-kms1230_rf:        movq    (%r15,%r9,8), %rcx
-kms1231_rf:        leaq    40(%rdi), %rdx
-kms1232_rf:        movl    $40, %esi
-kms1233_rf:        xorl    %eax, %eax
-.L140_rf:
-kms1234_rf:        vmovss  -40(%rdx), %xmm2
-kms1235_rf:        prefetcht0      (%rdx)
-kms1236_rf:        movl    %eax, %r8d
-kms1237_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1238_rf:        addl    $16, %eax
-kms1239_rf:        addq    $64, %rdx
-kms1240_rf:        vmovss  %xmm2, -40(%rcx,%rsi)
-kms1241_rf:        movl    $0x00000000, -104(%rdx)
-kms1242_rf:        vmovss  -100(%rdx), %xmm2
-kms1243_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1244_rf:        vmovss  %xmm2, -36(%rcx,%rsi)
-kms1245_rf:        movl    $0x00000000, -100(%rdx)
-kms1246_rf:        vmovss  -96(%rdx), %xmm2
-kms1247_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1248_rf:        vmovss  %xmm2, -32(%rcx,%rsi)
-kms1249_rf:        movl    $0x00000000, -96(%rdx)
-kms1250_rf:        vmovss  -92(%rdx), %xmm2
-kms1251_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1252_rf:        vmovss  %xmm2, -28(%rcx,%rsi)
-kms1253_rf:        movl    $0x00000000, -92(%rdx)
-kms1254_rf:        vmovss  -88(%rdx), %xmm2
-kms1255_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1256_rf:        vmovss  %xmm2, -24(%rcx,%rsi)
-kms1257_rf:        movl    $0x00000000, -88(%rdx)
-kms1258_rf:        vmovss  -84(%rdx), %xmm2
-kms1259_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1260_rf:        vmovss  %xmm2, -20(%rcx,%rsi)
-kms1261_rf:        movl    $0x00000000, -84(%rdx)
-kms1262_rf:        vmovss  -80(%rdx), %xmm2
-kms1263_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1264_rf:        vmovss  %xmm2, -16(%rcx,%rsi)
-kms1265_rf:        movl    $0x00000000, -80(%rdx)
-kms1266_rf:        vmovss  -76(%rdx), %xmm2
-kms1267_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1268_rf:        vmovss  %xmm2, -12(%rcx,%rsi)
-kms1269_rf:        movl    $0x00000000, -76(%rdx)
-kms1270_rf:        vmovss  -72(%rdx), %xmm2
-kms1271_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1272_rf:        vmovss  %xmm2, -8(%rcx,%rsi)
-kms1273_rf:        movl    $0x00000000, -72(%rdx)
-kms1274_rf:        vmovss  -68(%rdx), %xmm2
-kms1275_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1276_rf:        vmovss  %xmm2, -4(%rcx,%rsi)
-kms1277_rf:        movl    $0x00000000, -68(%rdx)
-kms1278_rf:        vmovss  -64(%rdx), %xmm2
-kms1279_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1280_rf:        vmovss  %xmm2, (%rcx,%rsi)
-kms1281_rf:        movl    $0x00000000, -64(%rdx)
-kms1282_rf:        vmovss  -60(%rdx), %xmm2
-kms1283_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1284_rf:        vmovss  %xmm2, 4(%rcx,%rsi)
-kms1285_rf:        movl    $0x00000000, -60(%rdx)
-kms1286_rf:        vmovss  -56(%rdx), %xmm2
-kms1287_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1288_rf:        vmovss  %xmm2, 8(%rcx,%rsi)
-kms1289_rf:        movl    $0x00000000, -56(%rdx)
-kms1290_rf:        vmovss  -52(%rdx), %xmm2
-kms1291_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1292_rf:        vmovss  %xmm2, 12(%rcx,%rsi)
-kms1293_rf:        movl    $0x00000000, -52(%rdx)
-kms1294_rf:        vmovss  -48(%rdx), %xmm2
-kms1295_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1296_rf:        vmovss  %xmm2, 16(%rcx,%rsi)
-kms1297_rf:        movl    $0x00000000, -48(%rdx)
-kms1298_rf:        vmovss  -44(%rdx), %xmm2
-kms1299_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1300_rf:        vmovss  %xmm2, 20(%rcx,%rsi)
-kms1301_rf:        movl    $0x00000000, -44(%rdx)
-kms1302_rf:        addq    $64, %rsi
-kms1303_rf:        cmpl    %r8d, 60(%rsp)
-kms1304_rf:        jne     .L140_rf
-.L139_rf:
-kms1305_rf:        cltq
-.L142_rf:
-kms1306_rf:        vmovss  (%rdi,%rax,4), %xmm2
-kms1307_rf:        vdivss  %xmm0, %xmm2, %xmm2
-kms1308_rf:        vmovss  %xmm2, (%rcx,%rax,4)
-kms1309_rf:        movl    $0x00000000, (%rdi,%rax,4)
-kms1310_rf:        incq    %rax
-kms1311_rf:        cmpl    %eax, %ebx
-kms1312_rf:        jg      .L142_rf
+kms993_rf:        movq    64(%rsp), %rax
+kms994_rf:        movq    56(%rsp), %rdi
+kms995_rf:        movl    %r12d, (%rax,%rdi,4)
+kms996_rf:        movq    224(%rsp), %rdi
+kms997_rf:        movslq  %r12d, %rax
+kms998_rf:        incl    (%rdi,%rax,4)
+kms999_rf:        testl   %ebp, %ebp
+kms1000_rf:        jle     .L142_rf
+kms1001_rf:        movq    232(%rsp), %rdi
+kms1002_rf:        movq    (%rdi,%rax,8), %r8
+kms1003_rf:        leaq    15(%r10), %rax
+kms1004_rf:        subq    %r8, %rax
+kms1005_rf:        cmpq    $30, %rax
+kms1006_rf:        jbe     .L139_rf
+kms1007_rf:        cmpl    $3, %r14d
+kms1008_rf:        jbe     .L139_rf
+kms1009_rf:        cmpl    $4, %ebx
+kms1010_rf:        jbe     .L169_rf
+kms1011_rf:        movq    %r10, %rcx
+kms1012_rf:        movq    %r8, %rdx
+kms1013_rf:        xorl    %esi, %esi
 .L141_rf:
-kms1313_rf:        cmpq    %r9, 184(%rsp)
-kms1314_rf:        movq    16(%rbp), %rax
-kms1315_rf:        movl    $0, (%rax,%r9,4)
-kms1316_rf:        leaq    1(%r9), %rax
-kms1317_rf:        je      .L135_rf
-kms1318_rf:        movq    %rax, %r9
-kms1319_rf:        jmp     .L136_rf
-.L176_rf:
-kms1320_rf:        movq    32(%rbp), %rax
-kms1321_rf:        movl    76(%rsp), %edx
-kms1322_rf:        movq    %r15, %r9
-kms1323_rf:        movq    176(%rsp), %r8
-kms1324_rf:        movl    172(%rsp), %ecx
-kms1325_rf:        vmovss  %xmm1, 184(%rsp)
-kms1326_rf:        movq    160(%rsp), %rdi
-kms1327_rf:        movl    %esi, 16(%rsp)
-kms1328_rf:        movl    %ebx, %esi
-kms1329_rf:        movq    %rax, 32(%rsp)
-kms1330_rf:        movq    24(%rbp), %rax
-kms1331_rf:        vmovss  72(%rsp), %xmm0
-kms1332_rf:        movl    %edx, 24(%rsp)
-kms1333_rf:        movq    %rax, 8(%rsp)
-kms1334_rf:        movq    16(%rbp), %rax
-kms1335_rf:        movq    %rax, (%rsp)
-kms1336_rf:        vzeroupper
-kms1337_rf:        call    _Z20kmeans_outer_handlerPPfiiifPifS0_S1_S0_iiPv
-kms1338_rf:        testl   %eax, %eax
-kms1339_rf:        vxorps  %xmm4, %xmm4, %xmm4
-kms1340_rf:        vmovss  184(%rsp), %xmm1
-kms1341_rf:        je      .L130_rf
-kms1342_rf:        leaq    -40(%rbp), %rsp
-kms1343_rf:        popq    %rbx
-kms1344_rf:        popq    %r12
-kms1345_rf:        popq    %r13
-kms1346_rf:        popq    %r14
-kms1347_rf:        popq    %r15
-kms1348_rf:        popq    %rbp
-kms1349_rf:        ret
-.L178_rf:
-kms1350_rf:        movq    64(%rsp), %rdx
-kms1351_rf:        xorl    %esi, %esi
-kms1352_rf:        vmovss  %xmm1, 192(%rsp)
-kms1353_rf:        movq    %r9, 48(%rsp)
-kms1354_rf:        vzeroupper
-kms1355_rf:        call    memset
-kms1356_rf:        movq    48(%rsp), %r9
-kms1357_rf:        vmovss  192(%rsp), %xmm1
-kms1358_rf:        jmp     .L141_rf
-.L135_rf:
-kms1359_rf:        vcomiss 72(%rsp), %xmm1
-kms1360_rf:        ja      .L133_rf
-.L174_rf:
-kms1361_rf:        vzeroupper
-kms1362_rf:        leaq    -40(%rbp), %rsp
-kms1363_rf:        popq    %rbx
-kms1364_rf:        popq    %r12
-kms1365_rf:        popq    %r13
-kms1366_rf:        popq    %r14
-kms1367_rf:        popq    %r15
-kms1368_rf:        popq    %rbp
-kms1369_rf:        ret
-.L151_rf:
-kms1370_rf:        vcvtsi2ssl      %ecx, %xmm0, %xmm0
-kms1371_rf:        xorl    %eax, %eax
-kms1372_rf:        movq    (%r15,%r9,8), %rcx
-kms1373_rf:        jmp     .L139_rf
-_Z12kmeans_innerPPfiiifPiS_S0_S1_S0_iiPv_rf:
-kms1374_rf:        pushq   %rbp
-kms1375_rf:        movq    %rsp, %rbp
-kms1376_rf:        pushq   %r15
-kms1377_rf:        pushq   %r14
-kms1378_rf:        pushq   %r13
-kms1379_rf:        pushq   %r12
-kms1380_rf:        pushq   %rbx
-kms1381_rf:        andq    $-32, %rsp
-kms1382_rf:        subq    $208, %rsp
-kms1383_rf:        movq    16(%rbp), %r15
-kms1384_rf:        movl    %edx, 68(%rsp)
-kms1385_rf:        movl    40(%rbp), %edx
-kms1386_rf:        cmpl    48(%rbp), %edx
-kms1387_rf:        movq    %rdi, 160(%rsp)
-kms1388_rf:        movl    %ecx, 172(%rsp)
-kms1389_rf:        movq    %r8, 176(%rsp)
-kms1390_rf:        movq    %r9, 72(%rsp)
-kms1391_rf:        jge     .L232_rf
-kms1392_rf:        leal    -1(%rsi), %eax
-kms1393_rf:        movl    %esi, %ebx
-kms1394_rf:        movl    %esi, %r13d
-kms1395_rf:        shrl    $3, %ebx
-kms1396_rf:        andl    $-8, %r13d
-kms1397_rf:        movl    %esi, %r14d
-kms1398_rf:        movl    %eax, 204(%rsp)
-kms1399_rf:        leal    -1(%rbx), %eax
-kms1400_rf:        vmovaps %xmm0, %xmm6
-kms1401_rf:        vmovss  (%r9), %xmm5
-kms1402_rf:        movl    %eax, 200(%rsp)
-kms1403_rf:        leal    -3(%rbx), %eax
-kms1404_rf:        andl    $-2, %eax
-kms1405_rf:        movl    %eax, 196(%rsp)
-kms1406_rf:        addl    $2, %eax
-kms1407_rf:        movl    %eax, 168(%rsp)
-kms1408_rf:        movslq  %r13d, %rax
-kms1409_rf:        salq    $2, %rax
-kms1410_rf:        movq    %rax, 144(%rsp)
-kms1411_rf:        leal    1(%r13), %eax
-kms1412_rf:        movl    %eax, 156(%rsp)
-kms1413_rf:        cltq
-kms1414_rf:        salq    $2, %rax
-kms1415_rf:        movq    %rax, 136(%rsp)
-kms1416_rf:        leal    2(%r13), %eax
-kms1417_rf:        movl    %eax, 152(%rsp)
-kms1418_rf:        cltq
-kms1419_rf:        salq    $2, %rax
-kms1420_rf:        movq    %rax, 128(%rsp)
-kms1421_rf:        leal    3(%r13), %eax
-kms1422_rf:        movl    %eax, 124(%rsp)
-kms1423_rf:        cltq
-kms1424_rf:        salq    $2, %rax
-kms1425_rf:        movq    %rax, 112(%rsp)
-kms1426_rf:        leal    4(%r13), %eax
-kms1427_rf:        movl    %eax, 120(%rsp)
-kms1428_rf:        cltq
-kms1429_rf:        salq    $2, %rax
-kms1430_rf:        movq    %rax, 104(%rsp)
-kms1431_rf:        leal    5(%r13), %eax
-kms1432_rf:        movl    %eax, 100(%rsp)
-kms1433_rf:        cltq
-kms1434_rf:        salq    $2, %rax
-kms1435_rf:        movq    %rax, 80(%rsp)
-kms1436_rf:        leal    6(%r13), %eax
-kms1437_rf:        movl    %eax, 96(%rsp)
-kms1438_rf:        cltq
-kms1439_rf:        salq    $2, %rax
-kms1440_rf:        movq    %rax, 88(%rsp)
-kms1441_rf:        leal    -17(%rsi), %eax
-kms1442_rf:        andl    $-16, %eax
-kms1443_rf:        addl    $16, %eax
-kms1444_rf:        movl    %eax, 64(%rsp)
-.L182_rf:
-kms1445_rf:        leal    64(%rdx), %eax
-kms1446_rf:        cmpl    48(%rbp), %eax
-kms1447_rf:        cmovg   48(%rbp), %eax
-kms1448_rf:        cmpl    %eax, %edx
-kms1449_rf:        movl    %eax, 192(%rsp)
-kms1450_rf:        jge     .L209_rf
-kms1451_rf:        movslq  %edx, %rax
-kms1452_rf:        movq    %rax, 184(%rsp)
-kms1453_rf:        movl    172(%rsp), %eax
-kms1454_rf:        leal    -1(%rax), %r11d
-.L205_rf:
-kms1455_rf:        movq    160(%rsp), %rax
-kms1456_rf:        movq    184(%rsp), %rdi
-kms1457_rf:        movq    (%rax,%rdi,8), %r8
-kms1458_rf:        movl    172(%rsp), %eax
-kms1459_rf:        testl   %eax, %eax
-kms1460_rf:        jle     .L184_rf
-kms1461_rf:        xorl    %r9d, %r9d
-kms1462_rf:        testl   %r14d, %r14d
-kms1463_rf:        vxorps  %xmm4, %xmm4, %xmm4
-kms1464_rf:        movq    (%r15,%r9,8), %rdi
-kms1465_rf:        movl    %r9d, %r10d
-kms1466_rf:        vmovss  .LC1_rf(%rip), %xmm3
-kms1467_rf:        jle     .L210_rf
-.L234_rf:
-kms1468_rf:        cmpl    $6, 204(%rsp)
-kms1469_rf:        jbe     .L211_rf
-kms1470_rf:        cmpl    $1, 200(%rsp)
-kms1471_rf:        movq    %rdi, %rsi
-kms1472_rf:        movq    %r8, %rcx
-kms1473_rf:        jbe     .L212_rf
-kms1474_rf:        vmovaps %xmm4, %xmm0
-kms1475_rf:        xorl    %eax, %eax
-.L188_rf:
-kms1476_rf:        vmovups (%rcx), %ymm1
-kms1477_rf:        movl    %eax, %edx
-kms1478_rf:        prefetcht0      384(%rcx)
-kms1479_rf:        addl    $2, %eax
-kms1480_rf:        addq    $64, %rcx
-kms1481_rf:        prefetcht0      384(%rsi)
-kms1482_rf:        vsubps  (%rsi), %ymm1, %ymm1
-kms1483_rf:        addq    $64, %rsi
-kms1484_rf:        vmulps  %ymm1, %ymm1, %ymm2
-kms1485_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms1486_rf:        vshufps $85, %xmm2, %xmm2, %xmm1
-kms1487_rf:        vshufps $255, %xmm2, %xmm2, %xmm7
-kms1488_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1489_rf:        vunpckhps       %xmm2, %xmm2, %xmm1
-kms1490_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1491_rf:        vextractf128    $0x1, %ymm2, %xmm1
-kms1492_rf:        vshufps $85, %xmm1, %xmm1, %xmm2
-kms1493_rf:        vaddss  %xmm7, %xmm0, %xmm0
-kms1494_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1495_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms1496_rf:        vunpckhps       %xmm1, %xmm1, %xmm2
-kms1497_rf:        vshufps $255, %xmm1, %xmm1, %xmm1
-kms1498_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms1499_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1500_rf:        vmovups -32(%rcx), %ymm1
-kms1501_rf:        vsubps  -32(%rsi), %ymm1, %ymm1
-kms1502_rf:        cmpl    196(%rsp), %edx
-kms1503_rf:        vmulps  %ymm1, %ymm1, %ymm1
-kms1504_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1505_rf:        vshufps $85, %xmm1, %xmm1, %xmm7
-kms1506_rf:        vshufps $255, %xmm1, %xmm1, %xmm2
-kms1507_rf:        vaddss  %xmm7, %xmm0, %xmm0
-kms1508_rf:        vunpckhps       %xmm1, %xmm1, %xmm7
-kms1509_rf:        vextractf128    $0x1, %ymm1, %xmm1
-kms1510_rf:        vaddss  %xmm7, %xmm0, %xmm0
-kms1511_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms1512_rf:        vshufps $85, %xmm1, %xmm1, %xmm2
-kms1513_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1514_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms1515_rf:        vunpckhps       %xmm1, %xmm1, %xmm2
-kms1516_rf:        vshufps $255, %xmm1, %xmm1, %xmm1
-kms1517_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms1518_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1519_rf:        jne     .L188_rf
-kms1520_rf:        movl    168(%rsp), %edx
-.L187_rf:
-kms1521_rf:        xorl    %eax, %eax
-.L189_rf:
-kms1522_rf:        vmovups (%rcx,%rax), %ymm1
-kms1523_rf:        incl    %edx
-kms1524_rf:        vsubps  (%rsi,%rax), %ymm1, %ymm1
-kms1525_rf:        addq    $32, %rax
-kms1526_rf:        cmpl    %edx, %ebx
-kms1527_rf:        vmulps  %ymm1, %ymm1, %ymm2
-kms1528_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms1529_rf:        vshufps $85, %xmm2, %xmm2, %xmm1
-kms1530_rf:        vshufps $255, %xmm2, %xmm2, %xmm7
-kms1531_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1532_rf:        vunpckhps       %xmm2, %xmm2, %xmm1
-kms1533_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1534_rf:        vextractf128    $0x1, %ymm2, %xmm1
-kms1535_rf:        vshufps $85, %xmm1, %xmm1, %xmm2
-kms1536_rf:        vaddss  %xmm7, %xmm0, %xmm0
-kms1537_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1538_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms1539_rf:        vunpckhps       %xmm1, %xmm1, %xmm2
-kms1540_rf:        vshufps $255, %xmm1, %xmm1, %xmm1
-kms1541_rf:        vaddss  %xmm2, %xmm0, %xmm0
-kms1542_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1543_rf:        ja      .L189_rf
-kms1544_rf:        cmpl    %r13d, %r14d
-kms1545_rf:        je      .L185_rf
-kms1546_rf:        movl    %r13d, %edx
-.L186_rf:
-kms1547_rf:        movslq  %edx, %rcx
-kms1548_rf:        vmovss  (%r8,%rcx,4), %xmm1
-kms1549_rf:        leaq    0(,%rcx,4), %rax
-kms1550_rf:        vsubss  (%rdi,%rcx,4), %xmm1, %xmm1
-kms1551_rf:        leal    1(%rdx), %ecx
-kms1552_rf:        cmpl    %ecx, %r14d
-kms1553_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms1554_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1555_rf:        jle     .L185_rf
-kms1556_rf:        vmovss  4(%r8,%rax), %xmm1
-kms1557_rf:        leal    2(%rdx), %ecx
-kms1558_rf:        vsubss  4(%rdi,%rax), %xmm1, %xmm1
-kms1559_rf:        cmpl    %ecx, %r14d
-kms1560_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms1561_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1562_rf:        jle     .L185_rf
-kms1563_rf:        vmovss  8(%r8,%rax), %xmm1
-kms1564_rf:        leal    3(%rdx), %ecx
-kms1565_rf:        vsubss  8(%rdi,%rax), %xmm1, %xmm1
-kms1566_rf:        cmpl    %ecx, %r14d
-kms1567_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms1568_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1569_rf:        jle     .L185_rf
-kms1570_rf:        vmovss  12(%r8,%rax), %xmm1
-kms1571_rf:        leal    4(%rdx), %ecx
-kms1572_rf:        vsubss  12(%rdi,%rax), %xmm1, %xmm1
-kms1573_rf:        cmpl    %ecx, %r14d
-kms1574_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms1575_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1576_rf:        jle     .L185_rf
-kms1577_rf:        vmovss  16(%r8,%rax), %xmm1
-kms1578_rf:        leal    5(%rdx), %ecx
-kms1579_rf:        vsubss  16(%rdi,%rax), %xmm1, %xmm1
-kms1580_rf:        cmpl    %ecx, %r14d
-kms1581_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms1582_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1583_rf:        jle     .L185_rf
-kms1584_rf:        vmovss  20(%r8,%rax), %xmm1
-kms1585_rf:        addl    $6, %edx
-kms1586_rf:        vsubss  20(%rdi,%rax), %xmm1, %xmm1
-kms1587_rf:        cmpl    %edx, %r14d
-kms1588_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms1589_rf:        vaddss  %xmm1, %xmm0, %xmm0
-kms1590_rf:        jle     .L185_rf
-kms1591_rf:        vmovss  24(%r8,%rax), %xmm1
-kms1592_rf:        vsubss  24(%rdi,%rax), %xmm1, %xmm1
-kms1593_rf:        vmulss  %xmm1, %xmm1, %xmm1
-kms1594_rf:        vaddss  %xmm1, %xmm0, %xmm0
-.L185_rf:
-kms1595_rf:        vcomiss %xmm0, %xmm3
-kms1596_rf:        leaq    1(%r9), %rax
-kms1597_rf:        vminss  %xmm3, %xmm0, %xmm3
-kms1598_rf:        cmova   %r10d, %r12d
-kms1599_rf:        cmpq    %r11, %r9
-kms1600_rf:        je      .L184_rf
-kms1601_rf:        movq    %rax, %r9
-kms1602_rf:        testl   %r14d, %r14d
-kms1603_rf:        movq    (%r15,%r9,8), %rdi
-kms1604_rf:        movl    %r9d, %r10d
-kms1605_rf:        jg      .L234_rf
-.L210_rf:
-kms1606_rf:        vmovaps %xmm4, %xmm0
-kms1607_rf:        jmp     .L185_rf
-.L184_rf:
-kms1608_rf:        movq    176(%rsp), %rax
-kms1609_rf:        movq    184(%rsp), %rdi
-kms1610_rf:        cmpl    %r12d, (%rax,%rdi,4)
-kms1611_rf:        je      .L194_rf
-kms1612_rf:        vaddss  .LC2_rf(%rip), %xmm5, %xmm5
-.L194_rf:
-kms1613_rf:        movq    176(%rsp), %rax
-kms1614_rf:        movq    184(%rsp), %rdi
-kms1615_rf:        movl    %r12d, (%rax,%rdi,4)
-kms1616_rf:        movq    24(%rbp), %rdi
-kms1617_rf:        movslq  %r12d, %rax
-kms1618_rf:        incl    (%rdi,%rax,4)
-kms1619_rf:        testl   %r14d, %r14d
-kms1620_rf:        jle     .L195_rf
-kms1621_rf:        movq    32(%rbp), %rdi
-kms1622_rf:        movq    (%rdi,%rax,8), %rcx
-kms1623_rf:        leaq    31(%r8), %rax
-kms1624_rf:        subq    %rcx, %rax
-kms1625_rf:        cmpq    $62, %rax
-kms1626_rf:        jbe     .L196_rf
-kms1627_rf:        cmpl    $6, 204(%rsp)
-kms1628_rf:        jbe     .L196_rf
-kms1629_rf:        cmpl    $1, 200(%rsp)
-kms1630_rf:        jbe     .L214_rf
-kms1631_rf:        movq    %r8, %rdi
-kms1632_rf:        movq    %rcx, %rsi
-kms1633_rf:        xorl    %eax, %eax
-.L198_rf:
-kms1634_rf:        vmovups (%rsi), %ymm0
-kms1635_rf:        prefetcht0      640(%rdi)
-kms1636_rf:        movl    %eax, %edx
-kms1637_rf:        addq    $64, %rdi
-kms1638_rf:        addl    $2, %eax
-kms1639_rf:        prefetcht0      640(%rsi)
-kms1640_rf:        vaddps  -64(%rdi), %ymm0, %ymm0
-kms1641_rf:        addq    $64, %rsi
-kms1642_rf:        vmovups %ymm0, -64(%rsi)
-kms1643_rf:        vmovups -32(%rdi), %ymm0
-kms1644_rf:        vaddps  -32(%rsi), %ymm0, %ymm0
-kms1645_rf:        vmovups %ymm0, -32(%rsi)
-kms1646_rf:        cmpl    196(%rsp), %edx
-kms1647_rf:        movq    %rsi, %r9
-kms1648_rf:        jne     .L198_rf
-kms1649_rf:        movl    168(%rsp), %edx
-.L197_rf:
-kms1650_rf:        xorl    %eax, %eax
-.L199_rf:
-kms1651_rf:        vmovups (%rdi,%rax), %ymm0
-kms1652_rf:        incl    %edx
-kms1653_rf:        vaddps  (%rsi,%rax), %ymm0, %ymm0
-kms1654_rf:        vmovups %ymm0, (%r9,%rax)
-kms1655_rf:        addq    $32, %rax
-kms1656_rf:        cmpl    %edx, %ebx
-kms1657_rf:        ja      .L199_rf
-kms1658_rf:        cmpl    %r13d, %r14d
-kms1659_rf:        je      .L195_rf
-kms1660_rf:        movq    144(%rsp), %rdi
-kms1661_rf:        cmpl    156(%rsp), %r14d
-kms1662_rf:        leaq    (%rcx,%rdi), %rax
-kms1663_rf:        vmovss  (%rax), %xmm0
-kms1664_rf:        vaddss  (%r8,%rdi), %xmm0, %xmm0
-kms1665_rf:        vmovss  %xmm0, (%rax)
-kms1666_rf:        jle     .L195_rf
-kms1667_rf:        movq    136(%rsp), %rsi
-kms1668_rf:        cmpl    152(%rsp), %r14d
-kms1669_rf:        leaq    (%rcx,%rsi), %rax
-kms1670_rf:        vmovss  (%rax), %xmm0
-kms1671_rf:        vaddss  (%r8,%rsi), %xmm0, %xmm0
-kms1672_rf:        vmovss  %xmm0, (%rax)
-kms1673_rf:        jle     .L195_rf
-kms1674_rf:        movq    128(%rsp), %rsi
-kms1675_rf:        cmpl    124(%rsp), %r14d
-kms1676_rf:        leaq    (%rcx,%rsi), %rax
-kms1677_rf:        vmovss  (%rax), %xmm0
-kms1678_rf:        vaddss  (%r8,%rsi), %xmm0, %xmm0
-kms1679_rf:        vmovss  %xmm0, (%rax)
-kms1680_rf:        jle     .L195_rf
-kms1681_rf:        movq    112(%rsp), %rdi
-kms1682_rf:        cmpl    120(%rsp), %r14d
-kms1683_rf:        leaq    (%rcx,%rdi), %rax
-kms1684_rf:        vmovss  (%rax), %xmm0
-kms1685_rf:        vaddss  (%r8,%rdi), %xmm0, %xmm0
-kms1686_rf:        vmovss  %xmm0, (%rax)
-kms1687_rf:        jle     .L195_rf
-kms1688_rf:        movq    104(%rsp), %rsi
-kms1689_rf:        cmpl    100(%rsp), %r14d
-kms1690_rf:        leaq    (%rcx,%rsi), %rax
-kms1691_rf:        vmovss  (%rax), %xmm0
-kms1692_rf:        vaddss  (%r8,%rsi), %xmm0, %xmm0
-kms1693_rf:        vmovss  %xmm0, (%rax)
-kms1694_rf:        jle     .L195_rf
-kms1695_rf:        movq    80(%rsp), %rdi
-kms1696_rf:        cmpl    96(%rsp), %r14d
-kms1697_rf:        leaq    (%rcx,%rdi), %rax
-kms1698_rf:        vmovss  (%rax), %xmm0
-kms1699_rf:        vaddss  (%r8,%rdi), %xmm0, %xmm0
-kms1700_rf:        vmovss  %xmm0, (%rax)
-kms1701_rf:        jle     .L195_rf
-kms1702_rf:        movq    88(%rsp), %rax
-kms1703_rf:        addq    %rax, %rcx
-kms1704_rf:        vmovss  (%rcx), %xmm0
-kms1705_rf:        vaddss  (%r8,%rax), %xmm0, %xmm0
-kms1706_rf:        vmovss  %xmm0, (%rcx)
+kms1014_rf:        movlps  (%rcx), %xmm0
+kms1015_rf:        movlps  (%rdx), %xmm2
+kms1016_rf:        prefetcht0      320(%rcx)
+kms1017_rf:        movl    %esi, %eax
+kms1018_rf:        addq    $64, %rcx
+kms1019_rf:        addl    $4, %esi
+kms1020_rf:        movhps  -56(%rcx), %xmm0
+kms1021_rf:        movhps  8(%rdx), %xmm2
+kms1022_rf:        prefetcht0      320(%rdx)
+kms1023_rf:        addq    $64, %rdx
+kms1024_rf:        addps   %xmm2, %xmm0
+kms1025_rf:        movlps  %xmm0, -64(%rdx)
+kms1026_rf:        movhps  %xmm0, -56(%rdx)
+kms1027_rf:        movlps  -48(%rdx), %xmm0
+kms1028_rf:        movlps  -48(%rcx), %xmm2
+kms1029_rf:        movhps  -40(%rdx), %xmm0
+kms1030_rf:        movhps  -40(%rcx), %xmm2
+kms1031_rf:        addps   %xmm2, %xmm0
+kms1032_rf:        movlps  %xmm0, -48(%rdx)
+kms1033_rf:        movhps  %xmm0, -40(%rdx)
+kms1034_rf:        movlps  -32(%rdx), %xmm0
+kms1035_rf:        movlps  -32(%rcx), %xmm2
+kms1036_rf:        movhps  -24(%rdx), %xmm0
+kms1037_rf:        movhps  -24(%rcx), %xmm2
+kms1038_rf:        addps   %xmm2, %xmm0
+kms1039_rf:        movlps  %xmm0, -32(%rdx)
+kms1040_rf:        movhps  %xmm0, -24(%rdx)
+kms1041_rf:        movlps  -16(%rdx), %xmm0
+kms1042_rf:        movlps  -16(%rcx), %xmm2
+kms1043_rf:        movhps  -8(%rdx), %xmm0
+kms1044_rf:        movhps  -8(%rcx), %xmm2
+kms1045_rf:        addps   %xmm2, %xmm0
+kms1046_rf:        movlps  %xmm0, -16(%rdx)
+kms1047_rf:        movhps  %xmm0, -8(%rdx)
+kms1048_rf:        cmpl    52(%rsp), %eax
+kms1049_rf:        movq    %rdx, %rdi
+kms1050_rf:        jne     .L141_rf
+kms1051_rf:        movl    96(%rsp), %esi
+.L140_rf:
+kms1052_rf:        xorl    %eax, %eax
+.L143_rf:
+kms1053_rf:        movlps  (%rdx,%rax), %xmm0
+kms1054_rf:        movlps  (%rcx,%rax), %xmm2
+kms1055_rf:        incl    %esi
+kms1056_rf:        movhps  8(%rdx,%rax), %xmm0
+kms1057_rf:        movhps  8(%rcx,%rax), %xmm2
+kms1058_rf:        addps   %xmm2, %xmm0
+kms1059_rf:        movlps  %xmm0, (%rdi,%rax)
+kms1060_rf:        movhps  %xmm0, 8(%rdi,%rax)
+kms1061_rf:        addq    $16, %rax
+kms1062_rf:        cmpl    %esi, %ebx
+kms1063_rf:        ja      .L143_rf
+kms1064_rf:        cmpl    %r13d, %ebp
+kms1065_rf:        je      .L142_rf
+kms1066_rf:        movq    88(%rsp), %rdi
+kms1067_rf:        cmpl    100(%rsp), %ebp
+kms1068_rf:        leaq    (%r8,%rdi), %rax
+kms1069_rf:        movss   (%rax), %xmm0
+kms1070_rf:        addss   (%r10,%rdi), %xmm0
+kms1071_rf:        movss   %xmm0, (%rax)
+kms1072_rf:        jle     .L142_rf
+kms1073_rf:        movq    104(%rsp), %rdi
+kms1074_rf:        cmpl    120(%rsp), %ebp
+kms1075_rf:        leaq    (%r8,%rdi), %rax
+kms1076_rf:        movss   (%rax), %xmm0
+kms1077_rf:        addss   (%r10,%rdi), %xmm0
+kms1078_rf:        movss   %xmm0, (%rax)
+kms1079_rf:        jle     .L142_rf
+kms1080_rf:        movq    112(%rsp), %rax
+kms1081_rf:        addq    %rax, %r8
+kms1082_rf:        movss   (%r8), %xmm0
+kms1083_rf:        addss   (%r10,%rax), %xmm0
+kms1084_rf:        movss   %xmm0, (%r8)
+.L142_rf:
+kms1085_rf:        incq    56(%rsp)
+kms1086_rf:        movq    56(%rsp), %rax
+kms1087_rf:        cmpl    %eax, 72(%rsp)
+kms1088_rf:        jg      .L138_rf
+kms1089_rf:        movl    72(%rsp), %edi
+kms1090_rf:        cmpl    %edi, 124(%rsp)
+kms1091_rf:        jle     .L149_rf
 .L195_rf:
-kms1707_rf:        incq    184(%rsp)
-kms1708_rf:        movq    184(%rsp), %rax
-kms1709_rf:        cmpl    %eax, 192(%rsp)
-kms1710_rf:        jg      .L205_rf
-.L183_rf:
-kms1711_rf:        movl    192(%rsp), %eax
-kms1712_rf:        cmpl    %eax, 48(%rbp)
-kms1713_rf:        jle     .L206_rf
-kms1714_rf:        nop
-kms1715_rf:        nop
-kms1716_rf:        jmp     .L235
-.L207_rf:
-kms1717_rf:        movl    192(%rsp), %edx
-kms1718_rf:        jmp     .L182_rf
-.L211_rf:
-kms1719_rf:        vmovaps %xmm4, %xmm0
-kms1720_rf:        xorl    %edx, %edx
-kms1721_rf:        jmp     .L186_rf
-.L212_rf:
-kms1722_rf:        vmovaps %xmm4, %xmm0
-kms1723_rf:        xorl    %edx, %edx
-kms1724_rf:        jmp     .L187_rf
+kms1092_rf:        nop
+kms1093_rf:        nop
+kms1094_rf:        jmp     .L194
+.L150_rf:
+kms1095_rf:        movl    72(%rsp), %r15d
+kms1096_rf:        jmp     .L124_rf
+.L166_rf:
+kms1097_rf:        movaps  %xmm4, %xmm2
+kms1098_rf:        xorl    %eax, %eax
+kms1099_rf:        jmp     .L128_rf
+.L167_rf:
+kms1100_rf:        movaps  %xmm4, %xmm2
+kms1101_rf:        xorl    %esi, %esi
+kms1102_rf:        jmp     .L129_rf
+.L139_rf:
+kms1103_rf:        cmpl    $16, %ebp
+kms1104_rf:        jle     .L170_rf
+kms1105_rf:        leaq    80(%r8), %rax
+kms1106_rf:        leaq    80(%r10), %rdx
+kms1107_rf:        xorl    %ecx, %ecx
+.L146_rf:
+kms1108_rf:        movss   -80(%rax), %xmm0
+kms1109_rf:        prefetcht0      (%rdx)
+kms1110_rf:        prefetcht0      (%rax)
+kms1111_rf:        addss   -80(%rdx), %xmm0
+kms1112_rf:        addl    $16, %ecx
+kms1113_rf:        addq    $64, %rax
+kms1114_rf:        addq    $64, %rdx
+kms1115_rf:        movss   %xmm0, -144(%rax)
+kms1116_rf:        movss   -140(%rax), %xmm0
+kms1117_rf:        addss   -140(%rdx), %xmm0
+kms1118_rf:        movss   %xmm0, -140(%rax)
+kms1119_rf:        movss   -136(%rax), %xmm0
+kms1120_rf:        addss   -136(%rdx), %xmm0
+kms1121_rf:        movss   %xmm0, -136(%rax)
+kms1122_rf:        movss   -132(%rax), %xmm0
+kms1123_rf:        addss   -132(%rdx), %xmm0
+kms1124_rf:        movss   %xmm0, -132(%rax)
+kms1125_rf:        movss   -128(%rax), %xmm0
+kms1126_rf:        addss   -128(%rdx), %xmm0
+kms1127_rf:        movss   %xmm0, -128(%rax)
+kms1128_rf:        movss   -124(%rax), %xmm0
+kms1129_rf:        addss   -124(%rdx), %xmm0
+kms1130_rf:        movss   %xmm0, -124(%rax)
+kms1131_rf:        movss   -120(%rax), %xmm0
+kms1132_rf:        addss   -120(%rdx), %xmm0
+kms1133_rf:        movss   %xmm0, -120(%rax)
+kms1134_rf:        movss   -116(%rax), %xmm0
+kms1135_rf:        addss   -116(%rdx), %xmm0
+kms1136_rf:        movss   %xmm0, -116(%rax)
+kms1137_rf:        movss   -112(%rax), %xmm0
+kms1138_rf:        addss   -112(%rdx), %xmm0
+kms1139_rf:        movss   %xmm0, -112(%rax)
+kms1140_rf:        movss   -108(%rax), %xmm0
+kms1141_rf:        addss   -108(%rdx), %xmm0
+kms1142_rf:        movss   %xmm0, -108(%rax)
+kms1143_rf:        movss   -104(%rax), %xmm0
+kms1144_rf:        addss   -104(%rdx), %xmm0
+kms1145_rf:        movss   %xmm0, -104(%rax)
+kms1146_rf:        movss   -100(%rax), %xmm0
+kms1147_rf:        addss   -100(%rdx), %xmm0
+kms1148_rf:        movss   %xmm0, -100(%rax)
+kms1149_rf:        movss   -96(%rax), %xmm0
+kms1150_rf:        addss   -96(%rdx), %xmm0
+kms1151_rf:        movss   %xmm0, -96(%rax)
+kms1152_rf:        movss   -92(%rax), %xmm0
+kms1153_rf:        addss   -92(%rdx), %xmm0
+kms1154_rf:        movss   %xmm0, -92(%rax)
+kms1155_rf:        movss   -88(%rax), %xmm0
+kms1156_rf:        addss   -88(%rdx), %xmm0
+kms1157_rf:        movss   %xmm0, -88(%rax)
+kms1158_rf:        movss   -84(%rax), %xmm0
+kms1159_rf:        addss   -84(%rdx), %xmm0
+kms1160_rf:        movss   %xmm0, -84(%rax)
+kms1161_rf:        cmpl    148(%rsp), %ecx
+kms1162_rf:        jne     .L146_rf
+.L145_rf:
+kms1163_rf:        movslq  %ecx, %rax
+.L148_rf:
+kms1164_rf:        movss   (%r8,%rax,4), %xmm0
+kms1165_rf:        addss   (%r10,%rax,4), %xmm0
+kms1166_rf:        movss   %xmm0, (%r8,%rax,4)
+kms1167_rf:        incq    %rax
+kms1168_rf:        cmpl    %eax, %ebp
+kms1169_rf:        jg      .L148_rf
+kms1170_rf:        jmp     .L142_rf
+.L169_rf:
+kms1171_rf:        movq    %r8, %rdi
+kms1172_rf:        movq    %r10, %rcx
+kms1173_rf:        movq    %r8, %rdx
+kms1174_rf:        xorl    %esi, %esi
+kms1175_rf:        jmp     .L140_rf
+.L170_rf:
+kms1176_rf:        xorl    %ecx, %ecx
+kms1177_rf:        jmp     .L145_rf
+.L164_rf:
+kms1178_rf:        movl    %r15d, 72(%rsp)
+kms1179_rf:        movl    72(%rsp), %edi
+kms1180_rf:        cmpl    %edi, 124(%rsp)
+kms1181_rf:        jg      .L195_rf
+.L149_rf:
+kms1182_rf:        movl    76(%rsp), %eax
+kms1183_rf:        xorl    %r15d, %r15d
+kms1184_rf:        movq    %r9, %r14
+kms1185_rf:        leal    -1(%rax), %edi
+kms1186_rf:        testl   %eax, %eax
+kms1187_rf:        movq    %rdi, 56(%rsp)
+kms1188_rf:        jle     .L155_rf
+.L156_rf:
+kms1189_rf:        testl   %ebp, %ebp
+kms1190_rf:        jle     .L161_rf
+kms1191_rf:        movq    224(%rsp), %rax
+kms1192_rf:        movl    (%rax,%r15,4), %ecx
+kms1193_rf:        movq    232(%rsp), %rax
+kms1194_rf:        testl   %ecx, %ecx
+kms1195_rf:        movq    (%rax,%r15,8), %rdi
+kms1196_rf:        jle     .L196_rf
+kms1197_rf:        cmpl    $16, %ebp
+kms1198_rf:        jle     .L171_rf
+kms1199_rf:        cvtsi2ssl       %ecx, %xmm0
+kms1200_rf:        movq    (%r14,%r15,8), %rcx
+kms1201_rf:        leaq    40(%rdi), %rdx
+kms1202_rf:        movl    $40, %esi
+kms1203_rf:        xorl    %eax, %eax
+.L160_rf:
+kms1204_rf:        movss   -40(%rdx), %xmm2
+kms1205_rf:        prefetcht0      (%rdx)
+kms1206_rf:        movl    %eax, %r8d
+kms1207_rf:        divss   %xmm0, %xmm2
+kms1208_rf:        addl    $16, %eax
+kms1209_rf:        addq    $64, %rdx
+kms1210_rf:        movss   %xmm2, -40(%rcx,%rsi)
+kms1211_rf:        movl    $0x00000000, -104(%rdx)
+kms1212_rf:        movss   -100(%rdx), %xmm2
+kms1213_rf:        divss   %xmm0, %xmm2
+kms1214_rf:        movss   %xmm2, -36(%rcx,%rsi)
+kms1215_rf:        movl    $0x00000000, -100(%rdx)
+kms1216_rf:        movss   -96(%rdx), %xmm2
+kms1217_rf:        divss   %xmm0, %xmm2
+kms1218_rf:        movss   %xmm2, -32(%rcx,%rsi)
+kms1219_rf:        movl    $0x00000000, -96(%rdx)
+kms1220_rf:        movss   -92(%rdx), %xmm2
+kms1221_rf:        divss   %xmm0, %xmm2
+kms1222_rf:        movss   %xmm2, -28(%rcx,%rsi)
+kms1223_rf:        movl    $0x00000000, -92(%rdx)
+kms1224_rf:        movss   -88(%rdx), %xmm2
+kms1225_rf:        divss   %xmm0, %xmm2
+kms1226_rf:        movss   %xmm2, -24(%rcx,%rsi)
+kms1227_rf:        movl    $0x00000000, -88(%rdx)
+kms1228_rf:        movss   -84(%rdx), %xmm2
+kms1229_rf:        divss   %xmm0, %xmm2
+kms1230_rf:        movss   %xmm2, -20(%rcx,%rsi)
+kms1231_rf:        movl    $0x00000000, -84(%rdx)
+kms1232_rf:        movss   -80(%rdx), %xmm2
+kms1233_rf:        divss   %xmm0, %xmm2
+kms1234_rf:        movss   %xmm2, -16(%rcx,%rsi)
+kms1235_rf:        movl    $0x00000000, -80(%rdx)
+kms1236_rf:        movss   -76(%rdx), %xmm2
+kms1237_rf:        divss   %xmm0, %xmm2
+kms1238_rf:        movss   %xmm2, -12(%rcx,%rsi)
+kms1239_rf:        movl    $0x00000000, -76(%rdx)
+kms1240_rf:        movss   -72(%rdx), %xmm2
+kms1241_rf:        divss   %xmm0, %xmm2
+kms1242_rf:        movss   %xmm2, -8(%rcx,%rsi)
+kms1243_rf:        movl    $0x00000000, -72(%rdx)
+kms1244_rf:        movss   -68(%rdx), %xmm2
+kms1245_rf:        divss   %xmm0, %xmm2
+kms1246_rf:        movss   %xmm2, -4(%rcx,%rsi)
+kms1247_rf:        movl    $0x00000000, -68(%rdx)
+kms1248_rf:        movss   -64(%rdx), %xmm2
+kms1249_rf:        divss   %xmm0, %xmm2
+kms1250_rf:        movss   %xmm2, (%rcx,%rsi)
+kms1251_rf:        movl    $0x00000000, -64(%rdx)
+kms1252_rf:        movss   -60(%rdx), %xmm2
+kms1253_rf:        divss   %xmm0, %xmm2
+kms1254_rf:        movss   %xmm2, 4(%rcx,%rsi)
+kms1255_rf:        movl    $0x00000000, -60(%rdx)
+kms1256_rf:        movss   -56(%rdx), %xmm2
+kms1257_rf:        divss   %xmm0, %xmm2
+kms1258_rf:        movss   %xmm2, 8(%rcx,%rsi)
+kms1259_rf:        movl    $0x00000000, -56(%rdx)
+kms1260_rf:        movss   -52(%rdx), %xmm2
+kms1261_rf:        divss   %xmm0, %xmm2
+kms1262_rf:        movss   %xmm2, 12(%rcx,%rsi)
+kms1263_rf:        movl    $0x00000000, -52(%rdx)
+kms1264_rf:        movss   -48(%rdx), %xmm2
+kms1265_rf:        divss   %xmm0, %xmm2
+kms1266_rf:        movss   %xmm2, 16(%rcx,%rsi)
+kms1267_rf:        movl    $0x00000000, -48(%rdx)
+kms1268_rf:        movss   -44(%rdx), %xmm2
+kms1269_rf:        divss   %xmm0, %xmm2
+kms1270_rf:        movss   %xmm2, 20(%rcx,%rsi)
+kms1271_rf:        movl    $0x00000000, -44(%rdx)
+kms1272_rf:        addq    $64, %rsi
+kms1273_rf:        cmpl    %r8d, 144(%rsp)
+kms1274_rf:        jne     .L160_rf
+.L159_rf:
+kms1275_rf:        cltq
+.L162_rf:
+kms1276_rf:        movss   (%rdi,%rax,4), %xmm2
+kms1277_rf:        divss   %xmm0, %xmm2
+kms1278_rf:        movss   %xmm2, (%rcx,%rax,4)
+kms1279_rf:        movl    $0x00000000, (%rdi,%rax,4)
+kms1280_rf:        incq    %rax
+kms1281_rf:        cmpl    %eax, %ebp
+kms1282_rf:        jg      .L162_rf
+.L161_rf:
+kms1283_rf:        cmpq    %r15, 56(%rsp)
+kms1284_rf:        movq    224(%rsp), %rax
+kms1285_rf:        movl    $0, (%rax,%r15,4)
+kms1286_rf:        leaq    1(%r15), %rax
+kms1287_rf:        je      .L155_rf
+kms1288_rf:        movq    %rax, %r15
+kms1289_rf:        jmp     .L156_rf
+.L194_rf:
+kms1290_rf:        movq    240(%rsp), %rax
+kms1291_rf:        movl    124(%rsp), %edx
+kms1292_rf:        movl    %ebp, %esi
+kms1293_rf:        movl    %edi, 16(%rsp)
+kms1294_rf:        movq    64(%rsp), %r8
+kms1295_rf:        movss   %xmm1, 56(%rsp)
+kms1296_rf:        movl    76(%rsp), %ecx
+kms1297_rf:        movq    80(%rsp), %rdi
+kms1298_rf:        movq    %rax, 32(%rsp)
+kms1299_rf:        movq    232(%rsp), %rax
+kms1300_rf:        movl    %edx, 24(%rsp)
+kms1301_rf:        movss   136(%rsp), %xmm0
+kms1302_rf:        movq    %r9, 152(%rsp)
+kms1303_rf:        movq    %rax, 8(%rsp)
+kms1304_rf:        movq    224(%rsp), %rax
+kms1305_rf:        movq    %rax, (%rsp)
+kms1306_rf:        call    _Z20kmeans_outer_handlerPPfiiifPifS0_S1_S0_iiPv
+kms1307_rf:        testl   %eax, %eax
+kms1308_rf:        movq    152(%rsp), %r9
+kms1309_rf:        xorps   %xmm4, %xmm4
+kms1310_rf:        movss   56(%rsp), %xmm1
+kms1311_rf:        je      .L150_rf
+.L123_rf:
+kms1312_rf:        addq    $168, %rsp
+kms1313_rf:        popq    %rbx
+kms1314_rf:        popq    %rbp
+kms1315_rf:        popq    %r12
+kms1316_rf:        popq    %r13
+kms1317_rf:        popq    %r14
+kms1318_rf:        popq    %r15
+kms1319_rf:        ret
 .L196_rf:
-kms1725_rf:        cmpl    $16, %r14d
-kms1726_rf:        jle     .L215_rf
-kms1727_rf:        leaq    80(%rcx), %rax
-kms1728_rf:        leaq    80(%r8), %rdx
-kms1729_rf:        xorl    %esi, %esi
-.L202_rf:
-kms1730_rf:        vmovss  -80(%rax), %xmm0
-kms1731_rf:        prefetcht0      (%rdx)
-kms1732_rf:        prefetcht0      (%rax)
-kms1733_rf:        vaddss  -80(%rdx), %xmm0, %xmm0
-kms1734_rf:        addl    $16, %esi
-kms1735_rf:        addq    $64, %rax
-kms1736_rf:        addq    $64, %rdx
-kms1737_rf:        vmovss  %xmm0, -144(%rax)
-kms1738_rf:        vmovss  -140(%rax), %xmm0
-kms1739_rf:        vaddss  -140(%rdx), %xmm0, %xmm0
-kms1740_rf:        vmovss  %xmm0, -140(%rax)
-kms1741_rf:        vmovss  -136(%rax), %xmm0
-kms1742_rf:        vaddss  -136(%rdx), %xmm0, %xmm0
-kms1743_rf:        vmovss  %xmm0, -136(%rax)
-kms1744_rf:        vmovss  -132(%rax), %xmm0
-kms1745_rf:        vaddss  -132(%rdx), %xmm0, %xmm0
-kms1746_rf:        vmovss  %xmm0, -132(%rax)
-kms1747_rf:        vmovss  -128(%rax), %xmm0
-kms1748_rf:        vaddss  -128(%rdx), %xmm0, %xmm0
-kms1749_rf:        vmovss  %xmm0, -128(%rax)
-kms1750_rf:        vmovss  -124(%rax), %xmm0
-kms1751_rf:        vaddss  -124(%rdx), %xmm0, %xmm0
-kms1752_rf:        vmovss  %xmm0, -124(%rax)
-kms1753_rf:        vmovss  -120(%rax), %xmm0
-kms1754_rf:        vaddss  -120(%rdx), %xmm0, %xmm0
-kms1755_rf:        vmovss  %xmm0, -120(%rax)
-kms1756_rf:        vmovss  -116(%rax), %xmm0
-kms1757_rf:        vaddss  -116(%rdx), %xmm0, %xmm0
-kms1758_rf:        vmovss  %xmm0, -116(%rax)
-kms1759_rf:        vmovss  -112(%rax), %xmm0
-kms1760_rf:        vaddss  -112(%rdx), %xmm0, %xmm0
-kms1761_rf:        vmovss  %xmm0, -112(%rax)
-kms1762_rf:        vmovss  -108(%rax), %xmm0
-kms1763_rf:        vaddss  -108(%rdx), %xmm0, %xmm0
-kms1764_rf:        vmovss  %xmm0, -108(%rax)
-kms1765_rf:        vmovss  -104(%rax), %xmm0
-kms1766_rf:        vaddss  -104(%rdx), %xmm0, %xmm0
-kms1767_rf:        vmovss  %xmm0, -104(%rax)
-kms1768_rf:        vmovss  -100(%rax), %xmm0
-kms1769_rf:        vaddss  -100(%rdx), %xmm0, %xmm0
-kms1770_rf:        vmovss  %xmm0, -100(%rax)
-kms1771_rf:        vmovss  -96(%rax), %xmm0
-kms1772_rf:        vaddss  -96(%rdx), %xmm0, %xmm0
-kms1773_rf:        vmovss  %xmm0, -96(%rax)
-kms1774_rf:        vmovss  -92(%rax), %xmm0
-kms1775_rf:        vaddss  -92(%rdx), %xmm0, %xmm0
-kms1776_rf:        vmovss  %xmm0, -92(%rax)
-kms1777_rf:        vmovss  -88(%rax), %xmm0
-kms1778_rf:        vaddss  -88(%rdx), %xmm0, %xmm0
-kms1779_rf:        vmovss  %xmm0, -88(%rax)
-kms1780_rf:        vmovss  -84(%rax), %xmm0
-kms1781_rf:        vaddss  -84(%rdx), %xmm0, %xmm0
-kms1782_rf:        vmovss  %xmm0, -84(%rax)
-kms1783_rf:        cmpl    64(%rsp), %esi
-kms1784_rf:        jne     .L202_rf
-.L201_rf:
-kms1785_rf:        movslq  %esi, %rax
-.L204_rf:
-kms1786_rf:        vmovss  (%rcx,%rax,4), %xmm0
-kms1787_rf:        vaddss  (%r8,%rax,4), %xmm0, %xmm0
-kms1788_rf:        vmovss  %xmm0, (%rcx,%rax,4)
-kms1789_rf:        incq    %rax
-kms1790_rf:        cmpl    %eax, %r14d
-kms1791_rf:        jg      .L204_rf
-kms1792_rf:        jmp     .L195_rf
-.L214_rf:
-kms1793_rf:        movq    %rcx, %r9
-kms1794_rf:        movq    %r8, %rdi
-kms1795_rf:        movq    %rcx, %rsi
-kms1796_rf:        xorl    %edx, %edx
-kms1797_rf:        jmp     .L197_rf
+kms1320_rf:        movq    128(%rsp), %rdx
+kms1321_rf:        xorl    %esi, %esi
+kms1322_rf:        movss   %xmm1, 72(%rsp)
+kms1323_rf:        call    memset
+kms1324_rf:        movss   72(%rsp), %xmm1
+kms1325_rf:        jmp     .L161_rf
+.L155_rf:
+kms1326_rf:        comiss  136(%rsp), %xmm1
+kms1327_rf:        ja      .L153_rf
+kms1328_rf:        jmp     .L123_rf
+.L171_rf:
+kms1329_rf:        cvtsi2ssl       %ecx, %xmm0
+kms1330_rf:        xorl    %eax, %eax
+kms1331_rf:        movq    (%r14,%r15,8), %rcx
+kms1332_rf:        jmp     .L159_rf
+_Z12kmeans_innerPPfiiifPiS_S0_S1_S0_iiPv_rf:
+kms1333_rf:        pushq   %r15
+kms1334_rf:        pushq   %r14
+kms1335_rf:        pushq   %r13
+kms1336_rf:        pushq   %r12
+kms1337_rf:        pushq   %rbp
+kms1338_rf:        pushq   %rbx
+kms1339_rf:        subq    $152, %rsp
+kms1340_rf:        movl    %edx, 132(%rsp)
+kms1341_rf:        movl    232(%rsp), %edx
+kms1342_rf:        cmpl    240(%rsp), %edx
+kms1343_rf:        movq    208(%rsp), %r15
+kms1344_rf:        movq    %rdi, 80(%rsp)
+kms1345_rf:        movl    %ecx, 76(%rsp)
+kms1346_rf:        movq    %r8, 64(%rsp)
+kms1347_rf:        movq    %r9, 120(%rsp)
+kms1348_rf:        jge     .L197_rf
+kms1349_rf:        movl    %esi, %ebx
+kms1350_rf:        movl    %esi, %r12d
+kms1351_rf:        leal    -1(%rsi), %r13d
+kms1352_rf:        shrl    $2, %ebx
+kms1353_rf:        andl    $-4, %r12d
+kms1354_rf:        movl    %esi, %r14d
+kms1355_rf:        leal    -5(%rbx), %eax
+kms1356_rf:        movaps  %xmm0, %xmm6
+kms1357_rf:        movss   (%r9), %xmm5
+kms1358_rf:        andl    $-4, %eax
+kms1359_rf:        movl    %eax, 52(%rsp)
+kms1360_rf:        addl    $4, %eax
+kms1361_rf:        movl    %eax, 88(%rsp)
+kms1362_rf:        movslq  %r12d, %rax
+kms1363_rf:        salq    $2, %rax
+kms1364_rf:        movq    %rax, 96(%rsp)
+kms1365_rf:        leal    1(%r12), %eax
+kms1366_rf:        movl    %eax, 92(%rsp)
+kms1367_rf:        cltq
+kms1368_rf:        salq    $2, %rax
+kms1369_rf:        movq    %rax, 104(%rsp)
+kms1370_rf:        leal    2(%r12), %eax
+kms1371_rf:        movl    %eax, 128(%rsp)
+kms1372_rf:        cltq
+kms1373_rf:        salq    $2, %rax
+kms1374_rf:        movq    %rax, 112(%rsp)
+kms1375_rf:        leal    -17(%rsi), %eax
+kms1376_rf:        andl    $-16, %eax
+kms1377_rf:        addl    $16, %eax
+kms1378_rf:        movl    %eax, 136(%rsp)
+.L200_rf:
+kms1379_rf:        leal    64(%rdx), %eax
+kms1380_rf:        cmpl    240(%rsp), %eax
+kms1381_rf:        cmovg   240(%rsp), %eax
+kms1382_rf:        cmpl    %eax, %edx
+kms1383_rf:        movl    %eax, 72(%rsp)
+kms1384_rf:        jge     .L227_rf
+kms1385_rf:        movslq  %edx, %rax
+kms1386_rf:        movq    %rax, 56(%rsp)
+kms1387_rf:        movl    76(%rsp), %eax
+kms1388_rf:        leal    -1(%rax), %r11d
+.L223_rf:
+kms1389_rf:        movq    80(%rsp), %rax
+kms1390_rf:        movq    56(%rsp), %rdi
+kms1391_rf:        movq    (%rax,%rdi,8), %r9
+kms1392_rf:        movl    76(%rsp), %eax
+kms1393_rf:        testl   %eax, %eax
+kms1394_rf:        jle     .L202_rf
+kms1395_rf:        xorl    %edi, %edi
+kms1396_rf:        testl   %r14d, %r14d
+kms1397_rf:        xorps   %xmm4, %xmm4
+kms1398_rf:        movq    (%r15,%rdi,8), %r8
+kms1399_rf:        movl    %edi, %r10d
+kms1400_rf:        movss   .LC1_rf(%rip), %xmm3
+kms1401_rf:        jle     .L228_rf
+.L251_rf:
+kms1402_rf:        cmpl    $2, %r13d
+kms1403_rf:        jbe     .L229_rf
+kms1404_rf:        cmpl    $4, %ebx
+kms1405_rf:        movq    %r8, %rcx
+kms1406_rf:        movq    %r9, %rdx
+kms1407_rf:        jbe     .L230_rf
+kms1408_rf:        movaps  %xmm4, %xmm1
+kms1409_rf:        xorl    %eax, %eax
 .L206_rf:
-kms1798_rf:        movq    72(%rsp), %rax
-kms1799_rf:        vmovss  %xmm5, (%rax)
-kms1800_rf:        vzeroupper
-.L232_rf:
-kms1801_rf:        leaq    -40(%rbp), %rsp
-kms1802_rf:        popq    %rbx
-kms1803_rf:        popq    %r12
-kms1804_rf:        popq    %r13
-kms1805_rf:        popq    %r14
-kms1806_rf:        popq    %r15
-kms1807_rf:        popq    %rbp
-kms1808_rf:        ret
+kms1410_rf:        movlps  (%rdx), %xmm2
+kms1411_rf:        movlps  (%rcx), %xmm0
+kms1412_rf:        movl    %eax, %esi
+kms1413_rf:        prefetcht0      256(%rdx)
+kms1414_rf:        addl    $4, %eax
+kms1415_rf:        addq    $64, %rdx
+kms1416_rf:        movhps  8(%rcx), %xmm0
+kms1417_rf:        movhps  -56(%rdx), %xmm2
+kms1418_rf:        prefetcht0      256(%rcx)
+kms1419_rf:        addq    $64, %rcx
+kms1420_rf:        subps   %xmm0, %xmm2
+kms1421_rf:        mulps   %xmm2, %xmm2
+kms1422_rf:        movaps  %xmm2, %xmm0
+kms1423_rf:        addss   %xmm1, %xmm0
+kms1424_rf:        movaps  %xmm2, %xmm1
+kms1425_rf:        shufps  $85, %xmm2, %xmm1
+kms1426_rf:        addss   %xmm1, %xmm0
+kms1427_rf:        movaps  %xmm2, %xmm1
+kms1428_rf:        unpckhps        %xmm2, %xmm1
+kms1429_rf:        shufps  $255, %xmm2, %xmm2
+kms1430_rf:        addss   %xmm1, %xmm0
+kms1431_rf:        movlps  -48(%rdx), %xmm1
+kms1432_rf:        movhps  -40(%rdx), %xmm1
+kms1433_rf:        addss   %xmm2, %xmm0
+kms1434_rf:        movlps  -48(%rcx), %xmm2
+kms1435_rf:        movhps  -40(%rcx), %xmm2
+kms1436_rf:        subps   %xmm2, %xmm1
+kms1437_rf:        mulps   %xmm1, %xmm1
+kms1438_rf:        addss   %xmm1, %xmm0
+kms1439_rf:        movaps  %xmm1, %xmm2
+kms1440_rf:        shufps  $85, %xmm1, %xmm2
+kms1441_rf:        addss   %xmm2, %xmm0
+kms1442_rf:        movaps  %xmm1, %xmm2
+kms1443_rf:        unpckhps        %xmm1, %xmm2
+kms1444_rf:        shufps  $255, %xmm1, %xmm1
+kms1445_rf:        addss   %xmm2, %xmm0
+kms1446_rf:        movlps  -32(%rcx), %xmm2
+kms1447_rf:        movhps  -24(%rcx), %xmm2
+kms1448_rf:        addss   %xmm1, %xmm0
+kms1449_rf:        movlps  -32(%rdx), %xmm1
+kms1450_rf:        movhps  -24(%rdx), %xmm1
+kms1451_rf:        subps   %xmm2, %xmm1
+kms1452_rf:        mulps   %xmm1, %xmm1
+kms1453_rf:        addss   %xmm1, %xmm0
+kms1454_rf:        movaps  %xmm1, %xmm2
+kms1455_rf:        shufps  $85, %xmm1, %xmm2
+kms1456_rf:        addss   %xmm2, %xmm0
+kms1457_rf:        movaps  %xmm1, %xmm2
+kms1458_rf:        unpckhps        %xmm1, %xmm2
+kms1459_rf:        shufps  $255, %xmm1, %xmm1
+kms1460_rf:        addss   %xmm2, %xmm0
+kms1461_rf:        movlps  -16(%rdx), %xmm2
+kms1462_rf:        movhps  -8(%rdx), %xmm2
+kms1463_rf:        addss   %xmm1, %xmm0
+kms1464_rf:        movlps  -16(%rcx), %xmm1
+kms1465_rf:        movhps  -8(%rcx), %xmm1
+kms1466_rf:        cmpl    52(%rsp), %esi
+kms1467_rf:        subps   %xmm1, %xmm2
+kms1468_rf:        mulps   %xmm2, %xmm2
+kms1469_rf:        addss   %xmm2, %xmm0
+kms1470_rf:        movaps  %xmm2, %xmm1
+kms1471_rf:        shufps  $85, %xmm2, %xmm1
+kms1472_rf:        addss   %xmm1, %xmm0
+kms1473_rf:        movaps  %xmm2, %xmm1
+kms1474_rf:        unpckhps        %xmm2, %xmm1
+kms1475_rf:        shufps  $255, %xmm2, %xmm2
+kms1476_rf:        addss   %xmm1, %xmm0
+kms1477_rf:        movaps  %xmm2, %xmm1
+kms1478_rf:        addss   %xmm0, %xmm1
+kms1479_rf:        jne     .L206_rf
+kms1480_rf:        movl    88(%rsp), %esi
+.L205_rf:
+kms1481_rf:        xorl    %eax, %eax
+.L207_rf:
+kms1482_rf:        movlps  (%rdx,%rax), %xmm0
+kms1483_rf:        movlps  (%rcx,%rax), %xmm2
+kms1484_rf:        incl    %esi
+kms1485_rf:        movhps  8(%rcx,%rax), %xmm2
+kms1486_rf:        movhps  8(%rdx,%rax), %xmm0
+kms1487_rf:        addq    $16, %rax
+kms1488_rf:        cmpl    %esi, %ebx
+kms1489_rf:        subps   %xmm2, %xmm0
+kms1490_rf:        mulps   %xmm0, %xmm0
+kms1491_rf:        addss   %xmm0, %xmm1
+kms1492_rf:        movaps  %xmm0, %xmm2
+kms1493_rf:        shufps  $85, %xmm0, %xmm2
+kms1494_rf:        addss   %xmm2, %xmm1
+kms1495_rf:        movaps  %xmm0, %xmm2
+kms1496_rf:        unpckhps        %xmm0, %xmm2
+kms1497_rf:        shufps  $255, %xmm0, %xmm0
+kms1498_rf:        addss   %xmm2, %xmm1
+kms1499_rf:        addss   %xmm0, %xmm1
+kms1500_rf:        ja      .L207_rf
+kms1501_rf:        cmpl    %r12d, %r14d
+kms1502_rf:        movl    %r12d, %eax
+kms1503_rf:        je      .L203_rf
+.L204_rf:
+kms1504_rf:        movslq  %eax, %rcx
+kms1505_rf:        movss   (%r9,%rcx,4), %xmm0
+kms1506_rf:        leaq    0(,%rcx,4), %rdx
+kms1507_rf:        subss   (%r8,%rcx,4), %xmm0
+kms1508_rf:        leal    1(%rax), %ecx
+kms1509_rf:        cmpl    %ecx, %r14d
+kms1510_rf:        mulss   %xmm0, %xmm0
+kms1511_rf:        addss   %xmm0, %xmm1
+kms1512_rf:        jle     .L203_rf
+kms1513_rf:        movss   4(%r9,%rdx), %xmm0
+kms1514_rf:        addl    $2, %eax
+kms1515_rf:        subss   4(%r8,%rdx), %xmm0
+kms1516_rf:        cmpl    %eax, %r14d
+kms1517_rf:        mulss   %xmm0, %xmm0
+kms1518_rf:        addss   %xmm0, %xmm1
+kms1519_rf:        jle     .L203_rf
+kms1520_rf:        movss   8(%r9,%rdx), %xmm0
+kms1521_rf:        subss   8(%r8,%rdx), %xmm0
+kms1522_rf:        mulss   %xmm0, %xmm0
+kms1523_rf:        addss   %xmm0, %xmm1
+.L203_rf:
+kms1524_rf:        comiss  %xmm1, %xmm3
+kms1525_rf:        minss   %xmm3, %xmm1
+kms1526_rf:        leaq    1(%rdi), %rax
+kms1527_rf:        cmova   %r10d, %ebp
+kms1528_rf:        cmpq    %r11, %rdi
+kms1529_rf:        movaps  %xmm1, %xmm3
+kms1530_rf:        je      .L202_rf
+kms1531_rf:        movq    %rax, %rdi
+kms1532_rf:        testl   %r14d, %r14d
+kms1533_rf:        movq    (%r15,%rdi,8), %r8
+kms1534_rf:        movl    %edi, %r10d
+kms1535_rf:        jg      .L251_rf
+.L228_rf:
+kms1536_rf:        movaps  %xmm4, %xmm1
+kms1537_rf:        jmp     .L203_rf
+.L202_rf:
+kms1538_rf:        movq    64(%rsp), %rax
+kms1539_rf:        movq    56(%rsp), %rdi
+kms1540_rf:        cmpl    %ebp, (%rax,%rdi,4)
+kms1541_rf:        je      .L212_rf
+kms1542_rf:        addss   .LC2_rf(%rip), %xmm5
+.L212_rf:
+kms1543_rf:        movq    64(%rsp), %rax
+kms1544_rf:        movq    56(%rsp), %rdi
+kms1545_rf:        movl    %ebp, (%rax,%rdi,4)
+kms1546_rf:        movq    216(%rsp), %rdi
+kms1547_rf:        movslq  %ebp, %rax
+kms1548_rf:        incl    (%rdi,%rax,4)
+kms1549_rf:        testl   %r14d, %r14d
+kms1550_rf:        jle     .L213_rf
+kms1551_rf:        movq    224(%rsp), %rdi
+kms1552_rf:        movq    (%rdi,%rax,8), %r8
+kms1553_rf:        leaq    15(%r9), %rax
+kms1554_rf:        subq    %r8, %rax
+kms1555_rf:        cmpq    $30, %rax
+kms1556_rf:        jbe     .L214_rf
+kms1557_rf:        cmpl    $3, %r13d
+kms1558_rf:        jbe     .L214_rf
+kms1559_rf:        cmpl    $4, %ebx
+kms1560_rf:        jbe     .L232_rf
+kms1561_rf:        movq    %r9, %rcx
+kms1562_rf:        movq    %r8, %rdx
+kms1563_rf:        xorl    %esi, %esi
+.L216_rf:
+kms1564_rf:        movlps  (%rcx), %xmm0
+kms1565_rf:        movlps  (%rdx), %xmm1
+kms1566_rf:        prefetcht0      320(%rcx)
+kms1567_rf:        movl    %esi, %eax
+kms1568_rf:        addq    $64, %rcx
+kms1569_rf:        addl    $4, %esi
+kms1570_rf:        movhps  -56(%rcx), %xmm0
+kms1571_rf:        movhps  8(%rdx), %xmm1
+kms1572_rf:        prefetcht0      320(%rdx)
+kms1573_rf:        addq    $64, %rdx
+kms1574_rf:        addps   %xmm1, %xmm0
+kms1575_rf:        movlps  %xmm0, -64(%rdx)
+kms1576_rf:        movhps  %xmm0, -56(%rdx)
+kms1577_rf:        movlps  -48(%rdx), %xmm0
+kms1578_rf:        movlps  -48(%rcx), %xmm1
+kms1579_rf:        movhps  -40(%rdx), %xmm0
+kms1580_rf:        movhps  -40(%rcx), %xmm1
+kms1581_rf:        addps   %xmm1, %xmm0
+kms1582_rf:        movlps  %xmm0, -48(%rdx)
+kms1583_rf:        movhps  %xmm0, -40(%rdx)
+kms1584_rf:        movlps  -32(%rdx), %xmm0
+kms1585_rf:        movlps  -32(%rcx), %xmm1
+kms1586_rf:        movhps  -24(%rdx), %xmm0
+kms1587_rf:        movhps  -24(%rcx), %xmm1
+kms1588_rf:        addps   %xmm1, %xmm0
+kms1589_rf:        movlps  %xmm0, -32(%rdx)
+kms1590_rf:        movhps  %xmm0, -24(%rdx)
+kms1591_rf:        movlps  -16(%rdx), %xmm0
+kms1592_rf:        movlps  -16(%rcx), %xmm1
+kms1593_rf:        movhps  -8(%rdx), %xmm0
+kms1594_rf:        movhps  -8(%rcx), %xmm1
+kms1595_rf:        addps   %xmm1, %xmm0
+kms1596_rf:        movlps  %xmm0, -16(%rdx)
+kms1597_rf:        movhps  %xmm0, -8(%rdx)
+kms1598_rf:        cmpl    52(%rsp), %eax
+kms1599_rf:        movq    %rdx, %rdi
+kms1600_rf:        jne     .L216_rf
+kms1601_rf:        movl    88(%rsp), %esi
 .L215_rf:
-kms1809_rf:        xorl    %esi, %esi
-kms1810_rf:        jmp     .L201_rf
-.L209_rf:
-kms1811_rf:        movl    %edx, 192(%rsp)
-kms1812_rf:        jmp     .L183_rf
-.L235_rf:
-kms1813_rf:        movq    56(%rbp), %rax
-kms1814_rf:        movq    72(%rsp), %r9
-kms1815_rf:        movl    %r14d, %esi
-kms1816_rf:        movq    176(%rsp), %r8
-kms1817_rf:        movl    172(%rsp), %ecx
-kms1818_rf:        vmovss  %xmm5, 60(%rsp)
-kms1819_rf:        movl    68(%rsp), %edx
-kms1820_rf:        movq    160(%rsp), %rdi
-kms1821_rf:        vmovss  %xmm6, 184(%rsp)
-kms1822_rf:        vmovss  %xmm5, (%r9)
-kms1823_rf:        movq    %rax, 40(%rsp)
-kms1824_rf:        movl    48(%rbp), %eax
-kms1825_rf:        vmovaps %xmm6, %xmm0
-kms1826_rf:        movq    %r15, (%rsp)
-kms1827_rf:        movl    %eax, 32(%rsp)
-kms1828_rf:        movl    192(%rsp), %eax
-kms1829_rf:        movl    %eax, 24(%rsp)
-kms1830_rf:        movq    32(%rbp), %rax
-kms1831_rf:        movq    %rax, 16(%rsp)
-kms1832_rf:        movq    24(%rbp), %rax
-kms1833_rf:        movq    %rax, 8(%rsp)
-kms1834_rf:        vzeroupper
-kms1835_rf:        call    _Z20kmeans_inner_handlerPPfiiifPiS_S0_S1_S0_iiPv
-kms1836_rf:        testl   %eax, %eax
-kms1837_rf:        vmovss  184(%rsp), %xmm6
-kms1838_rf:        vmovss  60(%rsp), %xmm5
-kms1839_rf:        je      .L207_rf
-kms1840_rf:        jmp     .L232_rf
+kms1602_rf:        xorl    %eax, %eax
+.L217_rf:
+kms1603_rf:        movlps  (%rdx,%rax), %xmm0
+kms1604_rf:        movlps  (%rcx,%rax), %xmm1
+kms1605_rf:        incl    %esi
+kms1606_rf:        movhps  8(%rdx,%rax), %xmm0
+kms1607_rf:        movhps  8(%rcx,%rax), %xmm1
+kms1608_rf:        addps   %xmm1, %xmm0
+kms1609_rf:        movlps  %xmm0, (%rdi,%rax)
+kms1610_rf:        movhps  %xmm0, 8(%rdi,%rax)
+kms1611_rf:        addq    $16, %rax
+kms1612_rf:        cmpl    %esi, %ebx
+kms1613_rf:        ja      .L217_rf
+kms1614_rf:        cmpl    %r12d, %r14d
+kms1615_rf:        je      .L213_rf
+kms1616_rf:        movq    96(%rsp), %rdi
+kms1617_rf:        cmpl    92(%rsp), %r14d
+kms1618_rf:        leaq    (%r8,%rdi), %rax
+kms1619_rf:        movss   (%rax), %xmm0
+kms1620_rf:        addss   (%r9,%rdi), %xmm0
+kms1621_rf:        movss   %xmm0, (%rax)
+kms1622_rf:        jle     .L213_rf
+kms1623_rf:        movq    104(%rsp), %rdi
+kms1624_rf:        cmpl    128(%rsp), %r14d
+kms1625_rf:        leaq    (%r8,%rdi), %rax
+kms1626_rf:        movss   (%rax), %xmm0
+kms1627_rf:        addss   (%r9,%rdi), %xmm0
+kms1628_rf:        movss   %xmm0, (%rax)
+kms1629_rf:        jle     .L213_rf
+kms1630_rf:        movq    112(%rsp), %rax
+kms1631_rf:        addq    %rax, %r8
+kms1632_rf:        movss   (%r8), %xmm0
+kms1633_rf:        addss   (%r9,%rax), %xmm0
+kms1634_rf:        movss   %xmm0, (%r8)
+.L213_rf:
+kms1635_rf:        incq    56(%rsp)
+kms1636_rf:        movq    56(%rsp), %rax
+kms1637_rf:        cmpl    %eax, 72(%rsp)
+kms1638_rf:        jg      .L223_rf
+.L201_rf:
+kms1639_rf:        movl    72(%rsp), %eax
+kms1640_rf:        cmpl    %eax, 240(%rsp)
+kms1641_rf:        jle     .L224_rf
+kms1642_rf:        nop
+kms1643_rf:        nop
+kms1644_rf:        jmp     .L252
+.L225_rf:
+kms1645_rf:        movl    72(%rsp), %edx
+kms1646_rf:        jmp     .L200_rf
+.L229_rf:
+kms1647_rf:        movaps  %xmm4, %xmm1
+kms1648_rf:        xorl    %eax, %eax
+kms1649_rf:        jmp     .L204_rf
+.L230_rf:
+kms1650_rf:        movaps  %xmm4, %xmm1
+kms1651_rf:        xorl    %esi, %esi
+kms1652_rf:        jmp     .L205_rf
+.L214_rf:
+kms1653_rf:        cmpl    $16, %r14d
+kms1654_rf:        jle     .L233_rf
+kms1655_rf:        leaq    80(%r8), %rax
+kms1656_rf:        leaq    80(%r9), %rdx
+kms1657_rf:        xorl    %ecx, %ecx
+.L220_rf:
+kms1658_rf:        movss   -80(%rax), %xmm0
+kms1659_rf:        prefetcht0      (%rdx)
+kms1660_rf:        prefetcht0      (%rax)
+kms1661_rf:        addss   -80(%rdx), %xmm0
+kms1662_rf:        addl    $16, %ecx
+kms1663_rf:        addq    $64, %rax
+kms1664_rf:        addq    $64, %rdx
+kms1665_rf:        movss   %xmm0, -144(%rax)
+kms1666_rf:        movss   -140(%rax), %xmm0
+kms1667_rf:        addss   -140(%rdx), %xmm0
+kms1668_rf:        movss   %xmm0, -140(%rax)
+kms1669_rf:        movss   -136(%rax), %xmm0
+kms1670_rf:        addss   -136(%rdx), %xmm0
+kms1671_rf:        movss   %xmm0, -136(%rax)
+kms1672_rf:        movss   -132(%rax), %xmm0
+kms1673_rf:        addss   -132(%rdx), %xmm0
+kms1674_rf:        movss   %xmm0, -132(%rax)
+kms1675_rf:        movss   -128(%rax), %xmm0
+kms1676_rf:        addss   -128(%rdx), %xmm0
+kms1677_rf:        movss   %xmm0, -128(%rax)
+kms1678_rf:        movss   -124(%rax), %xmm0
+kms1679_rf:        addss   -124(%rdx), %xmm0
+kms1680_rf:        movss   %xmm0, -124(%rax)
+kms1681_rf:        movss   -120(%rax), %xmm0
+kms1682_rf:        addss   -120(%rdx), %xmm0
+kms1683_rf:        movss   %xmm0, -120(%rax)
+kms1684_rf:        movss   -116(%rax), %xmm0
+kms1685_rf:        addss   -116(%rdx), %xmm0
+kms1686_rf:        movss   %xmm0, -116(%rax)
+kms1687_rf:        movss   -112(%rax), %xmm0
+kms1688_rf:        addss   -112(%rdx), %xmm0
+kms1689_rf:        movss   %xmm0, -112(%rax)
+kms1690_rf:        movss   -108(%rax), %xmm0
+kms1691_rf:        addss   -108(%rdx), %xmm0
+kms1692_rf:        movss   %xmm0, -108(%rax)
+kms1693_rf:        movss   -104(%rax), %xmm0
+kms1694_rf:        addss   -104(%rdx), %xmm0
+kms1695_rf:        movss   %xmm0, -104(%rax)
+kms1696_rf:        movss   -100(%rax), %xmm0
+kms1697_rf:        addss   -100(%rdx), %xmm0
+kms1698_rf:        movss   %xmm0, -100(%rax)
+kms1699_rf:        movss   -96(%rax), %xmm0
+kms1700_rf:        addss   -96(%rdx), %xmm0
+kms1701_rf:        movss   %xmm0, -96(%rax)
+kms1702_rf:        movss   -92(%rax), %xmm0
+kms1703_rf:        addss   -92(%rdx), %xmm0
+kms1704_rf:        movss   %xmm0, -92(%rax)
+kms1705_rf:        movss   -88(%rax), %xmm0
+kms1706_rf:        addss   -88(%rdx), %xmm0
+kms1707_rf:        movss   %xmm0, -88(%rax)
+kms1708_rf:        movss   -84(%rax), %xmm0
+kms1709_rf:        addss   -84(%rdx), %xmm0
+kms1710_rf:        movss   %xmm0, -84(%rax)
+kms1711_rf:        cmpl    136(%rsp), %ecx
+kms1712_rf:        jne     .L220_rf
+.L219_rf:
+kms1713_rf:        movslq  %ecx, %rax
+.L222_rf:
+kms1714_rf:        movss   (%r8,%rax,4), %xmm0
+kms1715_rf:        addss   (%r9,%rax,4), %xmm0
+kms1716_rf:        movss   %xmm0, (%r8,%rax,4)
+kms1717_rf:        incq    %rax
+kms1718_rf:        cmpl    %eax, %r14d
+kms1719_rf:        jg      .L222_rf
+kms1720_rf:        jmp     .L213_rf
+.L232_rf:
+kms1721_rf:        movq    %r8, %rdi
+kms1722_rf:        movq    %r9, %rcx
+kms1723_rf:        movq    %r8, %rdx
+kms1724_rf:        xorl    %esi, %esi
+kms1725_rf:        jmp     .L215_rf
+.L224_rf:
+kms1726_rf:        movq    120(%rsp), %rax
+kms1727_rf:        movss   %xmm5, (%rax)
+.L197_rf:
+kms1728_rf:        addq    $152, %rsp
+kms1729_rf:        popq    %rbx
+kms1730_rf:        popq    %rbp
+kms1731_rf:        popq    %r12
+kms1732_rf:        popq    %r13
+kms1733_rf:        popq    %r14
+kms1734_rf:        popq    %r15
+kms1735_rf:        ret
+.L233_rf:
+kms1736_rf:        xorl    %ecx, %ecx
+kms1737_rf:        jmp     .L219_rf
+.L227_rf:
+kms1738_rf:        movl    %edx, 72(%rsp)
+kms1739_rf:        jmp     .L201_rf
+.L252_rf:
+kms1740_rf:        movq    248(%rsp), %rax
+kms1741_rf:        movq    120(%rsp), %r9
+kms1742_rf:        movl    %r14d, %esi
+kms1743_rf:        movq    64(%rsp), %r8
+kms1744_rf:        movl    76(%rsp), %ecx
+kms1745_rf:        movss   %xmm5, 140(%rsp)
+kms1746_rf:        movl    132(%rsp), %edx
+kms1747_rf:        movq    80(%rsp), %rdi
+kms1748_rf:        movss   %xmm6, 56(%rsp)
+kms1749_rf:        movss   %xmm5, (%r9)
+kms1750_rf:        movq    %rax, 40(%rsp)
+kms1751_rf:        movl    240(%rsp), %eax
+kms1752_rf:        movaps  %xmm6, %xmm0
+kms1753_rf:        movq    %r15, (%rsp)
+kms1754_rf:        movl    %eax, 32(%rsp)
+kms1755_rf:        movl    72(%rsp), %eax
+kms1756_rf:        movl    %eax, 24(%rsp)
+kms1757_rf:        movq    224(%rsp), %rax
+kms1758_rf:        movq    %rax, 16(%rsp)
+kms1759_rf:        movq    216(%rsp), %rax
+kms1760_rf:        movq    %rax, 8(%rsp)
+kms1761_rf:        call    _Z20kmeans_inner_handlerPPfiiifPiS_S0_S1_S0_iiPv
+kms1762_rf:        testl   %eax, %eax
+kms1763_rf:        movss   56(%rsp), %xmm6
+kms1764_rf:        movss   140(%rsp), %xmm5
+kms1765_rf:        je      .L225_rf
+kms1766_rf:        jmp     .L197_rf
 .LC1_rf:
-kms1841_rf:        .long   2139095039
+kms1767_rf:        .long   2139095039
 .LC2_rf:
-kms1842_rf:        .long   1065353216
+kms1768_rf:        .long   1065353216
 

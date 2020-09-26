@@ -112,10 +112,10 @@ unsigned char* mandelbrot_cilk(double x0, double y0, double x1, double y1,
                                int width, int height, int max_depth) {
   double xstep = (x1 - x0) / width;
   double ystep = (y1 - y0) / height;
-  unsigned char* output = static_cast<unsigned char*>(_mm_malloc(width * height * sizeof(unsigned char), 64));
-  //unsigned char *output = static_cast<unsigned char *>(aligned_alloc(64, width * height * sizeof(unsigned char)));
-  // Traverse the sample space in equally spaced steps with width * height samples
+  unsigned char* output = (unsigned char*)malloc(width * height * sizeof(unsigned char));
+  //unsigned char* output = static_cast<unsigned char*>(_mm_malloc(width * height * sizeof(unsigned char), 64));
 #if defined(USE_CILK_PLUS)
+  // Traverse the sample space in equally spaced steps with width * height samples
   cilk_for(int j = 0; j < height; ++j) {
     cilk_for (int i = 0; i < width; ++i) {
       double z_real = x0 + i*xstep;
@@ -143,4 +143,51 @@ unsigned char* mandelbrot_cilk(double x0, double y0, double x1, double y1,
   }
 #endif
   return output;
+}
+
+namespace mandelbrot {
+
+using namespace tpalrts;
+
+uint64_t nb_items;
+unsigned char* output = nullptr;
+double x0 = -2.5;
+double y0 = -0.875;
+double x1 = 1;
+double y1 = 0.875;
+int height = 10240;
+// Width should be a multiple of 8
+int width = 1024;
+int max_depth = 100;
+double g = 2.0;
+  
+auto bench_pre(promotable* p) {
+  for (int i = 0; i < 100; i++) {
+    g /= sin(g);
+  }
+};
+  
+auto bench_body_interrupt(promotable* p) {
+  rollforward_table = {
+    #include "mandelbrot_rollforward_map.hpp"
+  };
+  output = mandelbrot_interrupt(x0, y0, x1, y1, width, height, max_depth, p);
+};
+  
+auto bench_body_software_polling(promotable* p) {
+
+};
+
+auto bench_body_serial(promotable* p) {
+  output = mandelbrot_serial(x0, y0, x1, y1, width, height, max_depth);
+};
+
+auto bench_post(promotable* p) {
+  _mm_free(output);
+};
+
+auto bench_body_cilk() {
+  output = mandelbrot_cilk(x0, y0, x1, y1, width, height, max_depth);
+};
+  
 }

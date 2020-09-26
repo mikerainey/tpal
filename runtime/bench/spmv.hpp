@@ -44,7 +44,7 @@ void spmv_software_polling_row_loop(double* val,
                                     int64_t i_hi,
                                     tpalrts::promotable* p);
 
-int64_t spmv_manual_col_T = 1000;
+uint64_t spmv_manual_col_T = 1000;
 
 template <typename Scheduler>
 class spmv_manual : public tpalrts::fiber<Scheduler> {
@@ -473,4 +473,116 @@ void spmv_cilk(double* val,
 #else
   //  mcsl::die("Cilk unsupported\n");
 #endif
+}
+
+/*---------------------------------------------------------------------*/
+
+namespace spmv {
+
+uint64_t hash64(uint64_t u) {
+  uint64_t v = u * 3935559000370003845ul + 2691343689449507681ul;
+  v ^= v >> 21;
+  v ^= v << 37;
+  v ^= v >>  4;
+  v *= 4768777513237032717ul;
+  v ^= v << 20;
+  v ^= v >> 41;
+  v ^= v <<  5;
+  return v;
+}
+
+using namespace tpalrts;
+  
+uint64_t n = 1 * 1000 * 1000;
+uint64_t row_len = 1000;
+uint64_t nb_rows;
+uint64_t nb_vals;
+double* val;
+uint64_t* row_ptr;
+uint64_t* col_ind;
+double* x;
+double* y;
+
+auto bench_pre(promotable*) {
+  nb_rows = n / row_len;
+  nb_vals = n;
+  val = (double*)malloc(sizeof(double) * nb_vals);
+  return;
+  row_ptr = (uint64_t*)malloc(sizeof(uint64_t) * (nb_rows + 1));
+  col_ind = (uint64_t*)malloc(sizeof(uint64_t) * nb_vals);
+  x = (double*)malloc(sizeof(double) * nb_rows);
+  y = (double*)malloc(sizeof(double) * nb_rows);
+  {
+    uint64_t a = 0;
+    for (uint64_t i = 0; i != nb_rows; i++) {
+      row_ptr[i] = a;
+      a += row_len;
+    }
+    row_ptr[nb_rows] = a;
+  }
+  for (uint64_t i = 0; i != nb_vals; i++) {
+    col_ind[i] = hash64(i) % nb_rows;
+  }
+  for (uint64_t i = 0; i != nb_rows; i++) {
+    x[i] = 1.0;
+    y[i] = 0.0;
+  }
+  for (uint64_t i = 0; i != nb_vals; i++) {
+    val[i] = 1.0;
+  }
+};
+  
+auto bench_body_interrupt(promotable* p) {
+  if (val == nullptr || row_ptr == nullptr || col_ind == nullptr || x == nullptr || y == nullptr) {
+    printk("PROBLEM\n");
+    return;
+  }
+  return;
+  rollforward_table = {
+    #include "spmv_rollforward_map.hpp"    
+  };
+  spmv_interrupt(val, row_ptr, col_ind, x, y, 0, nb_rows, p);
+};
+  
+auto bench_body_software_polling(promotable* p) {
+  //  spmv_software_polling(val, row_ptr, col_ind, x, y, nb_rows, p, software_polling_K);
+};
+  
+auto bench_body_serial(promotable*) {
+  spmv_serial(val, row_ptr, col_ind, x, y, nb_rows);
+};
+  
+auto bench_post(promotable*) {
+  return;
+#ifndef NDEBUG
+  double* yref = (double*)malloc(sizeof(double) * nb_rows);
+  {
+    for (uint64_t i = 0; i != nb_rows; i++) {
+      yref[i] = 1.0;
+    }
+    spmv_serial(val, row_ptr, col_ind, x, yref, nb_rows);
+  }
+  uint64_t nb_diffs = 0;
+  double epsilon = 0.01;
+  for (uint64_t i = 0; i != nb_rows; i++) {
+    auto diff = std::abs(y[i] - yref[i]);
+    if (diff > epsilon) {
+      //printf("diff=%f y[i]=%f yref[i]=%f at i=%ld\n", diff, y[i], yref[i], i);
+      nb_diffs++;
+    }
+  }
+  printf("nb_diffs %ld\n", nb_diffs);
+  free(yref);
+#endif
+  free(val);
+  free(row_ptr);
+  free(x);
+  free(y);
+};
+
+auto bench_body_cilk() {
+  spmv_cilk(val, row_ptr, col_ind, x, y, nb_rows);
+};
+
+
 }

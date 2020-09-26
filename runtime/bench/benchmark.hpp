@@ -61,6 +61,7 @@ void launch0(std::size_t nb_workers,
   }
   using scheduler_type = mcsl::chase_lev_work_stealing_scheduler<Scheduler, fiber, stats, logging, mcsl::minimal_elastic, Worker, Interrupt>;
   scheduler_type::launch(nb_workers);
+  printf("opsys linux\n");
   printf("exectime %.3f\n", elapsed_time);
   printf("execcycles %lu\n", elapsed_cycles);
   {

@@ -105,3 +105,82 @@ void floyd_warshall_cilk(int* dist, int vertices) {
   }
 #endif
 }
+
+namespace floyd_warshall {
+
+using namespace tpalrts;
+
+int vertices = 1024;
+int* dist = nullptr;
+
+auto init_input(int vertices) {
+  int* dist = (int*)malloc(sizeof(int) * vertices * vertices);
+  for(int i = 0; i < vertices; i++) {
+    for(int j = 0; j < vertices; j++) {
+      SUB(dist, vertices, i, j) = ((i == j) ? 0 : INF);
+    }
+  }
+  for (int i = 0 ; i < vertices ; i++) {
+    for (int j = 0 ; j< vertices; j++) {
+      if (i == j) {
+	SUB(dist, vertices, i, j) = 0;
+      } else {
+	int num = i + j;
+	if (num % 3 == 0) {
+	  SUB(dist, vertices, i, j) = num / 2;
+	} else if (num % 2 == 0) {
+	  SUB(dist, vertices, i, j) = num * 2;
+	} else {
+	  SUB(dist, vertices, i, j) = num;
+	}
+      }
+    }
+  }
+  return dist;
+};
+
+auto bench_pre(promotable* p) {
+  dist = init_input(vertices);
+};
+
+auto bench_body_interrupt(promotable* p) {
+  rollforward_table = {
+    #include "floyd_warshall_rollforward_map.hpp"
+  };
+  floyd_warshall_interrupt(dist, vertices, 0, vertices, p);
+};
+
+auto bench_body_software_polling(promotable* p) {
+
+};
+
+auto bench_body_serial(promotable* p) {
+  floyd_warshall_serial(dist, vertices);
+};
+
+auto bench_post(promotable* p) {
+#ifndef NDEBUG
+  bool check = deepsea::cmdline::parse_or_default_bool("check", false);
+  if (check) {
+    auto dist2 = init_input(vertices);
+    floyd_warshall_serial(dist2, vertices);
+    int nb_diffs = 0;
+    for (int i = 0; i < vertices; i++) {
+      for (int j = 0; j < vertices; j++) {
+	if (SUB(dist, vertices, i, j) != SUB(dist2, vertices, i, j)) {
+	  nb_diffs++;
+	}
+      }
+    }
+    printf("nb_diffs %d\n", nb_diffs);
+    free(dist2);
+  }
+#endif
+  free(dist);
+};
+
+auto bench_body_cilk() {
+  floyd_warshall_cilk(dist, vertices);
+};
+  
+}

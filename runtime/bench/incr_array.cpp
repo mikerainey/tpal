@@ -6,9 +6,6 @@ namespace tpalrts {
 using namespace incr_array;
   
 void launch() {
-  rollforward_table = {
-    #include "incr_array_rollforward_map.hpp"
-  };
   incr_array::nb_items = deepsea::cmdline::parse_or_default_long("n", incr_array::nb_items);
   incr_array_manual_T = deepsea::cmdline::parse_or_default_int("incr_array_manual_T", incr_array_manual_T);
   using microbench_scheduler_type = mcsl::minimal_scheduler<stats, logging, mcsl::minimal_elastic, tpal_worker>;

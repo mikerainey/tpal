@@ -1,8 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
@@ -37,12 +34,15 @@ auto kmeans_inputgen(int nObj, int nFeat = 34) -> kmeans_input_type {
   }
   for ( int i = 0; i < nObj; i++ ) {
     for ( int j = 0; j < numAttributes; j++ ) {
-      attributes[i][j] = (float)rand() / (float)RAND_MAX;
+      attributes[i][j] = (float)mcsl::hash(j) / (float)RAND_MAX;
     }
   }
   kmeans_input_type in = { nObj, nFeat, attributes };
   return in;
 }
+
+extern
+void* mycalloc(std::size_t szb);
 
 #define RANDOM_MAX 2147483647
 
@@ -113,7 +113,7 @@ int cluster_serial(int      numObjects,      /* number of input objects */
 
   nclusters=num_nclusters;
 
-  srand(7);
+  //srand(7);
 	
   tmp_cluster_centres = kmeans_serial(attributes,
 				      numAttributes,
@@ -350,10 +350,12 @@ float** kmeans_interrupt(float **feature,    /* in: [npoints][nfeatures] */
     membership[i] = -1;
 
   /* need to initialize new_centers_len and new_centers[0] to all 0 */
-  new_centers_len = (int*) calloc(nclusters, sizeof(int));
+  new_centers_len = (int*) mycalloc(nclusters * sizeof(int));
+  //  new_centers_len = (int*) calloc(nclusters, sizeof(int));
 
   new_centers    = (float**) malloc(nclusters *            sizeof(float*));
-  new_centers[0] = (float*)  calloc(nclusters * nfeatures, sizeof(float));
+  //new_centers[0] = (float*)  calloc(nclusters * nfeatures, sizeof(float));
+  new_centers[0] = (float*)  mycalloc((nclusters * nfeatures) * sizeof(float));
   for (i=1; i<nclusters; i++)
     new_centers[i] = new_centers[i-1] + nfeatures;
  
@@ -397,7 +399,7 @@ int cluster_interrupt(int      numObjects,      /* number of input objects */
 
   nclusters=num_nclusters;
 
-  srand(7);
+  //srand(7);
 
   p->fork_join_promote([=] (tpalrts::promotable* p2) {
     auto tmp_cluster_centres = kmeans_interrupt(attributes,
@@ -542,7 +544,7 @@ int cluster_cilk(int      numObjects,      /* number of input objects */
 
   nclusters=num_nclusters;
 
-  srand(7);
+  //srand(7);
 	
   tmp_cluster_centres = kmeans_cilk(attributes,
 				    numAttributes,
@@ -563,3 +565,49 @@ int cluster_cilk(int      numObjects,      /* number of input objects */
   return 0;
 }
 
+/*---------------------------------------------------------------------*/
+
+namespace kmeans {
+
+using namespace tpalrts;
+
+int numObjects = 1000000;
+kmeans_input_type in;
+float** attributes;
+int numAttributes;
+int nclusters=5;
+float   threshold = 0.001;
+float **cluster_centres=NULL;
+
+auto bench_pre(promotable* p) {
+  in = kmeans_inputgen(numObjects);
+  attributes = in.attributes;
+  numAttributes = in.nFeat;
+};
+  
+auto bench_body_interrupt(promotable* p) {
+  rollforward_table = {
+    #include "kmeans_rollforward_map.hpp"
+  };
+  cluster_interrupt(numObjects, numAttributes, attributes, nclusters, threshold, &cluster_centres, p);
+};
+  
+auto bench_body_software_polling(promotable* p) {
+
+};
+  
+auto bench_body_serial(promotable* p) {
+  cluster_serial(numObjects, numAttributes, attributes, nclusters, threshold, &cluster_centres);
+};
+  
+auto bench_post(promotable* p){
+  free(in.attributes[0]);
+  free(in.attributes);
+};
+
+auto bench_body_cilk() {
+  cluster_cilk(numObjects, numAttributes, attributes, nclusters, threshold, &cluster_centres);
+};
+
+  
+}
