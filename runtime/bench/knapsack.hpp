@@ -95,6 +95,7 @@ int knapsack_handler(std::atomic<int>& best_so_far, struct item *e, int c, int n
 		     void* __entry, void* __retk, void* __joink, void* __clonek,
 		     void* pc, int best, void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
+  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if (prmempty(prmtl, prmhd)) {
     return 0;
   }
@@ -155,6 +156,15 @@ public:
 
 };
 
+static inline
+void update_best_so_far(std::atomic<int>& best_so_far, int val) {
+  int curr = best_so_far.load(std::memory_order_relaxed);
+
+  while (val > curr) {
+    bool b = best_so_far.compare_exchange_weak(curr, val, std::memory_order_relaxed, std::memory_order_relaxed);
+  }
+}
+
 int knapsack_cilk(struct item *e, int c, int n, int v) {
   int best;
   
@@ -194,7 +204,7 @@ int knapsack_cilk(struct item *e, int c, int n, int v) {
     * value. The program is highly non-deterministic.
     */
    if (best > best_so_far.load(std::memory_order_relaxed)) {
-     update_best_so_far(v);
+     update_best_so_far(best_so_far, best);
    }
 
 #endif

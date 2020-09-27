@@ -198,6 +198,7 @@ int mergesort_handler(
 		      void* __cp_joink,
 		      void*& pc) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
+  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   pc = tpalrts::reverse_lookup_rollforward_entry(pc);
   if (prmempty(prmtl, prmhd)) {
     if (cp_lo == cp_hi) {

@@ -91,8 +91,8 @@ public:
 	  tpalrts::fiber<Scheduler>::add_edge(f2, this);
 	  f1->release();
 	  f2->release();
-	  tpalrts::stats::increment(tpalrts::stats_configuration::nb_promotions);
-	  tpalrts::stats::increment(tpalrts::stats_configuration::nb_promotions);
+	  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
+	  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
 	  trampoline = exit;
 	  return mcsl::fiber_status_pause;
         }
@@ -113,8 +113,8 @@ public:
 	  tpalrts::fiber<Scheduler>::add_edge(f2, this);
 	  f1->release();
 	  f2->release();
-	  tpalrts::stats::increment(tpalrts::stats_configuration::nb_promotions);
-	  tpalrts::stats::increment(tpalrts::stats_configuration::nb_promotions);
+	  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
+	  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
 	  trampoline = col_loop_combine;
 	  return mcsl::fiber_status_pause;
         }
@@ -170,6 +170,7 @@ int row_loop_handler(
   uint64_t row_hi,
   void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
+  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if ((row_hi - row_lo) <= 1) {
     return 0;
   }
@@ -197,6 +198,7 @@ int col_loop_handler(
   double t,
   void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
+  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   auto nb_rows = row_hi - row_lo;
   if (nb_rows == 0) {
     return 0;
@@ -241,6 +243,7 @@ int col_loop_handler_col_loop(
   double* dst,
   void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
+  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if ((col_hi - col_lo) <= 1) {
     return 0;
   }
@@ -494,7 +497,7 @@ auto bench_body_interrupt(promotable* p) {
 };
   
 auto bench_body_software_polling(promotable* p) {
-  //  spmv_software_polling(val, row_ptr, col_ind, x, y, nb_rows, p, software_polling_K);
+
 };
   
 auto bench_body_serial(promotable*) {

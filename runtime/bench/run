@@ -25,7 +25,7 @@ case $key in
     ;;
 
     -infile)
-    INFILE="$2"
+    INFILE="-infile $SCRIPTPATH/$2"
     shift
     shift
     ;;
@@ -62,9 +62,7 @@ fi
 
 export NUM_THREADS=$PROCS
 
-export INFILE=$SCRIPTPATH/$INFILE
-
-$SCRIPTPATH/$BENCHMARK.$EXT $OTHER_ARGS -infile $INFILE -scheduler_configuration $SCHEDULER_CONFIGURATION -proc $PROCS
+$SCRIPTPATH/$BENCHMARK.$EXT $OTHER_ARGS $INFILE -scheduler_configuration $SCHEDULER_CONFIGURATION -proc $PROCS
 rc=$?
 # the line below is needed because for some reason prun isn't properly
 # interpreting crashes, which exit with positive exit codes

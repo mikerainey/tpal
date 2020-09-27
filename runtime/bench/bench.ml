@@ -31,7 +31,6 @@ let arg_proc =
 let arg_proc_step = XCmd.parse_or_default_int "proc_step" 10
 let arg_dflt_size = XCmd.parse_or_default_int "n" 600000000
 let arg_par_baseline = XCmd.parse_or_default_string "par_baseline" "cilk"
-let arg_software_polling_Ks = XCmd.parse_or_default_list_int "software_polling_K" [8;32;128;512]
 let arg_kappas_usec = XCmd.parse_or_default_list_int "kappa_usec" [20;40;100]
 let arg_output_csv = XCmd.mem_flag "output_csv"
 let arg_elide_baseline = XCmd.mem_flag "elide_baseline"
@@ -92,7 +91,6 @@ let formatter =
                                          else if n = "interrupt_papi" then "HW interrupt (papi)"
                                          else if n = "manual" then "Manual"
                                          else n));
-         ("software_polling_K", Format_custom (fun n -> Printf.sprintf "K=%s" n));
          ("kappa_usec", Format_custom (fun n -> Printf.sprintf "heartbeat=%s usec" n));
          ("manual_T", Format_custom (fun n -> Printf.sprintf "Thresh=%s" n));
          ("n", Format_custom (fun n -> Printf.sprintf "Array: %s 64-bit ints" n));
@@ -179,15 +177,22 @@ type benchmark_descr = {
 
 let benchmarks : benchmark_descr list = [
     { bd_problem = "incr_array";
-      bd_mk_input = mk_n (1000 * 1000 * 1000) };
+      bd_mk_input = mk_unit; };
     { bd_problem = "plus_reduce_array";
-      bd_mk_input = mk_n (1000 * 1000 * 1000) };
+      bd_mk_input = mk_unit };
     { bd_problem = "spmv";
-      bd_mk_input = mk_n (500 * 1000 * 1000) };
-    { bd_problem = "fib";
-      bd_mk_input = mk_n 40 };
+      bd_mk_input = mk_unit; };
+    { bd_problem = "mandelbrot";
+      bd_mk_input = mk_unit; };
+    { bd_problem = "kmeans";
+      bd_mk_input = mk_unit; };
+    { bd_problem = "floyd_warshall";
+      bd_mk_input = mk_unit; };
     { bd_problem = "knapsack";
-      bd_mk_input = mk_infile "knapsack-036.input"; };
+      bd_mk_input = mk_unit; };
+    { bd_problem = "mergesort";
+      bd_mk_input = mk_unit; };
+
 ]
 
 let benchmarks =
@@ -211,20 +216,6 @@ let kappas_usec = arg_kappas_usec
                 
 let mk_kappas_usec =
   mk_list int "kappa_usec" kappas_usec
-
-let software_polling_Ks = arg_software_polling_Ks
-
-let software_polling_K = "software_polling_K"
-
-let mk_software_polling_config_of k =
-    (mk_scheduler_configuration "software_polling")
-    & (mk int software_polling_K k)
-
-let mk_software_polling_config_of2 k kappa =
-  (mk_software_polling_config_of k) & (mk int "kappa_usec" kappa)
-    
-let mk_software_polling_configs =
-  mk_all mk_software_polling_config_of software_polling_Ks
 
 let mk_hardware_interrupt_config_of hwi kappa =
   mk_scheduler_configuration hwi & mk int "kappa_usec" kappa
@@ -255,9 +246,7 @@ let pretty_name_of_interrupt_config n =
   else "<unknown>"
     
 let mk_heartbeat_configs = 
-    (  mk_software_polling_configs
-    ++ mk_hardware_interrupt_configs)
-  & mk_kappas_usec
+    mk_hardware_interrupt_configs & mk_kappas_usec
 
 let mk_baseline_config =
   mk_scheduler_configuration "serial"
@@ -357,39 +346,42 @@ let plot_for bd =
           Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" (Printf.sprintf "$P=%d$" proc))
         );
       add Latex.tabular_newline;
-      let baseline_exectime =
+      let (baseline_execcycles, baseline_exectime) =
         let results = Results.from_file (file_results (name_baseline bd)) in
         let [col] = (mk_baseline_runs bd) Env.empty in
         let results = Results.filter col results in
-        Results.get_mean_of "exectime" results
+        (Results.get_mean_of "execcycles" results,
+         Results.get_mean_of "exectime_via_cycles" results)
       in
-      let cilk_exectime_of proc =
+      let cilk_execcycles_of proc =
         let results = Results.from_file (file_results (name_cilk bd)) in
         let [col] = (mk_cilk_runs_of bd proc) Env.empty in
         let results = Results.filter col results in
-        Results.get_mean_of "exectime" results
+        (Results.get_mean_of "execcycles" results,
+         Results.get_mean_of "exectime_via_cycles" results)
       in
-      let manual_exectime_of proc =
+      let manual_execcycles_of proc =
         let results = Results.from_file (file_results (name_manual bd)) in
         let [col] = (mk_manual_runs_of bd proc) Env.empty in
         let results = Results.filter col results in
-        Results.get_mean_of "exectime" results
+        (Results.get_mean_of "execcycles" results,
+         Results.get_mean_of "exectime_via_cycles" results)
       in
-      let par_baseline_exectime_of =
+      let par_baseline_execcycles_of =
         if arg_par_baseline = "cilk" then
-          cilk_exectime_of
+          cilk_execcycles_of
         else
-          manual_exectime_of
+          manual_execcycles_of
       in
-      let heartbeat_exectime_of mk_config proc =
+      let heartbeat_execcycles_of mk_config proc =
         let results = Results.from_file (file_results (name_heartbeat bd)) in
         let [col] = (mk_heartbeat_runs_of bd mk_config proc) Env.empty in
         let results = Results.filter col results in
-        Results.get_mean_of "exectime" results
+        Results.get_mean_of "execcycles" results
       in
       Mk_table.cell ~escape:true ~last:false add "baseline (s)";
       ~~ List.iteri procs (fun proc_i proc ->
-            let par_baseline_exectime = par_baseline_exectime_of proc in
+            let (_, par_baseline_exectime) = par_baseline_execcycles_of proc in
             let b = if proc = 1 then baseline_exectime else par_baseline_exectime in
             let last = proc_i+1 = nb_procs in
             let s = Printf.sprintf "%.3f" b in
@@ -407,27 +399,7 @@ let plot_for bd =
               print_csv (Printf.sprintf "%d" kappa);
               Mk_table.cell ~escape:true ~last:last add s
         ));
-      print_csv_newline ();
       add Latex.tabular_newline;
-      ~~ List.iteri software_polling_Ks (fun swpK_i swpK ->
-          let s = Printf.sprintf "SWP-%d" swpK in
-          print_csv s;
-          Mk_table.cell ~escape:true ~last:false add s;
-        ~~ List.iteri procs (fun proc_i proc ->
-            let par_baseline_exectime = par_baseline_exectime_of proc in
-            ~~ List.iteri kappas_usec (fun kappa_i kappa ->
-                let heartbeat_exectime =
-                  let mk_config = mk_software_polling_config_of2 swpK kappa in
-                  heartbeat_exectime_of mk_config proc
-                in
-                let b = if proc = 1 then baseline_exectime else par_baseline_exectime in
-                let chg = string_of_percentage_change ~show_plus:true b heartbeat_exectime in
-                let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
-                print_csv (Printf.sprintf "%f" heartbeat_exectime);
-                Mk_table.cell ~escape:true ~last:last add chg
-        ));
-      print_csv_newline ();
-      add Latex.tabular_newline);
       let hwis = values_of_keys_in_params mk_hardware_interrupt_configs [scheduler_configuration;] in
       ~~ List.iteri hwis (fun hwi_i [hwi] ->
           let hwi_pretty = pretty_name_of_interrupt_config hwi in
@@ -435,15 +407,15 @@ let plot_for bd =
           Mk_table.cell ~escape:true ~last:false add hwi_pretty;
         ~~ List.iteri procs (fun proc_i proc ->
             ~~ List.iteri kappas_usec (fun kappa_i kappa ->
-                let par_baseline_exectime = par_baseline_exectime_of proc in
-                let heartbeat_exectime =
+                let (par_baseline_execcycles, _) = par_baseline_execcycles_of proc in
+                let heartbeat_execcycles =
                   let mk_config = mk_hardware_interrupt_config_of hwi kappa in
-                  heartbeat_exectime_of mk_config proc
+                  heartbeat_execcycles_of mk_config proc
                 in
-                let b = if proc = 1 then baseline_exectime else par_baseline_exectime in
-                let chg = string_of_percentage_change ~show_plus:true b heartbeat_exectime in
+                let b = if proc = 1 then baseline_execcycles else par_baseline_execcycles in
+                let chg = string_of_percentage_change ~show_plus:true b heartbeat_execcycles in
                 let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
-                print_csv (Printf.sprintf "%f" heartbeat_exectime);
+                print_csv (Printf.sprintf "%f" heartbeat_execcycles);
                 Mk_table.cell ~escape:true ~last:last add chg
           ));
       print_csv_newline ();
@@ -577,25 +549,6 @@ let plot_for stat bd =
           ));
       print_csv_newline();
       add Latex.tabular_newline;
-      ~~ List.iteri EF.software_polling_Ks (fun swpK_i swpK ->
-          let s = Printf.sprintf "SWP-%d" swpK in
-          print_csv s;
-          Mk_table.cell ~escape:true ~last:false add s;
-        ~~ List.iteri procs (fun proc_i proc ->
-            let par_baseline_stat = par_baseline_stat_of proc in
-            ~~ List.iteri EF.kappas_usec (fun kappa_i kappa ->
-                let heartbeat_stat =
-                  let mk_config = EF.mk_software_polling_config_of2 swpK kappa in
-                  heartbeat_stat_of mk_config proc
-                in
-                let b = par_baseline_stat in
-                let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
-                let s = Printf.sprintf "%0.f" heartbeat_stat in
-                print_csv s;
-                Mk_table.cell ~escape:true ~last:last add s
-          ));
-        print_csv_newline();
-      add Latex.tabular_newline);
       let hwis = values_of_keys_in_params EF.mk_hardware_interrupt_configs [scheduler_configuration;] in
       ~~ List.iteri hwis (fun hwi_i [hwi] ->
           let hwi_pretty = pretty_name_of_interrupt_config hwi in

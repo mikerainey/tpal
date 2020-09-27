@@ -64,10 +64,8 @@ void launch0(std::size_t nb_workers,
   printf("opsys linux\n");
   printf("exectime %.3f\n", elapsed_time);
   printf("execcycles %lu\n", elapsed_cycles);
-  {
-    auto et2 = mcsl::seconds_of(mcsl::load_cpu_frequency_khz(), elapsed_cycles);
-    printf("exectime_via_cycles %lu.%03lu\n", et2.seconds, et2.milliseconds);
-  }
+  auto et = mcsl::seconds_of(mcsl::load_cpu_frequency_khz(), elapsed_cycles);
+  printf("exectime_via_cycles %lu.%03lu\n", et.seconds, et.milliseconds);
   printf("kappa_usec %lu\n", kappa_usec);
   printf("kappa_cycles %lu\n", kappa_cycles);
   logging::output(nb_workers);
@@ -148,8 +146,13 @@ void launch2(size_t nb_workers,
     cilk_set_nb_workers(nb_workers);
     bench_pre(nullptr);
     start_time = mcsl::clock::now();
+    start_cycle = mcsl::cycles::now();
     bench_body_cilk();
+    elapsed_cycles = mcsl::cycles::since(start_cycle);
     elapsed_time = mcsl::clock::since(start_time);
+    printf("execcycles %lu\n", elapsed_cycles);
+    auto et = mcsl::seconds_of(mcsl::load_cpu_frequency_khz(), elapsed_cycles);
+    printf("exectime_via_cycles %lu.%03lu\n", et.seconds, et.milliseconds);
     printf("exectime %.3f\n", elapsed_time);
     bench_post(nullptr);
   });

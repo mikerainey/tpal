@@ -13,7 +13,7 @@ INCLUDE_PREFIX=-I $(CMDLINE_PATH) -I $(MCSL_PATH) -DMCSL_LINUX -DTPALRTS_LINUX -
 
 LINKER_PREFIX=-pthread $(HWLOC_LIBRARY_PREFIX) -lrt -L $(PAPI_PREFIX)/lib -lpapi -ldl
 
-OPT_BASE_PREFIX=-O3 -m64 -march=x86-64 -mtune=x86-64 -fopt-info-vec -fno-asynchronous-unwind-tables -fomit-frame-pointer -DNDEBUG # -DNDEBUG # later: find out why uncommenting dndebug causes spmv to crash
+OPT_BASE_PREFIX=-O3 -m64 -march=x86-64 -fno-asynchronous-unwind-tables -fomit-frame-pointer -DNDEBUG # -DNDEBUG # later: find out why uncommenting dndebug causes spmv to crash
 OPT_PREFIX=--std=c++17 $(OPT_BASE_PREFIX) $(INCLUDE_PREFIX) $(LINKER_PREFIX)
 STA_PREFIX=-DTPALRTS_STATS $(OPT_PREFIX)
 LOG_PREFIX=-DTPALRTS_LOGGING $(STA_PREFIX)
@@ -47,8 +47,10 @@ BENCHMARKS=\
 	incr_array \
 	plus_reduce_array \
 	spmv \
-	fib \
 	knapsack
+
+#all:
+#install:
 
 all: \
 	$(BENCHMARKS:%=%.opt) $(BENCHMARKS:%=%.opt_cilk) \

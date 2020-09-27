@@ -69,6 +69,7 @@ void incr_array_interrupt(int64_t* a, uint64_t lo, uint64_t hi, void* p);
 
 int incr_array_handler(int64_t* a, uint64_t lo, uint64_t& hi, void* _p) {
   auto p = (tpalrts::promotable*)_p;
+  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if (hi - lo <= 1) {
     return 0;
   }
@@ -78,38 +79,6 @@ int incr_array_handler(int64_t* a, uint64_t lo, uint64_t& hi, void* _p) {
   });
   hi = mid;
   return 1;
-}
-
-/*---------------------------------------------------------------------*/
-/* Software-polling version */
-
-static
-int64_t* incr_array_software_polling(int64_t* a, int64_t lo, int64_t hi, tpalrts::promotable* p, int64_t K=tpalrts::dflt_software_polling_K) {
-  uint64_t promotion_prev = mcsl::cycles::now();
-  int64_t lo_outer = lo;
-  while (lo_outer != hi) {
-    int64_t hi_outer = std::min(hi, lo_outer + K);
-    incr_array_serial(a, lo_outer, hi_outer);
-    lo_outer = hi_outer;
-    { // polling
-      auto cur = mcsl::cycles::now();
-      if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
-        // try to promote
-        promotion_prev = cur;
-        tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
-        if (hi-lo_outer <= 1) {
-          continue;
-        }
-        // promotion successful
-        auto mid = (lo_outer+hi)/2;
-        p->async_finish_promote([=] (tpalrts::promotable* p) {
-          incr_array_software_polling(a, mid, hi, p, K);
-        });
-        hi = mid;
-      }
-    }
-  }
-  return a;
 }
 
 /*---------------------------------------------------------------------*/
@@ -132,7 +101,7 @@ int64_t* incr_array_cilk(int64_t* a, int64_t lo, int64_t hi) {
 namespace tpalrts {
 namespace incr_array {
   
-uint64_t nb_items = 1000 * 1000 * 100;
+uint64_t nb_items = 100 * 1000 * 1000;
 int64_t* a;
   
 auto bench_pre(promotable*) -> void {
@@ -153,7 +122,7 @@ auto bench_body_interrupt(promotable* p) -> void {
 }
 
 auto bench_body_software_polling(promotable* p) -> void {
-  incr_array_software_polling(a, 0, nb_items, p);
+  
 }
 
 auto bench_body_serial(promotable* p) -> void {

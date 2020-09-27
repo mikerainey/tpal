@@ -350,6 +350,7 @@ public:
     b1->release();
     commit();
     stats::increment(stats_configuration::nb_promotions);
+    stats::increment(stats_configuration::nb_promotions);
   }
 
   void _fork_join_promote3(execable* body1, execable* body2, execable* body3, execable* combine) {
@@ -370,6 +371,8 @@ public:
     b2->release();
     b1->release();
     commit();
+    stats::increment(stats_configuration::nb_promotions);
+    stats::increment(stats_configuration::nb_promotions);
     stats::increment(stats_configuration::nb_promotions);
   }
 

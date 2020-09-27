@@ -2,6 +2,7 @@
 
 #if defined(MCSL_LINUX)
 #include <thread>
+#include <mutex>
 #include <condition_variable>
 #include <papi.h>
 #include <sys/timerfd.h>
@@ -407,6 +408,8 @@ void papi_interrupt_handler(int, void*, long long, void *context) {
   heartbeat_interrupt_handler(0, nullptr, context);
 }
 
+std::mutex papi_init_mutex;
+
 class papi_worker {
 public:
 
@@ -414,6 +417,7 @@ public:
   void initialize_worker() {
     int retval;
     int event_set = PAPI_NULL;
+    std::lock_guard<std::mutex> guard(papi_init_mutex);
     if ( (retval = PAPI_create_eventset(&event_set)) != PAPI_OK) {
       mcsl::die("papi worker initialization failed");
     }
@@ -429,7 +433,6 @@ public:
     if((retval = PAPI_start(event_set)) != PAPI_OK) {
       mcsl::die("papi worker initialization failed");
     }
-
   }
 
   template <typename Body>

@@ -75,6 +75,7 @@ void plus_reduce_array_interrupt(int64_t* a, uint64_t lo, uint64_t hi, uint64_t 
 
 int loop_handler_cpp(int64_t* a, uint64_t lo, uint64_t hi, uint64_t r, int64_t* dst, void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
+  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if ((hi - lo) <= 1) {
     return 0;
   }
@@ -98,49 +99,6 @@ extern "C" {
   int loop_handler(int64_t* a, uint64_t lo, uint64_t hi, uint64_t r, int64_t* dst, void* p) {
     return loop_handler_cpp(a, lo, hi, r, dst, p);
   }
-}
-
-/*---------------------------------------------------------------------*/
-/* Software-polling version */
-
-static
-void plus_reduce_array_software_polling(int64_t* a, int64_t lo, int64_t hi, int64_t* dst, tpalrts::promotable* p,  int64_t software_polling_K=tpalrts::dflt_software_polling_K) {
-  int64_t result = 0;
-  auto K = software_polling_K;
-  uint64_t promotion_prev = mcsl::cycles::now();
-  int64_t lo_outer = lo;
-  while (lo_outer != hi) {
-    int64_t hi_outer = std::min(hi, lo_outer + K);
-    result += plus_reduce_array_serial(a, lo_outer, hi_outer);
-    lo_outer = hi_outer;
-    { // polling
-      auto cur = mcsl::cycles::now();
-      if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
-        // try to promote
-        promotion_prev = cur;
-        tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
-        if (hi-lo_outer <= 1) {
-          continue;
-        }
-        // promotion successful
-        auto mid = (lo_outer+hi)/2;
-        using dst_rec_type = std::pair<int64_t, int64_t>;
-        dst_rec_type* dst_rec;
-        tpalrts::arena_block_type* dst_blk;
-        std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
-	auto dst0 = dst;
-	dst = &(dst_rec->first);
-        p->fork_join_promote([=] (tpalrts::promotable* p2) {
-          plus_reduce_array_software_polling(a, mid, hi, &(dst_rec->second), p2, K);
-        }, [=] (tpalrts::promotable*) {
-          *dst0 = dst_rec->first + dst_rec->second;
-          decr_arena_block(dst_blk);
-	});
-        hi = mid;
-      }
-    }
-  }
-  *dst = result;
 }
 
 /*---------------------------------------------------------------------*/
@@ -185,7 +143,7 @@ auto bench_body_interrupt(promotable* p) -> void {
 }
 
 auto bench_body_software_polling(promotable* p) -> void {
-  //  plus_reduce_array_software_polling(a, 0, nb_items, &result, p);
+
 }
 
 auto bench_body_serial(promotable* p) -> void {
