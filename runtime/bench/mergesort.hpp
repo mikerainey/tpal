@@ -392,15 +392,15 @@ auto fill_xs(uint64_t* _xs) {
 };
 
 auto bench_pre(promotable* p) {
+  rollforward_table = {
+    #include "mergesort_rollforward_map.hpp"
+  };
   xs = (uint64_t*)malloc(sizeof(uint64_t) * n);
   tmp = (uint64_t*)malloc(sizeof(uint64_t) * n);
   fill_xs(xs);
 };
 
 auto bench_body_interrupt(promotable* p) {
-  rollforward_table = {
-    #include "mergesort_rollforward_map.hpp"
-  };
   s = tpalrts::snew();
   mergesort_interrupt(xs, tmp, 0, n, p, s, nullptr, nullptr, nullptr);
 };

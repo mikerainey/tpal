@@ -278,6 +278,9 @@ int read_input(const char *filename, struct item *items, int *capacity, int *n)
 }
 
 auto bench_pre(promotable* p) {
+  rollforward_table = {
+    #include "knapsack_rollforward_map.hpp"
+  };
 #ifdef TPALRTS_LINUX
   if (inputfile != "") {
     read_input(inputfile.c_str(), items, &capacity, &n);

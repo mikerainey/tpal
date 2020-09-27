@@ -462,6 +462,9 @@ double* x;
 double* y;
 
 auto bench_pre(promotable*) {
+  rollforward_table = {
+    #include "spmv_rollforward_map.hpp"    
+  };
   nb_rows = n / row_len;
   nb_vals = n;
   val = (double*)malloc(sizeof(double) * nb_vals);
@@ -490,9 +493,6 @@ auto bench_pre(promotable*) {
 };
   
 auto bench_body_interrupt(promotable* p) {
-  rollforward_table = {
-    #include "spmv_rollforward_map.hpp"    
-  };
   spmv_interrupt(val, row_ptr, col_ind, x, y, 0, nb_rows, p);
 };
   

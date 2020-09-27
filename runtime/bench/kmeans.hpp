@@ -581,15 +581,15 @@ float   threshold = 0.001;
 float **cluster_centres=NULL;
 
 auto bench_pre(promotable* p) {
+  rollforward_table = {
+    #include "kmeans_rollforward_map.hpp"
+  };
   in = kmeans_inputgen(numObjects);
   attributes = in.attributes;
   numAttributes = in.nFeat;
 };
   
 auto bench_body_interrupt(promotable* p) {
-  rollforward_table = {
-    #include "kmeans_rollforward_map.hpp"
-  };
   cluster_interrupt(numObjects, numAttributes, attributes, nclusters, threshold, &cluster_centres, p);
 };
   

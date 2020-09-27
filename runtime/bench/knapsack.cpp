@@ -6,9 +6,6 @@ namespace tpalrts {
 using namespace knapsack;
   
 void launch() {
-  rollforward_table = {
-    #include "knapsack_rollforward_map.hpp"
-  };
   tpalrts::stack_type s;
   inputfile = deepsea::cmdline::parse_or_default_string("infile", "");
   using microbench_scheduler_type = mcsl::minimal_scheduler<stats, logging, mcsl::minimal_elastic, tpal_worker>;

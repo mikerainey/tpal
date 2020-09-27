@@ -129,6 +129,9 @@ int64_t* a;
 int64_t result = 0;
   
 auto bench_pre(promotable*) -> void {
+  rollforward_table = {
+    #include "plus_reduce_array_rollforward_map.hpp"
+  };
   a = (int64_t*)malloc(sizeof(int64_t)*nb_items);
   for (int64_t i = 0; i < nb_items; i++) {
     a[i] = 1;
@@ -136,9 +139,6 @@ auto bench_pre(promotable*) -> void {
 }
 
 auto bench_body_interrupt(promotable* p) -> void {
-  rollforward_table = {
-    #include "plus_reduce_array_rollforward_map.hpp"
-  };
   plus_reduce_array_interrupt(a, 0, nb_items, 0, &result, p);
 }
 

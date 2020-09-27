@@ -105,6 +105,9 @@ uint64_t nb_items = 100 * 1000 * 1000;
 int64_t* a;
   
 auto bench_pre(promotable*) -> void {
+  rollforward_table = {
+    #include "incr_array_rollforward_map.hpp"
+  };
   a = (int64_t*)malloc(sizeof(int64_t)*nb_items);
   if (a == nullptr) {
     return;
@@ -115,9 +118,6 @@ auto bench_pre(promotable*) -> void {
 }
 
 auto bench_body_interrupt(promotable* p) -> void {
-  rollforward_table = {
-    #include "incr_array_rollforward_map.hpp"
-  };
   incr_array_interrupt(a, 0, nb_items, p);
 }
 

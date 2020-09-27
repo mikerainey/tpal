@@ -165,15 +165,15 @@ int max_depth = 100;
 double g = 2.0;
   
 auto bench_pre(promotable* p) {
+  rollforward_table = {
+    #include "mandelbrot_rollforward_map.hpp"
+  };
   for (int i = 0; i < 100; i++) {
     g /= sin(g);
   }
 };
   
 auto bench_body_interrupt(promotable* p) {
-  rollforward_table = {
-    #include "mandelbrot_rollforward_map.hpp"
-  };
   output = mandelbrot_interrupt(x0, y0, x1, y1, width, height, max_depth, p);
 };
   

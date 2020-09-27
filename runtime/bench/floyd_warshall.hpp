@@ -141,13 +141,13 @@ auto init_input(int vertices) {
 };
 
 auto bench_pre(promotable* p) {
+  rollforward_table = {
+    #include "floyd_warshall_rollforward_map.hpp"
+  };
   dist = init_input(vertices);
 };
 
 auto bench_body_interrupt(promotable* p) {
-  rollforward_table = {
-    #include "floyd_warshall_rollforward_map.hpp"
-  };
   floyd_warshall_interrupt(dist, vertices, 0, vertices, p);
 };
 
