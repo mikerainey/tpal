@@ -47,7 +47,11 @@ BENCHMARKS=\
 	incr_array \
 	plus_reduce_array \
 	spmv \
-	knapsack
+	mandelbrot \
+	kmeans \
+	floyd_warshall \
+	knapsack \
+	mergesort
 
 #all:
 #install:
