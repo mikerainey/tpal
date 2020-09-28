@@ -3,8 +3,8 @@ let pkgs = import <nixpkgs> {}; in
 let mcslSrc = pkgs.fetchFromGitHub {
       owner  = "mikerainey";
       repo   = "mcsl";
-      rev    = "7612000608ba7a77a42d8c7490797b611aaf8c2c";
-      sha256 = "0smgqdq8ykq8n8v3jdhx2m9ycgdsg36gjn3239ifk7k1wmyjwwpk";
+      rev    = "9ba03385a14f18e5e8bdab4c099a63157d15ab80";
+      sha256 = "0kc0zdqlpwyp7rwmrpf7ni7ljk71slwiqdwsdmkw5h2b7i236xdj";
     };
     cmdlineSrc = pkgs.fetchFromGitHub {
       owner  = "deepsea-inria";
