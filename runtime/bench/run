@@ -62,7 +62,13 @@ fi
 
 export NUM_THREADS=$PROCS
 
-$SCRIPTPATH/$BENCHMARK.$EXT $OTHER_ARGS $INFILE -scheduler_configuration $SCHEDULER_CONFIGURATION -proc $PROCS
+CPUFREQ=""
+case $(hostname -s) in
+  tinker*) CPUFREQ="-cpu_frequency_khz  2100000" ;;
+  *) ;;
+esac
+
+$SCRIPTPATH/$BENCHMARK.$EXT $OTHER_ARGS $INFILE -scheduler_configuration $SCHEDULER_CONFIGURATION -proc $PROCS $CPUFREQ
 rc=$?
 # the line below is needed because for some reason prun isn't properly
 # interpreting crashes, which exit with positive exit codes
