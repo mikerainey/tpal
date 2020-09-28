@@ -34,6 +34,8 @@ let arg_par_baseline = XCmd.parse_or_default_string "par_baseline" "cilk"
 let arg_kappas_usec = XCmd.parse_or_default_list_int "kappa_usec" [20;100]
 let arg_output_csv = XCmd.mem_flag "output_csv"
 let arg_elide_baseline = XCmd.mem_flag "elide_baseline"
+let arg_par_timeout = XCmd.parse_or_default_int "par_timeout" 60
+let arg_seq_timeout = XCmd.parse_or_default_int "seq_timeout" 100
 
 let run_modes =
   Mk_runs.([
@@ -311,15 +313,15 @@ let make() =
 let run_for bd = (
   Mk_runs.(call (run_modes @ [
     Output (file_results (name_heartbeat bd));
-    Timeout 120;
+    Timeout arg_par_timeout;
     Args (mk_heartbeat_runs bd)]));
   Mk_runs.(call (run_modes @ [
     Output (file_results (name_par_baseline bd));
-    Timeout 120;
+    Timeout arg_seq_timeout;
     Args (mk_par_baseline_runs bd)]));
   Mk_runs.(call (run_modes @ [
     Output (file_results (name_baseline bd));
-    Timeout 120;
+    Timeout arg_seq_timeout;
     Args (mk_baseline_runs bd)])))
 
 let run() = ~~ List.iter benchmarks run_for
@@ -482,11 +484,11 @@ let make() =
 let run_for bd = (
   Mk_runs.(call (run_modes @ [
     Output (file_results (name_heartbeat bd));
-    Timeout 120;
+    Timeout arg_par_timeout;
     Args (mk_heartbeat_runs bd)]));
   Mk_runs.(call (run_modes @ [
     Output (file_results (name_par_baseline bd));
-    Timeout 120;
+    Timeout arg_seq_timeout;
     Args (mk_par_baseline_runs bd)])))
 
 let run() = ~~ List.iter benchmarks run_for
