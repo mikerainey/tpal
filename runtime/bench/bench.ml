@@ -311,15 +311,15 @@ let make() =
 let run_for bd = (
   Mk_runs.(call (run_modes @ [
     Output (file_results (name_heartbeat bd));
-    Timeout 90;
+    Timeout 120;
     Args (mk_heartbeat_runs bd)]));
   Mk_runs.(call (run_modes @ [
     Output (file_results (name_par_baseline bd));
-    Timeout 400;
+    Timeout 120;
     Args (mk_par_baseline_runs bd)]));
   Mk_runs.(call (run_modes @ [
     Output (file_results (name_baseline bd));
-    Timeout 1000;
+    Timeout 120;
     Args (mk_baseline_runs bd)])))
 
 let run() = ~~ List.iter benchmarks run_for
@@ -482,11 +482,11 @@ let make() =
 let run_for bd = (
   Mk_runs.(call (run_modes @ [
     Output (file_results (name_heartbeat bd));
-    Timeout 90;
+    Timeout 120;
     Args (mk_heartbeat_runs bd)]));
   Mk_runs.(call (run_modes @ [
     Output (file_results (name_par_baseline bd));
-    Timeout 400;
+    Timeout 120;
     Args (mk_par_baseline_runs bd)])))
 
 let run() = ~~ List.iter benchmarks run_for
