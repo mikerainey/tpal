@@ -384,7 +384,7 @@ public:
     memset(&act, 0, sizeof(struct sigaction));
     sigemptyset(&act.sa_mask);
     act.sa_sigaction = tpalrts::heartbeat_interrupt_handler;
-    act.sa_flags = SA_SIGINFO | SA_ONSTACK;
+    act.sa_flags = SA_SIGINFO | SA_ONSTACK | SA_RESTART;
     sigaction(SIGUSR1, &act, NULL);
   }
 

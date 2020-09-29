@@ -8,6 +8,12 @@ make snip_ipmi_output.dbg
 file_in=$1
 file_out=$2
 
-cmd="./snip_ipmi_output.dbg -file $1"
+tmpfile=$(mktemp)
+
+dos2unix -f -n $file_in $tmpfile
+
+cmd="./snip_ipmi_output.dbg -file $tmpfile"
 
 $cmd > $file_out
+
+rm -f $tmpfile
