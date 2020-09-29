@@ -123,6 +123,8 @@ int64_t plus_reduce_array_cilk(int64_t* a, int64_t lo, int64_t hi) {
 namespace plus_reduce_array {
 
 using namespace tpalrts;
+
+char* name = "plus_reduce_array";
   
 uint64_t nb_items = 1000 * 1000 * 100;
 int64_t* a;

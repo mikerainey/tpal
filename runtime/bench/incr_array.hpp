@@ -100,6 +100,8 @@ int64_t* incr_array_cilk(int64_t* a, int64_t lo, int64_t hi) {
 
 namespace tpalrts {
 namespace incr_array {
+
+char* name = "incr_array";
   
 uint64_t nb_items = 100 * 1000 * 1000;
 int64_t* a;

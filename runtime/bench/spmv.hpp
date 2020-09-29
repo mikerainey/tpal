@@ -219,7 +219,6 @@ int col_loop_handler(
     });
   } else {
     auto row_mid = (row_lo + row_hi) / 2;
-    assert((row_hi - row_lo) >= 2);
     p->fork_join_promote3(cf, [=] (tpalrts::promotable* p2) {
       spmv_interrupt(val, row_ptr, col_ind, x, y, row_lo, row_mid, p2);
     }, [=] (tpalrts::promotable* p2) {
@@ -450,8 +449,10 @@ uint64_t hash64(uint64_t u) {
 }
 
 using namespace tpalrts;
+
+char* name = "spmv";
   
-uint64_t n = 700 * 1000 * 1000;
+uint64_t n = 500 * 1000 * 1000;
 uint64_t row_len = 1000;
 uint64_t nb_rows;
 uint64_t nb_vals;
@@ -472,6 +473,9 @@ auto bench_pre(promotable*) {
   col_ind = (uint64_t*)malloc(sizeof(uint64_t) * nb_vals);
   x = (double*)malloc(sizeof(double) * nb_rows);
   y = (double*)malloc(sizeof(double) * nb_rows);
+  if ((val == nullptr) || (row_ptr == nullptr) || (col_ind == nullptr) || (x == nullptr) || (y == nullptr)) {
+    exit(1);
+  }
   {
     uint64_t a = 0;
     for (uint64_t i = 0; i != nb_rows; i++) {

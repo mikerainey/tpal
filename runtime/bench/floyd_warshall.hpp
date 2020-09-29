@@ -111,6 +111,8 @@ namespace floyd_warshall {
 
 using namespace tpalrts;
 
+char* name = "floyd_warshall";
+
 int vertices = 1024;
 int* dist = nullptr;
 

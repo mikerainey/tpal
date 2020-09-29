@@ -152,6 +152,8 @@ namespace mandelbrot {
 
 using namespace tpalrts;
 
+char* name = "mandelbrot";
+
 uint64_t nb_items;
 unsigned char* output = nullptr;
 double x0 = -2.5;

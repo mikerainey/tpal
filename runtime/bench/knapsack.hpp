@@ -216,6 +216,8 @@ namespace knapsack {
 
 using namespace tpalrts;
 
+char* name = "knapsack";
+  
 int n, capacity;
 int sol = INT_MIN;
 tpalrts::stack_type s;

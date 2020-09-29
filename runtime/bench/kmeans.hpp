@@ -572,6 +572,8 @@ namespace kmeans {
 
 using namespace tpalrts;
 
+char* name = "kmeans";
+
 int numObjects = 1000000;
 kmeans_input_type in;
 float** attributes;

@@ -191,9 +191,9 @@ let benchmarks : benchmark_descr list = [
     { bd_problem = "floyd_warshall";
       bd_mk_input = mk_unit; };
     { bd_problem = "knapsack";
-      bd_mk_input = mk_unit; };
+      bd_mk_input = mk_unit; }; (*
     { bd_problem = "mergesort";
-      bd_mk_input = mk_unit; };
+      bd_mk_input = mk_unit; }; *)
 
 ]
 
@@ -230,6 +230,8 @@ let serial_interrupt_ping_thread = "serial_interrupt_ping_thread"
 let serial_interrupt_pthread = "serial_interrupt_pthread"
 let serial_interrupt_papi = "serial_interrupt_papi"
 
+let nopromote_interrupt = "nopromote_interrupt"
+
 let mk_hardware_interrupt_configs =
       (mk_scheduler_configuration interrupt_ping_thread)
    ++ (mk_scheduler_configuration interrupt_pthread)
@@ -237,14 +239,16 @@ let mk_hardware_interrupt_configs =
    ++ (mk_scheduler_configuration serial_interrupt_ping_thread)
    ++ (mk_scheduler_configuration serial_interrupt_pthread)
    ++ (mk_scheduler_configuration serial_interrupt_papi)
+   ++ (mk_scheduler_configuration nopromote_interrupt)
 
 let pretty_name_of_interrupt_config n =
   if n = interrupt_ping_thread then "INT-PingThread"
   else if n = interrupt_pthread then "INT-Pthread"
   else if n = interrupt_papi then "INT-Papi"
-  else if n = serial_interrupt_ping_thread then "INT-PingThread-NP"
-  else if n = serial_interrupt_pthread then "INT-Pthread-NP"
-  else if n = serial_interrupt_papi then "INT-Papi-NP"
+  else if n = serial_interrupt_ping_thread then "INT-PingThread-SI"
+  else if n = serial_interrupt_pthread then "INT-Pthread-SI"
+  else if n = serial_interrupt_papi then "INT-Papi-SI"
+  else if n = nopromote_interrupt then "INT-NP"
   else "<unknown>"
     
 let mk_heartbeat_configs = 
