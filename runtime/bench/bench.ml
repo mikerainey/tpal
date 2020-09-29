@@ -234,10 +234,10 @@ let nopromote_interrupt = "nopromote_interrupt"
 
 let mk_hardware_interrupt_configs =
       (mk_scheduler_configuration interrupt_ping_thread)
-   ++ (mk_scheduler_configuration interrupt_pthread)
+      (*   ++ (mk_scheduler_configuration interrupt_pthread)*)
    ++ (mk_scheduler_configuration interrupt_papi)
    ++ (mk_scheduler_configuration serial_interrupt_ping_thread)
-   ++ (mk_scheduler_configuration serial_interrupt_pthread)
+      (*   ++ (mk_scheduler_configuration serial_interrupt_pthread)*)
    ++ (mk_scheduler_configuration serial_interrupt_papi)
    ++ (mk_scheduler_configuration nopromote_interrupt)
 
