@@ -335,6 +335,8 @@ nemo_event_id_t ping_thread_interrupt::nemo_event_id;
 /* Pthread-direct interrupt configuration (Linux specific) */
 
 #if defined(MCSL_LINUX)
+
+std::mutex pthread_init_mutex;
   
 class pthread_direct_worker {
 public:
@@ -348,6 +350,7 @@ public:
 
   static
   void initialize_worker() {
+    std::lock_guard<std::mutex> guard(pthread_init_mutex);
     unsigned int ns;
     unsigned int sec;
     auto& my_sev = sev.mine();
