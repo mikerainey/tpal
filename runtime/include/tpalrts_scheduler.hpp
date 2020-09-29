@@ -394,9 +394,36 @@ mcsl::perworker::array<struct itimerspec> pthread_direct_worker::itval;
   
 class pthread_direct_interrupt {
 public:
-  
+
+  static
+  sigset_t mask;
+
+  static
+  sigset_t prev_mask;
+
+  static
+  struct sigaction sa;
+
+  static
+  struct sigaction prev_sa;
+
   static
   void initialize_signal_handler() {
+    if (pthread_sigmask(SIG_SETMASK, NULL, &prev_mask)) {
+      exit(0);
+    }
+    sa.sa_sigaction = heartbeat_interrupt_handler;
+    sa.sa_flags = SA_RESTART | SA_SIGINFO;
+    sa.sa_mask = prev_mask;
+    sigdelset(&sa.sa_mask, SIGUSR1);
+    if (sigaction(SIGUSR1, &sa, &prev_sa)) {
+      exit(0);
+    }
+    sigemptyset(&mask);
+    sigaddset(&mask, SIGUSR1);
+
+    return;
+    
     struct sigaction act;
     memset(&act, 0, sizeof(struct sigaction));
     sigemptyset(&act.sa_mask);
@@ -412,6 +439,11 @@ public:
   void launch_ping_thread(std::size_t nb_workers) { }
   
 };
+
+sigset_t pthread_direct_interrupt::mask;
+sigset_t pthread_direct_interrupt::prev_mask;
+struct sigaction pthread_direct_interrupt::sa;
+struct sigaction pthread_direct_interrupt::prev_sa;
 
 #endif
   
