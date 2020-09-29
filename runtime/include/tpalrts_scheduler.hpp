@@ -2,7 +2,6 @@
 
 #if defined(MCSL_LINUX)
 #include <thread>
-#include <mutex>
 #include <condition_variable>
 #include <papi.h>
 #include <sys/timerfd.h>
@@ -61,13 +60,16 @@ using tpal_worker = mcsl::minimal_worker;
 static
 mcsl::perworker::array<pthread_t> pthreads;
 
-template <typename Body, typename Initialize_worker>
-void launch_interrupt_worker_thread(std::size_t id, const Body& b, const Initialize_worker& initialize_worker) {
-  auto b2 = [id, &b, &initialize_worker] {
+  template <typename Body, typename Initialize_worker, typename Destroy_worker>
+void launch_interrupt_worker_thread(std::size_t id, const Body& b,
+				    const Initialize_worker& initialize_worker,
+				    const Destroy_worker& destroy_worker) {
+  auto b2 = [id, &b, &initialize_worker, &destroy_worker] {
     mcsl::perworker::unique_id::initialize_worker(id);
     mcsl::pin_calling_worker();
     initialize_worker();
     b(id);
+    destroy_worker();
   };
   if (id == 0) {
     b2();
@@ -115,7 +117,7 @@ public:
   template <typename Body>
   static
   void launch_worker_thread(std::size_t id, const Body& b) {
-    launch_interrupt_worker_thread(id, b, [] { initialize_worker(); });
+    launch_interrupt_worker_thread(id, b, [] { initialize_worker(); }, [] { });
   }
   
   using worker_exit_barrier = typename mcsl::minimal_worker::worker_exit_barrier;
@@ -366,7 +368,7 @@ public:
   template <typename Body>
   static
   void launch_worker_thread(std::size_t id, const Body& b) {
-    launch_interrupt_worker_thread(id, b, [] { initialize_worker(); });    
+    launch_interrupt_worker_thread(id, b, [] { initialize_worker(); }, [] { });    
   }
 
   using worker_exit_barrier = typename mcsl::minimal_worker::worker_exit_barrier;
@@ -384,7 +386,7 @@ public:
     memset(&act, 0, sizeof(struct sigaction));
     sigemptyset(&act.sa_mask);
     act.sa_sigaction = tpalrts::heartbeat_interrupt_handler;
-    act.sa_flags = SA_SIGINFO | SA_ONSTACK | SA_RESTART;
+    act.sa_flags = SA_SIGINFO | SA_RESTART;
     sigaction(SIGUSR1, &act, NULL);
   }
 
@@ -414,31 +416,53 @@ class papi_worker {
 public:
 
   static
+  mcsl::perworker::array<int> event_set;
+
+  static
   void initialize_worker() {
     int retval;
-    int event_set = PAPI_NULL;
     std::lock_guard<std::mutex> guard(papi_init_mutex);
-    if ( (retval = PAPI_create_eventset(&event_set)) != PAPI_OK) {
+    if ( (retval = PAPI_create_eventset(&(event_set.mine()))) != PAPI_OK) {
       mcsl::die("papi worker initialization failed");
     }
     if ((retval=PAPI_query_event(PAPI_TOT_CYC)) != PAPI_OK) {
       mcsl::die("papi worker initialization failed");
     }
-    if ( (retval = PAPI_add_event(event_set, PAPI_TOT_CYC)) != PAPI_OK) {
+    if ( (retval = PAPI_add_event(event_set.mine(), PAPI_TOT_CYC)) != PAPI_OK) {
       mcsl::die("papi worker initialization failed");
     }
-    if((retval = PAPI_overflow(event_set, PAPI_TOT_CYC, kappa_cycles, 0, papi_interrupt_handler)) != PAPI_OK) {
+    if((retval = PAPI_overflow(event_set.mine(), PAPI_TOT_CYC, kappa_cycles, 0, papi_interrupt_handler)) != PAPI_OK) {
       mcsl::die("papi worker initialization failed");
     }
-    if((retval = PAPI_start(event_set)) != PAPI_OK) {
+    if((retval = PAPI_start(event_set.mine())) != PAPI_OK) {
       mcsl::die("papi worker initialization failed");
     }
+  }
+
+  static
+  void destroy_worker() {
+    int retval;
+    long long values[2];
+    if ((retval = PAPI_stop(event_set.mine(), values))!=PAPI_OK) {
+      mcsl::die("papi worker stop failed");
+    }
+    retval = PAPI_overflow(event_set.mine(), PAPI_TOT_CYC, 0, 0, papi_interrupt_handler);
+    if(retval !=PAPI_OK) {
+      mcsl::die("papi worker deinitialization1 failed");
+    }
+    /*
+    retval = PAPI_remove_event(event_set.mine(), PAPI_TOT_CYC);
+    if (retval != PAPI_OK) {
+      mcsl::die("papi worker deinitialization failed");
+      }*/
   }
 
   template <typename Body>
   static
   void launch_worker_thread(std::size_t id, const Body& b) {
-    launch_interrupt_worker_thread(id, b, [] { initialize_worker(); });    
+    launch_interrupt_worker_thread(id, b,
+				   [] { initialize_worker(); },
+				   [] { destroy_worker(); });
   }
 
   using worker_exit_barrier = typename mcsl::minimal_worker::worker_exit_barrier;
@@ -446,6 +470,8 @@ public:
   using termination_detection_type = mcsl::minimal_termination_detection;
 
 };
+
+mcsl::perworker::array<int> papi_worker::event_set;
   
 #endif
 

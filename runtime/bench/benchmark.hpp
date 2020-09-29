@@ -100,6 +100,10 @@ void launch2(size_t nb_workers,
              Bench_body_manual bench_body_manual,
              const Bench_body_cilk& bench_body_cilk) {
   auto papi_init = [] {
+    auto& es = tpalrts::papi_worker::event_set;
+    for (std::size_t i = 0; i != es.size(); i++) {
+      es[i] = PAPI_NULL;
+    }
     int retval;
     if ((retval=PAPI_library_init(PAPI_VER_CURRENT)) != PAPI_VER_CURRENT) {
       mcsl::die("papi initialization failed");
@@ -107,7 +111,6 @@ void launch2(size_t nb_workers,
     if ((retval=PAPI_thread_init((unsigned long(*)(void))(pthread_self))) != PAPI_OK) {
       mcsl::die("papi initialization failed");
     }
-
   };
   auto papi_deinit = [] {
     PAPI_shutdown();
