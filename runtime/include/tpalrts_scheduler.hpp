@@ -340,16 +340,18 @@ class pthread_direct_worker {
 public:
 
   static
+  mcsl::perworker::array<timer_t> timerid;
+
+  static
   void initialize_worker() {
     unsigned int ns;
     unsigned int sec;
-    timer_t timerid;
     struct sigevent sev;
     struct itimerspec itval;
     sev.sigev_notify = SIGEV_THREAD_ID;
     sev._sigev_un._tid = syscall(SYS_gettid);
     sev.sigev_signo = SIGUSR1; 
-    sev.sigev_value.sival_ptr = &timerid;
+    sev.sigev_value.sival_ptr = &timerid.mine();
     {
       auto one_million = 1000000;
       sec = kappa_usec / one_million;
@@ -359,16 +361,18 @@ public:
       itval.it_value.tv_sec = sec;
       itval.it_value.tv_nsec = ns;
     }
-    if (timer_create(CLOCK_REALTIME, &sev, &timerid) == -1) {
+    if (timer_create(CLOCK_REALTIME, &sev, &timerid.mine()) == -1) {
       printf("timer_create failed: %d: %s\n", errno, strerror(errno));
     }
-    timer_settime(timerid, 0, &itval, NULL);
+    timer_settime(timerid.mine(), 0, &itval, NULL);
   }
   
   template <typename Body>
   static
   void launch_worker_thread(std::size_t id, const Body& b) {
-    launch_interrupt_worker_thread(id, b, [] { initialize_worker(); }, [] { });    
+    launch_interrupt_worker_thread(id, b,
+				   [] { initialize_worker(); },
+				   [] { timer_delete(timerid.mine()); });
   }
 
   using worker_exit_barrier = typename mcsl::minimal_worker::worker_exit_barrier;
@@ -376,6 +380,8 @@ public:
   using termination_detection_type = mcsl::minimal_termination_detection;
 
 };
+
+mcsl::perworker::array<timer_t> pthread_direct_worker::timerid;
 
 class pthread_direct_interrupt {
 public:
@@ -411,6 +417,8 @@ void papi_interrupt_handler(int, void*, long long, void *context) {
 }
 
 std::mutex papi_init_mutex;
+
+// guide: https://icl.cs.utk.edu/papi/docs/dc/d7e/examples_2overflow__pthreads_8c_source.html
 
 class papi_worker {
 public:
