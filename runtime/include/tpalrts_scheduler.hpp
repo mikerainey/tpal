@@ -341,30 +341,34 @@ public:
 
   static
   mcsl::perworker::array<timer_t> timerid;
+  static
+  mcsl::perworker::array<struct sigevent> sev;
+  static
+  mcsl::perworker::array<struct itimerspec> itval;
 
   static
   void initialize_worker() {
     unsigned int ns;
     unsigned int sec;
-    struct sigevent sev;
-    struct itimerspec itval;
-    sev.sigev_notify = SIGEV_THREAD_ID;
-    sev._sigev_un._tid = syscall(SYS_gettid);
-    sev.sigev_signo = SIGUSR1; 
-    sev.sigev_value.sival_ptr = &timerid.mine();
+    auto& my_sev = sev.mine();
+    auto& my_itval = itval.mine();
+    my_sev.sigev_notify = SIGEV_THREAD_ID;
+    my_sev._sigev_un._tid = syscall(SYS_gettid);
+    my_sev.sigev_signo = SIGUSR1; 
+    my_sev.sigev_value.sival_ptr = &timerid.mine();
     {
       auto one_million = 1000000;
       sec = kappa_usec / one_million;
       ns = (kappa_usec - (sec * one_million)) * 1000;
-      itval.it_interval.tv_sec = sec;
-      itval.it_interval.tv_nsec = ns;
-      itval.it_value.tv_sec = sec;
-      itval.it_value.tv_nsec = ns;
+      my_itval.it_interval.tv_sec = sec;
+      my_itval.it_interval.tv_nsec = ns;
+      my_itval.it_value.tv_sec = sec;
+      my_itval.it_value.tv_nsec = ns;
     }
-    if (timer_create(CLOCK_REALTIME, &sev, &timerid.mine()) == -1) {
+    if (timer_create(CLOCK_REALTIME, &my_sev, &timerid.mine()) == -1) {
       printf("timer_create failed: %d: %s\n", errno, strerror(errno));
     }
-    timer_settime(timerid.mine(), 0, &itval, NULL);
+    timer_settime(timerid.mine(), 0, &my_itval, NULL);
   }
   
   template <typename Body>
@@ -382,7 +386,9 @@ public:
 };
 
 mcsl::perworker::array<timer_t> pthread_direct_worker::timerid;
-
+mcsl::perworker::array<struct sigevent> pthread_direct_worker::sev;
+mcsl::perworker::array<struct itimerspec> pthread_direct_worker::itval;
+  
 class pthread_direct_interrupt {
 public:
   
