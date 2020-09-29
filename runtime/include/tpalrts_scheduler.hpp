@@ -102,7 +102,7 @@ public:
     }
     struct sigaction sa, prev_sa;
     sa.sa_sigaction = heartbeat_interrupt_handler;
-    sa.sa_flags = SA_RESTART | SA_NODEFER | SA_SIGINFO;
+    sa.sa_flags = SA_RESTART | SA_SIGINFO;
     sa.sa_mask = prev_mask;
     sigdelset(&sa.sa_mask, SIGUSR1);
     if (sigaction(SIGUSR1, &sa, &prev_sa)) {

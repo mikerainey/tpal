@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # use:
-# ./snip_ipmi_output.s <file-in> <file-out>
+# ./snip_ipmi_output.sh <file-in> <file-out>
 
 make snip_ipmi_output.dbg
 
