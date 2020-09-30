@@ -194,9 +194,9 @@ let benchmarks : benchmark_descr list = [
     { bd_problem = "floyd_warshall";
       bd_mk_input = mk_unit; };
     { bd_problem = "knapsack";
-      bd_mk_input = mk_unit; }; (*
+      bd_mk_input = mk_unit; };
     { bd_problem = "mergesort";
-      bd_mk_input = mk_unit; }; *)
+      bd_mk_input = mk_unit; };
 
 ]
 
