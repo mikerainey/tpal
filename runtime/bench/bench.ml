@@ -37,6 +37,8 @@ let arg_elide_baseline = XCmd.mem_flag "elide_baseline"
 let arg_par_timeout = XCmd.parse_or_default_int "par_timeout" 60
 let arg_seq_timeout = XCmd.parse_or_default_int "seq_timeout" 100
 let arg_results_path = XCmd.parse_or_default_string "results_path" "."
+let arg_show_execcycles = XCmd.mem_flag "show_execcycles"
+let arg_skip_nautilus = XCmd.mem_flag "skip_nautilus"
 
 let run_modes =
   Mk_runs.([
@@ -240,6 +242,10 @@ let nopromote_interrupt = "nopromote_interrupt"
 let is_nautilus_scheduler_configuration s =
   (s = interrupt_ping_thread || s = serial_interrupt_ping_thread)
 
+let is_only_serial s =
+  (s = serial_interrupt_ping_thread || s = serial_interrupt_pthread || s = serial_interrupt_papi ||
+   s = nopromote_interrupt)
+
 let mk_hardware_interrupt_configs =
       (mk_scheduler_configuration interrupt_ping_thread)
       (*   ++ (mk_scheduler_configuration interrupt_pthread)*)
@@ -321,6 +327,9 @@ let mk_par_baseline_runs =
     mk_cilk_runs
   else
     mk_manual_runs
+
+let name_linux = "Linux"
+let name_nautilus = "Nautilus"
 
 let name_heartbeat bd = (name_of bd) ^ "_heartbeat"
 let name_nautilus_baseline = "nautilus_baseline"
@@ -408,30 +417,53 @@ let plot_for bd =
         in t
       in
 
+      let report_elapsed (ec, et) =
+        if arg_show_execcycles then
+          Printf.sprintf "%.3f (%sm)" et (string_of_millions ec)
+        else
+          Printf.sprintf "%.3f" et
+      in
+
+      let report_percent_diff bec ec =
+        let s = string_of_percentage_change ~show_plus:true bec ec in
+        if arg_show_execcycles then
+          Printf.sprintf "%s (%sm)" s (string_of_millions ec)
+        else
+          s
+      in
+
       Mk_table.cell ~escape:true ~last:false add "Linux baseline (s)";
       ~~ List.iteri procs (fun proc_i proc ->
-            let (_, par_baseline_exectime) = par_baseline_execcycles_of proc in
-            let b = if proc = 1 then baseline_exectime else par_baseline_exectime in
-            let last = proc_i+1 = nb_procs in
-            let s = Printf.sprintf "%.3f" b in
-            print_csv s;
-            Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" s));
+          let s = report_elapsed (if proc = 1 then
+                                    (baseline_execcycles, baseline_exectime)
+                                  else
+                                    (par_baseline_execcycles_of proc))
+          in
+          let last = proc_i+1 = nb_procs in
+          print_csv s;
+          Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" s));
       (* Header *)
       print_csv_newline();
       add Latex.tabular_newline;
       print_csv " ";
-      
-      Mk_table.cell ~escape:true ~last:false add "Nautilus baseline (s)";
-      ~~ List.iteri procs (fun proc_i proc ->
-            let s = if proc = 1 then Printf.sprintf "%.3f" nautilus_baseline_exectime else "" in
+
+      if not (arg_skip_nautilus) then (
+        Mk_table.cell ~escape:true ~last:false add "Nautilus baseline (s)";
+        ~~ List.iteri procs (fun proc_i proc ->
+            let s = (if proc = 1 then
+                       report_elapsed (nautilus_baseline_execcycles, nautilus_baseline_exectime)
+                     else
+                       "na")
+            in
             let last = proc_i+1 = nb_procs in
             print_csv s;
             Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" s));
-      print_csv_newline();
-      add Latex.tabular_newline;
-      print_csv " ";
+        print_csv_newline();
+        add Latex.tabular_newline;
+        print_csv " ")
+      else ();
       
-      Mk_table.cell ~escape:true ~last:false add "$H$";
+      Mk_table.cell ~escape:true ~last:false add "Heartbeat rate $H$";
       ~~ List.iteri procs (fun proc_i proc ->
           ~~ List.iteri kappas_usec (fun kappa_i kappa ->
               let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
@@ -443,34 +475,41 @@ let plot_for bd =
       let mk_par os =
         let hwis = values_of_keys_in_params mk_hardware_interrupt_configs [scheduler_configuration;] in
         ~~ List.iteri hwis (fun hwi_i [hwi] ->
-            if os = "Nautilus" && not (is_nautilus_scheduler_configuration hwi) then
+            if os = name_nautilus && not (is_nautilus_scheduler_configuration hwi) then
               ()
             else
               let hwi_pretty = os ^ " "^ pretty_name_of_interrupt_config hwi in
               print_csv hwi_pretty;
               Mk_table.cell ~escape:true ~last:false add hwi_pretty;
-            ~~ List.iteri procs (fun proc_i proc ->
-                ~~ List.iteri kappas_usec (fun kappa_i kappa ->
-                    let (par_baseline_execcycles, _) = par_baseline_execcycles_of proc in
-                    let heartbeat_execcycles =
-                      let mk_config = mk_hardware_interrupt_config_of hwi kappa in
-                      if os = "Linux" then
-                        heartbeat_execcycles_of mk_config proc
+              ~~ List.iteri procs (fun proc_i proc ->
+                  ~~ List.iteri kappas_usec (fun kappa_i kappa ->
+                      if proc != 1 && is_only_serial hwi then
+                        let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
+                        Mk_table.cell ~escape:true ~last:last add "na"
                       else
-                        nautilus_heartbeat_execcycles_of mk_config proc
-                    in
-                    let baseline_execcycles = if os = "Linux" then baseline_execcycles else nautilus_baseline_execcycles in
-                    let b = if proc = 1 then baseline_execcycles else par_baseline_execcycles in
-                    let chg = string_of_percentage_change ~show_plus:true b heartbeat_execcycles in
-                    let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
-                    print_csv (Printf.sprintf "%f" heartbeat_execcycles);
-                    Mk_table.cell ~escape:true ~last:last add chg
-              ));
+                        let (par_baseline_execcycles, _) = par_baseline_execcycles_of proc in
+                        let heartbeat_execcycles =
+                          let mk_config = mk_hardware_interrupt_config_of hwi kappa in
+                          if os = name_linux then
+                            heartbeat_execcycles_of mk_config proc
+                          else
+                            nautilus_heartbeat_execcycles_of mk_config proc
+                        in
+                        let baseline_execcycles = if os = name_linux then baseline_execcycles else nautilus_baseline_execcycles in
+                        let b = if proc = 1 then baseline_execcycles else par_baseline_execcycles in
+                        let chg = report_percent_diff b heartbeat_execcycles in
+                        (*                        let chg = string_of_percentage_change ~show_plus:true b heartbeat_execcycles in*)
+                        let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
+                        print_csv (Printf.sprintf "%f" heartbeat_execcycles);
+                        Mk_table.cell ~escape:true ~last:last add chg
+                ));
         print_csv_newline ();
         add Latex.tabular_newline)
       in
-      mk_par "Linux";
-      mk_par "Nautilus";
+      mk_par name_linux;
+      if not (arg_skip_nautilus) then 
+        mk_par name_nautilus
+      else ();
       add Latex.tabular_end;)
       
 let plot () = ~~ List.iter benchmarks plot_for
