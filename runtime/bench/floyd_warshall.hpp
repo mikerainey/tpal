@@ -162,7 +162,7 @@ auto bench_body_serial(promotable* p) {
 };
 
 auto bench_post(promotable* p) {
-#ifndef NDEBUG
+#if defined(NDEBUG) && defined(TPAL_LINUX)
   bool check = deepsea::cmdline::parse_or_default_bool("check", false);
   if (check) {
     auto dist2 = init_input(vertices);
