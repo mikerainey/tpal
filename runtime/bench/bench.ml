@@ -194,7 +194,7 @@ let benchmarks : benchmark_descr list = [
     { bd_problem = "floyd_warshall";
       bd_mk_input = mk_unit; };
     { bd_problem = "knapsack";
-      bd_mk_input = mk_unit; };
+      bd_mk_input = mk_unit; }; 
     { bd_problem = "mergesort";
       bd_mk_input = mk_unit; };
 
@@ -410,6 +410,7 @@ let plot_for bd =
       in
 
       let (nautilus_baseline_execcycles, nautilus_baseline_exectime) =
+        if arg_skip_nautilus then (0., 0.) else
         get_time name_nautilus_baseline (mk_nautilus_baseline_runs bd)
       in
       let nautilus_heartbeat_execcycles_of mk_config proc =
