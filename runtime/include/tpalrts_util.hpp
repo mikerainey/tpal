@@ -65,5 +65,15 @@ using logging = mcsl::logging_base<true>;
 #else
 using logging = mcsl::logging_base<false>;
 #endif
+
+/*---------------------------------------------------------------------*/
+
+template <typename T>
+void zero_init(T* a, std::size_t n) {
+  volatile T* b = (volatile T*)a;
+  for (std::size_t i = 0; i < n; i++) {
+    b[i] = 0;
+  }
+}
   
 } // end namespace
