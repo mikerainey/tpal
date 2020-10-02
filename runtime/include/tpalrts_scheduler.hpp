@@ -459,6 +459,8 @@ void papi_interrupt_handler(int, void*, long long, void *context) {
 
 std::mutex papi_init_mutex;
 
+std::mutex papi_destroy_mutex;
+
 // guide: https://icl.cs.utk.edu/papi/docs/dc/d7e/examples_2overflow__pthreads_8c_source.html
 
 class papi_worker {
@@ -492,6 +494,7 @@ public:
   void destroy_worker() {
     int retval;
     long long values[2];
+    std::lock_guard<std::mutex> guard(papi_init_mutex);
     if ((retval = PAPI_stop(event_set.mine(), values))!=PAPI_OK) {
       mcsl::die("papi worker stop failed");
     }
@@ -499,11 +502,10 @@ public:
     if(retval !=PAPI_OK) {
       mcsl::die("papi worker deinitialization1 failed");
     }
-    /*
     retval = PAPI_remove_event(event_set.mine(), PAPI_TOT_CYC);
     if (retval != PAPI_OK) {
       mcsl::die("papi worker deinitialization failed");
-      }*/
+    }
   }
 
   template <typename Body>
