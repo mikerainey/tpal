@@ -488,11 +488,11 @@ auto bench_pre(promotable*) {
     col_ind[i] = hash64(i) % nb_rows;
   }
   for (uint64_t i = 0; i != nb_rows; i++) {
-    x[i] = 1.0;
-    y[i] = 0.0;
+    x[i] = (double)i;
   }
+  tpalrts::zero_init(y, nb_rows);
   for (uint64_t i = 0; i != nb_vals; i++) {
-    val[i] = 1.0;
+    val[i] = (double)i;
   }
 };
   
@@ -526,7 +526,7 @@ auto bench_post(promotable*) {
       nb_diffs++;
     }
   }
-  printf("nb_diffs %ld\n", nb_diffs);
+  aprintf("nb_diffs %ld\n", nb_diffs);
   free(yref);
 #endif
   free(val);
