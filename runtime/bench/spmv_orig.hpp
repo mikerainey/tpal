@@ -15,11 +15,11 @@ void spmv_serial(
   uint64_t* row_ptr,
   uint64_t* col_ind,
   double* x,
-	double* y,
-	uint64_t n) {
-  for (int64_t i = 0; i < n; i++) { // row loop
+  double* y,
+  uint64_t n) {
+  for (uint64_t i = 0; i < n; i++) { // row loop
     double r = 0.0;
-    for (int64_t k = row_ptr[i]; k < row_ptr[i + 1]; k++) { // col loop
+    for (uint64_t k = row_ptr[i]; k < row_ptr[i + 1]; k++) { // col loop
       r += val[k] * x[col_ind[k]];
     }
     y[i] = r;
