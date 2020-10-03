@@ -60,7 +60,7 @@ using tpal_worker = mcsl::minimal_worker;
 static
 mcsl::perworker::array<pthread_t> pthreads;
 
-  template <typename Body, typename Initialize_worker, typename Destroy_worker>
+template <typename Body, typename Initialize_worker, typename Destroy_worker>
 void launch_interrupt_worker_thread(std::size_t id, const Body& b,
 				    const Initialize_worker& initialize_worker,
 				    const Destroy_worker& destroy_worker) {
@@ -95,6 +95,12 @@ using ping_thread_status_type = enum ping_thread_status_enum {
     
 class ping_thread_worker {
 public:
+
+  static
+  void initialize(std::size_t nb_workers) { }
+
+  static
+  void destroy() { }
 
   static
   void initialize_worker() {
@@ -212,35 +218,8 @@ std::condition_variable ping_thread_interrupt::ping_thread_condition_variable;
 int ping_thread_interrupt::timerfd;
 
 #elif defined(MCSL_NAUTILUS)
-  
-class ping_thread_worker {
-public:
 
-  template <typename Body>
-  static
-  void launch_worker_thread(std::size_t id, const Body& b) {
-    std::function<void(std::size_t)> f = [=] (std::size_t id) {
-      mcsl::perworker::unique_id::initialize_worker(id);
-      b(id);
-    };
-    auto p = new nk_worker_activation_type(id, f);
-    int remote_core = mcsl::cpu_pinning_assignments[id];
-    if (remote_core == 0) {
-      mcsl::perworker::unique_id::initialize_worker(id);
-      b(id);
-      return;
-    }
-    nk_thread_start(nk_thread_init_fn, (void*)p, 0, 0, TSTACK_DEFAULT, 0, remote_core);
-    if (id == 0) {
-      nk_join_all_children(0);
-    }
-  }
-
-  using worker_exit_barrier = typename mcsl::minimal_worker::worker_exit_barrier;
-  
-  using termination_detection_type = mcsl::minimal_termination_detection;
-
-};
+using ping_thread_worker = mcsl::minimal_worker;
   
 class ping_thread_interrupt {
 public:
@@ -340,6 +319,12 @@ std::mutex pthread_init_mutex;
   
 class pthread_direct_worker {
 public:
+
+  static
+  void initialize(std::size_t nb_workers) { }
+
+  static
+  void destroy() { }
 
   static
   mcsl::perworker::array<timer_t> timerid;
@@ -468,6 +453,12 @@ public:
 
   static
   mcsl::perworker::array<int> event_set;
+
+  static
+  void initialize(std::size_t nb_workers) { }
+
+  static
+  void destroy() { }
 
   static
   void initialize_worker() {
