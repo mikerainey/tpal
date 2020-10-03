@@ -33,38 +33,33 @@ struct item {
 
 int seq_best_so_far = INT_MIN;
 
-std::atomic<int> best_so_far(INT_MIN);
-
-void knapsack_serial2(int& best_so_far, struct item *e, int c, int n, int v, int *sol) {
+int knapsack_serial2(int& best_so_far, struct item *e, int c, int n, int v) {
   int with, without, best;
   double ub;
 
   /* base case: full knapsack or no items */
   if (c < 0) {
-    *sol = INT_MIN;
-    return;
+    return INT_MIN;
   }
 
   /* feasible solution, with value v */
   if (n == 0 || c == 0) {
-    *sol = v;
-    return;
+    return v;
   }
 
   ub = (double) v + c * e->value / e->weight;
 
   if (ub < best_so_far) {
    /* prune ! */
-    *sol = INT_MIN;
-    return;
+    return INT_MIN;
   }
   /*
    * compute the best solution without the current item in the knapsack
    */
-  knapsack_serial2(best_so_far, e + 1, c, n - 1, v, &without);
+  without = knapsack_serial2(best_so_far, e + 1, c, n - 1, v);
 
   /* compute the best solution with the current item in the knapsack */
-  knapsack_serial2(best_so_far, e + 1, c - e->weight, n - 1, v + e->value, &with);
+  with = knapsack_serial2(best_so_far, e + 1, c - e->weight, n - 1, v + e->value);
 
   best = with > without ? with : without;
 
@@ -77,13 +72,15 @@ void knapsack_serial2(int& best_so_far, struct item *e, int c, int n, int v, int
    */
   if (best > best_so_far) best_so_far = best;
 
-  *sol = best;
+  return best;
 }
 
 using pair_ints_type = std::pair<int,int>;
 
 extern
 int knapsack_serial(int& best_so_far, struct item *e, int c, int n, int v, tpalrts::stack_type s);
+
+std::atomic<int> best_so_far(INT_MIN);
 
 extern
 void knapsack_interrupt(std::atomic<int>& best_so_far, struct item *e, int c, int n, int v, int* dst,
@@ -300,7 +297,6 @@ auto bench_body_interrupt(promotable* p) {
 };
 
 auto bench_body_software_polling(promotable* p) {
-
 };
 
 auto bench_body_serial(promotable* p) {
