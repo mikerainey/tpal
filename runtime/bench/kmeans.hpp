@@ -42,7 +42,11 @@ auto kmeans_inputgen(int nObj, int nFeat = 34) -> kmeans_input_type {
 }
 
 extern
-void* mycalloc(std::size_t szb);
+void* mycalloc(std::size_t szb) {
+  int* a = (int*)malloc(szb);
+  tpalrts::zero_init(a, szb/sizeof(int));
+  return a;
+}
 
 #define RANDOM_MAX 2147483647
 
@@ -148,6 +152,7 @@ void kmeans_inner(float **feature,
                   float  **new_centers,
                   int      lo,
                   int      hi,
+		  bool*    is_finished,
                   void    *p);
 
 int kmeans_inner_handler(float **feature,
@@ -162,6 +167,7 @@ int kmeans_inner_handler(float **feature,
 			 float  **new_centers,
 			 int      lo,
 			 int      hi,
+			 bool*    is_finished,
 			 void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
   tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
@@ -170,31 +176,34 @@ int kmeans_inner_handler(float **feature,
   }
   auto mid = (lo + hi) / 2;
   using dst_rec_type = void;
-  dst_rec_type* dst_rec;
-  tpalrts::arena_block_type* dst_blk;
+  using dst_rec0_type = struct dst_rec0_struct {
+    bool b1;
+    bool b2;
+    dst_rec_type* dst_rec;
+    tpalrts::arena_block_type* dst_blk;
+  };
   int float_szb = sizeof(float);
   int new_centers_len_szb = sizeof(int) * nclusters;
   int new_centers_szb = sizeof(float*) * nclusters;
   int new_centers0_szb = sizeof(float) * nclusters * nfeatures;
-  std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena_block(float_szb + new_centers_len_szb + new_centers_szb + new_centers0_szb);
-  auto ptr = (char*)dst_rec;
-  int szb = 0;
-  auto delta_dst2 = (float*)&ptr[szb];
-  szb += float_szb;
-  auto new_centers_len2 = (int*)&ptr[szb];
-  szb += new_centers_len_szb;
-  auto new_centers2 = (float**)&ptr[szb];
-  szb += new_centers_szb;
-  *delta_dst2 = 0.0;
-  new_centers2[0] = (float*)&ptr[szb];
-  for (int i=1; i<nclusters; i++)
-    new_centers2[i] = new_centers2[i-1] + nfeatures;
-  for (int i=0; i<nclusters; i++) {
-    new_centers_len2[i] = 0;
-    for (int j=0; j<nfeatures; j++) {
-      new_centers2[i][j] = 0.0;
-    }
-  }
+  auto init_dst = [=] (char* ptr, float** delta_dst2, int** new_centers_len2,
+		       float*** new_centers2) {
+    int szb = 0;
+    *delta_dst2 = (float*)&ptr[szb];
+    szb += float_szb;
+    *new_centers_len2 = (int*)&ptr[szb];
+    szb += new_centers_len_szb;
+    *new_centers2 = (float**)&ptr[szb];
+    szb += new_centers_szb;
+    (*new_centers2)[0] = (float*)&ptr[szb];
+  };
+  dst_rec0_type* dst_rec0;
+  tpalrts::arena_block_type* dst_blk0;
+  std::tie(dst_rec0, dst_blk0) = tpalrts::alloc_arena<dst_rec0_type>();
+  dst_rec0->b1 = false;
+  dst_rec0->b2 = false;
+  dst_rec0->dst_rec = nullptr;
+  dst_rec0->dst_blk = nullptr;
   p->fork_join_promote2([=] (tpalrts::promotable* p2) {
     kmeans_inner(feature,
 		 nfeatures,
@@ -208,30 +217,80 @@ int kmeans_inner_handler(float **feature,
 		 new_centers,
 		 lo,
 		 mid,
+		 &(dst_rec0->b1),
 		 p2);
   }, [=] (tpalrts::promotable* p2) {
-    kmeans_inner(feature,
-		 nfeatures,
-		 npoints,
-		 nclusters,
-		 threshold,
-		 membership,
-		 delta_dst2,
-		 clusters,
-		 new_centers_len2,
-		 new_centers2,
-		 mid,
-		 hi,
-		 p2);    
+    // clone optimization
+    if (dst_rec0->b1) { // fast clone
+      kmeans_inner(feature,
+		   nfeatures,
+		   npoints,
+		   nclusters,
+		   threshold,
+		   membership,
+		   delta_dst,
+		   clusters,
+		   new_centers_len,
+		   new_centers,
+		   mid,
+		   hi,
+		   &(dst_rec0->b2),
+		   p2);
+    } else { // slow clone
+      dst_rec_type* dst_rec;
+      tpalrts::arena_block_type* dst_blk;
+      std::tie(dst_rec, dst_blk) =
+	tpalrts::alloc_arena_block(float_szb +
+				   new_centers_len_szb +
+				   new_centers_szb +
+				   new_centers0_szb);
+      dst_rec0->dst_rec = dst_rec;
+      dst_rec0->dst_blk = dst_blk;
+      float* delta_dst2;
+      int* new_centers_len2;
+      float** new_centers2;
+      init_dst((char*)dst_rec, &delta_dst2, &new_centers_len2, &new_centers2);
+      *delta_dst2 = 0.0;
+      for (int i=1; i<nclusters; i++)
+	new_centers2[i] = new_centers2[i-1] + nfeatures;
+      for (int i=0; i<nclusters; i++) {
+	new_centers_len2[i] = 0;
+	for (int j=0; j<nfeatures; j++) {
+	  new_centers2[i][j] = 0.0;
+	}
+      }
+      kmeans_inner(feature,
+		   nfeatures,
+		   npoints,
+		   nclusters,
+		   threshold,
+		   membership,
+		   delta_dst2,
+		   clusters,
+		   new_centers_len2,
+		   new_centers2,
+		   mid,
+		   hi,
+		   &(dst_rec0->b2),
+		   p2);
+    }
   }, [=] (tpalrts::promotable* p2) {
-    *delta_dst += *delta_dst2;
-    for (int i = 0; i < nclusters; i++) {
-      new_centers_len[i] += new_centers_len2[i];
-      for (int j=0; j<nfeatures; j++) {
-	new_centers[i][j] += new_centers2[i][j];
+    if (dst_rec0->dst_blk != nullptr) {
+      float* delta_dst2;
+      int* new_centers_len2;
+      float** new_centers2;
+      init_dst((char*)dst_rec0->dst_rec, &delta_dst2, &new_centers_len2, &new_centers2);
+      *delta_dst += *delta_dst2;
+      for (int i = 0; i < nclusters; i++) {
+	new_centers_len[i] += new_centers_len2[i];
+	for (int j=0; j<nfeatures; j++) {
+	  new_centers[i][j] += new_centers2[i][j];
+	}
       }
     }
-    decr_arena_block(dst_blk);
+    
+    decr_arena_block(dst_blk0);
+    *is_finished = true;
   });
   return 1;
 }
@@ -267,12 +326,28 @@ int kmeans_outer_handler(float **feature,
   if ((hi - lo) < 2) {
     return 0;
   }
-  using dst_rec_type = float;
+  using dst_rec_type = std::pair<float,bool>;
   dst_rec_type* dst_rec;
   tpalrts::arena_block_type* dst_blk;
   std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
-  *dst_rec = delta;
+  dst_rec->first = delta;
+  dst_rec->second = false;
   p->fork_join_promote([=] (tpalrts::promotable* p2) {
+    kmeans_inner_handler(feature,
+			 nfeatures,
+			 npoints,
+			 nclusters,
+			 threshold,
+			 membership,
+			 &(dst_rec->first),
+			 clusters,
+			 new_centers_len,
+			 new_centers,
+			 lo,
+			 hi,
+			 &(dst_rec->second),
+			 p2);
+    /*
     kmeans_inner(feature,
 		 nfeatures,
 		 npoints,
@@ -285,8 +360,7 @@ int kmeans_outer_handler(float **feature,
 		 new_centers,
 		 lo,
 		 hi,
-		 p2);
-
+		 p2); */
   }, [=] (tpalrts::promotable* p2) {
     /* replace old cluster centers with new_centers */
     for (int i=0; i<nclusters; i++) {
@@ -297,7 +371,7 @@ int kmeans_outer_handler(float **feature,
       }
       new_centers_len[i] = 0;   /* set back to 0 */
     }
-    auto delta2 = *dst_rec;
+    auto delta2 = dst_rec->first;
     decr_arena_block(dst_blk);
     if (delta2 > threshold) {
       kmeans_outer(feature,
@@ -329,7 +403,7 @@ float** kmeans_interrupt(float **feature,    /* in: [npoints][nfeatures] */
 
   int      i, j, n=0, index, loop=0;
   int     *new_centers_len; /* [nclusters]: no. of points in each cluster */
-  float    delta;
+  float    delta = 0.0;
   float  **clusters;   /* out: [nclusters][nfeatures] */
   float  **new_centers;     /* [nclusters][nfeatures] */
   
@@ -373,7 +447,6 @@ float** kmeans_interrupt(float **feature,    /* in: [npoints][nfeatures] */
 		 new_centers_len,
 		 new_centers,
 		 p2);
-
   }, [=] (tpalrts::promotable* p2) {
     free(new_centers[0]);
     free(new_centers);
@@ -467,10 +540,10 @@ float** kmeans_cilk(float **feature,    /* in: [npoints][nfeatures] */
     membership[i] = -1;
 
   /* need to initialize new_centers_len and new_centers[0] to all 0 */
-  new_centers_len = (int*) calloc(nclusters, sizeof(int));
+  new_centers_len = (int*) mycalloc(nclusters * sizeof(int));
 
   new_centers    = (float**) malloc(nclusters *            sizeof(float*));
-  new_centers[0] = (float*)  calloc(nclusters * nfeatures, sizeof(float));
+  new_centers[0] = (float*)  mycalloc(nclusters * nfeatures * sizeof(float));
   for (i=1; i<nclusters; i++)
     new_centers[i] = new_centers[i-1] + nfeatures;
   
@@ -495,10 +568,10 @@ float** kmeans_cilk(float **feature,    /* in: [npoints][nfeatures] */
 
     /* let the main thread perform the array reduction */
     for (i=0; i<nclusters; i++) {
-      new_centers_len[i] = partial_new_centers_len[i].get_value();
+      new_centers_len[i] += partial_new_centers_len[i].get_value();
       partial_new_centers_len[i].set_value(0);
       for (j=0; j<nfeatures; j++) {
-	new_centers[i][j] = partial_new_centers[i][j].get_value();
+	new_centers[i][j] += partial_new_centers[i][j].get_value();
 	partial_new_centers[i][j].set_value(0.0);
       }
     }
@@ -514,7 +587,7 @@ float** kmeans_cilk(float **feature,    /* in: [npoints][nfeatures] */
     }
             
     //delta /= npoints;
-  } while (delta.get_value() > threshold);
+  } while (delta.get_value() > threshold && loop++ < 500);
 
   delete [] partial_new_centers_len;
   for (int i = 0; i < nclusters; i++) {

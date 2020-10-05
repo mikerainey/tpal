@@ -6,6 +6,7 @@ gcc 9.3
  */
 
 #include <stdlib.h>
+#include <algorithm>
 
 #define RANDOM_MAX 2147483647
 
@@ -50,6 +51,9 @@ int find_nearest_point(float  *pt,          /* [nfeatures] */
   return(index);
 }
 
+extern
+void* mycalloc(std::size_t szb);
+
 /*----< kmeans_clustering() >---------------------------------------------*/
 float** kmeans_serial(float **feature,    /* in: [npoints][nfeatures] */
                           int     nfeatures,
@@ -84,10 +88,10 @@ float** kmeans_serial(float **feature,    /* in: [npoints][nfeatures] */
     membership[i] = -1;
 
   /* need to initialize new_centers_len and new_centers[0] to all 0 */
-  new_centers_len = (int*) calloc(nclusters, sizeof(int));
+  new_centers_len = (int*) mycalloc(nclusters * sizeof(int));
 
   new_centers    = (float**) malloc(nclusters *            sizeof(float*));
-  new_centers[0] = (float*)  calloc(nclusters * nfeatures, sizeof(float));
+  new_centers[0] = (float*)  mycalloc(nclusters * nfeatures * sizeof(float));
   for (i=1; i<nclusters; i++)
     new_centers[i] = new_centers[i-1] + nfeatures;
  
@@ -133,9 +137,6 @@ float** kmeans_serial(float **feature,    /* in: [npoints][nfeatures] */
   return clusters;
 }
 
-#define MIN(x, y) ((x < y) ? x : y)
-
-#define likely(x)      __builtin_expect(!!(x), 1)
 #define unlikely(x)    __builtin_expect(!!(x), 0)
 
 #define D 64
@@ -172,9 +173,9 @@ void kmeans_outer(float **feature,
 {
 
   do {
-      
-      delta = 0.0;
 
+    delta = 0.0;
+      
       int lo = 0;
       int hi = npoints;
       if (! (lo < hi)) {
@@ -182,7 +183,7 @@ void kmeans_outer(float **feature,
       }
       for (;;) {
         int lo2 = lo;
-        int hi2 = MIN(lo + D, hi);
+        int hi2 = std::min(lo + D, hi);
         for (; lo2<hi2; lo2++) {
           /* find the index of nestest cluster centers */
           int index = find_nearest_point(feature[lo2], nfeatures, clusters, nclusters);
@@ -198,7 +199,7 @@ void kmeans_outer(float **feature,
             new_centers[index][j] += feature[lo2][j];
         }
         lo = lo2;
-        if (unlikely(! (lo < hi))) {
+        if (! (lo < hi)) {
           break;
         }
         if (unlikely(heartbeat)) {
@@ -237,6 +238,7 @@ int kmeans_inner_handler(float **feature,
                   float  **new_centers,
                   int      lo,
                   int      hi,
+		  bool* is_finished,
                   void* p);
 
 void kmeans_inner(float **feature,
@@ -251,6 +253,7 @@ void kmeans_inner(float **feature,
                   float  **new_centers,
                   int      lo,
                   int      hi,
+		  bool*    is_finished,
                   void    *p) 
 {
   float delta = *delta_dst;
@@ -259,7 +262,7 @@ void kmeans_inner(float **feature,
   }
   for (;;) {
     int lo2 = lo;
-    int hi2 = MIN(lo + D, hi);
+    int hi2 = std::min(lo + D, hi);
     for (; lo2<hi2; lo2++) {
       /* find the index of nestest cluster centers */
       int index = find_nearest_point(feature[lo2], nfeatures, clusters, nclusters);
@@ -275,15 +278,16 @@ void kmeans_inner(float **feature,
         new_centers[index][j] += feature[lo2][j];
     }
     lo = lo2;
-    if (unlikely(! (lo < hi))) {
+    if (! (lo < hi)) {
       break;
     }
     if (unlikely(heartbeat)) {
         *delta_dst = delta;
-        if (kmeans_inner_handler(feature, nfeatures, npoints, nclusters, threshold, membership, delta_dst, clusters, new_centers_len, new_centers, lo, hi, p)) {
+        if (kmeans_inner_handler(feature, nfeatures, npoints, nclusters, threshold, membership, delta_dst, clusters, new_centers_len, new_centers, lo, hi, is_finished, p)) {
           return;
         }
       }
   }
   *delta_dst = delta;
+  *is_finished = true;
 }
