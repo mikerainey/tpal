@@ -9,11 +9,11 @@ endif
 
 INCLUDE_FILES=$(wildcard $(CMDLINE_PATH)/*.hpp) $(wildcard $(MCSL_PATH)/*.hpp) $(wildcard ../include/*.hpp)  $(wildcard ./*.hpp)
 
-INCLUDE_PREFIX=-I $(CMDLINE_PATH) -I $(MCSL_PATH) -DMCSL_LINUX -DTPALRTS_LINUX -I ../include/ $(HWLOC_INCLUDE_PREFIX) -I $(PAPI_PREFIX)/include
+INCLUDE_PREFIX=-I $(CMDLINE_PATH) -I $(MCSL_PATH) -DMCSL_LINUX -DTPALRTS_LINUX -I ../include/ $(HWLOC_INCLUDE_PREFIX) -I $(PAPI_PREFIX)/include -Wno-write-strings
 
 LINKER_PREFIX=-pthread $(HWLOC_LIBRARY_PREFIX) -lrt -L $(PAPI_PREFIX)/lib -lpapi -ldl
 
-OPT_BASE_PREFIX=-O3 -m64 -march=x86-64 -fno-asynchronous-unwind-tables -fomit-frame-pointer -Wno-write-strings -DNDEBUG
+OPT_BASE_PREFIX=-O3 -m64 -march=x86-64 -fno-asynchronous-unwind-tables -fomit-frame-pointer -DNDEBUG
 OPT_PREFIX=--std=c++17 $(OPT_BASE_PREFIX) $(INCLUDE_PREFIX) $(LINKER_PREFIX)
 STA_PREFIX=-DTPALRTS_STATS $(OPT_PREFIX)
 LOG_PREFIX=-DTPALRTS_LOGGING $(STA_PREFIX)
