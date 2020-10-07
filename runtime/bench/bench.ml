@@ -186,7 +186,7 @@ let mk_spmv_input =
 let mk_spmv_inputs =
   (mk_spmv_input "bigrows" ++
    mk_spmv_input "bigcols" ++
-   mk_spmv_input "arrowhead" ++)
+   mk_spmv_input "arrowhead")
 
 let benchmarks : benchmark_descr list = [
     { bd_problem = "incr_array";
