@@ -248,7 +248,7 @@ let serial_interrupt_papi = "serial_interrupt_papi"
 let nopromote_interrupt = "nopromote_interrupt"
 
 let is_nautilus_scheduler_configuration s =
-  (s = interrupt_ping_thread || s = serial_interrupt_ping_thread)
+  (s = interrupt_ping_thread || s = serial_interrupt_ping_thread || s = nopromote_interrupt)
 
 let is_only_serial s =
   (s = serial_interrupt_ping_thread || s = serial_interrupt_pthread || s = serial_interrupt_papi ||
