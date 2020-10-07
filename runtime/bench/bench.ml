@@ -34,8 +34,8 @@ let arg_par_baseline = XCmd.parse_or_default_string "par_baseline" "cilk"
 let arg_kappas_usec = XCmd.parse_or_default_list_int "kappa_usec" [20;100]
 let arg_output_csv = XCmd.mem_flag "output_csv"
 let arg_elide_baseline = XCmd.mem_flag "elide_baseline"
-let arg_par_timeout = XCmd.parse_or_default_int "par_timeout" 60
-let arg_seq_timeout = XCmd.parse_or_default_int "seq_timeout" 100
+let arg_par_timeout = XCmd.parse_or_default_int "par_timeout" 120
+let arg_seq_timeout = XCmd.parse_or_default_int "seq_timeout" 120
 let arg_results_path = XCmd.parse_or_default_string "results_path" "."
 let arg_show_execcycles = XCmd.mem_flag "show_execcycles"
 let arg_skip_nautilus = XCmd.mem_flag "skip_nautilus"
@@ -178,15 +178,22 @@ let mk_infile f =
 type benchmark_descr = {
     bd_problem : string;
     bd_mk_input : Params.t;
-}
+  }
+
+let mk_spmv_input =
+  mk string "matrixgen"
 
 let benchmarks : benchmark_descr list = [
     { bd_problem = "incr_array";
       bd_mk_input = mk_unit; };
     { bd_problem = "plus_reduce_array";
       bd_mk_input = mk_unit };
-    { bd_problem = "spmv";
-      bd_mk_input = mk_unit; };
+    { bd_problem = "spmv-bigrows";
+      bd_mk_input = mk_spmv_input "bigrows"; };
+    { bd_problem = "spmv-bigcols";
+      bd_mk_input = mk_spmv_input "bigcols"; };
+    { bd_problem = "spmv-arrowhead";
+      bd_mk_input = mk_spmv_input "arrowhead"; };
     { bd_problem = "mandelbrot";
       bd_mk_input = mk_unit; };
     { bd_problem = "kmeans";
