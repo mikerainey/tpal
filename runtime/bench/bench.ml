@@ -183,17 +183,18 @@ type benchmark_descr = {
 let mk_spmv_input =
   mk string "matrixgen"
 
+let mk_spmv_inputs =
+  (mk_spmv_input "bigrows" ++
+   mk_spmv_input "bigcols" ++
+   mk_spmv_input "arrowhead" ++)
+
 let benchmarks : benchmark_descr list = [
     { bd_problem = "incr_array";
       bd_mk_input = mk_unit; };
     { bd_problem = "plus_reduce_array";
       bd_mk_input = mk_unit };
-    { bd_problem = "spmv-bigrows";
-      bd_mk_input = mk_spmv_input "bigrows"; };
-    { bd_problem = "spmv-bigcols";
-      bd_mk_input = mk_spmv_input "bigcols"; };
-    { bd_problem = "spmv-arrowhead";
-      bd_mk_input = mk_spmv_input "arrowhead"; };
+    { bd_problem = "spmv";
+      bd_mk_input = mk_spmv_inputs; };
     { bd_problem = "mandelbrot";
       bd_mk_input = mk_unit; };
     { bd_problem = "kmeans";
