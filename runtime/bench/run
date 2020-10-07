@@ -64,7 +64,10 @@ export NUM_THREADS=$PROCS
 
 CPUFREQ=""
 case $(hostname -s) in
-  tinker*) CPUFREQ="-cpu_frequency_khz  2100000" ;;
+  tinker*) CPUFREQ="-cpu_frequency_khz 2100000" ;;
+  *) ;;
+case $(hostname -s) in
+  v-test-5038ki.cs.northwestern.edu*) CPUFREQ="-cpu_frequency_khz 1300000" ;;
   *) ;;
 esac
 
