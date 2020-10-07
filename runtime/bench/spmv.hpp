@@ -1,5 +1,18 @@
 #pragma once
 
+#if defined(MCSL_LINUX)
+#include <cmath>
+double mypow(double x, double y) {
+  return std::pow(x, y);
+}
+#elif defined(MCSL_NAUTILUS)
+extern "C"
+double pow(double x, double y);
+double mypow(double x, double y) {
+  return pow(x, y);
+}
+#endif
+
 #ifdef USE_CILK_PLUS
 #include <cilk/cilk.h>
 #include <cilk/cilk_api.h>
@@ -436,6 +449,30 @@ void spmv_cilk(double* val,
 
 namespace spmv {
 
+using namespace tpalrts;
+
+char* name = "spmv";
+
+char* random_bigrows_input = "random_bigrows";
+char* random_bigcols_input = "random_bigcols";
+char* arrowhead_input = "arrowhead";
+
+uint64_t n_bigrows = 3000000;
+uint64_t degree_bigrows = 100;
+uint64_t n_bigcols = 10000000;
+uint64_t n_arrowhead = 100000000;
+  
+uint64_t row_len = 1000;
+uint64_t degree = 4;
+uint64_t dim = 5;
+uint64_t nb_rows;
+uint64_t nb_vals;
+double* val;
+uint64_t* row_ptr;
+uint64_t* col_ind;
+double* x;
+double* y;
+
 uint64_t hash64(uint64_t u) {
   uint64_t v = u * 3935559000370003845ul + 2691343689449507681ul;
   v ^= v >> 21;
@@ -448,54 +485,214 @@ uint64_t hash64(uint64_t u) {
   return v;
 }
 
-using namespace tpalrts;
+auto rand_double(size_t i) -> double {
+  int m = 1000000;
+  double v = hash64(i) % m;
+  return v / m;
+}
 
-char* name = "spmv";
-  
-uint64_t n = 500 * 1000 * 1000;
-uint64_t row_len = 1000;
-uint64_t nb_rows;
-uint64_t nb_vals;
-double* val;
-uint64_t* row_ptr;
-uint64_t* col_ind;
-double* x;
-double* y;
+using edge_type = std::pair<uint64_t, uint64_t>;
 
-auto bench_pre(promotable*) {
+using edgelist_type = std::vector<edge_type>;
+
+auto mk_random_local_edgelist(size_t dim, size_t degree, size_t num_rows)
+  -> edgelist_type {
+  size_t non_zeros = num_rows*degree;
+  edgelist_type edges;
+  for (size_t k = 0; k < non_zeros; k++) {
+    size_t i = k / degree;
+    size_t j;
+    if (dim==0) {
+      size_t h = k;
+      do {
+	j = ((h = hash64(h)) % num_rows);
+      } while (j == i);
+    } else {
+      size_t _pow = dim+2;
+      size_t h = k;
+      do {
+	while ((((h = hash64(h)) % 1000003) < 500001)) _pow += dim;
+	j = (i + ((h = hash64(h)) % (((long) 1) << _pow))) % num_rows;
+      } while (j == i);
+    }
+    edges.push_back(std::make_pair(i, j));
+  }
+  return edges;
+}
+
+static float powerlaw_random(size_t i, float dmin, float dmax, float n) {
+  float r = (float)hash64(i) / RAND_MAX;
+  return mypow((mypow(dmax, n) - mypow(dmin, n)) * mypow(r, 3) + mypow(dmin, n), 1.0 / n);
+}
+
+std::vector<int> siteSizes(size_t n) {
+  std::vector<int> site_sizes;
+  for (int i = 0; i < n;) {
+    int c = powerlaw_random(i, 1,
+                            std::min(50000, (int) (100000. * n / 100e6)),
+                            0.001);
+    c = (c==0)?1:c;
+    site_sizes.push_back(c);
+    i += c;
+  }
+  return site_sizes;
+}
+
+auto mk_powerlaw_edgelist(size_t num_rows) {
+  edgelist_type edges;
+  size_t n = num_rows;
+  size_t inRatio = 10;
+  size_t degree = 15;
+  std::vector<int> site_sizes = siteSizes(n);
+  size_t sites = site_sizes.size();
+  size_t *sizes = (size_t*)malloc(sizeof(size_t) * sites);
+  size_t *offsets = (size_t*)malloc(sizeof(size_t) * sites);
+  size_t o = 0;
+  for (size_t i=0; i < sites; i++) {
+    sizes[i] = site_sizes[i];
+    offsets[i] = o;
+    o += sizes[i];
+    if (o > n) sizes[i] = std::max<size_t>(0,sizes[i] + n - o);
+  }
+  for (size_t i=0; i < sites; i++) {
+    for (size_t j =0; j < sizes[i]; j++) {
+      for (size_t k = 0; k < degree; k++) {
+	auto h1 = hash64(i+j+k);
+	auto h2 = hash64(h1);
+	auto h3 = hash64(h2);
+	size_t target_site = (h1 % inRatio != 0) ? i : (h2 % sites);
+	size_t site_id = h3 % sizes[target_site];
+	size_t idx = offsets[i] + j;
+	edges.push_back(std::make_pair(idx, offsets[target_site] + site_id));
+      }
+    }
+  }
+  free(sizes);
+  free(offsets);
+  return edges;
+}
+
+auto mk_arrowhead_edgelist(size_t n) {
+  edgelist_type edges;
+  for (size_t i = 0; i < n; i++) {
+    edges.push_back(std::make_pair(i, 0));
+  }
+  for (size_t i = 0; i < n; i++) {
+    edges.push_back(std::make_pair(0, i));
+  }
+  for (size_t i = 0; i < n; i++) {
+    edges.push_back(std::make_pair(i, i));
+  }
+  return edges;
+}
+
+auto csr_of_edgelist(edgelist_type& edges) {
+  std::sort(edges.begin(), edges.end(), std::less<edge_type>());
+  {
+    edgelist_type edges2;
+    edge_type prev = edges.back();
+    for (auto& e : edges) {
+      if (e != prev) {
+	edges2.push_back(e);
+      }
+      prev = e;
+    }
+    edges2.swap(edges);
+    edges2.clear();
+  }
+  nb_vals = edges.size();
+  row_ptr = (uint64_t*)malloc(sizeof(uint64_t) * (nb_rows + 1));
+  for (size_t i = 0; i < nb_rows + 1; i++) {
+    row_ptr[i] = 0;
+  }
+  for (auto& e : edges) {
+    assert((e.first >= 0) && (e.first < nb_rows));
+    row_ptr[e.first]++;
+  }
+  { // initialize column indices
+    col_ind = (uint64_t*)malloc(sizeof(uint64_t) * nb_vals);
+    uint64_t i = 0;
+    for (auto& e : edges) {
+      col_ind[i++] = e.second;
+    }
+  }
+  edges.clear();
+  { // initialize row pointers
+    uint64_t a = 0;
+    for (size_t i = 0; i < nb_rows; i++) {
+      auto e = row_ptr[i];
+      row_ptr[i] = a;
+      a += e;
+    }
+    row_ptr[nb_rows] = a;
+  }
+  { // initialize nonzero values array
+    val = (double*)malloc(sizeof(double) * nb_vals);
+    for (size_t i = 0; i < nb_vals; i++) {
+      val[i] = rand_double(i);
+    }
+  } 
+  { /*
+    for (auto& e : edges) {
+      std::cout << e.first << "," << e.second << " ";
+    }
+    std::cout << std::endl;
+    for (size_t i = 0; i < nb_rows+1; i++) {
+      std::cout << "r[" << i << "]=" << row_ptr[i] << " ";
+    }
+    std::cout << std::endl;
+    for (size_t i = 0; i < nb_vals; i++) {
+      std::cout << "c[" << i << "]=" << col_ind[i] << " ";
+    }
+    std::cout << std::endl;  */
+  } 
+}
+
+template <typename Gen_matrix>
+auto bench_pre_shared(promotable*, const Gen_matrix& gen_matrix) {
   rollforward_table = {
     #include "spmv_rollforward_map.hpp"    
   };
-  nb_rows = n / row_len;
-  nb_vals = n;
-  val = (double*)malloc(sizeof(double) * nb_vals);
-  row_ptr = (uint64_t*)malloc(sizeof(uint64_t) * (nb_rows + 1));
-  col_ind = (uint64_t*)malloc(sizeof(uint64_t) * nb_vals);
+  gen_matrix();
   x = (double*)malloc(sizeof(double) * nb_rows);
   y = (double*)malloc(sizeof(double) * nb_rows);
   if ((val == nullptr) || (row_ptr == nullptr) || (col_ind == nullptr) || (x == nullptr) || (y == nullptr)) {
     exit(1);
   }
+  // initialize x and y vectors
   {
-    uint64_t a = 0;
-    for (uint64_t i = 0; i != nb_rows; i++) {
-      row_ptr[i] = a;
-      a += row_len;
+    for (size_t i = 0; i < nb_rows; i++) {
+      x[i] = rand_double(i);
     }
-    row_ptr[nb_rows] = a;
-  }
-  for (uint64_t i = 0; i != nb_vals; i++) {
-    col_ind[i] = hash64(i) % nb_rows;
-  }
-  for (uint64_t i = 0; i != nb_rows; i++) {
-    x[i] = (double)i;
-  }
-  tpalrts::zero_init(y, nb_rows);
-  for (uint64_t i = 0; i != nb_vals; i++) {
-    val[i] = (double)i;
-  }
+    tpalrts::zero_init(y, nb_rows);
+  }  
 };
-  
+
+auto bench_pre_bigrows(promotable* p) {
+  nb_rows = n_bigrows;
+  degree = degree_bigrows;
+  bench_pre_shared(p, [&] {
+    auto edges = mk_random_local_edgelist(dim, degree, nb_rows);
+    csr_of_edgelist(edges);
+  });
+}
+
+auto bench_pre_bigcols(promotable* p) {
+  nb_rows = n_bigcols;
+  bench_pre_shared(p, [&] {
+    auto edges = mk_powerlaw_edgelist(nb_rows);
+    csr_of_edgelist(edges);
+  });
+}
+
+auto bench_pre_arrowhead(promotable* p) {
+  nb_rows = n_arrowhead;
+  bench_pre_shared(p, [&] {
+    auto edges = mk_arrowhead_edgelist(nb_rows);
+    csr_of_edgelist(edges);
+  });
+}
+
 auto bench_body_interrupt(promotable* p) {
   spmv_interrupt(val, row_ptr, col_ind, x, y, 0, nb_rows, p);
 };
@@ -526,11 +723,12 @@ auto bench_post(promotable*) {
       nb_diffs++;
     }
   }
-  aprintf("nb_diffs %ld\n", nb_diffs);
+  //aprintf("nb_diffs %ld\n", nb_diffs);
   free(yref);
 #endif
   free(val);
   free(row_ptr);
+  free(col_ind);
   free(x);
   free(y);
 };
