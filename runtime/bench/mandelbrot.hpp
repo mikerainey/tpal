@@ -154,15 +154,14 @@ using namespace tpalrts;
 
 char* name = "mandelbrot";
 
-uint64_t nb_items;
 unsigned char* output = nullptr;
 double x0 = -2.5;
 double y0 = -0.875;
 double x1 = 1;
 double y1 = 0.875;
-int height = 10240;
+int height = 4192;
 // Width should be a multiple of 8
-int width = 1024;
+int width = 4192;
 int max_depth = 100;
 double g = 2.0;
   
@@ -174,7 +173,7 @@ auto bench_pre(promotable* p) {
     g /= sin(g);
   }
 };
-  
+
 auto bench_body_interrupt(promotable* p) {
   output = mandelbrot_interrupt(x0, y0, x1, y1, width, height, max_depth, p);
 };

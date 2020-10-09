@@ -12,2629 +12,2603 @@
 .type  _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv, @function
 .globl  _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv_rf
 .type  _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv_rf, @function
+.globl  _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv.part.0
+.type  _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv.part.0, @function
+.globl  _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv.part.0_rf
+.type  _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv.part.0_rf, @function
 .globl  _Z29mandelbrot_interrupt_row_loopddddiiiPhddiiiiPv
 .type  _Z29mandelbrot_interrupt_row_loopddddiiiPhddiiiiPv, @function
 .globl  _Z29mandelbrot_interrupt_row_loopddddiiiPhddiiiiPv_rf
 .type  _Z29mandelbrot_interrupt_row_loopddddiiiPhddiiiiPv_rf, @function
-.globl  mbt0
-.type  mbt0, @function
-.globl  mbt0_rf
-.type  mbt0_rf, @function
-.globl  mbt1
-.type  mbt1, @function
-.globl  mbt1_rf
-.type  mbt1_rf, @function
-.globl  mbt2
-.type  mbt2, @function
-.globl  mbt2_rf
-.type  mbt2_rf, @function
-.globl  mbt3
-.type  mbt3, @function
-.globl  mbt3_rf
-.type  mbt3_rf, @function
-.globl  mbt4
-.type  mbt4, @function
-.globl  mbt4_rf
-.type  mbt4_rf, @function
-.globl  mbt5
-.type  mbt5, @function
-.globl  mbt5_rf
-.type  mbt5_rf, @function
-.globl  mbt6
-.type  mbt6, @function
-.globl  mbt6_rf
-.type  mbt6_rf, @function
-.globl  mbt7
-.type  mbt7, @function
-.globl  mbt7_rf
-.type  mbt7_rf, @function
-.globl  mbt8
-.type  mbt8, @function
-.globl  mbt8_rf
-.type  mbt8_rf, @function
-.globl  mbt9
-.type  mbt9, @function
-.globl  mbt9_rf
-.type  mbt9_rf, @function
-.globl  mbt10
-.type  mbt10, @function
-.globl  mbt10_rf
-.type  mbt10_rf, @function
-.globl  mbt11
-.type  mbt11, @function
-.globl  mbt11_rf
-.type  mbt11_rf, @function
-.globl  mbt12
-.type  mbt12, @function
-.globl  mbt12_rf
-.type  mbt12_rf, @function
-.globl  mbt13
-.type  mbt13, @function
-.globl  mbt13_rf
-.type  mbt13_rf, @function
-.globl  mbt14
-.type  mbt14, @function
-.globl  mbt14_rf
-.type  mbt14_rf, @function
-.globl  mbt15
-.type  mbt15, @function
-.globl  mbt15_rf
-.type  mbt15_rf, @function
-.globl  mbt16
-.type  mbt16, @function
-.globl  mbt16_rf
-.type  mbt16_rf, @function
-.globl  mbt17
-.type  mbt17, @function
-.globl  mbt17_rf
-.type  mbt17_rf, @function
-.globl  mbt18
-.type  mbt18, @function
-.globl  mbt18_rf
-.type  mbt18_rf, @function
-.globl  mbt19
-.type  mbt19, @function
-.globl  mbt19_rf
-.type  mbt19_rf, @function
-.globl  mbt20
-.type  mbt20, @function
-.globl  mbt20_rf
-.type  mbt20_rf, @function
-.globl  mbt21
-.type  mbt21, @function
-.globl  mbt21_rf
-.type  mbt21_rf, @function
-.globl  mbt22
-.type  mbt22, @function
-.globl  mbt22_rf
-.type  mbt22_rf, @function
-.globl  mbt23
-.type  mbt23, @function
-.globl  mbt23_rf
-.type  mbt23_rf, @function
-.globl  mbt24
-.type  mbt24, @function
-.globl  mbt24_rf
-.type  mbt24_rf, @function
-.globl  mbt25
-.type  mbt25, @function
-.globl  mbt25_rf
-.type  mbt25_rf, @function
-.globl  mbt26
-.type  mbt26, @function
-.globl  mbt26_rf
-.type  mbt26_rf, @function
-.globl  mbt27
-.type  mbt27, @function
-.globl  mbt27_rf
-.type  mbt27_rf, @function
-.globl  mbt28
-.type  mbt28, @function
-.globl  mbt28_rf
-.type  mbt28_rf, @function
-.globl  mbt29
-.type  mbt29, @function
-.globl  mbt29_rf
-.type  mbt29_rf, @function
-.globl  mbt30
-.type  mbt30, @function
-.globl  mbt30_rf
-.type  mbt30_rf, @function
-.globl  mbt31
-.type  mbt31, @function
-.globl  mbt31_rf
-.type  mbt31_rf, @function
-.globl  mbt32
-.type  mbt32, @function
-.globl  mbt32_rf
-.type  mbt32_rf, @function
-.globl  mbt33
-.type  mbt33, @function
-.globl  mbt33_rf
-.type  mbt33_rf, @function
-.globl  mbt34
-.type  mbt34, @function
-.globl  mbt34_rf
-.type  mbt34_rf, @function
-.globl  mbt35
-.type  mbt35, @function
-.globl  mbt35_rf
-.type  mbt35_rf, @function
-.globl  mbt36
-.type  mbt36, @function
-.globl  mbt36_rf
-.type  mbt36_rf, @function
-.globl  mbt37
-.type  mbt37, @function
-.globl  mbt37_rf
-.type  mbt37_rf, @function
-.globl  mbt38
-.type  mbt38, @function
-.globl  mbt38_rf
-.type  mbt38_rf, @function
-.globl  mbt39
-.type  mbt39, @function
-.globl  mbt39_rf
-.type  mbt39_rf, @function
-.globl  mbt40
-.type  mbt40, @function
-.globl  mbt40_rf
-.type  mbt40_rf, @function
-.globl  mbt41
-.type  mbt41, @function
-.globl  mbt41_rf
-.type  mbt41_rf, @function
-.globl  mbt42
-.type  mbt42, @function
-.globl  mbt42_rf
-.type  mbt42_rf, @function
-.globl  mbt43
-.type  mbt43, @function
-.globl  mbt43_rf
-.type  mbt43_rf, @function
-.globl  mbt44
-.type  mbt44, @function
-.globl  mbt44_rf
-.type  mbt44_rf, @function
-.globl  mbt45
-.type  mbt45, @function
-.globl  mbt45_rf
-.type  mbt45_rf, @function
-.globl  mbt46
-.type  mbt46, @function
-.globl  mbt46_rf
-.type  mbt46_rf, @function
-.globl  mbt47
-.type  mbt47, @function
-.globl  mbt47_rf
-.type  mbt47_rf, @function
-.globl  mbt48
-.type  mbt48, @function
-.globl  mbt48_rf
-.type  mbt48_rf, @function
-.globl  mbt49
-.type  mbt49, @function
-.globl  mbt49_rf
-.type  mbt49_rf, @function
-.globl  mbt50
-.type  mbt50, @function
-.globl  mbt50_rf
-.type  mbt50_rf, @function
-.globl  mbt51
-.type  mbt51, @function
-.globl  mbt51_rf
-.type  mbt51_rf, @function
-.globl  mbt52
-.type  mbt52, @function
-.globl  mbt52_rf
-.type  mbt52_rf, @function
-.globl  mbt53
-.type  mbt53, @function
-.globl  mbt53_rf
-.type  mbt53_rf, @function
-.globl  mbt54
-.type  mbt54, @function
-.globl  mbt54_rf
-.type  mbt54_rf, @function
-.globl  mbt55
-.type  mbt55, @function
-.globl  mbt55_rf
-.type  mbt55_rf, @function
-.globl  mbt56
-.type  mbt56, @function
-.globl  mbt56_rf
-.type  mbt56_rf, @function
-.globl  mbt57
-.type  mbt57, @function
-.globl  mbt57_rf
-.type  mbt57_rf, @function
-.globl  mbt58
-.type  mbt58, @function
-.globl  mbt58_rf
-.type  mbt58_rf, @function
-.globl  mbt59
-.type  mbt59, @function
-.globl  mbt59_rf
-.type  mbt59_rf, @function
-.globl  mbt60
-.type  mbt60, @function
-.globl  mbt60_rf
-.type  mbt60_rf, @function
-.globl  mbt61
-.type  mbt61, @function
-.globl  mbt61_rf
-.type  mbt61_rf, @function
-.globl  mbt62
-.type  mbt62, @function
-.globl  mbt62_rf
-.type  mbt62_rf, @function
-.globl  mbt63
-.type  mbt63, @function
-.globl  mbt63_rf
-.type  mbt63_rf, @function
-.globl  mbt64
-.type  mbt64, @function
-.globl  mbt64_rf
-.type  mbt64_rf, @function
-.globl  mbt65
-.type  mbt65, @function
-.globl  mbt65_rf
-.type  mbt65_rf, @function
-.globl  mbt66
-.type  mbt66, @function
-.globl  mbt66_rf
-.type  mbt66_rf, @function
-.globl  mbt67
-.type  mbt67, @function
-.globl  mbt67_rf
-.type  mbt67_rf, @function
-.globl  mbt68
-.type  mbt68, @function
-.globl  mbt68_rf
-.type  mbt68_rf, @function
-.globl  mbt69
-.type  mbt69, @function
-.globl  mbt69_rf
-.type  mbt69_rf, @function
-.globl  mbt70
-.type  mbt70, @function
-.globl  mbt70_rf
-.type  mbt70_rf, @function
-.globl  mbt71
-.type  mbt71, @function
-.globl  mbt71_rf
-.type  mbt71_rf, @function
-.globl  mbt72
-.type  mbt72, @function
-.globl  mbt72_rf
-.type  mbt72_rf, @function
-.globl  mbt73
-.type  mbt73, @function
-.globl  mbt73_rf
-.type  mbt73_rf, @function
-.globl  mbt74
-.type  mbt74, @function
-.globl  mbt74_rf
-.type  mbt74_rf, @function
-.globl  mbt75
-.type  mbt75, @function
-.globl  mbt75_rf
-.type  mbt75_rf, @function
-.globl  mbt76
-.type  mbt76, @function
-.globl  mbt76_rf
-.type  mbt76_rf, @function
-.globl  mbt77
-.type  mbt77, @function
-.globl  mbt77_rf
-.type  mbt77_rf, @function
-.globl  mbt78
-.type  mbt78, @function
-.globl  mbt78_rf
-.type  mbt78_rf, @function
-.globl  mbt79
-.type  mbt79, @function
-.globl  mbt79_rf
-.type  mbt79_rf, @function
-.globl  mbt80
-.type  mbt80, @function
-.globl  mbt80_rf
-.type  mbt80_rf, @function
-.globl  mbt81
-.type  mbt81, @function
-.globl  mbt81_rf
-.type  mbt81_rf, @function
-.globl  mbt82
-.type  mbt82, @function
-.globl  mbt82_rf
-.type  mbt82_rf, @function
-.globl  mbt83
-.type  mbt83, @function
-.globl  mbt83_rf
-.type  mbt83_rf, @function
-.globl  mbt84
-.type  mbt84, @function
-.globl  mbt84_rf
-.type  mbt84_rf, @function
-.globl  mbt85
-.type  mbt85, @function
-.globl  mbt85_rf
-.type  mbt85_rf, @function
-.globl  mbt86
-.type  mbt86, @function
-.globl  mbt86_rf
-.type  mbt86_rf, @function
-.globl  mbt87
-.type  mbt87, @function
-.globl  mbt87_rf
-.type  mbt87_rf, @function
-.globl  mbt88
-.type  mbt88, @function
-.globl  mbt88_rf
-.type  mbt88_rf, @function
-.globl  mbt89
-.type  mbt89, @function
-.globl  mbt89_rf
-.type  mbt89_rf, @function
-.globl  mbt90
-.type  mbt90, @function
-.globl  mbt90_rf
-.type  mbt90_rf, @function
-.globl  mbt91
-.type  mbt91, @function
-.globl  mbt91_rf
-.type  mbt91_rf, @function
-.globl  mbt92
-.type  mbt92, @function
-.globl  mbt92_rf
-.type  mbt92_rf, @function
-.globl  mbt93
-.type  mbt93, @function
-.globl  mbt93_rf
-.type  mbt93_rf, @function
-.globl  mbt94
-.type  mbt94, @function
-.globl  mbt94_rf
-.type  mbt94_rf, @function
-.globl  mbt95
-.type  mbt95, @function
-.globl  mbt95_rf
-.type  mbt95_rf, @function
-.globl  mbt96
-.type  mbt96, @function
-.globl  mbt96_rf
-.type  mbt96_rf, @function
-.globl  mbt97
-.type  mbt97, @function
-.globl  mbt97_rf
-.type  mbt97_rf, @function
-.globl  mbt98
-.type  mbt98, @function
-.globl  mbt98_rf
-.type  mbt98_rf, @function
-.globl  mbt99
-.type  mbt99, @function
-.globl  mbt99_rf
-.type  mbt99_rf, @function
-.globl  mbt100
-.type  mbt100, @function
-.globl  mbt100_rf
-.type  mbt100_rf, @function
-.globl  mbt101
-.type  mbt101, @function
-.globl  mbt101_rf
-.type  mbt101_rf, @function
-.globl  mbt102
-.type  mbt102, @function
-.globl  mbt102_rf
-.type  mbt102_rf, @function
-.globl  mbt103
-.type  mbt103, @function
-.globl  mbt103_rf
-.type  mbt103_rf, @function
-.globl  mbt104
-.type  mbt104, @function
-.globl  mbt104_rf
-.type  mbt104_rf, @function
-.globl  mbt105
-.type  mbt105, @function
-.globl  mbt105_rf
-.type  mbt105_rf, @function
-.globl  mbt106
-.type  mbt106, @function
-.globl  mbt106_rf
-.type  mbt106_rf, @function
-.globl  mbt107
-.type  mbt107, @function
-.globl  mbt107_rf
-.type  mbt107_rf, @function
-.globl  mbt108
-.type  mbt108, @function
-.globl  mbt108_rf
-.type  mbt108_rf, @function
-.globl  mbt109
-.type  mbt109, @function
-.globl  mbt109_rf
-.type  mbt109_rf, @function
-.globl  mbt110
-.type  mbt110, @function
-.globl  mbt110_rf
-.type  mbt110_rf, @function
-.globl  mbt111
-.type  mbt111, @function
-.globl  mbt111_rf
-.type  mbt111_rf, @function
-.globl  mbt112
-.type  mbt112, @function
-.globl  mbt112_rf
-.type  mbt112_rf, @function
-.globl  mbt113
-.type  mbt113, @function
-.globl  mbt113_rf
-.type  mbt113_rf, @function
-.globl  mbt114
-.type  mbt114, @function
-.globl  mbt114_rf
-.type  mbt114_rf, @function
-.globl  mbt115
-.type  mbt115, @function
-.globl  mbt115_rf
-.type  mbt115_rf, @function
-.globl  mbt116
-.type  mbt116, @function
-.globl  mbt116_rf
-.type  mbt116_rf, @function
-.globl  mbt117
-.type  mbt117, @function
-.globl  mbt117_rf
-.type  mbt117_rf, @function
-.globl  mbt118
-.type  mbt118, @function
-.globl  mbt118_rf
-.type  mbt118_rf, @function
-.globl  mbt119
-.type  mbt119, @function
-.globl  mbt119_rf
-.type  mbt119_rf, @function
-.globl  mbt120
-.type  mbt120, @function
-.globl  mbt120_rf
-.type  mbt120_rf, @function
-.globl  mbt121
-.type  mbt121, @function
-.globl  mbt121_rf
-.type  mbt121_rf, @function
-.globl  mbt122
-.type  mbt122, @function
-.globl  mbt122_rf
-.type  mbt122_rf, @function
-.globl  mbt123
-.type  mbt123, @function
-.globl  mbt123_rf
-.type  mbt123_rf, @function
-.globl  mbt124
-.type  mbt124, @function
-.globl  mbt124_rf
-.type  mbt124_rf, @function
-.globl  mbt125
-.type  mbt125, @function
-.globl  mbt125_rf
-.type  mbt125_rf, @function
-.globl  mbt126
-.type  mbt126, @function
-.globl  mbt126_rf
-.type  mbt126_rf, @function
-.globl  mbt127
-.type  mbt127, @function
-.globl  mbt127_rf
-.type  mbt127_rf, @function
-.globl  mbt128
-.type  mbt128, @function
-.globl  mbt128_rf
-.type  mbt128_rf, @function
-.globl  mbt129
-.type  mbt129, @function
-.globl  mbt129_rf
-.type  mbt129_rf, @function
-.globl  mbt130
-.type  mbt130, @function
-.globl  mbt130_rf
-.type  mbt130_rf, @function
-.globl  mbt131
-.type  mbt131, @function
-.globl  mbt131_rf
-.type  mbt131_rf, @function
-.globl  mbt132
-.type  mbt132, @function
-.globl  mbt132_rf
-.type  mbt132_rf, @function
-.globl  mbt133
-.type  mbt133, @function
-.globl  mbt133_rf
-.type  mbt133_rf, @function
-.globl  mbt134
-.type  mbt134, @function
-.globl  mbt134_rf
-.type  mbt134_rf, @function
-.globl  mbt135
-.type  mbt135, @function
-.globl  mbt135_rf
-.type  mbt135_rf, @function
-.globl  mbt136
-.type  mbt136, @function
-.globl  mbt136_rf
-.type  mbt136_rf, @function
-.globl  mbt137
-.type  mbt137, @function
-.globl  mbt137_rf
-.type  mbt137_rf, @function
-.globl  mbt138
-.type  mbt138, @function
-.globl  mbt138_rf
-.type  mbt138_rf, @function
-.globl  mbt139
-.type  mbt139, @function
-.globl  mbt139_rf
-.type  mbt139_rf, @function
-.globl  mbt140
-.type  mbt140, @function
-.globl  mbt140_rf
-.type  mbt140_rf, @function
-.globl  mbt141
-.type  mbt141, @function
-.globl  mbt141_rf
-.type  mbt141_rf, @function
-.globl  mbt142
-.type  mbt142, @function
-.globl  mbt142_rf
-.type  mbt142_rf, @function
-.globl  mbt143
-.type  mbt143, @function
-.globl  mbt143_rf
-.type  mbt143_rf, @function
-.globl  mbt144
-.type  mbt144, @function
-.globl  mbt144_rf
-.type  mbt144_rf, @function
-.globl  mbt145
-.type  mbt145, @function
-.globl  mbt145_rf
-.type  mbt145_rf, @function
-.globl  mbt146
-.type  mbt146, @function
-.globl  mbt146_rf
-.type  mbt146_rf, @function
-.globl  mbt147
-.type  mbt147, @function
-.globl  mbt147_rf
-.type  mbt147_rf, @function
-.globl  mbt148
-.type  mbt148, @function
-.globl  mbt148_rf
-.type  mbt148_rf, @function
-.globl  mbt149
-.type  mbt149, @function
-.globl  mbt149_rf
-.type  mbt149_rf, @function
-.globl  mbt150
-.type  mbt150, @function
-.globl  mbt150_rf
-.type  mbt150_rf, @function
-.globl  mbt151
-.type  mbt151, @function
-.globl  mbt151_rf
-.type  mbt151_rf, @function
-.globl  mbt152
-.type  mbt152, @function
-.globl  mbt152_rf
-.type  mbt152_rf, @function
-.globl  mbt153
-.type  mbt153, @function
-.globl  mbt153_rf
-.type  mbt153_rf, @function
-.globl  mbt154
-.type  mbt154, @function
-.globl  mbt154_rf
-.type  mbt154_rf, @function
-.globl  mbt155
-.type  mbt155, @function
-.globl  mbt155_rf
-.type  mbt155_rf, @function
-.globl  mbt156
-.type  mbt156, @function
-.globl  mbt156_rf
-.type  mbt156_rf, @function
-.globl  mbt157
-.type  mbt157, @function
-.globl  mbt157_rf
-.type  mbt157_rf, @function
-.globl  mbt158
-.type  mbt158, @function
-.globl  mbt158_rf
-.type  mbt158_rf, @function
-.globl  mbt159
-.type  mbt159, @function
-.globl  mbt159_rf
-.type  mbt159_rf, @function
-.globl  mbt160
-.type  mbt160, @function
-.globl  mbt160_rf
-.type  mbt160_rf, @function
-.globl  mbt161
-.type  mbt161, @function
-.globl  mbt161_rf
-.type  mbt161_rf, @function
-.globl  mbt162
-.type  mbt162, @function
-.globl  mbt162_rf
-.type  mbt162_rf, @function
-.globl  mbt163
-.type  mbt163, @function
-.globl  mbt163_rf
-.type  mbt163_rf, @function
-.globl  mbt164
-.type  mbt164, @function
-.globl  mbt164_rf
-.type  mbt164_rf, @function
-.globl  mbt165
-.type  mbt165, @function
-.globl  mbt165_rf
-.type  mbt165_rf, @function
-.globl  mbt166
-.type  mbt166, @function
-.globl  mbt166_rf
-.type  mbt166_rf, @function
-.globl  mbt167
-.type  mbt167, @function
-.globl  mbt167_rf
-.type  mbt167_rf, @function
-.globl  mbt168
-.type  mbt168, @function
-.globl  mbt168_rf
-.type  mbt168_rf, @function
-.globl  mbt169
-.type  mbt169, @function
-.globl  mbt169_rf
-.type  mbt169_rf, @function
-.globl  mbt170
-.type  mbt170, @function
-.globl  mbt170_rf
-.type  mbt170_rf, @function
-.globl  mbt171
-.type  mbt171, @function
-.globl  mbt171_rf
-.type  mbt171_rf, @function
-.globl  mbt172
-.type  mbt172, @function
-.globl  mbt172_rf
-.type  mbt172_rf, @function
-.globl  mbt173
-.type  mbt173, @function
-.globl  mbt173_rf
-.type  mbt173_rf, @function
-.globl  mbt174
-.type  mbt174, @function
-.globl  mbt174_rf
-.type  mbt174_rf, @function
-.globl  mbt175
-.type  mbt175, @function
-.globl  mbt175_rf
-.type  mbt175_rf, @function
-.globl  mbt176
-.type  mbt176, @function
-.globl  mbt176_rf
-.type  mbt176_rf, @function
-.globl  mbt177
-.type  mbt177, @function
-.globl  mbt177_rf
-.type  mbt177_rf, @function
-.globl  mbt178
-.type  mbt178, @function
-.globl  mbt178_rf
-.type  mbt178_rf, @function
-.globl  mbt179
-.type  mbt179, @function
-.globl  mbt179_rf
-.type  mbt179_rf, @function
-.globl  mbt180
-.type  mbt180, @function
-.globl  mbt180_rf
-.type  mbt180_rf, @function
-.globl  mbt181
-.type  mbt181, @function
-.globl  mbt181_rf
-.type  mbt181_rf, @function
-.globl  mbt182
-.type  mbt182, @function
-.globl  mbt182_rf
-.type  mbt182_rf, @function
-.globl  mbt183
-.type  mbt183, @function
-.globl  mbt183_rf
-.type  mbt183_rf, @function
-.globl  mbt184
-.type  mbt184, @function
-.globl  mbt184_rf
-.type  mbt184_rf, @function
-.globl  mbt185
-.type  mbt185, @function
-.globl  mbt185_rf
-.type  mbt185_rf, @function
-.globl  mbt186
-.type  mbt186, @function
-.globl  mbt186_rf
-.type  mbt186_rf, @function
-.globl  mbt187
-.type  mbt187, @function
-.globl  mbt187_rf
-.type  mbt187_rf, @function
-.globl  mbt188
-.type  mbt188, @function
-.globl  mbt188_rf
-.type  mbt188_rf, @function
-.globl  mbt189
-.type  mbt189, @function
-.globl  mbt189_rf
-.type  mbt189_rf, @function
-.globl  mbt190
-.type  mbt190, @function
-.globl  mbt190_rf
-.type  mbt190_rf, @function
-.globl  mbt191
-.type  mbt191, @function
-.globl  mbt191_rf
-.type  mbt191_rf, @function
-.globl  mbt192
-.type  mbt192, @function
-.globl  mbt192_rf
-.type  mbt192_rf, @function
-.globl  mbt193
-.type  mbt193, @function
-.globl  mbt193_rf
-.type  mbt193_rf, @function
-.globl  mbt194
-.type  mbt194, @function
-.globl  mbt194_rf
-.type  mbt194_rf, @function
-.globl  mbt195
-.type  mbt195, @function
-.globl  mbt195_rf
-.type  mbt195_rf, @function
-.globl  mbt196
-.type  mbt196, @function
-.globl  mbt196_rf
-.type  mbt196_rf, @function
-.globl  mbt197
-.type  mbt197, @function
-.globl  mbt197_rf
-.type  mbt197_rf, @function
-.globl  mbt198
-.type  mbt198, @function
-.globl  mbt198_rf
-.type  mbt198_rf, @function
-.globl  mbt199
-.type  mbt199, @function
-.globl  mbt199_rf
-.type  mbt199_rf, @function
-.globl  mbt200
-.type  mbt200, @function
-.globl  mbt200_rf
-.type  mbt200_rf, @function
-.globl  mbt201
-.type  mbt201, @function
-.globl  mbt201_rf
-.type  mbt201_rf, @function
-.globl  mbt202
-.type  mbt202, @function
-.globl  mbt202_rf
-.type  mbt202_rf, @function
-.globl  mbt203
-.type  mbt203, @function
-.globl  mbt203_rf
-.type  mbt203_rf, @function
-.globl  mbt204
-.type  mbt204, @function
-.globl  mbt204_rf
-.type  mbt204_rf, @function
-.globl  mbt205
-.type  mbt205, @function
-.globl  mbt205_rf
-.type  mbt205_rf, @function
-.globl  mbt206
-.type  mbt206, @function
-.globl  mbt206_rf
-.type  mbt206_rf, @function
-.globl  mbt207
-.type  mbt207, @function
-.globl  mbt207_rf
-.type  mbt207_rf, @function
-.globl  mbt208
-.type  mbt208, @function
-.globl  mbt208_rf
-.type  mbt208_rf, @function
-.globl  mbt209
-.type  mbt209, @function
-.globl  mbt209_rf
-.type  mbt209_rf, @function
-.globl  mbt210
-.type  mbt210, @function
-.globl  mbt210_rf
-.type  mbt210_rf, @function
-.globl  mbt211
-.type  mbt211, @function
-.globl  mbt211_rf
-.type  mbt211_rf, @function
-.globl  mbt212
-.type  mbt212, @function
-.globl  mbt212_rf
-.type  mbt212_rf, @function
-.globl  mbt213
-.type  mbt213, @function
-.globl  mbt213_rf
-.type  mbt213_rf, @function
-.globl  mbt214
-.type  mbt214, @function
-.globl  mbt214_rf
-.type  mbt214_rf, @function
-.globl  mbt215
-.type  mbt215, @function
-.globl  mbt215_rf
-.type  mbt215_rf, @function
-.globl  mbt216
-.type  mbt216, @function
-.globl  mbt216_rf
-.type  mbt216_rf, @function
-.globl  mbt217
-.type  mbt217, @function
-.globl  mbt217_rf
-.type  mbt217_rf, @function
-.globl  mbt218
-.type  mbt218, @function
-.globl  mbt218_rf
-.type  mbt218_rf, @function
-.globl  mbt219
-.type  mbt219, @function
-.globl  mbt219_rf
-.type  mbt219_rf, @function
-.globl  mbt220
-.type  mbt220, @function
-.globl  mbt220_rf
-.type  mbt220_rf, @function
-.globl  mbt221
-.type  mbt221, @function
-.globl  mbt221_rf
-.type  mbt221_rf, @function
-.globl  mbt222
-.type  mbt222, @function
-.globl  mbt222_rf
-.type  mbt222_rf, @function
-.globl  mbt223
-.type  mbt223, @function
-.globl  mbt223_rf
-.type  mbt223_rf, @function
-.globl  mbt224
-.type  mbt224, @function
-.globl  mbt224_rf
-.type  mbt224_rf, @function
-.globl  mbt225
-.type  mbt225, @function
-.globl  mbt225_rf
-.type  mbt225_rf, @function
-.globl  mbt226
-.type  mbt226, @function
-.globl  mbt226_rf
-.type  mbt226_rf, @function
-.globl  mbt227
-.type  mbt227, @function
-.globl  mbt227_rf
-.type  mbt227_rf, @function
-.globl  mbt228
-.type  mbt228, @function
-.globl  mbt228_rf
-.type  mbt228_rf, @function
-.globl  mbt229
-.type  mbt229, @function
-.globl  mbt229_rf
-.type  mbt229_rf, @function
-.globl  mbt230
-.type  mbt230, @function
-.globl  mbt230_rf
-.type  mbt230_rf, @function
-.globl  mbt231
-.type  mbt231, @function
-.globl  mbt231_rf
-.type  mbt231_rf, @function
-.globl  mbt232
-.type  mbt232, @function
-.globl  mbt232_rf
-.type  mbt232_rf, @function
-.globl  mbt233
-.type  mbt233, @function
-.globl  mbt233_rf
-.type  mbt233_rf, @function
-.globl  mbt234
-.type  mbt234, @function
-.globl  mbt234_rf
-.type  mbt234_rf, @function
-.globl  mbt235
-.type  mbt235, @function
-.globl  mbt235_rf
-.type  mbt235_rf, @function
-.globl  mbt236
-.type  mbt236, @function
-.globl  mbt236_rf
-.type  mbt236_rf, @function
-.globl  mbt237
-.type  mbt237, @function
-.globl  mbt237_rf
-.type  mbt237_rf, @function
-.globl  mbt238
-.type  mbt238, @function
-.globl  mbt238_rf
-.type  mbt238_rf, @function
-.globl  mbt239
-.type  mbt239, @function
-.globl  mbt239_rf
-.type  mbt239_rf, @function
-.globl  mbt240
-.type  mbt240, @function
-.globl  mbt240_rf
-.type  mbt240_rf, @function
-.globl  mbt241
-.type  mbt241, @function
-.globl  mbt241_rf
-.type  mbt241_rf, @function
-.globl  mbt242
-.type  mbt242, @function
-.globl  mbt242_rf
-.type  mbt242_rf, @function
-.globl  mbt243
-.type  mbt243, @function
-.globl  mbt243_rf
-.type  mbt243_rf, @function
-.globl  mbt244
-.type  mbt244, @function
-.globl  mbt244_rf
-.type  mbt244_rf, @function
-.globl  mbt245
-.type  mbt245, @function
-.globl  mbt245_rf
-.type  mbt245_rf, @function
-.globl  mbt246
-.type  mbt246, @function
-.globl  mbt246_rf
-.type  mbt246_rf, @function
-.globl  mbt247
-.type  mbt247, @function
-.globl  mbt247_rf
-.type  mbt247_rf, @function
-.globl  mbt248
-.type  mbt248, @function
-.globl  mbt248_rf
-.type  mbt248_rf, @function
-.globl  mbt249
-.type  mbt249, @function
-.globl  mbt249_rf
-.type  mbt249_rf, @function
-.globl  mbt250
-.type  mbt250, @function
-.globl  mbt250_rf
-.type  mbt250_rf, @function
-.globl  mbt251
-.type  mbt251, @function
-.globl  mbt251_rf
-.type  mbt251_rf, @function
-.globl  mbt252
-.type  mbt252, @function
-.globl  mbt252_rf
-.type  mbt252_rf, @function
-.globl  mbt253
-.type  mbt253, @function
-.globl  mbt253_rf
-.type  mbt253_rf, @function
-.globl  mbt254
-.type  mbt254, @function
-.globl  mbt254_rf
-.type  mbt254_rf, @function
-.globl  mbt255
-.type  mbt255, @function
-.globl  mbt255_rf
-.type  mbt255_rf, @function
-.globl  mbt256
-.type  mbt256, @function
-.globl  mbt256_rf
-.type  mbt256_rf, @function
-.globl  mbt257
-.type  mbt257, @function
-.globl  mbt257_rf
-.type  mbt257_rf, @function
-.globl  mbt258
-.type  mbt258, @function
-.globl  mbt258_rf
-.type  mbt258_rf, @function
-.globl  mbt259
-.type  mbt259, @function
-.globl  mbt259_rf
-.type  mbt259_rf, @function
-.globl  mbt260
-.type  mbt260, @function
-.globl  mbt260_rf
-.type  mbt260_rf, @function
-.globl  mbt261
-.type  mbt261, @function
-.globl  mbt261_rf
-.type  mbt261_rf, @function
-.globl  mbt262
-.type  mbt262, @function
-.globl  mbt262_rf
-.type  mbt262_rf, @function
-.globl  mbt263
-.type  mbt263, @function
-.globl  mbt263_rf
-.type  mbt263_rf, @function
-.globl  mbt264
-.type  mbt264, @function
-.globl  mbt264_rf
-.type  mbt264_rf, @function
-.globl  mbt265
-.type  mbt265, @function
-.globl  mbt265_rf
-.type  mbt265_rf, @function
-.globl  mbt266
-.type  mbt266, @function
-.globl  mbt266_rf
-.type  mbt266_rf, @function
-.globl  mbt267
-.type  mbt267, @function
-.globl  mbt267_rf
-.type  mbt267_rf, @function
-.globl  mbt268
-.type  mbt268, @function
-.globl  mbt268_rf
-.type  mbt268_rf, @function
-.globl  mbt269
-.type  mbt269, @function
-.globl  mbt269_rf
-.type  mbt269_rf, @function
-.globl  mbt270
-.type  mbt270, @function
-.globl  mbt270_rf
-.type  mbt270_rf, @function
-.globl  mbt271
-.type  mbt271, @function
-.globl  mbt271_rf
-.type  mbt271_rf, @function
-.globl  mbt272
-.type  mbt272, @function
-.globl  mbt272_rf
-.type  mbt272_rf, @function
-.globl  mbt273
-.type  mbt273, @function
-.globl  mbt273_rf
-.type  mbt273_rf, @function
-.globl  mbt274
-.type  mbt274, @function
-.globl  mbt274_rf
-.type  mbt274_rf, @function
-.globl  mbt275
-.type  mbt275, @function
-.globl  mbt275_rf
-.type  mbt275_rf, @function
-.globl  mbt276
-.type  mbt276, @function
-.globl  mbt276_rf
-.type  mbt276_rf, @function
-.globl  mbt277
-.type  mbt277, @function
-.globl  mbt277_rf
-.type  mbt277_rf, @function
-.globl  mbt278
-.type  mbt278, @function
-.globl  mbt278_rf
-.type  mbt278_rf, @function
-.globl  mbt279
-.type  mbt279, @function
-.globl  mbt279_rf
-.type  mbt279_rf, @function
-.globl  mbt280
-.type  mbt280, @function
-.globl  mbt280_rf
-.type  mbt280_rf, @function
-.globl  mbt281
-.type  mbt281, @function
-.globl  mbt281_rf
-.type  mbt281_rf, @function
-.globl  mbt282
-.type  mbt282, @function
-.globl  mbt282_rf
-.type  mbt282_rf, @function
-.globl  mbt283
-.type  mbt283, @function
-.globl  mbt283_rf
-.type  mbt283_rf, @function
-.globl  mbt284
-.type  mbt284, @function
-.globl  mbt284_rf
-.type  mbt284_rf, @function
-.globl  mbt285
-.type  mbt285, @function
-.globl  mbt285_rf
-.type  mbt285_rf, @function
-.globl  mbt286
-.type  mbt286, @function
-.globl  mbt286_rf
-.type  mbt286_rf, @function
-.globl  mbt287
-.type  mbt287, @function
-.globl  mbt287_rf
-.type  mbt287_rf, @function
-.globl  mbt288
-.type  mbt288, @function
-.globl  mbt288_rf
-.type  mbt288_rf, @function
-.globl  mbt289
-.type  mbt289, @function
-.globl  mbt289_rf
-.type  mbt289_rf, @function
-.globl  mbt290
-.type  mbt290, @function
-.globl  mbt290_rf
-.type  mbt290_rf, @function
-.globl  mbt291
-.type  mbt291, @function
-.globl  mbt291_rf
-.type  mbt291_rf, @function
-.globl  mbt292
-.type  mbt292, @function
-.globl  mbt292_rf
-.type  mbt292_rf, @function
-.globl  mbt293
-.type  mbt293, @function
-.globl  mbt293_rf
-.type  mbt293_rf, @function
-.globl  mbt294
-.type  mbt294, @function
-.globl  mbt294_rf
-.type  mbt294_rf, @function
-.globl  mbt295
-.type  mbt295, @function
-.globl  mbt295_rf
-.type  mbt295_rf, @function
-.globl  mbt296
-.type  mbt296, @function
-.globl  mbt296_rf
-.type  mbt296_rf, @function
-.globl  mbt297
-.type  mbt297, @function
-.globl  mbt297_rf
-.type  mbt297_rf, @function
-.globl  mbt298
-.type  mbt298, @function
-.globl  mbt298_rf
-.type  mbt298_rf, @function
-.globl  mbt299
-.type  mbt299, @function
-.globl  mbt299_rf
-.type  mbt299_rf, @function
-.globl  mbt300
-.type  mbt300, @function
-.globl  mbt300_rf
-.type  mbt300_rf, @function
-.globl  mbt301
-.type  mbt301, @function
-.globl  mbt301_rf
-.type  mbt301_rf, @function
-.globl  mbt302
-.type  mbt302, @function
-.globl  mbt302_rf
-.type  mbt302_rf, @function
-.globl  mbt303
-.type  mbt303, @function
-.globl  mbt303_rf
-.type  mbt303_rf, @function
-.globl  mbt304
-.type  mbt304, @function
-.globl  mbt304_rf
-.type  mbt304_rf, @function
-.globl  mbt305
-.type  mbt305, @function
-.globl  mbt305_rf
-.type  mbt305_rf, @function
-.globl  mbt306
-.type  mbt306, @function
-.globl  mbt306_rf
-.type  mbt306_rf, @function
-.globl  mbt307
-.type  mbt307, @function
-.globl  mbt307_rf
-.type  mbt307_rf, @function
-.globl  mbt308
-.type  mbt308, @function
-.globl  mbt308_rf
-.type  mbt308_rf, @function
-.globl  mbt309
-.type  mbt309, @function
-.globl  mbt309_rf
-.type  mbt309_rf, @function
-.globl  mbt310
-.type  mbt310, @function
-.globl  mbt310_rf
-.type  mbt310_rf, @function
-.globl  mbt311
-.type  mbt311, @function
-.globl  mbt311_rf
-.type  mbt311_rf, @function
-.globl  mbt312
-.type  mbt312, @function
-.globl  mbt312_rf
-.type  mbt312_rf, @function
-.globl  mbt313
-.type  mbt313, @function
-.globl  mbt313_rf
-.type  mbt313_rf, @function
-.globl  mbt314
-.type  mbt314, @function
-.globl  mbt314_rf
-.type  mbt314_rf, @function
-.globl  mbt315
-.type  mbt315, @function
-.globl  mbt315_rf
-.type  mbt315_rf, @function
-.globl  mbt316
-.type  mbt316, @function
-.globl  mbt316_rf
-.type  mbt316_rf, @function
-.globl  mbt317
-.type  mbt317, @function
-.globl  mbt317_rf
-.type  mbt317_rf, @function
-.globl  mbt318
-.type  mbt318, @function
-.globl  mbt318_rf
-.type  mbt318_rf, @function
-.globl  mbt319
-.type  mbt319, @function
-.globl  mbt319_rf
-.type  mbt319_rf, @function
-.globl  mbt320
-.type  mbt320, @function
-.globl  mbt320_rf
-.type  mbt320_rf, @function
-.globl  mbt321
-.type  mbt321, @function
-.globl  mbt321_rf
-.type  mbt321_rf, @function
-.globl  mbt322
-.type  mbt322, @function
-.globl  mbt322_rf
-.type  mbt322_rf, @function
-.globl  mbt323
-.type  mbt323, @function
-.globl  mbt323_rf
-.type  mbt323_rf, @function
-.globl  mbt324
-.type  mbt324, @function
-.globl  mbt324_rf
-.type  mbt324_rf, @function
-.globl  mbt325
-.type  mbt325, @function
-.globl  mbt325_rf
-.type  mbt325_rf, @function
-.globl  mbt326
-.type  mbt326, @function
-.globl  mbt326_rf
-.type  mbt326_rf, @function
-.globl  mbt327
-.type  mbt327, @function
-.globl  mbt327_rf
-.type  mbt327_rf, @function
-.globl  mbt328
-.type  mbt328, @function
-.globl  mbt328_rf
-.type  mbt328_rf, @function
-.globl  mbt329
-.type  mbt329, @function
-.globl  mbt329_rf
-.type  mbt329_rf, @function
-.globl  mbt330
-.type  mbt330, @function
-.globl  mbt330_rf
-.type  mbt330_rf, @function
-.globl  mbt331
-.type  mbt331, @function
-.globl  mbt331_rf
-.type  mbt331_rf, @function
-.globl  mbt332
-.type  mbt332, @function
-.globl  mbt332_rf
-.type  mbt332_rf, @function
-.globl  mbt333
-.type  mbt333, @function
-.globl  mbt333_rf
-.type  mbt333_rf, @function
-.globl  mbt334
-.type  mbt334, @function
-.globl  mbt334_rf
-.type  mbt334_rf, @function
-.globl  mbt335
-.type  mbt335, @function
-.globl  mbt335_rf
-.type  mbt335_rf, @function
-.globl  mbt336
-.type  mbt336, @function
-.globl  mbt336_rf
-.type  mbt336_rf, @function
-.globl  mbt337
-.type  mbt337, @function
-.globl  mbt337_rf
-.type  mbt337_rf, @function
-.globl  mbt338
-.type  mbt338, @function
-.globl  mbt338_rf
-.type  mbt338_rf, @function
-.globl  mbt339
-.type  mbt339, @function
-.globl  mbt339_rf
-.type  mbt339_rf, @function
-.globl  mbt340
-.type  mbt340, @function
-.globl  mbt340_rf
-.type  mbt340_rf, @function
-.globl  mbt341
-.type  mbt341, @function
-.globl  mbt341_rf
-.type  mbt341_rf, @function
-.globl  mbt342
-.type  mbt342, @function
-.globl  mbt342_rf
-.type  mbt342_rf, @function
-.globl  mbt343
-.type  mbt343, @function
-.globl  mbt343_rf
-.type  mbt343_rf, @function
-.globl  mbt344
-.type  mbt344, @function
-.globl  mbt344_rf
-.type  mbt344_rf, @function
-.globl  mbt345
-.type  mbt345, @function
-.globl  mbt345_rf
-.type  mbt345_rf, @function
-.globl  mbt346
-.type  mbt346, @function
-.globl  mbt346_rf
-.type  mbt346_rf, @function
-.globl  mbt347
-.type  mbt347, @function
-.globl  mbt347_rf
-.type  mbt347_rf, @function
-.globl  mbt348
-.type  mbt348, @function
-.globl  mbt348_rf
-.type  mbt348_rf, @function
-.globl  mbt349
-.type  mbt349, @function
-.globl  mbt349_rf
-.type  mbt349_rf, @function
-.globl  mbt350
-.type  mbt350, @function
-.globl  mbt350_rf
-.type  mbt350_rf, @function
-.globl  mbt351
-.type  mbt351, @function
-.globl  mbt351_rf
-.type  mbt351_rf, @function
-.globl  mbt352
-.type  mbt352, @function
-.globl  mbt352_rf
-.type  mbt352_rf, @function
-.globl  mbt353
-.type  mbt353, @function
-.globl  mbt353_rf
-.type  mbt353_rf, @function
-.globl  mbt354
-.type  mbt354, @function
-.globl  mbt354_rf
-.type  mbt354_rf, @function
-.globl  mbt355
-.type  mbt355, @function
-.globl  mbt355_rf
-.type  mbt355_rf, @function
-.globl  mbt356
-.type  mbt356, @function
-.globl  mbt356_rf
-.type  mbt356_rf, @function
-.globl  mbt357
-.type  mbt357, @function
-.globl  mbt357_rf
-.type  mbt357_rf, @function
-.globl  mbt358
-.type  mbt358, @function
-.globl  mbt358_rf
-.type  mbt358_rf, @function
-.globl  mbt359
-.type  mbt359, @function
-.globl  mbt359_rf
-.type  mbt359_rf, @function
-.globl  mbt360
-.type  mbt360, @function
-.globl  mbt360_rf
-.type  mbt360_rf, @function
-.globl  mbt361
-.type  mbt361, @function
-.globl  mbt361_rf
-.type  mbt361_rf, @function
-.globl  mbt362
-.type  mbt362, @function
-.globl  mbt362_rf
-.type  mbt362_rf, @function
-.globl  mbt363
-.type  mbt363, @function
-.globl  mbt363_rf
-.type  mbt363_rf, @function
-.globl  mbt364
-.type  mbt364, @function
-.globl  mbt364_rf
-.type  mbt364_rf, @function
-.globl  mbt365
-.type  mbt365, @function
-.globl  mbt365_rf
-.type  mbt365_rf, @function
-.globl  mbt366
-.type  mbt366, @function
-.globl  mbt366_rf
-.type  mbt366_rf, @function
-.globl  mbt367
-.type  mbt367, @function
-.globl  mbt367_rf
-.type  mbt367_rf, @function
-.globl  mbt368
-.type  mbt368, @function
-.globl  mbt368_rf
-.type  mbt368_rf, @function
-.globl  mbt369
-.type  mbt369, @function
-.globl  mbt369_rf
-.type  mbt369_rf, @function
-.globl  mbt370
-.type  mbt370, @function
-.globl  mbt370_rf
-.type  mbt370_rf, @function
-.globl  mbt371
-.type  mbt371, @function
-.globl  mbt371_rf
-.type  mbt371_rf, @function
-.globl  mbt372
-.type  mbt372, @function
-.globl  mbt372_rf
-.type  mbt372_rf, @function
-.globl  mbt373
-.type  mbt373, @function
-.globl  mbt373_rf
-.type  mbt373_rf, @function
-.globl  mbt374
-.type  mbt374, @function
-.globl  mbt374_rf
-.type  mbt374_rf, @function
-.globl  mbt375
-.type  mbt375, @function
-.globl  mbt375_rf
-.type  mbt375_rf, @function
-.globl  mbt376
-.type  mbt376, @function
-.globl  mbt376_rf
-.type  mbt376_rf, @function
-.globl  mbt377
-.type  mbt377, @function
-.globl  mbt377_rf
-.type  mbt377_rf, @function
-.globl  mbt378
-.type  mbt378, @function
-.globl  mbt378_rf
-.type  mbt378_rf, @function
-.globl  mbt379
-.type  mbt379, @function
-.globl  mbt379_rf
-.type  mbt379_rf, @function
-.globl  mbt380
-.type  mbt380, @function
-.globl  mbt380_rf
-.type  mbt380_rf, @function
-.globl  mbt381
-.type  mbt381, @function
-.globl  mbt381_rf
-.type  mbt381_rf, @function
-.globl  mbt382
-.type  mbt382, @function
-.globl  mbt382_rf
-.type  mbt382_rf, @function
-.globl  mbt383
-.type  mbt383, @function
-.globl  mbt383_rf
-.type  mbt383_rf, @function
-.globl  mbt384
-.type  mbt384, @function
-.globl  mbt384_rf
-.type  mbt384_rf, @function
-.globl  mbt385
-.type  mbt385, @function
-.globl  mbt385_rf
-.type  mbt385_rf, @function
-.globl  mbt386
-.type  mbt386, @function
-.globl  mbt386_rf
-.type  mbt386_rf, @function
-.globl  mbt387
-.type  mbt387, @function
-.globl  mbt387_rf
-.type  mbt387_rf, @function
-.globl  mbt388
-.type  mbt388, @function
-.globl  mbt388_rf
-.type  mbt388_rf, @function
-.globl  mbt389
-.type  mbt389, @function
-.globl  mbt389_rf
-.type  mbt389_rf, @function
-.globl  mbt390
-.type  mbt390, @function
-.globl  mbt390_rf
-.type  mbt390_rf, @function
-.globl  mbt391
-.type  mbt391, @function
-.globl  mbt391_rf
-.type  mbt391_rf, @function
-.globl  mbt392
-.type  mbt392, @function
-.globl  mbt392_rf
-.type  mbt392_rf, @function
-.globl  mbt393
-.type  mbt393, @function
-.globl  mbt393_rf
-.type  mbt393_rf, @function
-.globl  mbt394
-.type  mbt394, @function
-.globl  mbt394_rf
-.type  mbt394_rf, @function
-.globl  mbt395
-.type  mbt395, @function
-.globl  mbt395_rf
-.type  mbt395_rf, @function
-.globl  mbt396
-.type  mbt396, @function
-.globl  mbt396_rf
-.type  mbt396_rf, @function
-.globl  mbt397
-.type  mbt397, @function
-.globl  mbt397_rf
-.type  mbt397_rf, @function
-.globl  mbt398
-.type  mbt398, @function
-.globl  mbt398_rf
-.type  mbt398_rf, @function
-.globl  mbt399
-.type  mbt399, @function
-.globl  mbt399_rf
-.type  mbt399_rf, @function
-.globl  mbt400
-.type  mbt400, @function
-.globl  mbt400_rf
-.type  mbt400_rf, @function
-.globl  mbt401
-.type  mbt401, @function
-.globl  mbt401_rf
-.type  mbt401_rf, @function
-.globl  mbt402
-.type  mbt402, @function
-.globl  mbt402_rf
-.type  mbt402_rf, @function
-.globl  mbt403
-.type  mbt403, @function
-.globl  mbt403_rf
-.type  mbt403_rf, @function
-.globl  mbt404
-.type  mbt404, @function
-.globl  mbt404_rf
-.type  mbt404_rf, @function
-.globl  mbt405
-.type  mbt405, @function
-.globl  mbt405_rf
-.type  mbt405_rf, @function
-.globl  mbt406
-.type  mbt406, @function
-.globl  mbt406_rf
-.type  mbt406_rf, @function
-.globl  mbt407
-.type  mbt407, @function
-.globl  mbt407_rf
-.type  mbt407_rf, @function
-.globl  mbt408
-.type  mbt408, @function
-.globl  mbt408_rf
-.type  mbt408_rf, @function
-.globl  mbt409
-.type  mbt409, @function
-.globl  mbt409_rf
-.type  mbt409_rf, @function
-.globl  mbt410
-.type  mbt410, @function
-.globl  mbt410_rf
-.type  mbt410_rf, @function
-.globl  mbt411
-.type  mbt411, @function
-.globl  mbt411_rf
-.type  mbt411_rf, @function
-.globl  mbt412
-.type  mbt412, @function
-.globl  mbt412_rf
-.type  mbt412_rf, @function
-.globl  mbt413
-.type  mbt413, @function
-.globl  mbt413_rf
-.type  mbt413_rf, @function
-.globl  mbt414
-.type  mbt414, @function
-.globl  mbt414_rf
-.type  mbt414_rf, @function
-.globl  mbt415
-.type  mbt415, @function
-.globl  mbt415_rf
-.type  mbt415_rf, @function
-.globl  mbt416
-.type  mbt416, @function
-.globl  mbt416_rf
-.type  mbt416_rf, @function
-.globl  mbt417
-.type  mbt417, @function
-.globl  mbt417_rf
-.type  mbt417_rf, @function
-.globl  mbt418
-.type  mbt418, @function
-.globl  mbt418_rf
-.type  mbt418_rf, @function
-.globl  mbt419
-.type  mbt419, @function
-.globl  mbt419_rf
-.type  mbt419_rf, @function
-.globl  mbt420
-.type  mbt420, @function
-.globl  mbt420_rf
-.type  mbt420_rf, @function
-.globl  mbt421
-.type  mbt421, @function
-.globl  mbt421_rf
-.type  mbt421_rf, @function
-.globl  mbt422
-.type  mbt422, @function
-.globl  mbt422_rf
-.type  mbt422_rf, @function
-_Z17mandelbrot_serialddddiii:
-mbt0:        pushq   %r12
-mbt1:        subsd   %xmm0, %xmm2
-mbt2:        movl    %esi, %r12d
-mbt3:        subsd   %xmm1, %xmm3
-mbt4:        pushq   %rbp
-mbt5:        movl    %edi, %ebp
-mbt6:        pushq   %rbx
-mbt7:        movl    %edx, %ebx
-mbt8:        subq    $32, %rsp
-mbt9:        movsd   %xmm0, 24(%rsp)
-mbt10:        cvtsi2sdl       %edi, %xmm0
-mbt11:        imull   %esi, %edi
-mbt12:        movsd   %xmm1, 8(%rsp)
-mbt13:        movslq  %edi, %rdi
-mbt14:        divsd   %xmm0, %xmm2
-mbt15:        cvtsi2sdl       %esi, %xmm0
-mbt16:        divsd   %xmm0, %xmm3
-mbt17:        movsd   %xmm2, 16(%rsp)
-mbt18:        movsd   %xmm3, (%rsp)
-mbt19:        call    malloc
-mbt20:        testl   %r12d, %r12d
-mbt21:        movq    %rax, %r9
-mbt22:        jle     .L1
-mbt23:        testl   %ebp, %ebp
-mbt24:        jle     .L1
-mbt25:        cvtsi2sdl       %ebx, %xmm8
-mbt26:        xorpd   %xmm15, %xmm15
-mbt27:        movlpd  .LC3(%rip), %xmm14
-mbt28:        leal    -1(%rbp), %esi
-mbt29:        xorl    %r8d, %r8d
-mbt30:        movlpd  .LC1(%rip), %xmm9
-mbt31:        xorl    %edi, %edi
-mbt32:        movlpd  .LC2(%rip), %xmm10
-mbt33:        movlpd  16(%rsp), %xmm11
-mbt34:        movlpd  24(%rsp), %xmm12
-mbt35:        movlpd  8(%rsp), %xmm13
-.L8:
-mbt36:        cvtsi2sdl       %edi, %xmm7
-mbt37:        movslq  %r8d, %rcx
-mbt38:        xorl    %edx, %edx
-mbt39:        addq    %r9, %rcx
-mbt40:        mulsd   (%rsp), %xmm7
-mbt41:        addsd   %xmm13, %xmm7
-.L4:
-mbt42:        cvtsi2sdl       %edx, %xmm4
-mbt43:        testl   %ebx, %ebx
-mbt44:        mulsd   %xmm11, %xmm4
-mbt45:        addsd   %xmm12, %xmm4
-mbt46:        jle     .L9
-mbt47:        movsd   %xmm7, %xmm6
-mbt48:        movsd   %xmm4, %xmm0
-mbt49:        movsd   %xmm15, %xmm3
-mbt50:        jmp     .L7
-.L15:
-mbt51:        addsd   %xmm0, %xmm0
-mbt52:        addsd   %xmm10, %xmm3
-mbt53:        subsd   %xmm2, %xmm1
-mbt54:        mulsd   %xmm0, %xmm6
-mbt55:        comisd  %xmm3, %xmm8
-mbt56:        movsd   %xmm1, %xmm0
-mbt57:        addsd   %xmm7, %xmm6
-mbt58:        addsd   %xmm4, %xmm0
-mbt59:        jbe     .L6
-.L7:
-mbt60:        movsd   %xmm0, %xmm1
-mbt61:        movsd   %xmm6, %xmm2
-mbt62:        mulsd   %xmm0, %xmm1
-mbt63:        mulsd   %xmm6, %xmm2
-mbt64:        movsd   %xmm1, %xmm5
-mbt65:        addsd   %xmm2, %xmm5
-mbt66:        comisd  %xmm9, %xmm5
-mbt67:        jbe     .L15
-.L6:
-mbt68:        divsd   %xmm8, %xmm3
-mbt69:        cmpq    %rdx, %rsi
-mbt70:        mulsd   %xmm14, %xmm3
-mbt71:        cvttsd2sil      %xmm3, %eax
-mbt72:        movb    %al, (%rcx,%rdx)
-mbt73:        leaq    1(%rdx), %rax
-mbt74:        je      .L16
-mbt75:        movq    %rax, %rdx
-mbt76:        jmp     .L4
-.L16:
-mbt77:        incl    %edi
-mbt78:        addl    %ebp, %r8d
-mbt79:        cmpl    %edi, %r12d
-mbt80:        jne     .L8
-.L1:
-mbt81:        addq    $32, %rsp
-mbt82:        movq    %r9, %rax
-mbt83:        popq    %rbx
-mbt84:        popq    %rbp
-mbt85:        popq    %r12
-mbt86:        ret
-.L9:
-mbt87:        movsd   %xmm15, %xmm3
-mbt88:        jmp     .L6
-_Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv:
-mbt89:        pushq   %r15
-mbt90:        pushq   %r14
-mbt91:        pushq   %r13
-mbt92:        pushq   %r12
-mbt93:        pushq   %rbp
-mbt94:        pushq   %rbx
-mbt95:        subq    $104, %rsp
-mbt96:        cmpl    %r9d, %r8d
-mbt97:        movsd   %xmm2, 40(%rsp)
-mbt98:        movsd   %xmm3, 48(%rsp)
-mbt99:        movsd   %xmm5, 32(%rsp)
-mbt100:        movlpd  .LC2(%rip), %xmm8
-mbt101:        jge     .L17
-mbt102:        movsd   %xmm0, %xmm9
-mbt103:        movl    %edi, %r12d
-mbt104:        movl    %edx, %ebp
-mbt105:        movl    %r8d, %r13d
-mbt106:        movq    %rcx, %r14
-.L18:
-mbt107:        leal    1024(%r13), %r10d
-mbt108:        cmpl    %r9d, %r10d
-mbt109:        cmovg   %r9d, %r10d
-mbt110:        cmpl    %r10d, %r13d
-mbt111:        jge     .L19
-mbt112:        testl   %r12d, %r12d
-mbt113:        jle     .L19
-mbt114:        movl    %r13d, %r15d
-mbt115:        imull   %r12d, %r15d
+.globl  mdb0
+.type  mdb0, @function
+.globl  mdb0_rf
+.type  mdb0_rf, @function
+.globl  mdb1
+.type  mdb1, @function
+.globl  mdb1_rf
+.type  mdb1_rf, @function
+.globl  mdb2
+.type  mdb2, @function
+.globl  mdb2_rf
+.type  mdb2_rf, @function
+.globl  mdb3
+.type  mdb3, @function
+.globl  mdb3_rf
+.type  mdb3_rf, @function
+.globl  mdb4
+.type  mdb4, @function
+.globl  mdb4_rf
+.type  mdb4_rf, @function
+.globl  mdb5
+.type  mdb5, @function
+.globl  mdb5_rf
+.type  mdb5_rf, @function
+.globl  mdb6
+.type  mdb6, @function
+.globl  mdb6_rf
+.type  mdb6_rf, @function
+.globl  mdb7
+.type  mdb7, @function
+.globl  mdb7_rf
+.type  mdb7_rf, @function
+.globl  mdb8
+.type  mdb8, @function
+.globl  mdb8_rf
+.type  mdb8_rf, @function
+.globl  mdb9
+.type  mdb9, @function
+.globl  mdb9_rf
+.type  mdb9_rf, @function
+.globl  mdb10
+.type  mdb10, @function
+.globl  mdb10_rf
+.type  mdb10_rf, @function
+.globl  mdb11
+.type  mdb11, @function
+.globl  mdb11_rf
+.type  mdb11_rf, @function
+.globl  mdb12
+.type  mdb12, @function
+.globl  mdb12_rf
+.type  mdb12_rf, @function
+.globl  mdb13
+.type  mdb13, @function
+.globl  mdb13_rf
+.type  mdb13_rf, @function
+.globl  mdb14
+.type  mdb14, @function
+.globl  mdb14_rf
+.type  mdb14_rf, @function
+.globl  mdb15
+.type  mdb15, @function
+.globl  mdb15_rf
+.type  mdb15_rf, @function
+.globl  mdb16
+.type  mdb16, @function
+.globl  mdb16_rf
+.type  mdb16_rf, @function
+.globl  mdb17
+.type  mdb17, @function
+.globl  mdb17_rf
+.type  mdb17_rf, @function
+.globl  mdb18
+.type  mdb18, @function
+.globl  mdb18_rf
+.type  mdb18_rf, @function
+.globl  mdb19
+.type  mdb19, @function
+.globl  mdb19_rf
+.type  mdb19_rf, @function
+.globl  mdb20
+.type  mdb20, @function
+.globl  mdb20_rf
+.type  mdb20_rf, @function
+.globl  mdb21
+.type  mdb21, @function
+.globl  mdb21_rf
+.type  mdb21_rf, @function
+.globl  mdb22
+.type  mdb22, @function
+.globl  mdb22_rf
+.type  mdb22_rf, @function
+.globl  mdb23
+.type  mdb23, @function
+.globl  mdb23_rf
+.type  mdb23_rf, @function
+.globl  mdb24
+.type  mdb24, @function
+.globl  mdb24_rf
+.type  mdb24_rf, @function
+.globl  mdb25
+.type  mdb25, @function
+.globl  mdb25_rf
+.type  mdb25_rf, @function
+.globl  mdb26
+.type  mdb26, @function
+.globl  mdb26_rf
+.type  mdb26_rf, @function
+.globl  mdb27
+.type  mdb27, @function
+.globl  mdb27_rf
+.type  mdb27_rf, @function
+.globl  mdb28
+.type  mdb28, @function
+.globl  mdb28_rf
+.type  mdb28_rf, @function
+.globl  mdb29
+.type  mdb29, @function
+.globl  mdb29_rf
+.type  mdb29_rf, @function
+.globl  mdb30
+.type  mdb30, @function
+.globl  mdb30_rf
+.type  mdb30_rf, @function
+.globl  mdb31
+.type  mdb31, @function
+.globl  mdb31_rf
+.type  mdb31_rf, @function
+.globl  mdb32
+.type  mdb32, @function
+.globl  mdb32_rf
+.type  mdb32_rf, @function
+.globl  mdb33
+.type  mdb33, @function
+.globl  mdb33_rf
+.type  mdb33_rf, @function
+.globl  mdb34
+.type  mdb34, @function
+.globl  mdb34_rf
+.type  mdb34_rf, @function
+.globl  mdb35
+.type  mdb35, @function
+.globl  mdb35_rf
+.type  mdb35_rf, @function
+.globl  mdb36
+.type  mdb36, @function
+.globl  mdb36_rf
+.type  mdb36_rf, @function
+.globl  mdb37
+.type  mdb37, @function
+.globl  mdb37_rf
+.type  mdb37_rf, @function
+.globl  mdb38
+.type  mdb38, @function
+.globl  mdb38_rf
+.type  mdb38_rf, @function
+.globl  mdb39
+.type  mdb39, @function
+.globl  mdb39_rf
+.type  mdb39_rf, @function
+.globl  mdb40
+.type  mdb40, @function
+.globl  mdb40_rf
+.type  mdb40_rf, @function
+.globl  mdb41
+.type  mdb41, @function
+.globl  mdb41_rf
+.type  mdb41_rf, @function
+.globl  mdb42
+.type  mdb42, @function
+.globl  mdb42_rf
+.type  mdb42_rf, @function
+.globl  mdb43
+.type  mdb43, @function
+.globl  mdb43_rf
+.type  mdb43_rf, @function
+.globl  mdb44
+.type  mdb44, @function
+.globl  mdb44_rf
+.type  mdb44_rf, @function
+.globl  mdb45
+.type  mdb45, @function
+.globl  mdb45_rf
+.type  mdb45_rf, @function
+.globl  mdb46
+.type  mdb46, @function
+.globl  mdb46_rf
+.type  mdb46_rf, @function
+.globl  mdb47
+.type  mdb47, @function
+.globl  mdb47_rf
+.type  mdb47_rf, @function
+.globl  mdb48
+.type  mdb48, @function
+.globl  mdb48_rf
+.type  mdb48_rf, @function
+.globl  mdb49
+.type  mdb49, @function
+.globl  mdb49_rf
+.type  mdb49_rf, @function
+.globl  mdb50
+.type  mdb50, @function
+.globl  mdb50_rf
+.type  mdb50_rf, @function
+.globl  mdb51
+.type  mdb51, @function
+.globl  mdb51_rf
+.type  mdb51_rf, @function
+.globl  mdb52
+.type  mdb52, @function
+.globl  mdb52_rf
+.type  mdb52_rf, @function
+.globl  mdb53
+.type  mdb53, @function
+.globl  mdb53_rf
+.type  mdb53_rf, @function
+.globl  mdb54
+.type  mdb54, @function
+.globl  mdb54_rf
+.type  mdb54_rf, @function
+.globl  mdb55
+.type  mdb55, @function
+.globl  mdb55_rf
+.type  mdb55_rf, @function
+.globl  mdb56
+.type  mdb56, @function
+.globl  mdb56_rf
+.type  mdb56_rf, @function
+.globl  mdb57
+.type  mdb57, @function
+.globl  mdb57_rf
+.type  mdb57_rf, @function
+.globl  mdb58
+.type  mdb58, @function
+.globl  mdb58_rf
+.type  mdb58_rf, @function
+.globl  mdb59
+.type  mdb59, @function
+.globl  mdb59_rf
+.type  mdb59_rf, @function
+.globl  mdb60
+.type  mdb60, @function
+.globl  mdb60_rf
+.type  mdb60_rf, @function
+.globl  mdb61
+.type  mdb61, @function
+.globl  mdb61_rf
+.type  mdb61_rf, @function
+.globl  mdb62
+.type  mdb62, @function
+.globl  mdb62_rf
+.type  mdb62_rf, @function
+.globl  mdb63
+.type  mdb63, @function
+.globl  mdb63_rf
+.type  mdb63_rf, @function
+.globl  mdb64
+.type  mdb64, @function
+.globl  mdb64_rf
+.type  mdb64_rf, @function
+.globl  mdb65
+.type  mdb65, @function
+.globl  mdb65_rf
+.type  mdb65_rf, @function
+.globl  mdb66
+.type  mdb66, @function
+.globl  mdb66_rf
+.type  mdb66_rf, @function
+.globl  mdb67
+.type  mdb67, @function
+.globl  mdb67_rf
+.type  mdb67_rf, @function
+.globl  mdb68
+.type  mdb68, @function
+.globl  mdb68_rf
+.type  mdb68_rf, @function
+.globl  mdb69
+.type  mdb69, @function
+.globl  mdb69_rf
+.type  mdb69_rf, @function
+.globl  mdb70
+.type  mdb70, @function
+.globl  mdb70_rf
+.type  mdb70_rf, @function
+.globl  mdb71
+.type  mdb71, @function
+.globl  mdb71_rf
+.type  mdb71_rf, @function
+.globl  mdb72
+.type  mdb72, @function
+.globl  mdb72_rf
+.type  mdb72_rf, @function
+.globl  mdb73
+.type  mdb73, @function
+.globl  mdb73_rf
+.type  mdb73_rf, @function
+.globl  mdb74
+.type  mdb74, @function
+.globl  mdb74_rf
+.type  mdb74_rf, @function
+.globl  mdb75
+.type  mdb75, @function
+.globl  mdb75_rf
+.type  mdb75_rf, @function
+.globl  mdb76
+.type  mdb76, @function
+.globl  mdb76_rf
+.type  mdb76_rf, @function
+.globl  mdb77
+.type  mdb77, @function
+.globl  mdb77_rf
+.type  mdb77_rf, @function
+.globl  mdb78
+.type  mdb78, @function
+.globl  mdb78_rf
+.type  mdb78_rf, @function
+.globl  mdb79
+.type  mdb79, @function
+.globl  mdb79_rf
+.type  mdb79_rf, @function
+.globl  mdb80
+.type  mdb80, @function
+.globl  mdb80_rf
+.type  mdb80_rf, @function
+.globl  mdb81
+.type  mdb81, @function
+.globl  mdb81_rf
+.type  mdb81_rf, @function
+.globl  mdb82
+.type  mdb82, @function
+.globl  mdb82_rf
+.type  mdb82_rf, @function
+.globl  mdb83
+.type  mdb83, @function
+.globl  mdb83_rf
+.type  mdb83_rf, @function
+.globl  mdb84
+.type  mdb84, @function
+.globl  mdb84_rf
+.type  mdb84_rf, @function
+.globl  mdb85
+.type  mdb85, @function
+.globl  mdb85_rf
+.type  mdb85_rf, @function
+.globl  mdb86
+.type  mdb86, @function
+.globl  mdb86_rf
+.type  mdb86_rf, @function
+.globl  mdb87
+.type  mdb87, @function
+.globl  mdb87_rf
+.type  mdb87_rf, @function
+.globl  mdb88
+.type  mdb88, @function
+.globl  mdb88_rf
+.type  mdb88_rf, @function
+.globl  mdb89
+.type  mdb89, @function
+.globl  mdb89_rf
+.type  mdb89_rf, @function
+.globl  mdb90
+.type  mdb90, @function
+.globl  mdb90_rf
+.type  mdb90_rf, @function
+.globl  mdb91
+.type  mdb91, @function
+.globl  mdb91_rf
+.type  mdb91_rf, @function
+.globl  mdb92
+.type  mdb92, @function
+.globl  mdb92_rf
+.type  mdb92_rf, @function
+.globl  mdb93
+.type  mdb93, @function
+.globl  mdb93_rf
+.type  mdb93_rf, @function
+.globl  mdb94
+.type  mdb94, @function
+.globl  mdb94_rf
+.type  mdb94_rf, @function
+.globl  mdb95
+.type  mdb95, @function
+.globl  mdb95_rf
+.type  mdb95_rf, @function
+.globl  mdb96
+.type  mdb96, @function
+.globl  mdb96_rf
+.type  mdb96_rf, @function
+.globl  mdb97
+.type  mdb97, @function
+.globl  mdb97_rf
+.type  mdb97_rf, @function
+.globl  mdb98
+.type  mdb98, @function
+.globl  mdb98_rf
+.type  mdb98_rf, @function
+.globl  mdb99
+.type  mdb99, @function
+.globl  mdb99_rf
+.type  mdb99_rf, @function
+.globl  mdb100
+.type  mdb100, @function
+.globl  mdb100_rf
+.type  mdb100_rf, @function
+.globl  mdb101
+.type  mdb101, @function
+.globl  mdb101_rf
+.type  mdb101_rf, @function
+.globl  mdb102
+.type  mdb102, @function
+.globl  mdb102_rf
+.type  mdb102_rf, @function
+.globl  mdb103
+.type  mdb103, @function
+.globl  mdb103_rf
+.type  mdb103_rf, @function
+.globl  mdb104
+.type  mdb104, @function
+.globl  mdb104_rf
+.type  mdb104_rf, @function
+.globl  mdb105
+.type  mdb105, @function
+.globl  mdb105_rf
+.type  mdb105_rf, @function
+.globl  mdb106
+.type  mdb106, @function
+.globl  mdb106_rf
+.type  mdb106_rf, @function
+.globl  mdb107
+.type  mdb107, @function
+.globl  mdb107_rf
+.type  mdb107_rf, @function
+.globl  mdb108
+.type  mdb108, @function
+.globl  mdb108_rf
+.type  mdb108_rf, @function
+.globl  mdb109
+.type  mdb109, @function
+.globl  mdb109_rf
+.type  mdb109_rf, @function
+.globl  mdb110
+.type  mdb110, @function
+.globl  mdb110_rf
+.type  mdb110_rf, @function
+.globl  mdb111
+.type  mdb111, @function
+.globl  mdb111_rf
+.type  mdb111_rf, @function
+.globl  mdb112
+.type  mdb112, @function
+.globl  mdb112_rf
+.type  mdb112_rf, @function
+.globl  mdb113
+.type  mdb113, @function
+.globl  mdb113_rf
+.type  mdb113_rf, @function
+.globl  mdb114
+.type  mdb114, @function
+.globl  mdb114_rf
+.type  mdb114_rf, @function
+.globl  mdb115
+.type  mdb115, @function
+.globl  mdb115_rf
+.type  mdb115_rf, @function
+.globl  mdb116
+.type  mdb116, @function
+.globl  mdb116_rf
+.type  mdb116_rf, @function
+.globl  mdb117
+.type  mdb117, @function
+.globl  mdb117_rf
+.type  mdb117_rf, @function
+.globl  mdb118
+.type  mdb118, @function
+.globl  mdb118_rf
+.type  mdb118_rf, @function
+.globl  mdb119
+.type  mdb119, @function
+.globl  mdb119_rf
+.type  mdb119_rf, @function
+.globl  mdb120
+.type  mdb120, @function
+.globl  mdb120_rf
+.type  mdb120_rf, @function
+.globl  mdb121
+.type  mdb121, @function
+.globl  mdb121_rf
+.type  mdb121_rf, @function
+.globl  mdb122
+.type  mdb122, @function
+.globl  mdb122_rf
+.type  mdb122_rf, @function
+.globl  mdb123
+.type  mdb123, @function
+.globl  mdb123_rf
+.type  mdb123_rf, @function
+.globl  mdb124
+.type  mdb124, @function
+.globl  mdb124_rf
+.type  mdb124_rf, @function
+.globl  mdb125
+.type  mdb125, @function
+.globl  mdb125_rf
+.type  mdb125_rf, @function
+.globl  mdb126
+.type  mdb126, @function
+.globl  mdb126_rf
+.type  mdb126_rf, @function
+.globl  mdb127
+.type  mdb127, @function
+.globl  mdb127_rf
+.type  mdb127_rf, @function
+.globl  mdb128
+.type  mdb128, @function
+.globl  mdb128_rf
+.type  mdb128_rf, @function
+.globl  mdb129
+.type  mdb129, @function
+.globl  mdb129_rf
+.type  mdb129_rf, @function
+.globl  mdb130
+.type  mdb130, @function
+.globl  mdb130_rf
+.type  mdb130_rf, @function
+.globl  mdb131
+.type  mdb131, @function
+.globl  mdb131_rf
+.type  mdb131_rf, @function
+.globl  mdb132
+.type  mdb132, @function
+.globl  mdb132_rf
+.type  mdb132_rf, @function
+.globl  mdb133
+.type  mdb133, @function
+.globl  mdb133_rf
+.type  mdb133_rf, @function
+.globl  mdb134
+.type  mdb134, @function
+.globl  mdb134_rf
+.type  mdb134_rf, @function
+.globl  mdb135
+.type  mdb135, @function
+.globl  mdb135_rf
+.type  mdb135_rf, @function
+.globl  mdb136
+.type  mdb136, @function
+.globl  mdb136_rf
+.type  mdb136_rf, @function
+.globl  mdb137
+.type  mdb137, @function
+.globl  mdb137_rf
+.type  mdb137_rf, @function
+.globl  mdb138
+.type  mdb138, @function
+.globl  mdb138_rf
+.type  mdb138_rf, @function
+.globl  mdb139
+.type  mdb139, @function
+.globl  mdb139_rf
+.type  mdb139_rf, @function
+.globl  mdb140
+.type  mdb140, @function
+.globl  mdb140_rf
+.type  mdb140_rf, @function
+.globl  mdb141
+.type  mdb141, @function
+.globl  mdb141_rf
+.type  mdb141_rf, @function
+.globl  mdb142
+.type  mdb142, @function
+.globl  mdb142_rf
+.type  mdb142_rf, @function
+.globl  mdb143
+.type  mdb143, @function
+.globl  mdb143_rf
+.type  mdb143_rf, @function
+.globl  mdb144
+.type  mdb144, @function
+.globl  mdb144_rf
+.type  mdb144_rf, @function
+.globl  mdb145
+.type  mdb145, @function
+.globl  mdb145_rf
+.type  mdb145_rf, @function
+.globl  mdb146
+.type  mdb146, @function
+.globl  mdb146_rf
+.type  mdb146_rf, @function
+.globl  mdb147
+.type  mdb147, @function
+.globl  mdb147_rf
+.type  mdb147_rf, @function
+.globl  mdb148
+.type  mdb148, @function
+.globl  mdb148_rf
+.type  mdb148_rf, @function
+.globl  mdb149
+.type  mdb149, @function
+.globl  mdb149_rf
+.type  mdb149_rf, @function
+.globl  mdb150
+.type  mdb150, @function
+.globl  mdb150_rf
+.type  mdb150_rf, @function
+.globl  mdb151
+.type  mdb151, @function
+.globl  mdb151_rf
+.type  mdb151_rf, @function
+.globl  mdb152
+.type  mdb152, @function
+.globl  mdb152_rf
+.type  mdb152_rf, @function
+.globl  mdb153
+.type  mdb153, @function
+.globl  mdb153_rf
+.type  mdb153_rf, @function
+.globl  mdb154
+.type  mdb154, @function
+.globl  mdb154_rf
+.type  mdb154_rf, @function
+.globl  mdb155
+.type  mdb155, @function
+.globl  mdb155_rf
+.type  mdb155_rf, @function
+.globl  mdb156
+.type  mdb156, @function
+.globl  mdb156_rf
+.type  mdb156_rf, @function
+.globl  mdb157
+.type  mdb157, @function
+.globl  mdb157_rf
+.type  mdb157_rf, @function
+.globl  mdb158
+.type  mdb158, @function
+.globl  mdb158_rf
+.type  mdb158_rf, @function
+.globl  mdb159
+.type  mdb159, @function
+.globl  mdb159_rf
+.type  mdb159_rf, @function
+.globl  mdb160
+.type  mdb160, @function
+.globl  mdb160_rf
+.type  mdb160_rf, @function
+.globl  mdb161
+.type  mdb161, @function
+.globl  mdb161_rf
+.type  mdb161_rf, @function
+.globl  mdb162
+.type  mdb162, @function
+.globl  mdb162_rf
+.type  mdb162_rf, @function
+.globl  mdb163
+.type  mdb163, @function
+.globl  mdb163_rf
+.type  mdb163_rf, @function
+.globl  mdb164
+.type  mdb164, @function
+.globl  mdb164_rf
+.type  mdb164_rf, @function
+.globl  mdb165
+.type  mdb165, @function
+.globl  mdb165_rf
+.type  mdb165_rf, @function
+.globl  mdb166
+.type  mdb166, @function
+.globl  mdb166_rf
+.type  mdb166_rf, @function
+.globl  mdb167
+.type  mdb167, @function
+.globl  mdb167_rf
+.type  mdb167_rf, @function
+.globl  mdb168
+.type  mdb168, @function
+.globl  mdb168_rf
+.type  mdb168_rf, @function
+.globl  mdb169
+.type  mdb169, @function
+.globl  mdb169_rf
+.type  mdb169_rf, @function
+.globl  mdb170
+.type  mdb170, @function
+.globl  mdb170_rf
+.type  mdb170_rf, @function
+.globl  mdb171
+.type  mdb171, @function
+.globl  mdb171_rf
+.type  mdb171_rf, @function
+.globl  mdb172
+.type  mdb172, @function
+.globl  mdb172_rf
+.type  mdb172_rf, @function
+.globl  mdb173
+.type  mdb173, @function
+.globl  mdb173_rf
+.type  mdb173_rf, @function
+.globl  mdb174
+.type  mdb174, @function
+.globl  mdb174_rf
+.type  mdb174_rf, @function
+.globl  mdb175
+.type  mdb175, @function
+.globl  mdb175_rf
+.type  mdb175_rf, @function
+.globl  mdb176
+.type  mdb176, @function
+.globl  mdb176_rf
+.type  mdb176_rf, @function
+.globl  mdb177
+.type  mdb177, @function
+.globl  mdb177_rf
+.type  mdb177_rf, @function
+.globl  mdb178
+.type  mdb178, @function
+.globl  mdb178_rf
+.type  mdb178_rf, @function
+.globl  mdb179
+.type  mdb179, @function
+.globl  mdb179_rf
+.type  mdb179_rf, @function
+.globl  mdb180
+.type  mdb180, @function
+.globl  mdb180_rf
+.type  mdb180_rf, @function
+.globl  mdb181
+.type  mdb181, @function
+.globl  mdb181_rf
+.type  mdb181_rf, @function
+.globl  mdb182
+.type  mdb182, @function
+.globl  mdb182_rf
+.type  mdb182_rf, @function
+.globl  mdb183
+.type  mdb183, @function
+.globl  mdb183_rf
+.type  mdb183_rf, @function
+.globl  mdb184
+.type  mdb184, @function
+.globl  mdb184_rf
+.type  mdb184_rf, @function
+.globl  mdb185
+.type  mdb185, @function
+.globl  mdb185_rf
+.type  mdb185_rf, @function
+.globl  mdb186
+.type  mdb186, @function
+.globl  mdb186_rf
+.type  mdb186_rf, @function
+.globl  mdb187
+.type  mdb187, @function
+.globl  mdb187_rf
+.type  mdb187_rf, @function
+.globl  mdb188
+.type  mdb188, @function
+.globl  mdb188_rf
+.type  mdb188_rf, @function
+.globl  mdb189
+.type  mdb189, @function
+.globl  mdb189_rf
+.type  mdb189_rf, @function
+.globl  mdb190
+.type  mdb190, @function
+.globl  mdb190_rf
+.type  mdb190_rf, @function
+.globl  mdb191
+.type  mdb191, @function
+.globl  mdb191_rf
+.type  mdb191_rf, @function
+.globl  mdb192
+.type  mdb192, @function
+.globl  mdb192_rf
+.type  mdb192_rf, @function
+.globl  mdb193
+.type  mdb193, @function
+.globl  mdb193_rf
+.type  mdb193_rf, @function
+.globl  mdb194
+.type  mdb194, @function
+.globl  mdb194_rf
+.type  mdb194_rf, @function
+.globl  mdb195
+.type  mdb195, @function
+.globl  mdb195_rf
+.type  mdb195_rf, @function
+.globl  mdb196
+.type  mdb196, @function
+.globl  mdb196_rf
+.type  mdb196_rf, @function
+.globl  mdb197
+.type  mdb197, @function
+.globl  mdb197_rf
+.type  mdb197_rf, @function
+.globl  mdb198
+.type  mdb198, @function
+.globl  mdb198_rf
+.type  mdb198_rf, @function
+.globl  mdb199
+.type  mdb199, @function
+.globl  mdb199_rf
+.type  mdb199_rf, @function
+.globl  mdb200
+.type  mdb200, @function
+.globl  mdb200_rf
+.type  mdb200_rf, @function
+.globl  mdb201
+.type  mdb201, @function
+.globl  mdb201_rf
+.type  mdb201_rf, @function
+.globl  mdb202
+.type  mdb202, @function
+.globl  mdb202_rf
+.type  mdb202_rf, @function
+.globl  mdb203
+.type  mdb203, @function
+.globl  mdb203_rf
+.type  mdb203_rf, @function
+.globl  mdb204
+.type  mdb204, @function
+.globl  mdb204_rf
+.type  mdb204_rf, @function
+.globl  mdb205
+.type  mdb205, @function
+.globl  mdb205_rf
+.type  mdb205_rf, @function
+.globl  mdb206
+.type  mdb206, @function
+.globl  mdb206_rf
+.type  mdb206_rf, @function
+.globl  mdb207
+.type  mdb207, @function
+.globl  mdb207_rf
+.type  mdb207_rf, @function
+.globl  mdb208
+.type  mdb208, @function
+.globl  mdb208_rf
+.type  mdb208_rf, @function
+.globl  mdb209
+.type  mdb209, @function
+.globl  mdb209_rf
+.type  mdb209_rf, @function
+.globl  mdb210
+.type  mdb210, @function
+.globl  mdb210_rf
+.type  mdb210_rf, @function
+.globl  mdb211
+.type  mdb211, @function
+.globl  mdb211_rf
+.type  mdb211_rf, @function
+.globl  mdb212
+.type  mdb212, @function
+.globl  mdb212_rf
+.type  mdb212_rf, @function
+.globl  mdb213
+.type  mdb213, @function
+.globl  mdb213_rf
+.type  mdb213_rf, @function
+.globl  mdb214
+.type  mdb214, @function
+.globl  mdb214_rf
+.type  mdb214_rf, @function
+.globl  mdb215
+.type  mdb215, @function
+.globl  mdb215_rf
+.type  mdb215_rf, @function
+.globl  mdb216
+.type  mdb216, @function
+.globl  mdb216_rf
+.type  mdb216_rf, @function
+.globl  mdb217
+.type  mdb217, @function
+.globl  mdb217_rf
+.type  mdb217_rf, @function
+.globl  mdb218
+.type  mdb218, @function
+.globl  mdb218_rf
+.type  mdb218_rf, @function
+.globl  mdb219
+.type  mdb219, @function
+.globl  mdb219_rf
+.type  mdb219_rf, @function
+.globl  mdb220
+.type  mdb220, @function
+.globl  mdb220_rf
+.type  mdb220_rf, @function
+.globl  mdb221
+.type  mdb221, @function
+.globl  mdb221_rf
+.type  mdb221_rf, @function
+.globl  mdb222
+.type  mdb222, @function
+.globl  mdb222_rf
+.type  mdb222_rf, @function
+.globl  mdb223
+.type  mdb223, @function
+.globl  mdb223_rf
+.type  mdb223_rf, @function
+.globl  mdb224
+.type  mdb224, @function
+.globl  mdb224_rf
+.type  mdb224_rf, @function
+.globl  mdb225
+.type  mdb225, @function
+.globl  mdb225_rf
+.type  mdb225_rf, @function
+.globl  mdb226
+.type  mdb226, @function
+.globl  mdb226_rf
+.type  mdb226_rf, @function
+.globl  mdb227
+.type  mdb227, @function
+.globl  mdb227_rf
+.type  mdb227_rf, @function
+.globl  mdb228
+.type  mdb228, @function
+.globl  mdb228_rf
+.type  mdb228_rf, @function
+.globl  mdb229
+.type  mdb229, @function
+.globl  mdb229_rf
+.type  mdb229_rf, @function
+.globl  mdb230
+.type  mdb230, @function
+.globl  mdb230_rf
+.type  mdb230_rf, @function
+.globl  mdb231
+.type  mdb231, @function
+.globl  mdb231_rf
+.type  mdb231_rf, @function
+.globl  mdb232
+.type  mdb232, @function
+.globl  mdb232_rf
+.type  mdb232_rf, @function
+.globl  mdb233
+.type  mdb233, @function
+.globl  mdb233_rf
+.type  mdb233_rf, @function
+.globl  mdb234
+.type  mdb234, @function
+.globl  mdb234_rf
+.type  mdb234_rf, @function
+.globl  mdb235
+.type  mdb235, @function
+.globl  mdb235_rf
+.type  mdb235_rf, @function
+.globl  mdb236
+.type  mdb236, @function
+.globl  mdb236_rf
+.type  mdb236_rf, @function
+.globl  mdb237
+.type  mdb237, @function
+.globl  mdb237_rf
+.type  mdb237_rf, @function
+.globl  mdb238
+.type  mdb238, @function
+.globl  mdb238_rf
+.type  mdb238_rf, @function
+.globl  mdb239
+.type  mdb239, @function
+.globl  mdb239_rf
+.type  mdb239_rf, @function
+.globl  mdb240
+.type  mdb240, @function
+.globl  mdb240_rf
+.type  mdb240_rf, @function
+.globl  mdb241
+.type  mdb241, @function
+.globl  mdb241_rf
+.type  mdb241_rf, @function
+.globl  mdb242
+.type  mdb242, @function
+.globl  mdb242_rf
+.type  mdb242_rf, @function
+.globl  mdb243
+.type  mdb243, @function
+.globl  mdb243_rf
+.type  mdb243_rf, @function
+.globl  mdb244
+.type  mdb244, @function
+.globl  mdb244_rf
+.type  mdb244_rf, @function
+.globl  mdb245
+.type  mdb245, @function
+.globl  mdb245_rf
+.type  mdb245_rf, @function
+.globl  mdb246
+.type  mdb246, @function
+.globl  mdb246_rf
+.type  mdb246_rf, @function
+.globl  mdb247
+.type  mdb247, @function
+.globl  mdb247_rf
+.type  mdb247_rf, @function
+.globl  mdb248
+.type  mdb248, @function
+.globl  mdb248_rf
+.type  mdb248_rf, @function
+.globl  mdb249
+.type  mdb249, @function
+.globl  mdb249_rf
+.type  mdb249_rf, @function
+.globl  mdb250
+.type  mdb250, @function
+.globl  mdb250_rf
+.type  mdb250_rf, @function
+.globl  mdb251
+.type  mdb251, @function
+.globl  mdb251_rf
+.type  mdb251_rf, @function
+.globl  mdb252
+.type  mdb252, @function
+.globl  mdb252_rf
+.type  mdb252_rf, @function
+.globl  mdb253
+.type  mdb253, @function
+.globl  mdb253_rf
+.type  mdb253_rf, @function
+.globl  mdb254
+.type  mdb254, @function
+.globl  mdb254_rf
+.type  mdb254_rf, @function
+.globl  mdb255
+.type  mdb255, @function
+.globl  mdb255_rf
+.type  mdb255_rf, @function
+.globl  mdb256
+.type  mdb256, @function
+.globl  mdb256_rf
+.type  mdb256_rf, @function
+.globl  mdb257
+.type  mdb257, @function
+.globl  mdb257_rf
+.type  mdb257_rf, @function
+.globl  mdb258
+.type  mdb258, @function
+.globl  mdb258_rf
+.type  mdb258_rf, @function
+.globl  mdb259
+.type  mdb259, @function
+.globl  mdb259_rf
+.type  mdb259_rf, @function
+.globl  mdb260
+.type  mdb260, @function
+.globl  mdb260_rf
+.type  mdb260_rf, @function
+.globl  mdb261
+.type  mdb261, @function
+.globl  mdb261_rf
+.type  mdb261_rf, @function
+.globl  mdb262
+.type  mdb262, @function
+.globl  mdb262_rf
+.type  mdb262_rf, @function
+.globl  mdb263
+.type  mdb263, @function
+.globl  mdb263_rf
+.type  mdb263_rf, @function
+.globl  mdb264
+.type  mdb264, @function
+.globl  mdb264_rf
+.type  mdb264_rf, @function
+.globl  mdb265
+.type  mdb265, @function
+.globl  mdb265_rf
+.type  mdb265_rf, @function
+.globl  mdb266
+.type  mdb266, @function
+.globl  mdb266_rf
+.type  mdb266_rf, @function
+.globl  mdb267
+.type  mdb267, @function
+.globl  mdb267_rf
+.type  mdb267_rf, @function
+.globl  mdb268
+.type  mdb268, @function
+.globl  mdb268_rf
+.type  mdb268_rf, @function
+.globl  mdb269
+.type  mdb269, @function
+.globl  mdb269_rf
+.type  mdb269_rf, @function
+.globl  mdb270
+.type  mdb270, @function
+.globl  mdb270_rf
+.type  mdb270_rf, @function
+.globl  mdb271
+.type  mdb271, @function
+.globl  mdb271_rf
+.type  mdb271_rf, @function
+.globl  mdb272
+.type  mdb272, @function
+.globl  mdb272_rf
+.type  mdb272_rf, @function
+.globl  mdb273
+.type  mdb273, @function
+.globl  mdb273_rf
+.type  mdb273_rf, @function
+.globl  mdb274
+.type  mdb274, @function
+.globl  mdb274_rf
+.type  mdb274_rf, @function
+.globl  mdb275
+.type  mdb275, @function
+.globl  mdb275_rf
+.type  mdb275_rf, @function
+.globl  mdb276
+.type  mdb276, @function
+.globl  mdb276_rf
+.type  mdb276_rf, @function
+.globl  mdb277
+.type  mdb277, @function
+.globl  mdb277_rf
+.type  mdb277_rf, @function
+.globl  mdb278
+.type  mdb278, @function
+.globl  mdb278_rf
+.type  mdb278_rf, @function
+.globl  mdb279
+.type  mdb279, @function
+.globl  mdb279_rf
+.type  mdb279_rf, @function
+.globl  mdb280
+.type  mdb280, @function
+.globl  mdb280_rf
+.type  mdb280_rf, @function
+.globl  mdb281
+.type  mdb281, @function
+.globl  mdb281_rf
+.type  mdb281_rf, @function
+.globl  mdb282
+.type  mdb282, @function
+.globl  mdb282_rf
+.type  mdb282_rf, @function
+.globl  mdb283
+.type  mdb283, @function
+.globl  mdb283_rf
+.type  mdb283_rf, @function
+.globl  mdb284
+.type  mdb284, @function
+.globl  mdb284_rf
+.type  mdb284_rf, @function
+.globl  mdb285
+.type  mdb285, @function
+.globl  mdb285_rf
+.type  mdb285_rf, @function
+.globl  mdb286
+.type  mdb286, @function
+.globl  mdb286_rf
+.type  mdb286_rf, @function
+.globl  mdb287
+.type  mdb287, @function
+.globl  mdb287_rf
+.type  mdb287_rf, @function
+.globl  mdb288
+.type  mdb288, @function
+.globl  mdb288_rf
+.type  mdb288_rf, @function
+.globl  mdb289
+.type  mdb289, @function
+.globl  mdb289_rf
+.type  mdb289_rf, @function
+.globl  mdb290
+.type  mdb290, @function
+.globl  mdb290_rf
+.type  mdb290_rf, @function
+.globl  mdb291
+.type  mdb291, @function
+.globl  mdb291_rf
+.type  mdb291_rf, @function
+.globl  mdb292
+.type  mdb292, @function
+.globl  mdb292_rf
+.type  mdb292_rf, @function
+.globl  mdb293
+.type  mdb293, @function
+.globl  mdb293_rf
+.type  mdb293_rf, @function
+.globl  mdb294
+.type  mdb294, @function
+.globl  mdb294_rf
+.type  mdb294_rf, @function
+.globl  mdb295
+.type  mdb295, @function
+.globl  mdb295_rf
+.type  mdb295_rf, @function
+.globl  mdb296
+.type  mdb296, @function
+.globl  mdb296_rf
+.type  mdb296_rf, @function
+.globl  mdb297
+.type  mdb297, @function
+.globl  mdb297_rf
+.type  mdb297_rf, @function
+.globl  mdb298
+.type  mdb298, @function
+.globl  mdb298_rf
+.type  mdb298_rf, @function
+.globl  mdb299
+.type  mdb299, @function
+.globl  mdb299_rf
+.type  mdb299_rf, @function
+.globl  mdb300
+.type  mdb300, @function
+.globl  mdb300_rf
+.type  mdb300_rf, @function
+.globl  mdb301
+.type  mdb301, @function
+.globl  mdb301_rf
+.type  mdb301_rf, @function
+.globl  mdb302
+.type  mdb302, @function
+.globl  mdb302_rf
+.type  mdb302_rf, @function
+.globl  mdb303
+.type  mdb303, @function
+.globl  mdb303_rf
+.type  mdb303_rf, @function
+.globl  mdb304
+.type  mdb304, @function
+.globl  mdb304_rf
+.type  mdb304_rf, @function
+.globl  mdb305
+.type  mdb305, @function
+.globl  mdb305_rf
+.type  mdb305_rf, @function
+.globl  mdb306
+.type  mdb306, @function
+.globl  mdb306_rf
+.type  mdb306_rf, @function
+.globl  mdb307
+.type  mdb307, @function
+.globl  mdb307_rf
+.type  mdb307_rf, @function
+.globl  mdb308
+.type  mdb308, @function
+.globl  mdb308_rf
+.type  mdb308_rf, @function
+.globl  mdb309
+.type  mdb309, @function
+.globl  mdb309_rf
+.type  mdb309_rf, @function
+.globl  mdb310
+.type  mdb310, @function
+.globl  mdb310_rf
+.type  mdb310_rf, @function
+.globl  mdb311
+.type  mdb311, @function
+.globl  mdb311_rf
+.type  mdb311_rf, @function
+.globl  mdb312
+.type  mdb312, @function
+.globl  mdb312_rf
+.type  mdb312_rf, @function
+.globl  mdb313
+.type  mdb313, @function
+.globl  mdb313_rf
+.type  mdb313_rf, @function
+.globl  mdb314
+.type  mdb314, @function
+.globl  mdb314_rf
+.type  mdb314_rf, @function
+.globl  mdb315
+.type  mdb315, @function
+.globl  mdb315_rf
+.type  mdb315_rf, @function
+.globl  mdb316
+.type  mdb316, @function
+.globl  mdb316_rf
+.type  mdb316_rf, @function
+.globl  mdb317
+.type  mdb317, @function
+.globl  mdb317_rf
+.type  mdb317_rf, @function
+.globl  mdb318
+.type  mdb318, @function
+.globl  mdb318_rf
+.type  mdb318_rf, @function
+.globl  mdb319
+.type  mdb319, @function
+.globl  mdb319_rf
+.type  mdb319_rf, @function
+.globl  mdb320
+.type  mdb320, @function
+.globl  mdb320_rf
+.type  mdb320_rf, @function
+.globl  mdb321
+.type  mdb321, @function
+.globl  mdb321_rf
+.type  mdb321_rf, @function
+.globl  mdb322
+.type  mdb322, @function
+.globl  mdb322_rf
+.type  mdb322_rf, @function
+.globl  mdb323
+.type  mdb323, @function
+.globl  mdb323_rf
+.type  mdb323_rf, @function
+.globl  mdb324
+.type  mdb324, @function
+.globl  mdb324_rf
+.type  mdb324_rf, @function
+.globl  mdb325
+.type  mdb325, @function
+.globl  mdb325_rf
+.type  mdb325_rf, @function
+.globl  mdb326
+.type  mdb326, @function
+.globl  mdb326_rf
+.type  mdb326_rf, @function
+.globl  mdb327
+.type  mdb327, @function
+.globl  mdb327_rf
+.type  mdb327_rf, @function
+.globl  mdb328
+.type  mdb328, @function
+.globl  mdb328_rf
+.type  mdb328_rf, @function
+.globl  mdb329
+.type  mdb329, @function
+.globl  mdb329_rf
+.type  mdb329_rf, @function
+.globl  mdb330
+.type  mdb330, @function
+.globl  mdb330_rf
+.type  mdb330_rf, @function
+.globl  mdb331
+.type  mdb331, @function
+.globl  mdb331_rf
+.type  mdb331_rf, @function
+.globl  mdb332
+.type  mdb332, @function
+.globl  mdb332_rf
+.type  mdb332_rf, @function
+.globl  mdb333
+.type  mdb333, @function
+.globl  mdb333_rf
+.type  mdb333_rf, @function
+.globl  mdb334
+.type  mdb334, @function
+.globl  mdb334_rf
+.type  mdb334_rf, @function
+.globl  mdb335
+.type  mdb335, @function
+.globl  mdb335_rf
+.type  mdb335_rf, @function
+.globl  mdb336
+.type  mdb336, @function
+.globl  mdb336_rf
+.type  mdb336_rf, @function
+.globl  mdb337
+.type  mdb337, @function
+.globl  mdb337_rf
+.type  mdb337_rf, @function
+.globl  mdb338
+.type  mdb338, @function
+.globl  mdb338_rf
+.type  mdb338_rf, @function
+.globl  mdb339
+.type  mdb339, @function
+.globl  mdb339_rf
+.type  mdb339_rf, @function
+.globl  mdb340
+.type  mdb340, @function
+.globl  mdb340_rf
+.type  mdb340_rf, @function
+.globl  mdb341
+.type  mdb341, @function
+.globl  mdb341_rf
+.type  mdb341_rf, @function
+.globl  mdb342
+.type  mdb342, @function
+.globl  mdb342_rf
+.type  mdb342_rf, @function
+.globl  mdb343
+.type  mdb343, @function
+.globl  mdb343_rf
+.type  mdb343_rf, @function
+.globl  mdb344
+.type  mdb344, @function
+.globl  mdb344_rf
+.type  mdb344_rf, @function
+.globl  mdb345
+.type  mdb345, @function
+.globl  mdb345_rf
+.type  mdb345_rf, @function
+.globl  mdb346
+.type  mdb346, @function
+.globl  mdb346_rf
+.type  mdb346_rf, @function
+.globl  mdb347
+.type  mdb347, @function
+.globl  mdb347_rf
+.type  mdb347_rf, @function
+.globl  mdb348
+.type  mdb348, @function
+.globl  mdb348_rf
+.type  mdb348_rf, @function
+.globl  mdb349
+.type  mdb349, @function
+.globl  mdb349_rf
+.type  mdb349_rf, @function
+.globl  mdb350
+.type  mdb350, @function
+.globl  mdb350_rf
+.type  mdb350_rf, @function
+.globl  mdb351
+.type  mdb351, @function
+.globl  mdb351_rf
+.type  mdb351_rf, @function
+.globl  mdb352
+.type  mdb352, @function
+.globl  mdb352_rf
+.type  mdb352_rf, @function
+.globl  mdb353
+.type  mdb353, @function
+.globl  mdb353_rf
+.type  mdb353_rf, @function
+.globl  mdb354
+.type  mdb354, @function
+.globl  mdb354_rf
+.type  mdb354_rf, @function
+.globl  mdb355
+.type  mdb355, @function
+.globl  mdb355_rf
+.type  mdb355_rf, @function
+.globl  mdb356
+.type  mdb356, @function
+.globl  mdb356_rf
+.type  mdb356_rf, @function
+.globl  mdb357
+.type  mdb357, @function
+.globl  mdb357_rf
+.type  mdb357_rf, @function
+.globl  mdb358
+.type  mdb358, @function
+.globl  mdb358_rf
+.type  mdb358_rf, @function
+.globl  mdb359
+.type  mdb359, @function
+.globl  mdb359_rf
+.type  mdb359_rf, @function
+.globl  mdb360
+.type  mdb360, @function
+.globl  mdb360_rf
+.type  mdb360_rf, @function
+.globl  mdb361
+.type  mdb361, @function
+.globl  mdb361_rf
+.type  mdb361_rf, @function
+.globl  mdb362
+.type  mdb362, @function
+.globl  mdb362_rf
+.type  mdb362_rf, @function
+.globl  mdb363
+.type  mdb363, @function
+.globl  mdb363_rf
+.type  mdb363_rf, @function
+.globl  mdb364
+.type  mdb364, @function
+.globl  mdb364_rf
+.type  mdb364_rf, @function
+.globl  mdb365
+.type  mdb365, @function
+.globl  mdb365_rf
+.type  mdb365_rf, @function
+.globl  mdb366
+.type  mdb366, @function
+.globl  mdb366_rf
+.type  mdb366_rf, @function
+.globl  mdb367
+.type  mdb367, @function
+.globl  mdb367_rf
+.type  mdb367_rf, @function
+.globl  mdb368
+.type  mdb368, @function
+.globl  mdb368_rf
+.type  mdb368_rf, @function
+.globl  mdb369
+.type  mdb369, @function
+.globl  mdb369_rf
+.type  mdb369_rf, @function
+.globl  mdb370
+.type  mdb370, @function
+.globl  mdb370_rf
+.type  mdb370_rf, @function
+.globl  mdb371
+.type  mdb371, @function
+.globl  mdb371_rf
+.type  mdb371_rf, @function
+.globl  mdb372
+.type  mdb372, @function
+.globl  mdb372_rf
+.type  mdb372_rf, @function
+.globl  mdb373
+.type  mdb373, @function
+.globl  mdb373_rf
+.type  mdb373_rf, @function
+.globl  mdb374
+.type  mdb374, @function
+.globl  mdb374_rf
+.type  mdb374_rf, @function
+.globl  mdb375
+.type  mdb375, @function
+.globl  mdb375_rf
+.type  mdb375_rf, @function
+.globl  mdb376
+.type  mdb376, @function
+.globl  mdb376_rf
+.type  mdb376_rf, @function
+.globl  mdb377
+.type  mdb377, @function
+.globl  mdb377_rf
+.type  mdb377_rf, @function
+.globl  mdb378
+.type  mdb378, @function
+.globl  mdb378_rf
+.type  mdb378_rf, @function
+.globl  mdb379
+.type  mdb379, @function
+.globl  mdb379_rf
+.type  mdb379_rf, @function
+.globl  mdb380
+.type  mdb380, @function
+.globl  mdb380_rf
+.type  mdb380_rf, @function
+.globl  mdb381
+.type  mdb381, @function
+.globl  mdb381_rf
+.type  mdb381_rf, @function
+.globl  mdb382
+.type  mdb382, @function
+.globl  mdb382_rf
+.type  mdb382_rf, @function
+.globl  mdb383
+.type  mdb383, @function
+.globl  mdb383_rf
+.type  mdb383_rf, @function
+.globl  mdb384
+.type  mdb384, @function
+.globl  mdb384_rf
+.type  mdb384_rf, @function
+.globl  mdb385
+.type  mdb385, @function
+.globl  mdb385_rf
+.type  mdb385_rf, @function
+.globl  mdb386
+.type  mdb386, @function
+.globl  mdb386_rf
+.type  mdb386_rf, @function
+.globl  mdb387
+.type  mdb387, @function
+.globl  mdb387_rf
+.type  mdb387_rf, @function
+.globl  mdb388
+.type  mdb388, @function
+.globl  mdb388_rf
+.type  mdb388_rf, @function
+.globl  mdb389
+.type  mdb389, @function
+.globl  mdb389_rf
+.type  mdb389_rf, @function
+.globl  mdb390
+.type  mdb390, @function
+.globl  mdb390_rf
+.type  mdb390_rf, @function
+.globl  mdb391
+.type  mdb391, @function
+.globl  mdb391_rf
+.type  mdb391_rf, @function
+.globl  mdb392
+.type  mdb392, @function
+.globl  mdb392_rf
+.type  mdb392_rf, @function
+.globl  mdb393
+.type  mdb393, @function
+.globl  mdb393_rf
+.type  mdb393_rf, @function
+.globl  mdb394
+.type  mdb394, @function
+.globl  mdb394_rf
+.type  mdb394_rf, @function
+.globl  mdb395
+.type  mdb395, @function
+.globl  mdb395_rf
+.type  mdb395_rf, @function
+.globl  mdb396
+.type  mdb396, @function
+.globl  mdb396_rf
+.type  mdb396_rf, @function
+.globl  mdb397
+.type  mdb397, @function
+.globl  mdb397_rf
+.type  mdb397_rf, @function
+.globl  mdb398
+.type  mdb398, @function
+.globl  mdb398_rf
+.type  mdb398_rf, @function
+.globl  mdb399
+.type  mdb399, @function
+.globl  mdb399_rf
+.type  mdb399_rf, @function
+.globl  mdb400
+.type  mdb400, @function
+.globl  mdb400_rf
+.type  mdb400_rf, @function
+.globl  mdb401
+.type  mdb401, @function
+.globl  mdb401_rf
+.type  mdb401_rf, @function
+.globl  mdb402
+.type  mdb402, @function
+.globl  mdb402_rf
+.type  mdb402_rf, @function
+.globl  mdb403
+.type  mdb403, @function
+.globl  mdb403_rf
+.type  mdb403_rf, @function
+.globl  mdb404
+.type  mdb404, @function
+.globl  mdb404_rf
+.type  mdb404_rf, @function
+.globl  mdb405
+.type  mdb405, @function
+.globl  mdb405_rf
+.type  mdb405_rf, @function
+.globl  mdb406
+.type  mdb406, @function
+.globl  mdb406_rf
+.type  mdb406_rf, @function
+.globl  mdb407
+.type  mdb407, @function
+.globl  mdb407_rf
+.type  mdb407_rf, @function
+.globl  mdb408
+.type  mdb408, @function
+.globl  mdb408_rf
+.type  mdb408_rf, @function
+.globl  mdb409
+.type  mdb409, @function
+.globl  mdb409_rf
+.type  mdb409_rf, @function
+.globl  mdb410
+.type  mdb410, @function
+.globl  mdb410_rf
+.type  mdb410_rf, @function
+.globl  mdb411
+.type  mdb411, @function
+.globl  mdb411_rf
+.type  mdb411_rf, @function
+.globl  mdb412
+.type  mdb412, @function
+.globl  mdb412_rf
+.type  mdb412_rf, @function
+.globl  mdb413
+.type  mdb413, @function
+.globl  mdb413_rf
+.type  mdb413_rf, @function
+.globl  mdb414
+.type  mdb414, @function
+.globl  mdb414_rf
+.type  mdb414_rf, @function
+.globl  mdb415
+.type  mdb415, @function
+.globl  mdb415_rf
+.type  mdb415_rf, @function
+.globl  mdb416
+.type  mdb416, @function
+.globl  mdb416_rf
+.type  mdb416_rf, @function
+_Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv.part.0:
+mdb0:        pushq   %r15
+mdb1:        pushq   %r14
+mdb2:        pushq   %r13
+mdb3:        pushq   %r12
+mdb4:        pushq   %rbp
+mdb5:        pushq   %rbx
+mdb6:        subq    $104, %rsp
+mdb7:        testl   %edi, %edi
+mdb8:        movsd   %xmm1, 40(%rsp)
+mdb9:        movl    %esi, 88(%rsp)
+mdb10:        movsd   %xmm2, 48(%rsp)
+mdb11:        movsd   %xmm3, 56(%rsp)
+mdb12:        jle     .L1
+mdb13:        movl    %r8d, %r14d
+mdb14:        movsd   %xmm0, %xmm9
+mdb15:        movlpd  .LC2(%rip), %xmm8
+mdb16:        imull   %edi, %r14d
+mdb17:        movl    %edi, %r12d
+mdb18:        movl    %edx, %ebp
+mdb19:        movq    %rcx, %r15
+mdb20:        movl    %r8d, %r13d
+.L11:
+mdb21:        xorl    %edx, %edx
+mdb22:        xorpd   %xmm10, %xmm10
+mdb23:        leal    32(%rdx), %ebx
+mdb24:        cmpl    %r12d, %ebx
+mdb25:        cmovg   %r12d, %ebx
+mdb26:        cmpl    %ebx, %edx
+mdb27:        jge     .L13
 .L28:
-mbt116:        xorpd   %xmm10, %xmm10
-mbt117:        xorl    %edx, %edx
-.L20:
-mbt118:        leal    512(%rdx), %ebx
-mbt119:        cmpl    %r12d, %ebx
-mbt120:        cmovg   %r12d, %ebx
-mbt121:        cmpl    %ebx, %edx
-mbt122:        jge     .L30
-mbt123:        cvtsi2sdl       %r13d, %xmm12
-mbt124:        movslq  %r15d, %rcx
-mbt125:        cvtsi2sdl       %ebp, %xmm13
-mbt126:        addq    %r14, %rcx
-mbt127:        movlpd  .LC3(%rip), %xmm15
-mbt128:        movlpd  .LC1(%rip), %xmm14
-mbt129:        mulsd   32(%rsp), %xmm12
-mbt130:        addsd   %xmm1, %xmm12
-.L24:
-mbt131:        cvtsi2sdl       %edx, %xmm6
-mbt132:        testl   %ebp, %ebp
-mbt133:        mulsd   %xmm4, %xmm6
-mbt134:        addsd   %xmm9, %xmm6
-mbt135:        jle     .L31
-mbt136:        movsd   %xmm12, %xmm11
-mbt137:        movsd   %xmm6, %xmm0
-mbt138:        movsd   %xmm10, %xmm5
-mbt139:        jmp     .L23
-.L44:
-mbt140:        addsd   %xmm0, %xmm0
-mbt141:        addsd   %xmm8, %xmm5
-mbt142:        subsd   %xmm3, %xmm2
-mbt143:        mulsd   %xmm0, %xmm11
-mbt144:        comisd  %xmm5, %xmm13
-mbt145:        movsd   %xmm2, %xmm0
-mbt146:        addsd   %xmm12, %xmm11
-mbt147:        addsd   %xmm6, %xmm0
-mbt148:        jbe     .L22
-.L23:
-mbt149:        movsd   %xmm0, %xmm2
-mbt150:        movsd   %xmm11, %xmm3
-mbt151:        mulsd   %xmm0, %xmm2
-mbt152:        mulsd   %xmm11, %xmm3
-mbt153:        movsd   %xmm2, %xmm7
-mbt154:        addsd   %xmm3, %xmm7
-mbt155:        comisd  %xmm14, %xmm7
-mbt156:        jbe     .L44
-.L22:
-mbt157:        divsd   %xmm13, %xmm5
-mbt158:        mulsd   %xmm15, %xmm5
-mbt159:        cvttsd2sil      %xmm5, %eax
-mbt160:        movb    %al, (%rcx,%rdx)
-mbt161:        incq    %rdx
-mbt162:        cmpl    %edx, %ebx
-mbt163:        jg      .L24
-mbt164:        cmpl    %ebx, %r12d
-mbt165:        jle     .L25
-.L46:
-mbt166:        nop
-mbt167:        nop
-mbt168:        nop
+mdb28:        cvtsi2sdl       %r13d, %xmm12
+mdb29:        movslq  %r14d, %rcx
+mdb30:        cvtsi2sdl       %ebp, %xmm13
+mdb31:        addq    %r15, %rcx
+mdb32:        movlpd  .LC3(%rip), %xmm15
+mdb33:        movlpd  .LC1(%rip), %xmm14
+mdb34:        mulsd   %xmm5, %xmm12
+mdb35:        addsd   40(%rsp), %xmm12
+.L7:
+mdb36:        cvtsi2sdl       %edx, %xmm6
+mdb37:        testl   %ebp, %ebp
+mdb38:        mulsd   %xmm4, %xmm6
+mdb39:        addsd   %xmm9, %xmm6
+mdb40:        jle     .L14
+mdb41:        movsd   %xmm12, %xmm11
+mdb42:        movsd   %xmm6, %xmm0
+mdb43:        movsd   %xmm10, %xmm3
+mdb44:        jmp     .L6
 .L26:
-mbt169:        movslq  %ebx, %rdx
-mbt170:        jmp     .L20
-.L31:
-mbt171:        movsd   %xmm10, %xmm5
-mbt172:        jmp     .L22
+mdb45:        addsd   %xmm0, %xmm0
+mdb46:        addsd   %xmm8, %xmm3
+mdb47:        subsd   %xmm2, %xmm1
+mdb48:        mulsd   %xmm0, %xmm11
+mdb49:        comisd  %xmm3, %xmm13
+mdb50:        movsd   %xmm1, %xmm0
+mdb51:        addsd   %xmm12, %xmm11
+mdb52:        addsd   %xmm6, %xmm0
+mdb53:        jbe     .L5
+.L6:
+mdb54:        movsd   %xmm0, %xmm1
+mdb55:        movsd   %xmm11, %xmm2
+mdb56:        mulsd   %xmm0, %xmm1
+mdb57:        mulsd   %xmm11, %xmm2
+mdb58:        movsd   %xmm1, %xmm7
+mdb59:        addsd   %xmm2, %xmm7
+mdb60:        comisd  %xmm14, %xmm7
+mdb61:        jbe     .L26
+.L5:
+mdb62:        divsd   %xmm13, %xmm3
+mdb63:        mulsd   %xmm15, %xmm3
+mdb64:        cvttsd2sil      %xmm3, %eax
+mdb65:        movb    %al, (%rcx,%rdx)
+mdb66:        incq    %rdx
+mdb67:        cmpl    %edx, %ebx
+mdb68:        jg      .L7
+mdb69:        cmpl    %ebx, %r12d
+mdb70:        jle     .L8
+.L29:
+mdb71:        nop
+mdb72:        nop
+mdb73:        nop
+.L9:
+mdb74:        movslq  %ebx, %rdx
+mdb75:        leal    32(%rdx), %ebx
+mdb76:        cmpl    %r12d, %ebx
+mdb77:        cmovg   %r12d, %ebx
+mdb78:        cmpl    %ebx, %edx
+mdb79:        jl      .L28
+.L13:
+mdb80:        movl    %edx, %ebx
+mdb81:        cmpl    %ebx, %r12d
+mdb82:        jg      .L29
+.L8:
+mdb83:        incl    %r13d
+mdb84:        cmpl    %r13d, %r9d
+mdb85:        jle     .L1
+mdb86:        nop
+mdb87:        nop
+mdb88:        nop
+.L12:
+mdb89:        addl    %r12d, %r14d
+mdb90:        jmp     .L11
+.L14:
+mdb91:        movsd   %xmm10, %xmm3
+mdb92:        jmp     .L5
+.L27:
+mdb93:        movq    160(%rsp), %rax
+mdb94:        movl    88(%rsp), %esi
+mdb95:        movsd   %xmm9, %xmm0
+mdb96:        movlpd  56(%rsp), %xmm3
+mdb97:        movl    %r12d, 8(%rsp)
+mdb98:        movl    %r13d, %r8d
+mdb99:        movlpd  48(%rsp), %xmm2
+mdb100:        movl    %ebx, (%rsp)
+mdb101:        movq    %r15, %rcx
+mdb102:        movlpd  40(%rsp), %xmm1
+mdb103:        movq    %rax, 16(%rsp)
+mdb104:        movl    %ebp, %edx
+mdb105:        movl    %r12d, %edi
+mdb106:        movsd   %xmm5, 80(%rsp)
+mdb107:        movl    %r9d, 92(%rsp)
+mdb108:        movsd   %xmm4, 72(%rsp)
+mdb109:        movsd   %xmm9, 64(%rsp)
+mdb110:        call    _Z16row_loop_handlerddddiiiPhddiiiiPv
+mdb111:        testl   %eax, %eax
+mdb112:        movl    92(%rsp), %r9d
+mdb113:        xorpd   %xmm10, %xmm10
+mdb114:        movlpd  64(%rsp), %xmm9
+mdb115:        movlpd  72(%rsp), %xmm4
+mdb116:        movlpd  80(%rsp), %xmm5
+mdb117:        movlpd  .LC2(%rip), %xmm8
+mdb118:        je      .L9
+.L1:
+mdb119:        addq    $104, %rsp
+mdb120:        popq    %rbx
+mdb121:        popq    %rbp
+mdb122:        popq    %r12
+mdb123:        popq    %r13
+mdb124:        popq    %r14
+mdb125:        popq    %r15
+mdb126:        ret
+.L10:
+mdb127:        movq    160(%rsp), %rax
+mdb128:        movl    88(%rsp), %esi
+mdb129:        movsd   %xmm9, %xmm0
+mdb130:        movlpd  56(%rsp), %xmm3
+mdb131:        movl    %r13d, %r8d
+mdb132:        movq    %r15, %rcx
+mdb133:        movlpd  48(%rsp), %xmm2
+mdb134:        movl    %ebp, %edx
+mdb135:        movl    %r12d, %edi
+mdb136:        movlpd  40(%rsp), %xmm1
+mdb137:        movq    %rax, (%rsp)
+mdb138:        movsd   %xmm5, 80(%rsp)
+mdb139:        movl    %r9d, 92(%rsp)
+mdb140:        movsd   %xmm4, 72(%rsp)
+mdb141:        movsd   %xmm9, 64(%rsp)
+mdb142:        call    _Z16col_loop_handlerddddiiiPhddiiPv
+mdb143:        testl   %eax, %eax
+mdb144:        movl    92(%rsp), %r9d
+mdb145:        movlpd  64(%rsp), %xmm9
+mdb146:        movlpd  72(%rsp), %xmm4
+mdb147:        movlpd  80(%rsp), %xmm5
+mdb148:        movlpd  .LC2(%rip), %xmm8
+mdb149:        je      .L12
+mdb150:        jmp     .L1
+_Z17mandelbrot_serialddddiii:
+mdb151:        pushq   %r12
+mdb152:        subsd   %xmm0, %xmm2
+mdb153:        movl    %esi, %r12d
+mdb154:        subsd   %xmm1, %xmm3
+mdb155:        pushq   %rbp
+mdb156:        movl    %edi, %ebp
+mdb157:        pushq   %rbx
+mdb158:        movl    %edx, %ebx
+mdb159:        subq    $32, %rsp
+mdb160:        movsd   %xmm0, 24(%rsp)
+mdb161:        cvtsi2sdl       %edi, %xmm0
+mdb162:        imull   %esi, %edi
+mdb163:        movsd   %xmm1, 8(%rsp)
+mdb164:        movslq  %edi, %rdi
+mdb165:        divsd   %xmm0, %xmm2
+mdb166:        cvtsi2sdl       %esi, %xmm0
+mdb167:        divsd   %xmm0, %xmm3
+mdb168:        movsd   %xmm2, 16(%rsp)
+mdb169:        movsd   %xmm3, (%rsp)
+mdb170:        call    malloc
+mdb171:        testl   %r12d, %r12d
+mdb172:        movq    %rax, %r9
+mdb173:        jle     .L30
+mdb174:        testl   %ebp, %ebp
+mdb175:        jle     .L30
+mdb176:        cvtsi2sdl       %ebx, %xmm8
+mdb177:        xorpd   %xmm15, %xmm15
+mdb178:        movlpd  .LC3(%rip), %xmm14
+mdb179:        leal    -1(%rbp), %esi
+mdb180:        xorl    %r8d, %r8d
+mdb181:        movlpd  .LC1(%rip), %xmm9
+mdb182:        xorl    %edi, %edi
+mdb183:        movlpd  .LC2(%rip), %xmm10
+mdb184:        movlpd  16(%rsp), %xmm11
+mdb185:        movlpd  24(%rsp), %xmm12
+mdb186:        movlpd  8(%rsp), %xmm13
+.L37:
+mdb187:        cvtsi2sdl       %edi, %xmm7
+mdb188:        movslq  %r8d, %rcx
+mdb189:        xorl    %edx, %edx
+mdb190:        addq    %r9, %rcx
+mdb191:        mulsd   (%rsp), %xmm7
+mdb192:        addsd   %xmm13, %xmm7
+.L33:
+mdb193:        cvtsi2sdl       %edx, %xmm4
+mdb194:        testl   %ebx, %ebx
+mdb195:        mulsd   %xmm11, %xmm4
+mdb196:        addsd   %xmm12, %xmm4
+mdb197:        jle     .L38
+mdb198:        movsd   %xmm7, %xmm6
+mdb199:        movsd   %xmm4, %xmm0
+mdb200:        movsd   %xmm15, %xmm3
+mdb201:        jmp     .L36
+.L43:
+mdb202:        addsd   %xmm0, %xmm0
+mdb203:        addsd   %xmm10, %xmm3
+mdb204:        subsd   %xmm2, %xmm1
+mdb205:        mulsd   %xmm0, %xmm6
+mdb206:        comisd  %xmm3, %xmm8
+mdb207:        movsd   %xmm1, %xmm0
+mdb208:        addsd   %xmm7, %xmm6
+mdb209:        addsd   %xmm4, %xmm0
+mdb210:        jbe     .L35
+.L36:
+mdb211:        movsd   %xmm0, %xmm1
+mdb212:        movsd   %xmm6, %xmm2
+mdb213:        mulsd   %xmm0, %xmm1
+mdb214:        mulsd   %xmm6, %xmm2
+mdb215:        movsd   %xmm1, %xmm5
+mdb216:        addsd   %xmm2, %xmm5
+mdb217:        comisd  %xmm9, %xmm5
+mdb218:        jbe     .L43
+.L35:
+mdb219:        divsd   %xmm8, %xmm3
+mdb220:        cmpq    %rdx, %rsi
+mdb221:        mulsd   %xmm14, %xmm3
+mdb222:        cvttsd2sil      %xmm3, %eax
+mdb223:        movb    %al, (%rcx,%rdx)
+mdb224:        leaq    1(%rdx), %rax
+mdb225:        je      .L44
+mdb226:        movq    %rax, %rdx
+mdb227:        jmp     .L33
+.L44:
+mdb228:        incl    %edi
+mdb229:        addl    %ebp, %r8d
+mdb230:        cmpl    %edi, %r12d
+mdb231:        jne     .L37
 .L30:
-mbt173:        movl    %edx, %ebx
-mbt174:        cmpl    %ebx, %r12d
-mbt175:        jg      .L46
-.L25:
-mbt176:        incl    %r13d
-mbt177:        addl    %r12d, %r15d
-mbt178:        cmpl    %r10d, %r13d
-mbt179:        jne     .L28
-.L19:
-mbt180:        cmpl    %r13d, %r9d
-mbt181:        jle     .L17
-mbt182:        jmp     .L18
-mbt183:        nop
-mbt184:        nop
-mbt185:        movq    160(%rsp), %rax
-mbt186:        movsd   %xmm9, %xmm0
-mbt187:        movlpd  32(%rsp), %xmm5
-mbt188:        movlpd  48(%rsp), %xmm3
-mbt189:        movl    %r13d, %r8d
-mbt190:        movq    %r14, %rcx
-mbt191:        movlpd  40(%rsp), %xmm2
-mbt192:        movl    %ebp, %edx
-mbt193:        movl    %r12d, %edi
-mbt194:        movq    %rax, (%rsp)
-mbt195:        movsd   %xmm4, 80(%rsp)
-mbt196:        movl    %r9d, 88(%rsp)
-mbt197:        movsd   %xmm1, 64(%rsp)
-mbt198:        movl    %esi, 76(%rsp)
-mbt199:        movsd   %xmm9, 56(%rsp)
-mbt200:        call    _Z16col_loop_handlerddddiiiPhddiiPv
-mbt201:        testl   %eax, %eax
-mbt202:        movl    76(%rsp), %esi
-mbt203:        movl    88(%rsp), %r9d
-mbt204:        movlpd  56(%rsp), %xmm9
-mbt205:        movlpd  64(%rsp), %xmm1
-mbt206:        movlpd  80(%rsp), %xmm4
-mbt207:        movlpd  .LC2(%rip), %xmm8
-mbt208:        je      .L18
-.L17:
-mbt209:        addq    $104, %rsp
-mbt210:        popq    %rbx
-mbt211:        popq    %rbp
-mbt212:        popq    %r12
-mbt213:        popq    %r13
-mbt214:        popq    %r14
-mbt215:        popq    %r15
-mbt216:        ret
+mdb232:        addq    $32, %rsp
+mdb233:        movq    %r9, %rax
+mdb234:        popq    %rbx
+mdb235:        popq    %rbp
+mdb236:        popq    %r12
+mdb237:        ret
+.L38:
+mdb238:        movsd   %xmm15, %xmm3
+mdb239:        jmp     .L35
+_Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv:
+mdb240:        cmpl    %r9d, %r8d
+mdb241:        jge     .L45
+mdb242:        jmp     _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv.part.0
 .L45:
-mbt217:        movq    160(%rsp), %rax
-mbt218:        movsd   %xmm9, %xmm0
-mbt219:        movlpd  32(%rsp), %xmm5
-mbt220:        movlpd  48(%rsp), %xmm3
-mbt221:        movl    %r12d, 8(%rsp)
-mbt222:        movl    %r13d, %r8d
-mbt223:        movlpd  40(%rsp), %xmm2
-mbt224:        movl    %ebx, (%rsp)
-mbt225:        movq    %r14, %rcx
-mbt226:        movq    %rax, 16(%rsp)
-mbt227:        movl    %ebp, %edx
-mbt228:        movl    %r12d, %edi
-mbt229:        movsd   %xmm4, 80(%rsp)
-mbt230:        movl    %r10d, 92(%rsp)
-mbt231:        movl    %r9d, 88(%rsp)
-mbt232:        movsd   %xmm1, 64(%rsp)
-mbt233:        movl    %esi, 76(%rsp)
-mbt234:        movsd   %xmm9, 56(%rsp)
-mbt235:        call    _Z16row_loop_handlerddddiiiPhddiiiiPv
-mbt236:        testl   %eax, %eax
-mbt237:        movl    76(%rsp), %esi
-mbt238:        xorpd   %xmm10, %xmm10
-mbt239:        movl    88(%rsp), %r9d
-mbt240:        movl    92(%rsp), %r10d
-mbt241:        movlpd  56(%rsp), %xmm9
-mbt242:        movlpd  64(%rsp), %xmm1
-mbt243:        movlpd  80(%rsp), %xmm4
-mbt244:        movlpd  .LC2(%rip), %xmm8
-mbt245:        je      .L26
-mbt246:        addq    $104, %rsp
-mbt247:        popq    %rbx
-mbt248:        popq    %rbp
-mbt249:        popq    %r12
-mbt250:        popq    %r13
-mbt251:        popq    %r14
-mbt252:        popq    %r15
-mbt253:        ret
+mdb243:        rep ret
 _Z29mandelbrot_interrupt_row_loopddddiiiPhddiiiiPv:
-mbt254:        pushq   %r15
-mbt255:        pushq   %r14
-mbt256:        pushq   %r13
-mbt257:        pushq   %r12
-mbt258:        pushq   %rbp
-mbt259:        movl    %edx, %ebp
-mbt260:        pushq   %rbx
-mbt261:        subq    $104, %rsp
-mbt262:        movslq  160(%rsp), %rdx
-mbt263:        movl    168(%rsp), %r12d
-mbt264:        movsd   %xmm1, 32(%rsp)
-mbt265:        movsd   %xmm2, 40(%rsp)
-mbt266:        movsd   %xmm3, 48(%rsp)
-mbt267:        cmpl    %edx, %r12d
-mbt268:        jle     .L47
-mbt269:        movl    %r8d, %r14d
-mbt270:        xorpd   %xmm10, %xmm10
-mbt271:        imull   %edi, %r14d
-mbt272:        movsd   %xmm0, %xmm9
-mbt273:        movlpd  .LC2(%rip), %xmm8
-mbt274:        movl    %edi, %r15d
-mbt275:        movq    %rcx, %r13
-.L49:
-mbt276:        leal    512(%rdx), %ebx
-mbt277:        cmpl    %r12d, %ebx
-mbt278:        cmovg   %r12d, %ebx
-mbt279:        cmpl    %ebx, %edx
-mbt280:        jge     .L56
-mbt281:        cvtsi2sdl       %r8d, %xmm12
-mbt282:        movslq  %r14d, %rcx
-mbt283:        cvtsi2sdl       %ebp, %xmm13
-mbt284:        addq    %r13, %rcx
-mbt285:        movlpd  .LC3(%rip), %xmm15
-mbt286:        movlpd  .LC1(%rip), %xmm14
-mbt287:        mulsd   %xmm5, %xmm12
-mbt288:        addsd   32(%rsp), %xmm12
-.L53:
-mbt289:        cvtsi2sdl       %edx, %xmm6
-mbt290:        testl   %ebp, %ebp
-mbt291:        mulsd   %xmm4, %xmm6
-mbt292:        addsd   %xmm9, %xmm6
-mbt293:        jle     .L57
-mbt294:        movsd   %xmm12, %xmm11
-mbt295:        movsd   %xmm6, %xmm0
-mbt296:        movsd   %xmm10, %xmm3
-mbt297:        jmp     .L52
-.L65:
-mbt298:        addsd   %xmm0, %xmm0
-mbt299:        addsd   %xmm8, %xmm3
-mbt300:        subsd   %xmm2, %xmm1
-mbt301:        mulsd   %xmm0, %xmm11
-mbt302:        comisd  %xmm3, %xmm13
-mbt303:        movsd   %xmm1, %xmm0
-mbt304:        addsd   %xmm12, %xmm11
-mbt305:        addsd   %xmm6, %xmm0
-mbt306:        jbe     .L51
-.L52:
-mbt307:        movsd   %xmm0, %xmm1
-mbt308:        movsd   %xmm11, %xmm2
-mbt309:        mulsd   %xmm0, %xmm1
-mbt310:        mulsd   %xmm11, %xmm2
-mbt311:        movsd   %xmm1, %xmm7
-mbt312:        addsd   %xmm2, %xmm7
-mbt313:        comisd  %xmm14, %xmm7
-mbt314:        jbe     .L65
-.L51:
-mbt315:        divsd   %xmm13, %xmm3
-mbt316:        mulsd   %xmm15, %xmm3
-mbt317:        cvttsd2sil      %xmm3, %eax
-mbt318:        movb    %al, (%rcx,%rdx)
-mbt319:        incq    %rdx
-mbt320:        cmpl    %edx, %ebx
-mbt321:        jg      .L53
-mbt322:        cmpl    %ebx, %r12d
-mbt323:        jle     .L47
+mdb244:        pushq   %r15
+mdb245:        pushq   %r14
+mdb246:        pushq   %r13
+mdb247:        pushq   %r12
+mdb248:        pushq   %rbp
+mdb249:        movl    %edx, %ebp
+mdb250:        pushq   %rbx
+mdb251:        subq    $104, %rsp
+mdb252:        movslq  160(%rsp), %rdx
+mdb253:        movl    168(%rsp), %r12d
+mdb254:        movsd   %xmm1, 32(%rsp)
+mdb255:        movsd   %xmm2, 40(%rsp)
+mdb256:        movsd   %xmm3, 48(%rsp)
+mdb257:        cmpl    %edx, %r12d
+mdb258:        jle     .L47
+mdb259:        leal    32(%rdx), %ebx
+mdb260:        movl    %r8d, %r14d
+mdb261:        movsd   %xmm0, %xmm9
+mdb262:        imull   %edi, %r14d
+mdb263:        xorpd   %xmm10, %xmm10
+mdb264:        cmpl    %r12d, %ebx
+mdb265:        movlpd  .LC2(%rip), %xmm8
+mdb266:        movl    %edi, %r15d
+mdb267:        cmovg   %r12d, %ebx
+mdb268:        movq    %rcx, %r13
+mdb269:        cmpl    %ebx, %edx
+mdb270:        jge     .L56
 .L67:
-mbt324:        nop
-mbt325:        nop
-mbt326:        nop
+mdb271:        cvtsi2sdl       %r8d, %xmm12
+mdb272:        movslq  %r14d, %rcx
+mdb273:        cvtsi2sdl       %ebp, %xmm13
+mdb274:        addq    %r13, %rcx
+mdb275:        movlpd  .LC3(%rip), %xmm15
+mdb276:        movlpd  .LC1(%rip), %xmm14
+mdb277:        mulsd   %xmm5, %xmm12
+mdb278:        addsd   32(%rsp), %xmm12
+.L53:
+mdb279:        cvtsi2sdl       %edx, %xmm6
+mdb280:        testl   %ebp, %ebp
+mdb281:        mulsd   %xmm4, %xmm6
+mdb282:        addsd   %xmm9, %xmm6
+mdb283:        jle     .L57
+mdb284:        movsd   %xmm12, %xmm11
+mdb285:        movsd   %xmm6, %xmm0
+mdb286:        movsd   %xmm10, %xmm3
+mdb287:        jmp     .L52
+.L65:
+mdb288:        addsd   %xmm0, %xmm0
+mdb289:        addsd   %xmm8, %xmm3
+mdb290:        subsd   %xmm2, %xmm1
+mdb291:        mulsd   %xmm0, %xmm11
+mdb292:        comisd  %xmm3, %xmm13
+mdb293:        movsd   %xmm1, %xmm0
+mdb294:        addsd   %xmm12, %xmm11
+mdb295:        addsd   %xmm6, %xmm0
+mdb296:        jbe     .L51
+.L52:
+mdb297:        movsd   %xmm0, %xmm1
+mdb298:        movsd   %xmm11, %xmm2
+mdb299:        mulsd   %xmm0, %xmm1
+mdb300:        mulsd   %xmm11, %xmm2
+mdb301:        movsd   %xmm1, %xmm7
+mdb302:        addsd   %xmm2, %xmm7
+mdb303:        comisd  %xmm14, %xmm7
+mdb304:        jbe     .L65
+.L51:
+mdb305:        divsd   %xmm13, %xmm3
+mdb306:        mulsd   %xmm15, %xmm3
+mdb307:        cvttsd2sil      %xmm3, %eax
+mdb308:        movb    %al, (%rcx,%rdx)
+mdb309:        incq    %rdx
+mdb310:        cmpl    %edx, %ebx
+mdb311:        jg      .L53
+mdb312:        cmpl    %ebx, %r12d
+mdb313:        jle     .L47
+.L68:
+mdb314:        nop
+mdb315:        nop
+mdb316:        nop
 .L55:
-mbt327:        movslq  %ebx, %rdx
-mbt328:        jmp     .L49
-.L57:
-mbt329:        movsd   %xmm10, %xmm3
-mbt330:        jmp     .L51
+mdb317:        movslq  %ebx, %rdx
+mdb318:        leal    32(%rdx), %ebx
+mdb319:        cmpl    %r12d, %ebx
+mdb320:        cmovg   %r12d, %ebx
+mdb321:        cmpl    %ebx, %edx
+mdb322:        jl      .L67
 .L56:
-mbt331:        movl    %edx, %ebx
-mbt332:        cmpl    %ebx, %r12d
-mbt333:        jg      .L67
+mdb323:        movl    %edx, %ebx
+mdb324:        cmpl    %ebx, %r12d
+mdb325:        jg      .L68
 .L47:
-mbt334:        addq    $104, %rsp
-mbt335:        popq    %rbx
-mbt336:        popq    %rbp
-mbt337:        popq    %r12
-mbt338:        popq    %r13
-mbt339:        popq    %r14
-mbt340:        popq    %r15
-mbt341:        ret
+mdb326:        addq    $104, %rsp
+mdb327:        popq    %rbx
+mdb328:        popq    %rbp
+mdb329:        popq    %r12
+mdb330:        popq    %r13
+mdb331:        popq    %r14
+mdb332:        popq    %r15
+mdb333:        ret
+.L57:
+mdb334:        movsd   %xmm10, %xmm3
+mdb335:        jmp     .L51
 .L66:
-mbt342:        movq    176(%rsp), %rax
-mbt343:        movsd   %xmm9, %xmm0
-mbt344:        movlpd  48(%rsp), %xmm3
-mbt345:        movlpd  40(%rsp), %xmm2
-mbt346:        movl    %r12d, 8(%rsp)
-mbt347:        movq    %r13, %rcx
-mbt348:        movlpd  32(%rsp), %xmm1
-mbt349:        movl    %ebx, (%rsp)
-mbt350:        movl    %ebp, %edx
-mbt351:        movq    %rax, 16(%rsp)
-mbt352:        movl    %r15d, %edi
-mbt353:        movsd   %xmm5, 80(%rsp)
-mbt354:        movsd   %xmm4, 72(%rsp)
-mbt355:        movl    %r9d, 92(%rsp)
-mbt356:        movl    %r8d, 88(%rsp)
-mbt357:        movsd   %xmm9, 56(%rsp)
-mbt358:        movl    %esi, 68(%rsp)
-mbt359:        call    _Z20row_row_loop_handlerddddiiiPhddiiiiPv
-mbt360:        testl   %eax, %eax
-mbt361:        movl    68(%rsp), %esi
-mbt362:        xorpd   %xmm10, %xmm10
-mbt363:        movl    88(%rsp), %r8d
-mbt364:        movl    92(%rsp), %r9d
-mbt365:        movlpd  56(%rsp), %xmm9
-mbt366:        movlpd  72(%rsp), %xmm4
-mbt367:        movlpd  80(%rsp), %xmm5
-mbt368:        movlpd  .LC2(%rip), %xmm8
-mbt369:        je      .L55
-mbt370:        jmp     .L47
+mdb336:        movq    176(%rsp), %rax
+mdb337:        movsd   %xmm9, %xmm0
+mdb338:        movlpd  48(%rsp), %xmm3
+mdb339:        movlpd  40(%rsp), %xmm2
+mdb340:        movl    %r12d, 8(%rsp)
+mdb341:        movq    %r13, %rcx
+mdb342:        movlpd  32(%rsp), %xmm1
+mdb343:        movl    %ebx, (%rsp)
+mdb344:        movl    %ebp, %edx
+mdb345:        movq    %rax, 16(%rsp)
+mdb346:        movl    %r15d, %edi
+mdb347:        movsd   %xmm5, 80(%rsp)
+mdb348:        movsd   %xmm4, 72(%rsp)
+mdb349:        movl    %r9d, 92(%rsp)
+mdb350:        movl    %r8d, 88(%rsp)
+mdb351:        movsd   %xmm9, 56(%rsp)
+mdb352:        movl    %esi, 68(%rsp)
+mdb353:        call    _Z20row_row_loop_handlerddddiiiPhddiiiiPv
+mdb354:        testl   %eax, %eax
+mdb355:        movl    68(%rsp), %esi
+mdb356:        xorpd   %xmm10, %xmm10
+mdb357:        movl    88(%rsp), %r8d
+mdb358:        movl    92(%rsp), %r9d
+mdb359:        movlpd  56(%rsp), %xmm9
+mdb360:        movlpd  72(%rsp), %xmm4
+mdb361:        movlpd  80(%rsp), %xmm5
+mdb362:        movlpd  .LC2(%rip), %xmm8
+mdb363:        je      .L55
+mdb364:        jmp     .L47
 _Z20mandelbrot_interruptddddiiiPv:
-mbt371:        movq    %r12, -24(%rsp)
-mbt372:        movl    %edi, %r12d
-mbt373:        movq    %rbx, -40(%rsp)
-mbt374:        imull   %esi, %edi
-mbt375:        movq    %rbp, -32(%rsp)
-mbt376:        movq    %r13, -16(%rsp)
-mbt377:        movq    %r14, -8(%rsp)
-mbt378:        movl    %esi, %ebp
-mbt379:        subq    $88, %rsp
-mbt380:        movq    %rcx, %rbx
-mbt381:        movsd   %xmm0, 40(%rsp)
-mbt382:        movl    %edx, %r14d
-mbt383:        movslq  %edi, %rdi
-mbt384:        movsd   %xmm1, 32(%rsp)
-mbt385:        movsd   %xmm2, 24(%rsp)
-mbt386:        movsd   %xmm3, 16(%rsp)
-mbt387:        call    malloc
-mbt388:        cvtsi2sdl       %ebp, %xmm7
-mbt389:        movq    %rax, %r13
-mbt390:        cvtsi2sdl       %r12d, %xmm6
-mbt391:        movq    %rbx, (%rsp)
-mbt392:        movlpd  16(%rsp), %xmm3
-mbt393:        movl    %ebp, %r9d
-mbt394:        movq    %rax, %rcx
-mbt395:        movlpd  24(%rsp), %xmm2
-mbt396:        movl    %r14d, %edx
-mbt397:        movl    %ebp, %esi
-mbt398:        movlpd  32(%rsp), %xmm1
-mbt399:        movsd   %xmm3, %xmm5
-mbt400:        movl    %r12d, %edi
-mbt401:        movlpd  40(%rsp), %xmm0
-mbt402:        movsd   %xmm2, %xmm4
-mbt403:        xorl    %r8d, %r8d
-mbt404:        subsd   %xmm1, %xmm5
-mbt405:        subsd   %xmm0, %xmm4
-mbt406:        divsd   %xmm7, %xmm5
-mbt407:        divsd   %xmm6, %xmm4
-mbt408:        call    _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv
-mbt409:        movq    %r13, %rax
-mbt410:        movq    48(%rsp), %rbx
-mbt411:        movq    56(%rsp), %rbp
-mbt412:        movq    64(%rsp), %r12
-mbt413:        movq    72(%rsp), %r13
-mbt414:        movq    80(%rsp), %r14
-mbt415:        addq    $88, %rsp
-mbt416:        ret
+mdb365:        movq    %r12, -16(%rsp)
+mdb366:        movl    %edi, %r12d
+mdb367:        movq    %rbx, -32(%rsp)
+mdb368:        imull   %esi, %edi
+mdb369:        movq    %rbp, -24(%rsp)
+mdb370:        movq    %r14, -8(%rsp)
+mdb371:        movl    %esi, %ebp
+mdb372:        subq    $88, %rsp
+mdb373:        movl    %edx, %r14d
+mdb374:        movsd   %xmm0, 40(%rsp)
+mdb375:        movq    %rcx, %rbx
+mdb376:        movslq  %edi, %rdi
+mdb377:        movsd   %xmm1, 32(%rsp)
+mdb378:        movsd   %xmm2, 24(%rsp)
+mdb379:        movsd   %xmm3, 16(%rsp)
+mdb380:        call    malloc
+mdb381:        testl   %ebp, %ebp
+mdb382:        jle     .L69
+mdb383:        cvtsi2sdl       %ebp, %xmm7
+mdb384:        movq    %rax, %rcx
+mdb385:        movq    %rbx, (%rsp)
+mdb386:        cvtsi2sdl       %r12d, %xmm6
+mdb387:        movl    %ebp, %r9d
+mdb388:        movlpd  16(%rsp), %xmm3
+mdb389:        xorl    %r8d, %r8d
+mdb390:        movl    %r14d, %edx
+mdb391:        movlpd  24(%rsp), %xmm2
+mdb392:        movl    %ebp, %esi
+mdb393:        movl    %r12d, %edi
+mdb394:        movsd   %xmm3, %xmm5
+mdb395:        movlpd  32(%rsp), %xmm1
+mdb396:        movq    %rax, 16(%rsp)
+mdb397:        movsd   %xmm2, %xmm4
+mdb398:        movlpd  40(%rsp), %xmm0
+mdb399:        subsd   %xmm1, %xmm5
+mdb400:        subsd   %xmm0, %xmm4
+mdb401:        divsd   %xmm7, %xmm5
+mdb402:        divsd   %xmm6, %xmm4
+mdb403:        call    _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv.part.0
+mdb404:        movq    16(%rsp), %rax
+.L69:
+mdb405:        movq    56(%rsp), %rbx
+mdb406:        movq    64(%rsp), %rbp
+mdb407:        movq    72(%rsp), %r12
+mdb408:        movq    80(%rsp), %r14
+mdb409:        addq    $88, %rsp
+mdb410:        ret
 .LC1:
-mbt417:        .long   0
-mbt418:        .long   1074790400
+mdb411:        .long   0
+mdb412:        .long   1074790400
 .LC2:
-mbt419:        .long   0
-mbt420:        .long   1072693248
+mdb413:        .long   0
+mdb414:        .long   1072693248
 .LC3:
-mbt421:        .long   0
-mbt422:        .long   1081073664
+mdb415:        .long   0
+mdb416:        .long   1081073664
 
-_Z17mandelbrot_serialddddiii_rf:
-mbt0_rf:        pushq   %r12
-mbt1_rf:        subsd   %xmm0, %xmm2
-mbt2_rf:        movl    %esi, %r12d
-mbt3_rf:        subsd   %xmm1, %xmm3
-mbt4_rf:        pushq   %rbp
-mbt5_rf:        movl    %edi, %ebp
-mbt6_rf:        pushq   %rbx
-mbt7_rf:        movl    %edx, %ebx
-mbt8_rf:        subq    $32, %rsp
-mbt9_rf:        movsd   %xmm0, 24(%rsp)
-mbt10_rf:        cvtsi2sdl       %edi, %xmm0
-mbt11_rf:        imull   %esi, %edi
-mbt12_rf:        movsd   %xmm1, 8(%rsp)
-mbt13_rf:        movslq  %edi, %rdi
-mbt14_rf:        divsd   %xmm0, %xmm2
-mbt15_rf:        cvtsi2sdl       %esi, %xmm0
-mbt16_rf:        divsd   %xmm0, %xmm3
-mbt17_rf:        movsd   %xmm2, 16(%rsp)
-mbt18_rf:        movsd   %xmm3, (%rsp)
-mbt19_rf:        call    malloc
-mbt20_rf:        testl   %r12d, %r12d
-mbt21_rf:        movq    %rax, %r9
-mbt22_rf:        jle     .L1_rf
-mbt23_rf:        testl   %ebp, %ebp
-mbt24_rf:        jle     .L1_rf
-mbt25_rf:        cvtsi2sdl       %ebx, %xmm8
-mbt26_rf:        xorpd   %xmm15, %xmm15
-mbt27_rf:        movlpd  .LC3_rf(%rip), %xmm14
-mbt28_rf:        leal    -1(%rbp), %esi
-mbt29_rf:        xorl    %r8d, %r8d
-mbt30_rf:        movlpd  .LC1_rf(%rip), %xmm9
-mbt31_rf:        xorl    %edi, %edi
-mbt32_rf:        movlpd  .LC2_rf(%rip), %xmm10
-mbt33_rf:        movlpd  16(%rsp), %xmm11
-mbt34_rf:        movlpd  24(%rsp), %xmm12
-mbt35_rf:        movlpd  8(%rsp), %xmm13
-.L8_rf:
-mbt36_rf:        cvtsi2sdl       %edi, %xmm7
-mbt37_rf:        movslq  %r8d, %rcx
-mbt38_rf:        xorl    %edx, %edx
-mbt39_rf:        addq    %r9, %rcx
-mbt40_rf:        mulsd   (%rsp), %xmm7
-mbt41_rf:        addsd   %xmm13, %xmm7
-.L4_rf:
-mbt42_rf:        cvtsi2sdl       %edx, %xmm4
-mbt43_rf:        testl   %ebx, %ebx
-mbt44_rf:        mulsd   %xmm11, %xmm4
-mbt45_rf:        addsd   %xmm12, %xmm4
-mbt46_rf:        jle     .L9_rf
-mbt47_rf:        movsd   %xmm7, %xmm6
-mbt48_rf:        movsd   %xmm4, %xmm0
-mbt49_rf:        movsd   %xmm15, %xmm3
-mbt50_rf:        jmp     .L7_rf
-.L15_rf:
-mbt51_rf:        addsd   %xmm0, %xmm0
-mbt52_rf:        addsd   %xmm10, %xmm3
-mbt53_rf:        subsd   %xmm2, %xmm1
-mbt54_rf:        mulsd   %xmm0, %xmm6
-mbt55_rf:        comisd  %xmm3, %xmm8
-mbt56_rf:        movsd   %xmm1, %xmm0
-mbt57_rf:        addsd   %xmm7, %xmm6
-mbt58_rf:        addsd   %xmm4, %xmm0
-mbt59_rf:        jbe     .L6_rf
-.L7_rf:
-mbt60_rf:        movsd   %xmm0, %xmm1
-mbt61_rf:        movsd   %xmm6, %xmm2
-mbt62_rf:        mulsd   %xmm0, %xmm1
-mbt63_rf:        mulsd   %xmm6, %xmm2
-mbt64_rf:        movsd   %xmm1, %xmm5
-mbt65_rf:        addsd   %xmm2, %xmm5
-mbt66_rf:        comisd  %xmm9, %xmm5
-mbt67_rf:        jbe     .L15_rf
-.L6_rf:
-mbt68_rf:        divsd   %xmm8, %xmm3
-mbt69_rf:        cmpq    %rdx, %rsi
-mbt70_rf:        mulsd   %xmm14, %xmm3
-mbt71_rf:        cvttsd2sil      %xmm3, %eax
-mbt72_rf:        movb    %al, (%rcx,%rdx)
-mbt73_rf:        leaq    1(%rdx), %rax
-mbt74_rf:        je      .L16_rf
-mbt75_rf:        movq    %rax, %rdx
-mbt76_rf:        jmp     .L4_rf
-.L16_rf:
-mbt77_rf:        incl    %edi
-mbt78_rf:        addl    %ebp, %r8d
-mbt79_rf:        cmpl    %edi, %r12d
-mbt80_rf:        jne     .L8_rf
-.L1_rf:
-mbt81_rf:        addq    $32, %rsp
-mbt82_rf:        movq    %r9, %rax
-mbt83_rf:        popq    %rbx
-mbt84_rf:        popq    %rbp
-mbt85_rf:        popq    %r12
-mbt86_rf:        ret
-.L9_rf:
-mbt87_rf:        movsd   %xmm15, %xmm3
-mbt88_rf:        jmp     .L6_rf
-_Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv_rf:
-mbt89_rf:        pushq   %r15
-mbt90_rf:        pushq   %r14
-mbt91_rf:        pushq   %r13
-mbt92_rf:        pushq   %r12
-mbt93_rf:        pushq   %rbp
-mbt94_rf:        pushq   %rbx
-mbt95_rf:        subq    $104, %rsp
-mbt96_rf:        cmpl    %r9d, %r8d
-mbt97_rf:        movsd   %xmm2, 40(%rsp)
-mbt98_rf:        movsd   %xmm3, 48(%rsp)
-mbt99_rf:        movsd   %xmm5, 32(%rsp)
-mbt100_rf:        movlpd  .LC2_rf(%rip), %xmm8
-mbt101_rf:        jge     .L17_rf
-mbt102_rf:        movsd   %xmm0, %xmm9
-mbt103_rf:        movl    %edi, %r12d
-mbt104_rf:        movl    %edx, %ebp
-mbt105_rf:        movl    %r8d, %r13d
-mbt106_rf:        movq    %rcx, %r14
-.L18_rf:
-mbt107_rf:        leal    1024(%r13), %r10d
-mbt108_rf:        cmpl    %r9d, %r10d
-mbt109_rf:        cmovg   %r9d, %r10d
-mbt110_rf:        cmpl    %r10d, %r13d
-mbt111_rf:        jge     .L19_rf
-mbt112_rf:        testl   %r12d, %r12d
-mbt113_rf:        jle     .L19_rf
-mbt114_rf:        movl    %r13d, %r15d
-mbt115_rf:        imull   %r12d, %r15d
+_Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv.part.0_rf:
+mdb0_rf:        pushq   %r15
+mdb1_rf:        pushq   %r14
+mdb2_rf:        pushq   %r13
+mdb3_rf:        pushq   %r12
+mdb4_rf:        pushq   %rbp
+mdb5_rf:        pushq   %rbx
+mdb6_rf:        subq    $104, %rsp
+mdb7_rf:        testl   %edi, %edi
+mdb8_rf:        movsd   %xmm1, 40(%rsp)
+mdb9_rf:        movl    %esi, 88(%rsp)
+mdb10_rf:        movsd   %xmm2, 48(%rsp)
+mdb11_rf:        movsd   %xmm3, 56(%rsp)
+mdb12_rf:        jle     .L1_rf
+mdb13_rf:        movl    %r8d, %r14d
+mdb14_rf:        movsd   %xmm0, %xmm9
+mdb15_rf:        movlpd  .LC2_rf(%rip), %xmm8
+mdb16_rf:        imull   %edi, %r14d
+mdb17_rf:        movl    %edi, %r12d
+mdb18_rf:        movl    %edx, %ebp
+mdb19_rf:        movq    %rcx, %r15
+mdb20_rf:        movl    %r8d, %r13d
+.L11_rf:
+mdb21_rf:        xorl    %edx, %edx
+mdb22_rf:        xorpd   %xmm10, %xmm10
+mdb23_rf:        leal    32(%rdx), %ebx
+mdb24_rf:        cmpl    %r12d, %ebx
+mdb25_rf:        cmovg   %r12d, %ebx
+mdb26_rf:        cmpl    %ebx, %edx
+mdb27_rf:        jge     .L13_rf
 .L28_rf:
-mbt116_rf:        xorpd   %xmm10, %xmm10
-mbt117_rf:        xorl    %edx, %edx
-.L20_rf:
-mbt118_rf:        leal    512(%rdx), %ebx
-mbt119_rf:        cmpl    %r12d, %ebx
-mbt120_rf:        cmovg   %r12d, %ebx
-mbt121_rf:        cmpl    %ebx, %edx
-mbt122_rf:        jge     .L30_rf
-mbt123_rf:        cvtsi2sdl       %r13d, %xmm12
-mbt124_rf:        movslq  %r15d, %rcx
-mbt125_rf:        cvtsi2sdl       %ebp, %xmm13
-mbt126_rf:        addq    %r14, %rcx
-mbt127_rf:        movlpd  .LC3_rf(%rip), %xmm15
-mbt128_rf:        movlpd  .LC1_rf(%rip), %xmm14
-mbt129_rf:        mulsd   32(%rsp), %xmm12
-mbt130_rf:        addsd   %xmm1, %xmm12
-.L24_rf:
-mbt131_rf:        cvtsi2sdl       %edx, %xmm6
-mbt132_rf:        testl   %ebp, %ebp
-mbt133_rf:        mulsd   %xmm4, %xmm6
-mbt134_rf:        addsd   %xmm9, %xmm6
-mbt135_rf:        jle     .L31_rf
-mbt136_rf:        movsd   %xmm12, %xmm11
-mbt137_rf:        movsd   %xmm6, %xmm0
-mbt138_rf:        movsd   %xmm10, %xmm5
-mbt139_rf:        jmp     .L23_rf
-.L44_rf:
-mbt140_rf:        addsd   %xmm0, %xmm0
-mbt141_rf:        addsd   %xmm8, %xmm5
-mbt142_rf:        subsd   %xmm3, %xmm2
-mbt143_rf:        mulsd   %xmm0, %xmm11
-mbt144_rf:        comisd  %xmm5, %xmm13
-mbt145_rf:        movsd   %xmm2, %xmm0
-mbt146_rf:        addsd   %xmm12, %xmm11
-mbt147_rf:        addsd   %xmm6, %xmm0
-mbt148_rf:        jbe     .L22_rf
-.L23_rf:
-mbt149_rf:        movsd   %xmm0, %xmm2
-mbt150_rf:        movsd   %xmm11, %xmm3
-mbt151_rf:        mulsd   %xmm0, %xmm2
-mbt152_rf:        mulsd   %xmm11, %xmm3
-mbt153_rf:        movsd   %xmm2, %xmm7
-mbt154_rf:        addsd   %xmm3, %xmm7
-mbt155_rf:        comisd  %xmm14, %xmm7
-mbt156_rf:        jbe     .L44_rf
-.L22_rf:
-mbt157_rf:        divsd   %xmm13, %xmm5
-mbt158_rf:        mulsd   %xmm15, %xmm5
-mbt159_rf:        cvttsd2sil      %xmm5, %eax
-mbt160_rf:        movb    %al, (%rcx,%rdx)
-mbt161_rf:        incq    %rdx
-mbt162_rf:        cmpl    %edx, %ebx
-mbt163_rf:        jg      .L24_rf
-mbt164_rf:        cmpl    %ebx, %r12d
-mbt165_rf:        jle     .L25_rf
-.L46_rf:
-mbt166_rf:        jmp     .L45
-mbt167_rf:        nop
-mbt168_rf:        nop
+mdb28_rf:        cvtsi2sdl       %r13d, %xmm12
+mdb29_rf:        movslq  %r14d, %rcx
+mdb30_rf:        cvtsi2sdl       %ebp, %xmm13
+mdb31_rf:        addq    %r15, %rcx
+mdb32_rf:        movlpd  .LC3_rf(%rip), %xmm15
+mdb33_rf:        movlpd  .LC1_rf(%rip), %xmm14
+mdb34_rf:        mulsd   %xmm5, %xmm12
+mdb35_rf:        addsd   40(%rsp), %xmm12
+.L7_rf:
+mdb36_rf:        cvtsi2sdl       %edx, %xmm6
+mdb37_rf:        testl   %ebp, %ebp
+mdb38_rf:        mulsd   %xmm4, %xmm6
+mdb39_rf:        addsd   %xmm9, %xmm6
+mdb40_rf:        jle     .L14_rf
+mdb41_rf:        movsd   %xmm12, %xmm11
+mdb42_rf:        movsd   %xmm6, %xmm0
+mdb43_rf:        movsd   %xmm10, %xmm3
+mdb44_rf:        jmp     .L6_rf
 .L26_rf:
-mbt169_rf:        movslq  %ebx, %rdx
-mbt170_rf:        jmp     .L20_rf
-.L31_rf:
-mbt171_rf:        movsd   %xmm10, %xmm5
-mbt172_rf:        jmp     .L22_rf
+mdb45_rf:        addsd   %xmm0, %xmm0
+mdb46_rf:        addsd   %xmm8, %xmm3
+mdb47_rf:        subsd   %xmm2, %xmm1
+mdb48_rf:        mulsd   %xmm0, %xmm11
+mdb49_rf:        comisd  %xmm3, %xmm13
+mdb50_rf:        movsd   %xmm1, %xmm0
+mdb51_rf:        addsd   %xmm12, %xmm11
+mdb52_rf:        addsd   %xmm6, %xmm0
+mdb53_rf:        jbe     .L5_rf
+.L6_rf:
+mdb54_rf:        movsd   %xmm0, %xmm1
+mdb55_rf:        movsd   %xmm11, %xmm2
+mdb56_rf:        mulsd   %xmm0, %xmm1
+mdb57_rf:        mulsd   %xmm11, %xmm2
+mdb58_rf:        movsd   %xmm1, %xmm7
+mdb59_rf:        addsd   %xmm2, %xmm7
+mdb60_rf:        comisd  %xmm14, %xmm7
+mdb61_rf:        jbe     .L26_rf
+.L5_rf:
+mdb62_rf:        divsd   %xmm13, %xmm3
+mdb63_rf:        mulsd   %xmm15, %xmm3
+mdb64_rf:        cvttsd2sil      %xmm3, %eax
+mdb65_rf:        movb    %al, (%rcx,%rdx)
+mdb66_rf:        incq    %rdx
+mdb67_rf:        cmpl    %edx, %ebx
+mdb68_rf:        jg      .L7_rf
+mdb69_rf:        cmpl    %ebx, %r12d
+mdb70_rf:        jle     .L8_rf
+.L29_rf:
+mdb71_rf:        nop
+mdb72_rf:        nop
+mdb73_rf:        jmp     .L27
+.L9_rf:
+mdb74_rf:        movslq  %ebx, %rdx
+mdb75_rf:        leal    32(%rdx), %ebx
+mdb76_rf:        cmpl    %r12d, %ebx
+mdb77_rf:        cmovg   %r12d, %ebx
+mdb78_rf:        cmpl    %ebx, %edx
+mdb79_rf:        jl      .L28_rf
+.L13_rf:
+mdb80_rf:        movl    %edx, %ebx
+mdb81_rf:        cmpl    %ebx, %r12d
+mdb82_rf:        jg      .L29_rf
+.L8_rf:
+mdb83_rf:        incl    %r13d
+mdb84_rf:        cmpl    %r13d, %r9d
+mdb85_rf:        jle     .L1_rf
+mdb86_rf:        nop
+mdb87_rf:        nop
+mdb88_rf:        jmp     .L10
+.L12_rf:
+mdb89_rf:        addl    %r12d, %r14d
+mdb90_rf:        jmp     .L11_rf
+.L14_rf:
+mdb91_rf:        movsd   %xmm10, %xmm3
+mdb92_rf:        jmp     .L5_rf
+.L27_rf:
+mdb93_rf:        movq    160(%rsp), %rax
+mdb94_rf:        movl    88(%rsp), %esi
+mdb95_rf:        movsd   %xmm9, %xmm0
+mdb96_rf:        movlpd  56(%rsp), %xmm3
+mdb97_rf:        movl    %r12d, 8(%rsp)
+mdb98_rf:        movl    %r13d, %r8d
+mdb99_rf:        movlpd  48(%rsp), %xmm2
+mdb100_rf:        movl    %ebx, (%rsp)
+mdb101_rf:        movq    %r15, %rcx
+mdb102_rf:        movlpd  40(%rsp), %xmm1
+mdb103_rf:        movq    %rax, 16(%rsp)
+mdb104_rf:        movl    %ebp, %edx
+mdb105_rf:        movl    %r12d, %edi
+mdb106_rf:        movsd   %xmm5, 80(%rsp)
+mdb107_rf:        movl    %r9d, 92(%rsp)
+mdb108_rf:        movsd   %xmm4, 72(%rsp)
+mdb109_rf:        movsd   %xmm9, 64(%rsp)
+mdb110_rf:        call    _Z16row_loop_handlerddddiiiPhddiiiiPv
+mdb111_rf:        testl   %eax, %eax
+mdb112_rf:        movl    92(%rsp), %r9d
+mdb113_rf:        xorpd   %xmm10, %xmm10
+mdb114_rf:        movlpd  64(%rsp), %xmm9
+mdb115_rf:        movlpd  72(%rsp), %xmm4
+mdb116_rf:        movlpd  80(%rsp), %xmm5
+mdb117_rf:        movlpd  .LC2_rf(%rip), %xmm8
+mdb118_rf:        je      .L9_rf
+.L1_rf:
+mdb119_rf:        addq    $104, %rsp
+mdb120_rf:        popq    %rbx
+mdb121_rf:        popq    %rbp
+mdb122_rf:        popq    %r12
+mdb123_rf:        popq    %r13
+mdb124_rf:        popq    %r14
+mdb125_rf:        popq    %r15
+mdb126_rf:        ret
+.L10_rf:
+mdb127_rf:        movq    160(%rsp), %rax
+mdb128_rf:        movl    88(%rsp), %esi
+mdb129_rf:        movsd   %xmm9, %xmm0
+mdb130_rf:        movlpd  56(%rsp), %xmm3
+mdb131_rf:        movl    %r13d, %r8d
+mdb132_rf:        movq    %r15, %rcx
+mdb133_rf:        movlpd  48(%rsp), %xmm2
+mdb134_rf:        movl    %ebp, %edx
+mdb135_rf:        movl    %r12d, %edi
+mdb136_rf:        movlpd  40(%rsp), %xmm1
+mdb137_rf:        movq    %rax, (%rsp)
+mdb138_rf:        movsd   %xmm5, 80(%rsp)
+mdb139_rf:        movl    %r9d, 92(%rsp)
+mdb140_rf:        movsd   %xmm4, 72(%rsp)
+mdb141_rf:        movsd   %xmm9, 64(%rsp)
+mdb142_rf:        call    _Z16col_loop_handlerddddiiiPhddiiPv
+mdb143_rf:        testl   %eax, %eax
+mdb144_rf:        movl    92(%rsp), %r9d
+mdb145_rf:        movlpd  64(%rsp), %xmm9
+mdb146_rf:        movlpd  72(%rsp), %xmm4
+mdb147_rf:        movlpd  80(%rsp), %xmm5
+mdb148_rf:        movlpd  .LC2_rf(%rip), %xmm8
+mdb149_rf:        je      .L12_rf
+mdb150_rf:        jmp     .L1_rf
+_Z17mandelbrot_serialddddiii_rf:
+mdb151_rf:        pushq   %r12
+mdb152_rf:        subsd   %xmm0, %xmm2
+mdb153_rf:        movl    %esi, %r12d
+mdb154_rf:        subsd   %xmm1, %xmm3
+mdb155_rf:        pushq   %rbp
+mdb156_rf:        movl    %edi, %ebp
+mdb157_rf:        pushq   %rbx
+mdb158_rf:        movl    %edx, %ebx
+mdb159_rf:        subq    $32, %rsp
+mdb160_rf:        movsd   %xmm0, 24(%rsp)
+mdb161_rf:        cvtsi2sdl       %edi, %xmm0
+mdb162_rf:        imull   %esi, %edi
+mdb163_rf:        movsd   %xmm1, 8(%rsp)
+mdb164_rf:        movslq  %edi, %rdi
+mdb165_rf:        divsd   %xmm0, %xmm2
+mdb166_rf:        cvtsi2sdl       %esi, %xmm0
+mdb167_rf:        divsd   %xmm0, %xmm3
+mdb168_rf:        movsd   %xmm2, 16(%rsp)
+mdb169_rf:        movsd   %xmm3, (%rsp)
+mdb170_rf:        call    malloc
+mdb171_rf:        testl   %r12d, %r12d
+mdb172_rf:        movq    %rax, %r9
+mdb173_rf:        jle     .L30_rf
+mdb174_rf:        testl   %ebp, %ebp
+mdb175_rf:        jle     .L30_rf
+mdb176_rf:        cvtsi2sdl       %ebx, %xmm8
+mdb177_rf:        xorpd   %xmm15, %xmm15
+mdb178_rf:        movlpd  .LC3_rf(%rip), %xmm14
+mdb179_rf:        leal    -1(%rbp), %esi
+mdb180_rf:        xorl    %r8d, %r8d
+mdb181_rf:        movlpd  .LC1_rf(%rip), %xmm9
+mdb182_rf:        xorl    %edi, %edi
+mdb183_rf:        movlpd  .LC2_rf(%rip), %xmm10
+mdb184_rf:        movlpd  16(%rsp), %xmm11
+mdb185_rf:        movlpd  24(%rsp), %xmm12
+mdb186_rf:        movlpd  8(%rsp), %xmm13
+.L37_rf:
+mdb187_rf:        cvtsi2sdl       %edi, %xmm7
+mdb188_rf:        movslq  %r8d, %rcx
+mdb189_rf:        xorl    %edx, %edx
+mdb190_rf:        addq    %r9, %rcx
+mdb191_rf:        mulsd   (%rsp), %xmm7
+mdb192_rf:        addsd   %xmm13, %xmm7
+.L33_rf:
+mdb193_rf:        cvtsi2sdl       %edx, %xmm4
+mdb194_rf:        testl   %ebx, %ebx
+mdb195_rf:        mulsd   %xmm11, %xmm4
+mdb196_rf:        addsd   %xmm12, %xmm4
+mdb197_rf:        jle     .L38_rf
+mdb198_rf:        movsd   %xmm7, %xmm6
+mdb199_rf:        movsd   %xmm4, %xmm0
+mdb200_rf:        movsd   %xmm15, %xmm3
+mdb201_rf:        jmp     .L36_rf
+.L43_rf:
+mdb202_rf:        addsd   %xmm0, %xmm0
+mdb203_rf:        addsd   %xmm10, %xmm3
+mdb204_rf:        subsd   %xmm2, %xmm1
+mdb205_rf:        mulsd   %xmm0, %xmm6
+mdb206_rf:        comisd  %xmm3, %xmm8
+mdb207_rf:        movsd   %xmm1, %xmm0
+mdb208_rf:        addsd   %xmm7, %xmm6
+mdb209_rf:        addsd   %xmm4, %xmm0
+mdb210_rf:        jbe     .L35_rf
+.L36_rf:
+mdb211_rf:        movsd   %xmm0, %xmm1
+mdb212_rf:        movsd   %xmm6, %xmm2
+mdb213_rf:        mulsd   %xmm0, %xmm1
+mdb214_rf:        mulsd   %xmm6, %xmm2
+mdb215_rf:        movsd   %xmm1, %xmm5
+mdb216_rf:        addsd   %xmm2, %xmm5
+mdb217_rf:        comisd  %xmm9, %xmm5
+mdb218_rf:        jbe     .L43_rf
+.L35_rf:
+mdb219_rf:        divsd   %xmm8, %xmm3
+mdb220_rf:        cmpq    %rdx, %rsi
+mdb221_rf:        mulsd   %xmm14, %xmm3
+mdb222_rf:        cvttsd2sil      %xmm3, %eax
+mdb223_rf:        movb    %al, (%rcx,%rdx)
+mdb224_rf:        leaq    1(%rdx), %rax
+mdb225_rf:        je      .L44_rf
+mdb226_rf:        movq    %rax, %rdx
+mdb227_rf:        jmp     .L33_rf
+.L44_rf:
+mdb228_rf:        incl    %edi
+mdb229_rf:        addl    %ebp, %r8d
+mdb230_rf:        cmpl    %edi, %r12d
+mdb231_rf:        jne     .L37_rf
 .L30_rf:
-mbt173_rf:        movl    %edx, %ebx
-mbt174_rf:        cmpl    %ebx, %r12d
-mbt175_rf:        jg      .L46_rf
-.L25_rf:
-mbt176_rf:        incl    %r13d
-mbt177_rf:        addl    %r12d, %r15d
-mbt178_rf:        cmpl    %r10d, %r13d
-mbt179_rf:        jne     .L28_rf
-.L19_rf:
-mbt180_rf:        cmpl    %r13d, %r9d
-mbt181_rf:        jle     .L17_rf
-mbt182_rf:        nop
-mbt183_rf:        nop
-mbt184_rf:        jmp     mbt185
-mbt185_rf:        movq    160(%rsp), %rax
-mbt186_rf:        movsd   %xmm9, %xmm0
-mbt187_rf:        movlpd  32(%rsp), %xmm5
-mbt188_rf:        movlpd  48(%rsp), %xmm3
-mbt189_rf:        movl    %r13d, %r8d
-mbt190_rf:        movq    %r14, %rcx
-mbt191_rf:        movlpd  40(%rsp), %xmm2
-mbt192_rf:        movl    %ebp, %edx
-mbt193_rf:        movl    %r12d, %edi
-mbt194_rf:        movq    %rax, (%rsp)
-mbt195_rf:        movsd   %xmm4, 80(%rsp)
-mbt196_rf:        movl    %r9d, 88(%rsp)
-mbt197_rf:        movsd   %xmm1, 64(%rsp)
-mbt198_rf:        movl    %esi, 76(%rsp)
-mbt199_rf:        movsd   %xmm9, 56(%rsp)
-mbt200_rf:        call    _Z16col_loop_handlerddddiiiPhddiiPv
-mbt201_rf:        testl   %eax, %eax
-mbt202_rf:        movl    76(%rsp), %esi
-mbt203_rf:        movl    88(%rsp), %r9d
-mbt204_rf:        movlpd  56(%rsp), %xmm9
-mbt205_rf:        movlpd  64(%rsp), %xmm1
-mbt206_rf:        movlpd  80(%rsp), %xmm4
-mbt207_rf:        movlpd  .LC2_rf(%rip), %xmm8
-mbt208_rf:        je      .L18_rf
-.L17_rf:
-mbt209_rf:        addq    $104, %rsp
-mbt210_rf:        popq    %rbx
-mbt211_rf:        popq    %rbp
-mbt212_rf:        popq    %r12
-mbt213_rf:        popq    %r13
-mbt214_rf:        popq    %r14
-mbt215_rf:        popq    %r15
-mbt216_rf:        ret
+mdb232_rf:        addq    $32, %rsp
+mdb233_rf:        movq    %r9, %rax
+mdb234_rf:        popq    %rbx
+mdb235_rf:        popq    %rbp
+mdb236_rf:        popq    %r12
+mdb237_rf:        ret
+.L38_rf:
+mdb238_rf:        movsd   %xmm15, %xmm3
+mdb239_rf:        jmp     .L35_rf
+_Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv_rf:
+mdb240_rf:        cmpl    %r9d, %r8d
+mdb241_rf:        jge     .L45_rf
+mdb242_rf:        jmp     _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv.part.0_rf
 .L45_rf:
-mbt217_rf:        movq    160(%rsp), %rax
-mbt218_rf:        movsd   %xmm9, %xmm0
-mbt219_rf:        movlpd  32(%rsp), %xmm5
-mbt220_rf:        movlpd  48(%rsp), %xmm3
-mbt221_rf:        movl    %r12d, 8(%rsp)
-mbt222_rf:        movl    %r13d, %r8d
-mbt223_rf:        movlpd  40(%rsp), %xmm2
-mbt224_rf:        movl    %ebx, (%rsp)
-mbt225_rf:        movq    %r14, %rcx
-mbt226_rf:        movq    %rax, 16(%rsp)
-mbt227_rf:        movl    %ebp, %edx
-mbt228_rf:        movl    %r12d, %edi
-mbt229_rf:        movsd   %xmm4, 80(%rsp)
-mbt230_rf:        movl    %r10d, 92(%rsp)
-mbt231_rf:        movl    %r9d, 88(%rsp)
-mbt232_rf:        movsd   %xmm1, 64(%rsp)
-mbt233_rf:        movl    %esi, 76(%rsp)
-mbt234_rf:        movsd   %xmm9, 56(%rsp)
-mbt235_rf:        call    _Z16row_loop_handlerddddiiiPhddiiiiPv
-mbt236_rf:        testl   %eax, %eax
-mbt237_rf:        movl    76(%rsp), %esi
-mbt238_rf:        xorpd   %xmm10, %xmm10
-mbt239_rf:        movl    88(%rsp), %r9d
-mbt240_rf:        movl    92(%rsp), %r10d
-mbt241_rf:        movlpd  56(%rsp), %xmm9
-mbt242_rf:        movlpd  64(%rsp), %xmm1
-mbt243_rf:        movlpd  80(%rsp), %xmm4
-mbt244_rf:        movlpd  .LC2_rf(%rip), %xmm8
-mbt245_rf:        je      .L26_rf
-mbt246_rf:        addq    $104, %rsp
-mbt247_rf:        popq    %rbx
-mbt248_rf:        popq    %rbp
-mbt249_rf:        popq    %r12
-mbt250_rf:        popq    %r13
-mbt251_rf:        popq    %r14
-mbt252_rf:        popq    %r15
-mbt253_rf:        ret
+mdb243_rf:        rep ret
 _Z29mandelbrot_interrupt_row_loopddddiiiPhddiiiiPv_rf:
-mbt254_rf:        pushq   %r15
-mbt255_rf:        pushq   %r14
-mbt256_rf:        pushq   %r13
-mbt257_rf:        pushq   %r12
-mbt258_rf:        pushq   %rbp
-mbt259_rf:        movl    %edx, %ebp
-mbt260_rf:        pushq   %rbx
-mbt261_rf:        subq    $104, %rsp
-mbt262_rf:        movslq  160(%rsp), %rdx
-mbt263_rf:        movl    168(%rsp), %r12d
-mbt264_rf:        movsd   %xmm1, 32(%rsp)
-mbt265_rf:        movsd   %xmm2, 40(%rsp)
-mbt266_rf:        movsd   %xmm3, 48(%rsp)
-mbt267_rf:        cmpl    %edx, %r12d
-mbt268_rf:        jle     .L47_rf
-mbt269_rf:        movl    %r8d, %r14d
-mbt270_rf:        xorpd   %xmm10, %xmm10
-mbt271_rf:        imull   %edi, %r14d
-mbt272_rf:        movsd   %xmm0, %xmm9
-mbt273_rf:        movlpd  .LC2_rf(%rip), %xmm8
-mbt274_rf:        movl    %edi, %r15d
-mbt275_rf:        movq    %rcx, %r13
-.L49_rf:
-mbt276_rf:        leal    512(%rdx), %ebx
-mbt277_rf:        cmpl    %r12d, %ebx
-mbt278_rf:        cmovg   %r12d, %ebx
-mbt279_rf:        cmpl    %ebx, %edx
-mbt280_rf:        jge     .L56_rf
-mbt281_rf:        cvtsi2sdl       %r8d, %xmm12
-mbt282_rf:        movslq  %r14d, %rcx
-mbt283_rf:        cvtsi2sdl       %ebp, %xmm13
-mbt284_rf:        addq    %r13, %rcx
-mbt285_rf:        movlpd  .LC3_rf(%rip), %xmm15
-mbt286_rf:        movlpd  .LC1_rf(%rip), %xmm14
-mbt287_rf:        mulsd   %xmm5, %xmm12
-mbt288_rf:        addsd   32(%rsp), %xmm12
-.L53_rf:
-mbt289_rf:        cvtsi2sdl       %edx, %xmm6
-mbt290_rf:        testl   %ebp, %ebp
-mbt291_rf:        mulsd   %xmm4, %xmm6
-mbt292_rf:        addsd   %xmm9, %xmm6
-mbt293_rf:        jle     .L57_rf
-mbt294_rf:        movsd   %xmm12, %xmm11
-mbt295_rf:        movsd   %xmm6, %xmm0
-mbt296_rf:        movsd   %xmm10, %xmm3
-mbt297_rf:        jmp     .L52_rf
-.L65_rf:
-mbt298_rf:        addsd   %xmm0, %xmm0
-mbt299_rf:        addsd   %xmm8, %xmm3
-mbt300_rf:        subsd   %xmm2, %xmm1
-mbt301_rf:        mulsd   %xmm0, %xmm11
-mbt302_rf:        comisd  %xmm3, %xmm13
-mbt303_rf:        movsd   %xmm1, %xmm0
-mbt304_rf:        addsd   %xmm12, %xmm11
-mbt305_rf:        addsd   %xmm6, %xmm0
-mbt306_rf:        jbe     .L51_rf
-.L52_rf:
-mbt307_rf:        movsd   %xmm0, %xmm1
-mbt308_rf:        movsd   %xmm11, %xmm2
-mbt309_rf:        mulsd   %xmm0, %xmm1
-mbt310_rf:        mulsd   %xmm11, %xmm2
-mbt311_rf:        movsd   %xmm1, %xmm7
-mbt312_rf:        addsd   %xmm2, %xmm7
-mbt313_rf:        comisd  %xmm14, %xmm7
-mbt314_rf:        jbe     .L65_rf
-.L51_rf:
-mbt315_rf:        divsd   %xmm13, %xmm3
-mbt316_rf:        mulsd   %xmm15, %xmm3
-mbt317_rf:        cvttsd2sil      %xmm3, %eax
-mbt318_rf:        movb    %al, (%rcx,%rdx)
-mbt319_rf:        incq    %rdx
-mbt320_rf:        cmpl    %edx, %ebx
-mbt321_rf:        jg      .L53_rf
-mbt322_rf:        cmpl    %ebx, %r12d
-mbt323_rf:        jle     .L47_rf
+mdb244_rf:        pushq   %r15
+mdb245_rf:        pushq   %r14
+mdb246_rf:        pushq   %r13
+mdb247_rf:        pushq   %r12
+mdb248_rf:        pushq   %rbp
+mdb249_rf:        movl    %edx, %ebp
+mdb250_rf:        pushq   %rbx
+mdb251_rf:        subq    $104, %rsp
+mdb252_rf:        movslq  160(%rsp), %rdx
+mdb253_rf:        movl    168(%rsp), %r12d
+mdb254_rf:        movsd   %xmm1, 32(%rsp)
+mdb255_rf:        movsd   %xmm2, 40(%rsp)
+mdb256_rf:        movsd   %xmm3, 48(%rsp)
+mdb257_rf:        cmpl    %edx, %r12d
+mdb258_rf:        jle     .L47_rf
+mdb259_rf:        leal    32(%rdx), %ebx
+mdb260_rf:        movl    %r8d, %r14d
+mdb261_rf:        movsd   %xmm0, %xmm9
+mdb262_rf:        imull   %edi, %r14d
+mdb263_rf:        xorpd   %xmm10, %xmm10
+mdb264_rf:        cmpl    %r12d, %ebx
+mdb265_rf:        movlpd  .LC2_rf(%rip), %xmm8
+mdb266_rf:        movl    %edi, %r15d
+mdb267_rf:        cmovg   %r12d, %ebx
+mdb268_rf:        movq    %rcx, %r13
+mdb269_rf:        cmpl    %ebx, %edx
+mdb270_rf:        jge     .L56_rf
 .L67_rf:
-mbt324_rf:        nop
-mbt325_rf:        nop
-mbt326_rf:        jmp     .L66
+mdb271_rf:        cvtsi2sdl       %r8d, %xmm12
+mdb272_rf:        movslq  %r14d, %rcx
+mdb273_rf:        cvtsi2sdl       %ebp, %xmm13
+mdb274_rf:        addq    %r13, %rcx
+mdb275_rf:        movlpd  .LC3_rf(%rip), %xmm15
+mdb276_rf:        movlpd  .LC1_rf(%rip), %xmm14
+mdb277_rf:        mulsd   %xmm5, %xmm12
+mdb278_rf:        addsd   32(%rsp), %xmm12
+.L53_rf:
+mdb279_rf:        cvtsi2sdl       %edx, %xmm6
+mdb280_rf:        testl   %ebp, %ebp
+mdb281_rf:        mulsd   %xmm4, %xmm6
+mdb282_rf:        addsd   %xmm9, %xmm6
+mdb283_rf:        jle     .L57_rf
+mdb284_rf:        movsd   %xmm12, %xmm11
+mdb285_rf:        movsd   %xmm6, %xmm0
+mdb286_rf:        movsd   %xmm10, %xmm3
+mdb287_rf:        jmp     .L52_rf
+.L65_rf:
+mdb288_rf:        addsd   %xmm0, %xmm0
+mdb289_rf:        addsd   %xmm8, %xmm3
+mdb290_rf:        subsd   %xmm2, %xmm1
+mdb291_rf:        mulsd   %xmm0, %xmm11
+mdb292_rf:        comisd  %xmm3, %xmm13
+mdb293_rf:        movsd   %xmm1, %xmm0
+mdb294_rf:        addsd   %xmm12, %xmm11
+mdb295_rf:        addsd   %xmm6, %xmm0
+mdb296_rf:        jbe     .L51_rf
+.L52_rf:
+mdb297_rf:        movsd   %xmm0, %xmm1
+mdb298_rf:        movsd   %xmm11, %xmm2
+mdb299_rf:        mulsd   %xmm0, %xmm1
+mdb300_rf:        mulsd   %xmm11, %xmm2
+mdb301_rf:        movsd   %xmm1, %xmm7
+mdb302_rf:        addsd   %xmm2, %xmm7
+mdb303_rf:        comisd  %xmm14, %xmm7
+mdb304_rf:        jbe     .L65_rf
+.L51_rf:
+mdb305_rf:        divsd   %xmm13, %xmm3
+mdb306_rf:        mulsd   %xmm15, %xmm3
+mdb307_rf:        cvttsd2sil      %xmm3, %eax
+mdb308_rf:        movb    %al, (%rcx,%rdx)
+mdb309_rf:        incq    %rdx
+mdb310_rf:        cmpl    %edx, %ebx
+mdb311_rf:        jg      .L53_rf
+mdb312_rf:        cmpl    %ebx, %r12d
+mdb313_rf:        jle     .L47_rf
+.L68_rf:
+mdb314_rf:        nop
+mdb315_rf:        nop
+mdb316_rf:        jmp     .L66
 .L55_rf:
-mbt327_rf:        movslq  %ebx, %rdx
-mbt328_rf:        jmp     .L49_rf
-.L57_rf:
-mbt329_rf:        movsd   %xmm10, %xmm3
-mbt330_rf:        jmp     .L51_rf
+mdb317_rf:        movslq  %ebx, %rdx
+mdb318_rf:        leal    32(%rdx), %ebx
+mdb319_rf:        cmpl    %r12d, %ebx
+mdb320_rf:        cmovg   %r12d, %ebx
+mdb321_rf:        cmpl    %ebx, %edx
+mdb322_rf:        jl      .L67_rf
 .L56_rf:
-mbt331_rf:        movl    %edx, %ebx
-mbt332_rf:        cmpl    %ebx, %r12d
-mbt333_rf:        jg      .L67_rf
+mdb323_rf:        movl    %edx, %ebx
+mdb324_rf:        cmpl    %ebx, %r12d
+mdb325_rf:        jg      .L68_rf
 .L47_rf:
-mbt334_rf:        addq    $104, %rsp
-mbt335_rf:        popq    %rbx
-mbt336_rf:        popq    %rbp
-mbt337_rf:        popq    %r12
-mbt338_rf:        popq    %r13
-mbt339_rf:        popq    %r14
-mbt340_rf:        popq    %r15
-mbt341_rf:        ret
+mdb326_rf:        addq    $104, %rsp
+mdb327_rf:        popq    %rbx
+mdb328_rf:        popq    %rbp
+mdb329_rf:        popq    %r12
+mdb330_rf:        popq    %r13
+mdb331_rf:        popq    %r14
+mdb332_rf:        popq    %r15
+mdb333_rf:        ret
+.L57_rf:
+mdb334_rf:        movsd   %xmm10, %xmm3
+mdb335_rf:        jmp     .L51_rf
 .L66_rf:
-mbt342_rf:        movq    176(%rsp), %rax
-mbt343_rf:        movsd   %xmm9, %xmm0
-mbt344_rf:        movlpd  48(%rsp), %xmm3
-mbt345_rf:        movlpd  40(%rsp), %xmm2
-mbt346_rf:        movl    %r12d, 8(%rsp)
-mbt347_rf:        movq    %r13, %rcx
-mbt348_rf:        movlpd  32(%rsp), %xmm1
-mbt349_rf:        movl    %ebx, (%rsp)
-mbt350_rf:        movl    %ebp, %edx
-mbt351_rf:        movq    %rax, 16(%rsp)
-mbt352_rf:        movl    %r15d, %edi
-mbt353_rf:        movsd   %xmm5, 80(%rsp)
-mbt354_rf:        movsd   %xmm4, 72(%rsp)
-mbt355_rf:        movl    %r9d, 92(%rsp)
-mbt356_rf:        movl    %r8d, 88(%rsp)
-mbt357_rf:        movsd   %xmm9, 56(%rsp)
-mbt358_rf:        movl    %esi, 68(%rsp)
-mbt359_rf:        call    _Z20row_row_loop_handlerddddiiiPhddiiiiPv
-mbt360_rf:        testl   %eax, %eax
-mbt361_rf:        movl    68(%rsp), %esi
-mbt362_rf:        xorpd   %xmm10, %xmm10
-mbt363_rf:        movl    88(%rsp), %r8d
-mbt364_rf:        movl    92(%rsp), %r9d
-mbt365_rf:        movlpd  56(%rsp), %xmm9
-mbt366_rf:        movlpd  72(%rsp), %xmm4
-mbt367_rf:        movlpd  80(%rsp), %xmm5
-mbt368_rf:        movlpd  .LC2_rf(%rip), %xmm8
-mbt369_rf:        je      .L55_rf
-mbt370_rf:        jmp     .L47_rf
+mdb336_rf:        movq    176(%rsp), %rax
+mdb337_rf:        movsd   %xmm9, %xmm0
+mdb338_rf:        movlpd  48(%rsp), %xmm3
+mdb339_rf:        movlpd  40(%rsp), %xmm2
+mdb340_rf:        movl    %r12d, 8(%rsp)
+mdb341_rf:        movq    %r13, %rcx
+mdb342_rf:        movlpd  32(%rsp), %xmm1
+mdb343_rf:        movl    %ebx, (%rsp)
+mdb344_rf:        movl    %ebp, %edx
+mdb345_rf:        movq    %rax, 16(%rsp)
+mdb346_rf:        movl    %r15d, %edi
+mdb347_rf:        movsd   %xmm5, 80(%rsp)
+mdb348_rf:        movsd   %xmm4, 72(%rsp)
+mdb349_rf:        movl    %r9d, 92(%rsp)
+mdb350_rf:        movl    %r8d, 88(%rsp)
+mdb351_rf:        movsd   %xmm9, 56(%rsp)
+mdb352_rf:        movl    %esi, 68(%rsp)
+mdb353_rf:        call    _Z20row_row_loop_handlerddddiiiPhddiiiiPv
+mdb354_rf:        testl   %eax, %eax
+mdb355_rf:        movl    68(%rsp), %esi
+mdb356_rf:        xorpd   %xmm10, %xmm10
+mdb357_rf:        movl    88(%rsp), %r8d
+mdb358_rf:        movl    92(%rsp), %r9d
+mdb359_rf:        movlpd  56(%rsp), %xmm9
+mdb360_rf:        movlpd  72(%rsp), %xmm4
+mdb361_rf:        movlpd  80(%rsp), %xmm5
+mdb362_rf:        movlpd  .LC2_rf(%rip), %xmm8
+mdb363_rf:        je      .L55_rf
+mdb364_rf:        jmp     .L47_rf
 _Z20mandelbrot_interruptddddiiiPv_rf:
-mbt371_rf:        movq    %r12, -24(%rsp)
-mbt372_rf:        movl    %edi, %r12d
-mbt373_rf:        movq    %rbx, -40(%rsp)
-mbt374_rf:        imull   %esi, %edi
-mbt375_rf:        movq    %rbp, -32(%rsp)
-mbt376_rf:        movq    %r13, -16(%rsp)
-mbt377_rf:        movq    %r14, -8(%rsp)
-mbt378_rf:        movl    %esi, %ebp
-mbt379_rf:        subq    $88, %rsp
-mbt380_rf:        movq    %rcx, %rbx
-mbt381_rf:        movsd   %xmm0, 40(%rsp)
-mbt382_rf:        movl    %edx, %r14d
-mbt383_rf:        movslq  %edi, %rdi
-mbt384_rf:        movsd   %xmm1, 32(%rsp)
-mbt385_rf:        movsd   %xmm2, 24(%rsp)
-mbt386_rf:        movsd   %xmm3, 16(%rsp)
-mbt387_rf:        call    malloc
-mbt388_rf:        cvtsi2sdl       %ebp, %xmm7
-mbt389_rf:        movq    %rax, %r13
-mbt390_rf:        cvtsi2sdl       %r12d, %xmm6
-mbt391_rf:        movq    %rbx, (%rsp)
-mbt392_rf:        movlpd  16(%rsp), %xmm3
-mbt393_rf:        movl    %ebp, %r9d
-mbt394_rf:        movq    %rax, %rcx
-mbt395_rf:        movlpd  24(%rsp), %xmm2
-mbt396_rf:        movl    %r14d, %edx
-mbt397_rf:        movl    %ebp, %esi
-mbt398_rf:        movlpd  32(%rsp), %xmm1
-mbt399_rf:        movsd   %xmm3, %xmm5
-mbt400_rf:        movl    %r12d, %edi
-mbt401_rf:        movlpd  40(%rsp), %xmm0
-mbt402_rf:        movsd   %xmm2, %xmm4
-mbt403_rf:        xorl    %r8d, %r8d
-mbt404_rf:        subsd   %xmm1, %xmm5
-mbt405_rf:        subsd   %xmm0, %xmm4
-mbt406_rf:        divsd   %xmm7, %xmm5
-mbt407_rf:        divsd   %xmm6, %xmm4
-mbt408_rf:        call    _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv_rf
-mbt409_rf:        movq    %r13, %rax
-mbt410_rf:        movq    48(%rsp), %rbx
-mbt411_rf:        movq    56(%rsp), %rbp
-mbt412_rf:        movq    64(%rsp), %r12
-mbt413_rf:        movq    72(%rsp), %r13
-mbt414_rf:        movq    80(%rsp), %r14
-mbt415_rf:        addq    $88, %rsp
-mbt416_rf:        ret
+mdb365_rf:        movq    %r12, -16(%rsp)
+mdb366_rf:        movl    %edi, %r12d
+mdb367_rf:        movq    %rbx, -32(%rsp)
+mdb368_rf:        imull   %esi, %edi
+mdb369_rf:        movq    %rbp, -24(%rsp)
+mdb370_rf:        movq    %r14, -8(%rsp)
+mdb371_rf:        movl    %esi, %ebp
+mdb372_rf:        subq    $88, %rsp
+mdb373_rf:        movl    %edx, %r14d
+mdb374_rf:        movsd   %xmm0, 40(%rsp)
+mdb375_rf:        movq    %rcx, %rbx
+mdb376_rf:        movslq  %edi, %rdi
+mdb377_rf:        movsd   %xmm1, 32(%rsp)
+mdb378_rf:        movsd   %xmm2, 24(%rsp)
+mdb379_rf:        movsd   %xmm3, 16(%rsp)
+mdb380_rf:        call    malloc
+mdb381_rf:        testl   %ebp, %ebp
+mdb382_rf:        jle     .L69_rf
+mdb383_rf:        cvtsi2sdl       %ebp, %xmm7
+mdb384_rf:        movq    %rax, %rcx
+mdb385_rf:        movq    %rbx, (%rsp)
+mdb386_rf:        cvtsi2sdl       %r12d, %xmm6
+mdb387_rf:        movl    %ebp, %r9d
+mdb388_rf:        movlpd  16(%rsp), %xmm3
+mdb389_rf:        xorl    %r8d, %r8d
+mdb390_rf:        movl    %r14d, %edx
+mdb391_rf:        movlpd  24(%rsp), %xmm2
+mdb392_rf:        movl    %ebp, %esi
+mdb393_rf:        movl    %r12d, %edi
+mdb394_rf:        movsd   %xmm3, %xmm5
+mdb395_rf:        movlpd  32(%rsp), %xmm1
+mdb396_rf:        movq    %rax, 16(%rsp)
+mdb397_rf:        movsd   %xmm2, %xmm4
+mdb398_rf:        movlpd  40(%rsp), %xmm0
+mdb399_rf:        subsd   %xmm1, %xmm5
+mdb400_rf:        subsd   %xmm0, %xmm4
+mdb401_rf:        divsd   %xmm7, %xmm5
+mdb402_rf:        divsd   %xmm6, %xmm4
+mdb403_rf:        call    _Z29mandelbrot_interrupt_col_loopddddiiiPhddiiPv.part.0_rf
+mdb404_rf:        movq    16(%rsp), %rax
+.L69_rf:
+mdb405_rf:        movq    56(%rsp), %rbx
+mdb406_rf:        movq    64(%rsp), %rbp
+mdb407_rf:        movq    72(%rsp), %r12
+mdb408_rf:        movq    80(%rsp), %r14
+mdb409_rf:        addq    $88, %rsp
+mdb410_rf:        ret
 .LC1_rf:
-mbt417_rf:        .long   0
-mbt418_rf:        .long   1074790400
+mdb411_rf:        .long   0
+mdb412_rf:        .long   1074790400
 .LC2_rf:
-mbt419_rf:        .long   0
-mbt420_rf:        .long   1072693248
+mdb413_rf:        .long   0
+mdb414_rf:        .long   1072693248
 .LC3_rf:
-mbt421_rf:        .long   0
-mbt422_rf:        .long   1081073664
+mdb415_rf:        .long   0
+mdb416_rf:        .long   1081073664
 
