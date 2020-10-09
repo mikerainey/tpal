@@ -25,7 +25,7 @@ void floyd_warshall_serial(int* dist, int vertices) {
 
 #define unlikely(x)    __builtin_expect(!!(x), 0)
 
-#define D 128
+#define D 32
 
 extern volatile 
 int heartbeat;

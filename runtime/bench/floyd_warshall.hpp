@@ -15,8 +15,6 @@
 
 #include "floyd_warshall_rollforward_decls.hpp"
 
-#define MIN(x, y) ((x < y) ? x : y)
-
 #define SUB(array, row_sz, i, j) (array[i * row_sz + j])
 
 #define INF           INT_MAX-1

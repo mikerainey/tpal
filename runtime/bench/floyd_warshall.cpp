@@ -6,7 +6,7 @@ namespace tpalrts {
 using namespace floyd_warshall;
   
 void launch() {
-  vertices = deepsea::cmdline::parse_or_default_int("n", vertices);
+  vertices = deepsea::cmdline::parse_or_default_int("vertices", vertices);
   using microbench_scheduler_type = mcsl::minimal_scheduler<stats, logging, mcsl::minimal_elastic, tpal_worker>;
   auto bench_body_manual = new tpalrts::terminal_fiber<microbench_scheduler_type>();
   launch(bench_pre, bench_body_interrupt, bench_body_software_polling, bench_body_serial,

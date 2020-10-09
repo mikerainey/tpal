@@ -92,15 +92,15 @@ _Z24floyd_warshall_interruptPiiiiPv:
         movq    %r14, %rdi
         cltq
         leaq    (%r14,%rax,4), %r10
-        movl    %r13d, %r14d
         xorl    %eax, %eax
+        movl    %r13d, %r14d
+        leal    32(%rax), %ebx
         movq    %r10, %r13
-.L25:
-        leal    128(%rax), %ebx
         cmpl    %r9d, %ebx
         cmovg   %r9d, %ebx
         cmpl    %ebx, %eax
         jge     .L37
+.L53:
         cmpl    %r12d, %ebp
         setne   %cl
 .L28:
@@ -129,13 +129,33 @@ _Z24floyd_warshall_interruptPiiiiPv:
         jne     .L28
         cmpl    %ebx, %r9d
         jle     .L29
-.L53:
+.L54:
         movl    heartbeat(%rip), %eax
         testl   %eax, %eax
         jne     .L52
 .L30:
         movl    %ebx, %eax
-        jmp     .L25
+        leal    32(%rax), %ebx
+        cmpl    %r9d, %ebx
+        cmovg   %r9d, %ebx
+        cmpl    %ebx, %eax
+        jl      .L53
+.L37:
+        movl    %eax, %ebx
+        cmpl    %ebx, %r9d
+        jg      .L54
+.L29:
+        incl    %ebp
+        movl    %r14d, %r13d
+        movq    %rdi, %r14
+        cmpl    %ebp, %r9d
+        jle     .L32
+        movl    heartbeat(%rip), %eax
+        testl   %eax, %eax
+        jne     .L33
+.L35:
+        addl    %r9d, %r13d
+        jmp     .L34
 .L52:
         movq    56(%rsp), %rax
         movl    52(%rsp), %ecx
@@ -161,22 +181,6 @@ _Z24floyd_warshall_interruptPiiiiPv:
         popq    %r14
         popq    %r15
         ret
-.L37:
-        movl    %eax, %ebx
-        cmpl    %ebx, %r9d
-        jg      .L53
-.L29:
-        incl    %ebp
-        movl    %r14d, %r13d
-        movq    %rdi, %r14
-        cmpl    %ebp, %r9d
-        jle     .L32
-        movl    heartbeat(%rip), %eax
-        testl   %eax, %eax
-        jne     .L33
-.L35:
-        addl    %r9d, %r13d
-        jmp     .L34
 .L33:
         movq    56(%rsp), %rax
         movl    52(%rsp), %ecx
@@ -206,9 +210,9 @@ _Z29floyd_warshall_interrupt_fromPiiiiiiPv:
         subq    $56, %rsp
         cmpl    %r9d, %r8d
         movl    %ecx, 44(%rsp)
-        jge     .L54
+        jge     .L55
         testl   %esi, %esi
-        jle     .L54
+        jle     .L55
         movl    %esi, %r11d
         movl    %r8d, %r14d
         movq    %rdi, %r13
@@ -216,31 +220,31 @@ _Z29floyd_warshall_interrupt_fromPiiiiiiPv:
         movl    %edx, %r12d
         movl    %r8d, %ebp
         imull   %esi, %r14d
-.L64:
+.L65:
         leal    (%r12,%r14), %eax
         movl    %r14d, %r10d
         cltq
         leaq    0(%r13,%rax,4), %r15
         xorl    %eax, %eax
+        leal    32(%rax), %ebx
         movq    %r15, %r14
         movl    %esi, %r15d
-.L57:
-        leal    128(%rax), %ebx
         cmpl    %r15d, %ebx
         cmovg   %r15d, %ebx
         cmpl    %ebx, %eax
-        jge     .L66
+        jge     .L67
+.L83:
         cmpl    %ebp, %r12d
         setne   %sil
-.L60:
+.L61:
         cmpl    %eax, %ebp
         setne   %cl
         cmpl    %eax, %r12d
         setne   %dl
         testb   %dl, %cl
-        je      .L59
+        je      .L60
         testb   %sil, %sil
-        je      .L59
+        je      .L60
         leal    (%r10,%rax), %edx
         leal    (%r11,%rax), %edi
         movslq  %edx, %rdx
@@ -252,20 +256,40 @@ _Z29floyd_warshall_interrupt_fromPiiiiiiPv:
         cmpl    %edi, %edx
         cmovg   %edi, %edx
         movl    %edx, (%rcx)
-.L59:
+.L60:
         incl    %eax
         cmpl    %ebx, %eax
-        jne     .L60
+        jne     .L61
         cmpl    %ebx, %r15d
-        jle     .L61
-.L82:
+        jle     .L62
+.L84:
         movl    heartbeat(%rip), %eax
         testl   %eax, %eax
-        jne     .L81
-.L62:
+        jne     .L82
+.L63:
         movl    %ebx, %eax
-        jmp     .L57
-.L81:
+        leal    32(%rax), %ebx
+        cmpl    %r15d, %ebx
+        cmovg   %r15d, %ebx
+        cmpl    %ebx, %eax
+        jl      .L83
+.L67:
+        movl    %eax, %ebx
+        cmpl    %ebx, %r15d
+        jg      .L84
+.L62:
+        incl    %ebp
+        movl    %r10d, %r14d
+        movl    %r15d, %esi
+        cmpl    %ebp, %r9d
+        je      .L55
+        movl    heartbeat(%rip), %eax
+        testl   %eax, %eax
+        jne     .L64
+.L66:
+        addl    %esi, %r14d
+        jmp     .L65
+.L82:
         movq    112(%rsp), %rax
         movl    44(%rsp), %ecx
         movl    %ebp, %r8d
@@ -283,8 +307,8 @@ _Z29floyd_warshall_interrupt_fromPiiiiiiPv:
         movl    32(%rsp), %r9d
         movl    36(%rsp), %r11d
         movl    40(%rsp), %r10d
-        je      .L62
-.L54:
+        je      .L63
+.L55:
         addq    $56, %rsp
         popq    %rbx
         popq    %rbp
@@ -293,23 +317,7 @@ _Z29floyd_warshall_interrupt_fromPiiiiiiPv:
         popq    %r14
         popq    %r15
         ret
-.L66:
-        movl    %eax, %ebx
-        cmpl    %ebx, %r15d
-        jg      .L82
-.L61:
-        incl    %ebp
-        movl    %r10d, %r14d
-        movl    %r15d, %esi
-        cmpl    %ebp, %r9d
-        je      .L54
-        movl    heartbeat(%rip), %eax
-        testl   %eax, %eax
-        jne     .L63
-.L65:
-        addl    %esi, %r14d
-        jmp     .L64
-.L63:
+.L64:
         movq    112(%rsp), %rax
         movl    44(%rsp), %ecx
         movl    %ebp, %r8d
@@ -324,8 +332,8 @@ _Z29floyd_warshall_interrupt_fromPiiiiiiPv:
         movl    32(%rsp), %esi
         movl    36(%rsp), %r9d
         movl    40(%rsp), %r11d
-        je      .L65
-        jmp     .L54
+        je      .L66
+        jmp     .L55
 _Z27floyd_warshall_interrupt_toPiiiiiiiiPv:
         pushq   %r15
         pushq   %r14
@@ -338,36 +346,36 @@ _Z27floyd_warshall_interrupt_toPiiiiiiiiPv:
         movl    120(%rsp), %r14d
         movl    %ecx, 32(%rsp)
         cmpl    %eax, %r14d
-        jle     .L83
+        jle     .L85
         movl    %r8d, %r15d
         movl    %edx, %ebp
-        movl    %esi, %r10d
+        leal    32(%rax), %ebx
         imull   %esi, %r15d
+        movl    %esi, %r10d
         movq    %rdi, %r13
-        movl    %r8d, %r12d
         imull   %ebp, %r10d
+        movl    %r8d, %r12d
         leal    (%r15,%rdx), %edx
         movslq  %edx, %rdx
         leaq    (%rdi,%rdx,4), %r11
         movq    %r11, %r14
         movl    120(%rsp), %r11d
-.L85:
-        leal    128(%rax), %ebx
         cmpl    %r11d, %ebx
         cmovg   %r11d, %ebx
         cmpl    %ebx, %eax
-        jge     .L91
+        jge     .L93
+.L107:
         cmpl    %ebp, %r12d
         setne   %dil
-.L88:
+.L90:
         cmpl    %eax, %r12d
         setne   %cl
         cmpl    %eax, %ebp
         setne   %dl
         testb   %dl, %cl
-        je      .L87
+        je      .L89
         testb   %dil, %dil
-        je      .L87
+        je      .L89
         leal    (%r15,%rax), %edx
         leal    (%r10,%rax), %r8d
         movslq  %edx, %rdx
@@ -379,20 +387,37 @@ _Z27floyd_warshall_interrupt_toPiiiiiiiiPv:
         cmpl    %r8d, %edx
         cmovg   %r8d, %edx
         movl    %edx, (%rcx)
-.L87:
+.L89:
         incl    %eax
         cmpl    %ebx, %eax
-        jne     .L88
-.L86:
+        jne     .L90
         cmpl    %ebx, %r11d
-        jle     .L83
+        jle     .L85
+.L108:
         movl    heartbeat(%rip), %eax
         testl   %eax, %eax
-        jne     .L103
-.L90:
+        jne     .L106
         movl    %ebx, %eax
-        jmp     .L85
-.L103:
+.L109:
+        leal    32(%rax), %ebx
+        cmpl    %r11d, %ebx
+        cmovg   %r11d, %ebx
+        cmpl    %ebx, %eax
+        jl      .L107
+.L93:
+        movl    %eax, %ebx
+        cmpl    %ebx, %r11d
+        jg      .L108
+.L85:
+        addq    $56, %rsp
+        popq    %rbx
+        popq    %rbp
+        popq    %r12
+        popq    %r13
+        popq    %r14
+        popq    %r15
+        ret
+.L106:
         movq    128(%rsp), %rax
         movl    32(%rsp), %ecx
         movl    %r12d, %r8d
@@ -411,16 +436,6 @@ _Z27floyd_warshall_interrupt_toPiiiiiiiiPv:
         movl    40(%rsp), %r9d
         movl    120(%rsp), %r11d
         movl    44(%rsp), %r10d
-        je      .L90
-.L83:
-        addq    $56, %rsp
-        popq    %rbx
-        popq    %rbp
-        popq    %r12
-        popq    %r13
-        popq    %r14
-        popq    %r15
-        ret
-.L91:
-        movl    %eax, %ebx
-        jmp     .L86
+        jne     .L85
+        movl    %ebx, %eax
+        jmp     .L109
