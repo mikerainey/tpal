@@ -8,7 +8,7 @@ let system = XSys.command_must_succeed_or_virtual
 
 let arg_virtual_run = XCmd.mem_flag "virtual_run"
 let arg_virtual_build = XCmd.mem_flag "virtual_build"
-let arg_problems = XCmd.parse_or_default_list_string "problems" []
+let arg_benchmarks = XCmd.parse_or_default_list_string "benchmarks" []
 let arg_nb_runs = XCmd.parse_or_default_int "runs" 1
 let arg_mode = Mk_runs.mode_from_command_line "mode"
 let arg_skips = XCmd.parse_or_default_list_string "skip" []
@@ -180,6 +180,8 @@ type benchmark_descr = {
     bd_mk_input : Params.t;
   }
 
+let one_billion = 1000 * 1000 * 1000
+
 let mk_spmv_input =
   mk string "matrixgen"
 
@@ -188,31 +190,58 @@ let mk_spmv_inputs =
    mk_spmv_input "bigcols" ++
    mk_spmv_input "arrowhead")
 
+let mk_width=
+  mk int "width"
+
+let mk_height=
+  mk int "height"
+
+let mandelbrot_inputs =
+  [(4192, 4192);]
+
+let mk_mandelbrot_inputs =
+  mk_all (fun (w, h) -> (mk_width w) & (mk_height h)) mandelbrot_inputs
+
+let kmeans_inputs =
+  [1000000;]
+
+let mk_kmeans_inputs =
+  mk_all (mk int "nb_objects") kmeans_inputs
+
+let floyd_warshall_inputs =
+  [1024;]
+
+let mk_floyd_warshall_inputs =
+  mk_all (mk int "vertices") floyd_warshall_inputs
+
+(* WARNING: all inputs specified here must match the specifications in nautilus (benchmark.hpp) *)
 let benchmarks : benchmark_descr list = [
     { bd_problem = "incr_array";
-      bd_mk_input = mk_unit; };
+      bd_mk_input = mk_n one_billion; };
     { bd_problem = "plus_reduce_array";
-      bd_mk_input = mk_unit };
+      bd_mk_input = mk_n one_billion; };
     { bd_problem = "spmv";
       bd_mk_input = mk_spmv_inputs; };
     { bd_problem = "mandelbrot";
-      bd_mk_input = mk_unit; };
+      bd_mk_input = mk_mandelbrot_inputs; };
     { bd_problem = "kmeans";
-      bd_mk_input = mk_unit; };
+      bd_mk_input = mk_kmeans_inputs; };
     { bd_problem = "floyd_warshall";
-      bd_mk_input = mk_unit; };
+      bd_mk_input = mk_floyd_warshall_inputs; };
     { bd_problem = "knapsack";
-      bd_mk_input = mk_unit; }; 
+      bd_mk_input = mk_n 36; }; (*
     { bd_problem = "mergesort";
-      bd_mk_input = mk_unit; };
+      bd_mk_input = mk_unit; }; *)
 
 ]
 
 let benchmarks =
-  if arg_problems = [] then
+  if arg_benchmarks = [] then
     benchmarks
   else
-    List.filter (fun b -> List.exists (fun a -> a = b.bd_problem) arg_problems) benchmarks
+    List.filter (fun b -> List.exists (fun a -> a = b.bd_problem) arg_benchmarks) benchmarks
+
+let nb_benchmarks = List.length benchmarks
 
 let mk_benchmark_descr bd =
     (mk string "benchmark" bd.bd_problem)
@@ -220,7 +249,245 @@ let mk_benchmark_descr bd =
 
 let mk_nautilus_benchmark_descr bd =
     (mk_prog bd.bd_problem)
-  & bd.bd_mk_input
+    & bd.bd_mk_input
+
+(*****************************************************************************)
+(* Common benchmark configuration *)
+
+let mk_proc =
+  mk int "proc" 
+
+let mk_prog_heartbeat =
+  mk_prog prog_heartbeat
+
+let mk_serial_config =
+  mk_scheduler_configuration "serial"
+
+let mk_cilk_config =
+  mk_scheduler_configuration "cilk"
+
+let mk_nopromote_interrupt_config =
+  mk_scheduler_configuration "nopromote_interrupt"
+
+let serial_interrupt_ping_thread = "serial_interrupt_ping_thread"
+let serial_interrupt_papi = "serial_interrupt_papi"
+let serial_interrupt_pthread = "serial_interrupt_pthread"
+
+let serial_interrupts =
+  [serial_interrupt_ping_thread;
+   serial_interrupt_papi;
+   serial_interrupt_pthread;]
+   
+let mk_serial_interrupt_configs =
+  mk_list string "scheduler_configuration" serial_interrupts
+
+let interrupt_ping_thread = "interrupt_ping_thread"
+let interrupt_papi = "interrupt_papi"
+let interrupt_pthread = "interrupt_pthread"
+
+let interrupts =
+  [interrupt_ping_thread;
+   interrupt_papi;
+   interrupt_pthread;]
+
+let mk_interrupt_configs =
+  mk_list string "scheduler_configuration" interrupts
+
+let mk_runs_of_bd proc bd =
+    mk_prog_heartbeat
+  & (mk_benchmark_descr bd)
+  & (mk_proc proc)
+
+let mk_serial_runs_of_bd bd =
+   (mk_runs_of_bd 1 bd)
+  & mk_serial_config
+
+let mk_nopromote_interrupt_runs_of_bd bd =
+   (mk_runs_of_bd 1 bd)
+  & mk_nopromote_interrupt_config
+
+let mk_serial_interrupt_runs_of_bd bd =
+   (mk_runs_of_bd 1 bd)
+  & mk_serial_interrupt_configs
+
+let mk_interrupt_runs_of_bd proc bd =
+   (mk_runs_of_bd proc bd)
+  & mk_interrupt_configs
+
+let mk_cilk_runs_of proc bd =
+    mk_prog_heartbeat
+  & (mk_benchmark_descr bd)
+  & (mk_proc proc)
+  & mk_cilk_config
+
+let kappas_usec = arg_kappas_usec
+                
+let mk_kappas_usec =
+  mk_list int "kappa_usec" kappas_usec
+
+let report_elapsed (ec, et) =
+  if arg_show_execcycles then
+    Printf.sprintf "%.3f (%sm)" et (string_of_millions ec)
+  else
+    Printf.sprintf "%.3f" et
+
+let report_percent_diff (bec,_) (ec,_) =
+  let s = string_of_percentage_change ~show_plus:true bec ec in
+  if arg_show_execcycles then
+    Printf.sprintf "%s (%sm)" s (string_of_millions ec)
+  else
+    s
+
+(*****************************************************************************)
+(** Work-efficiency experiment *)
+
+module ExpWorkEfficiency = struct
+
+let name = "work_efficiency"
+
+let make() =
+  build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
+
+let mk_runs =
+  (mk_all mk_serial_runs_of_bd benchmarks) ++
+  (mk_all mk_nopromote_interrupt_runs_of_bd benchmarks) ++
+  (mk_all (mk_cilk_runs_of 1) benchmarks)
+
+let run () =
+  Mk_runs.(call (run_modes @ [
+                 Output (file_results name);
+                 Timeout arg_seq_timeout;
+                 Args mk_runs]))
+  
+let check = nothing  (* do something here *)
+      
+let plot () =
+  let tex_file = file_tables_src name in
+  let pdf_file = file_tables name in
+  let nb_cols = 3 in
+  let results = Results.from_file (file_results name) in
+  Mk_table.build_table tex_file pdf_file (fun add ->
+      let hdr =
+        let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
+        Printf.sprintf "|l|%s|" ls
+      in
+      add (Latex.tabular_begin hdr);
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "Serial (s)";
+      Mk_table.cell ~escape:true ~last:true add "Heartbeat";
+      add Latex.tabular_newline;
+      ~~ List.iter benchmarks (fun bd ->
+          let get_time mk =
+            let [col] = mk Env.empty in
+            let results = Results.filter col results in
+            (Results.get_mean_of "execcycles" results,
+             Results.get_mean_of "exectime_via_cycles" results)
+          in
+          let serial_elapsed =
+            get_time (mk_serial_runs_of_bd bd)
+          in
+          let heartbeat_elapsed =
+            get_time (mk_nopromote_interrupt_runs_of_bd bd)
+          in
+          Mk_table.cell ~escape:true ~last:false add bd.bd_problem;
+          Mk_table.cell ~escape:true ~last:false add (report_elapsed serial_elapsed);
+          Mk_table.cell ~escape:true ~last:true add (report_percent_diff serial_elapsed heartbeat_elapsed);
+          add Latex.tabular_newline
+        );
+      add Latex.tabular_end
+    );
+  ()
+
+let all () = select make run check plot
+
+end
+
+(*****************************************************************************)
+(** Linux work-efficiency experiment *)
+
+module ExpLinuxWorkEfficiency = struct
+
+let name = "linux_work_efficiency"
+
+let make() =
+  build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
+
+let mk_runs =
+  (mk_all mk_serial_interrupt_runs_of_bd benchmarks) ++
+  (mk_all (mk_interrupt_runs_of_bd 1) benchmarks)
+
+let run () =
+  Mk_runs.(call (run_modes @ [
+                 Output (file_results name);
+                 Timeout arg_seq_timeout;
+                 Args mk_runs]))
+  
+let check = nothing  (* do something here *)
+      
+let plot () = ()
+
+let all () = select make run check plot
+
+end
+
+(*****************************************************************************)
+(** Linux parallel experiment *)
+
+module ExpLinuxParallel = struct
+
+let name = "linux_work_parallel"
+
+let mk_ext e = mk string "ext" e
+
+let mk_ext_sta = mk_ext "sta"
+let mk_ext_opt = mk_ext "opt"
+
+let make() =
+  build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
+
+let mk_runs =
+  (mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks) & (mk_ext_sta ++ mk_ext_opt)
+
+let run () =
+  Mk_runs.(call (run_modes @ [
+                 Output (file_results name);
+                 Timeout arg_seq_timeout;
+                 Args mk_runs]))
+  
+let check = nothing  (* do something here *)
+      
+let plot () = ()
+
+let all () = select make run check plot
+
+end
+
+(*****************************************************************************)
+(** Nautilus experiment *)
+
+module ExpNautilus = struct
+
+let name = "nautilus"
+
+let make() =
+  build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
+
+let mk_runs =
+  (mk_all mk_serial_interrupt_runs_of_bd benchmarks)
+
+let run () =
+  Mk_runs.(call (run_modes @ [
+                 Output (file_results name);
+                 Timeout arg_seq_timeout;
+                 Args mk_runs]))
+  
+let check = nothing  (* do something here *)
+      
+let plot () = ()
+
+let all () = select make run check plot
+
+end
 
 (*****************************************************************************)
 (** Feasibility experiment *)
@@ -229,10 +496,6 @@ module ExpFeasibility = struct
 
 let name_of bd = "feasibility_" ^ bd.bd_problem
          
-let kappas_usec = arg_kappas_usec
-                
-let mk_kappas_usec =
-  mk_list int "kappa_usec" kappas_usec
 
 let mk_hardware_interrupt_config_of hwi kappa =
   mk_scheduler_configuration hwi & mk int "kappa_usec" kappa
@@ -388,6 +651,8 @@ let plot_for bd =
           Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" (Printf.sprintf "$P=%d$" proc))
         );
       add Latex.tabular_newline;
+
+      (*      let inputs = values_of_keys_in_params bd.bd_mk_input [pretty_input] in*)
 
       let get_time file_results_name mk_bench =
         let f = (file_results file_results_name) in
@@ -597,7 +862,7 @@ let plot_for stat bd =
   let tex_file = file_tables_src name in
   let pdf_file = file_tables name in
   let nb_procs = List.length procs in
-  let nb_kappas = List.length EF.kappas_usec in
+  let nb_kappas = List.length kappas_usec in
   let nb_cols = nb_procs * nb_kappas in
   Mk_table.build_table tex_file pdf_file (fun add ->
       let hdr =
@@ -640,7 +905,7 @@ let plot_for stat bd =
       print_csv " ";
       Mk_table.cell ~escape:true ~last:false add "$H$";
       ~~ List.iteri procs (fun proc_i proc ->
-          ~~ List.iteri EF.kappas_usec (fun kappa_i kappa ->
+          ~~ List.iteri kappas_usec (fun kappa_i kappa ->
               let last = proc_i+1 = nb_procs && kappa_i+1 = nb_kappas in
               let s = Printf.sprintf "$%d\mu s$" kappa in
               print_csv (Printf.sprintf "%d" kappa);
@@ -654,7 +919,7 @@ let plot_for stat bd =
           print_csv hwi_pretty;
           Mk_table.cell ~escape:true ~last:false add hwi_pretty;
         ~~ List.iteri procs (fun proc_i proc ->
-            ~~ List.iteri EF.kappas_usec (fun kappa_i kappa ->
+            ~~ List.iteri kappas_usec (fun kappa_i kappa ->
                 let par_baseline_stat = par_baseline_stat_of proc in
                 let heartbeat_stat =
                   let mk_config = EF.mk_hardware_interrupt_config_of hwi kappa in
@@ -686,8 +951,13 @@ end
 let _ =
   let arg_actions = XCmd.get_others() in
   let bindings = [
+      "work_efficiency", ExpWorkEfficiency.all;
+      "linux_work_efficiency", ExpLinuxWorkEfficiency.all;
+      "linux_parallel", ExpLinuxParallel.all;
+      "nautilus", ExpNautilus.all;
+      (*
       "feasibility", ExpFeasibility.all;
-      "stats", ExpStats.all;      
+      "stats", ExpStats.all;       *)
   ]
   in
   Pbench.execute_from_only_skip arg_actions [] bindings;
