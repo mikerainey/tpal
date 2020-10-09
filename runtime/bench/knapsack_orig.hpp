@@ -69,6 +69,12 @@ void sdelete(stack_type& s);
 #define sload(sp, off, ty) \
   sloadb(sp, (off) * sizeof(tpalrts::word_type), ty)
 
+#define sstorelabel(sp, off, lab) \
+  sstore(sp, off, void*, &&lab)
+
+#define sloadlabel(sp, off) \
+  *sload(sp, off, void*)
+
 
 #define prmhdoff 0
 #define prmtloff 1
@@ -154,7 +160,7 @@ int knapsack_serial(int& best_so_far, struct item *e, int c, int n, int v, tpalr
     goto retk;
   }
   salloc(sp, 4);
-  sstore(sp, 0, void*, &&branch1);
+  sstorelabel(sp, 0, branch1);
   sstore(sp, 1, struct item*, e + 1);
   {
     auto p = std::make_pair(c - e->weight, n - 1);
@@ -169,7 +175,7 @@ int knapsack_serial(int& best_so_far, struct item *e, int c, int n, int v, tpalr
   e = sload(sp, 1, struct item*);
   std::tie(c, n) = sload(sp, 2, pair_ints_type);
   v = sload(sp, 3, int);
-  sstore(sp, 0, void*, &&branch2);
+  sstorelabel(sp, 0, branch2);
   sstore(sp, 1, int, best); 
   goto loop;
 
@@ -186,7 +192,7 @@ int knapsack_serial(int& best_so_far, struct item *e, int c, int n, int v, tpalr
   goto retk;
   
  retk:
-  goto *sload(sp, 0, void*);
+  goto sloadlabel(sp, 0);
   
  exitk:
   sfree(sp, 1);
@@ -233,7 +239,8 @@ void knapsack_interrupt(std::atomic<int>& best_so_far, struct item *e, int c, in
   
  loop:
   if (unlikely(heartbeat)) {
-    knapsack_handler(best_so_far, e, c, n, v, dst, s, sp, prmhd, prmtl, __entry, __retk, __joink, __clonek, pc, best, p);
+    knapsack_handler(best_so_far, e, c, n, v, dst, s, sp, prmhd, prmtl,
+		     __entry, __retk, __joink, __clonek, pc, best, p);
   }
   if (c < 0) {
     best = INT_MIN;
@@ -249,7 +256,7 @@ void knapsack_interrupt(std::atomic<int>& best_so_far, struct item *e, int c, in
     goto retk;
   }
   salloc(sp, 6);
-  sstore(sp, 0, void*, &&branch1);
+  sstorelabel(sp, 0, branch1);
   sstore(sp, 1, struct item*, e + 1);
   {
     auto p = std::make_pair(c - e->weight, n - 1);
@@ -265,7 +272,7 @@ void knapsack_interrupt(std::atomic<int>& best_so_far, struct item *e, int c, in
   e = sload(sp, 1, struct item*);
   std::tie(c, n) = sload(sp, 2, pair_ints_type);
   v = sload(sp, 3, int);
-  sstore(sp, 0, void*, &&branch2);
+  sstorelabel(sp, 0, branch2);
   sstore(sp, 1, int, best);
   prmpop(sp, 4, prmtl, prmhd);
   goto loop;
@@ -283,17 +290,17 @@ void knapsack_interrupt(std::atomic<int>& best_so_far, struct item *e, int c, in
   goto retk;
   
  retk:
-  goto *sload(sp, 0, void*);
+  goto sloadlabel(sp, 0);
 
  joink:
-  sstore(sp, 0, void*, &&clonek);
+  sstorelabel(sp, 0, clonek);
   sfree(sp, 1);
   *dst = best;
   return;
 
  clonek:
   salloc(sp, 1);
-  sstore(sp, 0, void*, &&joink);
+  sstorelabel(sp, 0, joink);
   goto loop;
 
  exitk:

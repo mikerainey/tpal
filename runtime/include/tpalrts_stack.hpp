@@ -111,6 +111,12 @@ void sdelete(stack_type& s) {
 #define sload(sp, off, ty) \
   sloadb(sp, (off) * sizeof(tpalrts::word_type), ty)
 
+#define sstorelabel(sp, off, lab) \
+  sstore(sp, off, void*, &&lab)
+
+#define sloadlabel(sp, off) \
+  *sload(sp, off, void*)
+
 
 #define prmhdoff 0
 #define prmtloff 1
