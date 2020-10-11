@@ -27,6 +27,12 @@ void cilk_set_nb_workers(int nb_workers) {
   }
 #endif
 }
+
+#ifdef CILK_RUNTIME_WITH_STATS
+void trigger_cilk() {
+  printf("");
+}
+#endif
   
 template <typename Scheduler, typename Worker, typename Interrupt,
           typename Bench_pre, typename Bench_post, typename Fiber_body>
@@ -149,13 +155,20 @@ void launch2(size_t nb_workers,
     launch0<microbench_scheduler_type, tpal_worker, mcsl::minimal_interrupt, Bench_pre, Bench_post, Bench_body_manual>(nb_workers, bench_pre, bench_post, bench_body_manual);
   });
   d.add("cilk", [&] {
-    cilk_set_nb_workers(nb_workers);
     bench_pre(nullptr);
+#ifdef CILK_RUNTIME_WITH_STATS
+    cilk_spawn trigger_cilk();
+    cilk_sync;
+  __cilkg_take_snapshot_for_stats();
+#endif
     start_time = mcsl::clock::now();
     start_cycle = mcsl::cycles::now();
     bench_body_cilk();
     elapsed_cycles = mcsl::cycles::since(start_cycle);
     elapsed_time = mcsl::clock::since(start_time);
+#ifdef CILK_RUNTIME_WITH_STATS
+    __cilkg_dump_encore_stats_to_stderr();
+#endif
     printf("execcycles %lu\n", elapsed_cycles);
     auto et = mcsl::seconds_of(mcsl::load_cpu_frequency_khz(), elapsed_cycles);
     printf("exectime_via_cycles %lu.%03lu\n", et.seconds, et.milliseconds);
@@ -183,6 +196,7 @@ void launch(const Bench_pre& bench_pre,
             Bench_body_manual bench_body_manual,
             const Bench_body_cilk& bench_body_cilk) {
   mcsl::initialize_machine();
+  cilk_set_nb_workers(mcsl::nb_workers);
   {
     auto cpu_freq_khz = mcsl::load_cpu_frequency_khz();
     printf("cpu_freq_khz %lu\n", cpu_freq_khz);

@@ -18,6 +18,12 @@ let mcslSrc = pkgs.fetchFromGitHub {
       rev    = "1c90259b594b6612bc6b9973564e89c297ad17b3";
       sha256 = "1440zavl3v74hcyg49h026vghhj1rv5lhfsb5rgfzmndfynzz7z0";
     };
+    cilkRtsSrc = pkgs.fetchFromGitHub {
+      owner  = "deepsea-inria";
+      repo   = "cilk-plus-rts-with-stats";
+      rev    = "d143c31554bc9c122d168ec22ed65e7941d4c91d";
+      sha256 = "123bsrqcp6kq6xz2rn4bvj2nifflfci7rd9ij82fpi2x6xvvsmsb";
+    };
     tpalrtsSrc = ../../.;
 in
 
@@ -26,6 +32,8 @@ in
   mcsl = "${mcslSrc}/nix/default.nix";
   
   cmdline = "${cmdlineSrc}/script/default.nix";
+
+  cilk-plus-rts-with-stats = import "${cilkRtsSrc}/default.nix" { };
 
   tpalrtsSrc = tpalrtsSrc;
 

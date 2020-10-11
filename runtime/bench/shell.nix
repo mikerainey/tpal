@@ -7,6 +7,7 @@
   hwloc ? pkgs.hwloc,
   gperftools ? pkgs.gperftools,
   papi ? pkgs.papi,
+  cilk-plus-rts-with-stats ? sources.cilk-plus-rts-with-stats,
   jemalloc ? pkgs.jemalloc450 # use jemalloc, unless this parameter equals null (for now, use v4.5.0, because 5.1.0 has a deadlock bug)
   # pviewSrc ? pkgs.fetchFromGitHub {
   #   owner  = "deepsea-inria";
@@ -40,6 +41,8 @@ stdenv.mkDerivation rec {
     export PAPI_PREFIX="${papi}"
     export HWLOC_INCLUDE_PREFIX="-DMCSL_HAVE_HWLOC -I${hwloc.dev}/include/"
     export HWLOC_LIBRARY_PREFIX="-L${hwloc.lib}/lib/ -lhwloc"
+    export CILK_EXTRAS_PREFIX="-L ${cilk-plus-rts-with-stats}/lib -I ${cilk-plus-rts-with-stats}/include -ldl -DCILK_RUNTIME_WITH_STATS"
+    export LD_LIBRARY_PATH=${cilk-plus-rts-with-stats}/lib:$LD_LIBRARY_PATH
     export PATH=${gcc}/bin/:$PATH
   '';
   #    ${pviewExport}

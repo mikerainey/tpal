@@ -73,6 +73,12 @@ let build path bs is_virtual =
 let file_results exp_name =
   Printf.sprintf "%s/results_%s.txt" arg_results_path exp_name
 
+let file_results_cilk exp_name =
+  Printf.sprintf "%s/results_%s_cilk.txt" arg_results_path exp_name
+
+let file_results_sta exp_name =
+  Printf.sprintf "%s/results_%s_sta.txt" arg_results_path exp_name
+
 let file_plots exp_name =
   Printf.sprintf "plots_%s.pdf" exp_name
 
@@ -144,7 +150,14 @@ let string_of_percentage_change ?(show_plus=false) vold vnew =
   string_of_percentage ~show_plus:show_plus (vnew /. vold -. 1.0)
 
 let string_of_millions v =
-   let x = v /. 1000000. in
+   let x = v /. (1000. *. 1000.) in
+     if x >= 10. then sprintf "%.0f" x
+     else if x >= 1. then sprintf "%.1f" x
+     else if x >= 0.1 then sprintf "%.2f" x
+     else sprintf "%.3f" x 
+
+let string_of_billions v =
+   let x = v /. (1000. *. 1000. *. 1000.) in
      if x >= 10. then sprintf "%.0f" x
      else if x >= 1. then sprintf "%.1f" x
      else if x >= 0.1 then sprintf "%.2f" x
@@ -170,7 +183,7 @@ let mk_pretty_name = mk string pretty_name
 
 let mk_n n =
     (mk int "n" n)
-  & (mk_pretty_name (Printf.sprintf "$%s \\cdot 10^6$ items" (string_of_millions (float_of_int n))))
+  & (mk_pretty_name (Printf.sprintf "$%s \\cdot 10^9$ items" (string_of_billions (float_of_int n))))
 
 let mk_infile f =
   mk string "infile" f
@@ -259,8 +272,10 @@ let mk_serial_config =
 let mk_cilk_config =
   mk_scheduler_configuration "cilk"
 
+let nopromote_interrupt = "nopromote_interrupt"
+
 let mk_nopromote_interrupt_config =
-  mk_scheduler_configuration "nopromote_interrupt"
+  mk_scheduler_configuration nopromote_interrupt
 
 let serial_interrupt_ping_thread = "serial_interrupt_ping_thread"
 let serial_interrupt_papi = "serial_interrupt_papi"
@@ -269,7 +284,7 @@ let serial_interrupt_pthread = "serial_interrupt_pthread"
 let serial_interrupts =
   [serial_interrupt_ping_thread;
    serial_interrupt_papi;
-   serial_interrupt_pthread;]
+   (*serial_interrupt_pthread;*)]
    
 let mk_serial_interrupt_configs =
   mk_list string scheduler_configuration serial_interrupts
@@ -281,7 +296,7 @@ let interrupt_pthread = "interrupt_pthread"
 let interrupts =
   [interrupt_ping_thread;
    interrupt_papi;
-   interrupt_pthread;]
+   (*interrupt_pthread;*)]
 
 let mk_interrupt_configs =
   mk_list string scheduler_configuration interrupts
@@ -290,11 +305,15 @@ let pretty_name_of_interrupt_config n =
   if n = interrupt_ping_thread then "INT-PingThread"
   else if n = interrupt_pthread then "INT-Pthread"
   else if n = interrupt_papi then "INT-Papi"
-  else if n = serial_interrupt_ping_thread then "INT-PingThread (Serial)"
-  else if n = serial_interrupt_pthread then "INT-Pthread (Serial)"
-  else if n = serial_interrupt_papi then "INT-Papi (Serial)"
+  else if n = serial_interrupt_ping_thread then "INT-PingThread"
+  else if n = serial_interrupt_pthread then "INT-Pthread"
+  else if n = serial_interrupt_papi then "INT-Papi"
   else if n = "nopromote_interrupt" then "INT-NP"
   else "<unknown>"
+
+let is_only_serial s =
+  (s = serial_interrupt_ping_thread || s = serial_interrupt_pthread || s = serial_interrupt_papi ||
+   s = nopromote_interrupt)
 
 let mk_runs_of_bd proc bd =
     mk_prog_heartbeat
@@ -317,7 +336,7 @@ let mk_interrupt_runs_of_bd proc bd =
    (mk_runs_of_bd proc bd)
   & mk_interrupt_configs
 
-let mk_cilk_runs_of proc bd =
+let mk_cilk_runs_of_bd proc bd =
     mk_prog_heartbeat
   & (mk_benchmark_descr bd)
   & (mk_proc proc)
@@ -339,7 +358,10 @@ let report_elapsed (ec, et) =
   else
     Printf.sprintf "%.3f" et
 
-let report_percent_diff (bec,_) (ec,_) =
+let report_percent_diff b r =
+  string_of_percentage_change ~show_plus:true b r
+
+let report_percent_diff_of_elapsed (bec,_) (ec,_) =
   let s = string_of_percentage_change ~show_plus:true bec ec in
   if arg_show_execcycles then
     Printf.sprintf "%s (%sm)" s (string_of_millions ec)
@@ -359,7 +381,7 @@ let make() =
 let mk_runs =
   (mk_all mk_serial_runs_of_bd benchmarks) ++
   (mk_all mk_nopromote_interrupt_runs_of_bd benchmarks) ++
-  (mk_all (mk_cilk_runs_of 1) benchmarks)
+  (mk_all (mk_cilk_runs_of_bd 1) benchmarks)
 
 let run () =
   Mk_runs.(call (run_modes @ [
@@ -377,7 +399,7 @@ let plot () =
   Mk_table.build_table tex_file pdf_file (fun add ->
       let hdr =
         let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
-        Printf.sprintf "|l|%s|" ls
+        Printf.sprintf "|l||%s|" ls
       in
       add (Latex.tabular_begin hdr);
       Mk_table.cell ~escape:true ~last:false add "";
@@ -404,7 +426,7 @@ let plot () =
             in
             Mk_table.cell ~escape:true ~last:false add row_label;
             Mk_table.cell ~escape:true ~last:false add (report_elapsed serial_elapsed);
-            Mk_table.cell ~escape:true ~last:true add (report_percent_diff serial_elapsed heartbeat_elapsed);
+            Mk_table.cell ~escape:true ~last:true add (report_percent_diff_of_elapsed serial_elapsed heartbeat_elapsed);
             add Latex.tabular_newline));
       add Latex.tabular_end
     );
@@ -442,25 +464,47 @@ let plot () =
   let results = Results.from_file (file_results name) in
   let results_work_efficiency = Results.from_file (file_results ExpWorkEfficiency.name) in
   let mk_scfgs = mk_list string scheduler_configuration (List.append serial_interrupts interrupts) in
-  let scfgs = values_of_keys_in_params mk_scfgs [scheduler_configuration;] in
+  let scfgs = List.flatten (values_of_keys_in_params mk_scfgs [scheduler_configuration;]) in
+  let (serial_scfgs, parallel_scfgs) = List.partition is_only_serial scfgs in
+  let scfgs = List.flatten [parallel_scfgs; serial_scfgs;] in
+  let nb_serial_scfgs = List.length serial_scfgs in
+  let nb_parallel_scfgs = List.length parallel_scfgs in
   let nb_scfgs = List.length scfgs in
   let nb_kappas = List.length kappas_usec in
-  let nb_cols = 2 + (nb_scfgs * nb_kappas) in
+  let nb_cols = 1 + (nb_scfgs * nb_kappas) in
   Mk_table.build_table tex_file pdf_file (fun add ->
       let hdr =
         let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
-        Printf.sprintf "|l|%s|" ls
+        Printf.sprintf "|l|c||c|%s|" ls
       in
       add (Latex.tabular_begin hdr);
+
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "Binary";
+      Mk_table.cell ~escape:true ~last:false add (Latex.tabular_multicol (nb_parallel_scfgs * nb_kappas) "c|" "Heartbeat");
+      Mk_table.cell ~escape:true ~last:true add (Latex.tabular_multicol (nb_parallel_scfgs * nb_kappas) "c|" "Serial");
+      add Latex.tabular_newline;
+
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "";
+      ~~ List.iteri scfgs (fun scfg_i scfg ->
+          let pretty_scfg = pretty_name_of_interrupt_config scfg in
+          let last = scfg_i+1 = nb_scfgs in
+          Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" pretty_scfg));
+      add Latex.tabular_newline;
+
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "Serial (s)";
-      ~~ List.iteri scfgs (fun scfg_i [scfg] ->
+      Mk_table.cell ~escape:true ~last:false add "$H$";
+      ~~ List.iteri scfgs (fun scfg_i scfg ->
           ~~ List.iteri kappas_usec (fun kappa_i kappa ->
               let last = scfg_i+1 = nb_scfgs && kappa_i+1 = nb_kappas in
-              let pretty_scfg = pretty_name_of_interrupt_config scfg in
               let pretty_kappa = Printf.sprintf "$%d\mu s$" kappa in
-              Mk_table.cell ~escape:true ~last:last add (Printf.sprintf "%s %s" pretty_scfg pretty_kappa)));
+              Mk_table.cell ~escape:true ~last:last add (Printf.sprintf "%s" pretty_kappa)));
       add Latex.tabular_newline;
+      
       ~~ List.iter benchmarks (fun bd ->
           let inputs = values_of_keys_in_params bd.bd_mk_input [pretty_name;] in
           ~~ List.iter inputs (fun [input] ->
@@ -478,18 +522,17 @@ let plot () =
               in
               Mk_table.cell ~escape:true ~last:false add row_label;
               Mk_table.cell ~escape:true ~last:false add (report_elapsed serial_elapsed);
-              ~~ List.iteri scfgs (fun scfg_i [scfg] ->
+              Mk_table.cell ~escape:true ~last:false add "";
+              ~~ List.iteri scfgs (fun scfg_i scfg ->
                   ~~ List.iteri kappas_usec (fun kappa_i kappa ->
                       let mk_scfg = (mk string scheduler_configuration scfg) &
                                       (mk int "kappa_usec" kappa) in
-                      let serial_interrupt_elapsed =
+                      let heartbeat_elapsed =
                         get_time results ((mk_runs_of_bd 1 bd) & mk_scfg)
                       in
-                      let heartbeat_elapsed =
-                        get_time results (mk_runs_of_bd 1 bd)
-                      in
+                      let diff = report_percent_diff_of_elapsed serial_elapsed heartbeat_elapsed in
                       let last = scfg_i+1 = nb_scfgs && kappa_i+1 = nb_kappas in
-                      Mk_table.cell ~escape:true ~last:last add (report_percent_diff serial_elapsed heartbeat_elapsed)));
+                      Mk_table.cell ~escape:true ~last:last add diff));
             add Latex.tabular_newline));
       add Latex.tabular_end
     );
@@ -504,23 +547,116 @@ end
 
 module ExpLinuxParallel = struct
 
-let name = "linux_work_parallel"
+let name = "linux_parallel"
 
 let make() =
   build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
 
 let mk_runs =
-  (mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks) & (mk_ext_sta ++ mk_ext_opt)
+  (mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks)
 
-let run () =
+let mk_runs_sta =
+  (mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks) & mk_ext_sta
+
+let mk_runs_cilk =
+  (mk_all (mk_cilk_runs_of_bd arg_proc) benchmarks)
+
+let run () = (
   Mk_runs.(call (run_modes @ [
                  Output (file_results name);
-                 Timeout arg_seq_timeout;
-                 Args mk_runs]))
+                 Timeout arg_par_timeout;
+                 Args mk_runs]));
+  Mk_runs.(call (run_modes @ [
+                 Output (file_results_sta name);
+                 Timeout arg_par_timeout;
+                 Args mk_runs_sta]));
+  Mk_runs.(call (run_modes @ [
+                 Output (file_results_cilk name);
+                 Timeout arg_par_timeout;
+                 Args mk_runs_cilk])))
   
 let check = nothing  (* do something here *)
       
-let plot () = ()
+let plot () =
+  let tex_file = file_tables_src name in
+  let pdf_file = file_tables name in
+  let results = Results.from_file (file_results name) in
+  let results_cilk = Results.from_file (file_results_cilk name) in
+  let results_sta = Results.from_file (file_results_sta name) in
+  let mk_scfgs = mk_list string scheduler_configuration interrupts in
+  let scfgs = List.flatten (values_of_keys_in_params mk_scfgs [scheduler_configuration;]) in
+  let nb_scfgs = List.length scfgs in
+  let nb_cols = 1 + (3 * nb_scfgs) in
+  Mk_table.build_table tex_file pdf_file (fun add ->
+      let hdr =
+        let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
+        Printf.sprintf "|l||%s|" ls
+      in
+      add (Latex.tabular_begin hdr);
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "Cilk (s)";
+      ~~ List.iteri scfgs (fun scfg_i scfg ->
+          let pretty_scfg = pretty_name_of_interrupt_config scfg in
+          let last = scfg_i+1 = nb_scfgs in
+          Mk_table.cell ~escape:true ~last:false add pretty_scfg;
+          Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol 2 "c|" (Printf.sprintf "%s / Cilk" pretty_scfg)));
+      add Latex.tabular_newline;
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "";
+      ~~ List.iteri scfgs (fun scfg_i scfg ->
+          let last = scfg_i+1 = nb_scfgs in
+          Mk_table.cell ~escape:true ~last:false add "";
+          Mk_table.cell ~escape:true ~last:false add "Idle time";
+          Mk_table.cell ~escape:true ~last:last add "Nb. tasks");
+      add Latex.tabular_newline;
+      ~~ List.iter benchmarks (fun bd ->
+          let inputs = values_of_keys_in_params bd.bd_mk_input [pretty_name;] in
+          ~~ List.iter inputs (fun [input] ->
+            let get_time results mk =
+              let [col] = mk Env.empty in
+              let results = Results.filter col results in
+              (Results.get_mean_of "execcycles" results,
+               Results.get_mean_of "exectime_via_cycles" results)
+            in
+            let get_stats results mk ticks_idle nb_tasks =
+              let [col] = mk Env.empty in
+              let results = Results.filter col results in
+              (Results.get_mean_of ticks_idle results,
+               Results.get_mean_of nb_tasks results)
+            in
+            let mk_cilk_runs = mk_cilk_runs_of_bd arg_proc bd in
+            let cilk_elapsed =
+              get_time results_cilk mk_cilk_runs
+            in
+            let (cilk_ticks_idle, cilk_nb_tasks) =
+              get_stats results_cilk mk_cilk_runs "ticks_searching" "nb_threads_alloc"
+            in
+            let row_label =
+              Printf.sprintf "%s (%s)" bd.bd_problem input
+            in
+            Mk_table.cell ~escape:true ~last:false add row_label;
+            Mk_table.cell ~escape:true ~last:false add (report_elapsed cilk_elapsed);
+            ~~ List.iteri scfgs (fun scfg_i scfg ->
+                let mk_scfg = (mk string scheduler_configuration scfg) in
+                let mk_heartbeat_runs = (mk_runs_of_bd arg_proc bd) & mk_scfg in
+                let heartbeat_elapsed =
+                  get_time results mk_heartbeat_runs
+                in
+                let (heartbeat_ticks_idle, heartbeat_nb_tasks) =
+                  get_stats results_sta (mk_heartbeat_runs & mk_ext_sta) "total_idle_time" "nb_promotions"
+                in
+                let diff_exectime = report_percent_diff_of_elapsed cilk_elapsed heartbeat_elapsed in
+                let diff_ticks_idle = report_percent_diff cilk_ticks_idle heartbeat_ticks_idle in
+                let diff_nb_tasks = report_percent_diff cilk_nb_tasks heartbeat_nb_tasks in
+                let last = scfg_i+1 = nb_scfgs in
+                Mk_table.cell ~escape:true ~last:false add diff_exectime;
+                Mk_table.cell ~escape:true ~last:false add diff_ticks_idle;
+                Mk_table.cell ~escape:true ~last:last add diff_nb_tasks
+              );
+            add Latex.tabular_newline));
+      add Latex.tabular_end
+    );
+  ()
 
 let all () = select make run check plot
 
@@ -576,10 +712,6 @@ let nopromote_interrupt = "nopromote_interrupt"
 
 let is_nautilus_scheduler_configuration s =
   (s = interrupt_ping_thread || s = serial_interrupt_ping_thread || s = nopromote_interrupt)
-
-let is_only_serial s =
-  (s = serial_interrupt_ping_thread || s = serial_interrupt_pthread || s = serial_interrupt_papi ||
-   s = nopromote_interrupt)
 
 let mk_hardware_interrupt_configs =
       (mk_scheduler_configuration interrupt_ping_thread)

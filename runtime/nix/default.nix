@@ -13,6 +13,7 @@
   tpalrtsSrc ? sources.tpalrtsSrc,
   cmdline ? import sources.cmdline {},
   mcsl ? import sources.mcsl {},
+  cilk-plus-rts-with-stats ? sources.cilk-plus-rts-with-stats,
   pbenchOcaml ? import sources.pbenchOcamlSrcs.pbenchOcaml { pbenchOcamlSrc = sources.pbenchOcamlSrcs.pbenchOcamlSrc; }
 }:
 
@@ -72,7 +73,8 @@ stdenv.mkDerivation rec {
        MCSL_PATH="${mcsl}/include/" \
        PAPI_PREFIX="${papi}" \
        HWLOC_INCLUDE_PREFIX="-DMCSL_HAVE_HWLOC -I${hwloc.dev}/include/" \
-       HWLOC_LIBRARY_PREFIX="-L${hwloc.lib}/lib/ -lhwloc"
+       HWLOC_LIBRARY_PREFIX="-L${hwloc.lib}/lib/ -lhwloc" \
+       CILK_EXTRAS_PREFIX="-L ${cilk-plus-rts-with-stats}/lib -I ${cilk-plus-rts-with-stats}/include -ldl -DCILK_RUNTIME_WITH_STATS"
   '';
 
   installPhase =
