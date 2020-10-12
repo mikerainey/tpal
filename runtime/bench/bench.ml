@@ -183,7 +183,11 @@ let mk_pretty_name = mk string pretty_name
 
 let mk_n n =
     (mk int "n" n)
-  & (mk_pretty_name (Printf.sprintf "$%s \\cdot 10^9$ items" (string_of_billions (float_of_int n))))
+    & (mk_pretty_name (Printf.sprintf "$%s \\cdot 10^9$ items" (string_of_billions (float_of_int n))))
+
+let mk_n2 n =
+    (mk int "n" n)
+    & (mk_pretty_name (Printf.sprintf "%d items" n))
 
 let mk_infile f =
   mk string "infile" f
@@ -210,7 +214,8 @@ let mk_mandelbrot_input (w, h) =
       (mk_pretty_name (Printf.sprintf "%dx%d" w h))
 
 let mk_kmeans_input n =
-  (mk int "nb_objects" n) & (mk_pretty_name (Printf.sprintf "%d" n))
+  (mk int "nb_objects" n)
+  & (mk_pretty_name (Printf.sprintf "$%s \\cdot 10^6$ items" (string_of_millions (float_of_int n))))
 
 let mk_floyd_warshall_input v =
   (mk int "vertices" v) &
@@ -235,7 +240,7 @@ let benchmarks : benchmark_descr list = [
     { bd_problem = "floyd_warshall";
       bd_mk_input = mk_floyd_warshall_input 1024; };
     { bd_problem = "knapsack";
-      bd_mk_input = mk_n 36; }; (*
+      bd_mk_input = mk_n2 36; }; (*
     { bd_problem = "mergesort";
       bd_mk_input = mk_unit; }; *)
 
@@ -447,8 +452,8 @@ let make() =
   build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
 
 let mk_runs =
-  (mk_all mk_serial_interrupt_runs_of_bd benchmarks) ++
-  (mk_all (mk_interrupt_runs_of_bd 1) benchmarks)
+  ((mk_all mk_serial_interrupt_runs_of_bd benchmarks) ++
+  (mk_all (mk_interrupt_runs_of_bd 1) benchmarks)) & mk_kappas_usec
 
 let run () =
   Mk_runs.(call (run_modes @ [
