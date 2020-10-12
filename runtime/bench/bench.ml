@@ -618,18 +618,26 @@ let plot () =
               (Results.get_mean_of "execcycles" results,
                Results.get_mean_of "exectime_via_cycles" results)
             in
-            let get_stats results mk ticks_idle nb_tasks =
+            let get_stats_heartbeat results mk =
               let [col] = mk Env.empty in
               let results = Results.filter col results in
-              (Results.get_mean_of ticks_idle results,
-               Results.get_mean_of nb_tasks results)
+              (Results.get_mean_of "total_idle_time" results,
+               Results.get_mean_of "total_time" results,
+               Results.get_mean_of "nb_promotions" results)
+            in
+            let get_stats_cilk results mk =
+              let [col] = mk Env.empty in
+              let results = Results.filter col results in
+              (Results.get_mean_of "ticks_searching" results,
+               Results.get_mean_of "utilization" results,
+               Results.get_mean_of "nb_threads_alloc" results)
             in
             let mk_cilk_runs = mk_cilk_runs_of_bd arg_proc bd in
             let cilk_elapsed =
               get_time results_cilk mk_cilk_runs
             in
-            let (cilk_ticks_idle, cilk_nb_tasks) =
-              get_stats results_cilk mk_cilk_runs "ticks_searching" "nb_threads_alloc"
+            let (cilk_ticks_idle, cilk_utilization, cilk_nb_tasks) =
+              get_stats_cilk results_cilk mk_cilk_runs 
             in
             let row_label =
               Printf.sprintf "%s (%s)" bd.bd_problem input
@@ -642,15 +650,18 @@ let plot () =
                 let heartbeat_elapsed =
                   get_time results mk_heartbeat_runs
                 in
-                let (heartbeat_ticks_idle, heartbeat_nb_tasks) =
-                  get_stats results_sta (mk_heartbeat_runs & mk_ext_sta) "total_idle_time" "nb_promotions"
+                let (heartbeat_ticks_idle, heartbeat_total_time, heartbeat_nb_tasks) =
+                  get_stats_heartbeat results_sta (mk_heartbeat_runs & mk_ext_sta)
                 in
+                let utilization_heartbeat = 1. -. (heartbeat_ticks_idle /. heartbeat_total_time) in
+                let idle_heartbeat = (fst heartbeat_elapsed) *. utilization_heartbeat in
+                let idle_cilk = (fst cilk_elapsed) *. cilk_utilization in
                 let diff_exectime = report_percent_diff_of_elapsed cilk_elapsed heartbeat_elapsed in
-                let diff_ticks_idle = report_percent_diff cilk_ticks_idle heartbeat_ticks_idle in
+                let diff_idle = report_percent_diff idle_cilk idle_heartbeat in
                 let diff_nb_tasks = report_percent_diff cilk_nb_tasks heartbeat_nb_tasks in
                 let last = scfg_i+1 = nb_scfgs in
                 Mk_table.cell ~escape:true ~last:false add diff_exectime;
-                Mk_table.cell ~escape:true ~last:false add diff_ticks_idle;
+                Mk_table.cell ~escape:true ~last:false add diff_idle;
                 Mk_table.cell ~escape:true ~last:last add diff_nb_tasks
               );
             add Latex.tabular_newline));
