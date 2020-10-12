@@ -386,7 +386,7 @@ auto compare = std::less<uint64_t>();
 tpalrts::stack_type s;
 
 auto fill_xs(uint64_t* _xs) {
-  uint64_t xs_i = 0;
+  uint64_t xs_i = 1233332;
   for (std::size_t i = 0; i != n; i++) {
     _xs[i] = xs_i;
     xs_i = mcsl::hash(xs_i) % 1000;
@@ -416,7 +416,7 @@ auto bench_body_serial(promotable* p) {
 };
 
 auto bench_post(promotable* p) {
-#if ! defined(NDEBUG) && defined(TPAL_LINUX)
+#if ! defined(NDEBUG) && defined(TPALRTS_LINUX)
   uint64_t* xs2 = (uint64_t*)malloc(sizeof(uint64_t) * n);
   fill_xs(xs2);
   std::sort(&xs2[0], &xs2[n], compare);
