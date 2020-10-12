@@ -40,7 +40,7 @@ unsigned char* mandelbrot_serial(double x0, double y0, double x1, double y1,
 
 #define unlikely(x)    __builtin_expect(!!(x), 0)
 
-#define D_row 64
+#define D_row 32
 
 extern volatile 
 int heartbeat;
