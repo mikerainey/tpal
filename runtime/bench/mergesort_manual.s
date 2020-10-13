@@ -2860,6 +2860,142 @@
 .type  mgs712, @function
 .globl  mgs712_rf
 .type  mgs712_rf, @function
+.globl  mgs713
+.type  mgs713, @function
+.globl  mgs713_rf
+.type  mgs713_rf, @function
+.globl  mgs714
+.type  mgs714, @function
+.globl  mgs714_rf
+.type  mgs714_rf, @function
+.globl  mgs715
+.type  mgs715, @function
+.globl  mgs715_rf
+.type  mgs715_rf, @function
+.globl  mgs716
+.type  mgs716, @function
+.globl  mgs716_rf
+.type  mgs716_rf, @function
+.globl  mgs717
+.type  mgs717, @function
+.globl  mgs717_rf
+.type  mgs717_rf, @function
+.globl  mgs718
+.type  mgs718, @function
+.globl  mgs718_rf
+.type  mgs718_rf, @function
+.globl  mgs719
+.type  mgs719, @function
+.globl  mgs719_rf
+.type  mgs719_rf, @function
+.globl  mgs720
+.type  mgs720, @function
+.globl  mgs720_rf
+.type  mgs720_rf, @function
+.globl  mgs721
+.type  mgs721, @function
+.globl  mgs721_rf
+.type  mgs721_rf, @function
+.globl  mgs722
+.type  mgs722, @function
+.globl  mgs722_rf
+.type  mgs722_rf, @function
+.globl  mgs723
+.type  mgs723, @function
+.globl  mgs723_rf
+.type  mgs723_rf, @function
+.globl  mgs724
+.type  mgs724, @function
+.globl  mgs724_rf
+.type  mgs724_rf, @function
+.globl  mgs725
+.type  mgs725, @function
+.globl  mgs725_rf
+.type  mgs725_rf, @function
+.globl  mgs726
+.type  mgs726, @function
+.globl  mgs726_rf
+.type  mgs726_rf, @function
+.globl  mgs727
+.type  mgs727, @function
+.globl  mgs727_rf
+.type  mgs727_rf, @function
+.globl  mgs728
+.type  mgs728, @function
+.globl  mgs728_rf
+.type  mgs728_rf, @function
+.globl  mgs729
+.type  mgs729, @function
+.globl  mgs729_rf
+.type  mgs729_rf, @function
+.globl  mgs730
+.type  mgs730, @function
+.globl  mgs730_rf
+.type  mgs730_rf, @function
+.globl  mgs731
+.type  mgs731, @function
+.globl  mgs731_rf
+.type  mgs731_rf, @function
+.globl  mgs732
+.type  mgs732, @function
+.globl  mgs732_rf
+.type  mgs732_rf, @function
+.globl  mgs733
+.type  mgs733, @function
+.globl  mgs733_rf
+.type  mgs733_rf, @function
+.globl  mgs734
+.type  mgs734, @function
+.globl  mgs734_rf
+.type  mgs734_rf, @function
+.globl  mgs735
+.type  mgs735, @function
+.globl  mgs735_rf
+.type  mgs735_rf, @function
+.globl  mgs736
+.type  mgs736, @function
+.globl  mgs736_rf
+.type  mgs736_rf, @function
+.globl  mgs737
+.type  mgs737, @function
+.globl  mgs737_rf
+.type  mgs737_rf, @function
+.globl  mgs738
+.type  mgs738, @function
+.globl  mgs738_rf
+.type  mgs738_rf, @function
+.globl  mgs739
+.type  mgs739, @function
+.globl  mgs739_rf
+.type  mgs739_rf, @function
+.globl  mgs740
+.type  mgs740, @function
+.globl  mgs740_rf
+.type  mgs740_rf, @function
+.globl  mgs741
+.type  mgs741, @function
+.globl  mgs741_rf
+.type  mgs741_rf, @function
+.globl  mgs742
+.type  mgs742, @function
+.globl  mgs742_rf
+.type  mgs742_rf, @function
+.globl  mgs743
+.type  mgs743, @function
+.globl  mgs743_rf
+.type  mgs743_rf, @function
+.globl  mgs744
+.type  mgs744, @function
+.globl  mgs744_rf
+.type  mgs744_rf, @function
+.globl  mgs745
+.type  mgs745, @function
+.globl  mgs745_rf
+.type  mgs745_rf, @function
+.globl  mgs746
+.type  mgs746, @function
+.globl  mgs746_rf
+.type  mgs746_rf, @function
 _Z19mergesort_interruptPmS_mmPvN7tpalrts12stack_structES0_P17merge_args_structPSt4pairImmE:
 mgs0:        pushq   %r15
 mgs1:        pushq   %r14
@@ -2867,791 +3003,827 @@ mgs2:        pushq   %r13
 mgs3:        pushq   %r12
 mgs4:        pushq   %rbp
 mgs5:        pushq   %rbx
-mgs6:        subq    $344, %rsp
-mgs7:        cmpq    $0, 400(%rsp)
-mgs8:        movq    %rsi, 248(%rsp)
-mgs9:        movq    440(%rsp), %rbx
-mgs10:        movq    432(%rsp), %rsi
-mgs11:        movq    %rdi, 240(%rsp)
-mgs12:        movq    %r8, 256(%rsp)
-mgs13:        movq    %r9, 296(%rsp)
-mgs14:        je      .L3
-mgs15:        movq    408(%rsp), %rax
+mgs6:        subq    $216, %rsp
+mgs7:        cmpq    $0, 272(%rsp)
+mgs8:        movq    %rsi, 120(%rsp)
+mgs9:        movq    304(%rsp), %rbx
+mgs10:        movq    312(%rsp), %rsi
+mgs11:        movq    %rdi, 112(%rsp)
+mgs12:        movq    %r8, 128(%rsp)
+mgs13:        movq    %r9, 168(%rsp)
+mgs14:        je      .L2
+mgs15:        movq    280(%rsp), %rax
+.L3:
+mgs16:        movq    %rax, 176(%rsp)
+mgs17:        movq    288(%rsp), %rax
+mgs18:        testq   %rbx, %rbx
+mgs19:        movq    %rax, 184(%rsp)
+mgs20:        movq    296(%rsp), %rax
+mgs21:        movq    %rax, 192(%rsp)
+mgs22:        je      .L4
+mgs23:        movq    16(%rbx), %rax
+mgs24:        movq    (%rbx), %r11
+mgs25:        movq    8(%rbx), %r15
+mgs26:        movq    24(%rbx), %r13
+mgs27:        movq    32(%rbx), %rbp
+mgs28:        movq    40(%rbx), %r14
+mgs29:        movq    %rax, 88(%rsp)
+mgs30:        movq    56(%rbx), %rax
+mgs31:        movq    48(%rbx), %r12
+mgs32:        movq    %rax, 96(%rsp)
 .L4:
-mgs16:        movq    %rax, 304(%rsp)
-mgs17:        movq    416(%rsp), %rax
-mgs18:        testq   %rsi, %rsi
-mgs19:        movq    %rax, 312(%rsp)
-mgs20:        movq    424(%rsp), %rax
-mgs21:        movq    %rax, 320(%rsp)
-mgs22:        je      .L5
-mgs23:        movq    16(%rsi), %rax
-mgs24:        movq    (%rsi), %r11
-mgs25:        movq    8(%rsi), %r15
-mgs26:        movq    24(%rsi), %r13
-mgs27:        movq    32(%rsi), %rbp
-mgs28:        movq    40(%rsi), %r14
-mgs29:        movq    %rax, 216(%rsp)
-mgs30:        movq    56(%rsi), %rax
-mgs31:        movq    48(%rsi), %r12
-mgs32:        movq    %rax, 224(%rsp)
+mgs33:        testq   %rsi, %rsi
+mgs34:        movq    $0, 200(%rsp)
+mgs35:        movq    $0, 104(%rsp)
+mgs36:        je      .L5
+mgs37:        movq    (%rsi), %rax
+mgs38:        movq    %rax, 104(%rsp)
+mgs39:        movq    8(%rsi), %rax
+mgs40:        movq    %rax, 200(%rsp)
 .L5:
-mgs33:        testq   %rbx, %rbx
-mgs34:        movq    $0, 328(%rsp)
-mgs35:        movq    $0, 232(%rsp)
-mgs36:        je      .L6
-mgs37:        movq    (%rbx), %rax
-mgs38:        movq    %rax, 232(%rsp)
-mgs39:        movq    8(%rbx), %rax
-mgs40:        movq    %rax, 328(%rsp)
+mgs41:        cmpq    $0, __ms_entry(%rip)
+mgs42:        je      .L159
 .L6:
-mgs41:        movq    296(%rsp), %rax
-mgs42:        movl    $.L2, %esi
-mgs43:        testq   %rax, %rax
-mgs44:        cmove   %rsi, %rax
-mgs45:        movq    304(%rsp), %rsi
-mgs46:        movq    %rax, 296(%rsp)
-mgs47:        jmp     *%rax
-.L163:
-mgs48:        movq    224(%rsp), %rbx
-mgs49:        leaq    (%r11,%r13,8), %rdi
-mgs50:        testq   %r10, %r10
-mgs51:        movq    (%rdi), %rax
-mgs52:        leaq    0(,%rbx,8), %rsi
-mgs53:        movq    216(%rsp), %rbx
-mgs54:        leaq    (%rbx,%rsi), %r8
-mgs55:        jne     .L54
-mgs56:        movq    %rax, (%r8)
-.L16:
-mgs57:        movq    304(%rsp), %rsi
-mgs58:        movq    (%rsi), %rax
-mgs59:        movq    304(%rsp), %rsi
-mgs60:        jmp     *%rax
-.L159:
-mgs61:        addq    $8, %rax
-.L44:
-mgs62:        movq    -8(%rax), %rdi
-mgs63:        addq    $8, %rsi
-mgs64:        cmpq    %rax, %r8
-mgs65:        movq    %rdi, -8(%rsi)
-mgs66:        jne     .L159
+mgs43:        movq    168(%rsp), %rax
+mgs44:        movq    176(%rsp), %rsi
+mgs45:        testq   %rax, %rax
+mgs46:        cmove   __ms_entry(%rip), %rax
+mgs47:        movq    %rax, 168(%rsp)
+mgs48:        jmp     *%rax
+.L164:
+mgs49:        movq    96(%rsp), %rbx
+mgs50:        leaq    (%r11,%r13,8), %rdi
+mgs51:        testq   %r10, %r10
+mgs52:        movq    (%rdi), %rax
+mgs53:        leaq    0(,%rbx,8), %rsi
+mgs54:        movq    88(%rsp), %rbx
+mgs55:        leaq    (%rbx,%rsi), %r9
+mgs56:        jne     .L56
+mgs57:        movq    %rax, (%r9)
+.L19:
+mgs58:        movq    176(%rsp), %rsi
+mgs59:        movq    (%rsi), %rax
+mgs60:        movq    176(%rsp), %rsi
+mgs61:        jmp     *%rax
+.L160:
+mgs62:        addq    $8, %rax
+.L47:
+mgs63:        movq    -8(%rax), %rdi
+mgs64:        addq    $8, %rsi
+mgs65:        cmpq    %rax, %r8
+mgs66:        movq    %rdi, -8(%rsi)
+mgs67:        jne     .L160
 .L81:
-mgs67:        movq    %r9, 232(%rsp)
-.L37:
-mgs68:        nop
+mgs68:        movq    %r9, 104(%rsp)
+.L24:
 mgs69:        nop
 mgs70:        nop
-mgs71:        movq    328(%rsp), %r9
-mgs72:        movq    232(%rsp), %rbx
-mgs73:        cmpq    %rbx, %r9
-mgs74:        jne     .L161
-.L12:
-mgs75:        addq    $64, 304(%rsp)
-mgs76:        jmp     .L16
-.L22:
-mgs77:        movq    248(%rsp), %rax
-mgs78:        movq    $.L21, (%rsi)
-mgs79:        movq    304(%rsp), %rsi
-mgs80:        movq    240(%rsp), %r15
-mgs81:        movq    %rax, 216(%rsp)
-mgs82:        movq    40(%rsi), %rbp
-mgs83:        movq    56(%rsi), %rax
-mgs84:        movq    %r15, %r11
-mgs85:        movq    48(%rsi), %r12
-mgs86:        movq    %rax, 224(%rsp)
-mgs87:        movq    %rbp, %r14
-mgs88:        movq    %rax, %r13
-.L20:
-mgs89:        leaq    -8(%rsi), %rax
-mgs90:        movq    %rax, 304(%rsp)
-mgs91:        movq    $.L49, -8(%rsi)
-.L51:
-mgs92:        movq    %rbp, %rbx
-mgs93:        movq    %r12, %r10
-mgs94:        subq    %r13, %rbx
-mgs95:        subq    %r14, %r10
-mgs96:        cmpq    %r10, %rbx
-mgs97:        jb      .L84
-mgs98:        nop
-mgs99:        nop
-mgs100:        nop
-.L52:
-mgs101:        testq   %rbx, %rbx
-mgs102:        je      .L16
-mgs103:        cmpq    $1, %rbx
-mgs104:        je      .L163
-mgs105:        leaq    0(,%r14,8), %rdi
-mgs106:        cmpq    $1999, %rbx
-mgs107:        leaq    0(,%r12,8), %rax
-mgs108:        leaq    (%r15,%rdi), %rsi
-mgs109:        jbe     .L164
-mgs110:        leaq    0(%r13,%rbp), %r8
-mgs111:        subq    %rdi, %rax
-mgs112:        sarq    $3, %rax
-mgs113:        shrq    %r8
-mgs114:        leaq    (%r11,%r8,8), %r9
-.L71:
-mgs115:        testq   %rax, %rax
-mgs116:        jle     .L70
-.L165:
-mgs117:        movq    %rax, %rdi
-mgs118:        movq    (%r9), %rbx
-mgs119:        sarq    %rdi
-mgs120:        leaq    (%rsi,%rdi,8), %r10
-mgs121:        cmpq    %rbx, (%r10)
-mgs122:        jnb     .L85
-mgs123:        incq    %rdi
-mgs124:        leaq    8(%r10), %rsi
-mgs125:        subq    %rdi, %rax
-mgs126:        testq   %rax, %rax
-mgs127:        jg      .L165
-.L70:
-mgs128:        movq    224(%rsp), %rdi
-mgs129:        leaq    0(%r13,%r14), %rax
-mgs130:        subq    %r15, %rsi
-mgs131:        sarq    $3, %rsi
-mgs132:        subq    %rax, %rdi
-mgs133:        movq    304(%rsp), %rax
-mgs134:        addq    %r8, %rdi
-mgs135:        leaq    -88(%rax), %r9
-mgs136:        movq    %r9, 304(%rsp)
-mgs137:        movq    $.L18, -88(%rax)
-mgs138:        movq    320(%rsp), %r9
-mgs139:        movq    304(%rsp), %rax
-mgs140:        testq   %r9, %r9
-mgs141:        leaq    8(%rax), %r10
-mgs142:        movq    %r9, 8(%rax)
-mgs143:        movq    $0, 16(%rax)
-mgs144:        je      .L73
-mgs145:        movq    %r10, 8(%r9)
-.L73:
-mgs146:        cmpq    $0, 312(%rsp)
-mgs147:        movq    %r10, 320(%rsp)
-mgs148:        je      .L166
-.L74:
-mgs149:        movq    216(%rsp), %rbx
-mgs150:        addq    %rsi, %rdi
-mgs151:        movq    %rbp, 56(%rax)
-mgs152:        movq    %r12, 72(%rax)
-mgs153:        movq    %r11, 24(%rax)
-mgs154:        movq    %rsi, %r12
-mgs155:        movq    %r15, 32(%rax)
-mgs156:        movq    %r8, 48(%rax)
-mgs157:        movq    %r8, %rbp
-mgs158:        movq    %rbx, 40(%rax)
-mgs159:        movq    %rsi, 64(%rax)
-mgs160:        movq    %rdi, 80(%rax)
-mgs161:        jmp     .L51
-.L85:
-mgs162:        movq    %rdi, %rax
-mgs163:        jmp     .L71
-.L84:
-mgs164:        movq    %rbp, %rax
-mgs165:        movq    %r12, %rbp
-mgs166:        movq    %rax, %r12
-mgs167:        movq    %r13, %rax
-mgs168:        movq    %r14, %r13
-mgs169:        movq    %rax, %r14
-mgs170:        movq    %r11, %rax
-mgs171:        movq    %r15, %r11
-mgs172:        movq    %rax, %r15
-mgs173:        jmp     .L51
-.L166:
-mgs174:        movq    %r10, 312(%rsp)
-mgs175:        jmp     .L74
-.L162:
-mgs176:        leaq    296(%rsp), %rax
-mgs177:        movq    %r10, 288(%rsp)
-mgs178:        movq    %r11, 280(%rsp)
-mgs179:        movq    $.L12, 184(%rsp)
-mgs180:        movq    $.L13, 176(%rsp)
-mgs181:        leaq    328(%rsp), %r9
-mgs182:        movq    %rax, 192(%rsp)
-mgs183:        leaq    320(%rsp), %rax
-mgs184:        movq    $.L14, 168(%rsp)
-mgs185:        movq    $.L15, 160(%rsp)
-mgs186:        movq    $.L16, 152(%rsp)
-mgs187:        movq    %rax, 56(%rsp)
-mgs188:        leaq    312(%rsp), %rax
-mgs189:        movq    $.L17, 144(%rsp)
-mgs190:        movq    $.L18, 136(%rsp)
-mgs191:        movq    $.L19, 128(%rsp)
-mgs192:        movq    %rax, 48(%rsp)
-mgs193:        leaq    304(%rsp), %rax
-mgs194:        movq    $.L20, 120(%rsp)
-mgs195:        movq    $.L21, 112(%rsp)
-mgs196:        movq    $.L22, 104(%rsp)
-mgs197:        movq    %rax, 40(%rsp)
-mgs198:        movq    400(%rsp), %rax
-mgs199:        movq    $.L23, 96(%rsp)
-mgs200:        movq    $.L24, 88(%rsp)
-mgs201:        movq    $.L25, 80(%rsp)
-mgs202:        movq    $.L26, 72(%rsp)
-mgs203:        movq    %rax, 8(%rsp)
-mgs204:        movq    408(%rsp), %rax
-mgs205:        movq    $.L2, 64(%rsp)
-mgs206:        movq    %rax, 16(%rsp)
-mgs207:        movq    416(%rsp), %rax
-mgs208:        movq    %rax, 24(%rsp)
-mgs209:        movq    424(%rsp), %rax
-mgs210:        movq    %rax, 32(%rsp)
-mgs211:        movq    256(%rsp), %rax
-mgs212:        movq    %rax, (%rsp)
-mgs213:        movq    232(%rsp), %r8
-mgs214:        movq    248(%rsp), %rsi
-mgs215:        movq    240(%rsp), %rdi
-mgs216:        movq    %rcx, 272(%rsp)
-mgs217:        movq    %rdx, 264(%rsp)
-mgs218:        call    _Z17mergesort_handlerPmS_mmmRmPvN7tpalrts12stack_structERPcS5_S5_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_RS1_
-mgs219:        movq    288(%rsp), %r10
-mgs220:        movq    280(%rsp), %r11
-mgs221:        movq    272(%rsp), %rcx
-mgs222:        movq    264(%rsp), %rdx
-mgs223:        jmp     .L52
-.L164:
-mgs224:        movq    216(%rsp), %rbx
-mgs225:        movq    224(%rsp), %rdi
-mgs226:        leaq    (%r11,%r13,8), %r8
-mgs227:        addq    %r15, %rax
-mgs228:        leaq    (%rbx,%rdi,8), %rdi
-mgs229:        leaq    (%r11,%rbp,8), %rbx
-mgs230:        cmpq    %r8, %rbx
-mgs231:        jne     .L138
-mgs232:        jmp     .L56
-.L168:
-mgs233:        movq    %r9, (%rdi)
-mgs234:        addq    $8, %rsi
-mgs235:        addq    $8, %rdi
-mgs236:        cmpq    %r8, %rbx
-mgs237:        je      .L56
-.L138:
-mgs238:        cmpq    %rsi, %rax
-mgs239:        je      .L167
-mgs240:        movq    (%rsi), %r9
-mgs241:        movq    (%r8), %r10
-mgs242:        cmpq    %r10, %r9
-mgs243:        jb      .L168
-mgs244:        addq    $8, %r8
-mgs245:        movq    %r10, %r9
-mgs246:        addq    $8, %rdi
-mgs247:        movq    %r9, -8(%rdi)
-mgs248:        cmpq    %r8, %rbx
-mgs249:        jne     .L138
-.L56:
-mgs250:        cmpq    %rax, %rsi
-mgs251:        je      .L16
-mgs252:        leaq    -56(%rax), %r9
-mgs253:        leaq    8(%rsi), %r8
-mgs254:        cmpq    %r9, %r8
-mgs255:        jnb     .L69
-mgs256:        cmpq    $55, %rax
-mgs257:        jbe     .L69
-.L68:
-mgs258:        movq    (%rsi), %r10
-mgs259:        prefetcht0      272(%rsi)
-mgs260:        movq    %rsi, %r8
-mgs261:        addq    $64, %rsi
-mgs262:        addq    $72, %r8
-mgs263:        prefetcht0      272(%rdi)
-mgs264:        addq    $64, %rdi
-mgs265:        movq    %r10, -64(%rdi)
-mgs266:        movq    -56(%rsi), %r10
-mgs267:        movq    %r10, -56(%rdi)
-mgs268:        movq    -48(%rsi), %r10
-mgs269:        movq    %r10, -48(%rdi)
-mgs270:        movq    -40(%rsi), %r10
-mgs271:        movq    %r10, -40(%rdi)
-mgs272:        movq    -32(%rsi), %r10
-mgs273:        movq    %r10, -32(%rdi)
-mgs274:        movq    -24(%rsi), %r10
-mgs275:        movq    %r10, -24(%rdi)
-mgs276:        movq    -16(%rsi), %r10
-mgs277:        movq    %r10, -16(%rdi)
-mgs278:        movq    -8(%rsi), %r10
-mgs279:        cmpq    %r8, %r9
-mgs280:        movq    %r10, -8(%rdi)
-mgs281:        ja      .L68
-mgs282:        leaq    8(%rsi), %r8
-mgs283:        jmp     .L69
-.L169:
-mgs284:        addq    $8, %rsi
-.L48:
-mgs285:        movq    -8(%rsi), %rdi
-mgs286:        addq    $8, %rax
-mgs287:        cmpq    %rsi, %r8
-mgs288:        movq    %rdi, -8(%rax)
-mgs289:        jne     .L169
-.L83:
-mgs290:        movq    %r9, 232(%rsp)
-.L13:
-mgs291:        nop
-mgs292:        nop
-mgs293:        nop
-mgs294:        movq    328(%rsp), %r9
-mgs295:        movq    232(%rsp), %rbx
-mgs296:        cmpq    %rbx, %r9
-mgs297:        je      .L1
-mgs298:        leaq    2000(%rbx), %rax
-mgs299:        leaq    0(,%rbx,8), %rdi
-mgs300:        movq    248(%rsp), %rbx
-mgs301:        cmpq    %r9, %rax
-mgs302:        cmovbe  %rax, %r9
-mgs303:        movq    240(%rsp), %rax
-mgs304:        leaq    (%rbx,%r9,8), %r8
-mgs305:        addq    %rdi, %rax
-mgs306:        addq    %rbx, %rdi
-mgs307:        cmpq    %rdi, %r8
-mgs308:        je      .L83
-mgs309:        leaq    -56(%r8), %r10
-mgs310:        leaq    8(%rdi), %rsi
-mgs311:        cmpq    %r10, %rsi
-mgs312:        jnb     .L48
-mgs313:        cmpq    $55, %r8
-mgs314:        jbe     .L48
-.L47:
-mgs315:        movq    (%rdi), %rbx
-mgs316:        prefetcht0      272(%rdi)
-mgs317:        movq    %rdi, %rsi
-mgs318:        addq    $64, %rdi
-mgs319:        addq    $72, %rsi
-mgs320:        prefetcht0      272(%rax)
-mgs321:        addq    $64, %rax
-mgs322:        movq    %rbx, -64(%rax)
-mgs323:        movq    -56(%rdi), %rbx
-mgs324:        movq    %rbx, -56(%rax)
-mgs325:        movq    -48(%rdi), %rbx
-mgs326:        movq    %rbx, -48(%rax)
-mgs327:        movq    -40(%rdi), %rbx
-mgs328:        movq    %rbx, -40(%rax)
-mgs329:        movq    -32(%rdi), %rbx
-mgs330:        movq    %rbx, -32(%rax)
-mgs331:        movq    -24(%rdi), %rbx
-mgs332:        movq    %rbx, -24(%rax)
-mgs333:        movq    -16(%rdi), %rbx
-mgs334:        movq    %rbx, -16(%rax)
-mgs335:        movq    -8(%rdi), %rbx
-mgs336:        cmpq    %r10, %rsi
-mgs337:        movq    %rbx, -8(%rax)
-mgs338:        jb      .L47
-mgs339:        leaq    8(%rdi), %rsi
-mgs340:        jmp     .L48
-.L54:
-mgs341:        leaq    (%r15,%r14,8), %r9
-mgs342:        cmpq    %rax, (%r9)
-mgs343:        cmovbe  (%r9), %rax
-mgs344:        movq    %rax, (%r8)
-mgs345:        movq    (%rdi), %rax
-mgs346:        cmpq    %rax, (%r9)
-mgs347:        cmovnb  (%r9), %rax
-mgs348:        movq    %rax, 8(%rbx,%rsi)
-mgs349:        jmp     .L16
-.L161:
-mgs350:        leaq    2000(%rbx), %rax
-mgs351:        leaq    0(,%rbx,8), %rdi
-mgs352:        cmpq    %r9, %rax
-mgs353:        cmovbe  %rax, %r9
-mgs354:        movq    240(%rsp), %rax
-mgs355:        leaq    (%rax,%rdi), %rsi
-mgs356:        movq    248(%rsp), %rax
-mgs357:        leaq    (%rax,%r9,8), %r8
-mgs358:        addq    %rax, %rdi
-mgs359:        cmpq    %rdi, %r8
-mgs360:        je      .L81
-mgs361:        leaq    -56(%r8), %r10
-mgs362:        leaq    8(%rdi), %rax
-mgs363:        cmpq    %r10, %rax
-mgs364:        jnb     .L44
-mgs365:        cmpq    $55, %r8
-mgs366:        jbe     .L44
-.L42:
-mgs367:        movq    (%rdi), %rbx
-mgs368:        prefetcht0      272(%rdi)
-mgs369:        movq    %rdi, %rax
-mgs370:        addq    $64, %rdi
-mgs371:        addq    $72, %rax
-mgs372:        prefetcht0      272(%rsi)
-mgs373:        addq    $64, %rsi
-mgs374:        movq    %rbx, -64(%rsi)
-mgs375:        movq    -56(%rdi), %rbx
-mgs376:        movq    %rbx, -56(%rsi)
-mgs377:        movq    -48(%rdi), %rbx
-mgs378:        movq    %rbx, -48(%rsi)
-mgs379:        movq    -40(%rdi), %rbx
-mgs380:        movq    %rbx, -40(%rsi)
-mgs381:        movq    -32(%rdi), %rbx
-mgs382:        movq    %rbx, -32(%rsi)
-mgs383:        movq    -24(%rdi), %rbx
-mgs384:        movq    %rbx, -24(%rsi)
-mgs385:        movq    -16(%rdi), %rbx
-mgs386:        movq    %rbx, -16(%rsi)
-mgs387:        movq    -8(%rdi), %rbx
-mgs388:        cmpq    %rax, %r10
-mgs389:        movq    %rbx, -8(%rsi)
-mgs390:        ja      .L42
-mgs391:        leaq    8(%rdi), %rax
-mgs392:        jmp     .L44
-.L24:
-mgs393:        movq    %rsi, %rax
-mgs394:        leaq    -8(%rsi), %rsi
-mgs395:        movq    %rsi, 304(%rsp)
-mgs396:        movq    $.L25, -8(%rax)
-.L154:
-mgs397:        movq    %r12, 264(%rsp)
-mgs398:        movq    248(%rsp), %rsi
-mgs399:        movq    %rbp, %r12
-mgs400:        movq    %rcx, %rbx
-mgs401:        movq    240(%rsp), %rbp
-mgs402:        jmp     .L34
-.L33:
-mgs403:        movq    %rbx, 48(%rax)
-mgs404:        movq    %rbp, 24(%rax)
-mgs405:        movq    %rcx, %rbx
-mgs406:        movq    %rsi, 32(%rax)
-mgs407:        movq    %rcx, 40(%rax)
-mgs408:        movq    %rdx, 56(%rax)
-.L34:
-mgs409:        nop
-mgs410:        nop
-mgs411:        nop
-.L11:
-mgs412:        movq    %rbx, %rax
-mgs413:        subq    %rdx, %rax
-mgs414:        cmpq    $23, %rax
-mgs415:        jbe     .L172
-.L27:
-mgs416:        movq    304(%rsp), %rax
-mgs417:        leaq    (%rbx,%rdx), %rcx
-mgs418:        shrq    %rcx
-mgs419:        leaq    -64(%rax), %rdi
-mgs420:        movq    %rdi, 304(%rsp)
-mgs421:        movq    $.L23, -64(%rax)
-mgs422:        movq    320(%rsp), %rdi
-mgs423:        movq    304(%rsp), %rax
-mgs424:        testq   %rdi, %rdi
-mgs425:        leaq    8(%rax), %r8
-mgs426:        movq    %rdi, 8(%rax)
-mgs427:        movq    $0, 16(%rax)
-mgs428:        je      .L32
-mgs429:        movq    %r8, 8(%rdi)
-.L32:
-mgs430:        cmpq    $0, 312(%rsp)
-mgs431:        movq    %r8, 320(%rsp)
-mgs432:        jne     .L33
-mgs433:        movq    %r8, 312(%rsp)
-mgs434:        jmp     .L33
-.L9:
-mgs435:        leaq    400(%rsp), %rdi
-mgs436:        addq    $8, 304(%rsp)
-mgs437:        call    _ZN7tpalrts7sdeleteERNS_12stack_structE
-.L1:
-mgs438:        addq    $344, %rsp
-mgs439:        popq    %rbx
-mgs440:        popq    %rbp
-mgs441:        popq    %r12
-mgs442:        popq    %r13
-mgs443:        popq    %r14
-mgs444:        popq    %r15
-mgs445:        ret
+mgs71:        nop
+mgs72:        movq    200(%rsp), %r9
+mgs73:        movq    104(%rsp), %rbx
+mgs74:        cmpq    %rbx, %r9
+mgs75:        jne     .L162
 .L26:
-mgs446:        jmp     .L16
-.L23:
-mgs447:        movq    $.L22, (%rsi)
-mgs448:        movq    320(%rsp), %rdx
-mgs449:        movq    (%rdx), %rax
-mgs450:        testq   %rax, %rax
-mgs451:        je      .L173
-mgs452:        movq    $0, 8(%rax)
-mgs453:        movq    $0, (%rdx)
-.L36:
-mgs454:        movq    %rax, 320(%rsp)
-mgs455:        movq    304(%rsp), %rax
-mgs456:        movq    %r12, 264(%rsp)
-mgs457:        movq    %rbp, %r12
-mgs458:        movq    24(%rax), %rbx
-mgs459:        movq    32(%rax), %rsi
-mgs460:        movq    48(%rax), %rcx
-mgs461:        movq    40(%rax), %rdx
-mgs462:        nop
-mgs463:        movq    %rbx, 240(%rsp)
-mgs464:        movq    %rbx, %rbp
-mgs465:        movq    %rsi, 248(%rsp)
-mgs466:        movq    %rcx, %rbx
-mgs467:        nop
-mgs468:        jmp     .L11
-.L171:
-mgs469:        leaq    296(%rsp), %rax
-mgs470:        movq    232(%rsp), %r8
-mgs471:        leaq    328(%rsp), %r9
-mgs472:        movq    %r11, 288(%rsp)
-mgs473:        movq    $.L12, 184(%rsp)
-mgs474:        movq    %rbx, %rcx
-mgs475:        movq    %rax, 192(%rsp)
-mgs476:        leaq    320(%rsp), %rax
-mgs477:        movq    $.L13, 176(%rsp)
-mgs478:        movq    $.L14, 168(%rsp)
-mgs479:        movq    $.L15, 160(%rsp)
-mgs480:        movq    %rbp, %rdi
-mgs481:        movq    %rax, 56(%rsp)
-mgs482:        leaq    312(%rsp), %rax
-mgs483:        movq    $.L16, 152(%rsp)
-mgs484:        movq    $.L17, 144(%rsp)
-mgs485:        movq    $.L18, 136(%rsp)
-mgs486:        movq    %rax, 48(%rsp)
-mgs487:        leaq    304(%rsp), %rax
-mgs488:        movq    $.L19, 128(%rsp)
-mgs489:        movq    $.L20, 120(%rsp)
-mgs490:        movq    $.L21, 112(%rsp)
-mgs491:        movq    %rax, 40(%rsp)
-mgs492:        movq    400(%rsp), %rax
-mgs493:        movq    $.L22, 104(%rsp)
-mgs494:        movq    $.L23, 96(%rsp)
-mgs495:        movq    $.L24, 88(%rsp)
-mgs496:        movq    $.L25, 80(%rsp)
-mgs497:        movq    %rax, 8(%rsp)
-mgs498:        movq    408(%rsp), %rax
-mgs499:        movq    $.L26, 72(%rsp)
-mgs500:        movq    $.L2, 64(%rsp)
-mgs501:        movq    %rax, 16(%rsp)
-mgs502:        movq    416(%rsp), %rax
-mgs503:        movq    %rax, 24(%rsp)
-mgs504:        movq    424(%rsp), %rax
-mgs505:        movq    %rax, 32(%rsp)
-mgs506:        movq    256(%rsp), %rax
-mgs507:        movq    %rax, (%rsp)
-mgs508:        movq    %rdx, 280(%rsp)
-mgs509:        movq    %rsi, 272(%rsp)
-mgs510:        call    _Z17mergesort_handlerPmS_mmmRmPvN7tpalrts12stack_structERPcS5_S5_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_RS1_
-mgs511:        movq    280(%rsp), %rdx
-mgs512:        movq    %rbx, %rax
-mgs513:        movq    288(%rsp), %r11
-mgs514:        movq    272(%rsp), %rsi
-mgs515:        subq    %rdx, %rax
-mgs516:        cmpq    $23, %rax
-mgs517:        ja      .L27
-.L172:
-mgs518:        movq    %rbx, %rcx
-mgs519:        movq    240(%rsp), %rbx
-mgs520:        testq   %rax, %rax
-mgs521:        movq    %r12, %rbp
-mgs522:        movq    264(%rsp), %r12
-mgs523:        leaq    (%rbx,%rdx,8), %r8
-mgs524:        je      .L16
-mgs525:        leaq    -8(%r8), %r9
-mgs526:        leaq    (%r9,%rax,8), %r10
-.L31:
-mgs527:        cmpq    %r9, %r8
-mgs528:        movq    8(%r9), %rdi
-mgs529:        movq    %r9, %rax
-mgs530:        jbe     .L29
-mgs531:        jmp     .L28
-.L174:
-mgs532:        movq    %rsi, 8(%rax)
-mgs533:        subq    $8, %rax
-mgs534:        cmpq    %rax, %r8
-mgs535:        ja      .L28
-.L29:
-mgs536:        movq    (%rax), %rsi
-mgs537:        cmpq    %rsi, %rdi
-mgs538:        jb      .L174
-.L28:
-mgs539:        addq    $8, %r9
-mgs540:        movq    %rdi, 8(%rax)
-mgs541:        cmpq    %r9, %r10
-mgs542:        jne     .L31
-mgs543:        jmp     .L16
-.L18:
-mgs544:        movq    $.L17, (%rsi)
-mgs545:        movq    320(%rsp), %rsi
-mgs546:        movq    (%rsi), %rax
-mgs547:        testq   %rax, %rax
-mgs548:        je      .L175
-mgs549:        movq    $0, 8(%rax)
-mgs550:        movq    $0, (%rsi)
-.L77:
-mgs551:        movq    %rax, 320(%rsp)
-mgs552:        movq    304(%rsp), %rax
-mgs553:        movq    40(%rax), %rbx
-mgs554:        movq    24(%rax), %r11
-mgs555:        movq    32(%rax), %r15
-mgs556:        movq    48(%rax), %r13
-mgs557:        movq    56(%rax), %rbp
-mgs558:        movq    64(%rax), %r14
-mgs559:        movq    72(%rax), %r12
-mgs560:        movq    80(%rax), %rax
-mgs561:        movq    %rbx, 216(%rsp)
-mgs562:        movq    %rax, 224(%rsp)
-mgs563:        jmp     .L51
-.L17:
-mgs564:        addq    $88, 304(%rsp)
-mgs565:        jmp     .L16
+mgs76:        addq    $64, 176(%rsp)
+mgs77:        jmp     .L19
+.L12:
+mgs78:        movq    %rsi, %rax
+mgs79:        movq    __ms_branch3(%rip), %rsi
+mgs80:        movq    112(%rsp), %r15
+mgs81:        movq    %rsi, (%rax)
+mgs82:        movq    120(%rsp), %rax
+mgs83:        movq    %r15, %r11
+mgs84:        movq    176(%rsp), %rsi
+mgs85:        movq    %rax, 88(%rsp)
+mgs86:        movq    40(%rsi), %rbp
+mgs87:        movq    56(%rsi), %rax
+mgs88:        movq    48(%rsi), %r12
+mgs89:        movq    %rax, 96(%rsp)
+mgs90:        movq    %rbp, %r14
+mgs91:        movq    %rax, %r13
 .L15:
-mgs566:        movq    $.L14, (%rsi)
-mgs567:        jmp     .L1
-.L14:
-mgs568:        movq    %rsi, %rax
-mgs569:        leaq    -8(%rsi), %rsi
-mgs570:        movq    %rsi, 304(%rsp)
-mgs571:        movq    $.L15, -8(%rax)
-mgs572:        jmp     .L51
-.L49:
-mgs573:        addq    $8, 304(%rsp)
-mgs574:        jmp     .L16
-.L19:
-mgs575:        movq    %rsi, %rax
-mgs576:        leaq    -8(%rsi), %rsi
-mgs577:        movq    %rsi, 304(%rsp)
-mgs578:        movq    $.L78, -8(%rax)
-mgs579:        jmp     .L51
-.L78:
-mgs580:        jmp     .L1
-.L2:
-mgs581:        movq    %rsi, %rax
-mgs582:        leaq    -8(%rsi), %rsi
-mgs583:        movq    %rsi, 304(%rsp)
-mgs584:        movq    $.L9, -8(%rax)
-mgs585:        jmp     .L154
-.L21:
-mgs586:        movq    24(%rsi), %rdx
-mgs587:        movq    48(%rsi), %rcx
-mgs588:        movq    %rdx, 240(%rsp)
-mgs589:        movq    32(%rsi), %rdx
-mgs590:        movq    %rcx, 328(%rsp)
-mgs591:        movq    %rdx, 248(%rsp)
-mgs592:        movq    56(%rsi), %rdx
-mgs593:        movq    %rdx, 232(%rsp)
-mgs594:        jmp     .L37
-.L25:
-mgs595:        movq    $.L24, (%rsi)
-mgs596:        jmp     .L1
-.L3:
-mgs597:        movq    %rsi, 432(%rsp)
-mgs598:        movq    %rcx, 272(%rsp)
-mgs599:        movq    %rdx, 264(%rsp)
-mgs600:        movq    %r11, 232(%rsp)
-mgs601:        call    _ZN7tpalrts11alloc_stackEv
-mgs602:        movq    %rax, 400(%rsp)
-mgs603:        addq    $8191, %rax
-mgs604:        movq    432(%rsp), %rsi
-mgs605:        movq    272(%rsp), %rcx
-mgs606:        movq    264(%rsp), %rdx
-mgs607:        movq    232(%rsp), %r11
-mgs608:        movq    %rax, 408(%rsp)
-mgs609:        jmp     .L4
-.L176:
-mgs610:        addq    $8, %r8
-.L69:
-mgs611:        movq    -8(%r8), %rsi
-mgs612:        addq    $8, %rdi
-mgs613:        cmpq    %rax, %r8
-mgs614:        movq    %rsi, -8(%rdi)
-mgs615:        jne     .L176
-mgs616:        jmp     .L16
+mgs92:        leaq    -8(%rsi), %rax
+mgs93:        movq    %rax, 176(%rsp)
+mgs94:        movq    __mg_exitk(%rip), %rax
+mgs95:        movq    %rax, -8(%rsi)
+.L53:
+mgs96:        movq    %rbp, %rbx
+mgs97:        movq    %r12, %r10
+mgs98:        subq    %r13, %rbx
+mgs99:        subq    %r14, %r10
+mgs100:        cmpq    %r10, %rbx
+mgs101:        jb      .L84
+mgs102:        nop
+mgs103:        nop
+mgs104:        nop
+.L54:
+mgs105:        testq   %rbx, %rbx
+mgs106:        je      .L19
+mgs107:        cmpq    $1, %rbx
+mgs108:        je      .L164
+mgs109:        leaq    0(,%r14,8), %rdi
+mgs110:        cmpq    $1999, %rbx
+mgs111:        leaq    0(,%r12,8), %rax
+mgs112:        leaq    (%r15,%rdi), %rsi
+mgs113:        jbe     .L165
+mgs114:        leaq    0(%r13,%rbp), %r8
+mgs115:        subq    %rdi, %rax
+mgs116:        sarq    $3, %rax
+mgs117:        shrq    %r8
+mgs118:        leaq    (%r11,%r8,8), %r9
+.L73:
+mgs119:        testq   %rax, %rax
+mgs120:        jle     .L72
+.L166:
+mgs121:        movq    %rax, %rdi
+mgs122:        movq    (%r9), %rbx
+mgs123:        sarq    %rdi
+mgs124:        leaq    (%rsi,%rdi,8), %r10
+mgs125:        cmpq    %rbx, (%r10)
+mgs126:        jnb     .L85
+mgs127:        incq    %rdi
+mgs128:        leaq    8(%r10), %rsi
+mgs129:        subq    %rdi, %rax
+mgs130:        testq   %rax, %rax
+mgs131:        jg      .L166
+.L72:
+mgs132:        movq    96(%rsp), %rdi
+mgs133:        leaq    0(%r13,%r14), %rax
+mgs134:        subq    %r15, %rsi
+mgs135:        sarq    $3, %rsi
+mgs136:        subq    %rax, %rdi
+mgs137:        movq    176(%rsp), %rax
+mgs138:        addq    %r8, %rdi
+mgs139:        leaq    -88(%rax), %r9
+mgs140:        movq    %r9, 176(%rsp)
+mgs141:        movq    __mg_branch1(%rip), %r9
+mgs142:        movq    %r9, -88(%rax)
+mgs143:        movq    192(%rsp), %r9
+mgs144:        movq    176(%rsp), %rax
+mgs145:        testq   %r9, %r9
+mgs146:        leaq    8(%rax), %r10
+mgs147:        movq    %r9, 8(%rax)
+mgs148:        movq    $0, 16(%rax)
+mgs149:        je      .L75
+mgs150:        movq    %r10, 8(%r9)
+.L75:
+mgs151:        cmpq    $0, 184(%rsp)
+mgs152:        movq    %r10, 192(%rsp)
+mgs153:        je      .L167
+.L76:
+mgs154:        movq    88(%rsp), %rbx
+mgs155:        addq    %rsi, %rdi
+mgs156:        movq    %rbp, 56(%rax)
+mgs157:        movq    %r12, 72(%rax)
+mgs158:        movq    %r11, 24(%rax)
+mgs159:        movq    %rsi, %r12
+mgs160:        movq    %r15, 32(%rax)
+mgs161:        movq    %r8, 48(%rax)
+mgs162:        movq    %r8, %rbp
+mgs163:        movq    %rbx, 40(%rax)
+mgs164:        movq    %rsi, 64(%rax)
+mgs165:        movq    %rdi, 80(%rax)
+mgs166:        jmp     .L53
+.L85:
+mgs167:        movq    %rdi, %rax
+mgs168:        jmp     .L73
+.L84:
+mgs169:        movq    %rbp, %rax
+mgs170:        movq    %r12, %rbp
+mgs171:        movq    %rax, %r12
+mgs172:        movq    %r13, %rax
+mgs173:        movq    %r14, %r13
+mgs174:        movq    %rax, %r14
+mgs175:        movq    %r11, %rax
+mgs176:        movq    %r15, %r11
+mgs177:        movq    %rax, %r15
+mgs178:        jmp     .L53
 .L167:
-mgs617:        leaq    -56(%rbx), %rsi
-mgs618:        leaq    8(%r8), %rax
-mgs619:        cmpq    %rax, %rsi
-mgs620:        jbe     .L63
-mgs621:        cmpq    $55, %rbx
-mgs622:        jbe     .L63
-.L61:
-mgs623:        movq    (%r8), %r9
-mgs624:        prefetcht0      272(%r8)
-mgs625:        movq    %r8, %rax
-mgs626:        addq    $64, %r8
-mgs627:        addq    $72, %rax
-mgs628:        prefetcht0      272(%rdi)
-mgs629:        addq    $64, %rdi
-mgs630:        movq    %r9, -64(%rdi)
-mgs631:        movq    -56(%r8), %r9
-mgs632:        movq    %r9, -56(%rdi)
-mgs633:        movq    -48(%r8), %r9
-mgs634:        movq    %r9, -48(%rdi)
-mgs635:        movq    -40(%r8), %r9
-mgs636:        movq    %r9, -40(%rdi)
-mgs637:        movq    -32(%r8), %r9
-mgs638:        movq    %r9, -32(%rdi)
-mgs639:        movq    -24(%r8), %r9
-mgs640:        movq    %r9, -24(%rdi)
-mgs641:        movq    -16(%r8), %r9
-mgs642:        movq    %r9, -16(%rdi)
-mgs643:        movq    -8(%r8), %r9
-mgs644:        cmpq    %rax, %rsi
-mgs645:        movq    %r9, -8(%rdi)
-mgs646:        ja      .L61
-mgs647:        leaq    8(%r8), %rax
-mgs648:        jmp     .L63
-.L177:
-mgs649:        addq    $8, %rax
-.L63:
-mgs650:        movq    -8(%rax), %rsi
-mgs651:        addq    $8, %rdi
-mgs652:        cmpq    %rax, %rbx
-mgs653:        movq    %rsi, -8(%rdi)
-mgs654:        jne     .L177
-mgs655:        jmp     .L16
-.L173:
-mgs656:        movq    $0, 312(%rsp)
-mgs657:        jmp     .L36
-.L175:
-mgs658:        movq    $0, 312(%rsp)
-mgs659:        jmp     .L77
-.L160:
-mgs660:        movq    %r11, 280(%rsp)
-mgs661:        movq    $.L37, 296(%rsp)
-.L153:
-mgs662:        leaq    296(%rsp), %rax
-mgs663:        movq    %rcx, 272(%rsp)
-mgs664:        movq    232(%rsp), %r8
-mgs665:        movq    $.L12, 184(%rsp)
-mgs666:        movq    $.L13, 176(%rsp)
-mgs667:        leaq    328(%rsp), %r9
-mgs668:        movq    %rax, 192(%rsp)
-mgs669:        leaq    320(%rsp), %rax
-mgs670:        movq    $.L14, 168(%rsp)
-mgs671:        movq    $.L15, 160(%rsp)
-mgs672:        movq    $.L16, 152(%rsp)
-mgs673:        movq    %rax, 56(%rsp)
-mgs674:        leaq    312(%rsp), %rax
-mgs675:        movq    $.L17, 144(%rsp)
-mgs676:        movq    $.L18, 136(%rsp)
-mgs677:        movq    $.L19, 128(%rsp)
-mgs678:        movq    %rax, 48(%rsp)
-mgs679:        leaq    304(%rsp), %rax
-mgs680:        movq    $.L20, 120(%rsp)
-mgs681:        movq    $.L21, 112(%rsp)
-mgs682:        movq    $.L22, 104(%rsp)
-mgs683:        movq    %rax, 40(%rsp)
-mgs684:        movq    400(%rsp), %rax
-mgs685:        movq    $.L23, 96(%rsp)
-mgs686:        movq    $.L24, 88(%rsp)
-mgs687:        movq    $.L25, 80(%rsp)
-mgs688:        movq    $.L26, 72(%rsp)
-mgs689:        movq    %rax, 8(%rsp)
-mgs690:        movq    408(%rsp), %rax
-mgs691:        movq    $.L2, 64(%rsp)
-mgs692:        movq    %rax, 16(%rsp)
-mgs693:        movq    416(%rsp), %rax
-mgs694:        movq    %rax, 24(%rsp)
-mgs695:        movq    424(%rsp), %rax
-mgs696:        movq    %rax, 32(%rsp)
-mgs697:        movq    256(%rsp), %rax
-mgs698:        movq    %rax, (%rsp)
-mgs699:        movq    %rdx, 264(%rsp)
-mgs700:        movq    248(%rsp), %rsi
-mgs701:        movq    240(%rsp), %rdi
-mgs702:        call    _Z17mergesort_handlerPmS_mmmRmPvN7tpalrts12stack_structERPcS5_S5_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_RS1_
-mgs703:        movq    296(%rsp), %rax
-mgs704:        movq    264(%rsp), %rdx
-mgs705:        movq    272(%rsp), %rcx
-mgs706:        movq    280(%rsp), %r11
-mgs707:        movq    304(%rsp), %rsi
-mgs708:        jmp     *%rax
+mgs179:        movq    %r10, 184(%rsp)
+mgs180:        jmp     .L76
+.L163:
+mgs181:        leaq    168(%rsp), %rax
+mgs182:        movq    104(%rsp), %r8
+mgs183:        movq    120(%rsp), %rsi
+mgs184:        movq    112(%rsp), %rdi
+mgs185:        leaq    200(%rsp), %r9
+mgs186:        movq    %r10, 160(%rsp)
+mgs187:        movq    %rax, 64(%rsp)
+mgs188:        leaq    192(%rsp), %rax
+mgs189:        movq    %r11, 152(%rsp)
+mgs190:        movq    %rcx, 144(%rsp)
+mgs191:        movq    %rdx, 136(%rsp)
+mgs192:        movq    %rax, 56(%rsp)
+mgs193:        leaq    184(%rsp), %rax
+mgs194:        movq    %rax, 48(%rsp)
+mgs195:        leaq    176(%rsp), %rax
+mgs196:        movq    %rax, 40(%rsp)
+mgs197:        movq    272(%rsp), %rax
+mgs198:        movq    %rax, 8(%rsp)
+mgs199:        movq    280(%rsp), %rax
+mgs200:        movq    %rax, 16(%rsp)
+mgs201:        movq    288(%rsp), %rax
+mgs202:        movq    %rax, 24(%rsp)
+mgs203:        movq    296(%rsp), %rax
+mgs204:        movq    %rax, 32(%rsp)
+mgs205:        movq    128(%rsp), %rax
+mgs206:        movq    %rax, (%rsp)
+mgs207:        call    _Z17mergesort_handlerPmS_mmmRmPvN7tpalrts12stack_structERPcS5_S5_RS1_
+mgs208:        movq    160(%rsp), %r10
+mgs209:        movq    152(%rsp), %r11
+mgs210:        movq    144(%rsp), %rcx
+mgs211:        movq    136(%rsp), %rdx
+mgs212:        jmp     .L54
+.L165:
+mgs213:        movq    88(%rsp), %rbx
+mgs214:        movq    96(%rsp), %rdi
+mgs215:        leaq    (%r11,%r13,8), %r8
+mgs216:        addq    %r15, %rax
+mgs217:        leaq    (%rbx,%rdi,8), %rdi
+mgs218:        leaq    (%r11,%rbp,8), %rbx
+mgs219:        cmpq    %r8, %rbx
+mgs220:        jne     .L138
+mgs221:        jmp     .L58
+.L169:
+mgs222:        movq    %r9, (%rdi)
+mgs223:        addq    $8, %rsi
+mgs224:        addq    $8, %rdi
+mgs225:        cmpq    %r8, %rbx
+mgs226:        je      .L58
+.L138:
+mgs227:        cmpq    %rsi, %rax
+mgs228:        je      .L168
+mgs229:        movq    (%rsi), %r9
+mgs230:        movq    (%r8), %r10
+mgs231:        cmpq    %r10, %r9
+mgs232:        jb      .L169
+mgs233:        addq    $8, %r8
+mgs234:        movq    %r10, %r9
+mgs235:        addq    $8, %rdi
+mgs236:        movq    %r9, -8(%rdi)
+mgs237:        cmpq    %r8, %rbx
+mgs238:        jne     .L138
+.L58:
+mgs239:        cmpq    %rax, %rsi
+mgs240:        je      .L19
+mgs241:        leaq    -56(%rax), %r9
+mgs242:        leaq    8(%rsi), %r8
+mgs243:        cmpq    %r9, %r8
+mgs244:        jnb     .L71
+mgs245:        cmpq    $55, %rax
+mgs246:        jbe     .L71
+.L70:
+mgs247:        movq    (%rsi), %r10
+mgs248:        prefetcht0      272(%rsi)
+mgs249:        movq    %rsi, %r8
+mgs250:        addq    $64, %rsi
+mgs251:        addq    $72, %r8
+mgs252:        prefetcht0      272(%rdi)
+mgs253:        addq    $64, %rdi
+mgs254:        movq    %r10, -64(%rdi)
+mgs255:        movq    -56(%rsi), %r10
+mgs256:        movq    %r10, -56(%rdi)
+mgs257:        movq    -48(%rsi), %r10
+mgs258:        movq    %r10, -48(%rdi)
+mgs259:        movq    -40(%rsi), %r10
+mgs260:        movq    %r10, -40(%rdi)
+mgs261:        movq    -32(%rsi), %r10
+mgs262:        movq    %r10, -32(%rdi)
+mgs263:        movq    -24(%rsi), %r10
+mgs264:        movq    %r10, -24(%rdi)
+mgs265:        movq    -16(%rsi), %r10
+mgs266:        movq    %r10, -16(%rdi)
+mgs267:        movq    -8(%rsi), %r10
+mgs268:        cmpq    %r8, %r9
+mgs269:        movq    %r10, -8(%rdi)
+mgs270:        ja      .L70
+mgs271:        leaq    8(%rsi), %r8
+mgs272:        jmp     .L71
 .L170:
-mgs709:        movq    %r11, 280(%rsp)
-mgs710:        movq    $.L13, 296(%rsp)
-mgs711:        jmp     .L153
+mgs273:        addq    $8, %rsi
+.L51:
+mgs274:        movq    -8(%rsi), %rdi
+mgs275:        addq    $8, %rax
+mgs276:        cmpq    %rsi, %r8
+mgs277:        movq    %rdi, -8(%rax)
+mgs278:        jne     .L170
+.L83:
+mgs279:        movq    %r9, 104(%rsp)
+.L25:
+mgs280:        nop
+mgs281:        nop
+mgs282:        nop
+mgs283:        movq    200(%rsp), %r9
+mgs284:        movq    104(%rsp), %rbx
+mgs285:        cmpq    %rbx, %r9
+mgs286:        je      .L1
+mgs287:        leaq    2000(%rbx), %rax
+mgs288:        leaq    0(,%rbx,8), %rdi
+mgs289:        movq    120(%rsp), %rbx
+mgs290:        cmpq    %r9, %rax
+mgs291:        cmovbe  %rax, %r9
+mgs292:        movq    112(%rsp), %rax
+mgs293:        leaq    (%rbx,%r9,8), %r8
+mgs294:        addq    %rdi, %rax
+mgs295:        addq    %rbx, %rdi
+mgs296:        cmpq    %rdi, %r8
+mgs297:        je      .L83
+mgs298:        leaq    -56(%r8), %r10
+mgs299:        leaq    8(%rdi), %rsi
+mgs300:        cmpq    %r10, %rsi
+mgs301:        jnb     .L51
+mgs302:        cmpq    $55, %r8
+mgs303:        jbe     .L51
+.L50:
+mgs304:        movq    (%rdi), %rbx
+mgs305:        prefetcht0      272(%rdi)
+mgs306:        movq    %rdi, %rsi
+mgs307:        addq    $64, %rdi
+mgs308:        addq    $72, %rsi
+mgs309:        prefetcht0      272(%rax)
+mgs310:        addq    $64, %rax
+mgs311:        movq    %rbx, -64(%rax)
+mgs312:        movq    -56(%rdi), %rbx
+mgs313:        movq    %rbx, -56(%rax)
+mgs314:        movq    -48(%rdi), %rbx
+mgs315:        movq    %rbx, -48(%rax)
+mgs316:        movq    -40(%rdi), %rbx
+mgs317:        movq    %rbx, -40(%rax)
+mgs318:        movq    -32(%rdi), %rbx
+mgs319:        movq    %rbx, -32(%rax)
+mgs320:        movq    -24(%rdi), %rbx
+mgs321:        movq    %rbx, -24(%rax)
+mgs322:        movq    -16(%rdi), %rbx
+mgs323:        movq    %rbx, -16(%rax)
+mgs324:        movq    -8(%rdi), %rbx
+mgs325:        cmpq    %r10, %rsi
+mgs326:        movq    %rbx, -8(%rax)
+mgs327:        jb      .L50
+mgs328:        leaq    8(%rdi), %rsi
+mgs329:        jmp     .L51
+.L56:
+mgs330:        leaq    (%r15,%r14,8), %r8
+mgs331:        cmpq    %rax, (%r8)
+mgs332:        cmovbe  (%r8), %rax
+mgs333:        movq    %rax, (%r9)
+mgs334:        movq    (%rdi), %rax
+mgs335:        cmpq    %rax, (%r8)
+mgs336:        cmovnb  (%r8), %rax
+mgs337:        movq    %rax, 8(%rbx,%rsi)
+mgs338:        jmp     .L19
+.L162:
+mgs339:        leaq    2000(%rbx), %rax
+mgs340:        leaq    0(,%rbx,8), %rdi
+mgs341:        cmpq    %r9, %rax
+mgs342:        cmovbe  %rax, %r9
+mgs343:        movq    112(%rsp), %rax
+mgs344:        leaq    (%rax,%rdi), %rsi
+mgs345:        movq    120(%rsp), %rax
+mgs346:        leaq    (%rax,%r9,8), %r8
+mgs347:        addq    %rax, %rdi
+mgs348:        cmpq    %rdi, %r8
+mgs349:        je      .L81
+mgs350:        leaq    -56(%r8), %r10
+mgs351:        leaq    8(%rdi), %rax
+mgs352:        cmpq    %r10, %rax
+mgs353:        jnb     .L47
+mgs354:        cmpq    $55, %r8
+mgs355:        jbe     .L47
+.L45:
+mgs356:        movq    (%rdi), %rbx
+mgs357:        prefetcht0      272(%rdi)
+mgs358:        movq    %rdi, %rax
+mgs359:        addq    $64, %rdi
+mgs360:        addq    $72, %rax
+mgs361:        prefetcht0      272(%rsi)
+mgs362:        addq    $64, %rsi
+mgs363:        movq    %rbx, -64(%rsi)
+mgs364:        movq    -56(%rdi), %rbx
+mgs365:        movq    %rbx, -56(%rsi)
+mgs366:        movq    -48(%rdi), %rbx
+mgs367:        movq    %rbx, -48(%rsi)
+mgs368:        movq    -40(%rdi), %rbx
+mgs369:        movq    %rbx, -40(%rsi)
+mgs370:        movq    -32(%rdi), %rbx
+mgs371:        movq    %rbx, -32(%rsi)
+mgs372:        movq    -24(%rdi), %rbx
+mgs373:        movq    %rbx, -24(%rsi)
+mgs374:        movq    -16(%rdi), %rbx
+mgs375:        movq    %rbx, -16(%rsi)
+mgs376:        movq    -8(%rdi), %rbx
+mgs377:        cmpq    %rax, %r10
+mgs378:        movq    %rbx, -8(%rsi)
+mgs379:        ja      .L45
+mgs380:        leaq    8(%rdi), %rax
+mgs381:        jmp     .L47
+.L23:
+.L1:
+mgs382:        addq    $216, %rsp
+mgs383:        popq    %rbx
+mgs384:        popq    %rbp
+mgs385:        popq    %r12
+mgs386:        popq    %r13
+mgs387:        popq    %r14
+mgs388:        popq    %r15
+mgs389:        ret
+.L8:
+mgs390:        jmp     .L19
+.L14:
+mgs391:        leaq    272(%rsp), %rdi
+mgs392:        addq    $8, 176(%rsp)
+mgs393:        call    _ZN7tpalrts7sdeleteERNS_12stack_structE
+mgs394:        jmp     .L1
+.L16:
+mgs395:        movq    %rsi, %rax
+mgs396:        leaq    -8(%rsi), %rsi
+mgs397:        movq    %rsi, 176(%rsp)
+mgs398:        movq    __mg_exitk2(%rip), %rsi
+mgs399:        movq    %rsi, -8(%rax)
+mgs400:        jmp     .L53
+.L17:
+mgs401:        movq    %rsi, %rax
+mgs402:        movq    __mg_branch2(%rip), %rsi
+mgs403:        movq    %rsi, (%rax)
+mgs404:        movq    192(%rsp), %rsi
+mgs405:        movq    (%rsi), %rax
+mgs406:        testq   %rax, %rax
+mgs407:        je      .L172
+mgs408:        movq    $0, 8(%rax)
+mgs409:        movq    $0, (%rsi)
+.L79:
+mgs410:        movq    %rax, 192(%rsp)
+mgs411:        movq    176(%rsp), %rax
+mgs412:        movq    40(%rax), %rbx
+mgs413:        movq    24(%rax), %r11
+mgs414:        movq    32(%rax), %r15
+mgs415:        movq    48(%rax), %r13
+mgs416:        movq    56(%rax), %rbp
+mgs417:        movq    64(%rax), %r14
+mgs418:        movq    72(%rax), %r12
+mgs419:        movq    80(%rax), %rax
+mgs420:        movq    %rbx, 88(%rsp)
+mgs421:        movq    %rax, 96(%rsp)
+mgs422:        jmp     .L53
+.L18:
+mgs423:        addq    $88, 176(%rsp)
+mgs424:        jmp     .L19
+.L7:
+mgs425:        movq    %rsi, %rax
+mgs426:        leaq    -8(%rsi), %rsi
+mgs427:        movq    %rsi, 176(%rsp)
+mgs428:        movq    __ms_exitk(%rip), %rsi
+.L154:
+mgs429:        movq    %rsi, -8(%rax)
+mgs430:        movq    %rcx, %rbx
+mgs431:        movq    %r12, 136(%rsp)
+mgs432:        movq    120(%rsp), %rsi
+mgs433:        movq    %rbp, %r12
+mgs434:        movq    112(%rsp), %rbp
+mgs435:        jmp     .L38
+.L37:
+mgs436:        movq    %rbx, 48(%rax)
+mgs437:        movq    %rbp, 24(%rax)
+mgs438:        movq    %rcx, %rbx
+mgs439:        movq    %rsi, 32(%rax)
+mgs440:        movq    %rcx, 40(%rax)
+mgs441:        movq    %rdx, 56(%rax)
+.L38:
+mgs442:        nop
+mgs443:        nop
+mgs444:        nop
+.L30:
+mgs445:        movq    %rbx, %rax
+mgs446:        subq    %rdx, %rax
+mgs447:        cmpq    $23, %rax
+mgs448:        jbe     .L174
+.L31:
+mgs449:        movq    176(%rsp), %rax
+mgs450:        leaq    (%rbx,%rdx), %rcx
+mgs451:        shrq    %rcx
+mgs452:        leaq    -64(%rax), %rdi
+mgs453:        movq    %rdi, 176(%rsp)
+mgs454:        movq    __ms_branch1(%rip), %rdi
+mgs455:        movq    %rdi, -64(%rax)
+mgs456:        movq    192(%rsp), %rdi
+mgs457:        movq    176(%rsp), %rax
+mgs458:        testq   %rdi, %rdi
+mgs459:        leaq    8(%rax), %r8
+mgs460:        movq    %rdi, 8(%rax)
+mgs461:        movq    $0, 16(%rax)
+mgs462:        je      .L36
+mgs463:        movq    %r8, 8(%rdi)
+.L36:
+mgs464:        cmpq    $0, 184(%rsp)
+mgs465:        movq    %r8, 192(%rsp)
+mgs466:        jne     .L37
+mgs467:        movq    %r8, 184(%rsp)
+mgs468:        jmp     .L37
+.L11:
+mgs469:        movq    __ms_branch2(%rip), %rdx
+mgs470:        movq    %rdx, (%rsi)
+mgs471:        movq    192(%rsp), %rdx
+mgs472:        movq    (%rdx), %rax
+mgs473:        testq   %rax, %rax
+mgs474:        je      .L175
+mgs475:        movq    $0, 8(%rax)
+mgs476:        movq    $0, (%rdx)
+.L40:
+mgs477:        movq    %rax, 192(%rsp)
+mgs478:        movq    176(%rsp), %rax
+mgs479:        movq    %r12, 136(%rsp)
+mgs480:        movq    %rbp, %r12
+mgs481:        movq    24(%rax), %rbx
+mgs482:        movq    32(%rax), %rsi
+mgs483:        movq    48(%rax), %rcx
+mgs484:        movq    40(%rax), %rdx
+mgs485:        nop
+mgs486:        movq    %rbx, 112(%rsp)
+mgs487:        movq    %rbx, %rbp
+mgs488:        movq    %rsi, 120(%rsp)
+mgs489:        movq    %rcx, %rbx
+mgs490:        nop
+mgs491:        jmp     .L30
+.L173:
+mgs492:        leaq    168(%rsp), %rax
+mgs493:        movq    104(%rsp), %r8
+mgs494:        leaq    200(%rsp), %r9
+mgs495:        movq    %r11, 160(%rsp)
+mgs496:        movq    %rdx, 152(%rsp)
+mgs497:        movq    %rbx, %rcx
+mgs498:        movq    %rax, 64(%rsp)
+mgs499:        leaq    192(%rsp), %rax
+mgs500:        movq    %rsi, 144(%rsp)
+mgs501:        movq    %rbp, %rdi
+mgs502:        movq    %rax, 56(%rsp)
+mgs503:        leaq    184(%rsp), %rax
+mgs504:        movq    %rax, 48(%rsp)
+mgs505:        leaq    176(%rsp), %rax
+mgs506:        movq    %rax, 40(%rsp)
+mgs507:        movq    272(%rsp), %rax
+mgs508:        movq    %rax, 8(%rsp)
+mgs509:        movq    280(%rsp), %rax
+mgs510:        movq    %rax, 16(%rsp)
+mgs511:        movq    288(%rsp), %rax
+mgs512:        movq    %rax, 24(%rsp)
+mgs513:        movq    296(%rsp), %rax
+mgs514:        movq    %rax, 32(%rsp)
+mgs515:        movq    128(%rsp), %rax
+mgs516:        movq    %rax, (%rsp)
+mgs517:        call    _Z17mergesort_handlerPmS_mmmRmPvN7tpalrts12stack_structERPcS5_S5_RS1_
+mgs518:        movq    152(%rsp), %rdx
+mgs519:        movq    %rbx, %rax
+mgs520:        movq    160(%rsp), %r11
+mgs521:        movq    144(%rsp), %rsi
+mgs522:        subq    %rdx, %rax
+mgs523:        cmpq    $23, %rax
+mgs524:        ja      .L31
+.L174:
+mgs525:        movq    %rbx, %rcx
+mgs526:        movq    112(%rsp), %rbx
+mgs527:        testq   %rax, %rax
+mgs528:        movq    %r12, %rbp
+mgs529:        movq    136(%rsp), %r12
+mgs530:        leaq    (%rbx,%rdx,8), %r8
+mgs531:        je      .L19
+mgs532:        leaq    -8(%r8), %r9
+mgs533:        leaq    (%r9,%rax,8), %r10
+.L35:
+mgs534:        cmpq    %r9, %r8
+mgs535:        movq    8(%r9), %rdi
+mgs536:        movq    %r9, %rax
+mgs537:        jbe     .L33
+mgs538:        jmp     .L32
+.L176:
+mgs539:        movq    %rsi, 8(%rax)
+mgs540:        subq    $8, %rax
+mgs541:        cmpq    %rax, %r8
+mgs542:        ja      .L32
+.L33:
+mgs543:        movq    (%rax), %rsi
+mgs544:        cmpq    %rsi, %rdi
+mgs545:        jb      .L176
+.L32:
+mgs546:        addq    $8, %r9
+mgs547:        movq    %rdi, 8(%rax)
+mgs548:        cmpq    %r9, %r10
+mgs549:        jne     .L35
+mgs550:        jmp     .L19
+.L10:
+mgs551:        movq    %rsi, %rax
+mgs552:        leaq    -8(%rsi), %rsi
+mgs553:        movq    %rsi, 176(%rsp)
+mgs554:        movq    __ms_joink(%rip), %rsi
+mgs555:        jmp     .L154
+.L9:
+mgs556:        movq    __ms_clonek(%rip), %rdx
+mgs557:        movq    %rdx, (%rsi)
+mgs558:        jmp     .L1
+.L20:
+mgs559:        movq    __mg_clonek(%rip), %rdx
+mgs560:        movq    %rdx, (%rsi)
+mgs561:        jmp     .L1
+.L21:
+mgs562:        movq    %rsi, %rax
+mgs563:        leaq    -8(%rsi), %rsi
+mgs564:        movq    %rsi, 176(%rsp)
+mgs565:        movq    __mg_joink(%rip), %rsi
+mgs566:        movq    %rsi, -8(%rax)
+mgs567:        jmp     .L53
+.L22:
+mgs568:        addq    $8, 176(%rsp)
+mgs569:        jmp     .L19
+.L13:
+mgs570:        movq    24(%rsi), %rdx
+mgs571:        movq    48(%rsi), %rcx
+mgs572:        movq    %rdx, 112(%rsp)
+mgs573:        movq    32(%rsi), %rdx
+mgs574:        movq    %rcx, 200(%rsp)
+mgs575:        movq    %rdx, 120(%rsp)
+mgs576:        movq    56(%rsi), %rdx
+mgs577:        movq    %rdx, 104(%rsp)
+mgs578:        jmp     .L24
+.L2:
+mgs579:        movq    %rsi, 312(%rsp)
+mgs580:        movq    %rcx, 144(%rsp)
+mgs581:        movq    %rdx, 136(%rsp)
+mgs582:        movq    %r11, 104(%rsp)
+mgs583:        call    _ZN7tpalrts11alloc_stackEv
+mgs584:        movq    %rax, 272(%rsp)
+mgs585:        addq    $8191, %rax
+mgs586:        movq    312(%rsp), %rsi
+mgs587:        movq    144(%rsp), %rcx
+mgs588:        movq    136(%rsp), %rdx
+mgs589:        movq    104(%rsp), %r11
+mgs590:        movq    %rax, 280(%rsp)
+mgs591:        jmp     .L3
+.L159:
+mgs592:        movl    $.L7, %edi
+mgs593:        movq    %rcx, 152(%rsp)
+mgs594:        movq    %rdx, 144(%rsp)
+mgs595:        movq    %r11, 136(%rsp)
+mgs596:        call    _Z14sanitize_labelPv
+mgs597:        movl    $.L8, %edi
+mgs598:        movq    %rax, __ms_entry(%rip)
+mgs599:        call    _Z14sanitize_labelPv
+mgs600:        movl    $.L9, %edi
+mgs601:        movq    %rax, __ms_retk(%rip)
+mgs602:        call    _Z14sanitize_labelPv
+mgs603:        movl    $.L10, %edi
+mgs604:        movq    %rax, __ms_joink(%rip)
+mgs605:        call    _Z14sanitize_labelPv
+mgs606:        movl    $.L11, %edi
+mgs607:        movq    %rax, __ms_clonek(%rip)
+mgs608:        call    _Z14sanitize_labelPv
+mgs609:        movl    $.L12, %edi
+mgs610:        movq    %rax, __ms_branch1(%rip)
+mgs611:        call    _Z14sanitize_labelPv
+mgs612:        movl    $.L13, %edi
+mgs613:        movq    %rax, __ms_branch2(%rip)
+mgs614:        call    _Z14sanitize_labelPv
+mgs615:        movl    $.L14, %edi
+mgs616:        movq    %rax, __ms_branch3(%rip)
+mgs617:        call    _Z14sanitize_labelPv
+mgs618:        movl    $.L15, %edi
+mgs619:        movq    %rax, __ms_exitk(%rip)
+mgs620:        call    _Z14sanitize_labelPv
+mgs621:        movl    $.L16, %edi
+mgs622:        movq    %rax, __mg_entry(%rip)
+mgs623:        call    _Z14sanitize_labelPv
+mgs624:        movl    $.L17, %edi
+mgs625:        movq    %rax, __mg_entry2(%rip)
+mgs626:        call    _Z14sanitize_labelPv
+mgs627:        movl    $.L18, %edi
+mgs628:        movq    %rax, __mg_branch1(%rip)
+mgs629:        call    _Z14sanitize_labelPv
+mgs630:        movl    $.L19, %edi
+mgs631:        movq    %rax, __mg_branch2(%rip)
+mgs632:        call    _Z14sanitize_labelPv
+mgs633:        movl    $.L20, %edi
+mgs634:        movq    %rax, __mg_retk(%rip)
+mgs635:        call    _Z14sanitize_labelPv
+mgs636:        movl    $.L21, %edi
+mgs637:        movq    %rax, __mg_joink(%rip)
+mgs638:        call    _Z14sanitize_labelPv
+mgs639:        movl    $.L22, %edi
+mgs640:        movq    %rax, __mg_clonek(%rip)
+mgs641:        call    _Z14sanitize_labelPv
+mgs642:        movl    $.L23, %edi
+mgs643:        movq    %rax, __mg_exitk(%rip)
+mgs644:        call    _Z14sanitize_labelPv
+mgs645:        movl    $.L24, %edi
+mgs646:        movq    %rax, __mg_exitk2(%rip)
+mgs647:        call    _Z14sanitize_labelPv
+mgs648:        movl    $.L25, %edi
+mgs649:        movq    %rax, __cp_entry(%rip)
+mgs650:        call    _Z14sanitize_labelPv
+mgs651:        movl    $.L26, %edi
+mgs652:        movq    %rax, __cp_par(%rip)
+mgs653:        call    _Z14sanitize_labelPv
+mgs654:        movq    152(%rsp), %rcx
+mgs655:        movq    144(%rsp), %rdx
+mgs656:        movq    136(%rsp), %r11
+mgs657:        movq    %rax, __cp_joink(%rip)
+mgs658:        jmp     .L6
+.L177:
+mgs659:        addq    $8, %r8
+.L71:
+mgs660:        movq    -8(%r8), %rsi
+mgs661:        addq    $8, %rdi
+mgs662:        cmpq    %rax, %r8
+mgs663:        movq    %rsi, -8(%rdi)
+mgs664:        jne     .L177
+mgs665:        jmp     .L19
+.L168:
+mgs666:        leaq    -56(%rbx), %rsi
+mgs667:        leaq    8(%r8), %rax
+mgs668:        cmpq    %rax, %rsi
+mgs669:        jbe     .L65
+mgs670:        cmpq    $55, %rbx
+mgs671:        jbe     .L65
+.L63:
+mgs672:        movq    (%r8), %r9
+mgs673:        prefetcht0      272(%r8)
+mgs674:        movq    %r8, %rax
+mgs675:        addq    $64, %r8
+mgs676:        addq    $72, %rax
+mgs677:        prefetcht0      272(%rdi)
+mgs678:        addq    $64, %rdi
+mgs679:        movq    %r9, -64(%rdi)
+mgs680:        movq    -56(%r8), %r9
+mgs681:        movq    %r9, -56(%rdi)
+mgs682:        movq    -48(%r8), %r9
+mgs683:        movq    %r9, -48(%rdi)
+mgs684:        movq    -40(%r8), %r9
+mgs685:        movq    %r9, -40(%rdi)
+mgs686:        movq    -32(%r8), %r9
+mgs687:        movq    %r9, -32(%rdi)
+mgs688:        movq    -24(%r8), %r9
+mgs689:        movq    %r9, -24(%rdi)
+mgs690:        movq    -16(%r8), %r9
+mgs691:        movq    %r9, -16(%rdi)
+mgs692:        movq    -8(%r8), %r9
+mgs693:        cmpq    %rax, %rsi
+mgs694:        movq    %r9, -8(%rdi)
+mgs695:        ja      .L63
+mgs696:        leaq    8(%r8), %rax
+mgs697:        jmp     .L65
+.L178:
+mgs698:        addq    $8, %rax
+.L65:
+mgs699:        movq    -8(%rax), %rsi
+mgs700:        addq    $8, %rdi
+mgs701:        cmpq    %rax, %rbx
+mgs702:        movq    %rsi, -8(%rdi)
+mgs703:        jne     .L178
+mgs704:        jmp     .L19
+.L172:
+mgs705:        movq    $0, 184(%rsp)
+mgs706:        jmp     .L79
+.L175:
+mgs707:        movq    $0, 184(%rsp)
+mgs708:        jmp     .L40
+.L161:
+mgs709:        movq    __cp_entry(%rip), %rax
+mgs710:        movq    %r11, 152(%rsp)
+.L153:
+mgs711:        movq    %rax, 168(%rsp)
+mgs712:        leaq    168(%rsp), %rax
+mgs713:        movq    120(%rsp), %rsi
+mgs714:        movq    104(%rsp), %r8
+mgs715:        movq    112(%rsp), %rdi
+mgs716:        leaq    200(%rsp), %r9
+mgs717:        movq    %rax, 64(%rsp)
+mgs718:        leaq    192(%rsp), %rax
+mgs719:        movq    %rcx, 144(%rsp)
+mgs720:        movq    %rdx, 136(%rsp)
+mgs721:        movq    %rax, 56(%rsp)
+mgs722:        leaq    184(%rsp), %rax
+mgs723:        movq    %rax, 48(%rsp)
+mgs724:        leaq    176(%rsp), %rax
+mgs725:        movq    %rax, 40(%rsp)
+mgs726:        movq    272(%rsp), %rax
+mgs727:        movq    %rax, 8(%rsp)
+mgs728:        movq    280(%rsp), %rax
+mgs729:        movq    %rax, 16(%rsp)
+mgs730:        movq    288(%rsp), %rax
+mgs731:        movq    %rax, 24(%rsp)
+mgs732:        movq    296(%rsp), %rax
+mgs733:        movq    %rax, 32(%rsp)
+mgs734:        movq    128(%rsp), %rax
+mgs735:        movq    %rax, (%rsp)
+mgs736:        call    _Z17mergesort_handlerPmS_mmmRmPvN7tpalrts12stack_structERPcS5_S5_RS1_
+mgs737:        movq    168(%rsp), %rax
+mgs738:        movq    136(%rsp), %rdx
+mgs739:        movq    144(%rsp), %rcx
+mgs740:        movq    152(%rsp), %r11
+mgs741:        movq    176(%rsp), %rsi
+mgs742:        jmp     *%rax
+.L171:
+mgs743:        movq    __cp_par(%rip), %rax
+mgs744:        movq    %r11, 152(%rsp)
+mgs745:        jmp     .L153
 compare:
-mgs712:        .zero   1
+mgs746:        .zero   1
 
 _Z19mergesort_interruptPmS_mmPvN7tpalrts12stack_structES0_P17merge_args_structPSt4pairImmE_rf:
 mgs0_rf:        pushq   %r15
@@ -3660,789 +3832,825 @@ mgs2_rf:        pushq   %r13
 mgs3_rf:        pushq   %r12
 mgs4_rf:        pushq   %rbp
 mgs5_rf:        pushq   %rbx
-mgs6_rf:        subq    $344, %rsp
-mgs7_rf:        cmpq    $0, 400(%rsp)
-mgs8_rf:        movq    %rsi, 248(%rsp)
-mgs9_rf:        movq    440(%rsp), %rbx
-mgs10_rf:        movq    432(%rsp), %rsi
-mgs11_rf:        movq    %rdi, 240(%rsp)
-mgs12_rf:        movq    %r8, 256(%rsp)
-mgs13_rf:        movq    %r9, 296(%rsp)
-mgs14_rf:        je      .L3_rf
-mgs15_rf:        movq    408(%rsp), %rax
-.L4_rf:
-mgs16_rf:        movq    %rax, 304(%rsp)
-mgs17_rf:        movq    416(%rsp), %rax
-mgs18_rf:        testq   %rsi, %rsi
-mgs19_rf:        movq    %rax, 312(%rsp)
-mgs20_rf:        movq    424(%rsp), %rax
-mgs21_rf:        movq    %rax, 320(%rsp)
-mgs22_rf:        je      .L5_rf
-mgs23_rf:        movq    16(%rsi), %rax
-mgs24_rf:        movq    (%rsi), %r11
-mgs25_rf:        movq    8(%rsi), %r15
-mgs26_rf:        movq    24(%rsi), %r13
-mgs27_rf:        movq    32(%rsi), %rbp
-mgs28_rf:        movq    40(%rsi), %r14
-mgs29_rf:        movq    %rax, 216(%rsp)
-mgs30_rf:        movq    56(%rsi), %rax
-mgs31_rf:        movq    48(%rsi), %r12
-mgs32_rf:        movq    %rax, 224(%rsp)
-.L5_rf:
-mgs33_rf:        testq   %rbx, %rbx
-mgs34_rf:        movq    $0, 328(%rsp)
-mgs35_rf:        movq    $0, 232(%rsp)
-mgs36_rf:        je      .L6_rf
-mgs37_rf:        movq    (%rbx), %rax
-mgs38_rf:        movq    %rax, 232(%rsp)
-mgs39_rf:        movq    8(%rbx), %rax
-mgs40_rf:        movq    %rax, 328(%rsp)
-.L6_rf:
-mgs41_rf:        movq    296(%rsp), %rax
-mgs42_rf:        movl    $.L2_rf, %esi
-mgs43_rf:        testq   %rax, %rax
-mgs44_rf:        cmove   %rsi, %rax
-mgs45_rf:        movq    304(%rsp), %rsi
-mgs46_rf:        movq    %rax, 296(%rsp)
-mgs47_rf:        jmp     *%rax
-.L163_rf:
-mgs48_rf:        movq    224(%rsp), %rbx
-mgs49_rf:        leaq    (%r11,%r13,8), %rdi
-mgs50_rf:        testq   %r10, %r10
-mgs51_rf:        movq    (%rdi), %rax
-mgs52_rf:        leaq    0(,%rbx,8), %rsi
-mgs53_rf:        movq    216(%rsp), %rbx
-mgs54_rf:        leaq    (%rbx,%rsi), %r8
-mgs55_rf:        jne     .L54_rf
-mgs56_rf:        movq    %rax, (%r8)
-.L16_rf:
-mgs57_rf:        movq    304(%rsp), %rsi
-mgs58_rf:        movq    (%rsi), %rax
-mgs59_rf:        movq    304(%rsp), %rsi
-mgs60_rf:        jmp     *%rax
-.L159_rf:
-mgs61_rf:        addq    $8, %rax
-.L44_rf:
-mgs62_rf:        movq    -8(%rax), %rdi
-mgs63_rf:        addq    $8, %rsi
-mgs64_rf:        cmpq    %rax, %r8
-mgs65_rf:        movq    %rdi, -8(%rsi)
-mgs66_rf:        jne     .L159_rf
-.L81_rf:
-mgs67_rf:        movq    %r9, 232(%rsp)
-.L37_rf:
-mgs68_rf:        nop
-mgs69_rf:        nop
-mgs70_rf:        jmp     .L160
-mgs71_rf:        movq    328(%rsp), %r9
-mgs72_rf:        movq    232(%rsp), %rbx
-mgs73_rf:        cmpq    %rbx, %r9
-mgs74_rf:        jne     .L161_rf
-.L12_rf:
-mgs75_rf:        addq    $64, 304(%rsp)
-mgs76_rf:        jmp     .L16_rf
-.L22_rf:
-mgs77_rf:        movq    248(%rsp), %rax
-mgs78_rf:        movq    $.L21_rf, (%rsi)
-mgs79_rf:        movq    304(%rsp), %rsi
-mgs80_rf:        movq    240(%rsp), %r15
-mgs81_rf:        movq    %rax, 216(%rsp)
-mgs82_rf:        movq    40(%rsi), %rbp
-mgs83_rf:        movq    56(%rsi), %rax
-mgs84_rf:        movq    %r15, %r11
-mgs85_rf:        movq    48(%rsi), %r12
-mgs86_rf:        movq    %rax, 224(%rsp)
-mgs87_rf:        movq    %rbp, %r14
-mgs88_rf:        movq    %rax, %r13
-.L20_rf:
-mgs89_rf:        leaq    -8(%rsi), %rax
-mgs90_rf:        movq    %rax, 304(%rsp)
-mgs91_rf:        movq    $.L49_rf, -8(%rsi)
-.L51_rf:
-mgs92_rf:        movq    %rbp, %rbx
-mgs93_rf:        movq    %r12, %r10
-mgs94_rf:        subq    %r13, %rbx
-mgs95_rf:        subq    %r14, %r10
-mgs96_rf:        cmpq    %r10, %rbx
-mgs97_rf:        jb      .L84_rf
-mgs98_rf:        nop
-mgs99_rf:        nop
-mgs100_rf:        jmp     .L162
-.L52_rf:
-mgs101_rf:        testq   %rbx, %rbx
-mgs102_rf:        je      .L16_rf
-mgs103_rf:        cmpq    $1, %rbx
-mgs104_rf:        je      .L163_rf
-mgs105_rf:        leaq    0(,%r14,8), %rdi
-mgs106_rf:        cmpq    $1999, %rbx
-mgs107_rf:        leaq    0(,%r12,8), %rax
-mgs108_rf:        leaq    (%r15,%rdi), %rsi
-mgs109_rf:        jbe     .L164_rf
-mgs110_rf:        leaq    0(%r13,%rbp), %r8
-mgs111_rf:        subq    %rdi, %rax
-mgs112_rf:        sarq    $3, %rax
-mgs113_rf:        shrq    %r8
-mgs114_rf:        leaq    (%r11,%r8,8), %r9
-.L71_rf:
-mgs115_rf:        testq   %rax, %rax
-mgs116_rf:        jle     .L70_rf
-.L165_rf:
-mgs117_rf:        movq    %rax, %rdi
-mgs118_rf:        movq    (%r9), %rbx
-mgs119_rf:        sarq    %rdi
-mgs120_rf:        leaq    (%rsi,%rdi,8), %r10
-mgs121_rf:        cmpq    %rbx, (%r10)
-mgs122_rf:        jnb     .L85_rf
-mgs123_rf:        incq    %rdi
-mgs124_rf:        leaq    8(%r10), %rsi
-mgs125_rf:        subq    %rdi, %rax
-mgs126_rf:        testq   %rax, %rax
-mgs127_rf:        jg      .L165_rf
-.L70_rf:
-mgs128_rf:        movq    224(%rsp), %rdi
-mgs129_rf:        leaq    0(%r13,%r14), %rax
-mgs130_rf:        subq    %r15, %rsi
-mgs131_rf:        sarq    $3, %rsi
-mgs132_rf:        subq    %rax, %rdi
-mgs133_rf:        movq    304(%rsp), %rax
-mgs134_rf:        addq    %r8, %rdi
-mgs135_rf:        leaq    -88(%rax), %r9
-mgs136_rf:        movq    %r9, 304(%rsp)
-mgs137_rf:        movq    $.L18_rf, -88(%rax)
-mgs138_rf:        movq    320(%rsp), %r9
-mgs139_rf:        movq    304(%rsp), %rax
-mgs140_rf:        testq   %r9, %r9
-mgs141_rf:        leaq    8(%rax), %r10
-mgs142_rf:        movq    %r9, 8(%rax)
-mgs143_rf:        movq    $0, 16(%rax)
-mgs144_rf:        je      .L73_rf
-mgs145_rf:        movq    %r10, 8(%r9)
-.L73_rf:
-mgs146_rf:        cmpq    $0, 312(%rsp)
-mgs147_rf:        movq    %r10, 320(%rsp)
-mgs148_rf:        je      .L166_rf
-.L74_rf:
-mgs149_rf:        movq    216(%rsp), %rbx
-mgs150_rf:        addq    %rsi, %rdi
-mgs151_rf:        movq    %rbp, 56(%rax)
-mgs152_rf:        movq    %r12, 72(%rax)
-mgs153_rf:        movq    %r11, 24(%rax)
-mgs154_rf:        movq    %rsi, %r12
-mgs155_rf:        movq    %r15, 32(%rax)
-mgs156_rf:        movq    %r8, 48(%rax)
-mgs157_rf:        movq    %r8, %rbp
-mgs158_rf:        movq    %rbx, 40(%rax)
-mgs159_rf:        movq    %rsi, 64(%rax)
-mgs160_rf:        movq    %rdi, 80(%rax)
-mgs161_rf:        jmp     .L51_rf
-.L85_rf:
-mgs162_rf:        movq    %rdi, %rax
-mgs163_rf:        jmp     .L71_rf
-.L84_rf:
-mgs164_rf:        movq    %rbp, %rax
-mgs165_rf:        movq    %r12, %rbp
-mgs166_rf:        movq    %rax, %r12
-mgs167_rf:        movq    %r13, %rax
-mgs168_rf:        movq    %r14, %r13
-mgs169_rf:        movq    %rax, %r14
-mgs170_rf:        movq    %r11, %rax
-mgs171_rf:        movq    %r15, %r11
-mgs172_rf:        movq    %rax, %r15
-mgs173_rf:        jmp     .L51_rf
-.L166_rf:
-mgs174_rf:        movq    %r10, 312(%rsp)
-mgs175_rf:        jmp     .L74_rf
-.L162_rf:
-mgs176_rf:        leaq    296(%rsp), %rax
-mgs177_rf:        movq    %r10, 288(%rsp)
-mgs178_rf:        movq    %r11, 280(%rsp)
-mgs179_rf:        movq    $.L12_rf, 184(%rsp)
-mgs180_rf:        movq    $.L13_rf, 176(%rsp)
-mgs181_rf:        leaq    328(%rsp), %r9
-mgs182_rf:        movq    %rax, 192(%rsp)
-mgs183_rf:        leaq    320(%rsp), %rax
-mgs184_rf:        movq    $.L14_rf, 168(%rsp)
-mgs185_rf:        movq    $.L15_rf, 160(%rsp)
-mgs186_rf:        movq    $.L16_rf, 152(%rsp)
-mgs187_rf:        movq    %rax, 56(%rsp)
-mgs188_rf:        leaq    312(%rsp), %rax
-mgs189_rf:        movq    $.L17_rf, 144(%rsp)
-mgs190_rf:        movq    $.L18_rf, 136(%rsp)
-mgs191_rf:        movq    $.L19_rf, 128(%rsp)
-mgs192_rf:        movq    %rax, 48(%rsp)
-mgs193_rf:        leaq    304(%rsp), %rax
-mgs194_rf:        movq    $.L20_rf, 120(%rsp)
-mgs195_rf:        movq    $.L21_rf, 112(%rsp)
-mgs196_rf:        movq    $.L22_rf, 104(%rsp)
-mgs197_rf:        movq    %rax, 40(%rsp)
-mgs198_rf:        movq    400(%rsp), %rax
-mgs199_rf:        movq    $.L23_rf, 96(%rsp)
-mgs200_rf:        movq    $.L24_rf, 88(%rsp)
-mgs201_rf:        movq    $.L25_rf, 80(%rsp)
-mgs202_rf:        movq    $.L26_rf, 72(%rsp)
-mgs203_rf:        movq    %rax, 8(%rsp)
-mgs204_rf:        movq    408(%rsp), %rax
-mgs205_rf:        movq    $.L2_rf, 64(%rsp)
-mgs206_rf:        movq    %rax, 16(%rsp)
-mgs207_rf:        movq    416(%rsp), %rax
-mgs208_rf:        movq    %rax, 24(%rsp)
-mgs209_rf:        movq    424(%rsp), %rax
-mgs210_rf:        movq    %rax, 32(%rsp)
-mgs211_rf:        movq    256(%rsp), %rax
-mgs212_rf:        movq    %rax, (%rsp)
-mgs213_rf:        movq    232(%rsp), %r8
-mgs214_rf:        movq    248(%rsp), %rsi
-mgs215_rf:        movq    240(%rsp), %rdi
-mgs216_rf:        movq    %rcx, 272(%rsp)
-mgs217_rf:        movq    %rdx, 264(%rsp)
-mgs218_rf:        call    _Z17mergesort_handlerPmS_mmmRmPvN7tpalrts12stack_structERPcS5_S5_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_RS1_
-mgs219_rf:        movq    288(%rsp), %r10
-mgs220_rf:        movq    280(%rsp), %r11
-mgs221_rf:        movq    272(%rsp), %rcx
-mgs222_rf:        movq    264(%rsp), %rdx
-mgs223_rf:        jmp     .L52_rf
-.L164_rf:
-mgs224_rf:        movq    216(%rsp), %rbx
-mgs225_rf:        movq    224(%rsp), %rdi
-mgs226_rf:        leaq    (%r11,%r13,8), %r8
-mgs227_rf:        addq    %r15, %rax
-mgs228_rf:        leaq    (%rbx,%rdi,8), %rdi
-mgs229_rf:        leaq    (%r11,%rbp,8), %rbx
-mgs230_rf:        cmpq    %r8, %rbx
-mgs231_rf:        jne     .L138_rf
-mgs232_rf:        jmp     .L56_rf
-.L168_rf:
-mgs233_rf:        movq    %r9, (%rdi)
-mgs234_rf:        addq    $8, %rsi
-mgs235_rf:        addq    $8, %rdi
-mgs236_rf:        cmpq    %r8, %rbx
-mgs237_rf:        je      .L56_rf
-.L138_rf:
-mgs238_rf:        cmpq    %rsi, %rax
-mgs239_rf:        je      .L167_rf
-mgs240_rf:        movq    (%rsi), %r9
-mgs241_rf:        movq    (%r8), %r10
-mgs242_rf:        cmpq    %r10, %r9
-mgs243_rf:        jb      .L168_rf
-mgs244_rf:        addq    $8, %r8
-mgs245_rf:        movq    %r10, %r9
-mgs246_rf:        addq    $8, %rdi
-mgs247_rf:        movq    %r9, -8(%rdi)
-mgs248_rf:        cmpq    %r8, %rbx
-mgs249_rf:        jne     .L138_rf
-.L56_rf:
-mgs250_rf:        cmpq    %rax, %rsi
-mgs251_rf:        je      .L16_rf
-mgs252_rf:        leaq    -56(%rax), %r9
-mgs253_rf:        leaq    8(%rsi), %r8
-mgs254_rf:        cmpq    %r9, %r8
-mgs255_rf:        jnb     .L69_rf
-mgs256_rf:        cmpq    $55, %rax
-mgs257_rf:        jbe     .L69_rf
-.L68_rf:
-mgs258_rf:        movq    (%rsi), %r10
-mgs259_rf:        prefetcht0      272(%rsi)
-mgs260_rf:        movq    %rsi, %r8
-mgs261_rf:        addq    $64, %rsi
-mgs262_rf:        addq    $72, %r8
-mgs263_rf:        prefetcht0      272(%rdi)
-mgs264_rf:        addq    $64, %rdi
-mgs265_rf:        movq    %r10, -64(%rdi)
-mgs266_rf:        movq    -56(%rsi), %r10
-mgs267_rf:        movq    %r10, -56(%rdi)
-mgs268_rf:        movq    -48(%rsi), %r10
-mgs269_rf:        movq    %r10, -48(%rdi)
-mgs270_rf:        movq    -40(%rsi), %r10
-mgs271_rf:        movq    %r10, -40(%rdi)
-mgs272_rf:        movq    -32(%rsi), %r10
-mgs273_rf:        movq    %r10, -32(%rdi)
-mgs274_rf:        movq    -24(%rsi), %r10
-mgs275_rf:        movq    %r10, -24(%rdi)
-mgs276_rf:        movq    -16(%rsi), %r10
-mgs277_rf:        movq    %r10, -16(%rdi)
-mgs278_rf:        movq    -8(%rsi), %r10
-mgs279_rf:        cmpq    %r8, %r9
-mgs280_rf:        movq    %r10, -8(%rdi)
-mgs281_rf:        ja      .L68_rf
-mgs282_rf:        leaq    8(%rsi), %r8
-mgs283_rf:        jmp     .L69_rf
-.L169_rf:
-mgs284_rf:        addq    $8, %rsi
-.L48_rf:
-mgs285_rf:        movq    -8(%rsi), %rdi
-mgs286_rf:        addq    $8, %rax
-mgs287_rf:        cmpq    %rsi, %r8
-mgs288_rf:        movq    %rdi, -8(%rax)
-mgs289_rf:        jne     .L169_rf
-.L83_rf:
-mgs290_rf:        movq    %r9, 232(%rsp)
-.L13_rf:
-mgs291_rf:        nop
-mgs292_rf:        nop
-mgs293_rf:        jmp     .L170
-mgs294_rf:        movq    328(%rsp), %r9
-mgs295_rf:        movq    232(%rsp), %rbx
-mgs296_rf:        cmpq    %rbx, %r9
-mgs297_rf:        je      .L1_rf
-mgs298_rf:        leaq    2000(%rbx), %rax
-mgs299_rf:        leaq    0(,%rbx,8), %rdi
-mgs300_rf:        movq    248(%rsp), %rbx
-mgs301_rf:        cmpq    %r9, %rax
-mgs302_rf:        cmovbe  %rax, %r9
-mgs303_rf:        movq    240(%rsp), %rax
-mgs304_rf:        leaq    (%rbx,%r9,8), %r8
-mgs305_rf:        addq    %rdi, %rax
-mgs306_rf:        addq    %rbx, %rdi
-mgs307_rf:        cmpq    %rdi, %r8
-mgs308_rf:        je      .L83_rf
-mgs309_rf:        leaq    -56(%r8), %r10
-mgs310_rf:        leaq    8(%rdi), %rsi
-mgs311_rf:        cmpq    %r10, %rsi
-mgs312_rf:        jnb     .L48_rf
-mgs313_rf:        cmpq    $55, %r8
-mgs314_rf:        jbe     .L48_rf
-.L47_rf:
-mgs315_rf:        movq    (%rdi), %rbx
-mgs316_rf:        prefetcht0      272(%rdi)
-mgs317_rf:        movq    %rdi, %rsi
-mgs318_rf:        addq    $64, %rdi
-mgs319_rf:        addq    $72, %rsi
-mgs320_rf:        prefetcht0      272(%rax)
-mgs321_rf:        addq    $64, %rax
-mgs322_rf:        movq    %rbx, -64(%rax)
-mgs323_rf:        movq    -56(%rdi), %rbx
-mgs324_rf:        movq    %rbx, -56(%rax)
-mgs325_rf:        movq    -48(%rdi), %rbx
-mgs326_rf:        movq    %rbx, -48(%rax)
-mgs327_rf:        movq    -40(%rdi), %rbx
-mgs328_rf:        movq    %rbx, -40(%rax)
-mgs329_rf:        movq    -32(%rdi), %rbx
-mgs330_rf:        movq    %rbx, -32(%rax)
-mgs331_rf:        movq    -24(%rdi), %rbx
-mgs332_rf:        movq    %rbx, -24(%rax)
-mgs333_rf:        movq    -16(%rdi), %rbx
-mgs334_rf:        movq    %rbx, -16(%rax)
-mgs335_rf:        movq    -8(%rdi), %rbx
-mgs336_rf:        cmpq    %r10, %rsi
-mgs337_rf:        movq    %rbx, -8(%rax)
-mgs338_rf:        jb      .L47_rf
-mgs339_rf:        leaq    8(%rdi), %rsi
-mgs340_rf:        jmp     .L48_rf
-.L54_rf:
-mgs341_rf:        leaq    (%r15,%r14,8), %r9
-mgs342_rf:        cmpq    %rax, (%r9)
-mgs343_rf:        cmovbe  (%r9), %rax
-mgs344_rf:        movq    %rax, (%r8)
-mgs345_rf:        movq    (%rdi), %rax
-mgs346_rf:        cmpq    %rax, (%r9)
-mgs347_rf:        cmovnb  (%r9), %rax
-mgs348_rf:        movq    %rax, 8(%rbx,%rsi)
-mgs349_rf:        jmp     .L16_rf
-.L161_rf:
-mgs350_rf:        leaq    2000(%rbx), %rax
-mgs351_rf:        leaq    0(,%rbx,8), %rdi
-mgs352_rf:        cmpq    %r9, %rax
-mgs353_rf:        cmovbe  %rax, %r9
-mgs354_rf:        movq    240(%rsp), %rax
-mgs355_rf:        leaq    (%rax,%rdi), %rsi
-mgs356_rf:        movq    248(%rsp), %rax
-mgs357_rf:        leaq    (%rax,%r9,8), %r8
-mgs358_rf:        addq    %rax, %rdi
-mgs359_rf:        cmpq    %rdi, %r8
-mgs360_rf:        je      .L81_rf
-mgs361_rf:        leaq    -56(%r8), %r10
-mgs362_rf:        leaq    8(%rdi), %rax
-mgs363_rf:        cmpq    %r10, %rax
-mgs364_rf:        jnb     .L44_rf
-mgs365_rf:        cmpq    $55, %r8
-mgs366_rf:        jbe     .L44_rf
-.L42_rf:
-mgs367_rf:        movq    (%rdi), %rbx
-mgs368_rf:        prefetcht0      272(%rdi)
-mgs369_rf:        movq    %rdi, %rax
-mgs370_rf:        addq    $64, %rdi
-mgs371_rf:        addq    $72, %rax
-mgs372_rf:        prefetcht0      272(%rsi)
-mgs373_rf:        addq    $64, %rsi
-mgs374_rf:        movq    %rbx, -64(%rsi)
-mgs375_rf:        movq    -56(%rdi), %rbx
-mgs376_rf:        movq    %rbx, -56(%rsi)
-mgs377_rf:        movq    -48(%rdi), %rbx
-mgs378_rf:        movq    %rbx, -48(%rsi)
-mgs379_rf:        movq    -40(%rdi), %rbx
-mgs380_rf:        movq    %rbx, -40(%rsi)
-mgs381_rf:        movq    -32(%rdi), %rbx
-mgs382_rf:        movq    %rbx, -32(%rsi)
-mgs383_rf:        movq    -24(%rdi), %rbx
-mgs384_rf:        movq    %rbx, -24(%rsi)
-mgs385_rf:        movq    -16(%rdi), %rbx
-mgs386_rf:        movq    %rbx, -16(%rsi)
-mgs387_rf:        movq    -8(%rdi), %rbx
-mgs388_rf:        cmpq    %rax, %r10
-mgs389_rf:        movq    %rbx, -8(%rsi)
-mgs390_rf:        ja      .L42_rf
-mgs391_rf:        leaq    8(%rdi), %rax
-mgs392_rf:        jmp     .L44_rf
-.L24_rf:
-mgs393_rf:        movq    %rsi, %rax
-mgs394_rf:        leaq    -8(%rsi), %rsi
-mgs395_rf:        movq    %rsi, 304(%rsp)
-mgs396_rf:        movq    $.L25_rf, -8(%rax)
-.L154_rf:
-mgs397_rf:        movq    %r12, 264(%rsp)
-mgs398_rf:        movq    248(%rsp), %rsi
-mgs399_rf:        movq    %rbp, %r12
-mgs400_rf:        movq    %rcx, %rbx
-mgs401_rf:        movq    240(%rsp), %rbp
-mgs402_rf:        jmp     .L34_rf
-.L33_rf:
-mgs403_rf:        movq    %rbx, 48(%rax)
-mgs404_rf:        movq    %rbp, 24(%rax)
-mgs405_rf:        movq    %rcx, %rbx
-mgs406_rf:        movq    %rsi, 32(%rax)
-mgs407_rf:        movq    %rcx, 40(%rax)
-mgs408_rf:        movq    %rdx, 56(%rax)
-.L34_rf:
-mgs409_rf:        nop
-mgs410_rf:        nop
-mgs411_rf:        jmp     .L171
-.L11_rf:
-mgs412_rf:        movq    %rbx, %rax
-mgs413_rf:        subq    %rdx, %rax
-mgs414_rf:        cmpq    $23, %rax
-mgs415_rf:        jbe     .L172_rf
-.L27_rf:
-mgs416_rf:        movq    304(%rsp), %rax
-mgs417_rf:        leaq    (%rbx,%rdx), %rcx
-mgs418_rf:        shrq    %rcx
-mgs419_rf:        leaq    -64(%rax), %rdi
-mgs420_rf:        movq    %rdi, 304(%rsp)
-mgs421_rf:        movq    $.L23_rf, -64(%rax)
-mgs422_rf:        movq    320(%rsp), %rdi
-mgs423_rf:        movq    304(%rsp), %rax
-mgs424_rf:        testq   %rdi, %rdi
-mgs425_rf:        leaq    8(%rax), %r8
-mgs426_rf:        movq    %rdi, 8(%rax)
-mgs427_rf:        movq    $0, 16(%rax)
-mgs428_rf:        je      .L32_rf
-mgs429_rf:        movq    %r8, 8(%rdi)
-.L32_rf:
-mgs430_rf:        cmpq    $0, 312(%rsp)
-mgs431_rf:        movq    %r8, 320(%rsp)
-mgs432_rf:        jne     .L33_rf
-mgs433_rf:        movq    %r8, 312(%rsp)
-mgs434_rf:        jmp     .L33_rf
-.L9_rf:
-mgs435_rf:        leaq    400(%rsp), %rdi
-mgs436_rf:        addq    $8, 304(%rsp)
-mgs437_rf:        call    _ZN7tpalrts7sdeleteERNS_12stack_structE
-.L1_rf:
-mgs438_rf:        addq    $344, %rsp
-mgs439_rf:        popq    %rbx
-mgs440_rf:        popq    %rbp
-mgs441_rf:        popq    %r12
-mgs442_rf:        popq    %r13
-mgs443_rf:        popq    %r14
-mgs444_rf:        popq    %r15
-mgs445_rf:        ret
-.L26_rf:
-mgs446_rf:        jmp     .L16_rf
-.L23_rf:
-mgs447_rf:        movq    $.L22_rf, (%rsi)
-mgs448_rf:        movq    320(%rsp), %rdx
-mgs449_rf:        movq    (%rdx), %rax
-mgs450_rf:        testq   %rax, %rax
-mgs451_rf:        je      .L173_rf
-mgs452_rf:        movq    $0, 8(%rax)
-mgs453_rf:        movq    $0, (%rdx)
-.L36_rf:
-mgs454_rf:        movq    %rax, 320(%rsp)
-mgs455_rf:        movq    304(%rsp), %rax
-mgs456_rf:        movq    %r12, 264(%rsp)
-mgs457_rf:        movq    %rbp, %r12
-mgs458_rf:        movq    24(%rax), %rbx
-mgs459_rf:        movq    32(%rax), %rsi
-mgs460_rf:        movq    48(%rax), %rcx
-mgs461_rf:        movq    40(%rax), %rdx
-mgs462_rf:        nop
-mgs463_rf:        movq    %rbx, 240(%rsp)
-mgs464_rf:        movq    %rbx, %rbp
-mgs465_rf:        movq    %rsi, 248(%rsp)
-mgs466_rf:        movq    %rcx, %rbx
-mgs467_rf:        nop
-mgs468_rf:        jmp     mgs469
-.L171_rf:
-mgs469_rf:        leaq    296(%rsp), %rax
-mgs470_rf:        movq    232(%rsp), %r8
-mgs471_rf:        leaq    328(%rsp), %r9
-mgs472_rf:        movq    %r11, 288(%rsp)
-mgs473_rf:        movq    $.L12_rf, 184(%rsp)
-mgs474_rf:        movq    %rbx, %rcx
-mgs475_rf:        movq    %rax, 192(%rsp)
-mgs476_rf:        leaq    320(%rsp), %rax
-mgs477_rf:        movq    $.L13_rf, 176(%rsp)
-mgs478_rf:        movq    $.L14_rf, 168(%rsp)
-mgs479_rf:        movq    $.L15_rf, 160(%rsp)
-mgs480_rf:        movq    %rbp, %rdi
-mgs481_rf:        movq    %rax, 56(%rsp)
-mgs482_rf:        leaq    312(%rsp), %rax
-mgs483_rf:        movq    $.L16_rf, 152(%rsp)
-mgs484_rf:        movq    $.L17_rf, 144(%rsp)
-mgs485_rf:        movq    $.L18_rf, 136(%rsp)
-mgs486_rf:        movq    %rax, 48(%rsp)
-mgs487_rf:        leaq    304(%rsp), %rax
-mgs488_rf:        movq    $.L19_rf, 128(%rsp)
-mgs489_rf:        movq    $.L20_rf, 120(%rsp)
-mgs490_rf:        movq    $.L21_rf, 112(%rsp)
-mgs491_rf:        movq    %rax, 40(%rsp)
-mgs492_rf:        movq    400(%rsp), %rax
-mgs493_rf:        movq    $.L22_rf, 104(%rsp)
-mgs494_rf:        movq    $.L23_rf, 96(%rsp)
-mgs495_rf:        movq    $.L24_rf, 88(%rsp)
-mgs496_rf:        movq    $.L25_rf, 80(%rsp)
-mgs497_rf:        movq    %rax, 8(%rsp)
-mgs498_rf:        movq    408(%rsp), %rax
-mgs499_rf:        movq    $.L26_rf, 72(%rsp)
-mgs500_rf:        movq    $.L2_rf, 64(%rsp)
-mgs501_rf:        movq    %rax, 16(%rsp)
-mgs502_rf:        movq    416(%rsp), %rax
-mgs503_rf:        movq    %rax, 24(%rsp)
-mgs504_rf:        movq    424(%rsp), %rax
-mgs505_rf:        movq    %rax, 32(%rsp)
-mgs506_rf:        movq    256(%rsp), %rax
-mgs507_rf:        movq    %rax, (%rsp)
-mgs508_rf:        movq    %rdx, 280(%rsp)
-mgs509_rf:        movq    %rsi, 272(%rsp)
-mgs510_rf:        call    _Z17mergesort_handlerPmS_mmmRmPvN7tpalrts12stack_structERPcS5_S5_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_RS1_
-mgs511_rf:        movq    280(%rsp), %rdx
-mgs512_rf:        movq    %rbx, %rax
-mgs513_rf:        movq    288(%rsp), %r11
-mgs514_rf:        movq    272(%rsp), %rsi
-mgs515_rf:        subq    %rdx, %rax
-mgs516_rf:        cmpq    $23, %rax
-mgs517_rf:        ja      .L27_rf
-.L172_rf:
-mgs518_rf:        movq    %rbx, %rcx
-mgs519_rf:        movq    240(%rsp), %rbx
-mgs520_rf:        testq   %rax, %rax
-mgs521_rf:        movq    %r12, %rbp
-mgs522_rf:        movq    264(%rsp), %r12
-mgs523_rf:        leaq    (%rbx,%rdx,8), %r8
-mgs524_rf:        je      .L16_rf
-mgs525_rf:        leaq    -8(%r8), %r9
-mgs526_rf:        leaq    (%r9,%rax,8), %r10
-.L31_rf:
-mgs527_rf:        cmpq    %r9, %r8
-mgs528_rf:        movq    8(%r9), %rdi
-mgs529_rf:        movq    %r9, %rax
-mgs530_rf:        jbe     .L29_rf
-mgs531_rf:        jmp     .L28_rf
-.L174_rf:
-mgs532_rf:        movq    %rsi, 8(%rax)
-mgs533_rf:        subq    $8, %rax
-mgs534_rf:        cmpq    %rax, %r8
-mgs535_rf:        ja      .L28_rf
-.L29_rf:
-mgs536_rf:        movq    (%rax), %rsi
-mgs537_rf:        cmpq    %rsi, %rdi
-mgs538_rf:        jb      .L174_rf
-.L28_rf:
-mgs539_rf:        addq    $8, %r9
-mgs540_rf:        movq    %rdi, 8(%rax)
-mgs541_rf:        cmpq    %r9, %r10
-mgs542_rf:        jne     .L31_rf
-mgs543_rf:        jmp     .L16_rf
-.L18_rf:
-mgs544_rf:        movq    $.L17_rf, (%rsi)
-mgs545_rf:        movq    320(%rsp), %rsi
-mgs546_rf:        movq    (%rsi), %rax
-mgs547_rf:        testq   %rax, %rax
-mgs548_rf:        je      .L175_rf
-mgs549_rf:        movq    $0, 8(%rax)
-mgs550_rf:        movq    $0, (%rsi)
-.L77_rf:
-mgs551_rf:        movq    %rax, 320(%rsp)
-mgs552_rf:        movq    304(%rsp), %rax
-mgs553_rf:        movq    40(%rax), %rbx
-mgs554_rf:        movq    24(%rax), %r11
-mgs555_rf:        movq    32(%rax), %r15
-mgs556_rf:        movq    48(%rax), %r13
-mgs557_rf:        movq    56(%rax), %rbp
-mgs558_rf:        movq    64(%rax), %r14
-mgs559_rf:        movq    72(%rax), %r12
-mgs560_rf:        movq    80(%rax), %rax
-mgs561_rf:        movq    %rbx, 216(%rsp)
-mgs562_rf:        movq    %rax, 224(%rsp)
-mgs563_rf:        jmp     .L51_rf
-.L17_rf:
-mgs564_rf:        addq    $88, 304(%rsp)
-mgs565_rf:        jmp     .L16_rf
-.L15_rf:
-mgs566_rf:        movq    $.L14_rf, (%rsi)
-mgs567_rf:        jmp     .L1_rf
-.L14_rf:
-mgs568_rf:        movq    %rsi, %rax
-mgs569_rf:        leaq    -8(%rsi), %rsi
-mgs570_rf:        movq    %rsi, 304(%rsp)
-mgs571_rf:        movq    $.L15_rf, -8(%rax)
-mgs572_rf:        jmp     .L51_rf
-.L49_rf:
-mgs573_rf:        addq    $8, 304(%rsp)
-mgs574_rf:        jmp     .L16_rf
-.L19_rf:
-mgs575_rf:        movq    %rsi, %rax
-mgs576_rf:        leaq    -8(%rsi), %rsi
-mgs577_rf:        movq    %rsi, 304(%rsp)
-mgs578_rf:        movq    $.L78_rf, -8(%rax)
-mgs579_rf:        jmp     .L51_rf
-.L78_rf:
-mgs580_rf:        jmp     .L1_rf
-.L2_rf:
-mgs581_rf:        movq    %rsi, %rax
-mgs582_rf:        leaq    -8(%rsi), %rsi
-mgs583_rf:        movq    %rsi, 304(%rsp)
-mgs584_rf:        movq    $.L9_rf, -8(%rax)
-mgs585_rf:        jmp     .L154_rf
-.L21_rf:
-mgs586_rf:        movq    24(%rsi), %rdx
-mgs587_rf:        movq    48(%rsi), %rcx
-mgs588_rf:        movq    %rdx, 240(%rsp)
-mgs589_rf:        movq    32(%rsi), %rdx
-mgs590_rf:        movq    %rcx, 328(%rsp)
-mgs591_rf:        movq    %rdx, 248(%rsp)
-mgs592_rf:        movq    56(%rsi), %rdx
-mgs593_rf:        movq    %rdx, 232(%rsp)
-mgs594_rf:        jmp     .L37_rf
-.L25_rf:
-mgs595_rf:        movq    $.L24_rf, (%rsi)
-mgs596_rf:        jmp     .L1_rf
+mgs6_rf:        subq    $216, %rsp
+mgs7_rf:        cmpq    $0, 272(%rsp)
+mgs8_rf:        movq    %rsi, 120(%rsp)
+mgs9_rf:        movq    304(%rsp), %rbx
+mgs10_rf:        movq    312(%rsp), %rsi
+mgs11_rf:        movq    %rdi, 112(%rsp)
+mgs12_rf:        movq    %r8, 128(%rsp)
+mgs13_rf:        movq    %r9, 168(%rsp)
+mgs14_rf:        je      .L2_rf
+mgs15_rf:        movq    280(%rsp), %rax
 .L3_rf:
-mgs597_rf:        movq    %rsi, 432(%rsp)
-mgs598_rf:        movq    %rcx, 272(%rsp)
-mgs599_rf:        movq    %rdx, 264(%rsp)
-mgs600_rf:        movq    %r11, 232(%rsp)
-mgs601_rf:        call    _ZN7tpalrts11alloc_stackEv
-mgs602_rf:        movq    %rax, 400(%rsp)
-mgs603_rf:        addq    $8191, %rax
-mgs604_rf:        movq    432(%rsp), %rsi
-mgs605_rf:        movq    272(%rsp), %rcx
-mgs606_rf:        movq    264(%rsp), %rdx
-mgs607_rf:        movq    232(%rsp), %r11
-mgs608_rf:        movq    %rax, 408(%rsp)
-mgs609_rf:        jmp     .L4_rf
-.L176_rf:
-mgs610_rf:        addq    $8, %r8
-.L69_rf:
-mgs611_rf:        movq    -8(%r8), %rsi
-mgs612_rf:        addq    $8, %rdi
-mgs613_rf:        cmpq    %rax, %r8
-mgs614_rf:        movq    %rsi, -8(%rdi)
-mgs615_rf:        jne     .L176_rf
-mgs616_rf:        jmp     .L16_rf
-.L167_rf:
-mgs617_rf:        leaq    -56(%rbx), %rsi
-mgs618_rf:        leaq    8(%r8), %rax
-mgs619_rf:        cmpq    %rax, %rsi
-mgs620_rf:        jbe     .L63_rf
-mgs621_rf:        cmpq    $55, %rbx
-mgs622_rf:        jbe     .L63_rf
-.L61_rf:
-mgs623_rf:        movq    (%r8), %r9
-mgs624_rf:        prefetcht0      272(%r8)
-mgs625_rf:        movq    %r8, %rax
-mgs626_rf:        addq    $64, %r8
-mgs627_rf:        addq    $72, %rax
-mgs628_rf:        prefetcht0      272(%rdi)
-mgs629_rf:        addq    $64, %rdi
-mgs630_rf:        movq    %r9, -64(%rdi)
-mgs631_rf:        movq    -56(%r8), %r9
-mgs632_rf:        movq    %r9, -56(%rdi)
-mgs633_rf:        movq    -48(%r8), %r9
-mgs634_rf:        movq    %r9, -48(%rdi)
-mgs635_rf:        movq    -40(%r8), %r9
-mgs636_rf:        movq    %r9, -40(%rdi)
-mgs637_rf:        movq    -32(%r8), %r9
-mgs638_rf:        movq    %r9, -32(%rdi)
-mgs639_rf:        movq    -24(%r8), %r9
-mgs640_rf:        movq    %r9, -24(%rdi)
-mgs641_rf:        movq    -16(%r8), %r9
-mgs642_rf:        movq    %r9, -16(%rdi)
-mgs643_rf:        movq    -8(%r8), %r9
-mgs644_rf:        cmpq    %rax, %rsi
-mgs645_rf:        movq    %r9, -8(%rdi)
-mgs646_rf:        ja      .L61_rf
-mgs647_rf:        leaq    8(%r8), %rax
-mgs648_rf:        jmp     .L63_rf
-.L177_rf:
-mgs649_rf:        addq    $8, %rax
-.L63_rf:
-mgs650_rf:        movq    -8(%rax), %rsi
-mgs651_rf:        addq    $8, %rdi
-mgs652_rf:        cmpq    %rax, %rbx
-mgs653_rf:        movq    %rsi, -8(%rdi)
-mgs654_rf:        jne     .L177_rf
-mgs655_rf:        jmp     .L16_rf
-.L173_rf:
-mgs656_rf:        movq    $0, 312(%rsp)
-mgs657_rf:        jmp     .L36_rf
-.L175_rf:
-mgs658_rf:        movq    $0, 312(%rsp)
-mgs659_rf:        jmp     .L77_rf
+mgs16_rf:        movq    %rax, 176(%rsp)
+mgs17_rf:        movq    288(%rsp), %rax
+mgs18_rf:        testq   %rbx, %rbx
+mgs19_rf:        movq    %rax, 184(%rsp)
+mgs20_rf:        movq    296(%rsp), %rax
+mgs21_rf:        movq    %rax, 192(%rsp)
+mgs22_rf:        je      .L4_rf
+mgs23_rf:        movq    16(%rbx), %rax
+mgs24_rf:        movq    (%rbx), %r11
+mgs25_rf:        movq    8(%rbx), %r15
+mgs26_rf:        movq    24(%rbx), %r13
+mgs27_rf:        movq    32(%rbx), %rbp
+mgs28_rf:        movq    40(%rbx), %r14
+mgs29_rf:        movq    %rax, 88(%rsp)
+mgs30_rf:        movq    56(%rbx), %rax
+mgs31_rf:        movq    48(%rbx), %r12
+mgs32_rf:        movq    %rax, 96(%rsp)
+.L4_rf:
+mgs33_rf:        testq   %rsi, %rsi
+mgs34_rf:        movq    $0, 200(%rsp)
+mgs35_rf:        movq    $0, 104(%rsp)
+mgs36_rf:        je      .L5_rf
+mgs37_rf:        movq    (%rsi), %rax
+mgs38_rf:        movq    %rax, 104(%rsp)
+mgs39_rf:        movq    8(%rsi), %rax
+mgs40_rf:        movq    %rax, 200(%rsp)
+.L5_rf:
+mgs41_rf:        cmpq    $0, __ms_entry(%rip)
+mgs42_rf:        je      .L159_rf
+.L6_rf:
+mgs43_rf:        movq    168(%rsp), %rax
+mgs44_rf:        movq    176(%rsp), %rsi
+mgs45_rf:        testq   %rax, %rax
+mgs46_rf:        cmove   __ms_entry(%rip), %rax
+mgs47_rf:        movq    %rax, 168(%rsp)
+mgs48_rf:        jmp     *%rax
+.L164_rf:
+mgs49_rf:        movq    96(%rsp), %rbx
+mgs50_rf:        leaq    (%r11,%r13,8), %rdi
+mgs51_rf:        testq   %r10, %r10
+mgs52_rf:        movq    (%rdi), %rax
+mgs53_rf:        leaq    0(,%rbx,8), %rsi
+mgs54_rf:        movq    88(%rsp), %rbx
+mgs55_rf:        leaq    (%rbx,%rsi), %r9
+mgs56_rf:        jne     .L56_rf
+mgs57_rf:        movq    %rax, (%r9)
+.L19_rf:
+mgs58_rf:        movq    176(%rsp), %rsi
+mgs59_rf:        movq    (%rsi), %rax
+mgs60_rf:        movq    176(%rsp), %rsi
+mgs61_rf:        jmp     *%rax
 .L160_rf:
-mgs660_rf:        movq    %r11, 280(%rsp)
-mgs661_rf:        movq    $.L37_rf, 296(%rsp)
-.L153_rf:
-mgs662_rf:        leaq    296(%rsp), %rax
-mgs663_rf:        movq    %rcx, 272(%rsp)
-mgs664_rf:        movq    232(%rsp), %r8
-mgs665_rf:        movq    $.L12_rf, 184(%rsp)
-mgs666_rf:        movq    $.L13_rf, 176(%rsp)
-mgs667_rf:        leaq    328(%rsp), %r9
-mgs668_rf:        movq    %rax, 192(%rsp)
-mgs669_rf:        leaq    320(%rsp), %rax
-mgs670_rf:        movq    $.L14_rf, 168(%rsp)
-mgs671_rf:        movq    $.L15_rf, 160(%rsp)
-mgs672_rf:        movq    $.L16_rf, 152(%rsp)
-mgs673_rf:        movq    %rax, 56(%rsp)
-mgs674_rf:        leaq    312(%rsp), %rax
-mgs675_rf:        movq    $.L17_rf, 144(%rsp)
-mgs676_rf:        movq    $.L18_rf, 136(%rsp)
-mgs677_rf:        movq    $.L19_rf, 128(%rsp)
-mgs678_rf:        movq    %rax, 48(%rsp)
-mgs679_rf:        leaq    304(%rsp), %rax
-mgs680_rf:        movq    $.L20_rf, 120(%rsp)
-mgs681_rf:        movq    $.L21_rf, 112(%rsp)
-mgs682_rf:        movq    $.L22_rf, 104(%rsp)
-mgs683_rf:        movq    %rax, 40(%rsp)
-mgs684_rf:        movq    400(%rsp), %rax
-mgs685_rf:        movq    $.L23_rf, 96(%rsp)
-mgs686_rf:        movq    $.L24_rf, 88(%rsp)
-mgs687_rf:        movq    $.L25_rf, 80(%rsp)
-mgs688_rf:        movq    $.L26_rf, 72(%rsp)
-mgs689_rf:        movq    %rax, 8(%rsp)
-mgs690_rf:        movq    408(%rsp), %rax
-mgs691_rf:        movq    $.L2_rf, 64(%rsp)
-mgs692_rf:        movq    %rax, 16(%rsp)
-mgs693_rf:        movq    416(%rsp), %rax
-mgs694_rf:        movq    %rax, 24(%rsp)
-mgs695_rf:        movq    424(%rsp), %rax
-mgs696_rf:        movq    %rax, 32(%rsp)
-mgs697_rf:        movq    256(%rsp), %rax
-mgs698_rf:        movq    %rax, (%rsp)
-mgs699_rf:        movq    %rdx, 264(%rsp)
-mgs700_rf:        movq    248(%rsp), %rsi
-mgs701_rf:        movq    240(%rsp), %rdi
-mgs702_rf:        call    _Z17mergesort_handlerPmS_mmmRmPvN7tpalrts12stack_structERPcS5_S5_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_S1_RS1_
-mgs703_rf:        movq    296(%rsp), %rax
-mgs704_rf:        movq    264(%rsp), %rdx
-mgs705_rf:        movq    272(%rsp), %rcx
-mgs706_rf:        movq    280(%rsp), %r11
-mgs707_rf:        movq    304(%rsp), %rsi
-mgs708_rf:        jmp     *%rax
+mgs62_rf:        addq    $8, %rax
+.L47_rf:
+mgs63_rf:        movq    -8(%rax), %rdi
+mgs64_rf:        addq    $8, %rsi
+mgs65_rf:        cmpq    %rax, %r8
+mgs66_rf:        movq    %rdi, -8(%rsi)
+mgs67_rf:        jne     .L160_rf
+.L81_rf:
+mgs68_rf:        movq    %r9, 104(%rsp)
+.L24_rf:
+mgs69_rf:        nop
+mgs70_rf:        nop
+mgs71_rf:        jmp     .L161
+mgs72_rf:        movq    200(%rsp), %r9
+mgs73_rf:        movq    104(%rsp), %rbx
+mgs74_rf:        cmpq    %rbx, %r9
+mgs75_rf:        jne     .L162_rf
+.L26_rf:
+mgs76_rf:        addq    $64, 176(%rsp)
+mgs77_rf:        jmp     .L19_rf
+.L12_rf:
+mgs78_rf:        movq    %rsi, %rax
+mgs79_rf:        movq    __ms_branch3(%rip), %rsi
+mgs80_rf:        movq    112(%rsp), %r15
+mgs81_rf:        movq    %rsi, (%rax)
+mgs82_rf:        movq    120(%rsp), %rax
+mgs83_rf:        movq    %r15, %r11
+mgs84_rf:        movq    176(%rsp), %rsi
+mgs85_rf:        movq    %rax, 88(%rsp)
+mgs86_rf:        movq    40(%rsi), %rbp
+mgs87_rf:        movq    56(%rsi), %rax
+mgs88_rf:        movq    48(%rsi), %r12
+mgs89_rf:        movq    %rax, 96(%rsp)
+mgs90_rf:        movq    %rbp, %r14
+mgs91_rf:        movq    %rax, %r13
+.L15_rf:
+mgs92_rf:        leaq    -8(%rsi), %rax
+mgs93_rf:        movq    %rax, 176(%rsp)
+mgs94_rf:        movq    __mg_exitk(%rip), %rax
+mgs95_rf:        movq    %rax, -8(%rsi)
+.L53_rf:
+mgs96_rf:        movq    %rbp, %rbx
+mgs97_rf:        movq    %r12, %r10
+mgs98_rf:        subq    %r13, %rbx
+mgs99_rf:        subq    %r14, %r10
+mgs100_rf:        cmpq    %r10, %rbx
+mgs101_rf:        jb      .L84_rf
+mgs102_rf:        nop
+mgs103_rf:        nop
+mgs104_rf:        jmp     .L163
+.L54_rf:
+mgs105_rf:        testq   %rbx, %rbx
+mgs106_rf:        je      .L19_rf
+mgs107_rf:        cmpq    $1, %rbx
+mgs108_rf:        je      .L164_rf
+mgs109_rf:        leaq    0(,%r14,8), %rdi
+mgs110_rf:        cmpq    $1999, %rbx
+mgs111_rf:        leaq    0(,%r12,8), %rax
+mgs112_rf:        leaq    (%r15,%rdi), %rsi
+mgs113_rf:        jbe     .L165_rf
+mgs114_rf:        leaq    0(%r13,%rbp), %r8
+mgs115_rf:        subq    %rdi, %rax
+mgs116_rf:        sarq    $3, %rax
+mgs117_rf:        shrq    %r8
+mgs118_rf:        leaq    (%r11,%r8,8), %r9
+.L73_rf:
+mgs119_rf:        testq   %rax, %rax
+mgs120_rf:        jle     .L72_rf
+.L166_rf:
+mgs121_rf:        movq    %rax, %rdi
+mgs122_rf:        movq    (%r9), %rbx
+mgs123_rf:        sarq    %rdi
+mgs124_rf:        leaq    (%rsi,%rdi,8), %r10
+mgs125_rf:        cmpq    %rbx, (%r10)
+mgs126_rf:        jnb     .L85_rf
+mgs127_rf:        incq    %rdi
+mgs128_rf:        leaq    8(%r10), %rsi
+mgs129_rf:        subq    %rdi, %rax
+mgs130_rf:        testq   %rax, %rax
+mgs131_rf:        jg      .L166_rf
+.L72_rf:
+mgs132_rf:        movq    96(%rsp), %rdi
+mgs133_rf:        leaq    0(%r13,%r14), %rax
+mgs134_rf:        subq    %r15, %rsi
+mgs135_rf:        sarq    $3, %rsi
+mgs136_rf:        subq    %rax, %rdi
+mgs137_rf:        movq    176(%rsp), %rax
+mgs138_rf:        addq    %r8, %rdi
+mgs139_rf:        leaq    -88(%rax), %r9
+mgs140_rf:        movq    %r9, 176(%rsp)
+mgs141_rf:        movq    __mg_branch1(%rip), %r9
+mgs142_rf:        movq    %r9, -88(%rax)
+mgs143_rf:        movq    192(%rsp), %r9
+mgs144_rf:        movq    176(%rsp), %rax
+mgs145_rf:        testq   %r9, %r9
+mgs146_rf:        leaq    8(%rax), %r10
+mgs147_rf:        movq    %r9, 8(%rax)
+mgs148_rf:        movq    $0, 16(%rax)
+mgs149_rf:        je      .L75_rf
+mgs150_rf:        movq    %r10, 8(%r9)
+.L75_rf:
+mgs151_rf:        cmpq    $0, 184(%rsp)
+mgs152_rf:        movq    %r10, 192(%rsp)
+mgs153_rf:        je      .L167_rf
+.L76_rf:
+mgs154_rf:        movq    88(%rsp), %rbx
+mgs155_rf:        addq    %rsi, %rdi
+mgs156_rf:        movq    %rbp, 56(%rax)
+mgs157_rf:        movq    %r12, 72(%rax)
+mgs158_rf:        movq    %r11, 24(%rax)
+mgs159_rf:        movq    %rsi, %r12
+mgs160_rf:        movq    %r15, 32(%rax)
+mgs161_rf:        movq    %r8, 48(%rax)
+mgs162_rf:        movq    %r8, %rbp
+mgs163_rf:        movq    %rbx, 40(%rax)
+mgs164_rf:        movq    %rsi, 64(%rax)
+mgs165_rf:        movq    %rdi, 80(%rax)
+mgs166_rf:        jmp     .L53_rf
+.L85_rf:
+mgs167_rf:        movq    %rdi, %rax
+mgs168_rf:        jmp     .L73_rf
+.L84_rf:
+mgs169_rf:        movq    %rbp, %rax
+mgs170_rf:        movq    %r12, %rbp
+mgs171_rf:        movq    %rax, %r12
+mgs172_rf:        movq    %r13, %rax
+mgs173_rf:        movq    %r14, %r13
+mgs174_rf:        movq    %rax, %r14
+mgs175_rf:        movq    %r11, %rax
+mgs176_rf:        movq    %r15, %r11
+mgs177_rf:        movq    %rax, %r15
+mgs178_rf:        jmp     .L53_rf
+.L167_rf:
+mgs179_rf:        movq    %r10, 184(%rsp)
+mgs180_rf:        jmp     .L76_rf
+.L163_rf:
+mgs181_rf:        leaq    168(%rsp), %rax
+mgs182_rf:        movq    104(%rsp), %r8
+mgs183_rf:        movq    120(%rsp), %rsi
+mgs184_rf:        movq    112(%rsp), %rdi
+mgs185_rf:        leaq    200(%rsp), %r9
+mgs186_rf:        movq    %r10, 160(%rsp)
+mgs187_rf:        movq    %rax, 64(%rsp)
+mgs188_rf:        leaq    192(%rsp), %rax
+mgs189_rf:        movq    %r11, 152(%rsp)
+mgs190_rf:        movq    %rcx, 144(%rsp)
+mgs191_rf:        movq    %rdx, 136(%rsp)
+mgs192_rf:        movq    %rax, 56(%rsp)
+mgs193_rf:        leaq    184(%rsp), %rax
+mgs194_rf:        movq    %rax, 48(%rsp)
+mgs195_rf:        leaq    176(%rsp), %rax
+mgs196_rf:        movq    %rax, 40(%rsp)
+mgs197_rf:        movq    272(%rsp), %rax
+mgs198_rf:        movq    %rax, 8(%rsp)
+mgs199_rf:        movq    280(%rsp), %rax
+mgs200_rf:        movq    %rax, 16(%rsp)
+mgs201_rf:        movq    288(%rsp), %rax
+mgs202_rf:        movq    %rax, 24(%rsp)
+mgs203_rf:        movq    296(%rsp), %rax
+mgs204_rf:        movq    %rax, 32(%rsp)
+mgs205_rf:        movq    128(%rsp), %rax
+mgs206_rf:        movq    %rax, (%rsp)
+mgs207_rf:        call    _Z17mergesort_handlerPmS_mmmRmPvN7tpalrts12stack_structERPcS5_S5_RS1_
+mgs208_rf:        movq    160(%rsp), %r10
+mgs209_rf:        movq    152(%rsp), %r11
+mgs210_rf:        movq    144(%rsp), %rcx
+mgs211_rf:        movq    136(%rsp), %rdx
+mgs212_rf:        jmp     .L54_rf
+.L165_rf:
+mgs213_rf:        movq    88(%rsp), %rbx
+mgs214_rf:        movq    96(%rsp), %rdi
+mgs215_rf:        leaq    (%r11,%r13,8), %r8
+mgs216_rf:        addq    %r15, %rax
+mgs217_rf:        leaq    (%rbx,%rdi,8), %rdi
+mgs218_rf:        leaq    (%r11,%rbp,8), %rbx
+mgs219_rf:        cmpq    %r8, %rbx
+mgs220_rf:        jne     .L138_rf
+mgs221_rf:        jmp     .L58_rf
+.L169_rf:
+mgs222_rf:        movq    %r9, (%rdi)
+mgs223_rf:        addq    $8, %rsi
+mgs224_rf:        addq    $8, %rdi
+mgs225_rf:        cmpq    %r8, %rbx
+mgs226_rf:        je      .L58_rf
+.L138_rf:
+mgs227_rf:        cmpq    %rsi, %rax
+mgs228_rf:        je      .L168_rf
+mgs229_rf:        movq    (%rsi), %r9
+mgs230_rf:        movq    (%r8), %r10
+mgs231_rf:        cmpq    %r10, %r9
+mgs232_rf:        jb      .L169_rf
+mgs233_rf:        addq    $8, %r8
+mgs234_rf:        movq    %r10, %r9
+mgs235_rf:        addq    $8, %rdi
+mgs236_rf:        movq    %r9, -8(%rdi)
+mgs237_rf:        cmpq    %r8, %rbx
+mgs238_rf:        jne     .L138_rf
+.L58_rf:
+mgs239_rf:        cmpq    %rax, %rsi
+mgs240_rf:        je      .L19_rf
+mgs241_rf:        leaq    -56(%rax), %r9
+mgs242_rf:        leaq    8(%rsi), %r8
+mgs243_rf:        cmpq    %r9, %r8
+mgs244_rf:        jnb     .L71_rf
+mgs245_rf:        cmpq    $55, %rax
+mgs246_rf:        jbe     .L71_rf
+.L70_rf:
+mgs247_rf:        movq    (%rsi), %r10
+mgs248_rf:        prefetcht0      272(%rsi)
+mgs249_rf:        movq    %rsi, %r8
+mgs250_rf:        addq    $64, %rsi
+mgs251_rf:        addq    $72, %r8
+mgs252_rf:        prefetcht0      272(%rdi)
+mgs253_rf:        addq    $64, %rdi
+mgs254_rf:        movq    %r10, -64(%rdi)
+mgs255_rf:        movq    -56(%rsi), %r10
+mgs256_rf:        movq    %r10, -56(%rdi)
+mgs257_rf:        movq    -48(%rsi), %r10
+mgs258_rf:        movq    %r10, -48(%rdi)
+mgs259_rf:        movq    -40(%rsi), %r10
+mgs260_rf:        movq    %r10, -40(%rdi)
+mgs261_rf:        movq    -32(%rsi), %r10
+mgs262_rf:        movq    %r10, -32(%rdi)
+mgs263_rf:        movq    -24(%rsi), %r10
+mgs264_rf:        movq    %r10, -24(%rdi)
+mgs265_rf:        movq    -16(%rsi), %r10
+mgs266_rf:        movq    %r10, -16(%rdi)
+mgs267_rf:        movq    -8(%rsi), %r10
+mgs268_rf:        cmpq    %r8, %r9
+mgs269_rf:        movq    %r10, -8(%rdi)
+mgs270_rf:        ja      .L70_rf
+mgs271_rf:        leaq    8(%rsi), %r8
+mgs272_rf:        jmp     .L71_rf
 .L170_rf:
-mgs709_rf:        movq    %r11, 280(%rsp)
-mgs710_rf:        movq    $.L13_rf, 296(%rsp)
-mgs711_rf:        jmp     .L153_rf
+mgs273_rf:        addq    $8, %rsi
+.L51_rf:
+mgs274_rf:        movq    -8(%rsi), %rdi
+mgs275_rf:        addq    $8, %rax
+mgs276_rf:        cmpq    %rsi, %r8
+mgs277_rf:        movq    %rdi, -8(%rax)
+mgs278_rf:        jne     .L170_rf
+.L83_rf:
+mgs279_rf:        movq    %r9, 104(%rsp)
+.L25_rf:
+mgs280_rf:        nop
+mgs281_rf:        nop
+mgs282_rf:        jmp     .L171
+mgs283_rf:        movq    200(%rsp), %r9
+mgs284_rf:        movq    104(%rsp), %rbx
+mgs285_rf:        cmpq    %rbx, %r9
+mgs286_rf:        je      .L1_rf
+mgs287_rf:        leaq    2000(%rbx), %rax
+mgs288_rf:        leaq    0(,%rbx,8), %rdi
+mgs289_rf:        movq    120(%rsp), %rbx
+mgs290_rf:        cmpq    %r9, %rax
+mgs291_rf:        cmovbe  %rax, %r9
+mgs292_rf:        movq    112(%rsp), %rax
+mgs293_rf:        leaq    (%rbx,%r9,8), %r8
+mgs294_rf:        addq    %rdi, %rax
+mgs295_rf:        addq    %rbx, %rdi
+mgs296_rf:        cmpq    %rdi, %r8
+mgs297_rf:        je      .L83_rf
+mgs298_rf:        leaq    -56(%r8), %r10
+mgs299_rf:        leaq    8(%rdi), %rsi
+mgs300_rf:        cmpq    %r10, %rsi
+mgs301_rf:        jnb     .L51_rf
+mgs302_rf:        cmpq    $55, %r8
+mgs303_rf:        jbe     .L51_rf
+.L50_rf:
+mgs304_rf:        movq    (%rdi), %rbx
+mgs305_rf:        prefetcht0      272(%rdi)
+mgs306_rf:        movq    %rdi, %rsi
+mgs307_rf:        addq    $64, %rdi
+mgs308_rf:        addq    $72, %rsi
+mgs309_rf:        prefetcht0      272(%rax)
+mgs310_rf:        addq    $64, %rax
+mgs311_rf:        movq    %rbx, -64(%rax)
+mgs312_rf:        movq    -56(%rdi), %rbx
+mgs313_rf:        movq    %rbx, -56(%rax)
+mgs314_rf:        movq    -48(%rdi), %rbx
+mgs315_rf:        movq    %rbx, -48(%rax)
+mgs316_rf:        movq    -40(%rdi), %rbx
+mgs317_rf:        movq    %rbx, -40(%rax)
+mgs318_rf:        movq    -32(%rdi), %rbx
+mgs319_rf:        movq    %rbx, -32(%rax)
+mgs320_rf:        movq    -24(%rdi), %rbx
+mgs321_rf:        movq    %rbx, -24(%rax)
+mgs322_rf:        movq    -16(%rdi), %rbx
+mgs323_rf:        movq    %rbx, -16(%rax)
+mgs324_rf:        movq    -8(%rdi), %rbx
+mgs325_rf:        cmpq    %r10, %rsi
+mgs326_rf:        movq    %rbx, -8(%rax)
+mgs327_rf:        jb      .L50_rf
+mgs328_rf:        leaq    8(%rdi), %rsi
+mgs329_rf:        jmp     .L51_rf
+.L56_rf:
+mgs330_rf:        leaq    (%r15,%r14,8), %r8
+mgs331_rf:        cmpq    %rax, (%r8)
+mgs332_rf:        cmovbe  (%r8), %rax
+mgs333_rf:        movq    %rax, (%r9)
+mgs334_rf:        movq    (%rdi), %rax
+mgs335_rf:        cmpq    %rax, (%r8)
+mgs336_rf:        cmovnb  (%r8), %rax
+mgs337_rf:        movq    %rax, 8(%rbx,%rsi)
+mgs338_rf:        jmp     .L19_rf
+.L162_rf:
+mgs339_rf:        leaq    2000(%rbx), %rax
+mgs340_rf:        leaq    0(,%rbx,8), %rdi
+mgs341_rf:        cmpq    %r9, %rax
+mgs342_rf:        cmovbe  %rax, %r9
+mgs343_rf:        movq    112(%rsp), %rax
+mgs344_rf:        leaq    (%rax,%rdi), %rsi
+mgs345_rf:        movq    120(%rsp), %rax
+mgs346_rf:        leaq    (%rax,%r9,8), %r8
+mgs347_rf:        addq    %rax, %rdi
+mgs348_rf:        cmpq    %rdi, %r8
+mgs349_rf:        je      .L81_rf
+mgs350_rf:        leaq    -56(%r8), %r10
+mgs351_rf:        leaq    8(%rdi), %rax
+mgs352_rf:        cmpq    %r10, %rax
+mgs353_rf:        jnb     .L47_rf
+mgs354_rf:        cmpq    $55, %r8
+mgs355_rf:        jbe     .L47_rf
+.L45_rf:
+mgs356_rf:        movq    (%rdi), %rbx
+mgs357_rf:        prefetcht0      272(%rdi)
+mgs358_rf:        movq    %rdi, %rax
+mgs359_rf:        addq    $64, %rdi
+mgs360_rf:        addq    $72, %rax
+mgs361_rf:        prefetcht0      272(%rsi)
+mgs362_rf:        addq    $64, %rsi
+mgs363_rf:        movq    %rbx, -64(%rsi)
+mgs364_rf:        movq    -56(%rdi), %rbx
+mgs365_rf:        movq    %rbx, -56(%rsi)
+mgs366_rf:        movq    -48(%rdi), %rbx
+mgs367_rf:        movq    %rbx, -48(%rsi)
+mgs368_rf:        movq    -40(%rdi), %rbx
+mgs369_rf:        movq    %rbx, -40(%rsi)
+mgs370_rf:        movq    -32(%rdi), %rbx
+mgs371_rf:        movq    %rbx, -32(%rsi)
+mgs372_rf:        movq    -24(%rdi), %rbx
+mgs373_rf:        movq    %rbx, -24(%rsi)
+mgs374_rf:        movq    -16(%rdi), %rbx
+mgs375_rf:        movq    %rbx, -16(%rsi)
+mgs376_rf:        movq    -8(%rdi), %rbx
+mgs377_rf:        cmpq    %rax, %r10
+mgs378_rf:        movq    %rbx, -8(%rsi)
+mgs379_rf:        ja      .L45_rf
+mgs380_rf:        leaq    8(%rdi), %rax
+mgs381_rf:        jmp     .L47_rf
+.L23_rf:
+.L1_rf:
+mgs382_rf:        addq    $216, %rsp
+mgs383_rf:        popq    %rbx
+mgs384_rf:        popq    %rbp
+mgs385_rf:        popq    %r12
+mgs386_rf:        popq    %r13
+mgs387_rf:        popq    %r14
+mgs388_rf:        popq    %r15
+mgs389_rf:        ret
+.L8_rf:
+mgs390_rf:        jmp     .L19_rf
+.L14_rf:
+mgs391_rf:        leaq    272(%rsp), %rdi
+mgs392_rf:        addq    $8, 176(%rsp)
+mgs393_rf:        call    _ZN7tpalrts7sdeleteERNS_12stack_structE
+mgs394_rf:        jmp     .L1_rf
+.L16_rf:
+mgs395_rf:        movq    %rsi, %rax
+mgs396_rf:        leaq    -8(%rsi), %rsi
+mgs397_rf:        movq    %rsi, 176(%rsp)
+mgs398_rf:        movq    __mg_exitk2(%rip), %rsi
+mgs399_rf:        movq    %rsi, -8(%rax)
+mgs400_rf:        jmp     .L53_rf
+.L17_rf:
+mgs401_rf:        movq    %rsi, %rax
+mgs402_rf:        movq    __mg_branch2(%rip), %rsi
+mgs403_rf:        movq    %rsi, (%rax)
+mgs404_rf:        movq    192(%rsp), %rsi
+mgs405_rf:        movq    (%rsi), %rax
+mgs406_rf:        testq   %rax, %rax
+mgs407_rf:        je      .L172_rf
+mgs408_rf:        movq    $0, 8(%rax)
+mgs409_rf:        movq    $0, (%rsi)
+.L79_rf:
+mgs410_rf:        movq    %rax, 192(%rsp)
+mgs411_rf:        movq    176(%rsp), %rax
+mgs412_rf:        movq    40(%rax), %rbx
+mgs413_rf:        movq    24(%rax), %r11
+mgs414_rf:        movq    32(%rax), %r15
+mgs415_rf:        movq    48(%rax), %r13
+mgs416_rf:        movq    56(%rax), %rbp
+mgs417_rf:        movq    64(%rax), %r14
+mgs418_rf:        movq    72(%rax), %r12
+mgs419_rf:        movq    80(%rax), %rax
+mgs420_rf:        movq    %rbx, 88(%rsp)
+mgs421_rf:        movq    %rax, 96(%rsp)
+mgs422_rf:        jmp     .L53_rf
+.L18_rf:
+mgs423_rf:        addq    $88, 176(%rsp)
+mgs424_rf:        jmp     .L19_rf
+.L7_rf:
+mgs425_rf:        movq    %rsi, %rax
+mgs426_rf:        leaq    -8(%rsi), %rsi
+mgs427_rf:        movq    %rsi, 176(%rsp)
+mgs428_rf:        movq    __ms_exitk(%rip), %rsi
+.L154_rf:
+mgs429_rf:        movq    %rsi, -8(%rax)
+mgs430_rf:        movq    %rcx, %rbx
+mgs431_rf:        movq    %r12, 136(%rsp)
+mgs432_rf:        movq    120(%rsp), %rsi
+mgs433_rf:        movq    %rbp, %r12
+mgs434_rf:        movq    112(%rsp), %rbp
+mgs435_rf:        jmp     .L38_rf
+.L37_rf:
+mgs436_rf:        movq    %rbx, 48(%rax)
+mgs437_rf:        movq    %rbp, 24(%rax)
+mgs438_rf:        movq    %rcx, %rbx
+mgs439_rf:        movq    %rsi, 32(%rax)
+mgs440_rf:        movq    %rcx, 40(%rax)
+mgs441_rf:        movq    %rdx, 56(%rax)
+.L38_rf:
+mgs442_rf:        nop
+mgs443_rf:        nop
+mgs444_rf:        jmp     .L173
+.L30_rf:
+mgs445_rf:        movq    %rbx, %rax
+mgs446_rf:        subq    %rdx, %rax
+mgs447_rf:        cmpq    $23, %rax
+mgs448_rf:        jbe     .L174_rf
+.L31_rf:
+mgs449_rf:        movq    176(%rsp), %rax
+mgs450_rf:        leaq    (%rbx,%rdx), %rcx
+mgs451_rf:        shrq    %rcx
+mgs452_rf:        leaq    -64(%rax), %rdi
+mgs453_rf:        movq    %rdi, 176(%rsp)
+mgs454_rf:        movq    __ms_branch1(%rip), %rdi
+mgs455_rf:        movq    %rdi, -64(%rax)
+mgs456_rf:        movq    192(%rsp), %rdi
+mgs457_rf:        movq    176(%rsp), %rax
+mgs458_rf:        testq   %rdi, %rdi
+mgs459_rf:        leaq    8(%rax), %r8
+mgs460_rf:        movq    %rdi, 8(%rax)
+mgs461_rf:        movq    $0, 16(%rax)
+mgs462_rf:        je      .L36_rf
+mgs463_rf:        movq    %r8, 8(%rdi)
+.L36_rf:
+mgs464_rf:        cmpq    $0, 184(%rsp)
+mgs465_rf:        movq    %r8, 192(%rsp)
+mgs466_rf:        jne     .L37_rf
+mgs467_rf:        movq    %r8, 184(%rsp)
+mgs468_rf:        jmp     .L37_rf
+.L11_rf:
+mgs469_rf:        movq    __ms_branch2(%rip), %rdx
+mgs470_rf:        movq    %rdx, (%rsi)
+mgs471_rf:        movq    192(%rsp), %rdx
+mgs472_rf:        movq    (%rdx), %rax
+mgs473_rf:        testq   %rax, %rax
+mgs474_rf:        je      .L175_rf
+mgs475_rf:        movq    $0, 8(%rax)
+mgs476_rf:        movq    $0, (%rdx)
+.L40_rf:
+mgs477_rf:        movq    %rax, 192(%rsp)
+mgs478_rf:        movq    176(%rsp), %rax
+mgs479_rf:        movq    %r12, 136(%rsp)
+mgs480_rf:        movq    %rbp, %r12
+mgs481_rf:        movq    24(%rax), %rbx
+mgs482_rf:        movq    32(%rax), %rsi
+mgs483_rf:        movq    48(%rax), %rcx
+mgs484_rf:        movq    40(%rax), %rdx
+mgs485_rf:        nop
+mgs486_rf:        movq    %rbx, 112(%rsp)
+mgs487_rf:        movq    %rbx, %rbp
+mgs488_rf:        movq    %rsi, 120(%rsp)
+mgs489_rf:        movq    %rcx, %rbx
+mgs490_rf:        nop
+mgs491_rf:        jmp     mgs492
+.L173_rf:
+mgs492_rf:        leaq    168(%rsp), %rax
+mgs493_rf:        movq    104(%rsp), %r8
+mgs494_rf:        leaq    200(%rsp), %r9
+mgs495_rf:        movq    %r11, 160(%rsp)
+mgs496_rf:        movq    %rdx, 152(%rsp)
+mgs497_rf:        movq    %rbx, %rcx
+mgs498_rf:        movq    %rax, 64(%rsp)
+mgs499_rf:        leaq    192(%rsp), %rax
+mgs500_rf:        movq    %rsi, 144(%rsp)
+mgs501_rf:        movq    %rbp, %rdi
+mgs502_rf:        movq    %rax, 56(%rsp)
+mgs503_rf:        leaq    184(%rsp), %rax
+mgs504_rf:        movq    %rax, 48(%rsp)
+mgs505_rf:        leaq    176(%rsp), %rax
+mgs506_rf:        movq    %rax, 40(%rsp)
+mgs507_rf:        movq    272(%rsp), %rax
+mgs508_rf:        movq    %rax, 8(%rsp)
+mgs509_rf:        movq    280(%rsp), %rax
+mgs510_rf:        movq    %rax, 16(%rsp)
+mgs511_rf:        movq    288(%rsp), %rax
+mgs512_rf:        movq    %rax, 24(%rsp)
+mgs513_rf:        movq    296(%rsp), %rax
+mgs514_rf:        movq    %rax, 32(%rsp)
+mgs515_rf:        movq    128(%rsp), %rax
+mgs516_rf:        movq    %rax, (%rsp)
+mgs517_rf:        call    _Z17mergesort_handlerPmS_mmmRmPvN7tpalrts12stack_structERPcS5_S5_RS1_
+mgs518_rf:        movq    152(%rsp), %rdx
+mgs519_rf:        movq    %rbx, %rax
+mgs520_rf:        movq    160(%rsp), %r11
+mgs521_rf:        movq    144(%rsp), %rsi
+mgs522_rf:        subq    %rdx, %rax
+mgs523_rf:        cmpq    $23, %rax
+mgs524_rf:        ja      .L31_rf
+.L174_rf:
+mgs525_rf:        movq    %rbx, %rcx
+mgs526_rf:        movq    112(%rsp), %rbx
+mgs527_rf:        testq   %rax, %rax
+mgs528_rf:        movq    %r12, %rbp
+mgs529_rf:        movq    136(%rsp), %r12
+mgs530_rf:        leaq    (%rbx,%rdx,8), %r8
+mgs531_rf:        je      .L19_rf
+mgs532_rf:        leaq    -8(%r8), %r9
+mgs533_rf:        leaq    (%r9,%rax,8), %r10
+.L35_rf:
+mgs534_rf:        cmpq    %r9, %r8
+mgs535_rf:        movq    8(%r9), %rdi
+mgs536_rf:        movq    %r9, %rax
+mgs537_rf:        jbe     .L33_rf
+mgs538_rf:        jmp     .L32_rf
+.L176_rf:
+mgs539_rf:        movq    %rsi, 8(%rax)
+mgs540_rf:        subq    $8, %rax
+mgs541_rf:        cmpq    %rax, %r8
+mgs542_rf:        ja      .L32_rf
+.L33_rf:
+mgs543_rf:        movq    (%rax), %rsi
+mgs544_rf:        cmpq    %rsi, %rdi
+mgs545_rf:        jb      .L176_rf
+.L32_rf:
+mgs546_rf:        addq    $8, %r9
+mgs547_rf:        movq    %rdi, 8(%rax)
+mgs548_rf:        cmpq    %r9, %r10
+mgs549_rf:        jne     .L35_rf
+mgs550_rf:        jmp     .L19_rf
+.L10_rf:
+mgs551_rf:        movq    %rsi, %rax
+mgs552_rf:        leaq    -8(%rsi), %rsi
+mgs553_rf:        movq    %rsi, 176(%rsp)
+mgs554_rf:        movq    __ms_joink(%rip), %rsi
+mgs555_rf:        jmp     .L154_rf
+.L9_rf:
+mgs556_rf:        movq    __ms_clonek(%rip), %rdx
+mgs557_rf:        movq    %rdx, (%rsi)
+mgs558_rf:        jmp     .L1_rf
+.L20_rf:
+mgs559_rf:        movq    __mg_clonek(%rip), %rdx
+mgs560_rf:        movq    %rdx, (%rsi)
+mgs561_rf:        jmp     .L1_rf
+.L21_rf:
+mgs562_rf:        movq    %rsi, %rax
+mgs563_rf:        leaq    -8(%rsi), %rsi
+mgs564_rf:        movq    %rsi, 176(%rsp)
+mgs565_rf:        movq    __mg_joink(%rip), %rsi
+mgs566_rf:        movq    %rsi, -8(%rax)
+mgs567_rf:        jmp     .L53_rf
+.L22_rf:
+mgs568_rf:        addq    $8, 176(%rsp)
+mgs569_rf:        jmp     .L19_rf
+.L13_rf:
+mgs570_rf:        movq    24(%rsi), %rdx
+mgs571_rf:        movq    48(%rsi), %rcx
+mgs572_rf:        movq    %rdx, 112(%rsp)
+mgs573_rf:        movq    32(%rsi), %rdx
+mgs574_rf:        movq    %rcx, 200(%rsp)
+mgs575_rf:        movq    %rdx, 120(%rsp)
+mgs576_rf:        movq    56(%rsi), %rdx
+mgs577_rf:        movq    %rdx, 104(%rsp)
+mgs578_rf:        jmp     .L24_rf
+.L2_rf:
+mgs579_rf:        movq    %rsi, 312(%rsp)
+mgs580_rf:        movq    %rcx, 144(%rsp)
+mgs581_rf:        movq    %rdx, 136(%rsp)
+mgs582_rf:        movq    %r11, 104(%rsp)
+mgs583_rf:        call    _ZN7tpalrts11alloc_stackEv
+mgs584_rf:        movq    %rax, 272(%rsp)
+mgs585_rf:        addq    $8191, %rax
+mgs586_rf:        movq    312(%rsp), %rsi
+mgs587_rf:        movq    144(%rsp), %rcx
+mgs588_rf:        movq    136(%rsp), %rdx
+mgs589_rf:        movq    104(%rsp), %r11
+mgs590_rf:        movq    %rax, 280(%rsp)
+mgs591_rf:        jmp     .L3_rf
+.L159_rf:
+mgs592_rf:        movl    $.L7_rf, %edi
+mgs593_rf:        movq    %rcx, 152(%rsp)
+mgs594_rf:        movq    %rdx, 144(%rsp)
+mgs595_rf:        movq    %r11, 136(%rsp)
+mgs596_rf:        call    _Z14sanitize_labelPv
+mgs597_rf:        movl    $.L8_rf, %edi
+mgs598_rf:        movq    %rax, __ms_entry(%rip)
+mgs599_rf:        call    _Z14sanitize_labelPv
+mgs600_rf:        movl    $.L9_rf, %edi
+mgs601_rf:        movq    %rax, __ms_retk(%rip)
+mgs602_rf:        call    _Z14sanitize_labelPv
+mgs603_rf:        movl    $.L10_rf, %edi
+mgs604_rf:        movq    %rax, __ms_joink(%rip)
+mgs605_rf:        call    _Z14sanitize_labelPv
+mgs606_rf:        movl    $.L11_rf, %edi
+mgs607_rf:        movq    %rax, __ms_clonek(%rip)
+mgs608_rf:        call    _Z14sanitize_labelPv
+mgs609_rf:        movl    $.L12_rf, %edi
+mgs610_rf:        movq    %rax, __ms_branch1(%rip)
+mgs611_rf:        call    _Z14sanitize_labelPv
+mgs612_rf:        movl    $.L13_rf, %edi
+mgs613_rf:        movq    %rax, __ms_branch2(%rip)
+mgs614_rf:        call    _Z14sanitize_labelPv
+mgs615_rf:        movl    $.L14_rf, %edi
+mgs616_rf:        movq    %rax, __ms_branch3(%rip)
+mgs617_rf:        call    _Z14sanitize_labelPv
+mgs618_rf:        movl    $.L15_rf, %edi
+mgs619_rf:        movq    %rax, __ms_exitk(%rip)
+mgs620_rf:        call    _Z14sanitize_labelPv
+mgs621_rf:        movl    $.L16_rf, %edi
+mgs622_rf:        movq    %rax, __mg_entry(%rip)
+mgs623_rf:        call    _Z14sanitize_labelPv
+mgs624_rf:        movl    $.L17_rf, %edi
+mgs625_rf:        movq    %rax, __mg_entry2(%rip)
+mgs626_rf:        call    _Z14sanitize_labelPv
+mgs627_rf:        movl    $.L18_rf, %edi
+mgs628_rf:        movq    %rax, __mg_branch1(%rip)
+mgs629_rf:        call    _Z14sanitize_labelPv
+mgs630_rf:        movl    $.L19_rf, %edi
+mgs631_rf:        movq    %rax, __mg_branch2(%rip)
+mgs632_rf:        call    _Z14sanitize_labelPv
+mgs633_rf:        movl    $.L20_rf, %edi
+mgs634_rf:        movq    %rax, __mg_retk(%rip)
+mgs635_rf:        call    _Z14sanitize_labelPv
+mgs636_rf:        movl    $.L21_rf, %edi
+mgs637_rf:        movq    %rax, __mg_joink(%rip)
+mgs638_rf:        call    _Z14sanitize_labelPv
+mgs639_rf:        movl    $.L22_rf, %edi
+mgs640_rf:        movq    %rax, __mg_clonek(%rip)
+mgs641_rf:        call    _Z14sanitize_labelPv
+mgs642_rf:        movl    $.L23_rf, %edi
+mgs643_rf:        movq    %rax, __mg_exitk(%rip)
+mgs644_rf:        call    _Z14sanitize_labelPv
+mgs645_rf:        movl    $.L24_rf, %edi
+mgs646_rf:        movq    %rax, __mg_exitk2(%rip)
+mgs647_rf:        call    _Z14sanitize_labelPv
+mgs648_rf:        movl    $.L25_rf, %edi
+mgs649_rf:        movq    %rax, __cp_entry(%rip)
+mgs650_rf:        call    _Z14sanitize_labelPv
+mgs651_rf:        movl    $.L26_rf, %edi
+mgs652_rf:        movq    %rax, __cp_par(%rip)
+mgs653_rf:        call    _Z14sanitize_labelPv
+mgs654_rf:        movq    152(%rsp), %rcx
+mgs655_rf:        movq    144(%rsp), %rdx
+mgs656_rf:        movq    136(%rsp), %r11
+mgs657_rf:        movq    %rax, __cp_joink(%rip)
+mgs658_rf:        jmp     .L6_rf
+.L177_rf:
+mgs659_rf:        addq    $8, %r8
+.L71_rf:
+mgs660_rf:        movq    -8(%r8), %rsi
+mgs661_rf:        addq    $8, %rdi
+mgs662_rf:        cmpq    %rax, %r8
+mgs663_rf:        movq    %rsi, -8(%rdi)
+mgs664_rf:        jne     .L177_rf
+mgs665_rf:        jmp     .L19_rf
+.L168_rf:
+mgs666_rf:        leaq    -56(%rbx), %rsi
+mgs667_rf:        leaq    8(%r8), %rax
+mgs668_rf:        cmpq    %rax, %rsi
+mgs669_rf:        jbe     .L65_rf
+mgs670_rf:        cmpq    $55, %rbx
+mgs671_rf:        jbe     .L65_rf
+.L63_rf:
+mgs672_rf:        movq    (%r8), %r9
+mgs673_rf:        prefetcht0      272(%r8)
+mgs674_rf:        movq    %r8, %rax
+mgs675_rf:        addq    $64, %r8
+mgs676_rf:        addq    $72, %rax
+mgs677_rf:        prefetcht0      272(%rdi)
+mgs678_rf:        addq    $64, %rdi
+mgs679_rf:        movq    %r9, -64(%rdi)
+mgs680_rf:        movq    -56(%r8), %r9
+mgs681_rf:        movq    %r9, -56(%rdi)
+mgs682_rf:        movq    -48(%r8), %r9
+mgs683_rf:        movq    %r9, -48(%rdi)
+mgs684_rf:        movq    -40(%r8), %r9
+mgs685_rf:        movq    %r9, -40(%rdi)
+mgs686_rf:        movq    -32(%r8), %r9
+mgs687_rf:        movq    %r9, -32(%rdi)
+mgs688_rf:        movq    -24(%r8), %r9
+mgs689_rf:        movq    %r9, -24(%rdi)
+mgs690_rf:        movq    -16(%r8), %r9
+mgs691_rf:        movq    %r9, -16(%rdi)
+mgs692_rf:        movq    -8(%r8), %r9
+mgs693_rf:        cmpq    %rax, %rsi
+mgs694_rf:        movq    %r9, -8(%rdi)
+mgs695_rf:        ja      .L63_rf
+mgs696_rf:        leaq    8(%r8), %rax
+mgs697_rf:        jmp     .L65_rf
+.L178_rf:
+mgs698_rf:        addq    $8, %rax
+.L65_rf:
+mgs699_rf:        movq    -8(%rax), %rsi
+mgs700_rf:        addq    $8, %rdi
+mgs701_rf:        cmpq    %rax, %rbx
+mgs702_rf:        movq    %rsi, -8(%rdi)
+mgs703_rf:        jne     .L178_rf
+mgs704_rf:        jmp     .L19_rf
+.L172_rf:
+mgs705_rf:        movq    $0, 184(%rsp)
+mgs706_rf:        jmp     .L79_rf
+.L175_rf:
+mgs707_rf:        movq    $0, 184(%rsp)
+mgs708_rf:        jmp     .L40_rf
+.L161_rf:
+mgs709_rf:        movq    __cp_entry(%rip), %rax
+mgs710_rf:        movq    %r11, 152(%rsp)
+.L153_rf:
+mgs711_rf:        movq    %rax, 168(%rsp)
+mgs712_rf:        leaq    168(%rsp), %rax
+mgs713_rf:        movq    120(%rsp), %rsi
+mgs714_rf:        movq    104(%rsp), %r8
+mgs715_rf:        movq    112(%rsp), %rdi
+mgs716_rf:        leaq    200(%rsp), %r9
+mgs717_rf:        movq    %rax, 64(%rsp)
+mgs718_rf:        leaq    192(%rsp), %rax
+mgs719_rf:        movq    %rcx, 144(%rsp)
+mgs720_rf:        movq    %rdx, 136(%rsp)
+mgs721_rf:        movq    %rax, 56(%rsp)
+mgs722_rf:        leaq    184(%rsp), %rax
+mgs723_rf:        movq    %rax, 48(%rsp)
+mgs724_rf:        leaq    176(%rsp), %rax
+mgs725_rf:        movq    %rax, 40(%rsp)
+mgs726_rf:        movq    272(%rsp), %rax
+mgs727_rf:        movq    %rax, 8(%rsp)
+mgs728_rf:        movq    280(%rsp), %rax
+mgs729_rf:        movq    %rax, 16(%rsp)
+mgs730_rf:        movq    288(%rsp), %rax
+mgs731_rf:        movq    %rax, 24(%rsp)
+mgs732_rf:        movq    296(%rsp), %rax
+mgs733_rf:        movq    %rax, 32(%rsp)
+mgs734_rf:        movq    128(%rsp), %rax
+mgs735_rf:        movq    %rax, (%rsp)
+mgs736_rf:        call    _Z17mergesort_handlerPmS_mmmRmPvN7tpalrts12stack_structERPcS5_S5_RS1_
+mgs737_rf:        movq    168(%rsp), %rax
+mgs738_rf:        movq    136(%rsp), %rdx
+mgs739_rf:        movq    144(%rsp), %rcx
+mgs740_rf:        movq    152(%rsp), %r11
+mgs741_rf:        movq    176(%rsp), %rsi
+mgs742_rf:        jmp     *%rax
+.L171_rf:
+mgs743_rf:        movq    __cp_par(%rip), %rax
+mgs744_rf:        movq    %r11, 152(%rsp)
+mgs745_rf:        jmp     .L153_rf
 compare_rf:
-mgs712_rf:        .zero   1
+mgs746_rf:        .zero   1
 

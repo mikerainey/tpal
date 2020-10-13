@@ -90,9 +90,12 @@ int knapsack_serial(int& best_so_far, struct item *e, int c, int n, int v, tpalr
 
 std::atomic<int> best_so_far(INT_MIN);
 
+#ifndef SANITIZE
 void* sanitize_label(void* l) {
   return tpalrts::reverse_lookup_rollforward_entry(l);
 }
+#endif
+#define SANITIZE
 
 extern
 void knapsack_interrupt(std::atomic<int>& best_so_far, struct item *e, int c, int n, int v, int* dst,

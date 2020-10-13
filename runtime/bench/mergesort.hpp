@@ -160,6 +160,36 @@ using merge_args_type = struct merge_args_struct {
 
 using copy_args_type = std::pair<size_t, size_t>;
 
+void* __ms_entry= nullptr;
+void* __ms_retk= nullptr;
+void* __ms_joink= nullptr;
+void* __ms_clonek= nullptr;
+void* __ms_branch1= nullptr;
+void* __ms_branch2= nullptr;
+void* __ms_branch3= nullptr;
+void* __ms_exitk= nullptr;
+
+void* __mg_entry= nullptr;
+void* __mg_entry2= nullptr;
+void* __mg_branch1= nullptr;
+void* __mg_branch2= nullptr;
+void* __mg_retk= nullptr;
+void* __mg_joink= nullptr;
+void* __mg_clonek= nullptr;
+void* __mg_exitk= nullptr;
+void* __mg_exitk2= nullptr;
+
+void* __cp_entry= nullptr;
+void* __cp_par= nullptr;
+void* __cp_joink= nullptr;
+
+#ifndef SANITIZE
+void* sanitize_label(void* l) {
+  return tpalrts::reverse_lookup_rollforward_entry(l);
+}
+#endif
+#define SANITIZE
+
 extern
 void mergesort_interrupt(
                    Item* ms_xs,
@@ -180,26 +210,9 @@ int mergesort_handler(
 		      size_t& cp_hi,
 		      void* _p,
 		      tpalrts::stack_type s, char*& sp, char*& prmhd, char*& prmtl,
-		      void* __ms_entry,
-		      void* __ms_retk,
-		      void* __ms_joink,
-		      void* __ms_clonek,
-		      void* __ms_branch1,
-		      void* __ms_branch2,
-		      void* __ms_branch3,
-  		      void* __mg_entry,
-		      void* __mg_entry2,
-		      void* __mg_branch1,
-		      void* __mg_branch2,
-		      void* __mg_retk,
-		      void* __mg_joink,
-		      void* __mg_clonek,
-		      void* __cp_par,
-		      void* __cp_joink,
 		      void*& pc) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
   tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
-  pc = tpalrts::reverse_lookup_rollforward_entry(pc);
   if (prmempty(prmtl, prmhd)) {
     if (cp_lo == cp_hi) {
       return 0;
@@ -234,7 +247,7 @@ int mergesort_handler(
   uint64_t top;
   prmsplit(sp, prmtl, prmhd, sp_cont, top);
   char* sp_top = sp + top;
-  auto pc_top = tpalrts::reverse_lookup_rollforward_entry(sload(sp_top, 0, void*));
+  auto pc_top = sload(sp_top, 0, void*);
   if (pc_top == __ms_branch1) { // promotion for mergesort
     sstore(sp_top, 0, void*, __ms_joink);
     auto ms_xs2 = sload(sp_top, 3, Item*);
@@ -244,7 +257,7 @@ int mergesort_handler(
     p->fork_join_promote([=] (tpalrts::promotable* p2) {
       tpalrts::stack_type s2 = tpalrts::snew();
       void* pc2;
-      auto t = tpalrts::reverse_lookup_rollforward_entry(sload(sp_top, 0, void*));
+      auto t = sload(sp_top, 0, void*);
       if (t != __ms_clonek) { // slow clone
 	pc2 = __ms_entry;
       } else { // fast clone
@@ -271,7 +284,7 @@ int mergesort_handler(
     p->fork_join_promote([=] (tpalrts::promotable* p2) {
       tpalrts::stack_type s2 = tpalrts::snew();
       void* pc2;
-      auto t = tpalrts::reverse_lookup_rollforward_entry(sload(sp_top, 0, void*));
+      auto t = sload(sp_top, 0, void*);
       if (t != __mg_clonek) { // slow clone
 	pc2 = __mg_entry2;
       } else { // fast clone

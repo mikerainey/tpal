@@ -249,7 +249,6 @@ void knapsack_interrupt(std::atomic<int>& best_so_far, struct item *e, int c, in
     __branch1 = sanitize_label(&&branch1);
     __branch2 = sanitize_label(&&branch2);
   }
-  assert(__entry != nullptr);
 							     
   pc = (pc == nullptr) ? __entry : pc;
   

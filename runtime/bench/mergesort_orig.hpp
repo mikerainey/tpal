@@ -69,6 +69,12 @@ void sdelete(stack_type& s);
 #define sload(sp, off, ty) \
   sloadb(sp, (off) * sizeof(tpalrts::word_type), ty)
 
+#define sstorelabel(sp, off, lab) \
+  sstore(sp, off, void*, lab)
+
+#define sloadlabel(sp, off) \
+  *sload(sp, off, void*)
+
 
 #define prmhdoff 0
 #define prmtloff 1
@@ -243,6 +249,52 @@ using merge_args_type = struct merge_args_struct {
 
 using copy_args_type = std::pair<size_t, size_t>;
 
+extern
+void* __ms_entry;
+extern
+void* __ms_retk;
+extern
+void* __ms_joink;
+extern
+void* __ms_clonek;
+extern
+void* __ms_branch1;
+extern
+void* __ms_branch2;
+extern
+void* __ms_branch3;
+extern
+void* __ms_exitk;
+
+extern
+void* __mg_entry;
+extern
+void* __mg_entry2;
+extern
+void* __mg_branch1;
+extern
+void* __mg_branch2;
+extern
+void* __mg_retk;
+extern
+void* __mg_joink;
+extern
+void* __mg_clonek;
+extern
+void* __mg_exitk;
+extern
+void* __mg_exitk2;
+
+extern
+void* __cp_entry;
+extern
+void* __cp_par;
+extern
+void* __cp_joink;
+
+extern
+void* sanitize_label(void*);
+
 int mergesort_handler(
 		      Item* ms_xs,
 		      Item* ms_tmp,
@@ -252,22 +304,6 @@ int mergesort_handler(
 		      size_t& cp_hi,
 		      void* _p,
 		      tpalrts::stack_type s, char*& sp, char*& prmhd, char*& prmtl,
-		      void* __ms_entry,
-		      void* __ms_retk,
-		      void* __ms_joink,
-		      void* __ms_clonek,
-		      void* __ms_branch1,
-		      void* __ms_branch2,
-		      void* __ms_branch3,
-  		    void* __mg_entry,
-		      void* __mg_entry2,
-		      void* __mg_branch1,
-		      void* __mg_branch2,
-		      void* __mg_retk,
-		      void* __mg_joink,
-		      void* __mg_clonek,
-		      void* __cp_par,
-		      void* __cp_joink,
 		      void*& pc);
 
 void mergesort_interrupt(
@@ -301,29 +337,31 @@ void mergesort_interrupt(
     cp_lo = copy_args->first;
     cp_hi = copy_args->second;
   }
-    
-  void* __ms_entry = &&ms_entry;
-  void* __ms_retk = &&ms_retk;
-  void* __ms_joink = &&ms_joink;
-  void* __ms_clonek = &&ms_clonek;
-  void* __ms_branch1 = &&ms_branch1;
-  void* __ms_branch2 = &&ms_branch2;
-  void* __ms_branch3 = &&ms_branch3;
-  void* __ms_exitk = &&ms_exitk;
-  
-  void* __mg_entry = &&mg_entry;
-  void* __mg_entry2 = &&mg_entry2;
-  void* __mg_branch1 = &&mg_branch1;
-  void* __mg_branch2 = &&mg_branch2;
-  void* __mg_retk = &&mg_retk;
-  void* __mg_joink = &&mg_joink;
-  void* __mg_clonek = &&mg_clonek;
-  void* __mg_exitk = &&mg_exitk;
-  void* __mg_exitk2 = &&mg_exitk2;
 
-  void* __cp_entry = &&cp_entry;
-  void* __cp_par = &&cp_par;
-  void* __cp_joink = &&cp_joink;
+  if (__ms_entry == nullptr) {
+    __ms_entry = sanitize_label(&&ms_entry);
+    __ms_retk = sanitize_label(&&ms_retk);
+    __ms_joink = sanitize_label(&&ms_joink);
+    __ms_clonek = sanitize_label(&&ms_clonek);
+    __ms_branch1 = sanitize_label(&&ms_branch1);
+    __ms_branch2 = sanitize_label(&&ms_branch2);
+    __ms_branch3 = sanitize_label(&&ms_branch3);
+    __ms_exitk = sanitize_label(&&ms_exitk);
+
+    __mg_entry = sanitize_label(&&mg_entry);
+    __mg_entry2 = sanitize_label(&&mg_entry2);
+    __mg_branch1 = sanitize_label(&&mg_branch1);
+    __mg_branch2 = sanitize_label(&&mg_branch2);
+    __mg_retk = sanitize_label(&&mg_retk);
+    __mg_joink = sanitize_label(&&mg_joink);
+    __mg_clonek = sanitize_label(&&mg_clonek);
+    __mg_exitk = sanitize_label(&&mg_exitk);
+    __mg_exitk2 = sanitize_label(&&mg_exitk2);
+
+    __cp_entry = sanitize_label(&&cp_entry);
+    __cp_par = sanitize_label(&&cp_par);
+    __cp_joink = sanitize_label(&&cp_joink);
+  }
 
   pc = (pc == nullptr) ? __ms_entry : pc;
 
@@ -337,11 +375,7 @@ void mergesort_interrupt(
 
  ms_loop:
   if (unlikely(heartbeat)) {
-    mergesort_handler(ms_xs, ms_tmp, ms_lo, ms_hi, cp_lo, cp_hi, p,
-		      s, sp, prmhd, prmtl,
-		      __ms_entry, __ms_retk, __ms_joink, __ms_clonek, __ms_branch1, __ms_branch2, __ms_branch3,
-		      __mg_entry, __mg_entry2, __mg_branch1, __mg_branch2, __mg_retk, __mg_joink, __mg_clonek,
-		      __cp_par, __cp_joink, pc);
+    mergesort_handler(ms_xs, ms_tmp, ms_lo, ms_hi, cp_lo, cp_hi, p, s, sp, prmhd, prmtl, pc);
   }
   auto ms_nb = ms_hi - ms_lo;
   if (ms_nb < heartbeat_mergesort_thresh) {
@@ -413,11 +447,7 @@ void mergesort_interrupt(
  cp_entry:
   if (unlikely(heartbeat)) {
     pc = __cp_entry;
-    mergesort_handler(ms_xs, ms_tmp, ms_lo, ms_hi, cp_lo, cp_hi, p,
-		      s, sp, prmhd, prmtl,
-		      __ms_entry, __ms_retk, __ms_joink, __ms_clonek, __ms_branch1, __ms_branch2, __ms_branch3,
-		      __mg_entry, __mg_entry2, __mg_branch1, __mg_branch2, __mg_retk, __mg_joink, __mg_clonek,
-		      __cp_par, __cp_joink, pc);
+    mergesort_handler(ms_xs, ms_tmp, ms_lo, ms_hi, cp_lo, cp_hi, p, s, sp, prmhd, prmtl, pc);
     goto *pc;
   }
   if (cp_lo == cp_hi) {
@@ -433,11 +463,7 @@ void mergesort_interrupt(
  cp_par:
   if (unlikely(heartbeat)) {
     pc = __cp_par;
-    mergesort_handler(ms_xs, ms_tmp, ms_lo, ms_hi, cp_lo, cp_hi, p,
-		      s, sp, prmhd, prmtl,
-		      __ms_entry, __ms_retk, __ms_joink, __ms_clonek, __ms_branch1, __ms_branch2, __ms_branch3,
-		      __mg_entry, __mg_entry2, __mg_branch1, __mg_branch2, __mg_retk, __mg_joink, __mg_clonek,
-		      __cp_par, __cp_joink, pc);
+    mergesort_handler(ms_xs, ms_tmp, ms_lo, ms_hi, cp_lo, cp_hi, p, s, sp, prmhd, prmtl, pc);
     goto *pc;
   } 
   if (cp_lo == cp_hi) {
@@ -470,11 +496,7 @@ void mergesort_interrupt(
     goto mg_loop;
   }
   if (unlikely(heartbeat)) {
-    mergesort_handler(ms_xs, ms_tmp, ms_lo, ms_hi, cp_lo, cp_hi, p,
-		      s, sp, prmhd, prmtl,
-		      __ms_entry, __ms_retk, __ms_joink, __ms_clonek, __ms_branch1, __ms_branch2, __ms_branch3,
-		      __mg_entry, __mg_entry2, __mg_branch1, __mg_branch2, __mg_retk, __mg_joink, __mg_clonek,
-		      __cp_par, __cp_joink, pc);
+    mergesort_handler(ms_xs, ms_tmp, ms_lo, ms_hi, cp_lo, cp_hi, p, s, sp, prmhd, prmtl, pc);
   }  
   if (n1 == 0) {
     // mg_xs and mg_ys empty
