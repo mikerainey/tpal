@@ -1048,6 +1048,114 @@
 .type  kns259, @function
 .globl  kns259_rf
 .type  kns259_rf, @function
+.globl  kns260
+.type  kns260, @function
+.globl  kns260_rf
+.type  kns260_rf, @function
+.globl  kns261
+.type  kns261, @function
+.globl  kns261_rf
+.type  kns261_rf, @function
+.globl  kns262
+.type  kns262, @function
+.globl  kns262_rf
+.type  kns262_rf, @function
+.globl  kns263
+.type  kns263, @function
+.globl  kns263_rf
+.type  kns263_rf, @function
+.globl  kns264
+.type  kns264, @function
+.globl  kns264_rf
+.type  kns264_rf, @function
+.globl  kns265
+.type  kns265, @function
+.globl  kns265_rf
+.type  kns265_rf, @function
+.globl  kns266
+.type  kns266, @function
+.globl  kns266_rf
+.type  kns266_rf, @function
+.globl  kns267
+.type  kns267, @function
+.globl  kns267_rf
+.type  kns267_rf, @function
+.globl  kns268
+.type  kns268, @function
+.globl  kns268_rf
+.type  kns268_rf, @function
+.globl  kns269
+.type  kns269, @function
+.globl  kns269_rf
+.type  kns269_rf, @function
+.globl  kns270
+.type  kns270, @function
+.globl  kns270_rf
+.type  kns270_rf, @function
+.globl  kns271
+.type  kns271, @function
+.globl  kns271_rf
+.type  kns271_rf, @function
+.globl  kns272
+.type  kns272, @function
+.globl  kns272_rf
+.type  kns272_rf, @function
+.globl  kns273
+.type  kns273, @function
+.globl  kns273_rf
+.type  kns273_rf, @function
+.globl  kns274
+.type  kns274, @function
+.globl  kns274_rf
+.type  kns274_rf, @function
+.globl  kns275
+.type  kns275, @function
+.globl  kns275_rf
+.type  kns275_rf, @function
+.globl  kns276
+.type  kns276, @function
+.globl  kns276_rf
+.type  kns276_rf, @function
+.globl  kns277
+.type  kns277, @function
+.globl  kns277_rf
+.type  kns277_rf, @function
+.globl  kns278
+.type  kns278, @function
+.globl  kns278_rf
+.type  kns278_rf, @function
+.globl  kns279
+.type  kns279, @function
+.globl  kns279_rf
+.type  kns279_rf, @function
+.globl  kns280
+.type  kns280, @function
+.globl  kns280_rf
+.type  kns280_rf, @function
+.globl  kns281
+.type  kns281, @function
+.globl  kns281_rf
+.type  kns281_rf, @function
+.globl  kns282
+.type  kns282, @function
+.globl  kns282_rf
+.type  kns282_rf, @function
+.globl  kns283
+.type  kns283, @function
+.globl  kns283_rf
+.type  kns283_rf, @function
+.globl  kns284
+.type  kns284, @function
+.globl  kns284_rf
+.type  kns284_rf, @function
+.globl  kns285
+.type  kns285, @function
+.globl  kns285_rf
+.type  kns285_rf, @function
+.globl  kns286
+.type  kns286, @function
+.globl  kns286_rf
+.type  kns286_rf, @function
 _Z15knapsack_serialRiP4itemiiiN7tpalrts12stack_structE:
 kns0:        pushq   %r13
 kns1:        movq    %rsi, %r13
@@ -1138,210 +1246,240 @@ _Z18knapsack_interruptRSt6atomicIiEP4itemiiiPiPvN7tpalrts12stack_structES5_i:
 kns75:        pushq   %r15
 kns76:        pushq   %r14
 kns77:        pushq   %r13
-kns78:        movl    %r8d, %r13d
+kns78:        movq    %rdi, %r13
 kns79:        pushq   %r12
 kns80:        movl    %ecx, %r12d
 kns81:        pushq   %rbp
 kns82:        movl    %edx, %ebp
 kns83:        pushq   %rbx
 kns84:        movq    %rsi, %rbx
-kns85:        subq    $168, %rsp
-kns86:        cmpq    $0, 232(%rsp)
-kns87:        movq    264(%rsp), %r14
-kns88:        movl    272(%rsp), %r15d
-kns89:        movq    %r9, 120(%rsp)
-kns90:        je      .L22
-kns91:        movq    240(%rsp), %rax
-.L23:
-kns92:        movq    %rax, 136(%rsp)
-kns93:        movq    248(%rsp), %rax
-kns94:        testq   %r14, %r14
-kns95:        movq    %rax, 144(%rsp)
-kns96:        movq    256(%rsp), %rax
-kns97:        movq    %rax, 152(%rsp)
-kns98:        movl    $.L21, %eax
-kns99:        cmove   %rax, %r14
-kns100:        jmp     *%r14
-.L36:
-kns101:        movq    136(%rsp), %rax
-kns102:        movl    8(%rax), %eax
-kns103:        cmpl    %eax, %r15d
-kns104:        cmovl   %eax, %r15d
-kns105:        movl    (%rdi), %eax
-kns106:        cmpl    %eax, %r15d
-kns107:        jg      .L39
-.L40:
-kns108:        addq    $48, 136(%rsp)
-.L32:
-kns109:        movq    136(%rsp), %rax
-kns110:        movq    (%rax), %rax
-kns111:        jmp     *%rax
-.L26:
-kns112:        movq    120(%rsp), %rax
-kns113:        leaq    232(%rsp), %rdi
-kns114:        addq    $8, 136(%rsp)
-kns115:        movl    %r15d, (%rax)
-kns116:        call    _ZN7tpalrts7sdeleteERNS_12stack_structE
-.L20:
-kns117:        addq    $168, %rsp
-kns118:        popq    %rbx
-kns119:        popq    %rbp
-kns120:        popq    %r12
-kns121:        popq    %r13
-kns122:        popq    %r14
-kns123:        popq    %r15
-kns124:        ret
-.L30:
-kns125:        movq    136(%rsp), %rax
-kns126:        leaq    -8(%rax), %rdx
-kns127:        movq    %rdx, 136(%rsp)
-kns128:        movq    $.L31, -8(%rax)
-.L28:
-kns129:        nop
-kns130:        nop
-kns131:        nop
-.L29:
-kns132:        testl   %ebp, %ebp
-kns133:        js      .L47
-.L57:
-kns134:        testl   %r12d, %r12d
-kns135:        je      .L46
-kns136:        testl   %ebp, %ebp
-kns137:        je      .L46
-kns138:        movl    (%rbx), %eax
-kns139:        cvtsi2sdl       %r13d, %xmm1
-kns140:        imull   %ebp, %eax
-kns141:        cltd
-kns142:        idivl   4(%rbx)
-kns143:        cvtsi2sdl       %eax, %xmm0
-kns144:        movl    (%rdi), %eax
-kns145:        addsd   %xmm1, %xmm0
-kns146:        cvtsi2sdl       %eax, %xmm1
-kns147:        comisd  %xmm0, %xmm1
-kns148:        ja      .L47
-kns149:        movq    136(%rsp), %rax
-kns150:        addq    $8, %rbx
-kns151:        decl    %r12d
-kns152:        leaq    -48(%rax), %rdx
-kns153:        movq    %rdx, 136(%rsp)
-kns154:        movl    %ebp, %edx
-kns155:        subl    -4(%rbx), %edx
-kns156:        movq    $.L33, -48(%rax)
-kns157:        movq    136(%rsp), %rax
-kns158:        movl    %edx, 16(%rax)
-kns159:        movl    %r12d, 20(%rax)
-kns160:        leaq    32(%rax), %rcx
-kns161:        movl    -8(%rbx), %edx
-kns162:        movq    %rbx, 8(%rax)
-kns163:        movq    $0, 40(%rax)
-kns164:        addl    %r13d, %edx
-kns165:        movl    %edx, 24(%rax)
-kns166:        movq    152(%rsp), %rdx
-kns167:        testq   %rdx, %rdx
-kns168:        movq    %rdx, 32(%rax)
-kns169:        je      .L34
-kns170:        movq    %rcx, 8(%rdx)
-.L34:
-kns171:        cmpq    $0, 144(%rsp)
-kns172:        movq    %rcx, 152(%rsp)
-kns173:        jne     .L28
-kns174:        nop
-kns175:        movq    %rcx, 144(%rsp)
-kns176:        nop
-kns177:        jmp     .L29
-.L56:
-kns178:        movq    224(%rsp), %rax
-kns179:        leaq    120(%rsp), %r9
-kns180:        movq    %rdi, 112(%rsp)
-kns181:        movl    %r15d, 96(%rsp)
-kns182:        movq    %r14, 88(%rsp)
-kns183:        movl    %r13d, %r8d
-kns184:        movq    $.L30, 80(%rsp)
-kns185:        movq    $.L31, 72(%rsp)
-kns186:        movl    %r12d, %ecx
-kns187:        movq    %rax, 104(%rsp)
-kns188:        leaq    152(%rsp), %rax
-kns189:        movq    $.L32, 64(%rsp)
-kns190:        movq    $.L21, 56(%rsp)
-kns191:        movl    %ebp, %edx
-kns192:        movq    %rbx, %rsi
-kns193:        movq    %rax, 48(%rsp)
-kns194:        leaq    144(%rsp), %rax
-kns195:        movq    %rax, 40(%rsp)
-kns196:        leaq    136(%rsp), %rax
-kns197:        movq    %rax, 32(%rsp)
-kns198:        movq    232(%rsp), %rax
-kns199:        movq    %rax, (%rsp)
-kns200:        movq    240(%rsp), %rax
-kns201:        movq    %rax, 8(%rsp)
-kns202:        movq    248(%rsp), %rax
-kns203:        movq    %rax, 16(%rsp)
-kns204:        movq    256(%rsp), %rax
-kns205:        movq    %rax, 24(%rsp)
-kns206:        call    _Z16knapsack_handlerRSt6atomicIiEP4itemiiiRPiN7tpalrts12stack_structERPcS9_S9_PvSA_SA_SA_SA_iSA_
-kns207:        testl   %ebp, %ebp
-kns208:        movq    112(%rsp), %rdi
-kns209:        jns     .L57
-.L47:
-kns210:        movq    136(%rsp), %rax
-kns211:        movl    $-2147483648, %r15d
-kns212:        movq    (%rax), %rax
-kns213:        jmp     *%rax
-.L31:
-kns214:        movq    136(%rsp), %rax
-kns215:        movq    $.L30, (%rax)
-kns216:        movq    120(%rsp), %rax
-kns217:        movl    %r15d, (%rax)
-kns218:        jmp     .L20
-.L33:
-kns219:        movq    136(%rsp), %rax
-kns220:        movq    $.L36, (%rax)
-kns221:        movq    8(%rax), %rbx
-kns222:        movl    16(%rax), %ebp
-kns223:        movl    20(%rax), %r12d
-kns224:        movl    24(%rax), %r13d
-kns225:        movq    152(%rsp), %rdx
-kns226:        movq    136(%rsp), %rax
-kns227:        movl    %r15d, 8(%rax)
-kns228:        movq    (%rdx), %rax
-kns229:        testq   %rax, %rax
-kns230:        je      .L58
-kns231:        movq    $0, 8(%rax)
-kns232:        movq    $0, (%rdx)
-.L38:
-kns233:        movq    %rax, 152(%rsp)
-kns234:        jmp     .L28
-.L21:
-kns235:        movq    136(%rsp), %rax
-kns236:        leaq    -8(%rax), %rdx
-kns237:        movq    %rdx, 136(%rsp)
-kns238:        movq    $.L26, -8(%rax)
-kns239:        jmp     .L28
-.L46:
-kns240:        movq    136(%rsp), %rax
-kns241:        movl    %r13d, %r15d
-kns242:        movq    (%rax), %rax
-kns243:        jmp     *%rax
-.L58:
-kns244:        movq    $0, 144(%rsp)
-kns245:        jmp     .L38
-.L39:
-kns246:        movl    (%rdi), %eax
-kns247:        cmpl    %eax, %r13d
-kns248:        jle     .L40
-.L41:
-kns249:        lock cmpxchgl   %r13d, (%rdi)
-kns250:        cmpl    %eax, %r13d
-kns251:        jg      .L41
-kns252:        jmp     .L40
+kns85:        subq    $136, %rsp
+kns86:        cmpq    $0, 200(%rsp)
+kns87:        movq    232(%rsp), %r14
+kns88:        movl    240(%rsp), %r15d
+kns89:        movq    %r9, 88(%rsp)
+kns90:        je      .L21
+kns91:        movq    208(%rsp), %rax
 .L22:
-kns253:        movq    %rdi, 112(%rsp)
-kns254:        call    _ZN7tpalrts11alloc_stackEv
-kns255:        movq    %rax, 232(%rsp)
-kns256:        addq    $8191, %rax
-kns257:        movq    112(%rsp), %rdi
-kns258:        movq    %rax, 240(%rsp)
-kns259:        jmp     .L23
+kns92:        movq    %rax, 104(%rsp)
+kns93:        movq    216(%rsp), %rax
+kns94:        cmpq    $0, __entry(%rip)
+kns95:        movq    %rax, 112(%rsp)
+kns96:        movq    224(%rsp), %rax
+kns97:        movq    %rax, 120(%rsp)
+kns98:        je      .L56
+.L23:
+kns99:        testq   %r14, %r14
+kns100:        cmove   __entry(%rip), %r14
+kns101:        jmp     *%r14
+.L30:
+kns102:        movq    104(%rsp), %rax
+kns103:        movl    24(%rax), %eax
+kns104:        cmpl    %eax, %r15d
+kns105:        cmovl   %eax, %r15d
+kns106:        movl    0(%r13), %eax
+kns107:        cmpl    %eax, %r15d
+kns108:        jg      .L40
+.L41:
+kns109:        addq    $48, 104(%rsp)
+.L26:
+kns110:        movq    104(%rsp), %rax
+kns111:        movq    (%rax), %rax
+kns112:        jmp     *%rax
+.L25:
+kns113:        movq    88(%rsp), %rax
+kns114:        leaq    200(%rsp), %rdi
+kns115:        addq    $8, 104(%rsp)
+kns116:        movl    %r15d, (%rax)
+kns117:        call    _ZN7tpalrts7sdeleteERNS_12stack_structE
+.L20:
+kns118:        addq    $136, %rsp
+kns119:        popq    %rbx
+kns120:        popq    %rbp
+kns121:        popq    %r12
+kns122:        popq    %r13
+kns123:        popq    %r14
+kns124:        popq    %r15
+kns125:        ret
+.L28:
+kns126:        movq    104(%rsp), %rax
+kns127:        leaq    -8(%rax), %rdx
+kns128:        movq    %rdx, 104(%rsp)
+kns129:        movq    __joink(%rip), %rdx
+kns130:        movq    %rdx, -8(%rax)
+kns131:        jmp     .L37
+.L36:
+kns132:        addq    $8, %rbx
+kns133:        movl    %ebp, %edx
+kns134:        decl    %r12d
+kns135:        subl    -4(%rbx), %edx
+kns136:        movl    %r12d, 36(%rax)
+kns137:        movq    %rbx, 24(%rax)
+kns138:        movl    %edx, 32(%rax)
+kns139:        movl    -8(%rbx), %edx
+kns140:        addl    %r8d, %edx
+kns141:        movl    %edx, 40(%rax)
+.L37:
+kns142:        nop
+kns143:        nop
+kns144:        nop
+.L34:
+kns145:        testl   %ebp, %ebp
+kns146:        js      .L47
+.L59:
+kns147:        testl   %r12d, %r12d
+kns148:        je      .L46
+kns149:        testl   %ebp, %ebp
+kns150:        je      .L46
+kns151:        movl    (%rbx), %eax
+kns152:        cvtsi2sdl       %r8d, %xmm1
+kns153:        imull   %ebp, %eax
+kns154:        cltd
+kns155:        idivl   4(%rbx)
+kns156:        cvtsi2sdl       %eax, %xmm0
+kns157:        movl    0(%r13), %eax
+kns158:        addsd   %xmm1, %xmm0
+kns159:        cvtsi2sdl       %eax, %xmm1
+kns160:        comisd  %xmm0, %xmm1
+kns161:        ja      .L47
+kns162:        movq    104(%rsp), %rax
+kns163:        leaq    -48(%rax), %rdx
+kns164:        movq    %rdx, 104(%rsp)
+kns165:        movq    __branch1(%rip), %rdx
+kns166:        movq    %rdx, -48(%rax)
+kns167:        movq    120(%rsp), %rdx
+kns168:        movq    104(%rsp), %rax
+kns169:        testq   %rdx, %rdx
+kns170:        leaq    8(%rax), %rcx
+kns171:        movq    %rdx, 8(%rax)
+kns172:        movq    $0, 16(%rax)
+kns173:        je      .L35
+kns174:        movq    %rcx, 8(%rdx)
+.L35:
+kns175:        cmpq    $0, 112(%rsp)
+kns176:        movq    %rcx, 120(%rsp)
+kns177:        jne     .L36
+kns178:        movq    %rcx, 112(%rsp)
+kns179:        jmp     .L36
+.L27:
+kns180:        movq    104(%rsp), %rax
+kns181:        movq    __clonek(%rip), %rdx
+kns182:        movq    %rdx, (%rax)
+kns183:        movq    88(%rsp), %rax
+kns184:        movl    %r15d, (%rax)
+kns185:        jmp     .L20
+.L29:
+kns186:        movq    104(%rsp), %rax
+kns187:        movq    __branch2(%rip), %rdx
+kns188:        movq    24(%rax), %rbx
+kns189:        movq    %rdx, (%rax)
+kns190:        movl    32(%rax), %ebp
+kns191:        movl    36(%rax), %r12d
+kns192:        movl    40(%rax), %r8d
+kns193:        movq    120(%rsp), %rdx
+kns194:        movq    104(%rsp), %rax
+kns195:        movl    %r15d, 24(%rax)
+kns196:        movq    (%rdx), %rax
+kns197:        testq   %rax, %rax
+kns198:        je      .L58
+kns199:        movq    $0, 8(%rax)
+kns200:        movq    $0, (%rdx)
+.L39:
+kns201:        movq    %rax, 120(%rsp)
+kns202:        nop
+kns203:        nop
+kns204:        jmp      .L34
+.L57:
+kns205:        movq    192(%rsp), %rax
+kns206:        leaq    88(%rsp), %r9
+kns207:        movl    %r8d, 84(%rsp)
+kns208:        movl    %r15d, 64(%rsp)
+kns209:        movq    %r14, 56(%rsp)
+kns210:        movl    %r12d, %ecx
+kns211:        movl    %ebp, %edx
+kns212:        movq    %rbx, %rsi
+kns213:        movq    %r13, %rdi
+kns214:        movq    %rax, 72(%rsp)
+kns215:        leaq    120(%rsp), %rax
+kns216:        movq    %rax, 48(%rsp)
+kns217:        leaq    112(%rsp), %rax
+kns218:        movq    %rax, 40(%rsp)
+kns219:        leaq    104(%rsp), %rax
+kns220:        movq    %rax, 32(%rsp)
+kns221:        movq    200(%rsp), %rax
+kns222:        movq    %rax, (%rsp)
+kns223:        movq    208(%rsp), %rax
+kns224:        movq    %rax, 8(%rsp)
+kns225:        movq    216(%rsp), %rax
+kns226:        movq    %rax, 16(%rsp)
+kns227:        movq    224(%rsp), %rax
+kns228:        movq    %rax, 24(%rsp)
+kns229:        call    _Z16knapsack_handlerRSt6atomicIiEP4itemiiiRPiN7tpalrts12stack_structERPcS9_S9_PviSA_
+kns230:        testl   %ebp, %ebp
+kns231:        movl    84(%rsp), %r8d
+kns232:        jns     .L59
+.L47:
+kns233:        movq    104(%rsp), %rax
+kns234:        movl    $-2147483648, %r15d
+kns235:        movq    (%rax), %rax
+kns236:        jmp     *%rax
+.L24:
+kns237:        movq    104(%rsp), %rax
+kns238:        leaq    -8(%rax), %rdx
+kns239:        movq    %rdx, 104(%rsp)
+kns240:        movq    __exitk(%rip), %rdx
+kns241:        movq    %rdx, -8(%rax)
+kns242:        jmp     .L37
+.L46:
+kns243:        movq    104(%rsp), %rax
+kns244:        movl    %r8d, %r15d
+kns245:        movq    (%rax), %rax
+kns246:        jmp     *%rax
+.L58:
+kns247:        movq    $0, 112(%rsp)
+kns248:        jmp     .L39
+.L40:
+kns249:        movl    0(%r13), %eax
+kns250:        cmpl    %eax, %r8d
+kns251:        jle     .L41
+.L42:
+kns252:        lock cmpxchgl   %r8d, 0(%r13)
+kns253:        cmpl    %eax, %r8d
+kns254:        jg      .L42
+kns255:        jmp     .L41
+.L21:
+kns256:        movl    %r8d, 84(%rsp)
+kns257:        call    _ZN7tpalrts11alloc_stackEv
+kns258:        movq    %rax, 200(%rsp)
+kns259:        addq    $8191, %rax
+kns260:        movl    84(%rsp), %r8d
+kns261:        movq    %rax, 208(%rsp)
+kns262:        jmp     .L22
+.L56:
+kns263:        movl    $.L24, %edi
+kns264:        movl    %r8d, 84(%rsp)
+kns265:        call    _Z14sanitize_labelPv
+kns266:        movl    $.L25, %edi
+kns267:        movq    %rax, __entry(%rip)
+kns268:        call    _Z14sanitize_labelPv
+kns269:        movl    $.L26, %edi
+kns270:        movq    %rax, __exitk(%rip)
+kns271:        call    _Z14sanitize_labelPv
+kns272:        movl    $.L27, %edi
+kns273:        movq    %rax, __retk(%rip)
+kns274:        call    _Z14sanitize_labelPv
+kns275:        movl    $.L28, %edi
+kns276:        movq    %rax, __joink(%rip)
+kns277:        call    _Z14sanitize_labelPv
+kns278:        movl    $.L29, %edi
+kns279:        movq    %rax, __clonek(%rip)
+kns280:        call    _Z14sanitize_labelPv
+kns281:        movl    $.L30, %edi
+kns282:        movq    %rax, __branch1(%rip)
+kns283:        call    _Z14sanitize_labelPv
+kns284:        movl    84(%rsp), %r8d
+kns285:        movq    %rax, __branch2(%rip)
+kns286:        jmp     .L23
 
 _Z15knapsack_serialRiP4itemiiiN7tpalrts12stack_structE_rf:
 kns0_rf:        pushq   %r13
@@ -1433,208 +1571,238 @@ _Z18knapsack_interruptRSt6atomicIiEP4itemiiiPiPvN7tpalrts12stack_structES5_i_rf:
 kns75_rf:        pushq   %r15
 kns76_rf:        pushq   %r14
 kns77_rf:        pushq   %r13
-kns78_rf:        movl    %r8d, %r13d
+kns78_rf:        movq    %rdi, %r13
 kns79_rf:        pushq   %r12
 kns80_rf:        movl    %ecx, %r12d
 kns81_rf:        pushq   %rbp
 kns82_rf:        movl    %edx, %ebp
 kns83_rf:        pushq   %rbx
 kns84_rf:        movq    %rsi, %rbx
-kns85_rf:        subq    $168, %rsp
-kns86_rf:        cmpq    $0, 232(%rsp)
-kns87_rf:        movq    264(%rsp), %r14
-kns88_rf:        movl    272(%rsp), %r15d
-kns89_rf:        movq    %r9, 120(%rsp)
-kns90_rf:        je      .L22_rf
-kns91_rf:        movq    240(%rsp), %rax
-.L23_rf:
-kns92_rf:        movq    %rax, 136(%rsp)
-kns93_rf:        movq    248(%rsp), %rax
-kns94_rf:        testq   %r14, %r14
-kns95_rf:        movq    %rax, 144(%rsp)
-kns96_rf:        movq    256(%rsp), %rax
-kns97_rf:        movq    %rax, 152(%rsp)
-kns98_rf:        movl    $.L21_rf, %eax
-kns99_rf:        cmove   %rax, %r14
-kns100_rf:        jmp     *%r14
-.L36_rf:
-kns101_rf:        movq    136(%rsp), %rax
-kns102_rf:        movl    8(%rax), %eax
-kns103_rf:        cmpl    %eax, %r15d
-kns104_rf:        cmovl   %eax, %r15d
-kns105_rf:        movl    (%rdi), %eax
-kns106_rf:        cmpl    %eax, %r15d
-kns107_rf:        jg      .L39_rf
-.L40_rf:
-kns108_rf:        addq    $48, 136(%rsp)
-.L32_rf:
-kns109_rf:        movq    136(%rsp), %rax
-kns110_rf:        movq    (%rax), %rax
-kns111_rf:        jmp     *%rax
-.L26_rf:
-kns112_rf:        movq    120(%rsp), %rax
-kns113_rf:        leaq    232(%rsp), %rdi
-kns114_rf:        addq    $8, 136(%rsp)
-kns115_rf:        movl    %r15d, (%rax)
-kns116_rf:        call    _ZN7tpalrts7sdeleteERNS_12stack_structE
-.L20_rf:
-kns117_rf:        addq    $168, %rsp
-kns118_rf:        popq    %rbx
-kns119_rf:        popq    %rbp
-kns120_rf:        popq    %r12
-kns121_rf:        popq    %r13
-kns122_rf:        popq    %r14
-kns123_rf:        popq    %r15
-kns124_rf:        ret
-.L30_rf:
-kns125_rf:        movq    136(%rsp), %rax
-kns126_rf:        leaq    -8(%rax), %rdx
-kns127_rf:        movq    %rdx, 136(%rsp)
-kns128_rf:        movq    $.L31_rf, -8(%rax)
-.L28_rf:
-kns129_rf:        nop
-kns130_rf:        nop
-kns131_rf:        jmp     .L56
-.L29_rf:
-kns132_rf:        testl   %ebp, %ebp
-kns133_rf:        js      .L47_rf
-.L57_rf:
-kns134_rf:        testl   %r12d, %r12d
-kns135_rf:        je      .L46_rf
-kns136_rf:        testl   %ebp, %ebp
-kns137_rf:        je      .L46_rf
-kns138_rf:        movl    (%rbx), %eax
-kns139_rf:        cvtsi2sdl       %r13d, %xmm1
-kns140_rf:        imull   %ebp, %eax
-kns141_rf:        cltd
-kns142_rf:        idivl   4(%rbx)
-kns143_rf:        cvtsi2sdl       %eax, %xmm0
-kns144_rf:        movl    (%rdi), %eax
-kns145_rf:        addsd   %xmm1, %xmm0
-kns146_rf:        cvtsi2sdl       %eax, %xmm1
-kns147_rf:        comisd  %xmm0, %xmm1
-kns148_rf:        ja      .L47_rf
-kns149_rf:        movq    136(%rsp), %rax
-kns150_rf:        addq    $8, %rbx
-kns151_rf:        decl    %r12d
-kns152_rf:        leaq    -48(%rax), %rdx
-kns153_rf:        movq    %rdx, 136(%rsp)
-kns154_rf:        movl    %ebp, %edx
-kns155_rf:        subl    -4(%rbx), %edx
-kns156_rf:        movq    $.L33_rf, -48(%rax)
-kns157_rf:        movq    136(%rsp), %rax
-kns158_rf:        movl    %edx, 16(%rax)
-kns159_rf:        movl    %r12d, 20(%rax)
-kns160_rf:        leaq    32(%rax), %rcx
-kns161_rf:        movl    -8(%rbx), %edx
-kns162_rf:        movq    %rbx, 8(%rax)
-kns163_rf:        movq    $0, 40(%rax)
-kns164_rf:        addl    %r13d, %edx
-kns165_rf:        movl    %edx, 24(%rax)
-kns166_rf:        movq    152(%rsp), %rdx
-kns167_rf:        testq   %rdx, %rdx
-kns168_rf:        movq    %rdx, 32(%rax)
-kns169_rf:        je      .L34_rf
-kns170_rf:        movq    %rcx, 8(%rdx)
-.L34_rf:
-kns171_rf:        cmpq    $0, 144(%rsp)
-kns172_rf:        movq    %rcx, 152(%rsp)
-kns173_rf:        jne     .L28_rf
-kns174_rf:        nop
-kns175_rf:        movq    %rcx, 144(%rsp)
-kns176_rf:        nop
-kns177_rf:        jmp     kns178
-.L56_rf:
-kns178_rf:        movq    224(%rsp), %rax
-kns179_rf:        leaq    120(%rsp), %r9
-kns180_rf:        movq    %rdi, 112(%rsp)
-kns181_rf:        movl    %r15d, 96(%rsp)
-kns182_rf:        movq    %r14, 88(%rsp)
-kns183_rf:        movl    %r13d, %r8d
-kns184_rf:        movq    $.L30_rf, 80(%rsp)
-kns185_rf:        movq    $.L31_rf, 72(%rsp)
-kns186_rf:        movl    %r12d, %ecx
-kns187_rf:        movq    %rax, 104(%rsp)
-kns188_rf:        leaq    152(%rsp), %rax
-kns189_rf:        movq    $.L32_rf, 64(%rsp)
-kns190_rf:        movq    $.L21_rf, 56(%rsp)
-kns191_rf:        movl    %ebp, %edx
-kns192_rf:        movq    %rbx, %rsi
-kns193_rf:        movq    %rax, 48(%rsp)
-kns194_rf:        leaq    144(%rsp), %rax
-kns195_rf:        movq    %rax, 40(%rsp)
-kns196_rf:        leaq    136(%rsp), %rax
-kns197_rf:        movq    %rax, 32(%rsp)
-kns198_rf:        movq    232(%rsp), %rax
-kns199_rf:        movq    %rax, (%rsp)
-kns200_rf:        movq    240(%rsp), %rax
-kns201_rf:        movq    %rax, 8(%rsp)
-kns202_rf:        movq    248(%rsp), %rax
-kns203_rf:        movq    %rax, 16(%rsp)
-kns204_rf:        movq    256(%rsp), %rax
-kns205_rf:        movq    %rax, 24(%rsp)
-kns206_rf:        call    _Z16knapsack_handlerRSt6atomicIiEP4itemiiiRPiN7tpalrts12stack_structERPcS9_S9_PvSA_SA_SA_SA_iSA_
-kns207_rf:        testl   %ebp, %ebp
-kns208_rf:        movq    112(%rsp), %rdi
-kns209_rf:        jns     .L57_rf
-.L47_rf:
-kns210_rf:        movq    136(%rsp), %rax
-kns211_rf:        movl    $-2147483648, %r15d
-kns212_rf:        movq    (%rax), %rax
-kns213_rf:        jmp     *%rax
-.L31_rf:
-kns214_rf:        movq    136(%rsp), %rax
-kns215_rf:        movq    $.L30_rf, (%rax)
-kns216_rf:        movq    120(%rsp), %rax
-kns217_rf:        movl    %r15d, (%rax)
-kns218_rf:        jmp     .L20_rf
-.L33_rf:
-kns219_rf:        movq    136(%rsp), %rax
-kns220_rf:        movq    $.L36_rf, (%rax)
-kns221_rf:        movq    8(%rax), %rbx
-kns222_rf:        movl    16(%rax), %ebp
-kns223_rf:        movl    20(%rax), %r12d
-kns224_rf:        movl    24(%rax), %r13d
-kns225_rf:        movq    152(%rsp), %rdx
-kns226_rf:        movq    136(%rsp), %rax
-kns227_rf:        movl    %r15d, 8(%rax)
-kns228_rf:        movq    (%rdx), %rax
-kns229_rf:        testq   %rax, %rax
-kns230_rf:        je      .L58_rf
-kns231_rf:        movq    $0, 8(%rax)
-kns232_rf:        movq    $0, (%rdx)
-.L38_rf:
-kns233_rf:        movq    %rax, 152(%rsp)
-kns234_rf:        jmp     .L28_rf
-.L21_rf:
-kns235_rf:        movq    136(%rsp), %rax
-kns236_rf:        leaq    -8(%rax), %rdx
-kns237_rf:        movq    %rdx, 136(%rsp)
-kns238_rf:        movq    $.L26_rf, -8(%rax)
-kns239_rf:        jmp     .L28_rf
-.L46_rf:
-kns240_rf:        movq    136(%rsp), %rax
-kns241_rf:        movl    %r13d, %r15d
-kns242_rf:        movq    (%rax), %rax
-kns243_rf:        jmp     *%rax
-.L58_rf:
-kns244_rf:        movq    $0, 144(%rsp)
-kns245_rf:        jmp     .L38_rf
-.L39_rf:
-kns246_rf:        movl    (%rdi), %eax
-kns247_rf:        cmpl    %eax, %r13d
-kns248_rf:        jle     .L40_rf
-.L41_rf:
-kns249_rf:        lock cmpxchgl   %r13d, (%rdi)
-kns250_rf:        cmpl    %eax, %r13d
-kns251_rf:        jg      .L41_rf
-kns252_rf:        jmp     .L40_rf
+kns85_rf:        subq    $136, %rsp
+kns86_rf:        cmpq    $0, 200(%rsp)
+kns87_rf:        movq    232(%rsp), %r14
+kns88_rf:        movl    240(%rsp), %r15d
+kns89_rf:        movq    %r9, 88(%rsp)
+kns90_rf:        je      .L21_rf
+kns91_rf:        movq    208(%rsp), %rax
 .L22_rf:
-kns253_rf:        movq    %rdi, 112(%rsp)
-kns254_rf:        call    _ZN7tpalrts11alloc_stackEv
-kns255_rf:        movq    %rax, 232(%rsp)
-kns256_rf:        addq    $8191, %rax
-kns257_rf:        movq    112(%rsp), %rdi
-kns258_rf:        movq    %rax, 240(%rsp)
-kns259_rf:        jmp     .L23_rf
+kns92_rf:        movq    %rax, 104(%rsp)
+kns93_rf:        movq    216(%rsp), %rax
+kns94_rf:        cmpq    $0, __entry(%rip)
+kns95_rf:        movq    %rax, 112(%rsp)
+kns96_rf:        movq    224(%rsp), %rax
+kns97_rf:        movq    %rax, 120(%rsp)
+kns98_rf:        je      .L56_rf
+.L23_rf:
+kns99_rf:        testq   %r14, %r14
+kns100_rf:        cmove   __entry(%rip), %r14
+kns101_rf:        jmp     *%r14
+.L30_rf:
+kns102_rf:        movq    104(%rsp), %rax
+kns103_rf:        movl    24(%rax), %eax
+kns104_rf:        cmpl    %eax, %r15d
+kns105_rf:        cmovl   %eax, %r15d
+kns106_rf:        movl    0(%r13), %eax
+kns107_rf:        cmpl    %eax, %r15d
+kns108_rf:        jg      .L40_rf
+.L41_rf:
+kns109_rf:        addq    $48, 104(%rsp)
+.L26_rf:
+kns110_rf:        movq    104(%rsp), %rax
+kns111_rf:        movq    (%rax), %rax
+kns112_rf:        jmp     *%rax
+.L25_rf:
+kns113_rf:        movq    88(%rsp), %rax
+kns114_rf:        leaq    200(%rsp), %rdi
+kns115_rf:        addq    $8, 104(%rsp)
+kns116_rf:        movl    %r15d, (%rax)
+kns117_rf:        call    _ZN7tpalrts7sdeleteERNS_12stack_structE
+.L20_rf:
+kns118_rf:        addq    $136, %rsp
+kns119_rf:        popq    %rbx
+kns120_rf:        popq    %rbp
+kns121_rf:        popq    %r12
+kns122_rf:        popq    %r13
+kns123_rf:        popq    %r14
+kns124_rf:        popq    %r15
+kns125_rf:        ret
+.L28_rf:
+kns126_rf:        movq    104(%rsp), %rax
+kns127_rf:        leaq    -8(%rax), %rdx
+kns128_rf:        movq    %rdx, 104(%rsp)
+kns129_rf:        movq    __joink(%rip), %rdx
+kns130_rf:        movq    %rdx, -8(%rax)
+kns131_rf:        jmp     .L37_rf
+.L36_rf:
+kns132_rf:        addq    $8, %rbx
+kns133_rf:        movl    %ebp, %edx
+kns134_rf:        decl    %r12d
+kns135_rf:        subl    -4(%rbx), %edx
+kns136_rf:        movl    %r12d, 36(%rax)
+kns137_rf:        movq    %rbx, 24(%rax)
+kns138_rf:        movl    %edx, 32(%rax)
+kns139_rf:        movl    -8(%rbx), %edx
+kns140_rf:        addl    %r8d, %edx
+kns141_rf:        movl    %edx, 40(%rax)
+.L37_rf:
+kns142_rf:        nop
+kns143_rf:        nop
+kns144_rf:        jmp     .L57
+.L34_rf:
+kns145_rf:        testl   %ebp, %ebp
+kns146_rf:        js      .L47_rf
+.L59_rf:
+kns147_rf:        testl   %r12d, %r12d
+kns148_rf:        je      .L46_rf
+kns149_rf:        testl   %ebp, %ebp
+kns150_rf:        je      .L46_rf
+kns151_rf:        movl    (%rbx), %eax
+kns152_rf:        cvtsi2sdl       %r8d, %xmm1
+kns153_rf:        imull   %ebp, %eax
+kns154_rf:        cltd
+kns155_rf:        idivl   4(%rbx)
+kns156_rf:        cvtsi2sdl       %eax, %xmm0
+kns157_rf:        movl    0(%r13), %eax
+kns158_rf:        addsd   %xmm1, %xmm0
+kns159_rf:        cvtsi2sdl       %eax, %xmm1
+kns160_rf:        comisd  %xmm0, %xmm1
+kns161_rf:        ja      .L47_rf
+kns162_rf:        movq    104(%rsp), %rax
+kns163_rf:        leaq    -48(%rax), %rdx
+kns164_rf:        movq    %rdx, 104(%rsp)
+kns165_rf:        movq    __branch1(%rip), %rdx
+kns166_rf:        movq    %rdx, -48(%rax)
+kns167_rf:        movq    120(%rsp), %rdx
+kns168_rf:        movq    104(%rsp), %rax
+kns169_rf:        testq   %rdx, %rdx
+kns170_rf:        leaq    8(%rax), %rcx
+kns171_rf:        movq    %rdx, 8(%rax)
+kns172_rf:        movq    $0, 16(%rax)
+kns173_rf:        je      .L35_rf
+kns174_rf:        movq    %rcx, 8(%rdx)
+.L35_rf:
+kns175_rf:        cmpq    $0, 112(%rsp)
+kns176_rf:        movq    %rcx, 120(%rsp)
+kns177_rf:        jne     .L36_rf
+kns178_rf:        movq    %rcx, 112(%rsp)
+kns179_rf:        jmp     .L36_rf
+.L27_rf:
+kns180_rf:        movq    104(%rsp), %rax
+kns181_rf:        movq    __clonek(%rip), %rdx
+kns182_rf:        movq    %rdx, (%rax)
+kns183_rf:        movq    88(%rsp), %rax
+kns184_rf:        movl    %r15d, (%rax)
+kns185_rf:        jmp     .L20_rf
+.L29_rf:
+kns186_rf:        movq    104(%rsp), %rax
+kns187_rf:        movq    __branch2(%rip), %rdx
+kns188_rf:        movq    24(%rax), %rbx
+kns189_rf:        movq    %rdx, (%rax)
+kns190_rf:        movl    32(%rax), %ebp
+kns191_rf:        movl    36(%rax), %r12d
+kns192_rf:        movl    40(%rax), %r8d
+kns193_rf:        movq    120(%rsp), %rdx
+kns194_rf:        movq    104(%rsp), %rax
+kns195_rf:        movl    %r15d, 24(%rax)
+kns196_rf:        movq    (%rdx), %rax
+kns197_rf:        testq   %rax, %rax
+kns198_rf:        je      .L58_rf
+kns199_rf:        movq    $0, 8(%rax)
+kns200_rf:        movq    $0, (%rdx)
+.L39_rf:
+kns201_rf:        movq    %rax, 120(%rsp)
+kns202_rf:        nop
+kns203_rf:        nop
+kns204_rf:        jmp     kns205
+.L57_rf:
+kns205_rf:        movq    192(%rsp), %rax
+kns206_rf:        leaq    88(%rsp), %r9
+kns207_rf:        movl    %r8d, 84(%rsp)
+kns208_rf:        movl    %r15d, 64(%rsp)
+kns209_rf:        movq    %r14, 56(%rsp)
+kns210_rf:        movl    %r12d, %ecx
+kns211_rf:        movl    %ebp, %edx
+kns212_rf:        movq    %rbx, %rsi
+kns213_rf:        movq    %r13, %rdi
+kns214_rf:        movq    %rax, 72(%rsp)
+kns215_rf:        leaq    120(%rsp), %rax
+kns216_rf:        movq    %rax, 48(%rsp)
+kns217_rf:        leaq    112(%rsp), %rax
+kns218_rf:        movq    %rax, 40(%rsp)
+kns219_rf:        leaq    104(%rsp), %rax
+kns220_rf:        movq    %rax, 32(%rsp)
+kns221_rf:        movq    200(%rsp), %rax
+kns222_rf:        movq    %rax, (%rsp)
+kns223_rf:        movq    208(%rsp), %rax
+kns224_rf:        movq    %rax, 8(%rsp)
+kns225_rf:        movq    216(%rsp), %rax
+kns226_rf:        movq    %rax, 16(%rsp)
+kns227_rf:        movq    224(%rsp), %rax
+kns228_rf:        movq    %rax, 24(%rsp)
+kns229_rf:        call    _Z16knapsack_handlerRSt6atomicIiEP4itemiiiRPiN7tpalrts12stack_structERPcS9_S9_PviSA_
+kns230_rf:        testl   %ebp, %ebp
+kns231_rf:        movl    84(%rsp), %r8d
+kns232_rf:        jns     .L59_rf
+.L47_rf:
+kns233_rf:        movq    104(%rsp), %rax
+kns234_rf:        movl    $-2147483648, %r15d
+kns235_rf:        movq    (%rax), %rax
+kns236_rf:        jmp     *%rax
+.L24_rf:
+kns237_rf:        movq    104(%rsp), %rax
+kns238_rf:        leaq    -8(%rax), %rdx
+kns239_rf:        movq    %rdx, 104(%rsp)
+kns240_rf:        movq    __exitk(%rip), %rdx
+kns241_rf:        movq    %rdx, -8(%rax)
+kns242_rf:        jmp     .L37_rf
+.L46_rf:
+kns243_rf:        movq    104(%rsp), %rax
+kns244_rf:        movl    %r8d, %r15d
+kns245_rf:        movq    (%rax), %rax
+kns246_rf:        jmp     *%rax
+.L58_rf:
+kns247_rf:        movq    $0, 112(%rsp)
+kns248_rf:        jmp     .L39_rf
+.L40_rf:
+kns249_rf:        movl    0(%r13), %eax
+kns250_rf:        cmpl    %eax, %r8d
+kns251_rf:        jle     .L41_rf
+.L42_rf:
+kns252_rf:        lock cmpxchgl   %r8d, 0(%r13)
+kns253_rf:        cmpl    %eax, %r8d
+kns254_rf:        jg      .L42_rf
+kns255_rf:        jmp     .L41_rf
+.L21_rf:
+kns256_rf:        movl    %r8d, 84(%rsp)
+kns257_rf:        call    _ZN7tpalrts11alloc_stackEv
+kns258_rf:        movq    %rax, 200(%rsp)
+kns259_rf:        addq    $8191, %rax
+kns260_rf:        movl    84(%rsp), %r8d
+kns261_rf:        movq    %rax, 208(%rsp)
+kns262_rf:        jmp     .L22_rf
+.L56_rf:
+kns263_rf:        movl    $.L24_rf, %edi
+kns264_rf:        movl    %r8d, 84(%rsp)
+kns265_rf:        call    _Z14sanitize_labelPv
+kns266_rf:        movl    $.L25_rf, %edi
+kns267_rf:        movq    %rax, __entry(%rip)
+kns268_rf:        call    _Z14sanitize_labelPv
+kns269_rf:        movl    $.L26_rf, %edi
+kns270_rf:        movq    %rax, __exitk(%rip)
+kns271_rf:        call    _Z14sanitize_labelPv
+kns272_rf:        movl    $.L27_rf, %edi
+kns273_rf:        movq    %rax, __retk(%rip)
+kns274_rf:        call    _Z14sanitize_labelPv
+kns275_rf:        movl    $.L28_rf, %edi
+kns276_rf:        movq    %rax, __joink(%rip)
+kns277_rf:        call    _Z14sanitize_labelPv
+kns278_rf:        movl    $.L29_rf, %edi
+kns279_rf:        movq    %rax, __clonek(%rip)
+kns280_rf:        call    _Z14sanitize_labelPv
+kns281_rf:        movl    $.L30_rf, %edi
+kns282_rf:        movq    %rax, __branch1(%rip)
+kns283_rf:        call    _Z14sanitize_labelPv
+kns284_rf:        movl    84(%rsp), %r8d
+kns285_rf:        movq    %rax, __branch2(%rip)
+kns286_rf:        jmp     .L23_rf
 

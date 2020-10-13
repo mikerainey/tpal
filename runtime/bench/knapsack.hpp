@@ -75,12 +75,24 @@ int knapsack_serial2(int& best_so_far, struct item *e, int c, int n, int v) {
   return best;
 }
 
+void* __entry = nullptr;
+void* __exitk = nullptr;
+void* __retk = nullptr;
+void* __joink = nullptr;
+void* __clonek = nullptr;
+void* __branch1 = nullptr;
+void* __branch2 = nullptr;
+
 using pair_ints_type = std::pair<int,int>;
 
 extern
 int knapsack_serial(int& best_so_far, struct item *e, int c, int n, int v, tpalrts::stack_type s);
 
 std::atomic<int> best_so_far(INT_MIN);
+
+void* sanitize_label(void* l) {
+  return tpalrts::reverse_lookup_rollforward_entry(l);
+}
 
 extern
 void knapsack_interrupt(std::atomic<int>& best_so_far, struct item *e, int c, int n, int v, int* dst,
@@ -89,10 +101,12 @@ void knapsack_interrupt(std::atomic<int>& best_so_far, struct item *e, int c, in
 
 int knapsack_handler(std::atomic<int>& best_so_far, struct item *e, int c, int n, int v, int*& dst,
 		     tpalrts::stack_type s, char*& sp, char*& prmhd, char*& prmtl,
-		     void* __entry, void* __retk, void* __joink, void* __clonek,
 		     void* pc, int best, void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
   tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
+  if (__entry == nullptr) {
+    return 0;
+  }
   if (prmempty(prmtl, prmhd)) {
     return 0;
   }
@@ -100,12 +114,13 @@ int knapsack_handler(std::atomic<int>& best_so_far, struct item *e, int c, int n
   uint64_t top;
   prmsplit(sp, prmtl, prmhd, sp_cont, top);
   char* sp_top = sp + top;
-  int v2 = sload(sp_top, 0, int);
-  pair_ints_type pi2 = sload(sp_top, -1l, pair_ints_type);
+  assert(sload(sp_top, 0, void*) ==  __branch1);
+  sstore(sp_top, 0, void*, __joink);
+  struct item* e2 = sload(sp_top, 3, struct item*);
+  pair_ints_type pi2 = sload(sp_top, 4, pair_ints_type);
   int c2 = pi2.first;
   int n2 = pi2.second;
-  struct item* e2 = sload(sp_top, -2l, struct item*);
-  sstore(sp_top, -3l, void*, __joink);
+  int v2 = sload(sp_top, 5, int);
   auto dst0 = dst;
   using dst_rec_type = std::tuple<int, int>;
   dst_rec_type* dst_rec;
@@ -114,13 +129,13 @@ int knapsack_handler(std::atomic<int>& best_so_far, struct item *e, int c, int n
   p->fork_join_promote([=, &best_so_far] (tpalrts::promotable* p2) {
     tpalrts::stack_type s2 = tpalrts::snew();
     void* pc2;
-    auto t = tpalrts::reverse_lookup_rollforward_entry(sload(sp_top, -1l, void*));
+    auto t = sload(sp_top, 0, void*);
     if (t != __clonek) { // slow clone
       pc2 = __entry;
     } else { // fast clone
       pc2 = __clonek;
       s2.stack = s.stack;
-      s2.sp = saddr(sp_top, -1l);
+      s2.sp = sp_top;
     }
     knapsack_interrupt(best_so_far, e2, c2, n2, v2, &std::get<1>(*dst_rec), p2, s2, pc2, 0);
   }, [=, &best_so_far] (tpalrts::promotable* p2) {
@@ -129,7 +144,7 @@ int knapsack_handler(std::atomic<int>& best_so_far, struct item *e, int c, int n
     decr_arena_block(dst_blk);
     auto best0 = with > without ? with : without;
     auto sj = s;
-    sj.sp = sp_cont;
+    sj.sp = sp_top;
     knapsack_interrupt(best_so_far, e, c, n, v, dst0, p2, sj, __retk, best0);
   });
   dst = &std::get<0>(*dst_rec);
@@ -306,6 +321,8 @@ auto bench_body_serial(promotable* p) {
 };
 
 auto bench_post(promotable* p) {
+  best_so_far.store(INT_MIN);
+  seq_best_so_far = INT_MIN;
 		    //    best_so_far = INT_MIN;
   //    assert(sol == knapsack_serial(items, capacity, n, 0));
 };

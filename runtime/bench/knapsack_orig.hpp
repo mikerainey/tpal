@@ -70,7 +70,7 @@ void sdelete(stack_type& s);
   sloadb(sp, (off) * sizeof(tpalrts::word_type), ty)
 
 #define sstorelabel(sp, off, lab) \
-  sstore(sp, off, void*, &&lab)
+  sstore(sp, off, void*, lab)
 
 #define sloadlabel(sp, off) \
   *sload(sp, off, void*)
@@ -160,7 +160,7 @@ int knapsack_serial(int& best_so_far, struct item *e, int c, int n, int v, tpalr
     goto retk;
   }
   salloc(sp, 4);
-  sstorelabel(sp, 0, branch1);
+  sstorelabel(sp, 0, &&branch1);
   sstore(sp, 1, struct item*, e + 1);
   {
     auto p = std::make_pair(c - e->weight, n - 1);
@@ -175,7 +175,7 @@ int knapsack_serial(int& best_so_far, struct item *e, int c, int n, int v, tpalr
   e = sload(sp, 1, struct item*);
   std::tie(c, n) = sload(sp, 2, pair_ints_type);
   v = sload(sp, 3, int);
-  sstorelabel(sp, 0, branch2);
+  sstorelabel(sp, 0, &&branch2);
   sstore(sp, 1, int, best); 
   goto loop;
 
@@ -212,35 +212,56 @@ void update_best_so_far(std::atomic<int>& best_so_far, int val) {
 }
 
 extern
+void* sanitize_label(void*);
+
+extern
+void* __entry;
+extern
+void* __exitk;
+extern
+void* __retk;
+extern
+void* __joink;
+extern
+void* __clonek;
+extern
+void* __branch1;
+extern
+void* __branch2;
+
+extern
 int knapsack_handler(std::atomic<int>& best_so_far, struct item *e, int c, int n, int v, int*& dst,
 		     tpalrts::stack_type s, char*& sp, char*& prmhd, char*& prmtl,
-		     void* __entry, void* __retk, void* __joink, void* __clonek,
 		     void* pc, int best, void* _p);
 
 void knapsack_interrupt(std::atomic<int>& best_so_far, struct item *e, int c, int n, int v, int* dst,
-                        void* p, tpalrts::stack_type s,
-		                  	void* pc, int best) {
+                        void* p, tpalrts::stack_type s, void* pc, int best) {
   sunpack(s);
   
   double ub;
 
-  void* __entry = &&entry;
-  void* __retk = &&retk;
-  void* __joink = &&joink;
-  void* __clonek = &&clonek;
-
+  if (__entry == nullptr) {
+    __entry = sanitize_label(&&entry);
+    __exitk = sanitize_label(&&exitk);
+    __retk = sanitize_label(&&retk);
+    __joink = sanitize_label(&&joink);
+    __clonek = sanitize_label(&&clonek);
+    __branch1 = sanitize_label(&&branch1);
+    __branch2 = sanitize_label(&&branch2);
+  }
+  assert(__entry != nullptr);
+							     
   pc = (pc == nullptr) ? __entry : pc;
   
   goto *pc;
   
  entry:
   salloc(sp, 1);
-  sstore(sp, 0, void*, &&exitk);
+  sstore(sp, 0, void*, __exitk);
   
  loop:
   if (unlikely(heartbeat)) {
-    knapsack_handler(best_so_far, e, c, n, v, dst, s, sp, prmhd, prmtl,
-		     __entry, __retk, __joink, __clonek, pc, best, p);
+    knapsack_handler(best_so_far, e, c, n, v, dst, s, sp, prmhd, prmtl, pc, best, p);
   }
   if (c < 0) {
     best = INT_MIN;
@@ -256,31 +277,28 @@ void knapsack_interrupt(std::atomic<int>& best_so_far, struct item *e, int c, in
     goto retk;
   }
   salloc(sp, 6);
-  sstorelabel(sp, 0, branch1);
-  sstore(sp, 1, struct item*, e + 1);
-  {
-    auto p = std::make_pair(c - e->weight, n - 1);
-    sstore(sp, 2, pair_ints_type, p);
-  }
-  sstore(sp, 3, int, v + e->value);
-  prmpush(sp, 4, prmtl, prmhd);
+  sstorelabel(sp, 0, __branch1);
+  prmpush(sp, 1, prmtl, prmhd);
+  sstore(sp, 3, struct item*, e + 1);
+  sstore(sp, 4, pair_ints_type, std::make_pair(c - e->weight, n - 1));
+  sstore(sp, 5, int, v + e->value);
   e++;
   n--;
   goto loop;
 
  branch1:
-  e = sload(sp, 1, struct item*);
-  std::tie(c, n) = sload(sp, 2, pair_ints_type);
-  v = sload(sp, 3, int);
-  sstorelabel(sp, 0, branch2);
-  sstore(sp, 1, int, best);
-  prmpop(sp, 4, prmtl, prmhd);
+  e = sload(sp, 3, struct item*);
+  std::tie(c, n) = sload(sp, 4, pair_ints_type);
+  v = sload(sp, 5, int);
+  sstorelabel(sp, 0, __branch2);
+  sstore(sp, 3, int, best);
+  prmpop(sp, 1, prmtl, prmhd);
   goto loop;
 
  branch2:
   {
     auto with = best;
-    auto without = sload(sp, 1, int);
+    auto without = sload(sp, 3, int);
     best = with > without ? with : without;
   }
   if (best > best_so_far.load(std::memory_order_relaxed)) {
@@ -293,14 +311,14 @@ void knapsack_interrupt(std::atomic<int>& best_so_far, struct item *e, int c, in
   goto sloadlabel(sp, 0);
 
  joink:
-  sstorelabel(sp, 0, clonek);
+  sstorelabel(sp, 0, __clonek);
   sfree(sp, 1);
   *dst = best;
   return;
 
  clonek:
   salloc(sp, 1);
-  sstorelabel(sp, 0, joink);
+  sstorelabel(sp, 0, __joink);
   goto loop;
 
  exitk:
