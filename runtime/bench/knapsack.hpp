@@ -304,6 +304,8 @@ auto bench_pre(promotable* p) {
     return;
   }
 #endif
+  best_so_far.store(INT_MIN);
+  seq_best_so_far = INT_MIN;
   n = knapsack_n;
   capacity = knapsack_capacity;
   knapsack_init(items);
@@ -324,8 +326,6 @@ auto bench_body_serial(promotable* p) {
 };
 
 auto bench_post(promotable* p) {
-  best_so_far.store(INT_MIN);
-  seq_best_so_far = INT_MIN;
 		    //    best_so_far = INT_MIN;
   //    assert(sol == knapsack_serial(items, capacity, n, 0));
 };

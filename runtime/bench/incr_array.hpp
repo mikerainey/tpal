@@ -114,7 +114,9 @@ auto bench_pre(promotable*) -> void {
   if (a == nullptr) {
     return;
   }
-  tpalrts::zero_init(a, nb_items);
+  for (size_t i = 0; i < nb_items; i++) {
+    a[i] = 2;
+  }
 }
 
 auto bench_body_interrupt(promotable* p) -> void {
