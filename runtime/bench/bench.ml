@@ -758,7 +758,7 @@ let plot () =
               (Results.get_mean_of "execcycles" results,
                Results.get_mean_of "exectime_via_cycles" results)
             in
-            let mk_scfg = (mk string scheduler_configuration interrupt_ping_thread) & (mk int "kappa_usec" 20) in
+            let mk_scfg = (mk string scheduler_configuration interrupt_ping_thread) & (mk int "kappa_usec" 100) in
             let nautilus_serial_elapsed =
               get_time results_nautilus_serial (mk_nautilus_serial_runs_of_bd bd)
             in
@@ -774,7 +774,7 @@ let plot () =
             Mk_table.cell ~escape:true ~last:false add "";
             Mk_table.cell ~escape:true ~last:false add input;
             Mk_table.cell ~escape:true ~last:false add (report_elapsed nautilus_serial_elapsed);
-            Mk_table.cell ~escape:true ~last:false add (report_percent_diff_of_elapsed linux_serial_elapsed nautilus_serial_elapsed);
+            Mk_table.cell ~escape:true ~last:false add (report_percent_diff_of_elapsed nautilus_serial_elapsed linux_serial_elapsed);
             Mk_table.cell ~escape:true ~last:false add (report_elapsed nautilus_heartbeat_elapsed);
             Mk_table.cell ~escape:true ~last:true add (report_percent_diff_of_elapsed nautilus_heartbeat_elapsed linux_heartbeat_elapsed);
             add Latex.tabular_newline));
