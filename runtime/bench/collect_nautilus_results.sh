@@ -3,7 +3,8 @@
 folder_in=$1
 folder_out=$2
 
-rm -f $folder_out/results_nautilus_heartbeat.txt
+cp $folder_in/*.txt $folder_out
+rm -f $folder_out/results_nautilus_serial.txt $folder_out/results_nautilus_heartbeat.txt
 
 for f in $(ls $folder_in/*serial*)
 do
