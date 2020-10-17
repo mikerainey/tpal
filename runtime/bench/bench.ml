@@ -40,6 +40,36 @@ let arg_results_path = XCmd.parse_or_default_string "results_path" "."
 let arg_show_execcycles = XCmd.mem_flag "show_execcycles"
 let arg_skip_nautilus = XCmd.mem_flag "skip_nautilus"
 
+let serial_interrupt_ping_thread = "serial_interrupt_ping_thread"
+let serial_interrupt_papi = "serial_interrupt_papi"
+let serial_interrupt_pthread = "serial_interrupt_pthread"
+
+let serial_interrupts =
+  [serial_interrupt_ping_thread;
+   serial_interrupt_papi;
+   serial_interrupt_pthread;]
+
+let interrupt_ping_thread = "interrupt_ping_thread"
+let interrupt_papi = "interrupt_papi"
+let interrupt_pthread = "interrupt_pthread"
+
+let interrupts =
+  [interrupt_ping_thread;
+   interrupt_papi;
+   interrupt_pthread;]
+
+let arg_skip_interrupts =
+  XCmd.parse_or_default_list_string "skip_interrupts" [interrupt_pthread;]
+
+let arg_skip_serial_interrupts =
+  XCmd.parse_or_default_list_string "skip_serial_interrupts" [serial_interrupt_pthread;]
+
+let interrupts =
+  List.filter (fun s -> not (List.mem s arg_skip_interrupts)) interrupts
+
+let serial_interrupts =
+  List.filter (fun s -> not (List.mem s arg_skip_serial_interrupts)) serial_interrupts
+
 let run_modes =
   Mk_runs.([
     Mode arg_mode;
@@ -278,27 +308,9 @@ let nopromote_interrupt = "nopromote_interrupt"
 
 let mk_nopromote_interrupt_config =
   mk_scheduler_configuration nopromote_interrupt
-
-let serial_interrupt_ping_thread = "serial_interrupt_ping_thread"
-let serial_interrupt_papi = "serial_interrupt_papi"
-let serial_interrupt_pthread = "serial_interrupt_pthread"
-
-let serial_interrupts =
-  [serial_interrupt_ping_thread;
-   serial_interrupt_papi;
-   (*serial_interrupt_pthread;*)]
    
 let mk_serial_interrupt_configs =
   mk_list string scheduler_configuration serial_interrupts
-
-let interrupt_ping_thread = "interrupt_ping_thread"
-let interrupt_papi = "interrupt_papi"
-let interrupt_pthread = "interrupt_pthread"
-
-let interrupts =
-  [interrupt_ping_thread;
-   interrupt_papi;
-   (*interrupt_pthread;*)]
 
 let mk_interrupt_configs =
   mk_list string scheduler_configuration interrupts
