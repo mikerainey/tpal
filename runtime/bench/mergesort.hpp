@@ -391,7 +391,7 @@ using namespace tpalrts;
 
 char* name = "mergesort";
 
-uint64_t n = 20000000;
+uint64_t n = 20 * 1000 * 1000;
 uint64_t* xs;
 uint64_t* tmp;
 auto compare = std::less<uint64_t>();
