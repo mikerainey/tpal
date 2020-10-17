@@ -378,6 +378,33 @@ let report_percent_diff_of_elapsed (bec,_) (ec,_) =
   else
     s
 
+let get_time results mk =
+  let [col] = mk Env.empty in
+  let results = Results.filter col results in
+  (Results.get_mean_of "execcycles" results,
+   Results.get_mean_of "exectime_via_cycles" results)
+
+let get_stats_heartbeat results mk =
+  let [col] = mk Env.empty in
+  let results = Results.filter col results in
+  (Results.get_mean_of "utilization" results,
+   Results.get_mean_of "nb_promotions" results)
+
+let get_stats_nautilus results mk =
+  let [col] = mk Env.empty in
+  let results = Results.filter col results in
+  let heartbeat_ticks_idle = Results.get_mean_of "total_idle_time" results in
+  let heartbeat_total_time = Results.get_mean_of "total_time" results in
+  let heartbeat_utilization = 1. -. (heartbeat_ticks_idle /. heartbeat_total_time) in
+  (heartbeat_utilization,
+   Results.get_mean_of "nb_promotions" results)
+
+let get_stats_cilk results mk =
+  let [col] = mk Env.empty in
+  let results = Results.filter col results in
+  (Results.get_mean_of "utilization" results,
+   Results.get_mean_of "nb_threads_alloc" results)
+
 (*****************************************************************************)
 (** Work-efficiency experiment *)
 
@@ -421,17 +448,11 @@ let plot () =
                              (pretty_problemname_of bd) (pretty_inputname_of bd)
           in
           Mk_table.cell ~escape:true ~last:false add benchdescr;
-            let get_time mk =
-              let [col] = mk Env.empty in
-              let results = Results.filter col results in
-              (Results.get_mean_of "execcycles" results,
-               Results.get_mean_of "exectime_via_cycles" results)
-            in
             let serial_elapsed =
-              get_time (mk_serial_runs_of_bd bd)
+              get_time results (mk_serial_runs_of_bd bd)
             in
             let heartbeat_elapsed =
-              get_time (mk_nopromote_interrupt_runs_of_bd bd)
+              get_time results (mk_nopromote_interrupt_runs_of_bd bd)
             in
             Mk_table.cell ~escape:true ~last:false add (report_elapsed serial_elapsed);
             Mk_table.cell ~escape:true ~last:true add (report_percent_diff_of_elapsed serial_elapsed heartbeat_elapsed);
@@ -519,12 +540,6 @@ let plot () =
               ~~ List.iteri kappas_usec (fun kappa_i kappa ->
                   let last = scfg_i+1 = nb_scfgs && kappa_i+1 = nb_kappas in
                   Mk_table.cell ~escape:true ~last:true add ""));
-              let get_time results mk =
-                let [col] = mk Env.empty in
-                let results = Results.filter col results in
-                (Results.get_mean_of "execcycles" results,
-                 Results.get_mean_of "exectime_via_cycles" results)
-              in
               let serial_elapsed =
                 get_time results_work_efficiency (mk_serial_runs_of_bd bd)
               in
@@ -563,7 +578,8 @@ let mk_runs =
   (mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks) & mk_kappas_usec
 
 let mk_runs_sta =
-  (mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks) & mk_ext_sta & mk_kappas_usec
+  ((mk_all (mk_interrupt_runs_of_bd 1) benchmarks) & mk_ext_sta & mk_kappas_usec) ++
+    (mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks) & mk_ext_sta & mk_kappas_usec
 
 let mk_runs_cilk =
   (mk_all (mk_cilk_runs_of_bd arg_proc) benchmarks)
@@ -623,24 +639,6 @@ let plot_of kappa_usec =
                              (pretty_problemname_of bd) (pretty_inputname_of bd)
           in
           Mk_table.cell ~escape:true ~last:false add benchdescr;
-            let get_time results mk =
-              let [col] = mk Env.empty in
-              let results = Results.filter col results in
-              (Results.get_mean_of "execcycles" results,
-               Results.get_mean_of "exectime_via_cycles" results)
-            in
-            let get_stats_heartbeat results mk =
-              let [col] = mk Env.empty in
-              let results = Results.filter col results in
-              (Results.get_mean_of "utilization" results,
-               Results.get_mean_of "nb_promotions" results)
-            in
-            let get_stats_cilk results mk =
-              let [col] = mk Env.empty in
-              let results = Results.filter col results in
-              (Results.get_mean_of "utilization" results,
-               Results.get_mean_of "nb_threads_alloc" results)
-            in
             let mk_cilk_runs = mk_cilk_runs_of_bd arg_proc bd in
             let cilk_elapsed =
               get_time results_cilk mk_cilk_runs
@@ -701,11 +699,17 @@ let plot_of kappa_usec =
   let name_out = Printf.sprintf "%s_kappa_usec_%d" name kappa_usec in
   let tex_file = file_tables_src name_out in
   let pdf_file = file_tables name_out in
-  let nb_cols = 4 in
+  let nb_cols_serial = 2 in
+  let nb_cols_heartbeat_seq = 3 in
+  let nb_cols_heartbeat_par = 4 in
+  let nb_cols_heartbeat = nb_cols_heartbeat_seq + nb_cols_heartbeat_par in
+  let nb_cols = 1 + nb_cols_serial + nb_cols_heartbeat in
   let results_nautilus_serial = Results.from_file (file_results name_serial) in
   let results_nautilus_parallel = Results.from_file (file_results name_parallel) in
   let results_linux_serial = Results.from_file (file_results ExpWorkEfficiency.name) in
+  let results_linux_heartbeat_serial = Results.from_file (file_results ExpLinuxWorkEfficiency.name) in
   let results_linux_parallel = Results.from_file (file_results ExpLinuxParallel.name) in
+  let results_linux_sta = Results.from_file (file_results_sta ExpLinuxParallel.name) in
   Mk_table.build_table tex_file pdf_file (fun add ->
       let hdr =
         let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
@@ -713,44 +717,89 @@ let plot_of kappa_usec =
       in
       add (Latex.tabular_begin hdr);
       Mk_table.cell ~escape:true ~last:false add "";
-      Mk_table.cell add (Latex.tabular_multicol 2 "|c|" "Serial");
-      Mk_table.cell add ~escape:true ~last:true (Latex.tabular_multicol 2 "|c|" "Heartbeat");
+      Mk_table.cell add (Latex.tabular_multicol nb_cols_serial "c|" "Serial");
+      Mk_table.cell add ~escape:true ~last:true (Latex.tabular_multicol nb_cols_heartbeat "c|" "Heartbeat");
+      add Latex.tabular_newline;
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell add (Latex.tabular_multicol nb_cols_serial "c|" "");
+      Mk_table.cell add (Latex.tabular_multicol nb_cols_heartbeat_seq "c|" "$P = 1$");
+      Mk_table.cell add ~last:true (Latex.tabular_multicol nb_cols_heartbeat_par "c|" (Printf.sprintf "$P = %d$" arg_proc));
       add Latex.tabular_newline;
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "Nautilus (s)";
       Mk_table.cell ~escape:true ~last:false add "Linux";
       Mk_table.cell ~escape:true ~last:false add "Nautilus (s)";
-      Mk_table.cell ~escape:true ~last:true add "Linux";
+      Mk_table.cell ~escape:true ~last:false add "Linux";
+      Mk_table.cell ~escape:true ~last:false add "Nautilus / Linux";
+      Mk_table.cell ~escape:true ~last:false add "Nautilus (s)";
+      Mk_table.cell ~escape:true ~last:false add "Linux";
+      Mk_table.cell add ~escape:true ~last:true (Latex.tabular_multicol 2 "c|" "Nautilus / Linux");
+      add Latex.tabular_newline;
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "Nb. tasks";
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "Idle time";
+      Mk_table.cell ~escape:true ~last:true add "Nb. tasks";
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
           let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
                              (pretty_problemname_of bd) (pretty_inputname_of bd)
           in
           Mk_table.cell ~escape:true ~last:false add benchdescr;
-            let get_time results mk =
-              let [col] = mk Env.empty in
-              let results = Results.filter col results in
-              (Results.get_mean_of "execcycles" results,
-               Results.get_mean_of "exectime_via_cycles" results)
-            in
-            let mk_scfg = (mk string scheduler_configuration interrupt_ping_thread) & mk_kappa_usec in
-            let nautilus_serial_elapsed =
-              get_time results_nautilus_serial (mk_nautilus_serial_runs_of_bd bd)
-            in
-            let nautilus_heartbeat_elapsed =
-              get_time results_nautilus_parallel ((mk_nautilus_runs_of_bd arg_proc bd) & mk_scfg)
-            in
-            let linux_serial_elapsed =
-              get_time results_linux_serial (mk_serial_runs_of_bd bd)
-            in
-            let linux_heartbeat_elapsed =
-              get_time results_linux_parallel ((mk_runs_of_bd arg_proc bd) & mk_scfg)
-            in
-            Mk_table.cell ~escape:true ~last:false add (report_elapsed nautilus_serial_elapsed);
-            Mk_table.cell ~escape:true ~last:false add (report_percent_diff_of_elapsed nautilus_serial_elapsed linux_serial_elapsed);
-            Mk_table.cell ~escape:true ~last:false add (report_elapsed nautilus_heartbeat_elapsed);
-            Mk_table.cell ~escape:true ~last:true add (report_percent_diff_of_elapsed nautilus_heartbeat_elapsed linux_heartbeat_elapsed);
-            add Latex.tabular_newline);
+          let mk_scfg = (mk string scheduler_configuration interrupt_ping_thread) & mk_kappa_usec in
+          let mk_nautilus_heartbeat_seq_runs = (mk_nautilus_runs_of_bd 1 bd) & mk_scfg in
+          let mk_nautilus_heartbeat_par_runs = (mk_nautilus_runs_of_bd arg_proc bd) & mk_scfg in
+          let mk_heartbeat_seq_runs = ((mk_runs_of_bd 1 bd) & mk_scfg) in
+          let mk_heartbeat_par_runs = ((mk_runs_of_bd arg_proc bd) & mk_scfg) in
+          let nautilus_serial_elapsed =
+            get_time results_nautilus_serial (mk_nautilus_serial_runs_of_bd bd)
+          in
+          let nautilus_heartbeat_seq_elapsed =
+            get_time results_nautilus_serial mk_nautilus_heartbeat_seq_runs
+          in
+          let nautilus_heartbeat_par_elapsed =
+            get_time results_nautilus_parallel mk_nautilus_heartbeat_par_runs
+          in
+          let (nautilus_heartbeat_utilization, nautilus_heartbeat_nb_promotions_par) =
+            get_stats_nautilus results_nautilus_parallel mk_nautilus_heartbeat_par_runs
+          in
+          let (_, nautilus_heartbeat_nb_promotions_seq) =
+            get_stats_nautilus results_nautilus_parallel mk_nautilus_heartbeat_par_runs
+          in
+          let linux_serial_elapsed =
+            get_time results_linux_serial (mk_serial_runs_of_bd bd)
+          in
+          let linux_heartbeat_seq_elapsed =
+            get_time results_linux_heartbeat_serial mk_heartbeat_seq_runs
+          in
+          let linux_heartbeat_par_elapsed =
+            get_time results_linux_parallel mk_heartbeat_par_runs
+          in
+          let (_, linux_heartbeat_nb_promotions_seq) =
+            get_stats_heartbeat results_linux_sta (mk_heartbeat_seq_runs & mk_ext_sta)
+          in
+          let (linux_heartbeat_utilization, linux_heartbeat_nb_promotions_par) =
+            get_stats_heartbeat results_linux_sta (mk_heartbeat_par_runs & mk_ext_sta)
+          in
+          let idle_linux = (fst linux_heartbeat_par_elapsed) *. linux_heartbeat_utilization in
+          let idle_nautilus = (fst nautilus_heartbeat_par_elapsed) *. nautilus_heartbeat_utilization in
+          let diff_nb_promotions_heartbeat_seq = report_percent_diff nautilus_heartbeat_nb_promotions_seq linux_heartbeat_nb_promotions_seq in
+          let diff_nb_promotions_heartbeat_par = report_percent_diff nautilus_heartbeat_nb_promotions_par linux_heartbeat_nb_promotions_par in
+          Mk_table.cell ~escape:true ~last:false add (report_elapsed nautilus_serial_elapsed);
+          Mk_table.cell ~escape:true ~last:false add (report_percent_diff_of_elapsed nautilus_serial_elapsed linux_serial_elapsed);
+          Mk_table.cell ~escape:true ~last:false add (report_elapsed nautilus_heartbeat_seq_elapsed);
+          Mk_table.cell ~escape:true ~last:false add (report_percent_diff_of_elapsed nautilus_heartbeat_seq_elapsed linux_heartbeat_seq_elapsed);
+          Mk_table.cell ~escape:true ~last:false add diff_nb_promotions_heartbeat_seq;
+          Mk_table.cell ~escape:true ~last:false add (report_elapsed nautilus_heartbeat_par_elapsed);
+          Mk_table.cell ~escape:true ~last:false add (report_percent_diff_of_elapsed nautilus_heartbeat_par_elapsed linux_heartbeat_par_elapsed);
+          Mk_table.cell ~escape:true ~last:false add (report_percent_diff idle_nautilus idle_linux);
+          Mk_table.cell ~escape:true ~last:true add diff_nb_promotions_heartbeat_par;
+          add Latex.tabular_newline);
       add Latex.tabular_end
     );
   ()
