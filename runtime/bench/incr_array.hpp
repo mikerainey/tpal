@@ -103,7 +103,7 @@ namespace incr_array {
 
 char* name = "incr_array";
   
-uint64_t nb_items = 1000 * 1000 * 1000;
+uint64_t nb_items = 100 * 1000 * 1000;
 int64_t* a;
   
 auto bench_pre(promotable*) -> void {
@@ -115,7 +115,7 @@ auto bench_pre(promotable*) -> void {
     return;
   }
   for (size_t i = 0; i < nb_items; i++) {
-    a[i] = 2;
+    a[i] = 1;
   }
 }
 

@@ -126,7 +126,7 @@ using namespace tpalrts;
 
 char* name = "plus_reduce_array";
   
-uint64_t nb_items = 1000 * 1000 * 1000;
+uint64_t nb_items = 100 * 1000 * 1000;
 int64_t* a;
 int64_t result = 0;
   
