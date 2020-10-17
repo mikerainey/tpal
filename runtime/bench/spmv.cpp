@@ -27,7 +27,7 @@ void launch() {
     launch(bench_pre_arrowhead, bench_body_interrupt, bench_body_software_polling, bench_body_serial,
 	   bench_post, bench_body_manual, bench_body_cilk);
   });
-  d.dispatch_or_default("matrixgen", "bigrows");
+  d.dispatch_or_default("inputname", "bigrows");
 }
 
 } // end namespace

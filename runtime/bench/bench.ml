@@ -178,71 +178,66 @@ let print_csv_newline () =
 (*****************************************************************************)
 (* Benchmark descriptions *)
 
-let pretty_name = "!pretty_name" 
-let mk_pretty_name = mk string pretty_name
-
-let mk_n n =
-    (mk int "n" n)
-    & (mk_pretty_name (Printf.sprintf "$%s \\cdot 10^9$ items" (string_of_billions (float_of_int n))))
-
-let mk_n2 n =
-    (mk int "n" n)
-    & (mk_pretty_name (Printf.sprintf "%d items" n))
-
-let mk_infile f =
-  mk string "infile" f
-
 type benchmark_descr = {
     bd_problem : string;
     bd_mk_input : Params.t;
   }
 
-let one_billion = 1000 * 1000 * 1000
+let mk_inputname =
+  mk string "inputname"
 
-let mk_spmv_input n =
-  (mk string "matrixgen" n) & (mk_pretty_name n)
+let pretty_problemname_of bd =
+  Latex.escape bd.bd_problem
 
-let mk_width=
-  mk int "width"
+let one_hundred_million_64bit_ints = "one_hundred_million_64bit_ints"
+let bigrows = "bigrows"
+let bigcols = "bigcols"
+let arrowhead = "arrowhead"
+let fourk_by_fourk = "fourk_by_fourk"
+let one_million_objects = "one_million_objects"
+let thirty_six_items = "thirty_six_items"
+let random_ints = "random_ints"
+let onek_vertices = "onek_vertices"
 
-let mk_height=
-  mk int "height"
+let pretty_input_names = [
+    one_hundred_million_64bit_ints, "$100 \cdot 10^6$ 64-bit ints";
+    bigrows, "random";
+    bigcols, "exponential";
+    arrowhead, "arrowhead";
+    fourk_by_fourk, "4k by 4k pixels";
+    one_million_objects, "$1 \cdot 10^6$ objects";
+    onek_vertices, "1k vertices";
+    thirty_six_items, "36 items";
+    random_ints, "$20 \cdot 10^6$ ints";
+  ]
 
-let mk_mandelbrot_input (w, h) =
-  (mk_width w) &
-    (mk_height h) &
-      (mk_pretty_name (Printf.sprintf "%dx%d" w h))
+let inputname_of mk =
+  List.hd (List.flatten (values_of_keys_in_params mk ["inputname";]))
 
-let mk_kmeans_input n =
-  (mk int "nb_objects" n)
-  & (mk_pretty_name (Printf.sprintf "$%s \\cdot 10^6$ items" (string_of_millions (float_of_int n))))
+let pretty_inputname_of bd =
+  Latex.escape (List.assoc (inputname_of bd.bd_mk_input) pretty_input_names)
 
-let mk_floyd_warshall_input v =
-  (mk int "vertices" v) &
-    (mk_pretty_name (Printf.sprintf "%d x %d" v v))
-
-(* WARNING: all inputs specified here must match the specifications in nautilus (benchmark.hpp) *)
 let benchmarks : benchmark_descr list = [
     { bd_problem = "incr_array";
-      bd_mk_input = mk_n one_billion; };
+      bd_mk_input = mk_inputname one_hundred_million_64bit_ints; };
     { bd_problem = "plus_reduce_array";
-      bd_mk_input = mk_n one_billion; };
+      bd_mk_input = mk_inputname one_hundred_million_64bit_ints; };
     { bd_problem = "spmv";
-      bd_mk_input = mk_spmv_input "bigrows"; };
+      bd_mk_input = mk_inputname bigrows; };
     { bd_problem = "spmv";
-      bd_mk_input = mk_spmv_input "bigcols"; };
+      bd_mk_input = mk_inputname bigcols; };
     { bd_problem = "spmv";
-      bd_mk_input = mk_spmv_input "arrowhead"; };
+      bd_mk_input = mk_inputname arrowhead; };
     { bd_problem = "mandelbrot";
-      bd_mk_input = mk_mandelbrot_input (4192, 4192); };
+      bd_mk_input = mk_inputname fourk_by_fourk; };
     { bd_problem = "kmeans";
-      bd_mk_input = mk_kmeans_input 1000000; };
+      bd_mk_input = mk_inputname one_million_objects; };
     { bd_problem = "floyd_warshall";
-      bd_mk_input = mk_floyd_warshall_input 1024; };
+      bd_mk_input = mk_inputname onek_vertices; };
     { bd_problem = "knapsack";
-      bd_mk_input = mk_n2 36; }; (*
+      bd_mk_input = mk_inputname thirty_six_items; };
     { bd_problem = "mergesort";
-      bd_mk_input = mk_unit; }; *)
+      bd_mk_input = mk_inputname random_ints; }; 
 
 ]
 
@@ -264,6 +259,8 @@ let mk_nautilus_benchmark_descr bd =
 
 (*****************************************************************************)
 (* Common benchmark configuration *)
+
+let pretty_name = "!pretty_name"
 
 let mk_proc =
   mk int "proc" 
@@ -412,20 +409,18 @@ let plot () =
   Mk_table.build_table tex_file pdf_file (fun add ->
       let hdr =
         let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
-        Printf.sprintf "|p{1cm}l||%s|" ls
+        Printf.sprintf "|l||%s|" ls
       in
       add (Latex.tabular_begin hdr);
-      Mk_table.cell add (Latex.tabular_multicol 2 "|l||" "Application/Input");
+      Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "Serial (s)";
       Mk_table.cell ~escape:true ~last:true add "Heartbeat";
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
-          Mk_table.cell add (Latex.tabular_multicol 2 "|l||" (sprintf "\\textbf{%s}" (Latex.escape bd.bd_problem)));
-          Mk_table.cell ~escape:true ~last:false add "";
-          Mk_table.cell ~escape:true ~last:true add "";
-          add Latex.tabular_newline;
-          let inputs = values_of_keys_in_params bd.bd_mk_input [pretty_name;] in
-          ~~ List.iter inputs (fun [input] ->
+          let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
+                             (pretty_problemname_of bd) (pretty_inputname_of bd)
+          in
+          Mk_table.cell ~escape:true ~last:false add benchdescr;
             let get_time mk =
               let [col] = mk Env.empty in
               let results = Results.filter col results in
@@ -438,11 +433,9 @@ let plot () =
             let heartbeat_elapsed =
               get_time (mk_nopromote_interrupt_runs_of_bd bd)
             in
-            Mk_table.cell ~escape:true ~last:false add "";
-            Mk_table.cell ~escape:true ~last:false add input;
             Mk_table.cell ~escape:true ~last:false add (report_elapsed serial_elapsed);
             Mk_table.cell ~escape:true ~last:true add (report_percent_diff_of_elapsed serial_elapsed heartbeat_elapsed);
-            add Latex.tabular_newline));
+            add Latex.tabular_newline);
       add Latex.tabular_end
     );
   ()
@@ -490,17 +483,15 @@ let plot () =
   Mk_table.build_table tex_file pdf_file (fun add ->
       let hdr =
         let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
-        Printf.sprintf "|p{1cm}l||c||c|%s|" ls
+        Printf.sprintf "|l||c||c|%s|" ls
       in
       add (Latex.tabular_begin hdr);
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
-      Mk_table.cell ~escape:true ~last:false add "Binary";
       Mk_table.cell ~escape:true ~last:false add (Latex.tabular_multicol (nb_parallel_scfgs * nb_kappas) "c|" "Heartbeat");
       Mk_table.cell ~escape:true ~last:true add (Latex.tabular_multicol (nb_parallel_scfgs * nb_kappas) "c|" "Serial");
       add Latex.tabular_newline;
-      Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
@@ -509,7 +500,7 @@ let plot () =
           let last = scfg_i+1 = nb_scfgs in
           Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_kappas "c|" pretty_scfg));
       add Latex.tabular_newline;
-      Mk_table.cell add (Latex.tabular_multicol 2 "|l||" "Application/Input");
+      Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "Serial (s)";
       Mk_table.cell ~escape:true ~last:false add "$H$";
       ~~ List.iteri scfgs (fun scfg_i scfg ->
@@ -519,20 +510,15 @@ let plot () =
               Mk_table.cell ~escape:true ~last:last add (Printf.sprintf "%s" pretty_kappa)));
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
-          Mk_table.cell add (Latex.tabular_multicol 2 "|l||" (sprintf "\\textbf{%s}" (Latex.escape bd.bd_problem)));
-          Mk_table.cell ~escape:true ~last:false add "";
-          Mk_table.cell ~escape:true ~last:false add "";
-          ~~ List.iteri scfgs (fun scfg_i scfg ->
-              ~~ List.iteri kappas_usec (fun kappa_i kappa ->
-                  let last = scfg_i+1 = nb_scfgs && kappa_i+1 = nb_kappas in
-                  Mk_table.cell ~escape:true ~last:last add ""));
-          add Latex.tabular_newline;
+          let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
+                             (pretty_problemname_of bd) (pretty_inputname_of bd)
+          in
+          Mk_table.cell ~escape:true ~last:false add benchdescr;
+
           ~~ List.iteri scfgs (fun scfg_i scfg ->
               ~~ List.iteri kappas_usec (fun kappa_i kappa ->
                   let last = scfg_i+1 = nb_scfgs && kappa_i+1 = nb_kappas in
                   Mk_table.cell ~escape:true ~last:true add ""));
-          let inputs = values_of_keys_in_params bd.bd_mk_input [pretty_name;] in
-          ~~ List.iter inputs (fun [input] ->
               let get_time results mk =
                 let [col] = mk Env.empty in
                 let results = Results.filter col results in
@@ -542,8 +528,6 @@ let plot () =
               let serial_elapsed =
                 get_time results_work_efficiency (mk_serial_runs_of_bd bd)
               in
-              Mk_table.cell ~escape:true ~last:false add "";
-              Mk_table.cell ~escape:true ~last:false add input;
               Mk_table.cell ~escape:true ~last:false add (report_elapsed serial_elapsed);
               Mk_table.cell ~escape:true ~last:false add "";
               ~~ List.iteri scfgs (fun scfg_i scfg ->
@@ -556,7 +540,7 @@ let plot () =
                       let diff = report_percent_diff_of_elapsed serial_elapsed heartbeat_elapsed in
                       let last = scfg_i+1 = nb_scfgs && kappa_i+1 = nb_kappas in
                       Mk_table.cell ~escape:true ~last:last add diff));
-            add Latex.tabular_newline));
+            add Latex.tabular_newline);
       add Latex.tabular_end
     );
   ()
@@ -600,9 +584,11 @@ let run () = (
   
 let check = nothing  (* do something here *)
       
-let plot () =
-  let tex_file = file_tables_src name in
-  let pdf_file = file_tables name in
+let plot_of kappa_usec =
+  let mk_kappa_usec = mk int "kappa_usec" kappa_usec in
+  let name_out = Printf.sprintf "%s_kappa_usec_%d" name kappa_usec in
+  let tex_file = file_tables_src name_out in
+  let pdf_file = file_tables name_out in
   let results = Results.from_file (file_results name) in
   let results_cilk = Results.from_file (file_results_cilk name) in
   let results_sta = Results.from_file (file_results_sta name) in
@@ -613,10 +599,10 @@ let plot () =
   Mk_table.build_table tex_file pdf_file (fun add ->
       let hdr =
         let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
-        Printf.sprintf "|p{1cm}l||%s|" ls
+        Printf.sprintf "|l||%s|" ls
       in
       add (Latex.tabular_begin hdr);
-      Mk_table.cell add (Latex.tabular_multicol 2 "|l||" "");
+      Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "Cilk (s)";
       ~~ List.iteri scfgs (fun scfg_i scfg ->
           let pretty_scfg = pretty_name_of_interrupt_config scfg in
@@ -624,7 +610,7 @@ let plot () =
           Mk_table.cell ~escape:true ~last:false add pretty_scfg;
           Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol 2 "c|" (Printf.sprintf "%s / Cilk" pretty_scfg)));
       add Latex.tabular_newline;
-      Mk_table.cell add (Latex.tabular_multicol 2 "|l||" "Application/Input");
+      Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
       ~~ List.iteri scfgs (fun scfg_i scfg ->
           let last = scfg_i+1 = nb_scfgs in
@@ -633,16 +619,10 @@ let plot () =
           Mk_table.cell ~escape:true ~last:last add "Nb. tasks");
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
-          Mk_table.cell add (Latex.tabular_multicol 2 "|l||" (sprintf "\\textbf{%s}" (Latex.escape bd.bd_problem)));
-          Mk_table.cell ~escape:true ~last:false add "";
-          ~~ List.iteri scfgs (fun scfg_i scfg ->
-              let last = scfg_i+1 = nb_scfgs in
-              Mk_table.cell ~escape:true ~last:false add "";
-              Mk_table.cell ~escape:true ~last:false add "";
-              Mk_table.cell ~escape:true ~last:last add "");
-          add Latex.tabular_newline;
-          let inputs = values_of_keys_in_params bd.bd_mk_input [pretty_name;] in
-          ~~ List.iter inputs (fun [input] ->
+          let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
+                             (pretty_problemname_of bd) (pretty_inputname_of bd)
+          in
+          Mk_table.cell ~escape:true ~last:false add benchdescr;
             let get_time results mk =
               let [col] = mk Env.empty in
               let results = Results.filter col results in
@@ -652,38 +632,33 @@ let plot () =
             let get_stats_heartbeat results mk =
               let [col] = mk Env.empty in
               let results = Results.filter col results in
-              (Results.get_mean_of "total_idle_time" results,
-               Results.get_mean_of "total_time" results,
+              (Results.get_mean_of "utilization" results,
                Results.get_mean_of "nb_promotions" results)
             in
             let get_stats_cilk results mk =
               let [col] = mk Env.empty in
               let results = Results.filter col results in
-              (Results.get_mean_of "ticks_searching" results,
-               Results.get_mean_of "utilization" results,
+              (Results.get_mean_of "utilization" results,
                Results.get_mean_of "nb_threads_alloc" results)
             in
             let mk_cilk_runs = mk_cilk_runs_of_bd arg_proc bd in
             let cilk_elapsed =
               get_time results_cilk mk_cilk_runs
             in
-            let (cilk_ticks_idle, cilk_utilization, cilk_nb_tasks) =
+            let (cilk_utilization, cilk_nb_tasks) =
               get_stats_cilk results_cilk mk_cilk_runs 
             in
-            Mk_table.cell ~escape:true ~last:false add "";
-            Mk_table.cell ~escape:true ~last:false add input;
             Mk_table.cell ~escape:true ~last:false add (report_elapsed cilk_elapsed);
             ~~ List.iteri scfgs (fun scfg_i scfg ->
                 let mk_scfg = (mk string scheduler_configuration scfg) in
-                let mk_heartbeat_runs = (mk_runs_of_bd arg_proc bd) & mk_scfg in
+                let mk_heartbeat_runs = (mk_runs_of_bd arg_proc bd) & mk_scfg & mk_kappa_usec in
                 let heartbeat_elapsed =
                   get_time results mk_heartbeat_runs
                 in
-                let (heartbeat_ticks_idle, heartbeat_total_time, heartbeat_nb_tasks) =
+                let (heartbeat_utilization, heartbeat_nb_tasks) =
                   get_stats_heartbeat results_sta (mk_heartbeat_runs & mk_ext_sta)
                 in
-                let utilization_heartbeat = 1. -. (heartbeat_ticks_idle /. heartbeat_total_time) in
-                let idle_heartbeat = (fst heartbeat_elapsed) *. utilization_heartbeat in
+                let idle_heartbeat = (fst heartbeat_elapsed) *. heartbeat_utilization in
                 let idle_cilk = (fst cilk_elapsed) *. cilk_utilization in
                 let diff_exectime = report_percent_diff_of_elapsed cilk_elapsed heartbeat_elapsed in
                 let diff_idle = report_percent_diff idle_cilk idle_heartbeat in
@@ -693,10 +668,12 @@ let plot () =
                 Mk_table.cell ~escape:true ~last:false add diff_idle;
                 Mk_table.cell ~escape:true ~last:last add diff_nb_tasks
               );
-            add Latex.tabular_newline));
+            add Latex.tabular_newline);
       add Latex.tabular_end
     );
   ()
+
+let plot () = ~~ List.iter arg_kappas_usec plot_of
 
 let all () = select make run check plot
 
@@ -719,9 +696,11 @@ let run () = ()
   
 let check = nothing  (* do something here *)
       
-let plot () =
-  let tex_file = file_tables_src name in
-  let pdf_file = file_tables name in
+let plot_of kappa_usec =
+  let mk_kappa_usec = mk int "kappa_usec" kappa_usec in
+  let name_out = Printf.sprintf "%s_kappa_usec_%d" name kappa_usec in
+  let tex_file = file_tables_src name_out in
+  let pdf_file = file_tables name_out in
   let nb_cols = 4 in
   let results_nautilus_serial = Results.from_file (file_results name_serial) in
   let results_nautilus_parallel = Results.from_file (file_results name_parallel) in
@@ -730,35 +709,31 @@ let plot () =
   Mk_table.build_table tex_file pdf_file (fun add ->
       let hdr =
         let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
-        Printf.sprintf "|p{1cm}l||%s|" ls
+        Printf.sprintf "|l||%s|" ls
       in
       add (Latex.tabular_begin hdr);
-      Mk_table.cell add (Latex.tabular_multicol 2 "|l|" "Application/Input");
+      Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell add (Latex.tabular_multicol 2 "|c|" "Serial");
       Mk_table.cell add ~escape:true ~last:true (Latex.tabular_multicol 2 "|c|" "Heartbeat");
       add Latex.tabular_newline;
-      Mk_table.cell add (Latex.tabular_multicol 2 "|l||" "");
+      Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "Nautilus (s)";
       Mk_table.cell ~escape:true ~last:false add "Linux";
       Mk_table.cell ~escape:true ~last:false add "Nautilus (s)";
       Mk_table.cell ~escape:true ~last:true add "Linux";
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
-          Mk_table.cell add (Latex.tabular_multicol 2 "|l||" (sprintf "\\textbf{%s}" (Latex.escape bd.bd_problem)));
-          Mk_table.cell ~escape:true ~last:false add "";
-          Mk_table.cell ~escape:true ~last:false add "";
-          Mk_table.cell ~escape:true ~last:false add "";
-          Mk_table.cell ~escape:true ~last:true add "";
-          add Latex.tabular_newline;
-          let inputs = values_of_keys_in_params bd.bd_mk_input [pretty_name;] in
-          ~~ List.iter inputs (fun [input] ->
+          let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
+                             (pretty_problemname_of bd) (pretty_inputname_of bd)
+          in
+          Mk_table.cell ~escape:true ~last:false add benchdescr;
             let get_time results mk =
               let [col] = mk Env.empty in
               let results = Results.filter col results in
               (Results.get_mean_of "execcycles" results,
                Results.get_mean_of "exectime_via_cycles" results)
             in
-            let mk_scfg = (mk string scheduler_configuration interrupt_ping_thread) & (mk int "kappa_usec" 100) in
+            let mk_scfg = (mk string scheduler_configuration interrupt_ping_thread) & mk_kappa_usec in
             let nautilus_serial_elapsed =
               get_time results_nautilus_serial (mk_nautilus_serial_runs_of_bd bd)
             in
@@ -771,16 +746,16 @@ let plot () =
             let linux_heartbeat_elapsed =
               get_time results_linux_parallel ((mk_runs_of_bd arg_proc bd) & mk_scfg)
             in
-            Mk_table.cell ~escape:true ~last:false add "";
-            Mk_table.cell ~escape:true ~last:false add input;
             Mk_table.cell ~escape:true ~last:false add (report_elapsed nautilus_serial_elapsed);
             Mk_table.cell ~escape:true ~last:false add (report_percent_diff_of_elapsed nautilus_serial_elapsed linux_serial_elapsed);
             Mk_table.cell ~escape:true ~last:false add (report_elapsed nautilus_heartbeat_elapsed);
             Mk_table.cell ~escape:true ~last:true add (report_percent_diff_of_elapsed nautilus_heartbeat_elapsed linux_heartbeat_elapsed);
-            add Latex.tabular_newline));
+            add Latex.tabular_newline);
       add Latex.tabular_end
     );
   ()
+
+let plot () = ~~ List.iter arg_kappas_usec plot_of
 
 let all () = select make run check plot
 

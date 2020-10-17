@@ -11,6 +11,7 @@
 
 #include "tpalrts_scheduler.hpp"
 #include "tpalrts_fiber.hpp"
+#include "tpalrts_rollforward.hpp"
 
 namespace tpalrts {
 
@@ -44,6 +45,7 @@ void launch0(std::size_t nb_workers,
   {
     auto f_pre = new fiber<Scheduler>([=] (promotable* p) {
       bench_pre(p);
+      initialize_rollfoward_table();
       stats::start_collecting();
       logging::log_event(mcsl::enter_algo);
       start_time = mcsl::clock::now();
@@ -54,6 +56,7 @@ void launch0(std::size_t nb_workers,
       elapsed_time = mcsl::clock::since(start_time);
       logging::log_event(mcsl::exit_algo);
       stats::report(nb_workers);
+      destroy_rollfoward_table();
       bench_post(p);
     });
     auto f_term = new terminal_fiber<Scheduler>();
