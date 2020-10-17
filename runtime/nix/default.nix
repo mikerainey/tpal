@@ -32,7 +32,7 @@ let bench =
 in
 
 stdenv.mkDerivation rec {
-  name = "heartbeat_microbench";
+  name = "tpal-runtime-bench";
 
   src = tpalrtsSrc;
 
