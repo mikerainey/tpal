@@ -591,7 +591,7 @@ let mk_runs =
 
 let mk_runs_sta =
   ((mk_all (mk_interrupt_runs_of_bd 1) benchmarks) & mk_ext_sta & mk_kappas_usec) ++
-    (mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks) & mk_ext_sta & mk_kappas_usec
+    ((mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks) & mk_ext_sta & mk_kappas_usec)
 
 let mk_runs_cilk =
   (mk_all (mk_cilk_runs_of_bd arg_proc) benchmarks)
