@@ -137,7 +137,7 @@ auto bench_post(promotable*) -> void {
   for (int64_t i = 0; i < nb_items; i++) {
     m += a[i];
   }
-  assert(m == nb_items);
+  assert(m == 2 * nb_items);
 #endif
   free(a);
 }

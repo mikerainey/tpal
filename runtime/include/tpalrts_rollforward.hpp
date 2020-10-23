@@ -106,7 +106,7 @@ auto lookup_rollforward_entry(const rollforward_lookup_table_type& t, register_t
   if (k != not_found) {
     dst = t[k].second;
   }
-  assert(dst == reference_lookup_rollforward_entry(t, src));
+  //assert(dst == reference_lookup_rollforward_entry(t, src));
   return dst;
 }
   

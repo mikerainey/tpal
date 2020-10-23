@@ -35,6 +35,7 @@ void decr_arena_block(arena_block_type* b) {
   assert(b != nullptr);
   auto c = --(b->refcount);
   if (c == 0) {
+    assert(b != nullptr);
     delete b;
   }
 }
