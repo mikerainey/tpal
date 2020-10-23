@@ -287,6 +287,7 @@ int kmeans_inner_handler(float **feature,
 	  new_centers[i][j] += new_centers2[i][j];
 	}
       }
+      decr_arena_block(dst_rec0->dst_blk);
     }
     
     decr_arena_block(dst_blk0);
@@ -333,7 +334,7 @@ int kmeans_outer_handler(float **feature,
   dst_rec->first = delta;
   dst_rec->second = false;
   p->fork_join_promote([=] (tpalrts::promotable* p2) {
-    kmeans_inner_handler(feature,
+    /* kmeans_inner_handler(feature,
 			 nfeatures,
 			 npoints,
 			 nclusters,
@@ -347,20 +348,21 @@ int kmeans_outer_handler(float **feature,
 			 hi,
 			 &(dst_rec->second),
 			 p2);
-    /*
+    */
     kmeans_inner(feature,
 		 nfeatures,
 		 npoints,
 		 nclusters,
 		 threshold,
 		 membership,
-		 dst_rec,
+		 &(dst_rec->first),
 		 clusters,
 		 new_centers_len,
 		 new_centers,
 		 lo,
 		 hi,
-		 p2); */
+		 &(dst_rec->second),
+		 p2); 
   }, [=] (tpalrts::promotable* p2) {
     /* replace old cluster centers with new_centers */
     for (int i=0; i<nclusters; i++) {
@@ -448,13 +450,18 @@ float** kmeans_interrupt(float **feature,    /* in: [npoints][nfeatures] */
 		 new_centers,
 		 p2);
   }, [=] (tpalrts::promotable* p2) {
+    assert(new_centers[0] != nullptr);
     free(new_centers[0]);
+    assert(new_centers != nullptr);
     free(new_centers);
+    assert(new_centers_len != nullptr);
     free(new_centers_len);
   });
 
   return clusters;
 }
+
+float **tmp_cluster_centres;
 
 /*---< cluster() >-----------------------------------------------------------*/
 int cluster_interrupt(int      numObjects,      /* number of input objects */
@@ -468,7 +475,6 @@ int cluster_interrupt(int      numObjects,      /* number of input objects */
 {
   int     nclusters;
   int    *membership;
-  //float **tmp_cluster_centres;
 
   membership = (int*) malloc(numObjects * sizeof(int));
 
@@ -477,7 +483,7 @@ int cluster_interrupt(int      numObjects,      /* number of input objects */
   //srand(7);
 
   p->fork_join_promote([=] (tpalrts::promotable* p2) {
-    auto tmp_cluster_centres = kmeans_interrupt(attributes,
+    tmp_cluster_centres = kmeans_interrupt(attributes,
 					   numAttributes,
 					   numObjects,
 					   nclusters,
@@ -485,14 +491,17 @@ int cluster_interrupt(int      numObjects,      /* number of input objects */
 					   membership,
 					   p2);
   }, [=] (tpalrts::promotable* p2) {
-
+    free(tmp_cluster_centres);
+    /*
     if (*cluster_centres) {
+      assert((*cluster_centres)[0] != nullptr);
       free((*cluster_centres)[0]);
+      assert(*cluster_centres != nullptr);
       free(*cluster_centres);
-    }
+      } */
     //*cluster_centres = tmp_cluster_centres;
 
-
+    assert(membership != nullptr);
     free(membership);
   });
 
@@ -587,7 +596,7 @@ float** kmeans_cilk(float **feature,    /* in: [npoints][nfeatures] */
     }
             
     //delta /= npoints;
-  } while (delta.get_value() > threshold && loop++ < 500);
+  } while (delta.get_value() > threshold /* && loop++ < 500 */);
 
   delete [] partial_new_centers_len;
   for (int i = 0; i < nclusters; i++) {
@@ -678,7 +687,9 @@ auto bench_body_serial(promotable* p) {
 };
   
 auto bench_post(promotable* p){
+  assert(in.attributes[0] != nullptr);
   free(in.attributes[0]);
+  assert(in.attributes != nullptr);
   free(in.attributes);
 };
 
