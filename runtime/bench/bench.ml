@@ -59,16 +59,43 @@ let interrupts =
    interrupt_pthread;]
 
 let arg_skip_interrupts =
-  XCmd.parse_or_default_list_string "skip_interrupts" [interrupt_pthread;]
+  let hostname = Unix.gethostname () in
+  let dflt =
+    if hostname = "v-test-5038ki.cs.northwestern.edu" then
+      [interrupt_papi;interrupt_pthread;]
+    else if hostname = "tinker-2" || hostname = "tinker-3" then
+      [interrupt_pthread;]
+    else
+      []
+  in
+  XCmd.parse_or_default_list_string "skip_interrupts" dflt
 
 let arg_skip_serial_interrupts =
+  let hostname = Unix.gethostname () in
+  let dflt =
+    if hostname = "v-test-5038ki.cs.northwestern.edu" then
+      [serial_interrupt_papi;serial_interrupt_pthread;]
+    else if hostname = "tinker-2.cs.iit.edu" || hostname = "tinker-3.cs.iit.edu" then
+      [serial_interrupt_pthread;]
+    else
+      []
+  in
   XCmd.parse_or_default_list_string "skip_serial_interrupts" [serial_interrupt_pthread;]
 
+let filter_skips skips =
+  List.filter (fun s -> not (List.mem s skips))
+
 let interrupts =
-  List.filter (fun s -> not (List.mem s arg_skip_interrupts)) interrupts
+  filter_skips arg_skip_interrupts interrupts
 
 let serial_interrupts =
-  List.filter (fun s -> not (List.mem s arg_skip_serial_interrupts)) serial_interrupts
+  filter_skips arg_skip_serial_interrupts serial_interrupts
+
+let nautilus_interrupts =
+  [interrupt_ping_thread;]
+
+let nautilus_serial_interrupts =
+  [serial_interrupt_ping_thread;]
 
 let run_modes =
   Mk_runs.([
@@ -279,14 +306,6 @@ let benchmarks =
 
 let nb_benchmarks = List.length benchmarks
 
-let mk_benchmark_descr bd =
-    (mk string "benchmark" bd.bd_problem)
-  & bd.bd_mk_input
-
-let mk_nautilus_benchmark_descr bd =
-    (mk_prog bd.bd_problem)
-    & bd.bd_mk_input
-
 (*****************************************************************************)
 (* Common benchmark configuration *)
 
@@ -328,6 +347,14 @@ let pretty_name_of_interrupt_config n =
 let is_only_serial s =
   (s = serial_interrupt_ping_thread || s = serial_interrupt_pthread || s = serial_interrupt_papi ||
    s = nopromote_interrupt)
+
+let mk_benchmark_descr bd =
+    (mk string "benchmark" bd.bd_problem)
+  & bd.bd_mk_input
+
+let mk_nautilus_benchmark_descr bd =
+    (mk_prog bd.bd_problem)
+    & bd.bd_mk_input
 
 let mk_runs_of_bd proc bd =
     mk_prog_heartbeat
@@ -478,11 +505,11 @@ let all () = select make run check plot
 end
 
 (*****************************************************************************)
-(** Linux work-efficiency experiment *)
+(** Work-efficiency with interrupts experiment *)
 
-module ExpLinuxWorkEfficiency = struct
+module ExpInterruptWorkEfficiency = struct
 
-let name = "linux_work_efficiency"
+let name = "interrupt_work_efficiency"
 
 let make() =
   build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
@@ -498,12 +525,11 @@ let run () =
                  Args mk_runs]))
   
 let check = nothing  (* do something here *)
-      
-let plot () =
-  let tex_file = file_tables_src name in
-  let pdf_file = file_tables name in
-  let results = Results.from_file (file_results name) in
-  let results_work_efficiency = Results.from_file (file_results ExpWorkEfficiency.name) in
+
+let plot_for os results results_work_efficiency interrupts serial_interrupts mk_runs_of_bd =
+  let name_out = name ^ "_" ^ os in
+  let tex_file = file_tables_src name_out in
+  let pdf_file = file_tables name_out in
   let mk_scfgs = mk_list string scheduler_configuration (List.append serial_interrupts interrupts) in
   let scfgs = List.flatten (values_of_keys_in_params mk_scfgs [scheduler_configuration;]) in
   let (serial_scfgs, parallel_scfgs) = List.partition is_only_serial scfgs in
@@ -571,6 +597,15 @@ let plot () =
       add Latex.tabular_end
     );
   ()
+
+let plot () =
+  let _ = 
+    let results = Results.from_file (file_results name) in
+    let results_work_efficiency = Results.from_file (file_results ExpWorkEfficiency.name) in
+    plot_for "linux" results results_work_efficiency interrupts serial_interrupts mk_runs_of_bd
+  in
+  ()
+
 
 let all () = select make run check plot
 
@@ -692,7 +727,9 @@ end
 (*****************************************************************************)
 (** Nautilus experiment *)
 
-module ExpNautilus = struct
+(*
+
+module ExpLinuxParallel = struct
 
 let name = "nautilus"
 
@@ -706,9 +743,9 @@ let run () = ()
   
 let check = nothing  (* do something here *)
       
-let plot_of kappa_usec =
+let plot_nautilus_vs_linux kappa_usec =
   let mk_kappa_usec = mk int "kappa_usec" kappa_usec in
-  let name_out = Printf.sprintf "%s_kappa_usec_%d" name kappa_usec in
+  let name_out = Printf.sprintf "%s_vs_linux_kappa_usec_%d" name kappa_usec in
   let tex_file = file_tables_src name_out in
   let pdf_file = file_tables name_out in
   let nb_cols_serial = 2 in
@@ -719,7 +756,7 @@ let plot_of kappa_usec =
   let results_nautilus_serial = Results.from_file (file_results name_serial) in
   let results_nautilus_parallel = Results.from_file (file_results name_parallel) in
   let results_linux_serial = Results.from_file (file_results ExpWorkEfficiency.name) in
-  let results_linux_heartbeat_serial = Results.from_file (file_results ExpLinuxWorkEfficiency.name) in
+  let results_linux_heartbeat_serial = Results.from_file (file_results ExpInterruptWorkEfficiency.name) in
   let results_linux_parallel = Results.from_file (file_results ExpLinuxParallel.name) in
   let results_linux_sta = Results.from_file (file_results_sta ExpLinuxParallel.name) in
   Mk_table.build_table tex_file pdf_file (fun add ->
@@ -816,12 +853,92 @@ let plot_of kappa_usec =
     );
   ()
 
-let plot () = ~~ List.iter arg_kappas_usec plot_of
+let plot_parallel kappa_usec =
+  let mk_kappa_usec = mk int "kappa_usec" kappa_usec in
+  let name_out = Printf.sprintf "%s_kappa_usec_%d" name kappa_usec in
+  let tex_file = file_tables_src name_out in
+  let pdf_file = file_tables name_out in
+  let results = Results.from_file (file_results name_parallel) in
+  let results_serial = Results.from_file (file_results name_serial) in
+  let mk_scfgs = mk_list string scheduler_configuration [interrupt_ping_thread;] in
+  let scfgs = List.flatten (values_of_keys_in_params mk_scfgs [scheduler_configuration;]) in
+  let nb_scfgs = List.length scfgs in
+  let nb_cols = 2 + (2 * nb_scfgs) in
+  Mk_table.build_table tex_file pdf_file (fun add ->
+      let hdr =
+        let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
+        Printf.sprintf "|l||%s|" ls
+      in
+      add (Latex.tabular_begin hdr);
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add (Latex.tabular_multicol 2 "c|" "Serial"));
+      ~~ List.iteri scfgs (fun scfg_i scfg ->
+          let pretty_scfg = pretty_name_of_interrupt_config scfg in
+          let last = scfg_i+1 = nb_scfgs in
+          Mk_table.cell ~escape:true ~last:false add pretty_scfg;
+          Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol 2 "c|" pretty_scfg));
+      add Latex.tabular_newline;
+      Mk_table.cell ~escape:true ~last:false add "";
+      Mk_table.cell ~escape:true ~last:false add "Elapsed (s)";
+      ~~ List.iteri scfgs (fun scfg_i scfg ->
+          let last = scfg_i+1 = nb_scfgs in
+          Mk_table.cell ~escape:true ~last:false add "Speedup";
+          Mk_table.cell ~escape:true ~last:false add "Idle time";
+          Mk_table.cell ~escape:true ~last:last add "Nb. tasks");
+      add Latex.tabular_newline;
+      ~~ List.iter benchmarks (fun bd ->
+          let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
+                             (pretty_problemname_of bd) (pretty_inputname_of bd)
+          in
+          Mk_table.cell ~escape:true ~last:false add benchdescr;
+            let mk_cilk_runs = mk_cilk_runs_of_bd arg_proc bd in
+            let cilk_elapsed =
+              get_time results_cilk mk_cilk_runs
+            in
+            let (cilk_utilization, cilk_nb_tasks) =
+              get_stats_cilk results_cilk mk_cilk_runs 
+            in
+            Mk_table.cell ~escape:true ~last:false add (report_elapsed cilk_elapsed);
+            ~~ List.iteri scfgs (fun scfg_i scfg ->
+                let mk_scfg = (mk string scheduler_configuration scfg) in
+                let mk_heartbeat_runs = (mk_runs_of_bd arg_proc bd) & mk_scfg & mk_kappa_usec in
+                let heartbeat_elapsed =
+                  get_time results mk_heartbeat_runs
+                in
+                let (heartbeat_utilization, heartbeat_nb_tasks) =
+                  get_stats_heartbeat results_sta (mk_heartbeat_runs & mk_ext_sta)
+                in
+                let idle_heartbeat = (fst heartbeat_elapsed) *. heartbeat_utilization in
+                let idle_cilk = (fst cilk_elapsed) *. cilk_utilization in
+                let diff_exectime = report_percent_diff_of_elapsed cilk_elapsed heartbeat_elapsed in
+                let diff_idle = report_percent_diff idle_cilk idle_heartbeat in
+                let diff_nb_tasks = report_percent_diff cilk_nb_tasks heartbeat_nb_tasks in
+                let last = scfg_i+1 = nb_scfgs in
+                Mk_table.cell ~escape:true ~last:false add diff_exectime;
+                Mk_table.cell ~escape:true ~last:false add diff_idle;
+                Mk_table.cell ~escape:true ~last:last add diff_nb_tasks
+              );
+            add Latex.tabular_newline);
+      add Latex.tabular_end
+    );
+  ()
+
+let plot_work_efficiency () =
+  let _ = 
+    let results = Results.from_file (file_results name_serial) in
+    let results_work_efficiency = Results.from_file (file_results name_serial) in
+    plot_for "nautilus" results results_work_efficiency nautilus_interrupts nautilus_serial_interrupts mk_nautilus_runs_of_bd
+  in
+  ()
+
+let plot () = (~~ List.iter arg_kappas_usec plot_nautilus_vs_linux;
+               ~~ List.iter arg_kappas_usec plot_parallel;
+               plot_work_efficiency ())
 
 let all () = select make run check plot
 
 end
-
+ *)
 
 (*****************************************************************************)
 (** Main *)
@@ -830,9 +947,9 @@ let _ =
   let arg_actions = XCmd.get_others() in
   let bindings = [
       "work_efficiency", ExpWorkEfficiency.all;
-      "linux_work_efficiency", ExpLinuxWorkEfficiency.all;
+      "linux_work_efficiency", ExpInterruptWorkEfficiency.all;
       "linux_parallel", ExpLinuxParallel.all;
-      "nautilus", ExpNautilus.all;
+      (*      "nautilus_vs_linux", ExpNautilusVsLinux.all;*)
   ]
   in
   Pbench.execute_from_only_skip arg_actions [] bindings;
