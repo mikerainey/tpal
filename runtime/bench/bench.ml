@@ -58,29 +58,30 @@ let interrupts =
    interrupt_papi;
    interrupt_pthread;]
 
+let on_iit_or_nwu_machine =
+  match Unix.gethostname () with
+    "tinker-2.cs.iit.edu" -> true
+  | "tinker-3.cs.iit.edu" -> true
+  | "v-test-5038ki.cs.northwestern.edu" -> true
+  | _ -> false
+
 let arg_skip_interrupts =
-  let hostname = Unix.gethostname () in
   let dflt =
-    if hostname = "v-test-5038ki.cs.northwestern.edu" then
+    if on_iit_or_nwu_machine then
       [interrupt_papi;interrupt_pthread;]
-    else if hostname = "tinker-2" || hostname = "tinker-3" then
-      [interrupt_pthread;]
     else
       []
   in
   XCmd.parse_or_default_list_string "skip_interrupts" dflt
 
 let arg_skip_serial_interrupts =
-  let hostname = Unix.gethostname () in
   let dflt =
-    if hostname = "v-test-5038ki.cs.northwestern.edu" then
+    if on_iit_or_nwu_machine then
       [serial_interrupt_papi;serial_interrupt_pthread;]
-    else if hostname = "tinker-2.cs.iit.edu" || hostname = "tinker-3.cs.iit.edu" then
-      [serial_interrupt_pthread;]
     else
       []
   in
-  XCmd.parse_or_default_list_string "skip_serial_interrupts" [serial_interrupt_pthread;]
+  XCmd.parse_or_default_list_string "skip_serial_interrupts" dflt
 
 let filter_skips skips =
   List.filter (fun s -> not (List.mem s skips))
@@ -352,26 +353,32 @@ let mk_benchmark_descr bd =
     (mk string "benchmark" bd.bd_problem)
   & bd.bd_mk_input
 
+(*
 let mk_nautilus_benchmark_descr bd =
     (mk_prog bd.bd_problem)
     & bd.bd_mk_input
+ *)
 
 let mk_runs_of_bd proc bd =
     mk_prog_heartbeat
   & (mk_benchmark_descr bd)
   & (mk_proc proc)
 
+(*
 let mk_nautilus_runs_of_bd proc bd =
     (mk_prog bd.bd_problem)
   & (mk_proc proc)
+ *)
 
 let mk_serial_runs_of_bd bd =
    (mk_runs_of_bd 1 bd)
   & mk_serial_config
 
+(*
 let mk_nautilus_serial_runs_of_bd bd =
    (mk_nautilus_runs_of_bd 1 bd)
   & mk_serial_config
+ *)
 
 let mk_nopromote_interrupt_runs_of_bd bd =
    (mk_runs_of_bd 1 bd)
@@ -516,17 +523,25 @@ let make() =
 
 let mk_runs =
   ((mk_all mk_serial_interrupt_runs_of_bd benchmarks) ++
-  (mk_all (mk_interrupt_runs_of_bd 1) benchmarks)) & mk_kappas_usec
+     (mk_all (mk_interrupt_runs_of_bd 1) benchmarks)) & mk_kappas_usec
 
-let run () =
+let mk_runs_sta =
+  ((mk_all (mk_interrupt_runs_of_bd 1) benchmarks) & mk_ext_sta & mk_kappas_usec)
+
+let run () = (
   Mk_runs.(call (run_modes @ [
                  Output (file_results name);
                  Timeout arg_seq_timeout;
-                 Args mk_runs]))
+                 Args mk_runs]));
+  Mk_runs.(call (run_modes @ [
+                 Output (file_results_sta name);
+                 Timeout arg_seq_timeout;
+                 Args mk_runs_sta])))
+  
   
 let check = nothing  (* do something here *)
 
-let plot_for os results results_work_efficiency interrupts serial_interrupts mk_runs_of_bd =
+let plot_for os results results_sta results_work_efficiency interrupts serial_interrupts mk_runs_of_bd =
   let name_out = name ^ "_" ^ os in
   let tex_file = file_tables_src name_out in
   let pdf_file = file_tables name_out in
@@ -601,8 +616,15 @@ let plot_for os results results_work_efficiency interrupts serial_interrupts mk_
 let plot () =
   let _ = 
     let results = Results.from_file (file_results name) in
+    let results_sta = Results.from_file (file_results_sta name) in
     let results_work_efficiency = Results.from_file (file_results ExpWorkEfficiency.name) in
-    plot_for "linux" results results_work_efficiency interrupts serial_interrupts mk_runs_of_bd
+    plot_for "linux" results results_sta results_work_efficiency interrupts serial_interrupts mk_runs_of_bd
+  in
+  let _ =
+    let name_nautilus = "nautilus_serial" in
+    let results = Results.from_file (file_results name_nautilus) in
+    let results_work_efficiency = Results.from_file (file_results name_nautilus) in
+    plot_for "nautilus" results results results_work_efficiency nautilus_interrupts nautilus_serial_interrupts mk_runs_of_bd
   in
   ()
 
@@ -947,7 +969,7 @@ let _ =
   let arg_actions = XCmd.get_others() in
   let bindings = [
       "work_efficiency", ExpWorkEfficiency.all;
-      "linux_work_efficiency", ExpInterruptWorkEfficiency.all;
+      "interrupt_work_efficiency", ExpInterruptWorkEfficiency.all;
       "linux_parallel", ExpLinuxParallel.all;
       (*      "nautilus_vs_linux", ExpNautilusVsLinux.all;*)
   ]
