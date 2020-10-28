@@ -542,7 +542,7 @@ let plot_for os results results_sta results_work_efficiency interrupts serial_in
   let nb_parallel_scfgs = List.length parallel_scfgs in
   let nb_scfgs = List.length scfgs in
   let nb_kappas = List.length kappas_usec in
-  let nb_cols = 1 + (nb_scfgs * nb_kappas) + 1 in
+  let nb_cols = 1 + (nb_scfgs * (nb_kappas+1)) in
   let get_nb_promotions results mk =
     let [col] = mk Env.empty in
     let results = Results.filter col results in
@@ -590,7 +590,7 @@ let plot_for os results results_sta results_work_efficiency interrupts serial_in
                 Mk_table.cell ~escape:true ~last:last add ""
               else (
                 Mk_table.cell ~escape:true ~last:false add "";
-                Mk_table.cell ~escape:true ~last:last add "Nb. prom.")
+                Mk_table.cell ~escape:true ~last:last add "Prom.")
             ));
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
@@ -637,7 +637,17 @@ let plot_linux () =
     let results = Results.from_file (file_results name) in
     let results_sta = Results.from_file (file_results_sta name) in
     let results_work_efficiency = Results.from_file (file_results ExpWorkEfficiency.name) in
-    plot_for "linux" results results_sta results_work_efficiency interrupts serial_interrupts mk_runs_of_bd
+    let serial_interrupts = [serial_interrupt_ping_thread] in
+    let interrupts = [interrupt_ping_thread] in
+    plot_for "linux_ping_thread" results results_sta results_work_efficiency interrupts serial_interrupts mk_runs_of_bd
+  in
+  let _ = 
+    let results = Results.from_file (file_results name) in
+    let results_sta = Results.from_file (file_results_sta name) in
+    let results_work_efficiency = Results.from_file (file_results ExpWorkEfficiency.name) in
+    let serial_interrupts = [serial_interrupt_pthread;serial_interrupt_papi] in
+    let interrupts = [interrupt_pthread;interrupt_papi] in
+    plot_for "linux_other" results results_sta results_work_efficiency interrupts serial_interrupts mk_runs_of_bd
   in
   ()
 
@@ -686,7 +696,7 @@ let run () = (
   
 let check = nothing  (* do something here *)
 
-let plot_of os kappa_usec results results_serial results_sta = 
+let plot_of os kappa_usec results results_serial results_sta interrupts = 
   let mk_kappa_usec = mk int "kappa_usec" kappa_usec in
   let name_out = Printf.sprintf "%s_%s_kappa_usec_%d" name os kappa_usec in
   let tex_file = file_tables_src name_out in
@@ -714,7 +724,7 @@ let plot_of os kappa_usec results results_serial results_sta =
           let last = scfg_i+1 = nb_scfgs in
           Mk_table.cell ~escape:true ~last:false add "Speedup";
           Mk_table.cell ~escape:true ~last:false add "Utilization";
-          Mk_table.cell ~escape:true ~last:last add "Nb. prom.");
+          Mk_table.cell ~escape:true ~last:last add "Prom.");
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
           let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
@@ -733,9 +743,14 @@ let plot_of os kappa_usec results results_serial results_sta =
                 get_time results mk_heartbeat_runs
               in
               let (heartbeat_utilization, heartbeat_nb_tasks) =
+                get_stats_nautilus results_sta mk_heartbeat_runs
+              in
+              (*
+              let (heartbeat_utilization, heartbeat_nb_tasks) =
                 get_stats_heartbeat results_sta mk_heartbeat_runs
               in
-              let speedup = heartbeat_cyc /. serial_cyc in
+               *)
+              let speedup = serial_cyc /. heartbeat_cyc in
               let nb_prom_per_sec = heartbeat_nb_tasks /. heartbeat_sec in
               let last = scfg_i+1 = nb_scfgs in
               Mk_table.cell ~escape:true ~last:false add (Printf.sprintf "%.2fx" speedup);
@@ -748,10 +763,21 @@ let plot_of os kappa_usec results results_serial results_sta =
   ()
 
 let plot_linux () =
-  let results = Results.from_file (file_results name) in
-  let results_sta = Results.from_file (file_results_sta name) in
-  let results_serial = Results.from_file (file_results ExpWorkEfficiency.name) in
-  ~~ List.iter arg_kappas_usec (fun kappa_usec -> plot_of "linux" kappa_usec results results_serial results_sta)
+  let _ = 
+    let results = Results.from_file (file_results name) in
+    let results_sta = Results.from_file (file_results_sta name) in
+    let results_serial = Results.from_file (file_results ExpWorkEfficiency.name) in
+    let interrupts = [interrupt_ping_thread] in
+    ~~ List.iter arg_kappas_usec (fun kappa_usec -> plot_of "linux_ping_thread" kappa_usec results results_serial results_sta interrupts)
+  in
+  let _ = 
+    let results = Results.from_file (file_results name) in
+    let results_sta = Results.from_file (file_results_sta name) in
+    let results_serial = Results.from_file (file_results ExpWorkEfficiency.name) in
+    let interrupts = [interrupt_papi;interrupt_pthread] in
+    ~~ List.iter arg_kappas_usec (fun kappa_usec -> plot_of "linux_other" kappa_usec results results_serial results_sta interrupts)
+  in
+  ()  
 
 let all_linux () = select make run check plot_linux
 
@@ -760,7 +786,8 @@ let plot_nautilus () =
   let name_nautilus_parallel = "nautilus_parallel" in
   let results_serial = Results.from_file (file_results name_nautilus_serial) in
   let results = Results.from_file (file_results name_nautilus_parallel) in
-  ~~ List.iter arg_kappas_usec (fun kappa_usec -> plot_of "nautilus" kappa_usec results results_serial results)
+  let interrupts = [interrupt_ping_thread] in
+  ~~ List.iter arg_kappas_usec (fun kappa_usec -> plot_of "nautilus" kappa_usec results results_serial results interrupts)
 
 let all_nautilus () = select make run check plot_nautilus
 
@@ -834,7 +861,7 @@ let plot_of kappa_usec =
           let last = scfg_i+1 = nb_scfgs in
           Mk_table.cell ~escape:true ~last:false add "";
           Mk_table.cell ~escape:true ~last:false add "Idle time";
-          Mk_table.cell ~escape:true ~last:last add "Nb. tasks");
+          Mk_table.cell ~escape:true ~last:last add "Prom.");
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
           let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"

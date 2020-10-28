@@ -4,7 +4,7 @@ folder_in=$1
 folder_out=$2
 
 cp $folder_in/*.txt $folder_out
-rm -f $folder_out/results_nautilus_serial.txt $folder_out/results_nautilus_heartbeat.txt
+rm -f $folder_out/results_nautilus_serial.txt $folder_out/results_nautilus_parallel.txt
 
 for f in $(ls $folder_in/*serial*)
 do
@@ -15,13 +15,13 @@ do
     rm -f $tmpfile
 done	 
 
-for f in $(ls $folder_in/*heartbeat*)
+for f in $(ls $folder_in/*parallel*)
 do
     if [[ "$f" != *"serial"* ]]; then
 	echo $f
 	tmpfile=$(mktemp)
 	./snip_ipmi_output.sh $f $tmpfile
-	cat $tmpfile >> $folder_out/results_nautilus_heartbeat.txt
+	cat $tmpfile >> $folder_out/results_nautilus_parallel.txt
 	rm -f $tmpfile
     fi
 done	 

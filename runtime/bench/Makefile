@@ -56,8 +56,8 @@ BENCHMARKS=\
 	knapsack \
 	mergesort
 
-#all:
-#install:
+all2:
+install2:
 
 all: \
 	$(BENCHMARKS:%=%.opt) $(BENCHMARKS:%=%.opt_cilk) \
