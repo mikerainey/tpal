@@ -70,3 +70,6 @@ install:
 
 clean: 
 	rm -f spmv_manual2.s *.opt *.dbg *.dbg_cilk *.opt_cilk *.sta *.log *.ii *~ *.o *.i vgcore.*
+
+clean_results:
+	rm -rf ../nix/*.txt ../nix/_results

@@ -428,10 +428,10 @@ let get_stats_heartbeat results mk =
 let get_stats_nautilus results mk =
   let [col] = mk Env.empty in
   let results = Results.filter col results in
-  let heartbeat_ticks_idle = Results.get_mean_of "total_idle_time" results in
-  let heartbeat_total_time = Results.get_mean_of "total_time" results in
-  let heartbeat_utilization = 1. -. (heartbeat_ticks_idle /. heartbeat_total_time) in
-  (heartbeat_utilization,
+  let ticks_idle = Results.get_mean_of "total_idle_time" results in
+  let total_time = Results.get_mean_of "total_time" results in
+  let utilization = 1. -. (ticks_idle /. total_time) in
+  (utilization,
    Results.get_mean_of "nb_promotions" results)
 
 let get_stats_cilk results mk =
@@ -745,17 +745,13 @@ let plot_of os kappa_usec results results_serial results_sta interrupts =
               let (heartbeat_utilization, heartbeat_nb_tasks) =
                 get_stats_nautilus results_sta mk_heartbeat_runs
               in
-              (*
-              let (heartbeat_utilization, heartbeat_nb_tasks) =
-                get_stats_heartbeat results_sta mk_heartbeat_runs
-              in
-               *)
               let speedup = serial_cyc /. heartbeat_cyc in
               let nb_prom_per_sec = heartbeat_nb_tasks /. heartbeat_sec in
               let last = scfg_i+1 = nb_scfgs in
               Mk_table.cell ~escape:true ~last:false add (Printf.sprintf "%.2fx" speedup);
               Mk_table.cell ~escape:true ~last:false add (Printf.sprintf "%.0f%%" (100. *. heartbeat_utilization));
               Mk_table.cell ~escape:true ~last:last add (Printf.sprintf "%sk/s" (string_of_thousands nb_prom_per_sec))
+                (*%sm %sm %sk (string_of_millions serial_cyc) (string_of_millions heartbeat_cyc) (string_of_thousands heartbeat_nb_tasks) *)
             );
           add Latex.tabular_newline);
       add Latex.tabular_end
