@@ -9,9 +9,9 @@ scp -i ~/.ssh/id_rsa_mac mrainey@subutai.cs.iit.edu:/home/mrainey/results_nautil
 
 for f in $(ls $folder_nautilus_tmp)
 do
-    $d="$(basename -- $f)"
-    echo "Transferring nautilus from $f to $folder_out/$d"
-    ./snip_ipmi_output.sh $f $folder_out/$d
+    d="$(basename -- $f)"
+    echo "Transferring nautilus from $folder_nautilus_tmp/$f to $folder_out/$d"
+    ./snip_ipmi_output.sh $folder_nautilus_tmp/$f $folder_out/$d
 done
 
 rm -rf $folder_nautilus_tmp
