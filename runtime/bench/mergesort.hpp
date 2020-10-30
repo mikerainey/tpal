@@ -402,7 +402,7 @@ auto fill_xs(uint64_t* _xs) {
   uint64_t xs_i = 1233332;
   for (std::size_t i = 0; i != n; i++) {
     _xs[i] = xs_i;
-    xs_i = mcsl::hash(xs_i) % 1000;
+    xs_i = mcsl::hash(xs_i) % (1<<31);
   }
 };
 
