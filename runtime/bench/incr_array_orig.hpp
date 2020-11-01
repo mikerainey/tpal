@@ -1,36 +1,34 @@
 #include <cstdint>
+#include <algorithm>
 
-void incr_array_serial(int64_t* a, uint64_t lo, uint64_t hi) {
+void incr_array_serial(double* a, uint64_t lo, uint64_t hi) {
   for (; lo != hi; lo++) {
-    a[lo]++;
+    a[lo] += 1.0;
   }
 }
 
-#define MIN(x, y) ((x < y) ? x : y)
-
-#define likely(x)      __builtin_expect(!!(x), 1)
 #define unlikely(x)    __builtin_expect(!!(x), 0)
 
-#define D 128
+#define D 64
 
 extern volatile
 int heartbeat;
  
 extern
-int incr_array_handler(int64_t* a, uint64_t lo, uint64_t& hi, void* p);
+int incr_array_handler(double* a, uint64_t lo, uint64_t& hi, void* p);
 
-void incr_array_interrupt(int64_t* a, uint64_t lo, uint64_t hi, void* p) {
+void incr_array_interrupt(double* a, uint64_t lo, uint64_t hi, void* p) {
   if (! (lo < hi)) {
     return;
   }
   for (;;) {
     uint64_t lo2 = lo;
-    uint64_t hi2 = MIN(lo + D, hi);
+    uint64_t hi2 = std::min(lo + D, hi);
     for (; lo2 != hi2; lo2++) {
-      a[lo2]++;
+      a[lo2] += 1.0;
     }
     lo = lo2;
-    if (unlikely(! (lo < hi))) {
+    if (! (lo < hi)) {
       break;
     }
     if (unlikely(heartbeat)) { 

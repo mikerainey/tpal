@@ -445,6 +445,25 @@ void spmv_cilk(double* val,
 #endif
 }
 
+void spmv_cilk_outer(double* val,
+		     uint64_t* row_ptr,
+		     uint64_t* col_ind,
+		     double* x,
+		     double* y,
+		     int64_t n) {
+#if defined(USE_CILK_PLUS)
+  cilk_for (int64_t i = 0; i < n; i++) {  // row loop
+    double t = 0.0;
+    for (int64_t k = row_ptr[i]; k < row_ptr[i+1]; k++) { // col loop
+      t += val[k] * x[col_ind[k]];
+    }
+    y[i] = t;
+  }
+#else
+  //  mcsl::die("Cilk unsupported\n");
+#endif
+}
+
 /*---------------------------------------------------------------------*/
 
 namespace spmv {
@@ -459,7 +478,7 @@ char* arrowhead_input = "arrowhead";
 
 uint64_t n_bigrows = 3000000;
 uint64_t degree_bigrows = 100;
-uint64_t n_bigcols = 10000000;
+uint64_t n_bigcols = 23;
 uint64_t n_arrowhead = 100000000;
   
 uint64_t row_len = 1000;
@@ -520,6 +539,7 @@ auto mk_random_local_edgelist(size_t dim, size_t degree, size_t num_rows)
   return edges;
 }
 
+  /*
 static float powerlaw_random(size_t i, float dmin, float dmax, float n) {
   float r = (float)hash64(i) / RAND_MAX;
   return mypow((mypow(dmax, n) - mypow(dmin, n)) * mypow(r, 3) + mypow(dmin, n), 1.0 / n);
@@ -537,9 +557,28 @@ std::vector<int> siteSizes(size_t n) {
   }
   return site_sizes;
 }
-
-auto mk_powerlaw_edgelist(size_t num_rows) {
+  */
+  
+auto mk_powerlaw_edgelist(size_t lg) {
   edgelist_type edges;
+  size_t o = 0;
+  size_t m = 1 << lg;
+  size_t n = 1;
+  size_t tot = m;
+  for (size_t i = 0; i < lg; i++) {
+    for (size_t j = 0; j < n; j++) {
+      for (size_t k = 0; k < m; k++) {
+	auto d = hash64(o + k) % tot;
+	edges.push_back(std::make_pair(o, d));
+      }
+      o++;
+    }
+    n *= 2;
+    m /= 2;
+  }
+  
+  return edges; 
+  /*
   size_t n = num_rows;
   size_t inRatio = 10;
   size_t degree = 15;
@@ -569,7 +608,7 @@ auto mk_powerlaw_edgelist(size_t num_rows) {
   }
   free(sizes);
   free(offsets);
-  return edges;
+  return edges; */
 }
 
 auto mk_arrowhead_edgelist(size_t n) {
@@ -609,6 +648,14 @@ auto csr_of_edgelist(edgelist_type& edges) {
     assert((e.first >= 0) && (e.first < nb_rows));
     row_ptr[e.first]++;
   }
+  size_t max_col_len = 0;
+  size_t tot_col_len = 0;
+  {
+    for (size_t i = 0; i < nb_rows + 1; i++) {
+      max_col_len = std::max(max_col_len, row_ptr[i]);
+      tot_col_len += row_ptr[i];
+    }
+  }
   { // initialize column indices
     col_ind = (uint64_t*)malloc(sizeof(uint64_t) * nb_vals);
     uint64_t i = 0;
@@ -631,7 +678,16 @@ auto csr_of_edgelist(edgelist_type& edges) {
     for (size_t i = 0; i < nb_vals; i++) {
       val[i] = rand_double(i);
     }
-  } 
+  }
+#ifdef MCSL_NAUTILUS
+  aprintf("nb_vals %lu\n", nb_vals);
+  aprintf("max_col_len %lu\n", max_col_len);
+  aprintf("tot_col_len %lu\n", tot_col_len);
+#else
+  printf("nb_vals %lu\n", nb_vals);
+  printf("max_col_len %lu\n", max_col_len);
+  printf("tot_col_len %lu\n", tot_col_len);
+#endif
   { /*
     for (auto& e : edges) {
       std::cout << e.first << "," << e.second << " ";
@@ -678,9 +734,9 @@ auto bench_pre_bigrows(promotable* p) {
 }
 
 auto bench_pre_bigcols(promotable* p) {
-  nb_rows = n_bigcols;
+  nb_rows = 1<<n_bigcols;
   bench_pre_shared(p, [&] {
-    auto edges = mk_powerlaw_edgelist(nb_rows);
+    auto edges = mk_powerlaw_edgelist(n_bigcols);
     csr_of_edgelist(edges);
   });
 }
@@ -735,6 +791,7 @@ auto bench_post(promotable*) {
 
 auto bench_body_cilk() {
   spmv_cilk(val, row_ptr, col_ind, x, y, nb_rows);
+  //spmv_cilk_outer(val, row_ptr, col_ind, x, y, nb_rows);
 };
 
 

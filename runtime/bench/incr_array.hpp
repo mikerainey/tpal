@@ -12,7 +12,7 @@
 /* Manual version */
 
 extern
-int64_t* incr_array_serial(int64_t* a, uint64_t lo, uint64_t hi);
+double* incr_array_serial(double* a, uint64_t lo, uint64_t hi);
 
 static
 int64_t incr_array_manual_T = 8096;
@@ -25,9 +25,9 @@ public:
 
   trampoline_type trampoline = entry;
   
-  int64_t* a; uint64_t lo; uint64_t hi;
+  double* a; uint64_t lo; uint64_t hi;
 
-  incr_array_manual(int64_t* a, uint64_t lo, uint64_t hi)
+  incr_array_manual(double* a, uint64_t lo, uint64_t hi)
     : tpalrts::fiber<Scheduler>([] (tpalrts::promotable*) { return mcsl::fiber_status_finish; }),
       a(a), lo(lo), hi(hi)
   { }
@@ -65,9 +65,9 @@ public:
 /* Hardware-interrupt version */
 
 extern
-void incr_array_interrupt(int64_t* a, uint64_t lo, uint64_t hi, void* p);
+void incr_array_interrupt(double* a, uint64_t lo, uint64_t hi, void* p);
 
-int incr_array_handler(int64_t* a, uint64_t lo, uint64_t& hi, void* _p) {
+int incr_array_handler(double* a, uint64_t lo, uint64_t& hi, void* _p) {
   auto p = (tpalrts::promotable*)_p;
   tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if (hi - lo <= 1) {
@@ -85,10 +85,10 @@ int incr_array_handler(int64_t* a, uint64_t lo, uint64_t& hi, void* _p) {
 /* Cilk version */
 
 static
-int64_t* incr_array_cilk(int64_t* a, int64_t lo, int64_t hi) {
+double* incr_array_cilk(double* a, uint64_t lo, uint64_t hi) {
 #if defined(USE_CILK_PLUS)
-  cilk_for (int64_t i = lo; i != hi; i++) {
-    a[i]++;
+  cilk_for (uint64_t i = lo; i != hi; i++) {
+    a[i] += 1.0;
   }
 #else
   assert(false);
@@ -104,18 +104,18 @@ namespace incr_array {
 char* name = "incr_array";
   
 uint64_t nb_items = 100 * 1000 * 1000;
-int64_t* a;
+double* a;
   
 auto bench_pre(promotable*) -> void {
   rollforward_table = {
     #include "incr_array_rollforward_map.hpp"
   };
-  a = (int64_t*)malloc(sizeof(int64_t)*nb_items);
+  a = (double*)malloc(sizeof(double)*nb_items);
   if (a == nullptr) {
     return;
   }
   for (size_t i = 0; i < nb_items; i++) {
-    a[i] = 1;
+    a[i] = 1.0;
   }
 }
 
@@ -132,13 +132,6 @@ auto bench_body_serial(promotable* p) -> void {
 }
 
 auto bench_post(promotable*) -> void {
-#ifndef NDEBUG
-  int64_t m = 0;
-  for (int64_t i = 0; i < nb_items; i++) {
-    m += a[i];
-  }
-  assert(m == 2 * nb_items);
-#endif
   free(a);
 }
 

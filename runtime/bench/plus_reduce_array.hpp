@@ -15,11 +15,10 @@
 /*---------------------------------------------------------------------*/
 /* Manual version */
 
-extern "C"
-int64_t plus_reduce_array_serial(int64_t* a, int64_t lo, int64_t hi);
+double plus_reduce_array_serial(double* a, uint64_t lo, uint64_t hi);
 
 static
-int64_t plus_reduce_array_manual_T = 8096;
+uint64_t plus_reduce_array_manual_T = 8096;
 
 template <typename Scheduler>
 class plus_reduce_array_manual : public tpalrts::fiber<Scheduler> {
@@ -29,10 +28,10 @@ public:
 
   trampoline_type trampoline = entry;
   
-  int64_t* a; int64_t lo; int64_t hi; int64_t* dst;
-  int64_t r1, r2;
+  double* a; uint64_t lo; uint64_t hi; double* dst;
+  double r1, r2;
 
-  plus_reduce_array_manual(int64_t* a, int64_t lo, int64_t hi, int64_t* dst)
+  plus_reduce_array_manual(double* a, uint64_t lo, uint64_t hi, double* dst)
     : tpalrts::fiber<Scheduler>([] (tpalrts::promotable*) { return mcsl::fiber_status_finish; }),
       a(a), lo(lo), hi(hi), dst(dst)
   { }
@@ -43,7 +42,7 @@ public:
       if (hi-lo <= plus_reduce_array_manual_T) {
         *dst = plus_reduce_array_serial(a, lo, hi);
       } else {
-        int64_t mid = (lo+hi)/2;
+        uint64_t mid = (lo+hi)/2;
         auto f1 = new plus_reduce_array_manual(a, lo, mid, &r1);
         auto f2 = new plus_reduce_array_manual(a, mid, hi, &r2);
         tpalrts::fiber<Scheduler>::add_edge(f1, this);
@@ -70,17 +69,16 @@ public:
 /*---------------------------------------------------------------------*/
 /* Hardware-interrupt version */
 
-extern "C"
-void plus_reduce_array_interrupt(int64_t* a, uint64_t lo, uint64_t hi, uint64_t r, int64_t* dst, void* p);
+void plus_reduce_array_interrupt(double* a, uint64_t lo, uint64_t hi, uint64_t r, double* dst, void* p);
 
-int loop_handler_cpp(int64_t* a, uint64_t lo, uint64_t hi, uint64_t r, int64_t* dst, void* _p) {
+int loop_handler(double* a, uint64_t lo, uint64_t hi, uint64_t r, double* dst, void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
   tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if ((hi - lo) <= 1) {
     return 0;
   }
   auto mid = (lo + hi) / 2;
-  using dst_rec_type = std::pair<int64_t, int64_t>;
+  using dst_rec_type = std::pair<double, double>;
   dst_rec_type* dst_rec;
   tpalrts::arena_block_type* dst_blk;
   std::tie(dst_rec, dst_blk) = tpalrts::alloc_arena<dst_rec_type>();
@@ -95,20 +93,14 @@ int loop_handler_cpp(int64_t* a, uint64_t lo, uint64_t hi, uint64_t r, int64_t* 
   return 1;
 }
 
-extern "C" {
-  int loop_handler(int64_t* a, uint64_t lo, uint64_t hi, uint64_t r, int64_t* dst, void* p) {
-    return loop_handler_cpp(a, lo, hi, r, dst, p);
-  }
-}
-
 /*---------------------------------------------------------------------*/
 /* Cilk version */
 
 static
-int64_t plus_reduce_array_cilk(int64_t* a, int64_t lo, int64_t hi) {
+double plus_reduce_array_cilk(double* a, uint64_t lo, uint64_t hi) {
 #if defined(USE_CILK_PLUS)
   cilk::reducer_opadd<int> sum(0);
-  cilk_for (int64_t i = 0; i != hi; i++) {
+  cilk_for (uint64_t i = 0; i != hi; i++) {
     *sum += a[i];
   }
   return sum.get_value();
@@ -127,16 +119,16 @@ using namespace tpalrts;
 char* name = "plus_reduce_array";
   
 uint64_t nb_items = 100 * 1000 * 1000;
-int64_t* a;
-int64_t result = 0;
+double* a;
+double result = 0.0;
   
 auto bench_pre(promotable*) -> void {
   rollforward_table = {
     #include "plus_reduce_array_rollforward_map.hpp"
   };
-  a = (int64_t*)malloc(sizeof(int64_t)*nb_items);
-  for (int64_t i = 0; i < nb_items; i++) {
-    a[i] = 1;
+  a = (double*)malloc(sizeof(double)*nb_items);
+  for (uint64_t i = 0; i < nb_items; i++) {
+    a[i] = 1.0;
   }
 }
 
@@ -153,11 +145,6 @@ auto bench_body_serial(promotable* p) -> void {
 }
 
 auto bench_post(promotable*) -> void {
-  int64_t m = 0;
-  for (int64_t i = 0; i < nb_items; i++) {
-    m += a[i];
-  }
-  assert(m == nb_items);
   free(a);
 }
 
