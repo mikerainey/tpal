@@ -856,7 +856,7 @@ let plot_of kappa_usec =
       ~~ List.iteri scfgs (fun scfg_i scfg ->
           let last = scfg_i+1 = nb_scfgs in
           Mk_table.cell ~escape:true ~last:false add "";
-          Mk_table.cell ~escape:true ~last:false add "Idle time";
+          Mk_table.cell ~escape:true ~last:false add "Utilization";
           Mk_table.cell ~escape:true ~last:last add "Prom.");
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
