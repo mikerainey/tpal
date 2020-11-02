@@ -397,11 +397,27 @@ auto compare = std::less<uint64_t>();
 
 tpalrts::stack_type s;
 
-auto fill_xs(uint64_t* _xs) {
+auto uniformdist_input(uint64_t* _xs) {
   uint64_t xs_i = 1233332;
   for (std::size_t i = 0; i != n; i++) {
     _xs[i] = xs_i;
     xs_i = mcsl::hash(xs_i) % (1<<31);
+  }
+};
+
+template <class T>
+size_t log2_up(T i) {
+  size_t a=0;
+  T b=i-1;
+  while (b > 0) {b = b >> 1; a++;}
+  return a;
+}
+
+auto expdist_input(uint64_t* _xs) {
+  size_t lg = log2_up(n)+1;
+  for (std::size_t i = 0; i != n; i++) {
+    size_t range = (1 << (mcsl::hash(2*(i))%lg));
+    _xs[i] = mcsl::hash((size_t)(range + mcsl::hash(2*(i)+1)%range))%n;
   }
 };
 
@@ -411,7 +427,16 @@ auto bench_pre(promotable* p) {
   };
   xs = (uint64_t*)malloc(sizeof(uint64_t) * n);
   tmp = (uint64_t*)malloc(sizeof(uint64_t) * n);
-  fill_xs(xs);
+};
+
+auto bench_pre_uniformdist(promotable* p) {
+  bench_pre(p);
+  uniformdist_input(xs);
+};
+
+auto bench_pre_expdist(promotable* p) {
+  bench_pre(p);
+  expdist_input(xs);
 };
 
 auto bench_body_interrupt(promotable* p) {
@@ -430,7 +455,7 @@ auto bench_body_serial(promotable* p) {
 auto bench_post(promotable* p) {
 #if ! defined(NDEBUG) && defined(TPALRTS_LINUX)
   uint64_t* xs2 = (uint64_t*)malloc(sizeof(uint64_t) * n);
-  fill_xs(xs2);
+  uniformdist_input(xs2);
   std::sort(&xs2[0], &xs2[n], compare);
   std::size_t nb_diffs = 0;
   for (std::size_t i = 0; i != n; i++) {

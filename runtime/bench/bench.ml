@@ -261,8 +261,10 @@ let arrowhead = "arrowhead"
 let fourk_by_fourk = "fourk_by_fourk"
 let one_million_objects = "one_million_objects"
 let thirty_six_items = "thirty_six_items"
-let random_ints = "random_ints"
+let uniformdist = "uniformdist"
+let expdist = "expdist"
 let onek_vertices = "onek_vertices"
+let twok_vertices = "twok_vertices"
 
 let pretty_input_names = [
     one_hundred_million_64bit_ints, "$100 \cdot 10^6$ 64-bit ints";
@@ -272,8 +274,10 @@ let pretty_input_names = [
     fourk_by_fourk, "4k by 4k pixels";
     one_million_objects, "$1 \cdot 10^6$ objects";
     onek_vertices, "1k vertices";
+    twok_vertices, "2k vertices";
     thirty_six_items, "36 items";
-    random_ints, "$20 \cdot 10^6$ ints";
+    uniformdist, "$20 \cdot 10^6$ ints (uniform)";
+    expdist, "$20 \cdot 10^6$ ints (exponential)";
   ]
 
 let inputname_of mk =
@@ -299,10 +303,14 @@ let benchmarks : benchmark_descr list = [
       bd_mk_input = mk_inputname one_million_objects; };
     { bd_problem = "floyd_warshall";
       bd_mk_input = mk_inputname onek_vertices; };
+    { bd_problem = "floyd_warshall";
+      bd_mk_input = mk_inputname twok_vertices; };
     { bd_problem = "knapsack";
       bd_mk_input = mk_inputname thirty_six_items; };
     { bd_problem = "mergesort";
-      bd_mk_input = mk_inputname random_ints; }; 
+      bd_mk_input = mk_inputname uniformdist; }; 
+    { bd_problem = "mergesort";
+      bd_mk_input = mk_inputname expdist; }; 
 
 ]
 
