@@ -106,7 +106,6 @@ int knapsack_handler(std::atomic<int>& best_so_far, struct item *e, int c, int n
 		     tpalrts::stack_type s, char*& sp, char*& prmhd, char*& prmtl,
 		     void* pc, int best, void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
-  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if (__entry == nullptr) {
     return 0;
   }

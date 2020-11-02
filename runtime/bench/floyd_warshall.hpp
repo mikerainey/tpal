@@ -33,7 +33,6 @@ void floyd_warshall_interrupt_to(int* dist, int vertices, int via_lo, int via_hi
 
 int to_loop_handler(int* dist, int vertices, int via_lo, int via_hi, int from_lo, int from_hi, int to_lo, int to_hi, void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
-  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if ((via_hi - via_lo) <= 0) {
     return 0;
   }

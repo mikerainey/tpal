@@ -36,7 +36,6 @@ int col_loop_handler(
   unsigned char* output, double xstep, double ystep,
   int col_lo, int col_hi, void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
-  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if ((col_hi - col_lo) <= 1) {
     return 0;
   }
@@ -57,7 +56,6 @@ int row_loop_handler(
   unsigned char* output, double xstep, double ystep,
   int col_lo, int col_hi, int row_lo, int row_hi, void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
-  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   auto nb_cols = col_hi - col_lo;
   if (nb_cols == 0) {
     return 0;
@@ -95,7 +93,6 @@ int row_row_loop_handler(
   unsigned char* output, double xstep, double ystep,
   int col_lo, int col_hi, int row_lo, int row_hi, void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
-  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if ((row_hi - row_lo) <= 1) {
     return 0;
   }

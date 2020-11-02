@@ -170,7 +170,6 @@ int kmeans_inner_handler(float **feature,
 			 bool*    is_finished,
 			 void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
-  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if ((hi - lo) < 2) {
     return 0;
   }
@@ -323,7 +322,6 @@ int kmeans_outer_handler(float **feature,
 			 int      hi,
 			 void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
-  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if ((hi - lo) < 2) {
     return 0;
   }

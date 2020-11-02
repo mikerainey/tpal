@@ -423,7 +423,8 @@ let get_stats_heartbeat results mk =
   let [col] = mk Env.empty in
   let results = Results.filter col results in
   (Results.get_mean_of "utilization" results,
-   Results.get_mean_of "nb_promotions" results)
+   Results.get_mean_of "nb_promotions" results,
+   Results.get_mean_of "nb_heartbeats" results)
 
 let get_stats_nautilus results mk =
   let [col] = mk Env.empty in
@@ -432,7 +433,8 @@ let get_stats_nautilus results mk =
   let total_time = Results.get_mean_of "total_time" results in
   let utilization = 1. -. (ticks_idle /. total_time) in
   (utilization,
-   Results.get_mean_of "nb_promotions" results)
+   Results.get_mean_of "nb_promotions" results,
+   Results.get_mean_of "nb_heartbeats" results)
 
 let get_stats_cilk results mk =
   let [col] = mk Env.empty in
@@ -537,50 +539,42 @@ let plot_for os results results_sta results_work_efficiency interrupts serial_in
   let mk_scfgs = mk_list string scheduler_configuration (List.append serial_interrupts interrupts) in
   let scfgs = List.flatten (values_of_keys_in_params mk_scfgs [scheduler_configuration;]) in
   let (serial_scfgs, parallel_scfgs) = List.partition is_only_serial scfgs in
-  let scfgs = List.flatten [parallel_scfgs; serial_scfgs;] in
+  let scfgs = List.flatten [serial_scfgs; parallel_scfgs;] in
   let nb_serial_scfgs = List.length serial_scfgs in
   let nb_parallel_scfgs = List.length parallel_scfgs in
   let nb_scfgs = List.length scfgs in
   let nb_kappas = List.length kappas_usec in
-  let nb_cols = 1 + (nb_scfgs * (nb_kappas+1)) in
-  let get_nb_promotions results mk =
-    let [col] = mk Env.empty in
-    let results = Results.filter col results in
-    Results.get_mean_of "nb_promotions" results
-  in
+  let nb_hb_cols = 3 in
+  let nb_cols = (nb_serial_scfgs * nb_kappas) + (nb_parallel_scfgs * nb_kappas * nb_hb_cols)  in
   Mk_table.build_table tex_file pdf_file (fun add ->
       let hdr =
         let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
-        Printf.sprintf "|l||c||c|%s|" ls
+        Printf.sprintf "|l||c|%s|" ls
       in
       add (Latex.tabular_begin hdr);
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
-      Mk_table.cell ~escape:true ~last:false add "";
-      Mk_table.cell ~escape:true ~last:false add (Latex.tabular_multicol (nb_parallel_scfgs * 2 * nb_kappas) "c|" "Heartbeat");
-      Mk_table.cell ~escape:true ~last:true add (Latex.tabular_multicol (nb_serial_scfgs * nb_kappas) "c|" "Serial");
+      Mk_table.cell ~escape:true ~last:false add (Latex.tabular_multicol (nb_serial_scfgs * nb_kappas) "c|" "Serial");
+      Mk_table.cell ~escape:true ~last:true add (Latex.tabular_multicol (nb_parallel_scfgs * nb_hb_cols * nb_kappas) "c|" "Heartbeat");
       add Latex.tabular_newline;
-      Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
       ~~ List.iteri scfgs (fun scfg_i scfg ->
           let pretty_scfg = pretty_name_of_interrupt_config scfg in
-          let n = nb_kappas * (if is_only_serial scfg then 1 else 2) in
+          let n = nb_kappas * (if is_only_serial scfg then 1 else nb_hb_cols) in
           let last = scfg_i+1 = nb_scfgs in
           Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol n "c|" pretty_scfg));
       add Latex.tabular_newline;
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "Serial (s)";
-      Mk_table.cell ~escape:true ~last:false add "$H$";
       ~~ List.iteri scfgs (fun scfg_i scfg ->
           ~~ List.iteri kappas_usec (fun kappa_i kappa ->
               let last = scfg_i+1 = nb_scfgs && kappa_i+1 = nb_kappas in
-              let n = if is_only_serial scfg then 1 else 2 in
+              let n = if is_only_serial scfg then 1 else nb_hb_cols in
               let pretty_kappa = Printf.sprintf "$%d\mu s$" kappa in
               Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol n "c|" pretty_kappa)
             ));
       add Latex.tabular_newline;
-      Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
       ~~ List.iteri scfgs (fun scfg_i scfg ->
@@ -590,7 +584,8 @@ let plot_for os results results_sta results_work_efficiency interrupts serial_in
                 Mk_table.cell ~escape:true ~last:last add ""
               else (
                 Mk_table.cell ~escape:true ~last:false add "";
-                Mk_table.cell ~escape:true ~last:last add "Prom.")
+                Mk_table.cell ~escape:true ~last:false add "Prom.";
+                Mk_table.cell ~escape:true ~last:last add "Hb.")
             ));
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
@@ -598,7 +593,6 @@ let plot_for os results results_sta results_work_efficiency interrupts serial_in
                              (pretty_problemname_of bd) (pretty_inputname_of bd)
           in
           Mk_table.cell ~escape:true ~last:false add benchdescr;
-
           ~~ List.iteri scfgs (fun scfg_i scfg ->
               ~~ List.iteri kappas_usec (fun kappa_i kappa ->
                   let last = scfg_i+1 = nb_scfgs && kappa_i+1 = nb_kappas in
@@ -607,7 +601,6 @@ let plot_for os results results_sta results_work_efficiency interrupts serial_in
                 get_time results_work_efficiency (mk_serial_runs_of_bd bd)
               in
               Mk_table.cell ~escape:true ~last:false add (report_elapsed serial_elapsed);
-              Mk_table.cell ~escape:true ~last:false add "";
               ~~ List.iteri scfgs (fun scfg_i scfg ->
                   ~~ List.iteri kappas_usec (fun kappa_i kappa ->
                       let mk_scfg = (mk string scheduler_configuration scfg) &
@@ -615,16 +608,23 @@ let plot_for os results results_sta results_work_efficiency interrupts serial_in
                       let heartbeat_elapsed =
                         get_time results ((mk_runs_of_bd 1 bd) & mk_scfg)
                       in
+                      let (_, heartbeat_sec_sta) =
+                        get_time results_sta ((mk_runs_of_bd 1 bd) & mk_scfg)
+                      in
                       let diff = report_percent_diff_of_elapsed serial_elapsed heartbeat_elapsed in
                       let last = scfg_i+1 = nb_scfgs && kappa_i+1 = nb_kappas in
                       if is_only_serial scfg then
                         Mk_table.cell ~escape:true ~last:last add diff
                       else
-                        let nb_promotions = get_nb_promotions results_sta ((mk_runs_of_bd 1 bd) & mk_scfg) in
-                        let (_, het) = heartbeat_elapsed in
-                        let nb_promotions_per_sec = nb_promotions /. het in
+                        let (_, nb_promotions, nb_heartbeats) =
+                          get_stats_nautilus results_sta ((mk_runs_of_bd 1 bd) & mk_scfg)
+                        in
+                        (*                        let nb_promotions = get_nb_promotions results_sta ((mk_runs_of_bd 1 bd) & mk_scfg) in*)
+                        let nb_promotions_per_sec = nb_promotions /. heartbeat_sec_sta in
+                        let nb_heartbeats_per_sec = nb_heartbeats /. heartbeat_sec_sta in
                         Mk_table.cell ~escape:true ~last:false add diff;
-                        Mk_table.cell ~escape:true ~last:last add (Printf.sprintf "%sk/s" (string_of_thousands nb_promotions_per_sec))
+                        Mk_table.cell ~escape:true ~last:false add (Printf.sprintf "%sk/s" (string_of_thousands nb_promotions_per_sec));
+                        Mk_table.cell ~escape:true ~last:last add (Printf.sprintf "%sk/s" (string_of_thousands nb_heartbeats_per_sec))
                     )
                 );
             add Latex.tabular_newline);
@@ -704,7 +704,8 @@ let plot_of os kappa_usec results results_serial results_sta interrupts =
   let mk_scfgs = mk_list string scheduler_configuration interrupts in
   let scfgs = List.flatten (values_of_keys_in_params mk_scfgs [scheduler_configuration;]) in
   let nb_scfgs = List.length scfgs in
-  let nb_cols = 1 + (3 * nb_scfgs) in
+  let nb_hb_cols = 4 in
+  let nb_cols = 1 + (nb_hb_cols * nb_scfgs) in
   Mk_table.build_table tex_file pdf_file (fun add ->
       let hdr =
         let ls = String.concat "|" (XList.init nb_cols (fun _ -> "c")) in
@@ -716,15 +717,16 @@ let plot_of os kappa_usec results results_serial results_sta interrupts =
       ~~ List.iteri scfgs (fun scfg_i scfg ->
           let pretty_scfg = pretty_name_of_interrupt_config scfg in
           let last = scfg_i+1 = nb_scfgs in
-          Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol 3 "c|" pretty_scfg));
+          Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol nb_hb_cols "c|" pretty_scfg));
       add Latex.tabular_newline;
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
       ~~ List.iteri scfgs (fun scfg_i scfg ->
           let last = scfg_i+1 = nb_scfgs in
           Mk_table.cell ~escape:true ~last:false add "Speedup";
-          Mk_table.cell ~escape:true ~last:false add "Utilization";
-          Mk_table.cell ~escape:true ~last:last add "Prom.");
+          Mk_table.cell ~escape:true ~last:false add "Util.";
+          Mk_table.cell ~escape:true ~last:false add "Prom.";
+          Mk_table.cell ~escape:true ~last:last add "Hb.");
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
           let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
@@ -742,15 +744,20 @@ let plot_of os kappa_usec results results_serial results_sta interrupts =
               let (heartbeat_cyc, heartbeat_sec) =
                 get_time results mk_heartbeat_runs
               in
-              let (heartbeat_utilization, heartbeat_nb_tasks) =
+              let (heartbeat_utilization, heartbeat_nb_tasks, heartbeat_nb_heartbeats) =
                 get_stats_nautilus results_sta mk_heartbeat_runs
               in
+              let (_, heartbeat_sec_sta) =
+                get_time results_sta mk_heartbeat_runs
+              in
               let speedup = serial_cyc /. heartbeat_cyc in
-              let nb_prom_per_sec = heartbeat_nb_tasks /. heartbeat_sec in
+              let nb_prom_per_sec = heartbeat_nb_tasks /. heartbeat_sec_sta in
+              let nb_heartbeat_per_sec = heartbeat_nb_heartbeats /. heartbeat_sec_sta in
               let last = scfg_i+1 = nb_scfgs in
               Mk_table.cell ~escape:true ~last:false add (Printf.sprintf "%.2fx" speedup);
               Mk_table.cell ~escape:true ~last:false add (Printf.sprintf "%.0f%%" (100. *. heartbeat_utilization));
-              Mk_table.cell ~escape:true ~last:last add (Printf.sprintf "%sk/s" (string_of_thousands nb_prom_per_sec))
+              Mk_table.cell ~escape:true ~last:false add (Printf.sprintf "%sk/s" (string_of_thousands nb_prom_per_sec));
+              Mk_table.cell ~escape:true ~last:last add (Printf.sprintf "%sk/s" (string_of_thousands nb_heartbeat_per_sec))
                 (*%sm %sm %sk (string_of_millions serial_cyc) (string_of_millions heartbeat_cyc) (string_of_thousands heartbeat_nb_tasks) *)
             );
           add Latex.tabular_newline);
@@ -848,15 +855,14 @@ let plot_of kappa_usec =
       ~~ List.iteri scfgs (fun scfg_i scfg ->
           let pretty_scfg = pretty_name_of_interrupt_config scfg in
           let last = scfg_i+1 = nb_scfgs in
-          Mk_table.cell ~escape:true ~last:false add pretty_scfg;
-          Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol 2 "c|" (Printf.sprintf "%s / Cilk" pretty_scfg)));
+          Mk_table.cell ~escape:true ~last:last add (Latex.tabular_multicol 3 "c|" pretty_scfg));
       add Latex.tabular_newline;
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
       ~~ List.iteri scfgs (fun scfg_i scfg ->
           let last = scfg_i+1 = nb_scfgs in
           Mk_table.cell ~escape:true ~last:false add "";
-          Mk_table.cell ~escape:true ~last:false add "Utilization";
+          Mk_table.cell ~escape:true ~last:false add "Util.";
           Mk_table.cell ~escape:true ~last:last add "Prom.");
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
@@ -878,7 +884,7 @@ let plot_of kappa_usec =
                 let heartbeat_elapsed =
                   get_time results mk_heartbeat_runs
                 in
-                let (heartbeat_utilization, heartbeat_nb_tasks) =
+                let (heartbeat_utilization, heartbeat_nb_tasks, heartbeat_nb_heartbeats) =
                   get_stats_heartbeat results_sta (mk_heartbeat_runs & mk_ext_sta)
                 in
                 let idle_heartbeat = (fst heartbeat_elapsed) *. heartbeat_utilization in

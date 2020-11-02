@@ -212,7 +212,6 @@ int mergesort_handler(
 		      tpalrts::stack_type s, char*& sp, char*& prmhd, char*& prmtl,
 		      void*& pc) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
-  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if (prmempty(prmtl, prmhd)) {
     if (cp_lo == cp_hi) {
       return 0;

@@ -69,7 +69,6 @@ void incr_array_interrupt(double* a, uint64_t lo, uint64_t hi, void* p);
 
 int incr_array_handler(double* a, uint64_t lo, uint64_t& hi, void* _p) {
   auto p = (tpalrts::promotable*)_p;
-  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if (hi - lo <= 1) {
     return 0;
   }

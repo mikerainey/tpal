@@ -129,7 +129,6 @@ void merge_par(Item* xs, Item* ys, Item* tmp,
       auto cur = mcsl::cycles::now();
       if (mcsl::cycles::diff(promotion_prev, cur) > tpalrts::kappa_cycles) {
         promotion_prev = cur;
-        tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
         try_promote();
       }
     } else if (heartbeat == heartbeat_mechanism_hardware_interrupt) {

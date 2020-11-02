@@ -73,7 +73,6 @@ void plus_reduce_array_interrupt(double* a, uint64_t lo, uint64_t hi, uint64_t r
 
 int loop_handler(double* a, uint64_t lo, uint64_t hi, uint64_t r, double* dst, void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
-  tpalrts::stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   if ((hi - lo) <= 1) {
     return 0;
   }

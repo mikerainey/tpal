@@ -147,6 +147,7 @@ auto destroy_rollfoward_table() {
 #if defined(MCSL_LINUX)
 
 void heartbeat_interrupt_handler(int, siginfo_t*, void* uap) {
+  stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   mcontext_t* mctx = &((ucontext_t *)uap)->uc_mcontext;
   register_type* rip = &mctx->gregs[16];
   try_to_initiate_rollforward(rollforward_table, rip);
@@ -155,6 +156,7 @@ void heartbeat_interrupt_handler(int, siginfo_t*, void* uap) {
 #elif defined(MCSL_NAUTILUS)
 
 void heartbeat_interrupt_handler(excp_entry_t* e, void* priv) {
+  stats::increment(tpalrts::stats_configuration::nb_heartbeats, naut_my_cpu_id());
   struct nk_regs* r = (struct nk_regs*)((char*)e - 128);
   try_to_initiate_rollforward(rollforward_table, (register_type*)&(r->rip));
 }
