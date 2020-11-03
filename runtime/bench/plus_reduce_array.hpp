@@ -69,9 +69,9 @@ public:
 /*---------------------------------------------------------------------*/
 /* Hardware-interrupt version */
 
-void plus_reduce_array_interrupt(double* a, uint64_t lo, uint64_t hi, uint64_t r, double* dst, void* p);
+void plus_reduce_array_interrupt(double* a, uint64_t lo, uint64_t hi, double r, double* dst, void* p);
 
-int loop_handler(double* a, uint64_t lo, uint64_t hi, uint64_t r, double* dst, void* _p) {
+int loop_handler(double* a, uint64_t lo, uint64_t hi, double r, double* dst, void* _p) {
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
   if ((hi - lo) <= 1) {
     return 0;
@@ -98,7 +98,7 @@ int loop_handler(double* a, uint64_t lo, uint64_t hi, uint64_t r, double* dst, v
 static
 double plus_reduce_array_cilk(double* a, uint64_t lo, uint64_t hi) {
 #if defined(USE_CILK_PLUS)
-  cilk::reducer_opadd<int> sum(0);
+  cilk::reducer_opadd<double> sum(0);
   cilk_for (uint64_t i = 0; i != hi; i++) {
     *sum += a[i];
   }
