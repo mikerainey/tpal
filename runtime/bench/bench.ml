@@ -267,7 +267,7 @@ let onek_vertices = "onek_vertices"
 let twok_vertices = "twok_vertices"
 
 let pretty_input_names = [
-    one_hundred_million_64bit_ints, "$100 \cdot 10^6$ 64-bit ints";
+    one_hundred_million_64bit_ints, "$100 \cdot 10^6$ 64-bit doubles";
     bigrows, "random";
     bigcols, "exponential";
     arrowhead, "arrowhead";
