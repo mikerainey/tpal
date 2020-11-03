@@ -156,7 +156,10 @@ void heartbeat_interrupt_handler(int, siginfo_t*, void* uap) {
 #elif defined(MCSL_NAUTILUS)
 
 void heartbeat_interrupt_handler(excp_entry_t* e, void* priv) {
-  stats::increment(tpalrts::stats_configuration::nb_heartbeats, naut_my_cpu_id());
+#ifdef TPALRTS_STATS
+  auto id = naut_my_cpu_id();
+  stats::increment(tpalrts::stats_configuration::nb_heartbeats, id > 0 ? id - 1 : id);
+#endif
   struct nk_regs* r = (struct nk_regs*)((char*)e - 128);
   try_to_initiate_rollforward(rollforward_table, (register_type*)&(r->rip));
 }
