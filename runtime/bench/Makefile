@@ -53,6 +53,7 @@ BENCHMARKS=\
 	mandelbrot \
 	kmeans \
 	floyd_warshall \
+	srad \
 	knapsack \
 	mergesort
 

@@ -265,6 +265,7 @@ let uniformdist = "uniformdist"
 let expdist = "expdist"
 let onek_vertices = "onek_vertices"
 let twok_vertices = "twok_vertices"
+let fourk_items = "fourk_items"
 
 let pretty_input_names = [
     one_hundred_million_64bit_ints, "$100 \cdot 10^6$ 64-bit doubles";
@@ -278,6 +279,7 @@ let pretty_input_names = [
     thirty_six_items, "36 items";
     uniformdist, "$20 \cdot 10^6$ ints (uniform)";
     expdist, "$20 \cdot 10^6$ ints (exponential)";
+    fourk_items, "4k items";
   ]
 
 let inputname_of mk =
@@ -305,6 +307,8 @@ let benchmarks : benchmark_descr list = [
       bd_mk_input = mk_inputname onek_vertices; };
     { bd_problem = "floyd_warshall";
       bd_mk_input = mk_inputname twok_vertices; };
+    { bd_problem = "srad";
+      bd_mk_input = mk_inputname fourk_items; };
     { bd_problem = "knapsack";
       bd_mk_input = mk_inputname thirty_six_items; };
     { bd_problem = "mergesort";
