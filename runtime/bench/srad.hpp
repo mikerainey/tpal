@@ -308,7 +308,7 @@ auto bench_pre(promotable* p) {
   random_matrix(I, rows, cols);
 
   for (int k = 0;  k < size_I; k++ ) {
-    J[k] = (float)exp(I[k]) ;
+    J[k] = (float)exp((double)I[k]) ;
   }
 
   sum=0; sum2=0;     
