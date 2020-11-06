@@ -41,6 +41,7 @@ public:
     nb_promotions,
     nb_steals,
     nb_heartbeats,
+    nb_block_allocs,
     nb_counters
   };
 
@@ -50,6 +51,7 @@ public:
     names[nb_promotions] = "nb_promotions";
     names[nb_steals] = "nb_steals";
     names[nb_heartbeats] = "nb_heartbeats";
+    names[nb_block_allocs] = "nb_block_allocs";
     return names[id];
   }
   

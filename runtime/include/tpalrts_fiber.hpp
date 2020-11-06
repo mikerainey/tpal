@@ -14,7 +14,7 @@ namespace tpalrts {
 class promotable;
   
 static constexpr
-int arena_block_szb = 1 << 12;
+int arena_block_szb = 1 << 14;
 
 class arena_block_type {
 public:
@@ -45,12 +45,14 @@ std::pair<void*, arena_block_type*> alloc_arena_block(std::size_t szb) {
   assert((szb % sizeof(void*)) == 0);
   auto& b = arena_blocks.mine();
   if (b == nullptr) {
+    stats::increment(stats_configuration::nb_block_allocs);
     b = new arena_block_type;
   }
   assert(szb <= arena_block_szb);
   auto ap = b->next;
   auto ap2 = ap + szb;
   if (ap2 >= arena_block_szb) {
+    stats::increment(stats_configuration::nb_block_allocs);
     decr_arena_block(b);
     b = new arena_block_type;
     ap = b->next;
