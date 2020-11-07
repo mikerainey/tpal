@@ -10,4 +10,5 @@ echo -n "Destination folder: $dst"
 mkdir $dst
 
 cp $bench_data/results_*.txt $dst
+cp $bench_data/results_*.csv $dst
 cp $bench_data/tables_*.tex $dst
