@@ -857,6 +857,7 @@ end
 module ExpLinuxVsCilk = struct
 
 let name = "linux_vs_cilk"
+let name_seq = name ^ "_seq"  
 
 let make() =
   build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
@@ -865,11 +866,19 @@ let mk_runs =
   (mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks) & mk_kappas_usec
 
 let mk_runs_sta =
-  ((mk_all (mk_interrupt_runs_of_bd 1) benchmarks) & mk_ext_sta & mk_kappas_usec) ++
-    ((mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks) & mk_ext_sta & mk_kappas_usec)
+  ((mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks) & mk_ext_sta & mk_kappas_usec)
 
 let mk_runs_cilk =
   (mk_all (mk_cilk_runs_of_bd arg_proc) benchmarks)
+
+let mk_seq_runs =
+  (mk_all (mk_interrupt_runs_of_bd 1) benchmarks) & mk_kappas_usec
+
+let mk_seq_runs_sta =
+  (mk_all (mk_interrupt_runs_of_bd 1) benchmarks) & mk_ext_sta & mk_kappas_usec
+
+let mk_seq_runs_cilk =
+  (mk_all (mk_cilk_runs_of_bd 1) benchmarks)
 
 let run () = (
   Mk_runs.(call (run_modes @ [
@@ -883,19 +892,35 @@ let run () = (
   Mk_runs.(call (run_modes @ [
                  Output (file_results_cilk name);
                  Timeout arg_par_timeout;
-                 Args mk_runs_cilk])))
+                 Args mk_runs_cilk]));
+  Mk_runs.(call (run_modes @ [
+                 Output (file_results name_seq);
+                 Timeout arg_seq_timeout;
+                 Args mk_seq_runs]));
+  Mk_runs.(call (run_modes @ [
+                 Output (file_results_sta name_seq);
+                 Timeout arg_seq_timeout;
+                 Args mk_seq_runs_sta]));
+  Mk_runs.(call (run_modes @ [
+                 Output (file_results_cilk name_seq);
+                 Timeout arg_seq_timeout;
+                 Args mk_seq_runs_cilk]))
+  )
   
 let check = nothing  (* do something here *)
+
+let interrupts =
+  [interrupt_ping_thread;]
+
+let serial_interrupts =
+  [serial_interrupt_ping_thread;]
       
-let plot_of kappa_usec =
+let plot_of proc results results_cilk results_sta kappa_usec =
   let mk_kappa_usec = mk int "kappa_usec" kappa_usec in
-  let name_out = Printf.sprintf "%s_kappa_usec_%d" name kappa_usec in
+  let name_out = Printf.sprintf "%s_proc_%d_kappa_usec_%d" name proc kappa_usec in
   let tex_file = file_tables_src name_out in
   let pdf_file = file_tables name_out in
   let csv_file = file_csv name_out in
-  let results = Results.from_file (file_results name) in
-  let results_cilk = Results.from_file (file_results_cilk name) in
-  let results_sta = Results.from_file (file_results_sta name) in
   let mk_scfgs = mk_list string scheduler_configuration interrupts in
   let scfgs = List.flatten (values_of_keys_in_params mk_scfgs [scheduler_configuration;]) in
   let nb_scfgs = List.length scfgs in
@@ -929,7 +954,7 @@ let plot_of kappa_usec =
           Mk_table.cell ~escape:true ~last:false add benchdescr;
           csv_cell add_csv (pretty_problemname_of bd);
           csv_cell add_csv (pretty_inputname_of bd);
-            let mk_cilk_runs = mk_cilk_runs_of_bd arg_proc bd in
+          let mk_cilk_runs = mk_cilk_runs_of_bd proc bd in
             let cilk_elapsed =
               get_time results_cilk mk_cilk_runs
             in
@@ -940,7 +965,7 @@ let plot_of kappa_usec =
             csv_cell add_csv (report_elapsed cilk_elapsed);
             ~~ List.iteri scfgs (fun scfg_i scfg ->
                 let mk_scfg = (mk string scheduler_configuration scfg) in
-                let mk_heartbeat_runs = (mk_runs_of_bd arg_proc bd) & mk_scfg & mk_kappa_usec in
+                let mk_heartbeat_runs = (mk_runs_of_bd proc bd) & mk_scfg & mk_kappa_usec in
                 let heartbeat_elapsed =
                   get_time results mk_heartbeat_runs
                 in
@@ -968,7 +993,17 @@ let plot_of kappa_usec =
     ));
   ()
 
-let plot () = ~~ List.iter arg_kappas_usec plot_of
+let plot () =
+  let results = Results.from_file (file_results name) in
+  let results_cilk = Results.from_file (file_results_cilk name) in
+  let results_sta = Results.from_file (file_results_sta name) in
+  let _ = ~~ List.iter arg_kappas_usec (plot_of arg_proc results results_cilk results_sta) in
+  let results_seq = Results.from_file (file_results name_seq) in
+  let results_cilk_seq = Results.from_file (file_results_cilk name_seq) in
+  let results_sta_seq = Results.from_file (file_results_sta name_seq) in
+  let _ = ~~ List.iter arg_kappas_usec (plot_of 1 results_seq results_cilk_seq results_sta_seq) in
+  ()
+
 
 let all () = select make run check plot
 
