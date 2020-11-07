@@ -10,6 +10,7 @@ let arg_virtual_run = XCmd.mem_flag "virtual_run"
 let arg_virtual_build = XCmd.mem_flag "virtual_build"
 let arg_benchmarks = XCmd.parse_or_default_list_string "benchmarks" []
 let arg_nb_runs = XCmd.parse_or_default_int "runs" 1
+let arg_nb_seq_runs = XCmd.parse_or_default_int "seq_runs" 1
 let arg_mode = Mk_runs.mode_from_command_line "mode"
 let arg_skips = XCmd.parse_or_default_list_string "skip" []
 let arg_onlys = XCmd.parse_or_default_list_string "only" []
@@ -103,7 +104,13 @@ let run_modes =
     Mode arg_mode;
     Virtual arg_virtual_run;
     Runs arg_nb_runs; ])
-                  
+
+let seq_run_modes =
+  Mk_runs.([
+    Mode arg_mode;
+    Virtual arg_virtual_run;
+    Runs arg_nb_seq_runs; ])
+
 (*****************************************************************************)
 (** Steps *)
 
@@ -487,7 +494,7 @@ let mk_runs =
   (mk_all (mk_cilk_runs_of_bd 1) benchmarks)
 
 let run () =
-  Mk_runs.(call (run_modes @ [
+  Mk_runs.(call (seq_run_modes @ [
                  Output (file_results name);
                  Timeout arg_seq_timeout;
                  Args mk_runs]))
@@ -557,11 +564,11 @@ let mk_runs_sta =
   ((mk_all (mk_interrupt_runs_of_bd 1) benchmarks) & mk_ext_sta & mk_kappas_usec)
 
 let run () = (
-  Mk_runs.(call (run_modes @ [
+  Mk_runs.(call (seq_run_modes @ [
                  Output (file_results name);
                  Timeout arg_seq_timeout;
                  Args mk_runs]));
-  Mk_runs.(call (run_modes @ [
+  Mk_runs.(call (seq_run_modes @ [
                  Output (file_results_sta name);
                  Timeout arg_seq_timeout;
                  Args mk_runs_sta])))
@@ -893,15 +900,15 @@ let run () = (
                  Output (file_results_cilk name);
                  Timeout arg_par_timeout;
                  Args mk_runs_cilk]));
-  Mk_runs.(call (run_modes @ [
+  Mk_runs.(call (seq_run_modes @ [
                  Output (file_results name_seq);
                  Timeout arg_seq_timeout;
                  Args mk_seq_runs]));
-  Mk_runs.(call (run_modes @ [
+  Mk_runs.(call (seq_run_modes @ [
                  Output (file_results_sta name_seq);
                  Timeout arg_seq_timeout;
                  Args mk_seq_runs_sta]));
-  Mk_runs.(call (run_modes @ [
+  Mk_runs.(call (seq_run_modes @ [
                  Output (file_results_cilk name_seq);
                  Timeout arg_seq_timeout;
                  Args mk_seq_runs_cilk]))
