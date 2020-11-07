@@ -455,6 +455,46 @@ void spmv_cilk_outer(double* val,
 #endif
 }
 
+static constexpr
+uint64_t threshold = 1024;
+
+template <typename F>
+void map_reduce_cilk(const F& f, uint64_t lo, uint64_t hi, double* dst) {
+  double r = 0.0;
+#if defined(USE_CILK_PLUS)
+  if ((hi - lo) < threshold) {
+    for (auto i = lo; i < hi; i++) {
+      r += f(i);
+    }
+  } else {
+    double r1, r2;
+    auto mid = (lo + hi) / 2;
+    cilk_spawn map_reduce_cilk(f, lo, mid, &r1);
+    map_reduce_cilk(f, mid, hi, &r2);
+    cilk_sync;
+    r = r1 + r2;
+  }
+#endif
+  *dst = r;
+}
+
+void spmv_cilk_red(double* val,
+		   uint64_t* row_ptr,
+		   uint64_t* col_ind,
+		   double* x,
+		   double* y,
+		   int64_t n) {
+#if defined(USE_CILK_PLUS)
+  cilk_for (int64_t i = 0; i < n; i++) {  // row loop
+    map_reduce_cilk([=] (uint64_t k) {
+      return val[k] * x[col_ind[k]];
+    }, row_ptr[i], row_ptr[i+1], &y[i]);
+  }
+#else
+  //  mcsl::die("Cilk unsupported\n");
+#endif
+}
+
 /*---------------------------------------------------------------------*/
 
 namespace spmv {
@@ -782,8 +822,14 @@ auto bench_post(promotable*) {
 
 auto bench_body_cilk() {
   spmv_cilk(val, row_ptr, col_ind, x, y, nb_rows);
-  //spmv_cilk_outer(val, row_ptr, col_ind, x, y, nb_rows);
 };
 
+auto bench_body_cilk_outer() {
+  spmv_cilk_outer(val, row_ptr, col_ind, x, y, nb_rows);
+};
+
+auto bench_body_cilk_red() {
+  spmv_cilk_red(val, row_ptr, col_ind, x, y, nb_rows);
+};
 
 }
