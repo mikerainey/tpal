@@ -325,8 +325,22 @@ let benchmarks : benchmark_descr list = [
       bd_mk_input = mk_inputname uniformdist; }; 
     { bd_problem = "mergesort";
       bd_mk_input = mk_inputname expdist; }; 
+  ]
 
-]
+let spmv_extra_benchmarks : benchmark_descr list = [
+    { bd_problem = "spmv_outer";
+      bd_mk_input = mk_inputname bigrows; };
+    { bd_problem = "spmv_outer";
+      bd_mk_input = mk_inputname bigcols; };
+    { bd_problem = "spmv_outer";
+      bd_mk_input = mk_inputname arrowhead; };
+    { bd_problem = "spmv_red";
+      bd_mk_input = mk_inputname bigrows; };
+    { bd_problem = "spmv_red";
+      bd_mk_input = mk_inputname bigcols; };
+    { bd_problem = "spmv_red";
+      bd_mk_input = mk_inputname arrowhead; };
+  ]
 
 let benchmarks =
   if arg_benchmarks = [] then
@@ -864,7 +878,9 @@ end
 module ExpLinuxVsCilk = struct
 
 let name = "linux_vs_cilk"
-let name_seq = name ^ "_seq"  
+let name_seq = name ^ "_seq"
+
+let benchmarks = List.append benchmarks spmv_extra_benchmarks
 
 let make() =
   build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
@@ -1017,6 +1033,51 @@ let all () = select make run check plot
 end
 
 (*****************************************************************************)
+(** Work-efficiency experiment *)
+
+module ExpVaryKappa = struct
+
+let name = "vary_kappa"
+
+let make() =
+  build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
+
+let kappas_usec = [20;40;60;80;100;]
+                
+let mk_kappas_usec =
+  mk_list int "kappa_usec" kappas_usec
+
+let mk_runs =
+  (mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks) & mk_kappas_usec
+
+let run () =
+  Mk_runs.(call (seq_run_modes @ [
+                 Output (file_results name);
+                 Timeout arg_seq_timeout;
+                 Args mk_runs]))
+  
+let check = nothing  (* do something here *)
+      
+let plot () =
+  Mk_scatter_plot.(call ([
+      Scatter_plot_opt Scatter_plot.([
+         Draw_lines true; 
+         X_axis [Axis.Label "Execution time (s)"];
+         Y_axis [Axis.Lower (Some 0.)] ]);
+      Charts mk_unit;
+      Series (mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks);
+      X mk_kappas_usec;
+      Input (file_results name);
+      Output (file_plots name);
+      ] 
+      @ (y_as_mean "exectime")
+      ))
+
+let all () = select make run check plot
+
+end
+
+(*****************************************************************************)
 (** Main *)
 
 let _ =
@@ -1028,6 +1089,7 @@ let _ =
       "linux_vs_cilk", ExpLinuxVsCilk.all;
       "linux_parallel_heartbeat", ExpParallelHeartbeat.all_linux;
       "nautilus_parallel_heartbeat", ExpParallelHeartbeat.all_nautilus;
+      "vary_kappa", ExpVaryKappa.all;
   ]
   in
   Pbench.execute_from_only_skip arg_actions [] bindings;
