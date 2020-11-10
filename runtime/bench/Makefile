@@ -50,6 +50,8 @@ BENCHMARKS=\
 	incr_array \
 	plus_reduce_array \
 	spmv \
+	spmv_outer \
+	spmv_red \
 	mandelbrot \
 	kmeans \
 	floyd_warshall \
