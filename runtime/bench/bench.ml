@@ -299,8 +299,8 @@ let pretty_inputname_of bd =
   Latex.escape (List.assoc (inputname_of bd.bd_mk_input) pretty_input_names)
 
 let benchmarks : benchmark_descr list = [
-    { bd_problem = "incr_array";
-      bd_mk_input = mk_inputname one_hundred_million_64bit_ints; };
+(*    { bd_problem = "incr_array";
+      bd_mk_input = mk_inputname one_hundred_million_64bit_ints; }; *)
     { bd_problem = "plus_reduce_array";
       bd_mk_input = mk_inputname one_hundred_million_64bit_ints; };
     { bd_problem = "spmv";
@@ -1057,21 +1057,29 @@ let run () =
                  Args mk_runs]))
   
 let check = nothing  (* do something here *)
-      
+
+let formatter = (* used to beautify the name of the series *)
+     Env.format (Env.(
+       [ ("prog", Format_hidden);
+         ("benchmark", Format_custom (fun s -> s));
+         ("inputname", Format_custom (fun s -> s));
+         ("proc", Format_hidden);
+       ]))
+
 let plot () =
-  Mk_scatter_plot.(call ([
-      Scatter_plot_opt Scatter_plot.([
-         Draw_lines true; 
-         X_axis [Axis.Label "Execution time (s)"];
+  Mk_bar_plot.(call ([
+      Bar_plot_opt Bar_plot.([
+         X_titles_dir Vertical;
          Y_axis [Axis.Lower (Some 0.)] ]);
+      Formatter formatter;
       Charts mk_unit;
-      Series (mk_all (mk_interrupt_runs_of_bd arg_proc) benchmarks);
-      X mk_kappas_usec;
+      Series mk_kappas_usec;
+      X (mk_all (mk_runs_of_bd arg_proc) benchmarks);
       Input (file_results name);
       Output (file_plots name);
-      ] 
-      @ (y_as_mean "exectime")
-      ))
+      Y_label "exectime";
+      Y eval_exectime;
+  ]))
 
 let all () = select make run check plot
 

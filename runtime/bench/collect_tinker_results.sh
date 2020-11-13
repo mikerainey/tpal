@@ -2,6 +2,9 @@
 
 folder_out=$1
 
+scp -i ~/.ssh/id_rsa_mac root@tinker-2.cs.iit.edu:/home/mrainey/tpal/runtime/nix/*.txt $folder_out
+scp -i ~/.ssh/id_rsa_mac root@tinker-2.cs.iit.edu:/home/mrainey/tpal/runtime/nix/*.pdf $folder_out
+
 # Transfer nautilus results
 
 folder_nautilus_tmp=$(mktemp -d)
@@ -16,4 +19,3 @@ done
 
 rm -rf $folder_nautilus_tmp
 
-scp -i ~/.ssh/id_rsa_mac root@tinker-2.cs.iit.edu:/home/mrainey/tpal/runtime/nix/*.txt $folder_out
