@@ -69,7 +69,7 @@ let on_iit_or_nwu_machine =
 let arg_skip_interrupts =
   let dflt =
     if on_iit_or_nwu_machine then
-      [interrupt_papi;interrupt_pthread;]
+      [(*interrupt_papi;interrupt_pthread;*)]
     else
       []
   in
@@ -78,7 +78,7 @@ let arg_skip_interrupts =
 let arg_skip_serial_interrupts =
   let dflt =
     if on_iit_or_nwu_machine then
-      [serial_interrupt_papi;serial_interrupt_pthread;]
+      [(*serial_interrupt_papi;serial_interrupt_pthread;*)]
     else
       []
   in
