@@ -69,18 +69,18 @@ let on_iit_or_nwu_machine =
 let arg_skip_interrupts =
   let dflt =
     if on_iit_or_nwu_machine then
-      [(*interrupt_papi;interrupt_pthread;*)]
+      [(*interrupt_papi;*)interrupt_pthread;]
     else
-      []
+      [interrupt_pthread;]
   in
   XCmd.parse_or_default_list_string "skip_interrupts" dflt
 
 let arg_skip_serial_interrupts =
   let dflt =
     if on_iit_or_nwu_machine then
-      [(*serial_interrupt_papi;serial_interrupt_pthread;*)]
+      [(*serial_interrupt_papi;*)serial_interrupt_pthread;]
     else
-      []
+      [serial_interrupt_pthread;]
   in
   XCmd.parse_or_default_list_string "skip_serial_interrupts" dflt
 
@@ -278,17 +278,17 @@ let twok_vertices = "twok_vertices"
 let fourk_items = "fourk_items"
 
 let pretty_input_names = [
-    one_hundred_million_64bit_ints, "$100 \cdot 10^6$ 64-bit doubles";
+    one_hundred_million_64bit_ints, "100 million 64-bit doubles";
     bigrows, "random";
-    bigcols, "exponential";
+    bigcols, "powerlaw";
     arrowhead, "arrowhead";
     fourk_by_fourk, "4k by 4k pixels";
-    one_million_objects, "$1 \cdot 10^6$ objects";
+    one_million_objects, "1 million objects";
     onek_vertices, "1k vertices";
     twok_vertices, "2k vertices";
     thirty_six_items, "36 items";
-    uniformdist, "$20 \cdot 10^6$ ints (uniform)";
-    expdist, "$20 \cdot 10^6$ ints (exponential)";
+    uniformdist, "20 million ints (uniform)";
+    expdist, "20 million ints (exponential)";
     fourk_items, "4k items";
   ]
 
@@ -712,8 +712,8 @@ let plot_linux () =
     let results = Results.from_file (file_results name) in
     let results_sta = Results.from_file (file_results_sta name) in
     let results_work_efficiency = Results.from_file (file_results ExpWorkEfficiency.name) in
-    let serial_interrupts = [serial_interrupt_pthread;serial_interrupt_papi] in
-    let interrupts = [interrupt_pthread;interrupt_papi] in
+    let serial_interrupts = [(*serial_interrupt_pthread;*)serial_interrupt_papi] in
+    let interrupts = [(*interrupt_pthread;*)interrupt_papi] in
     plot_for "linux_other" results results_sta results_work_efficiency interrupts serial_interrupts mk_runs_of_bd
   in
   ()
@@ -853,7 +853,7 @@ let plot_linux () =
     let results = Results.from_file (file_results name) in
     let results_sta = Results.from_file (file_results_sta name) in
     let results_serial = Results.from_file (file_results ExpWorkEfficiency.name) in
-    let interrupts = [interrupt_papi;interrupt_pthread] in
+    let interrupts = [interrupt_papi(*;interrupt_pthread*)] in
     ~~ List.iter arg_kappas_usec (fun kappa_usec -> plot_of "linux_other" kappa_usec results results_serial results_sta interrupts)
   in
   ()  
@@ -880,7 +880,7 @@ module ExpLinuxVsCilk = struct
 let name = "linux_vs_cilk"
 let name_seq = name ^ "_seq"
 
-let benchmarks = List.append benchmarks spmv_extra_benchmarks
+(*let benchmarks = List.append benchmarks spmv_extra_benchmarks*)
 
 let make() =
   build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
