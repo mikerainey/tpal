@@ -271,7 +271,7 @@ namespace heartbeat {
   constexpr
   int H = 128;
 
-  bool tick() {
+  bool heartbeat() {
     if (counter++ == H) {
       counter = 0;
       return true;
@@ -295,7 +295,7 @@ namespace heartbeat {
 
   void sum(node* n, kont* k) {
     while (true) {
-      if (tick()) {
+      if (heartbeat()) {
 	k = try_promote(k);
       }
       if (n == nullptr) {
