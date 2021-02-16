@@ -27,7 +27,7 @@ public:
 
 namespace original {
 
-  int sum(node* n) {
+  auto sum(node* n) -> int {
     if (n == nullptr) {
       return 0;
     } else {
@@ -45,18 +45,81 @@ namespace original {
 
 namespace cps {
 
-  void sum(node* n, std::function<void(int)> k) {
+  auto sum(node* n, std::function<void(int)> k) -> void {
     if (n == nullptr) {
       k(0);
     } else {
       sum(n->left, [&] (int s0) {
-	  sum(n->right, [&] (int s1) {
-	      k(s0 + s1 + n->value);
-	    });
+	sum(n->right, [&] (int s1) {
+	  k(s0 + s1 + n->value);
 	});
+      });
     }
   }
   
+} // end namespace
+
+/* ----------------------------------------- */
+
+namespace scheduler {
+
+  class task {
+  public:
+    int in;
+    std::function<void()> body;
+
+    task(std::function<void()> body)
+      : body(body), in(1) { }
+  };
+
+  std::vector<task*> tasks;
+
+  auto join(task* t) -> void {
+    auto in = --t->in;
+    if (in == 0) {
+      tasks.push_back(t);
+    }
+  }
+
+  auto release(task* t) -> void {
+    join(t);
+  }
+  
+  auto fork(task* t, task* k) -> void {
+    k->in++;
+    release(t);    
+  }
+
+  auto loop() -> void {
+    while (! tasks.empty()) {
+      auto t = tasks.back();
+      tasks.pop_back();
+      t->body();
+    }
+  }
+  
+} // end namespace
+
+/* ----------------------------------------- */
+
+namespace taskpar {
+
+  using namespace scheduler;
+
+  auto sum(node* n, std::function<void(int)> k) -> void {
+    if (n == nullptr) {
+      k(0);
+    } else {
+      auto s = new int[2];
+      auto tjk = new task([=] {
+	k(s[0] + s[1] + n->value);
+      });
+      fork(new task([=] { sum(n->right, [=] (int s0) { s[0] = s0; join(tjk); }); }), tjk);
+      fork(new task([=] { sum(n->left,  [=] (int s1) { s[1] = s1; join(tjk); }); }), tjk);
+      release(tjk);
+    }
+  }
+
 } // end namespace
 
 /* ----------------------------------------- */
@@ -71,21 +134,25 @@ public:
   kont_label label;
   node* n;
   int s0;
+  int* s;
+  scheduler::task* tjk;
   kont* k;
 
   kont(kont_label label, node* n, kont* k)
     : label(label), n(n), k(k) { }
   kont(kont_label label, int s0, node* n, kont* k)
     : label(label), s0(s0), n(n), k(k) { }
+  kont(kont_label label, int* s, scheduler::task* tkj)
+    : label(label), s(s), tjk(tjk), k(nullptr) { }
   kont(kont_label label)
     : label(label), k(nullptr) { }
 };
 
 namespace defunc {
 
-  void apply(kont* k, int s);
+  auto apply(kont* k, int s) -> void;
   
-  void sum(node* n, kont* k) {
+  auto sum(node* n, kont* k) -> void {
     if (n == nullptr) {
       apply(k, 0);
     } else {
@@ -93,7 +160,7 @@ namespace defunc {
     }
   }
 
-  void apply(kont* k, int s) {
+  auto apply(kont* k, int s) -> void {
     if (k->label == A1) {
       sum(k->n->right, new kont(A2, s, k->n, k->k));
     } else if (k->label == A2) {
@@ -110,9 +177,9 @@ namespace defunc {
 
 namespace tailcallelimapply {
 
-  void apply(kont* k, int s);
+  auto apply(kont* k, int s) -> void;
   
-  void sum(node* n, kont* k) {
+  auto sum(node* n, kont* k) -> void {
     if (n == nullptr) {
       apply(k, 0);
     } else {
@@ -120,7 +187,7 @@ namespace tailcallelimapply {
     }
   }
 
-  void apply(kont* k, int s) {
+  auto apply(kont* k, int s) -> void {
     while (true) {
       if (k->label == A1) {
 	sum(k->n->right, new kont(A2, s, k->n, k->k));
@@ -142,7 +209,7 @@ namespace tailcallelimapply {
 
 namespace inlineapply {
   
-  void sum(node* n, kont* k) {
+  auto sum(node* n, kont* k) -> void {
     if (n == nullptr) {
       int s = 0;
       while (true) {
@@ -169,7 +236,7 @@ namespace inlineapply {
 
 namespace tailcallelimsum {
   
-  void sum(node* n, kont* k) {
+  auto sum(node* n, kont* k) -> void {
     while (true) {
       if (n == nullptr) {
 	int s = 0;
@@ -197,71 +264,6 @@ namespace tailcallelimsum {
 
 /* ----------------------------------------- */
 
-namespace scheduler {
-
-  class task {
-  public:
-    int in;
-    std::function<void()> body;
-
-    task(std::function<void()> body)
-      : body(body), in(1) { }
-  };
-
-  std::vector<task*> tasks;
-
-  void join(task* t) {
-    auto in = --t->in;
-    if (in == 0) {
-      tasks.push_back(t);
-    }
-  }
-
-  void release(task* t) {
-    join(t);
-  }
-  
-  void fork(task* t, task* k) {
-    k->in++;
-    release(t);    
-  }
-
-  void loop() {
-    while (! tasks.empty()) {
-      auto t = tasks.back();
-      tasks.pop_back();
-      t->body();
-    }
-  }
-  
-} // end namespace
-
-/* ----------------------------------------- */
-
-namespace taskpar {
-
-  using namespace scheduler;
-
-  void sum(node* n, int* dst, std::function<void()> k) {
-    if (n == nullptr) {
-      *dst = 0;
-      k();
-    } else {
-      auto s = new int[2];
-      auto tjk = new task([=] {
-	*dst = s[0] + s[1] + n->value;
-	k();
-      });
-      fork(new task([=] { sum(n->right, &s[1], [=] { join(tjk); }); }), tjk);
-      fork(new task([=] { sum(n->left, &s[0], [=] { join(tjk); }); }), tjk);
-      release(tjk);
-    }
-  }
-
-} // end namespace
-
-/* ----------------------------------------- */
-
 namespace heartbeat {
 
   using namespace scheduler;
@@ -271,7 +273,7 @@ namespace heartbeat {
   constexpr
   int H = 128;
 
-  bool heartbeat() {
+  auto heartbeat() -> bool {
     if (counter++ == H) {
       counter = 0;
       return true;
@@ -279,21 +281,46 @@ namespace heartbeat {
     return false;
   }
 
-  kont* try_promote(kont* k) {
-    auto k0 = k;
-    while (true) {
-      if (k->label == A1) {
-
-      } else if (k->label == A5) {
-	k = k0;
-	break;
-      }
-      k = k->k;
+  auto try_split(kont* k) -> std::pair<kont*,kont*> {
+    if (k->label == A5) {
+      return std::make_pair(nullptr, nullptr);
     }
-    return k;
+    auto p = try_split(k);
+    kont* k1, * k2;
+    std::tie(k1, k2) = p;
+    if (p.first != nullptr) {
+      return (k2 == nullptr) ? std::make_pair(k1, k) : p;
+    }
+    if (k->label == A1) {
+      return std::make_pair(k, nullptr);
+    }
+    return p;
   }
 
-  void sum(node* n, kont* k) {
+  auto sum(node* n, kont* k) -> void;
+
+  auto try_promote(kont* k) -> kont*{
+    kont* k1, * k2;
+    std::tie(k1, k2) = try_split(k);
+    if (k1 == nullptr) {
+      return k;
+    }
+    auto n = k1->n;
+    auto kj = k1->k;
+    auto s = new int[2];
+    auto tjk = new task([=] { sum(nullptr, new kont(A2, s[0] + s[1], n, kj)); });
+    auto kr1 = new kont(A3, s, tjk);
+    if (k2 != nullptr) {
+      k1->k = kr1;
+      kr1 = k1;
+    }
+    auto kr2 = new kont(A4, s, tjk);
+    fork(new task([=] { sum(n, kr2); }), tjk);
+    release(tjk);
+    return kr1;
+  }
+
+  auto sum(node* n, kont* k) -> void {
     while (true) {
       if (heartbeat()) {
 	k = try_promote(k);
@@ -308,6 +335,14 @@ namespace heartbeat {
 	  } else if (k->label == A2) {
 	    s = k->s0 + s + k->n->value;
 	    k = k->k;
+	  } else if (k->label == A3) {
+	    k->s[0] = s;
+	    join(k->tjk);
+	    return;
+	  } else if (k->label == A4) {
+	    k->s[1] = s;
+	    join(k->tjk);
+	    return;
 	  } else if (k->label == A5) {
 	    std::cout << "heartbeat::sum(n0) = " << s << std::endl;
 	    return;
@@ -336,7 +371,7 @@ int main() {
   tailcallelimsum::sum(n0, new kont(A5));
   int s = 0;
   auto tk = new scheduler::task([&] { std::cout << "taskpar::sum(n0) = " << s << std::endl; });
-  scheduler::fork(new scheduler::task([&] { taskpar::sum(n0, &s, [=] { scheduler::join(tk); }); }), tk);
+  scheduler::fork(new scheduler::task([&] { taskpar::sum(n0, [&] (int sf) { s = sf; scheduler::join(tk); }); }), tk);
   scheduler::release(tk);
   scheduler::loop();
   return 0;
