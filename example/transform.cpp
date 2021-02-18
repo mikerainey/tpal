@@ -8,7 +8,7 @@
 #include <vector>
 
 /* ----------------------------------------- */
-/* Type declarations */
+/* Binary tree data structure */
 
 class node {
 public:
@@ -22,12 +22,10 @@ public:
     : value(value), left(left), right(right) { }
 };
 
-class task;
-
 /* ----------------------------------------- */
 /* Cilk program */
 
-namespace original {
+namespace cilk {
 
   auto sum(node* n) -> int {
     if (n == nullptr) {
@@ -64,9 +62,13 @@ namespace cps {
 /* ----------------------------------------- */
 /* Defunctionalize */
 
+int answer = -1;
+
 using kont_label = enum kont_enum {
   A1, A2, A3, A4, A5, nb_kont
 };
+
+class task;
 
 class kont {
 public:
@@ -105,7 +107,7 @@ namespace defunc {
     } else if (k->label == A2) {
       apply(k->k, k->s0 + s + k->n->value);
     } else if (k->label == A5) {
-      std::cout << "defunc::sum(n0) = " << s << std::endl;
+      answer = s;
     }
   }
   
@@ -135,7 +137,7 @@ namespace tailcallelimapply {
 	s = k->s0 + s + k->n->value;
 	k = k->k;
       } else if (k->label == A5) {
-	std::cout << "tailcallelimapply::sum(n0) = " << s << std::endl;
+	answer = s;
 	return;
       }
     }
@@ -159,7 +161,7 @@ namespace inlineapply {
 	  s = k->s0 + s + k->n->value;
 	  k = k->k;
 	} else if (k->label == A5) {
-	  std::cout << "inlineapply::sum(n0) = " << s << std::endl;
+	  answer = s;
 	  return;
 	}
       }
@@ -188,7 +190,7 @@ namespace tailcallelimsum {
 	    s = k->s0 + s + k->n->value;
 	    k = k->k;
 	  } else if (k->label == A5) {
-	    std::cout << "tailcallelimsum::sum(n0) = " << s << std::endl;
+	    answer = s;
 	    return;
 	  }
 	}
@@ -298,7 +300,7 @@ namespace taskpardefunc {
       k->s[1] = s;
       join(k->tjk);
     } else if (k->label == A5) {
-      std::cout << "taskpardefunc::sum(n0) = " << s << std::endl;
+      answer = s;
     }
   }
 
@@ -314,7 +316,7 @@ namespace heartbeat {
   int counter = 0;
 
   constexpr
-  int H = 128;
+  int H = 3;
 
   auto heartbeat() -> bool {
     if (counter++ == H) {
@@ -331,7 +333,7 @@ namespace heartbeat {
     auto p = try_split(k);
     kont* k1, * k2;
     std::tie(k1, k2) = p;
-    if (p.first != nullptr) {
+    if (k1 != nullptr) {
       return (k2 == nullptr) ? std::make_pair(k1, k) : p;
     }
     if (k->label == A1) {
@@ -387,7 +389,7 @@ namespace heartbeat {
 	    join(k->tjk);
 	    return;
 	  } else if (k->label == A5) {
-	    std::cout << "heartbeat::sum(n0) = " << s << std::endl;
+	    answer = s;
 	    return;
 	  }
 	}
@@ -403,33 +405,38 @@ namespace heartbeat {
 /* ----------------------------------------- */
 /* Driver */
 
-auto check_sum(node* n, std::function<void(node*, int*)> f) -> bool {
-  auto s = original::sum(n);
-  int s2;
-  f(n, &s2);
-  return s == s2;
-}
-
 int main() {
-  auto n0 = new node(1, new node(2), new node(3));
-  std::cout << "original::sum(n0) = " << original::sum(n0) << std::endl;
-  cps::sum(n0, [&] (int v) {
-    std::cout << "cps::sum(n0) = " << v << std::endl;
-  });
-  assert(check_sum(n0, [&] (node* n, int* dst) {
-    cps::sum(n0, [&] (int s) { *dst = s; });
-  }));
-  defunc::sum(n0, new kont(A5));
-  tailcallelimapply::sum(n0, new kont(A5));
-  inlineapply::sum(n0, new kont(A5));
-  tailcallelimsum::sum(n0, new kont(A5));
-  scheduler::launch(new task([&] {
-    taskpar::sum(n0, [&] (int sf) {
-      std::cout << "taskpar::sum(n0) = " << sf << std::endl;
+
+  auto algos = std::vector<std::function<void(node*)>>(
+    {
+     [&] (node* n) { cps::sum(n, [&] (int s) { answer = s; }); },
+     [&] (node* n) { defunc::sum(n, new kont(A5)); },
+     [&] (node* n) { tailcallelimapply::sum(n, new kont(A5)); },
+     [&] (node* n) { inlineapply::sum(n, new kont(A5)); },
+     [&] (node* n) { tailcallelimsum::sum(n, new kont(A5)); },
+     [&] (node* n) {
+       scheduler::launch(new task([&] { taskpar::sum(n, [&] (int sf) { answer = sf; }); }));
+     },
+     [&] (node* n) {
+       scheduler::launch(new task([&] { taskpardefunc::sum(n, new kont(A5)); }));
+     }
     });
-  }));
-  scheduler::launch(new task([&] {
-    taskpardefunc::sum(n0, new kont(A5));
-  }));
+
+  auto ns = std::vector<node*>(
+    {
+      new node(1, new node(2), new node(3))
+    });
+
+  for (auto n : ns) {
+    for (auto& a : algos) {
+      answer = -1;
+      a(n);
+      if (cilk::sum(n) != answer) {
+	std::cerr << "wrong answer: " << answer << std::endl;
+	exit(0);
+      }
+    }
+  }
+  
   return 0;
 }
