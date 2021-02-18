@@ -367,9 +367,7 @@ namespace heartbeat {
 
   auto sum(node* n, kont* k) -> void {
     while (true) {
-      if (heartbeat()) {
-	k = try_promote(k);
-      }
+      k = heartbeat() ? try_promote(k) : k; // promotion-ready program point
       if (n == nullptr) {
 	int s = 0;
 	while (true) {
@@ -424,7 +422,12 @@ int main() {
 
   auto ns = std::vector<node*>(
     {
-      new node(1, new node(2), new node(3))
+     nullptr,
+     new node(123),
+     new node(1, new node(2), nullptr),
+     new node(1, nullptr, new node(2)),
+     new node(1, new node(2), new node(3)),
+     new node(1, new node(2), new node(3, new node(4), new node(5)))
     });
 
   for (auto n : ns) {
