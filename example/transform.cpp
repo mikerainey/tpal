@@ -327,7 +327,7 @@ namespace heartbeat {
   }
 
   auto try_split(kont* k) -> std::pair<kont*,kont*> {
-    if (k->label == A5) {
+    if (k->label == A3 || k->label == A4 || k->label == A5) {
       return std::make_pair(nullptr, nullptr);
     }
     auto p = try_split(k);
@@ -344,7 +344,7 @@ namespace heartbeat {
 
   auto sum(node* n, kont* k) -> void;
 
-  auto try_promote(kont* k) -> kont*{
+  auto try_promote(kont* k) -> kont* {
     kont* k1, * k2;
     std::tie(k1, k2) = try_split(k);
     if (k1 == nullptr) {
@@ -407,6 +407,7 @@ int main() {
 
   auto algos = std::vector<std::function<void(node*)>>(
     {
+     [&] (node* n) { heartbeat::sum(n, new kont(A5)); },
      [&] (node* n) { cps::sum(n, [&] (int s) { answer = s; }); },
      [&] (node* n) { defunc::sum(n, new kont(A5)); },
      [&] (node* n) { tailcallelimapply::sum(n, new kont(A5)); },
