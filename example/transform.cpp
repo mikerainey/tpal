@@ -89,6 +89,26 @@ public:
     : label(label), k(nullptr) { }
 };
 
+std::ostream& operator<<(std::ostream& o, kont& _k) {
+  kont* k = (kont*)&_k;
+  while (true) {
+    assert(k != nullptr);
+    auto l = k->label;
+    if (l == A1) {
+      o << "A1(" << k->n << ")\n";
+    } else if (l == A2) {
+      o << "A2(" << k->n << "," << k->s0 << ")\n";
+    } else if (l == A3) {
+      return o << "A3(" << k->s << "," << k->tjk << ")\n";
+    } else if (l == A4) {
+      return o << "A4(" << k->s << "," << k->tjk << ")\n";
+    } else if (l == A5) {
+      return o << "A5\n";
+    }
+    k = k->k;
+  }
+}
+
 namespace defunc {
 
   auto apply(kont* k, int s) -> void;
@@ -319,52 +339,49 @@ namespace heartbeat {
   int H = 3;
 
   auto heartbeat() -> bool {
-    if (counter++ == H) {
+    if (++counter >= H) {
       counter = 0;
       return true;
     }
     return false;
   }
 
-  auto try_split(kont* k) -> std::pair<kont*,kont*> {
-    if (k->label == A3 || k->label == A4 || k->label == A5) {
-      return std::make_pair(nullptr, nullptr);
-    }
-    auto p = try_split(k);
-    kont* k1, * k2;
-    std::tie(k1, k2) = p;
-    if (k1 != nullptr) {
-      return (k2 == nullptr) ? std::make_pair(k1, k) : p;
-    }
-    if (k->label == A1) {
-      return std::make_pair(k, nullptr);
-    }
-    return p;
-  }
-
   auto sum(node* n, kont* k) -> void;
 
-  auto try_promote(kont* k) -> kont* {
-    kont* k1, * k2;
-    std::tie(k1, k2) = try_split(k);
-    if (k1 == nullptr) {
-      return k;
+  auto find_oldest(kont* k, std::function<bool(kont*)> p) -> kont* {
+    kont* kr = nullptr;
+    while (k->label == A1 || k->label == A2) {
+      kr = p(k) ? k : kr;
+      k = k->k;
     }
-    auto n = k1->n;
-    auto kj = k1->k;
-    auto s = new int[2];
-    auto tjk = new task([=] { sum(nullptr, new kont(A2, s[0] + s[1], n, kj)); });
-    auto kr1 = new kont(A3, s, tjk);
-    if (k2 != nullptr) {
-      k1->k = kr1;
-      kr1 = k1;
-    }
-    auto kr2 = new kont(A4, s, tjk);
-    fork(new task([=] { sum(n, kr2); }), tjk);
-    release(tjk);
-    return kr1;
+    return kr;
   }
 
+  auto replace(kont* k, kont* kt, kont* kn) -> kont* {
+    kont** kr = &k;
+    while ((*kr) != kt) {
+      kr = &(*kr)->k;
+    }
+    *kr = kn;
+    return *kr;
+  }
+
+  auto try_promote(kont* k) -> kont* {
+    kont* kt = find_oldest(k, [=] (kont* k) { return k->label == A1; });
+    if (kt == nullptr) {
+      return k;
+    }
+    auto n = kt->n;
+    auto kj = kt->k;
+    auto s = new int[2];
+    s[0] = -1000;
+        s[1] = -2000;
+    auto tjk = new task([=] { sum(nullptr, new kont(A2, s[0] + s[1], n, kj)); });
+    fork(new task([=] { sum(n->right, new kont(A4, s, tjk)); }), tjk);
+    kont* k1 = replace(k, kt, new kont(A3, s, tjk));
+    return k1;
+  }
+  
   auto sum(node* n, kont* k) -> void {
     while (true) {
       k = heartbeat() ? try_promote(k) : k; // promotion-ready program point
@@ -407,7 +424,9 @@ int main() {
 
   auto algos = std::vector<std::function<void(node*)>>(
     {
-     [&] (node* n) { heartbeat::sum(n, new kont(A5)); },
+     [&] (node* n) {
+       scheduler::launch(new task([&] { heartbeat::sum(n, new kont(A5)); }));
+     },
      [&] (node* n) { cps::sum(n, [&] (int s) { answer = s; }); },
      [&] (node* n) { defunc::sum(n, new kont(A5)); },
      [&] (node* n) { tailcallelimapply::sum(n, new kont(A5)); },
@@ -423,20 +442,22 @@ int main() {
 
   auto ns = std::vector<node*>(
     {
-     nullptr,
+      /*     nullptr,
      new node(123),
      new node(1, new node(2), nullptr),
-     new node(1, nullptr, new node(2)),
-     new node(1, new node(2), new node(3)),
-     new node(1, new node(2), new node(3, new node(4), new node(5)))
+     new node(1, nullptr, new node(2)), */
+     new node(1, new node(200), new node(3)), /*
+     new node(1, new node(2), new node(3, new node(4), new node(5))),
+     new node(1, new node(3, new node(4), new node(5)), new node(2)), */
     });
 
   for (auto n : ns) {
+    auto ref = cilk::sum(n);
     for (auto& a : algos) {
       answer = -1;
       a(n);
-      if (cilk::sum(n) != answer) {
-	std::cerr << "wrong answer: " << answer << std::endl;
+      if (ref != answer) {
+	std::cerr << "wrong answer: " << answer << ", should be: " << ref << std::endl;
 	exit(0);
       }
     }
