@@ -65,7 +65,7 @@ namespace cps {
 int answer = -1;
 
 using kont_label = enum kont_enum {
-  A1, A2, A3, A4, A5, nb_kont
+  K1, K2, K3, K4, K5, nb_kont
 };
 
 class task;
@@ -94,16 +94,16 @@ std::ostream& operator<<(std::ostream& o, kont& _k) {
   while (true) {
     assert(k != nullptr);
     auto l = k->label;
-    if (l == A1) {
-      o << "A1(" << k << "," << k->n << ")\n";
-    } else if (l == A2) {
-      o << "A2(" << k << "," << k->n << "," << k->s0 << ")\n";
-    } else if (l == A3) {
-      return o << "A3(" << k << "," << k->s << "," << k->tjk << ")\n";
-    } else if (l == A4) {
-      return o << "A4(" << k << "," << k->s << "," << k->tjk << ")\n";
-    } else if (l == A5) {
-      return o << "A5("  << k << ")\n";
+    if (l == K1) {
+      o << "K1(" << k << "," << k->n << ")\n";
+    } else if (l == K2) {
+      o << "K2(" << k << "," << k->n << "," << k->s0 << ")\n";
+    } else if (l == K3) {
+      return o << "K3(" << k << "," << k->s << "," << k->tjk << ")\n";
+    } else if (l == K4) {
+      return o << "K4(" << k << "," << k->s << "," << k->tjk << ")\n";
+    } else if (l == K5) {
+      return o << "K5("  << k << ")\n";
     }
     k = k->k;
   }
@@ -117,16 +117,16 @@ namespace defunc {
     if (n == nullptr) {
       apply(k, 0);
     } else {
-      sum(n->left, new kont(A1, n, k));
+      sum(n->left, new kont(K1, n, k));
     }
   }
 
   auto apply(kont* k, int s) -> void {
-    if (k->label == A1) {
-      sum(k->n->right, new kont(A2, s, k->n, k->k));
-    } else if (k->label == A2) {
+    if (k->label == K1) {
+      sum(k->n->right, new kont(K2, s, k->n, k->k));
+    } else if (k->label == K2) {
       apply(k->k, k->s0 + s + k->n->value);
-    } else if (k->label == A5) {
+    } else if (k->label == K5) {
       answer = s;
     }
   }
@@ -144,19 +144,19 @@ namespace tailcallelimapply {
     if (n == nullptr) {
       apply(k, 0);
     } else {
-      sum(n->left, new kont(A1, n, k));
+      sum(n->left, new kont(K1, n, k));
     }
   }
 
   auto apply(kont* k, int s) -> void {
     while (true) {
-      if (k->label == A1) {
-	sum(k->n->right, new kont(A2, s, k->n, k->k));
+      if (k->label == K1) {
+	sum(k->n->right, new kont(K2, s, k->n, k->k));
 	return;
-      } else if (k->label == A2) {
+      } else if (k->label == K2) {
 	s = k->s0 + s + k->n->value;
 	k = k->k;
-      } else if (k->label == A5) {
+      } else if (k->label == K5) {
 	answer = s;
 	return;
       }
@@ -174,19 +174,19 @@ namespace inlineapply {
     if (n == nullptr) {
       int s = 0;
       while (true) {
-	if (k->label == A1) {
-	  sum(k->n->right, new kont(A2, s, k->n, k->k));
+	if (k->label == K1) {
+	  sum(k->n->right, new kont(K2, s, k->n, k->k));
 	  return;
-	} else if (k->label == A2) {
+	} else if (k->label == K2) {
 	  s = k->s0 + s + k->n->value;
 	  k = k->k;
-	} else if (k->label == A5) {
+	} else if (k->label == K5) {
 	  answer = s;
 	  return;
 	}
       }
     } else {
-      sum(n->left, new kont(A1, n, k));
+      sum(n->left, new kont(K1, n, k));
     }
   }
 
@@ -202,20 +202,20 @@ namespace tailcallelimsum {
       if (n == nullptr) {
 	int s = 0;
 	while (true) {
-	  if (k->label == A1) {
+	  if (k->label == K1) {
 	    n = k->n->right;
-	    k = new kont(A2, s, k->n, k->k);
+	    k = new kont(K2, s, k->n, k->k);
 	    break;
-	  } else if (k->label == A2) {
+	  } else if (k->label == K2) {
 	    s = k->s0 + s + k->n->value;
 	    k = k->k;
-	  } else if (k->label == A5) {
+	  } else if (k->label == K5) {
 	    answer = s;
 	    return;
 	  }
 	}
       } else {
-	k = new kont(A1, n, k);
+	k = new kont(K1, n, k);
 	n = n->left;
       }
     }
@@ -306,20 +306,20 @@ namespace taskpardefunc {
     } else {
       auto s = new int[2];
       auto tjk = new task([=] {	apply(k, s[0] + s[1] + n->value); });
-      fork(new task([=] { sum(n->right, new kont(A4, s, tjk)); }), tjk);
-      fork(new task([=] { sum(n->left,  new kont(A3, s, tjk)); }), tjk);
+      fork(new task([=] { sum(n->right, new kont(K4, s, tjk)); }), tjk);
+      fork(new task([=] { sum(n->left,  new kont(K3, s, tjk)); }), tjk);
       release(tjk);
     }
   }
 
   auto apply(kont* k, int s) -> void {
-    if (k->label == A3) {
+    if (k->label == K3) {
       k->s[0] = s;
       join(k->tjk);
-    } else if (k->label == A4) {
+    } else if (k->label == K4) {
       k->s[1] = s;
       join(k->tjk);
-    } else if (k->label == A5) {
+    } else if (k->label == K5) {
       answer = s;
     }
   }
@@ -350,7 +350,7 @@ namespace heartbeat {
 
   auto find_oldest(kont* k, std::function<bool(kont*)> p) -> kont* {
     kont* kr = nullptr;
-    while (k->label == A1 || k->label == A2) {
+    while (k->label == K1 || k->label == K2) {
       kr = p(k) ? k : kr;
       k = k->k;
     }
@@ -367,16 +367,16 @@ namespace heartbeat {
   }
 
   auto try_promote(kont* k) -> kont* {
-    auto kt = find_oldest(k, [=] (kont* k) { return k->label == A1; });
+    auto kt = find_oldest(k, [=] (kont* k) { return k->label == K1; });
     if (kt == nullptr) {
       return k;
     }
     auto n = kt->n;
     auto kj = kt->k;
     auto s = new int[2];
-    auto tjk = new task([=] { sum(nullptr, new kont(A2, s[0] + s[1], n, kj)); });
-    fork(new task([=] { sum(n->right, new kont(A4, s, tjk)); }), tjk);
-    auto k1 = replace(k, kt, new kont(A3, s, tjk));
+    auto tjk = new task([=] { sum(nullptr, new kont(K2, s[0] + s[1], n, kj)); });
+    fork(new task([=] { sum(n->right, new kont(K4, s, tjk)); }), tjk);
+    auto k1 = replace(k, kt, new kont(K3, s, tjk));
     return k1;
   }
   
@@ -386,28 +386,28 @@ namespace heartbeat {
       if (n == nullptr) {
 	int s = 0;
 	while (true) {
-	  if (k->label == A1) {
+	  if (k->label == K1) {
 	    n = k->n->right;
-	    k = new kont(A2, s, k->n, k->k);
+	    k = new kont(K2, s, k->n, k->k);
 	    break;
-	  } else if (k->label == A2) {
+	  } else if (k->label == K2) {
 	    s = k->s0 + s + k->n->value;
 	    k = k->k;
-	  } else if (k->label == A3) {
+	  } else if (k->label == K3) {
 	    k->s[0] = s;
 	    join(k->tjk);
 	    return;
-	  } else if (k->label == A4) {
+	  } else if (k->label == K4) {
 	    k->s[1] = s;
 	    join(k->tjk);
 	    return;
-	  } else if (k->label == A5) {
+	  } else if (k->label == K5) {
 	    answer = s;
 	    return;
 	  }
 	}
       } else {
-	k = new kont(A1, n, k);
+	k = new kont(K1, n, k);
 	n = n->left;
       }
     }
@@ -423,18 +423,18 @@ int main() {
   auto algos = std::vector<std::function<void(node*)>>(
     {
      [&] (node* n) { cps::sum(n, [&] (int s) { answer = s; }); },
-     [&] (node* n) { defunc::sum(n, new kont(A5)); },
-     [&] (node* n) { tailcallelimapply::sum(n, new kont(A5)); },
-     [&] (node* n) { inlineapply::sum(n, new kont(A5)); },
-     [&] (node* n) { tailcallelimsum::sum(n, new kont(A5)); },
+     [&] (node* n) { defunc::sum(n, new kont(K5)); },
+     [&] (node* n) { tailcallelimapply::sum(n, new kont(K5)); },
+     [&] (node* n) { inlineapply::sum(n, new kont(K5)); },
+     [&] (node* n) { tailcallelimsum::sum(n, new kont(K5)); },
      [&] (node* n) {
        scheduler::launch(new task([&] { taskpar::sum(n, [&] (int sf) { answer = sf; }); }));
      },
      [&] (node* n) {
-       scheduler::launch(new task([&] { taskpardefunc::sum(n, new kont(A5)); }));
+       scheduler::launch(new task([&] { taskpardefunc::sum(n, new kont(K5)); }));
      },
      [&] (node* n) {
-       scheduler::launch(new task([&] { heartbeat::sum(n, new kont(A5)); }));
+       scheduler::launch(new task([&] { heartbeat::sum(n, new kont(K5)); }));
      },
     });
 
