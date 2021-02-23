@@ -49,8 +49,8 @@ namespace cps {
     if (n == nullptr) {
       k(0);
     } else {
-      sum(n->left, [&] (int s0) {
-	sum(n->right, [&] (int s1) {
+      sum(n->left, [&] (int s0) { // K1
+        sum(n->right, [&] (int s1) { // K2
 	  k(s0 + s1 + n->value);
 	});
       });
@@ -64,9 +64,7 @@ namespace cps {
 
 int answer = -1;
 
-using kont_label = enum kont_enum {
-  K1, K2, K3, K4, K5, nb_kont
-};
+using kont_label = enum kont_enum { K1, K2, K3, K4, K5 };
 
 class task;
 
@@ -76,15 +74,15 @@ public:
   node* n;
   int s0;
   int* s;
-  task* tjk;
+  task* tj;
   kont* k;
 
   kont(kont_label label, node* n, kont* k)
     : label(label), n(n), k(k) { }
   kont(kont_label label, int s0, node* n, kont* k)
     : label(label), s0(s0), n(n), k(k) { }
-  kont(kont_label label, int* s, task* tjk)
-    : label(label), s(s), tjk(tjk), k(nullptr) { }
+  kont(kont_label label, int* s, task* tj)
+    : label(label), s(s), tj(tj), k(nullptr) { }
   kont(kont_label label)
     : label(label), k(nullptr) { }
 };
@@ -99,9 +97,9 @@ std::ostream& operator<<(std::ostream& o, kont& _k) {
     } else if (l == K2) {
       o << "K2(" << k << "," << k->n << "," << k->s0 << ")\n";
     } else if (l == K3) {
-      return o << "K3(" << k << "," << k->s << "," << k->tjk << ")\n";
+      return o << "K3(" << k << "," << k->s << "," << k->tj << ")\n";
     } else if (l == K4) {
-      return o << "K4(" << k << "," << k->s << "," << k->tjk << ")\n";
+      return o << "K4(" << k << "," << k->s << "," << k->tj << ")\n";
     } else if (l == K5) {
       return o << "K5("  << k << ")\n";
     }
@@ -282,10 +280,14 @@ namespace taskpar {
       k(0);
     } else {
       auto s = new int[2];
-      auto tjk = new task([=] {	k(s[0] + s[1] + n->value); });
-      fork(new task([=] { sum(n->right, [=] (int s0) { s[0] = s0; join(tjk); }); }), tjk);
-      fork(new task([=] { sum(n->left,  [=] (int s1) { s[1] = s1; join(tjk); }); }), tjk);
-      release(tjk);
+      auto tj = new task([=] {	k(s[0] + s[1] + n->value); });
+      fork(new task([=] {
+	sum(n->right, [=] (int s0) { /* K3 */ s[0] = s0; join(tj); }); }),
+      tj);
+      fork(new task([=] {
+	sum(n->left,  [=] (int s1) { /* K4 */ s[1] = s1; join(tj); }); }),
+      tj);
+      release(tj);
     }
   }
 
@@ -305,20 +307,20 @@ namespace taskpardefunc {
       apply(k, 0);
     } else {
       auto s = new int[2];
-      auto tjk = new task([=] {	apply(k, s[0] + s[1] + n->value); });
-      fork(new task([=] { sum(n->right, new kont(K4, s, tjk)); }), tjk);
-      fork(new task([=] { sum(n->left,  new kont(K3, s, tjk)); }), tjk);
-      release(tjk);
+      auto tj = new task([=] {	apply(k, s[0] + s[1] + n->value); });
+      fork(new task([=] { sum(n->right, new kont(K4, s, tj)); }), tj);
+      fork(new task([=] { sum(n->left,  new kont(K3, s, tj)); }), tj);
+      release(tj);
     }
   }
 
   auto apply(kont* k, int s) -> void {
     if (k->label == K3) {
       k->s[0] = s;
-      join(k->tjk);
+      join(k->tj);
     } else if (k->label == K4) {
       k->s[1] = s;
-      join(k->tjk);
+      join(k->tj);
     } else if (k->label == K5) {
       answer = s;
     }
@@ -374,10 +376,9 @@ namespace heartbeat {
     auto n = kt->n;
     auto kj = kt->k;
     auto s = new int[2];
-    auto tjk = new task([=] { sum(nullptr, new kont(K2, s[0] + s[1], n, kj)); });
-    fork(new task([=] { sum(n->right, new kont(K4, s, tjk)); }), tjk);
-    auto k1 = replace(k, kt, new kont(K3, s, tjk));
-    return k1;
+    auto tj = new task([=] { sum(nullptr, new kont(K2, s[0] + s[1], n, kj)); });
+    fork(new task([=] { sum(n->right, new kont(K4, s, tj)); }), tj);
+    return replace(k, kt, new kont(K3, s, tj));
   }
   
   auto sum(node* n, kont* k) -> void {
@@ -395,11 +396,11 @@ namespace heartbeat {
 	    k = k->k;
 	  } else if (k->label == K3) {
 	    k->s[0] = s;
-	    join(k->tjk);
+	    join(k->tj);
 	    return;
 	  } else if (k->label == K4) {
 	    k->s[1] = s;
-	    join(k->tjk);
+	    join(k->tj);
 	    return;
 	  } else if (k->label == K5) {
 	    answer = s;
@@ -422,20 +423,20 @@ int main() {
 
   auto algos = std::vector<std::function<void(node*)>>(
     {
-     [&] (node* n) { cps::sum(n, [&] (int s) { answer = s; }); },
-     [&] (node* n) { defunc::sum(n, new kont(K5)); },
-     [&] (node* n) { tailcallelimapply::sum(n, new kont(K5)); },
-     [&] (node* n) { inlineapply::sum(n, new kont(K5)); },
-     [&] (node* n) { tailcallelimsum::sum(n, new kont(K5)); },
-     [&] (node* n) {
-       scheduler::launch(new task([&] { taskpar::sum(n, [&] (int sf) { answer = sf; }); }));
-     },
-     [&] (node* n) {
-       scheduler::launch(new task([&] { taskpardefunc::sum(n, new kont(K5)); }));
-     },
-     [&] (node* n) {
-       scheduler::launch(new task([&] { heartbeat::sum(n, new kont(K5)); }));
-     },
+      [&] (node* n) { cps::sum(n, [&] (int s) { /* K5 */ answer = s; }); },
+      [&] (node* n) { defunc::sum(n, new kont(K5)); },
+      [&] (node* n) { tailcallelimapply::sum(n, new kont(K5)); },
+      [&] (node* n) { inlineapply::sum(n, new kont(K5)); },
+      [&] (node* n) { tailcallelimsum::sum(n, new kont(K5)); },
+      [&] (node* n) {
+	scheduler::launch(new task([&] { taskpar::sum(n, [&] (int sf) { answer = sf; }); }));
+      },
+      [&] (node* n) {
+	scheduler::launch(new task([&] { taskpardefunc::sum(n, new kont(K5)); }));
+      },
+      [&] (node* n) {
+	scheduler::launch(new task([&] { heartbeat::sum(n, new kont(K5)); }));
+      },
     });
 
   auto ns = std::vector<node*>(
