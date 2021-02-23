@@ -95,15 +95,15 @@ std::ostream& operator<<(std::ostream& o, kont& _k) {
     assert(k != nullptr);
     auto l = k->label;
     if (l == A1) {
-      o << "A1(" << k->n << ")\n";
+      o << "A1(" << k << "," << k->n << ")\n";
     } else if (l == A2) {
-      o << "A2(" << k->n << "," << k->s0 << ")\n";
+      o << "A2(" << k << "," << k->n << "," << k->s0 << ")\n";
     } else if (l == A3) {
-      return o << "A3(" << k->s << "," << k->tjk << ")\n";
+      return o << "A3(" << k << "," << k->s << "," << k->tjk << ")\n";
     } else if (l == A4) {
-      return o << "A4(" << k->s << "," << k->tjk << ")\n";
+      return o << "A4(" << k << "," << k->s << "," << k->tjk << ")\n";
     } else if (l == A5) {
-      return o << "A5\n";
+      return o << "A5("  << k << ")\n";
     }
     k = k->k;
   }
@@ -358,27 +358,25 @@ namespace heartbeat {
   }
 
   auto replace(kont* k, kont* kt, kont* kn) -> kont* {
-    kont** kr = &k;
+    auto kr = &k;
     while ((*kr) != kt) {
       kr = &(*kr)->k;
     }
     *kr = kn;
-    return *kr;
+    return k;
   }
 
   auto try_promote(kont* k) -> kont* {
-    kont* kt = find_oldest(k, [=] (kont* k) { return k->label == A1; });
+    auto kt = find_oldest(k, [=] (kont* k) { return k->label == A1; });
     if (kt == nullptr) {
       return k;
     }
     auto n = kt->n;
     auto kj = kt->k;
     auto s = new int[2];
-    s[0] = -1000;
-        s[1] = -2000;
     auto tjk = new task([=] { sum(nullptr, new kont(A2, s[0] + s[1], n, kj)); });
     fork(new task([=] { sum(n->right, new kont(A4, s, tjk)); }), tjk);
-    kont* k1 = replace(k, kt, new kont(A3, s, tjk));
+    auto k1 = replace(k, kt, new kont(A3, s, tjk));
     return k1;
   }
   
@@ -424,9 +422,6 @@ int main() {
 
   auto algos = std::vector<std::function<void(node*)>>(
     {
-     [&] (node* n) {
-       scheduler::launch(new task([&] { heartbeat::sum(n, new kont(A5)); }));
-     },
      [&] (node* n) { cps::sum(n, [&] (int s) { answer = s; }); },
      [&] (node* n) { defunc::sum(n, new kont(A5)); },
      [&] (node* n) { tailcallelimapply::sum(n, new kont(A5)); },
@@ -437,18 +432,21 @@ int main() {
      },
      [&] (node* n) {
        scheduler::launch(new task([&] { taskpardefunc::sum(n, new kont(A5)); }));
-     }
+     },
+     [&] (node* n) {
+       scheduler::launch(new task([&] { heartbeat::sum(n, new kont(A5)); }));
+     },
     });
 
   auto ns = std::vector<node*>(
     {
-      /*     nullptr,
-     new node(123),
-     new node(1, new node(2), nullptr),
-     new node(1, nullptr, new node(2)), */
-     new node(1, new node(200), new node(3)), /*
-     new node(1, new node(2), new node(3, new node(4), new node(5))),
-     new node(1, new node(3, new node(4), new node(5)), new node(2)), */
+      nullptr,
+      new node(123), 
+      new node(1, new node(2), nullptr), 
+      new node(1, nullptr, new node(2)), 
+      new node(1, new node(200), new node(3)), 
+      new node(1, new node(2), new node(3, new node(4), new node(5))),
+      new node(1, new node(3, new node(4), new node(5)), new node(2)), 
     });
 
   for (auto n : ns) {
