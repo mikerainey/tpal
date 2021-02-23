@@ -282,10 +282,10 @@ namespace taskpar {
       auto s = new int[2];
       auto tj = new task([=] {	k(s[0] + s[1] + n->value); });
       fork(new task([=] {
-	sum(n->right, [=] (int s0) { /* K3 */ s[0] = s0; join(tj); }); }),
+	sum(n->left,  [=] (int s1) { /* K4 */ s[1] = s1; join(tj); }); }),
       tj);
       fork(new task([=] {
-	sum(n->left,  [=] (int s1) { /* K4 */ s[1] = s1; join(tj); }); }),
+	sum(n->right, [=] (int s0) { /* K3 */ s[0] = s0; join(tj); }); }),
       tj);
       release(tj);
     }
