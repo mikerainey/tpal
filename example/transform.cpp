@@ -62,8 +62,6 @@ namespace cps {
 /* ----------------------------------------- */
 /* Defunctionalize */
 
-int answer = -1;
-
 using kont_label = enum kont_enum { K1, K2, K3, K4, K5 };
 
 class task;
@@ -71,41 +69,55 @@ class task;
 class kont {
 public:
   kont_label label;
-  node* n;
-  int s0;
-  int* s;
-  task* tj;
-  kont* k;
+  union {
+    struct {
+      node* n;
+      kont* k;
+    } k1;
+    struct {
+      int s0;
+      node* n;
+      kont* k;
+    } k2;
+    struct {
+      int* s;
+      task* tj;
+    } k3or4;
+  } u;
 
-  kont(kont_label label, node* n, kont* k)
-    : label(label), n(n), k(k) { }
-  kont(kont_label label, int s0, node* n, kont* k)
-    : label(label), s0(s0), n(n), k(k) { }
-  kont(kont_label label, int* s, task* tj)
-    : label(label), s(s), tj(tj), k(nullptr) { }
-  kont(kont_label label)
-    : label(label), k(nullptr) { }
+
+  kont(kont_label label, node* n, kont* k) // K1
+    : label(label) {
+    u.k1.n = n;
+    u.k1.k = k;
+  }
+  kont(kont_label label, int s0, node* n, kont* k) // K2
+    : label(label) {
+    u.k2.s0 = s0;
+    u.k2.n = n;
+    u.k2.k = k;
+  }
+  kont(kont_label label, int* s, task* tj) // K3 or K4
+    : label(label) {
+    u.k3or4.s = s;
+    u.k3or4.tj = tj;
+  }
+  kont(kont_label label) // K5
+    : label(label) { }
+
+  kont*& next() {
+    if (label == K1) {
+      return u.k1.k;
+    } else if (label == K2) {
+      return u.k2.k;
+    } else {
+      assert(false);
+    }
+  }
+
 };
 
-std::ostream& operator<<(std::ostream& o, kont& _k) {
-  kont* k = (kont*)&_k;
-  while (true) {
-    assert(k != nullptr);
-    auto l = k->label;
-    if (l == K1) {
-      o << "K1(" << k << "," << k->n << ")\n";
-    } else if (l == K2) {
-      o << "K2(" << k << "," << k->n << "," << k->s0 << ")\n";
-    } else if (l == K3) {
-      return o << "K3(" << k << "," << k->s << "," << k->tj << ")\n";
-    } else if (l == K4) {
-      return o << "K4(" << k << "," << k->s << "," << k->tj << ")\n";
-    } else if (l == K5) {
-      return o << "K5("  << k << ")\n";
-    }
-    k = k->k;
-  }
-}
+int answer = -1; // to store the final result of defunc versions
 
 namespace defunc {
 
@@ -121,9 +133,9 @@ namespace defunc {
 
   auto apply(kont* k, int s) -> void {
     if (k->label == K1) {
-      sum(k->n->right, new kont(K2, s, k->n, k->k));
+      sum(k->u.k1.n->right, new kont(K2, s, k->u.k1.n, k->u.k1.k));
     } else if (k->label == K2) {
-      apply(k->k, k->s0 + s + k->n->value);
+      apply(k->u.k2.k, k->u.k2.s0 + s + k->u.k2.n->value);
     } else if (k->label == K5) {
       answer = s;
     }
@@ -149,11 +161,11 @@ namespace tailcallelimapply {
   auto apply(kont* k, int s) -> void {
     while (true) {
       if (k->label == K1) {
-	sum(k->n->right, new kont(K2, s, k->n, k->k));
+	sum(k->u.k1.n->right, new kont(K2, s, k->u.k1.n, k->u.k1.k));
 	return;
       } else if (k->label == K2) {
-	s = k->s0 + s + k->n->value;
-	k = k->k;
+	s = k->u.k2.s0 + s + k->u.k2.n->value;
+	k = k->u.k2.k;
       } else if (k->label == K5) {
 	answer = s;
 	return;
@@ -173,11 +185,11 @@ namespace inlineapply {
       int s = 0;
       while (true) {
 	if (k->label == K1) {
-	  sum(k->n->right, new kont(K2, s, k->n, k->k));
+	  sum(k->u.k1.n->right, new kont(K2, s, k->u.k1.n, k->u.k1.k));
 	  return;
 	} else if (k->label == K2) {
-	  s = k->s0 + s + k->n->value;
-	  k = k->k;
+	  s = k->u.k2.s0 + s + k->u.k2.n->value;
+	  k = k->u.k2.k;
 	} else if (k->label == K5) {
 	  answer = s;
 	  return;
@@ -201,12 +213,12 @@ namespace tailcallelimsum {
 	int s = 0;
 	while (true) {
 	  if (k->label == K1) {
-	    n = k->n->right;
-	    k = new kont(K2, s, k->n, k->k);
+	    n = k->u.k1.n->right;
+	    k = new kont(K2, s, k->u.k1.n, k->u.k1.k);
 	    break;
 	  } else if (k->label == K2) {
-	    s = k->s0 + s + k->n->value;
-	    k = k->k;
+	    s = k->u.k2.s0 + s + k->u.k2.n->value;
+	    k = k->u.k2.k;
 	  } else if (k->label == K5) {
 	    answer = s;
 	    return;
@@ -316,11 +328,11 @@ namespace taskpardefunc {
 
   auto apply(kont* k, int s) -> void {
     if (k->label == K3) {
-      k->s[0] = s;
-      join(k->tj);
+      k->u.k3or4.s[0] = s;
+      join(k->u.k3or4.tj);
     } else if (k->label == K4) {
-      k->s[1] = s;
-      join(k->tj);
+      k->u.k3or4.s[1] = s;
+      join(k->u.k3or4.tj);
     } else if (k->label == K5) {
       answer = s;
     }
@@ -338,7 +350,7 @@ namespace heartbeat {
   int counter = 0;
 
   constexpr
-  int H = 3;
+  int H = 3; // heartbeat rate
 
   auto heartbeat() -> bool {
     if (++counter >= H) {
@@ -354,7 +366,7 @@ namespace heartbeat {
     kont* kr = nullptr;
     while (k->label == K1 || k->label == K2) {
       kr = p(k) ? k : kr;
-      k = k->k;
+      k = k->next();
     }
     return kr;
   }
@@ -362,7 +374,7 @@ namespace heartbeat {
   auto replace(kont* k, kont* kt, kont* kn) -> kont* {
     auto kr = &k;
     while ((*kr) != kt) {
-      kr = &(*kr)->k;
+      kr = &(*kr)->next();
     }
     *kr = kn;
     return k;
@@ -373,8 +385,8 @@ namespace heartbeat {
     if (kt == nullptr) {
       return k;
     }
-    auto n = kt->n;
-    auto kj = kt->k;
+    auto n = kt->u.k1.n;
+    auto kj = kt->u.k1.k;
     auto s = new int[2];
     auto tj = new task([=] { sum(nullptr, new kont(K2, s[0] + s[1], n, kj)); });
     fork(new task([=] { sum(n->right, new kont(K4, s, tj)); }), tj);
@@ -388,19 +400,19 @@ namespace heartbeat {
 	int s = 0;
 	while (true) {
 	  if (k->label == K1) {
-	    n = k->n->right;
-	    k = new kont(K2, s, k->n, k->k);
+	    n = k->u.k1.n->right;
+	    k = new kont(K2, s, k->u.k1.n, k->u.k1.k);
 	    break;
 	  } else if (k->label == K2) {
-	    s = k->s0 + s + k->n->value;
-	    k = k->k;
+	    s = k->u.k2.s0 + s + k->u.k2.n->value;
+	    k = k->u.k2.k;
 	  } else if (k->label == K3) {
-	    k->s[0] = s;
-	    join(k->tj);
+	    k->u.k3or4.s[0] = s;
+	    join(k->u.k3or4.tj);
 	    return;
 	  } else if (k->label == K4) {
-	    k->s[1] = s;
-	    join(k->tj);
+	    k->u.k3or4.s[1] = s;
+	    join(k->u.k3or4.tj);
 	    return;
 	  } else if (k->label == K5) {
 	    answer = s;
@@ -461,6 +473,5 @@ int main() {
       }
     }
   }
-  
   return 0;
 }
