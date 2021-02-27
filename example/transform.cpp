@@ -85,36 +85,14 @@ public:
     } k3or4;
   } u;
 
-
   kont(kont_label label, node* n, kont* k) // K1
-    : label(label) {
-    u.k1.n = n;
-    u.k1.k = k;
-  }
+    : label(label) { u.k1.n = n; u.k1.k = k; }
   kont(kont_label label, int s0, node* n, kont* k) // K2
-    : label(label) {
-    u.k2.s0 = s0;
-    u.k2.n = n;
-    u.k2.k = k;
-  }
+    : label(label) { u.k2.s0 = s0; u.k2.n = n; u.k2.k = k; }
   kont(kont_label label, int* s, task* tj) // K3 or K4
-    : label(label) {
-    u.k3or4.s = s;
-    u.k3or4.tj = tj;
-  }
+    : label(label) { u.k3or4.s = s; u.k3or4.tj = tj; }
   kont(kont_label label) // K5
     : label(label) { }
-
-  kont*& next() {
-    if (label == K1) {
-      return u.k1.k;
-    } else if (label == K2) {
-      return u.k2.k;
-    } else {
-      assert(false);
-    }
-  }
-
 };
 
 int answer = -1; // to store the final result of defunc versions
@@ -362,11 +340,21 @@ namespace heartbeat {
 
   auto sum(node* n, kont* k) -> void;
 
+  auto next(kont* k) -> kont*& {
+    if (k->label == K1) {
+      return k->u.k1.k;
+    } else if (k->label == K2) {
+      return k->u.k2.k;
+    } else {
+      assert(false);
+    }
+  }
+
   auto find_oldest(kont* k, std::function<bool(kont*)> p) -> kont* {
     kont* kr = nullptr;
     while (k->label == K1 || k->label == K2) {
       kr = p(k) ? k : kr;
-      k = k->next();
+      k = next(k);
     }
     return kr;
   }
@@ -374,7 +362,7 @@ namespace heartbeat {
   auto replace(kont* k, kont* kt, kont* kn) -> kont* {
     auto kr = &k;
     while ((*kr) != kt) {
-      kr = &(*kr)->next();
+      kr = &next(*kr);
     }
     *kr = kn;
     return k;
