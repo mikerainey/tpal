@@ -7,6 +7,8 @@
 #include <functional>
 #include <vector>
 
+int answer = -1; // to store the final result of CPS'd versions
+
 /* ----------------------------------------- */
 /* Binary tree data structure */
 
@@ -94,8 +96,6 @@ public:
   kont(kont_label label) // K5
     : label(label) { }
 };
-
-int answer = -1; // to store the final result of defunc versions
 
 namespace defunc {
 
