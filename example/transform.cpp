@@ -305,11 +305,9 @@ namespace taskpardefunc {
   }
 
   auto apply(kont* k, int s) -> void {
-    if (k->label == K3) {
-      k->u.k3or4.s[0] = s;
-      join(k->u.k3or4.tj);
-    } else if (k->label == K4) {
-      k->u.k3or4.s[1] = s;
+    if (k->label == K3 || k->label == K4) {
+      auto i = (k->label == K3) ? 0 : 1;
+      k->u.k3or4.s[i] = s;
       join(k->u.k3or4.tj);
     } else if (k->label == K5) {
       answer = s;
@@ -394,12 +392,9 @@ namespace heartbeat {
 	  } else if (k->label == K2) {
 	    s = k->u.k2.s0 + s + k->u.k2.n->value;
 	    k = k->u.k2.k;
-	  } else if (k->label == K3) {
-	    k->u.k3or4.s[0] = s;
-	    join(k->u.k3or4.tj);
-	    return;
-	  } else if (k->label == K4) {
-	    k->u.k3or4.s[1] = s;
+	  } else if (k->label == K3 || k->label == K4) {
+	    auto i = (k->label == K3) ? 0 : 1;
+	    k->u.k3or4.s[i] = s;
 	    join(k->u.k3or4.tj);
 	    return;
 	  } else if (k->label == K5) {
