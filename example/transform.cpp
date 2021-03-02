@@ -225,12 +225,12 @@ public:
 
 namespace scheduler {
 
-  std::vector<task*> tasks;
+  std::vector<task*> ready;
 
   auto join(task* t) -> void {
     auto in = --t->in;
     if (in == 0) {
-      tasks.push_back(t);
+      ready.push_back(t);
     }
   }
 
@@ -244,9 +244,9 @@ namespace scheduler {
   }
 
   auto loop() -> void {
-    while (! tasks.empty()) {
-      auto t = tasks.back();
-      tasks.pop_back();
+    while (! ready.empty()) {
+      auto t = ready.back();
+      ready.pop_back();
       t->body();
     }
   }
