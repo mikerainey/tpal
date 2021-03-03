@@ -32,7 +32,7 @@ let arg_proc =
 let arg_proc_step = XCmd.parse_or_default_int "proc_step" 10
 let arg_dflt_size = XCmd.parse_or_default_int "n" 600000000
 let arg_par_baseline = XCmd.parse_or_default_string "par_baseline" "cilk"
-let arg_kappas_usec = XCmd.parse_or_default_list_int "kappa_usec" [20;100]
+let arg_kappas_usec = XCmd.parse_or_default_list_int "kappa_usec" [(*20;*) 100]
 let arg_output_csv = XCmd.mem_flag "output_csv"
 let arg_elide_baseline = XCmd.mem_flag "elide_baseline"
 let arg_par_timeout = XCmd.parse_or_default_int "par_timeout" 420
@@ -40,6 +40,7 @@ let arg_seq_timeout = XCmd.parse_or_default_int "seq_timeout" 420
 let arg_results_path = XCmd.parse_or_default_string "results_path" "."
 let arg_show_execcycles = XCmd.mem_flag "show_execcycles"
 let arg_skip_nautilus = XCmd.mem_flag "skip_nautilus"
+let arg_report_percent_diff = XCmd.mem_flag "report_percent_diff"
 
 let serial_interrupt_ping_thread = "serial_interrupt_ping_thread"
 let serial_interrupt_papi = "serial_interrupt_papi"
@@ -67,21 +68,11 @@ let on_iit_or_nwu_machine =
   | _ -> false
 
 let arg_skip_interrupts =
-  let dflt =
-    if on_iit_or_nwu_machine then
-      [(*interrupt_papi;*)interrupt_pthread;]
-    else
-      [interrupt_pthread;]
-  in
+  let dflt = [interrupt_papi;interrupt_pthread;] in
   XCmd.parse_or_default_list_string "skip_interrupts" dflt
 
 let arg_skip_serial_interrupts =
-  let dflt =
-    if on_iit_or_nwu_machine then
-      [(*serial_interrupt_papi;*)serial_interrupt_pthread;]
-    else
-      [serial_interrupt_pthread;]
-  in
+  let dflt = [serial_interrupt_papi;serial_interrupt_pthread;] in
   XCmd.parse_or_default_list_string "skip_serial_interrupts" dflt
 
 let filter_skips skips =
@@ -449,6 +440,15 @@ let report_percent_diff_of_elapsed (bec,_) (ec,_) =
   else
     s
 
+let report_frac_diff_of_elapsed (bec,_) (ec,_) =
+  Printf.sprintf "%.3fx" (ec /. bec)
+  
+let report_diff_of_elapsed b e =
+  if arg_report_percent_diff then
+    report_percent_diff_of_elapsed b e
+  else
+    report_frac_diff_of_elapsed b e
+
 let get_time results mk =
   let [col] = mk Env.empty in
   let results = Results.filter col results in
@@ -547,7 +547,7 @@ let plot () =
             in
             Mk_table.cell ~escape:true ~last:false add (report_elapsed serial_elapsed);
             csv_cell add_csv (report_elapsed serial_elapsed);
-            Mk_table.cell ~escape:true ~last:true add (report_percent_diff_of_elapsed serial_elapsed heartbeat_elapsed);
+            Mk_table.cell ~escape:true ~last:true add (report_diff_of_elapsed serial_elapsed heartbeat_elapsed);
             csv_cell add_csv ~last:true (report_elapsed heartbeat_elapsed);
             add Latex.tabular_newline;
             add_csv csv_newline;
@@ -674,7 +674,7 @@ let plot_for os results results_sta results_work_efficiency interrupts serial_in
                       let (_, heartbeat_sec_sta) =
                         get_time results_sta ((mk_runs_of_bd 1 bd) & mk_scfg)
                       in
-                      let diff = report_percent_diff_of_elapsed serial_elapsed heartbeat_elapsed in
+                      let diff = report_diff_of_elapsed serial_elapsed heartbeat_elapsed in
                       let last = scfg_i+1 = nb_scfgs && kappa_i+1 = nb_kappas in
                       if is_only_serial scfg then (
                         Mk_table.cell ~escape:true ~last:last add diff;
@@ -939,6 +939,7 @@ let serial_interrupts =
   [serial_interrupt_ping_thread;]
       
 let plot_of proc results results_cilk results_sta kappa_usec =
+  let results_serial = Results.from_file (file_results ExpWorkEfficiency.name) in
   let mk_kappa_usec = mk int "kappa_usec" kappa_usec in
   let name_out = Printf.sprintf "%s_proc_%d_kappa_usec_%d" name proc kappa_usec in
   let tex_file = file_tables_src name_out in
@@ -956,7 +957,7 @@ let plot_of proc results results_cilk results_sta kappa_usec =
       in
       add (Latex.tabular_begin hdr);
       Mk_table.cell ~escape:true ~last:false add "";
-      Mk_table.cell ~escape:true ~last:false add "Cilk (s)";
+      Mk_table.cell ~escape:true ~last:false add "Cilk";
       ~~ List.iteri scfgs (fun scfg_i scfg ->
           let pretty_scfg = pretty_name_of_interrupt_config scfg in
           let last = scfg_i+1 = nb_scfgs in
@@ -977,6 +978,9 @@ let plot_of proc results results_cilk results_sta kappa_usec =
           Mk_table.cell ~escape:true ~last:false add benchdescr;
           csv_cell add_csv (pretty_problemname_of bd);
           csv_cell add_csv (pretty_inputname_of bd);
+          let serial_elapsed =
+            get_time results_serial (mk_serial_runs_of_bd bd)
+          in
           let mk_cilk_runs = mk_cilk_runs_of_bd proc bd in
             let cilk_elapsed =
               get_time results_cilk mk_cilk_runs
@@ -984,7 +988,15 @@ let plot_of proc results results_cilk results_sta kappa_usec =
             let (cilk_utilization, cilk_nb_tasks) =
               get_stats_cilk results_cilk mk_cilk_runs 
             in
-            Mk_table.cell ~escape:true ~last:false add (report_elapsed cilk_elapsed);
+            let report_diff b e =
+              if proc = 1 then
+                report_diff_of_elapsed b e
+              else
+                report_diff_of_elapsed e b
+            in
+            let cilk_diff = report_diff serial_elapsed cilk_elapsed in
+            Mk_table.cell ~escape:true ~last:false add cilk_diff;
+              (*(report_elapsed cilk_elapsed);*)
             csv_cell add_csv (report_elapsed cilk_elapsed);
             ~~ List.iteri scfgs (fun scfg_i scfg ->
                 let mk_scfg = (mk string scheduler_configuration scfg) in
@@ -997,7 +1009,7 @@ let plot_of proc results results_cilk results_sta kappa_usec =
                 in
                 let idle_heartbeat = (fst heartbeat_elapsed) *. heartbeat_utilization in
                 let idle_cilk = (fst cilk_elapsed) *. cilk_utilization in
-                let diff_exectime = report_percent_diff_of_elapsed cilk_elapsed heartbeat_elapsed in
+                let diff_exectime = report_diff serial_elapsed heartbeat_elapsed in
                 let diff_idle = report_percent_diff idle_cilk idle_heartbeat in
                 let diff_nb_tasks = report_percent_diff cilk_nb_tasks heartbeat_nb_tasks in
                 let last = scfg_i+1 = nb_scfgs in
