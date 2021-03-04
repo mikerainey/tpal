@@ -2,9 +2,9 @@ Getting Started Guide
 =====================
 
 To get started, we need to first check that our machine is suitable
-for these experiments, then if it is, install the benchmarking
-infrastructure on our local machine, and finally make sure we can run
-the benchmarks and obtain results.
+for these experiments, and then if it is, install the benchmarking
+infrastructure on our local machine. Finally, we need to make sure we
+can run the benchmarks and obtain results.
 
 **Hardware dependencies** The experiments require a machine with
 multiple x86-64 cores and well-provisioned RAM, e.g., 50GB or more.
@@ -81,50 +81,70 @@ Claims in the paper supported by this artifact
 In the paper, we ran benchmarks in Linux and Nautilus, an experimental
 microkernel. However, for our artifact, we believe it is best to
 collect only the Linux-related claims. The reason is that Nautilus is
-research software and, as such, has limited compatibility with
-hardware and can at present capture output via a serial port, which is
-challenging to configure.
+currently has limited compatibility with stock hardware, and can
+capture output only via a serial port.
 
+We now address (the Linux-related part of) each claim in the paper.
 
+### Claim: TPAL's task creation overheads are lower than Cilk's
 
-### TPAL's task creation overheads are lower than Cilk's
+In the paper: Figure 6
 
-Figure 6
+In our results: `tables_linux_vs_cilk_proc_1_kappa_usec_100.pdf`
 
-`tables_linux_vs_cilk_proc_1_kappa_usec_100.pdf`
+In the results table, the columns to consider are the ones labeled
+"Cilk" and the first column under "INT-PingThread", which represents
+TPAL.
 
-### TPAL performs better than Cilk at full scale
+### Claim: TPAL performs better than Cilk at full scale
 
-Figure 7
+In the paper: Figure 7
 
-`tables_linux_vs_cilk_proc_15_kappa_usec_100.pdf`
+In our results: `tables_linux_vs_cilk_proc_15_kappa_usec_100.pdf`
 
-### TPAL's compilation-related performance overhead is low
+In the results table, the columns to consider are the ones labeled
+"Cilk" and the first column under "INT-PingThread", which represents
+TPAL.
 
-Figure 8
+### Claim: TPAL's compilation-related performance overhead is low
 
-`tables_work_efficiency.pdf`
+In the paper: Figure 8
 
-### Signal overhead is low but could be improved
+In our results: `tables_work_efficiency.pdf`
 
-Figure 9
+The column to consider is the one labeled "TPAL".
 
-`tables_interrupt_work_efficiency_linux_ping_thread.pdf`
+### Claim: Signal overhead is low but could be improved
 
-### Promotion overhead is low but could be improved
+In the paper: Figure 9
 
-Figure 9
+In our results: `tables_interrupt_work_efficiency_linux_ping_thread.pdf`
 
-`tables_interrupt_work_efficiency_linux_ping_thread.pdf`
+In the plot in the paper and the table in our results, we consider the
+bars and columns labeled "Serial".
 
-### Linux misses its target heartbeat rate
+### Claim: Promotion overhead is low but could be improved
 
-Figure 10
+In the paper: Figure 9
 
-`tables_interrupt_work_efficiency_linux_ping_thread.pdf`
+In our results: `tables_interrupt_work_efficiency_linux_ping_thread.pdf`
 
-Setting the number of cores
----------------------------
+In the plot in the paper and the table in our results, we consider the
+bars and columns labeled "TPAL".
+
+### Claim: Linux misses its target heartbeat rate
+
+In the paper: Figure 10
+
+In our results: `tables_interrupt_work_efficiency_linux_ping_thread.pdf`
+
+In the plot in the paper and the table in our results, we consider the
+bars and columns labeled "Heartbeats per sec".
+
+Benchmarking customization
+--------------------------
+
+### Setting the number of cores
 
 In order to obtain clean results, it is important that the benchmarks
 are configured to use (at most) P-1 cores, where P is the total number
@@ -148,22 +168,53 @@ $ ./result/bench linux_vs_cilk -proc 7
 Note that the only experiment that uses multiple cores is the one
 named `linux_vs_cilk`.
 
-Setting the heartbeat rate
---------------------------
+### Setting the heartbeat rate
+
+By default, our benchmarking script collects results using heartbeat
+rates of 20 and 100 microseconds. Your machine might benefit from
+different settings. To see how, we can specify the settings by the
+command-line argument shown below.
 
 ~~~~
 $ ./result/bench linux_vs_cilk -kappa_usec 120,200,300
 ~~~~
 
-Picking which benchmarks to run
--------------------------------
+### Picking which benchmarks to run
+
+We can run the experiments for only a subset of benchmarks.
 
 ~~~~
 $ ./result/bench linux_vs_cilk -benchmarks floyd_warshall,knapsack
 ~~~~
 
+### Experimenting with different signaling mechanisms in Linux
+
+There are two other mechanisms available in Linux that we considered
+for driving the Heartbeat interrupt. 
+
+The first one uses a mechanism exported by the Papi library, which
+triggers an interrupt every time there has elapsed some specified
+number of CPU cycles. The Papi mechanism requires performance counters
+be enabled in the Linux kernel.
+
+The second mechanism uses a Linux-specific extension that allows
+Pthreads to handle timer-based interrupts directly.
+
+We did not report results for these mechanisms in the paper owing to
+space considerations and that they were generally slower than our
+default, namely PingThread, configuration. However, we can benchmark
+using all available mechanisms by passing to our benchmarking script
+the following command-line arguments.
+
+~~~~
+$ ./result/bench work_efficiency linux_work_efficiency linux_vs_cilk -skip_interrupts none -skip_serial_interrupts none
+~~~~
+
 Format of the csv results files
 -------------------------------
+
+In this section, we summarize the raw data output by the benchmarking
+scripts.
 
 Definitions:
 
