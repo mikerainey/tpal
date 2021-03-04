@@ -1,31 +1,166 @@
 Getting Started Guide
 =====================
 
-**Hardware dependencies** The experiments require a machine with
-multiple x86-64 cores and well-provisioned RAM. Of our test machines,
-the one with the minimum amount of RAM has 74GB, but this amount is
-likely more than is needed.
+To get started, we need to first check that our machine is suitable
+for these experiments, then if it is, install the benchmarking
+infrastructure on our local machine, and finally make sure we can run
+the benchmarks and obtain results.
 
-**Software dependencies** Our build scripts depend on the [nix package
+**Hardware dependencies** The experiments require a machine with
+multiple x86-64 cores and well-provisioned RAM, e.g., 50GB or more.
+
+**Software dependencies** Our artifact depends on the [nix package
 manager](https://nixos.org/nix/download.html).
 
 Installation
 ------------
 
+Once `nix` is installed, we can change directory to where our `nix`
+build scripts are stored.
+
+~~~~
+$ cd tpal/runtime/nix
+~~~~
+
+Now, we build the artifact as follows.
+
 ~~~~
 $ nix-build
 ~~~~
 
+If successful, there will appear in the current directory a symlink
+named `result`.
+
 Experimental workflow
 ---------------------
+
+We can now perform a complete run of the Linux-based benchmarks by
+executing the following command.
 
 ~~~~
 $ ./result/bench work_efficiency linux_work_efficiency linux_vs_cilk
 ~~~~
 
+If the command takes a long time, you can pick some subset of the
+benchmarks to run by following instructions given in the sequel.
+
+Once complete, there will appear in the current directory several PDF
+files, such as the following.
+
+- `tables_work_efficiency.pdf`
+- `tables_interrupt_work_efficiency_linux_ping_thread.pdf`
+- `tables_linux_vs_cilk_proc_1_kappa_usec_20.pdf`
+- `tables_linux_vs_cilk_proc_15_kappa_usec_20.pdf`
+- `tables_linux_vs_cilk_proc_1_kappa_usec_100.pdf`
+- `tables_linux_vs_cilk_proc_15_kappa_usec_100.pdf`
+
+Note that the results in these tables are incomplete until we can
+collect multiple samples of each benchmark run. In the sequel we cover
+these steps.
+
+Also, in the sequel, we explain how to relate the results in these
+tables to results reported in the paper.
+
 Step-by-Step Instructions
 =========================
 
+We are now ready to collect the results of our experimental
+evaluation. To do so, we need to make a complete run of the
+Linux-based experiments, which is done by setting the `-runs`
+parameter, as shown below.
+
+~~~~
+$ ./result/bench linux_vs_cilk -runs 25
+~~~~
+
+Note that it may take a few hours to complete.
+
+Claims in the paper supported by this artifact
+----------------------------------------------
+
+In the paper, we ran benchmarks in Linux and Nautilus, an experimental
+microkernel. However, for our artifact, we believe it is best to
+collect only the Linux-related claims. The reason is that Nautilus is
+research software and, as such, has limited compatibility with
+hardware and can at present capture output via a serial port, which is
+challenging to configure.
+
+
+
+### TPAL's task creation overheads are lower than Cilk's
+
+Figure 6
+
+`tables_linux_vs_cilk_proc_1_kappa_usec_100.pdf`
+
+### TPAL performs better than Cilk at full scale
+
+Figure 7
+
+`tables_linux_vs_cilk_proc_15_kappa_usec_100.pdf`
+
+### TPAL's compilation-related performance overhead is low
+
+Figure 8
+
+`tables_work_efficiency.pdf`
+
+### Signal overhead is low but could be improved
+
+Figure 9
+
+`tables_interrupt_work_efficiency_linux_ping_thread.pdf`
+
+### Promotion overhead is low but could be improved
+
+Figure 9
+
+`tables_interrupt_work_efficiency_linux_ping_thread.pdf`
+
+### Linux misses its target heartbeat rate
+
+Figure 10
+
+`tables_interrupt_work_efficiency_linux_ping_thread.pdf`
+
+Setting the number of cores
+---------------------------
+
+In order to obtain clean results, it is important that the benchmarks
+are configured to use (at most) P-1 cores, where P is the total number
+of cores in the machine. Please check that the P you use does in fact
+count the number of *cores*, not SMT units.
+
+Our benchmark script tries to determine P-1 for your test machine
+automatically, and should get the right number. We can check by
+looking at the arguments passed to the benchmarks by the `bench`
+script. For example, on our test machine, we have P=16 cores. The
+script should always pass on the command line to the parallel
+benchmark runs the argument `-proc 15`.
+
+We can pick the number manually by passing an extra argument to our
+benchmarking script.
+
+~~~~
+$ ./result/bench linux_vs_cilk -proc 7
+~~~~
+
+Note that the only experiment that uses multiple cores is the one
+named `linux_vs_cilk`.
+
+Setting the heartbeat rate
+--------------------------
+
+~~~~
+$ ./result/bench linux_vs_cilk -kappa_usec 120,200,300
+~~~~
+
+Picking which benchmarks to run
+-------------------------------
+
+~~~~
+$ ./result/bench linux_vs_cilk -benchmarks floyd_warshall,knapsack
+~~~~
 
 Format of the csv results files
 -------------------------------

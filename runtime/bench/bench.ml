@@ -32,7 +32,7 @@ let arg_proc =
 let arg_proc_step = XCmd.parse_or_default_int "proc_step" 10
 let arg_dflt_size = XCmd.parse_or_default_int "n" 600000000
 let arg_par_baseline = XCmd.parse_or_default_string "par_baseline" "cilk"
-let arg_kappas_usec = XCmd.parse_or_default_list_int "kappa_usec" [(*20;*) 100]
+let arg_kappas_usec = XCmd.parse_or_default_list_int "kappa_usec" [20; 100]
 let arg_output_csv = XCmd.mem_flag "output_csv"
 let arg_elide_baseline = XCmd.mem_flag "elide_baseline"
 let arg_par_timeout = XCmd.parse_or_default_int "par_timeout" 420
@@ -530,7 +530,7 @@ let plot () =
       add (Latex.tabular_begin hdr);
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "Serial (s)";
-      Mk_table.cell ~escape:true ~last:true add "Heartbeat";
+      Mk_table.cell ~escape:true ~last:true add "TPAL";
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
           let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
@@ -615,7 +615,7 @@ let plot_for os results results_sta results_work_efficiency interrupts serial_in
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add (Latex.tabular_multicol (nb_serial_scfgs * nb_kappas) "c|" "Serial");
-      Mk_table.cell ~escape:true ~last:true add (Latex.tabular_multicol (nb_parallel_scfgs * nb_hb_cols * nb_kappas) "c|" "Heartbeat");
+      Mk_table.cell ~escape:true ~last:true add (Latex.tabular_multicol (nb_parallel_scfgs * nb_hb_cols * nb_kappas) "c|" "TPAL");
       add Latex.tabular_newline;
       Mk_table.cell ~escape:true ~last:false add "";
       Mk_table.cell ~escape:true ~last:false add "";
@@ -968,8 +968,8 @@ let plot_of proc results results_cilk results_sta kappa_usec =
       ~~ List.iteri scfgs (fun scfg_i scfg ->
           let last = scfg_i+1 = nb_scfgs in
           Mk_table.cell ~escape:true ~last:false add "";
-          Mk_table.cell ~escape:true ~last:false add "Util.";
-          Mk_table.cell ~escape:true ~last:last add "Prom.");
+          Mk_table.cell ~escape:true ~last:false add "Heartbeats/sec";
+          Mk_table.cell ~escape:true ~last:last add "Promotions/sec");
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
           let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
@@ -1007,6 +1007,8 @@ let plot_of proc results results_cilk results_sta kappa_usec =
                 let (heartbeat_utilization, heartbeat_nb_tasks, heartbeat_nb_heartbeats) =
                   get_stats_heartbeat results_sta (mk_heartbeat_runs & mk_ext_sta)
                 in
+                let heartbeats_per_sec = heartbeat_nb_heartbeats /. (snd heartbeat_elapsed) in
+                let promotions_per_sec = heartbeat_nb_tasks /. (snd heartbeat_elapsed) in
                 let idle_heartbeat = (fst heartbeat_elapsed) *. heartbeat_utilization in
                 let idle_cilk = (fst cilk_elapsed) *. cilk_utilization in
                 let diff_exectime = report_diff serial_elapsed heartbeat_elapsed in
@@ -1015,10 +1017,10 @@ let plot_of proc results results_cilk results_sta kappa_usec =
                 let last = scfg_i+1 = nb_scfgs in
                 Mk_table.cell ~escape:true ~last:false add diff_exectime;
                 csv_cell add_csv (report_elapsed heartbeat_elapsed);
-                Mk_table.cell ~escape:true ~last:false add diff_idle;
+                Mk_table.cell ~escape:true ~last:false add (Printf.sprintf "%.3f" heartbeats_per_sec);
                 csv_cell add_csv (Printf.sprintf "%f" cilk_utilization);
                 csv_cell add_csv (Printf.sprintf "%f" heartbeat_utilization);
-                Mk_table.cell ~escape:true ~last:last add diff_nb_tasks;
+                Mk_table.cell ~escape:true ~last:last add (Printf.sprintf "%.3f" promotions_per_sec);
                 csv_cell add_csv (Printf.sprintf "%f" cilk_nb_tasks);
                 csv_cell add_csv ~last:last (Printf.sprintf "%f" heartbeat_nb_tasks);
               );
