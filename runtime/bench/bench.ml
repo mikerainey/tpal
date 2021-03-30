@@ -286,7 +286,7 @@ let pretty_input_names = [
 let inputname_of mk =
   List.hd (List.flatten (values_of_keys_in_params mk ["inputname";]))
 
-let pretty_inputname_of bd =
+let pretty_inputname_of_bd bd =
   Latex.escape (List.assoc (inputname_of bd.bd_mk_input) pretty_input_names)
 
 let benchmarks : benchmark_descr list = [
@@ -534,11 +534,11 @@ let plot () =
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
           let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
-                             (pretty_problemname_of bd) (pretty_inputname_of bd)
+                             (pretty_problemname_of bd) (pretty_inputname_of_bd bd)
           in
           Mk_table.cell ~escape:true ~last:false add benchdescr;
           csv_cell add_csv (pretty_problemname_of bd);
-          csv_cell add_csv (pretty_inputname_of bd);
+          csv_cell add_csv (pretty_inputname_of_bd bd);
             let serial_elapsed =
               get_time results (mk_serial_runs_of_bd bd)
             in
@@ -650,11 +650,11 @@ let plot_for os results results_sta results_work_efficiency interrupts serial_in
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
           let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
-                             (pretty_problemname_of bd) (pretty_inputname_of bd)
+                             (pretty_problemname_of bd) (pretty_inputname_of_bd bd)
           in
           Mk_table.cell ~escape:true ~last:false add benchdescr;
           csv_cell add_csv (pretty_problemname_of bd);
-          csv_cell add_csv (pretty_inputname_of bd);
+          csv_cell add_csv (pretty_inputname_of_bd bd);
           ~~ List.iteri scfgs (fun scfg_i scfg ->
               ~~ List.iteri kappas_usec (fun kappa_i kappa ->
                   let last = scfg_i+1 = nb_scfgs && kappa_i+1 = nb_kappas in
@@ -799,11 +799,11 @@ let plot_of os kappa_usec results results_serial results_sta interrupts =
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
           let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
-                             (pretty_problemname_of bd) (pretty_inputname_of bd)
+                             (pretty_problemname_of bd) (pretty_inputname_of_bd bd)
           in
           Mk_table.cell ~escape:true ~last:false add benchdescr;
           csv_cell add_csv (pretty_problemname_of bd);
-          csv_cell add_csv (pretty_inputname_of bd);
+          csv_cell add_csv (pretty_inputname_of_bd bd);
           let serial_elapsed =
             get_time results_serial (mk_serial_runs_of_bd bd)
           in
@@ -973,11 +973,11 @@ let plot_of proc results results_cilk results_sta kappa_usec =
       add Latex.tabular_newline;
       ~~ List.iter benchmarks (fun bd ->
           let benchdescr = Printf.sprintf "\vtop{\hbox{\strut %s}\hbox{\strut {\\tiny %s}}}"
-                             (pretty_problemname_of bd) (pretty_inputname_of bd)
+                             (pretty_problemname_of bd) (pretty_inputname_of_bd bd)
           in
           Mk_table.cell ~escape:true ~last:false add benchdescr;
           csv_cell add_csv (pretty_problemname_of bd);
-          csv_cell add_csv (pretty_inputname_of bd);
+          csv_cell add_csv (pretty_inputname_of_bd bd);
           let serial_elapsed =
             get_time results_serial (mk_serial_runs_of_bd bd)
           in
@@ -1170,8 +1170,8 @@ let check = nothing  (* do something here *)
 let formatter = (* used to beautify the name of the series *)
      Env.format (Env.(
        [ ("prog", Format_hidden);
-         ("benchmark", Format_custom (fun s -> s));
-         ("inputname", Format_custom (fun s -> s));
+         ("benchmark", Format_custom (fun s -> Latex.escape s));
+         ("inputname", Format_custom (fun s -> List.assoc s pretty_input_names));
          ("proc", Format_hidden);
          ("scheduler_configuration", Format_custom (fun s -> if s = "cilk" then "Cilk/Linux" else if s = "interrupt_ping_thread" then "TPAL 100 us/Linux" else "<unknown scheduler config>"));
        ]))
@@ -1207,8 +1207,9 @@ let plot_for_bd bd =
     X (mk_procs);
     Y eval_relative;
     Input (file_results name);
-    Output (file_plots (name ^ "_" ^ bd.bd_problem));
+    Output (file_plots (name ^ "_" ^ bd.bd_problem ^ "_" ^ (inputname_of bd.bd_mk_input)));
     Y_label "speedup";
+    X_label "cores";
     Formatter formatter;
     ]));
 
