@@ -29,7 +29,7 @@ let arg_proc =
   in
   let default = default - 1 in
   XCmd.parse_or_default_int "proc" default
-let arg_proc_step = XCmd.parse_or_default_int "proc_step" 10
+let arg_proc_step = XCmd.parse_or_default_int "proc_step" 1
 let arg_dflt_size = XCmd.parse_or_default_int "n" 600000000
 let arg_par_baseline = XCmd.parse_or_default_string "par_baseline" "cilk"
 let arg_kappas_usec = XCmd.parse_or_default_list_int "kappa_usec" [20; 100]
@@ -1100,6 +1100,127 @@ let all () = select make run check plot
 end
 
 (*****************************************************************************)
+(** Scaling experiment *)
+
+module ExpScaling = struct
+
+let name = "scaling"
+let name_serial = name ^ "_serial"
+
+let make() =
+  build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
+
+let procs =
+  let rec f p =
+    if p <= arg_proc then
+      p :: f (p + arg_proc_step)
+    else
+      []
+  in
+  f 1
+
+let max_proc = List.hd (List.rev procs)
+
+let mk_procs =
+  mk_list int "proc" procs
+
+let kappas_usec = [100;]
+                
+let mk_kappas_usec =
+  mk_list int "kappa_usec" kappas_usec
+
+let mk_runs_of_bd bd =
+    mk_prog_heartbeat
+  & (mk_benchmark_descr bd)
+
+let mk_interrupt_runs_of_bd bd =
+   (mk_runs_of_bd bd)
+   & mk_interrupt_configs
+
+let mk_tpal_runs =
+  (mk_all mk_interrupt_runs_of_bd benchmarks) & mk_kappas_usec & mk_procs
+
+let mk_cilk_runs_of_bd bd =
+    mk_prog_heartbeat
+  & (mk_benchmark_descr bd)
+  & mk_cilk_config
+
+let mk_cilk_runs =
+  (mk_all mk_cilk_runs_of_bd benchmarks) & mk_kappas_usec & mk_procs
+
+let mk_runs = mk_tpal_runs ++ mk_cilk_runs
+
+let mk_serial_runs =
+  mk_all mk_serial_runs_of_bd benchmarks
+
+let run () = (
+  Mk_runs.(call (run_modes @ [
+                 Output (file_results name);
+                 Timeout arg_par_timeout;
+                 Args mk_runs]));
+  Mk_runs.(call (seq_run_modes @ [
+                 Output (file_results name_serial);
+                 Timeout arg_seq_timeout;
+                 Args mk_serial_runs]));
+
+  ())
+  
+let check = nothing  (* do something here *)
+
+let formatter = (* used to beautify the name of the series *)
+     Env.format (Env.(
+       [ ("prog", Format_hidden);
+         ("benchmark", Format_custom (fun s -> s));
+         ("inputname", Format_custom (fun s -> s));
+         ("proc", Format_hidden);
+         ("scheduler_configuration", Format_custom (fun s -> if s = "cilk" then "Cilk/Linux" else if s = "interrupt_ping_thread" then "TPAL 100 us/Linux" else "<unknown scheduler config>"));
+       ]))
+
+let plot_for_bd bd =
+  let results_baselines = Results.from_file (file_results name_serial) in
+  
+  let eval_relative = fun env all_results results ->
+    let baseline_results =  ~~ Results.filter_by_params results_baselines (
+                                from_env (Env.filter_keys ["benchmark"; "inputname"] env)
+                              ) in
+    if baseline_results = [] then Pbench.warning ("no results for baseline: " ^ Env.to_string env);
+    let v = Results.get_mean_of "exectime" results in
+    let b = Results.get_mean_of "exectime" baseline_results in
+    b /. v
+  in
+  let axis = Axis.([
+    Lower (Some 0.);
+    Upper (Some ((float_of_int max_proc) +. 1.)); ])
+  in
+  Mk_scatter_plot.(call ([
+    Chart_opt Chart.([
+      Legend_opt Legend.([Legend_pos (Legend.legend_pos_of_string "topright")]);
+    ]);
+    Scatter_plot_opt Scatter_plot.([
+      X_axis axis;
+      Y_axis axis;
+      Draw_lines true;    
+      Extra ["abline(a=0, b=1, col='gray')"];
+    ]);
+    Charts (mk_benchmark_descr bd);
+    Series (mk_cilk_config ++ mk_interrupt_configs);
+    X (mk_procs);
+    Y eval_relative;
+    Input (file_results name);
+    Output (file_plots (name ^ "_" ^ bd.bd_problem));
+    Y_label "speedup";
+    Formatter formatter;
+    ]));
+
+  ()
+
+let plot () = ~~ List.iter benchmarks plot_for_bd
+  
+let all () = select make run check plot
+
+end
+
+(*****************************************************************************)
 (** Main *)
 
 let _ =
@@ -1112,6 +1233,7 @@ let _ =
       "linux_parallel_heartbeat", ExpParallelHeartbeat.all_linux;
       "nautilus_parallel_heartbeat", ExpParallelHeartbeat.all_nautilus;
       "vary_kappa", ExpVaryKappa.all;
+      "scaling", ExpScaling.all;
   ]
   in
   Pbench.execute_from_only_skip arg_actions [] bindings;
