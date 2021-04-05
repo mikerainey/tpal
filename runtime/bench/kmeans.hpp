@@ -515,7 +515,7 @@ float** kmeans_cilk(float **feature,    /* in: [npoints][nfeatures] */
 		      int    *membership) /* out: [npoints] */
 {
 
-  int      i, j, n=0, index, loop=0;
+  //  int      n=0, loop=0;
   int     *new_centers_len; /* [nclusters]: no. of points in each cluster */
   float  **clusters;   /* out: [nclusters][nfeatures] */
   float  **new_centers;     /* [nclusters][nfeatures] */
@@ -526,7 +526,7 @@ float** kmeans_cilk(float **feature,    /* in: [npoints][nfeatures] */
   /* allocate space for returning variable clusters[] */
   clusters    = (float**) malloc(nclusters *             sizeof(float*));
   clusters[0] = (float*)  malloc(nclusters * nfeatures * sizeof(float));
-  for (i=1; i<nclusters; i++)
+  for (int i=1; i<nclusters; i++)
     clusters[i] = clusters[i-1] + nfeatures;
 
   cilk::reducer_opadd<int>* partial_new_centers_len = new cilk::reducer_opadd<int>[nclusters];
@@ -535,15 +535,18 @@ float** kmeans_cilk(float **feature,    /* in: [npoints][nfeatures] */
     partial_new_centers[i] = new cilk::reducer_opadd<float>[nfeatures];
   }
 
-  /* randomly pick cluster centers */
-  for (i=0; i<nclusters; i++) {
-    //n = (int)rand() % npoints;
-    for (j=0; j<nfeatures; j++)
-      clusters[i][j] = feature[n][j];
-    n++;
+  {
+    int n = 0;
+    /* randomly pick cluster centers */
+    for (int i=0; i<nclusters; i++) {
+      //n = (int)rand() % npoints;
+      for (int j=0; j<nfeatures; j++)
+	clusters[i][j] = feature[n][j];
+      n++;
+    }
   }
 
-  for (i=0; i<npoints; i++)
+  for (int i=0; i<npoints; i++)
     membership[i] = -1;
 
   /* need to initialize new_centers_len and new_centers[0] to all 0 */
@@ -551,7 +554,7 @@ float** kmeans_cilk(float **feature,    /* in: [npoints][nfeatures] */
 
   new_centers    = (float**) malloc(nclusters *            sizeof(float*));
   new_centers[0] = (float*)  mycalloc(nclusters * nfeatures * sizeof(float));
-  for (i=1; i<nclusters; i++)
+  for (int i=1; i<nclusters; i++)
     new_centers[i] = new_centers[i-1] + nfeatures;
   
   do {
@@ -560,7 +563,7 @@ float** kmeans_cilk(float **feature,    /* in: [npoints][nfeatures] */
 
     cilk_for (int i=0; i<npoints; i++) {
       /* find the index of nestest cluster centers */
-      index = find_nearest_point(feature[i], nfeatures, clusters, nclusters);
+      int index = find_nearest_point(feature[i], nfeatures, clusters, nclusters);
       /* if membership changes, increase delta by 1 */
       if (membership[i] != index) delta += 1.0;
 
@@ -569,23 +572,23 @@ float** kmeans_cilk(float **feature,    /* in: [npoints][nfeatures] */
 
       /* update new cluster centers : sum of objects located within */
       partial_new_centers_len[index]++;
-      for (j=0; j<nfeatures; j++)          
+      for (int j=0; j<nfeatures; j++)          
 	partial_new_centers[index][j] += feature[i][j];
     }
 
     /* let the main thread perform the array reduction */
-    for (i=0; i<nclusters; i++) {
+    for (int i=0; i<nclusters; i++) {
       new_centers_len[i] += partial_new_centers_len[i].get_value();
       partial_new_centers_len[i].set_value(0);
-      for (j=0; j<nfeatures; j++) {
+      for (int j=0; j<nfeatures; j++) {
 	new_centers[i][j] += partial_new_centers[i][j].get_value();
 	partial_new_centers[i][j].set_value(0.0);
       }
     }
 
     /* replace old cluster centers with new_centers */
-    for (i=0; i<nclusters; i++) {
-      for (j=0; j<nfeatures; j++) {
+    for (int i=0; i<nclusters; i++) {
+      for (int j=0; j<nfeatures; j++) {
 	if (new_centers_len[i] > 0)
 	  clusters[i][j] = new_centers[i][j] / new_centers_len[i];
 	new_centers[i][j] = 0.0;   /* set back to 0 */
