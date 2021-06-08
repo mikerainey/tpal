@@ -1,4 +1,4 @@
-{ pkgs   ? import <nixpkgs> {},
+{ pkgs   ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/refs/tags/20.09.tar.gz") {}, #pkgs   ? import <nixpkgs> {},
   stdenv ? pkgs.stdenv,
   gcc ? pkgs.gcc7,
   R ? pkgs.R,

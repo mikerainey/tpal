@@ -1,4 +1,5 @@
-let pkgs = import <nixpkgs> {}; in
+#let pkgs = import <nixpkgs> {}; in
+let pkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/refs/tags/20.09.tar.gz") {}; in
 
 let mcslSrc = pkgs.fetchFromGitHub {
       owner  = "mikerainey";
@@ -15,8 +16,8 @@ let mcslSrc = pkgs.fetchFromGitHub {
     pbenchSrc = pkgs.fetchFromGitHub {
       owner  = "mikerainey";
       repo   = "pbench";
-      rev    = "1c90259b594b6612bc6b9973564e89c297ad17b3";
-      sha256 = "1440zavl3v74hcyg49h026vghhj1rv5lhfsb5rgfzmndfynzz7z0";
+      rev    = "38cfcfff1bc8bed077fae6a14c1dedfd68549a92";
+      sha256 = "0ymp5jmdm9572d4ahxzf5sy7icd9frchyc6nkp7yw31mmh8w99ff";
     };
     cilkRtsSrc = pkgs.fetchFromGitHub {
       owner  = "deepsea-inria";
@@ -33,7 +34,7 @@ in
   
   cmdline = "${cmdlineSrc}/script/default.nix";
 
-  cilk-plus-rts-with-stats = import "${cilkRtsSrc}/default.nix" { };
+  cilk-plus-rts-with-stats = import "${cilkRtsSrc}/default.nix" { pkgs = pkgs; };
 
   tpalrtsSrc = tpalrtsSrc;
 

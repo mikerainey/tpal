@@ -15,12 +15,12 @@ let
   # };
 
   mcslSrc = ../../../mcsl;
-  
+
   pbenchSrc = pkgs.fetchFromGitHub {
     owner  = "mikerainey";
     repo   = "pbench";
-    rev    = "1c90259b594b6612bc6b9973564e89c297ad17b3";
-    sha256 = "1440zavl3v74hcyg49h026vghhj1rv5lhfsb5rgfzmndfynzz7z0";
+    rev    = "38cfcfff1bc8bed077fae6a14c1dedfd68549a92";
+    sha256 = "0ymp5jmdm9572d4ahxzf5sy7icd9frchyc6nkp7yw31mmh8w99ff";
   };
 
   cilkRtsSrc = pkgs.fetchFromGitHub {
