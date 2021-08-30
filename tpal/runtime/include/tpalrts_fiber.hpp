@@ -69,7 +69,6 @@ private:
   arena_block_type* block = nullptr;
   
 public:
-
   fiber(const Function& body)
     : incounter(1), outedge(nullptr), body(body) { }
 
