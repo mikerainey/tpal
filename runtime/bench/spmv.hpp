@@ -737,9 +737,6 @@ auto csr_of_edgelist(edgelist_type& edges) {
 
 template <typename Gen_matrix>
 auto bench_pre_shared(promotable*, const Gen_matrix& gen_matrix) {
-  rollforward_table = {
-    #include "spmv_rollforward_map.hpp"    
-  };
   gen_matrix();
   x = (double*)malloc(sizeof(double) * nb_rows);
   y = (double*)malloc(sizeof(double) * nb_rows);

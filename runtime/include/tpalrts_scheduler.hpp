@@ -517,4 +517,41 @@ mcsl::perworker::array<int> papi_worker::event_set;
   
 #endif
 
+#ifdef TPALRTS_HBTIMER_KMOD
+
+extern "C" {
+#include <heartbeat.h>
+}
+
+class hbtimer_kmod_worker {
+public:
+
+  static
+  auto initialize(size_t nb_workers) { }
+
+  static
+  auto destroy() { }
+  
+  template <typename Body>
+  static
+  auto launch_worker_thread(size_t id, const Body& b) {
+    launch_interrupt_worker_thread(id, b,
+				   [=] {
+				     hb_init(id*4);
+				     hbtimer_init_tbl();
+				     hb_repeat(kappa_usec, nullptr);
+				   },
+				   [] { hb_exit(); });
+  }
+
+  using worker_exit_barrier = typename mcsl::minimal_worker::worker_exit_barrier;
+  
+  using termination_detection_type = mcsl::minimal_termination_detection;
+
+};
+
+
+  
+#endif
+  
 } // end namespace

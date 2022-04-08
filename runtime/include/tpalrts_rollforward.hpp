@@ -153,6 +153,22 @@ void heartbeat_interrupt_handler(int, siginfo_t*, void* uap) {
   try_to_initiate_rollforward(rollforward_table, rip);
 }
 
+#ifdef TPALRTS_HBTIMER_KMOD
+extern "C" {
+#include <heartbeat.h>
+}
+void hbtimer_init_tbl() {
+  std::vector<struct hb_rollforward> tbl1;
+  for (auto it : rollforward_table) {
+    struct hb_rollforward tmp;
+    tmp.from = (void*)it.first;
+    tmp.to = (void*)it.second;
+    tbl1.push_back(tmp);
+  }
+  hb_set_rollforwards(tbl1.data(), tbl1.size());
+}
+#endif
+
 #elif defined(MCSL_NAUTILUS)
 
 void heartbeat_interrupt_handler(excp_entry_t* e, void* priv) {
@@ -165,5 +181,5 @@ void heartbeat_interrupt_handler(excp_entry_t* e, void* priv) {
 }
   
 #endif
-  
+
 } // end namespace

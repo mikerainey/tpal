@@ -8,7 +8,8 @@
   gperftools ? pkgs.gperftools,
   papi ? pkgs.papi,
   cilk-plus-rts-with-stats ? sources.cilk-plus-rts-with-stats,
-  jemalloc ? pkgs.jemalloc450 # use jemalloc, unless this parameter equals null (for now, use v4.5.0, because 5.1.0 has a deadlock bug)
+  hbtimer-kmod ? import ../../../../heartbeat-linux { pkgs=pkgs; stdenv=stdenv; },
+  jemalloc ? pkgs.jemalloc # use jemalloc, unless this parameter equals null (for now, use v4.5.0, because 5.1.0 has a deadlock bug)
   # pviewSrc ? pkgs.fetchFromGitHub {
   #   owner  = "deepsea-inria";
   #   repo   = "pview";
@@ -25,7 +26,14 @@ stdenv.mkDerivation rec {
   buildInputs =
     [ hwloc gcc ]
     ++ (if jemalloc == null then [] else [ jemalloc ]);
-  
+
+  HBTIMER_KMOD_INCLUDE_PREFIX=
+    if hbtimer-kmod == null then "" else
+      "-I ${hbtimer-kmod}/include -DTPALRTS_HBTIMER_KMOD";
+  HBTIMER_KMOD_LINKER_FLAGS=
+    if hbtimer-kmod == null then "" else
+      "${hbtimer-kmod}/libhb.so";
+      
   shellHook =
     # let pviewExport =
     #   if pviewSrc == null then ""

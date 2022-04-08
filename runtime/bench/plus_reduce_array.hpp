@@ -122,9 +122,6 @@ double* a;
 double result = 0.0;
   
 auto bench_pre(promotable*) -> void {
-  rollforward_table = {
-    #include "plus_reduce_array_rollforward_map.hpp"
-  };
   a = (double*)malloc(sizeof(double)*nb_items);
   for (uint64_t i = 0; i < nb_items; i++) {
     a[i] = 1.0;

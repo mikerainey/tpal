@@ -128,6 +128,9 @@ void launch2(size_t nb_workers,
   d.add("interrupt_ping_thread", [&] {
     launch1<ping_thread_worker, ping_thread_interrupt>(nb_workers, bench_pre, bench_post, bench_body_interrupt);
   });
+  d.add("interrupt_hbtimer", [&] {
+    launch1<hbtimer_kmod_worker, mcsl::minimal_interrupt>(nb_workers, bench_pre, bench_post, bench_body_interrupt);
+  });
   d.add("interrupt_pthread", [&] {
     launch1<pthread_direct_worker, pthread_direct_interrupt>(nb_workers, bench_pre, bench_post, bench_body_interrupt);
   });

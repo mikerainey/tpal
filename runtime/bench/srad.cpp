@@ -6,6 +6,10 @@ namespace tpalrts {
 using namespace srad;
   
 void launch() {
+  rollforward_table = {
+    #include "srad_rollforward_map.hpp"
+  };
+
   rows = deepsea::cmdline::parse_or_default_long("rows", cols);
   cols = deepsea::cmdline::parse_or_default_long("cols", rows);
   using microbench_scheduler_type = mcsl::minimal_scheduler<stats, logging, mcsl::minimal_elastic, tpal_worker>;

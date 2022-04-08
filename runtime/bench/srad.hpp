@@ -318,9 +318,6 @@ void random_matrix(float *I, int rows, int cols){
 }
   
 auto bench_pre(promotable* p) {
-  rollforward_table = {
-    #include "srad_rollforward_map.hpp"
-  };
 
   r1   = 0;
   r2   = 31;
