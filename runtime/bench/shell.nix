@@ -8,7 +8,7 @@
   gperftools ? pkgs.gperftools,
   papi ? pkgs.papi,
   cilk-plus-rts-with-stats ? sources.cilk-plus-rts-with-stats,
-  hbtimer-kmod ? import ../../../../heartbeat-linux { pkgs=pkgs; stdenv=stdenv; },
+  hbtimer-kmod ? import ../../../heartbeat-linux { pkgs=pkgs; stdenv=stdenv; },
   jemalloc ? pkgs.jemalloc # use jemalloc, unless this parameter equals null (for now, use v4.5.0, because 5.1.0 has a deadlock bug)
   # pviewSrc ? pkgs.fetchFromGitHub {
   #   owner  = "deepsea-inria";

@@ -14,7 +14,8 @@
   cmdline ? import sources.cmdline {},
   mcsl ? import sources.mcsl {},
   cilk-plus-rts-with-stats ? sources.cilk-plus-rts-with-stats,
-  pbenchOcaml ? import sources.pbenchOcamlSrcs.pbenchOcaml { pbenchOcamlSrc = sources.pbenchOcamlSrcs.pbenchOcamlSrc; }
+  pbenchOcaml ? import sources.pbenchOcamlSrcs.pbenchOcaml { pbenchOcamlSrc = sources.pbenchOcamlSrcs.pbenchOcamlSrc; },
+  hbtimer-kmod ? import ../../../heartbeat-linux { pkgs=pkgs; stdenv=stdenv; },
 }:
 
 let benchDune =
@@ -52,6 +53,13 @@ stdenv.mkDerivation rec {
     '';
 
   enableParallelBuilding = true;
+
+  HBTIMER_KMOD_INCLUDE_PREFIX=
+    if hbtimer-kmod == null then "" else
+      "-I ${hbtimer-kmod}/include -DTPALRTS_HBTIMER_KMOD";
+  HBTIMER_KMOD_LINKER_FLAGS=
+    if hbtimer-kmod == null then "" else
+      "${hbtimer-kmod}/libhb.so";
   
   buildPhase =
     let

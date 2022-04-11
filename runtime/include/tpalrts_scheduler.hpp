@@ -517,8 +517,6 @@ mcsl::perworker::array<int> papi_worker::event_set;
   
 #endif
 
-#ifdef TPALRTS_HBTIMER_KMOD
-
 extern "C" {
 #include <heartbeat.h>
 }
@@ -537,7 +535,7 @@ public:
   auto launch_worker_thread(size_t id, const Body& b) {
     launch_interrupt_worker_thread(id, b,
 				   [=] {
-				     hb_init(id*4);
+				     hb_init(id*2);
 				     hbtimer_init_tbl();
 				     hb_repeat(kappa_usec, nullptr);
 				   },
@@ -549,9 +547,5 @@ public:
   using termination_detection_type = mcsl::minimal_termination_detection;
 
 };
-
-
-  
-#endif
   
 } // end namespace
