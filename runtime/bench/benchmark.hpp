@@ -150,6 +150,9 @@ void launch2(size_t nb_workers,
     launch1<papi_worker, mcsl::minimal_interrupt>(nb_workers, bench_pre, bench_post, bench_body_serial);
     papi_deinit();
   });
+  d.add("serial_interrupt_hbtimer", [&] {
+    launch1<hbtimer_kmod_worker, mcsl::minimal_interrupt>(nb_workers, bench_pre, bench_post, bench_body_serial);
+  });
   d.add("nopromote_interrupt", [&] {
     launch1<tpal_worker, mcsl::minimal_interrupt>(nb_workers, bench_pre, bench_post, bench_body_interrupt);
   });  

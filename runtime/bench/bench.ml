@@ -45,20 +45,24 @@ let arg_report_percent_diff = XCmd.mem_flag "report_percent_diff"
 let serial_interrupt_ping_thread = "serial_interrupt_ping_thread"
 let serial_interrupt_papi = "serial_interrupt_papi"
 let serial_interrupt_pthread = "serial_interrupt_pthread"
+let serial_interrupt_hbtimer = "serial_interrupt_hbtimer"
 
 let serial_interrupts =
   [serial_interrupt_ping_thread;
    serial_interrupt_papi;
-   serial_interrupt_pthread;]
+   serial_interrupt_pthread;
+   serial_interrupt_hbtimer;]
 
 let interrupt_ping_thread = "interrupt_ping_thread"
 let interrupt_papi = "interrupt_papi"
 let interrupt_pthread = "interrupt_pthread"
+let interrupt_hbtimer = "interrupt_hbtimer"
 
 let interrupts =
   [interrupt_ping_thread;
    interrupt_papi;
-   interrupt_pthread;]
+   interrupt_pthread;
+   interrupt_hbtimer]
 
 let on_iit_or_nwu_machine =
   match Unix.gethostname () with
@@ -159,6 +163,7 @@ let formatter =
                                          else if n = "interrupt_ping_thread" then "HW interrupt (pthread_kill)"
                                          else if n = "interrupt_pthread" then "HW interrupt (direct to pthread)"
                                          else if n = "interrupt_papi" then "HW interrupt (papi)"
+                                         else if n = "interrupt_hbtimer" then "HW interrupt (hbtimer)"
                                          else if n = "manual" then "Manual"
                                          else n));
          ("kappa_usec", Format_custom (fun n -> Printf.sprintf "heartbeat=%s usec" n));
@@ -373,14 +378,16 @@ let pretty_name_of_interrupt_config n =
   if n = interrupt_ping_thread then "INT-PingThread"
   else if n = interrupt_pthread then "INT-Pthread"
   else if n = interrupt_papi then "INT-Papi"
+  else if n = interrupt_hbtimer then "INT-HBtimer"
   else if n = serial_interrupt_ping_thread then "INT-PingThread"
   else if n = serial_interrupt_pthread then "INT-Pthread"
   else if n = serial_interrupt_papi then "INT-Papi"
+  else if n = serial_interrupt_hbtimer then "INT-HBtimer"
   else if n = "nopromote_interrupt" then "INT-NP"
   else "<unknown>"
 
 let is_only_serial s =
-  (s = serial_interrupt_ping_thread || s = serial_interrupt_pthread || s = serial_interrupt_papi ||
+  (s = serial_interrupt_ping_thread || s = serial_interrupt_pthread || s = serial_interrupt_papi || s = serial_interrupt_hbtimer ||
    s = nopromote_interrupt)
 
 let mk_benchmark_descr bd =
@@ -1056,7 +1063,7 @@ let name = "vary_kappa"
 let make() =
   build "." [prog_heartbeat; prog_cilk;] arg_virtual_build
 
-let kappas_usec = [20;40;60;80;100;]
+let kappas_usec = [80;100;200;300;400]
                 
 let mk_kappas_usec =
   mk_list int "kappa_usec" kappas_usec
@@ -1086,9 +1093,9 @@ let plot () =
          X_titles_dir Vertical;
          Y_axis [Axis.Lower (Some 0.)] ]);
       Formatter formatter;
-      Charts mk_unit;
-      Series mk_kappas_usec;
-      X (mk_all (mk_runs_of_bd arg_proc) benchmarks);
+      Charts (mk_all (mk_runs_of_bd arg_proc) benchmarks);
+      Series mk_interrupt_configs;
+      X mk_kappas_usec;
       Input (file_results name);
       Output (file_plots name);
       Y_label "exectime";
