@@ -6,10 +6,6 @@ namespace tpalrts {
 using namespace plus_reduce_array;
   
 void launch() {
-  rollforward_table = {
-    #include "plus_reduce_array_rollforward_map.hpp"
-  };
-
   plus_reduce_array::nb_items = deepsea::cmdline::parse_or_default_long("n", plus_reduce_array::nb_items);
   plus_reduce_array_manual_T = deepsea::cmdline::parse_or_default_int("plus_reduce_array_manual_T", plus_reduce_array_manual_T);
   using microbench_scheduler_type = mcsl::minimal_scheduler<stats, logging, mcsl::minimal_elastic, tpal_worker>;

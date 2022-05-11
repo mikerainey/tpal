@@ -25,8 +25,14 @@ DBG_CILK_PREFIX=$(DBG_PREFIX) $(CILK_PREFIX)
 %.opt: %.cpp $(INCLUDE_FILES)
 	$(CPP) $(OPT_PREFIX) $(basename $<)_manual.s -o $@ $< $(JEMALLOC) 
 
-%.sta: %.cpp $(INCLUDE_FILES)
-	$(CPP) $(STA_PREFIX) $(basename $<)_manual.s -o $@ $< $(JEMALLOC) 
+%.sta.s: %.cpp $(INCLUDE_FILES)
+	$(CPP) $(STA_PREFIX) -S $< $(JEMALLOC)
+	mv $(basename $<).s $@
+	python3 $(HBTIMER_KMOD)/rf_compiler/transform.py $@ $(basename $<).sta.rf.s
+
+%.sta: %.sta.rf.s
+	$(CPP) $(STA_PREFIX) $(HBTIMER_KMOD)/rf_compiler/entry.S -o $@ $< $(JEMALLOC) 
+
 
 %.log: %.cpp $(INCLUDE_FILES)
 	$(CPP) $(LOG_PREFIX) $(basename $<)_manual.s -o $@ $< $(JEMALLOC) 

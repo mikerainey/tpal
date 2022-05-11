@@ -9,6 +9,7 @@
   papi ? pkgs.papi,
   cilk-plus-rts-with-stats ? sources.cilk-plus-rts-with-stats,
   hbtimer-kmod ? import ../../../heartbeat-linux { pkgs=pkgs; stdenv=stdenv; },
+  python ? pkgs.python38,
   jemalloc ? pkgs.jemalloc # use jemalloc, unless this parameter equals null (for now, use v4.5.0, because 5.1.0 has a deadlock bug)
   # pviewSrc ? pkgs.fetchFromGitHub {
   #   owner  = "deepsea-inria";
@@ -24,12 +25,15 @@ stdenv.mkDerivation rec {
   src = ./.;
 
   buildInputs =
-    [ hwloc gcc ]
+    [ hwloc gcc python ]
     ++ (if jemalloc == null then [] else [ jemalloc ]);
 
   HBTIMER_KMOD_INCLUDE_PREFIX=
     if hbtimer-kmod == null then "" else
       "-I ${hbtimer-kmod}/include -DTPALRTS_HBTIMER_KMOD";
+  HBTIMER_KMOD=
+    if hbtimer-kmod == null then "" else
+      "${hbtimer-kmod}";
   HBTIMER_KMOD_LINKER_FLAGS=
     if hbtimer-kmod == null then "" else
       "${hbtimer-kmod}/libhb.so";

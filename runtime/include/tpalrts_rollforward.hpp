@@ -51,123 +51,49 @@ using register_type = greg_t;
 using register_type = ulong_t*;
 #endif
 
-using rollforward_edge_type = std::pair<register_type, register_type>;
-
-using rollforward_lookup_table_type = std::vector<rollforward_edge_type>;
-
-auto rollforward_edge_less = [] (const rollforward_edge_type& e1, const rollforward_edge_type& e2) {
-  return e1.first < e2.first;
-};
-
-template <typename L>
-auto mk_rollforward_entry(L src, L dst) -> rollforward_edge_type {
-  return std::make_pair((register_type)src, (register_type)dst);
+extern "C" {
+#include <heartbeat.h>
 }
 
-#if !defined(NDEBUG) || defined(MCSL_NAUTILUS)
-auto reference_lookup_rollforward_entry(const rollforward_lookup_table_type& t, register_type src)
-  -> register_type {
-  for (const auto& p : t) {
-    if (src == p.first) {
-      return p.second;
-    }
-  }
-  return src;
-}
-#endif
+extern
+uint64_t rollforward_table_size;
+extern
+struct hb_rollforward rollforward_table[];
+extern
+struct hb_rollforward rollback_table[];
 
-// returns the entry dst, if (src, dst) is in the rollforward table t, and src otherwise
-static inline
-auto lookup_rollforward_entry(const rollforward_lookup_table_type& t, register_type src)
-  -> register_type {
-  auto dst = src;
-  size_t n = t.size();
-  if (n == 0) {
-    return src;
-  }
-  static constexpr
-  int64_t not_found = -1;
-  int64_t k;
+void try_to_initiate_rollforward(void** rip) {
+  void* ra_src = *rip;
+  void* ra_dst = nullptr;
+  // Binary search over the rollbackwards
   {
-    int64_t i = 0, j = (int64_t)n - 1;
+    int64_t i = 0, j = (int64_t)rollforward_table_size - 1;
+    int64_t k;
     while (i <= j) {
       k = i + ((j - i) / 2);
-      if (t[k].first == src) {
-	goto exit;
-      } else if (t[k].first < src) {
+      if ((uint64_t)rollforward_table[k].from == (uint64_t)ra_src) {
+	ra_dst = rollforward_table[k].to;
+	break;
+      } else if ((uint64_t)rollforward_table[k].from < (uint64_t)ra_src) {
 	i = k + 1;
       } else {
 	j = k - 1;
       }
     }
-    k = not_found;
   }
-  exit:
-  if (k != not_found) {
-    dst = t[k].second;
-  }
-  //assert(dst == reference_lookup_rollforward_entry(t, src));
-  return dst;
-}
-  
-// returns the entry src, if (src, dst) is in the rollforward table t, and dst otherwise
-auto reverse_lookup_rollforward_entry(const rollforward_lookup_table_type& t, register_type dst)
-  -> register_type {
-  for (const auto& p : t) {
-    if (dst == p.second) {
-      return p.first;
-    }
-  }
-  return dst;
-}
-  
-template <class T>
-void try_to_initiate_rollforward(const T& t, register_type* rip) {
-  auto ip = *rip;
-  auto dst = lookup_rollforward_entry(t, ip);
-  if (dst != ip) {
-    *rip = dst;
+  if (ra_dst != NULL) {
+      *rip = ra_dst;
   }
 }
 
-rollforward_lookup_table_type rollforward_table;
-
-auto reverse_lookup_rollforward_entry(void* dst) -> void* {
-  return (void*)reverse_lookup_rollforward_entry(rollforward_table, (register_type)dst);
-}
-
-auto initialize_rollfoward_table() {
-  std::sort(rollforward_table.begin(), rollforward_table.end(), rollforward_edge_less);
-}
-
-auto destroy_rollfoward_table() {
-  rollforward_table.clear();
-}
-  
 #if defined(MCSL_LINUX)
 
 void heartbeat_interrupt_handler(int, siginfo_t*, void* uap) {
   stats::increment(tpalrts::stats_configuration::nb_heartbeats);
   mcontext_t* mctx = &((ucontext_t *)uap)->uc_mcontext;
-  register_type* rip = &mctx->gregs[16];
-  try_to_initiate_rollforward(rollforward_table, rip);
+  void** rip = (void**)&mctx->gregs[16];
+  try_to_initiate_rollforward(rip);
 }
-
-#ifdef TPALRTS_HBTIMER_KMOD
-extern "C" {
-#include <heartbeat.h>
-}
-void hbtimer_init_tbl() {
-  std::vector<struct hb_rollforward> tbl1;
-  for (auto it : rollforward_table) {
-    struct hb_rollforward tmp;
-    tmp.from = (void*)it.first;
-    tmp.to = (void*)it.second;
-    tbl1.push_back(tmp);
-  }
-  hb_set_rollforwards(tbl1.data(), tbl1.size());
-}
-#endif
 
 #elif defined(MCSL_NAUTILUS)
 
@@ -177,7 +103,7 @@ void heartbeat_interrupt_handler(excp_entry_t* e, void* priv) {
   stats::increment(tpalrts::stats_configuration::nb_heartbeats, id > 0 ? id - 1 : id);
 #endif
   struct nk_regs* r = (struct nk_regs*)((char*)e - 128);
-  try_to_initiate_rollforward(rollforward_table, (register_type*)&(r->rip));
+  try_to_initiate_rollforward((void**)&(r->rip));
 }
   
 #endif

@@ -10,7 +10,6 @@
 #include "mcsl_util.hpp"
 
 #include "tpalrts_fiber.hpp"
-#include "plus_reduce_array_rollforward_decls.hpp"
 
 /*---------------------------------------------------------------------*/
 /* Manual version */
@@ -69,12 +68,50 @@ public:
 /*---------------------------------------------------------------------*/
 /* Hardware-interrupt version */
 
-void plus_reduce_array_interrupt(double* a, uint64_t lo, uint64_t hi, double r, double* dst, void* p);
+double plus_reduce_array_serial(double* a, uint64_t lo, uint64_t hi) {
+  double r = 0.0;
+  for (uint64_t i = lo; i != hi; i++) {
+    r += a[i];
+  }
+  return r;
+}
 
-int loop_handler(double* a, uint64_t lo, uint64_t hi, double r, double* dst, void* _p) {
+#define unlikely(x)    __builtin_expect(!!(x), 0)
+
+#define D 64
+
+void plus_reduce_array_interrupt(double* a, uint64_t lo, uint64_t hi, uint64_t r, double* dst, void* p);
+
+void __attribute__((preserve_all, noinline)) __rf_handle_plus_reduce_array(double* a, uint64_t lo, uint64_t hi, double r, double* dst, bool& promoted, void* _p) {
+  {
+    void* ra_dst = __builtin_return_address(0);
+    void* ra_src = NULL;
+    // Binary search over the rollbackwards
+    {
+      int64_t i = 0, j = (int64_t)tpalrts::rollforward_table_size - 1;
+      int64_t k;
+      while (i <= j) {
+	k = i + ((j - i) / 2);
+	if ((uint64_t)tpalrts::rollback_table[k].from == (uint64_t)ra_dst) {
+	  ra_src = tpalrts::rollback_table[k].to;
+	  break;
+	} else if ((uint64_t)tpalrts::rollback_table[k].from < (uint64_t)ra_dst) {
+	  i = k + 1;
+	} else {
+	  j = k - 1;
+	}
+      }
+    }
+    if (ra_src != NULL) {
+      void* fa = __builtin_frame_address(0);
+      void** rap = (void**)((char*)fa + 8);
+      *rap = ra_src;
+    }
+  }
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
   if ((hi - lo) <= 1) {
-    return 0;
+    promoted = false;
+    return;
   }
   auto mid = (lo + hi) / 2;
   using dst_rec_type = std::pair<double, double>;
@@ -89,7 +126,31 @@ int loop_handler(double* a, uint64_t lo, uint64_t hi, double r, double* dst, voi
     *dst = dst_rec->first + dst_rec->second;
     decr_arena_block(dst_blk);
   });
-  return 1;
+  promoted = true;
+}
+
+void plus_reduce_array_interrupt(double* a, uint64_t lo, uint64_t hi, uint64_t r, double* dst, void* p) {
+  if (! (lo < hi)) {
+    goto exit;
+  }
+  for (; ; ) {
+    uint64_t lo2 = lo;
+    uint64_t hi2 = std::min(lo + D, hi);
+    for (; lo2 < hi2; lo2++) {
+      r += a[lo2];
+    }
+    lo = lo2;
+    if (! (lo < hi)) {
+      break;
+    }
+    bool promoted = false;
+    __rf_handle_plus_reduce_array(a, lo, hi, r, dst, promoted, p);
+    if (unlikely(promoted)) {
+      return;
+    }
+  }
+ exit:
+  *dst = r;
 }
 
 /*---------------------------------------------------------------------*/

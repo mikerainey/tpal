@@ -516,11 +516,7 @@ public:
 mcsl::perworker::array<int> papi_worker::event_set;
   
 #endif
-
-extern "C" {
-#include <heartbeat.h>
-}
-
+  
 class hbtimer_kmod_worker {
 public:
 
@@ -535,8 +531,8 @@ public:
   auto launch_worker_thread(size_t id, const Body& b) {
     launch_interrupt_worker_thread(id, b,
 				   [=] {
-				     hb_init(id*2);
-				     hbtimer_init_tbl();
+				     hb_init();
+				     hb_set_rollforwards(&rollforward_table[0], rollforward_table_size);
 				     hb_repeat(kappa_usec, nullptr);
 				   },
 				   [] { hb_exit(); });
