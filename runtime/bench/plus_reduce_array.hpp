@@ -88,14 +88,14 @@ void __attribute__((preserve_all, noinline)) __rf_handle_plus_reduce_array(doubl
     void* ra_src = NULL;
     // Binary search over the rollbackwards
     {
-      int64_t i = 0, j = (int64_t)tpalrts::rollforward_table_size - 1;
+      int64_t i = 0, j = (int64_t)rollforward_table_size - 1;
       int64_t k;
       while (i <= j) {
 	k = i + ((j - i) / 2);
-	if ((uint64_t)tpalrts::rollback_table[k].from == (uint64_t)ra_dst) {
-	  ra_src = tpalrts::rollback_table[k].to;
+	if ((uint64_t)rollback_table[k].from == (uint64_t)ra_dst) {
+	  ra_src = rollback_table[k].to;
 	  break;
-	} else if ((uint64_t)tpalrts::rollback_table[k].from < (uint64_t)ra_dst) {
+	} else if ((uint64_t)rollback_table[k].from < (uint64_t)ra_dst) {
 	  i = k + 1;
 	} else {
 	  j = k - 1;

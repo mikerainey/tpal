@@ -40,17 +40,6 @@ struct nk_regs {
 };
 #endif
 
-namespace tpalrts {
-
-/*---------------------------------------------------------------------*/
-/* Rollforward table */
-
-#if defined(MCSL_LINUX)
-using register_type = greg_t;
-#elif defined(MCSL_NAUTILUS)
-using register_type = ulong_t*;
-#endif
-
 extern "C" {
 #include <heartbeat.h>
 }
@@ -61,6 +50,17 @@ extern
 struct hb_rollforward rollforward_table[];
 extern
 struct hb_rollforward rollback_table[];
+
+namespace tpalrts {
+
+/*---------------------------------------------------------------------*/
+/* Rollforward table */
+
+#if defined(MCSL_LINUX)
+using register_type = greg_t;
+#elif defined(MCSL_NAUTILUS)
+using register_type = ulong_t*;
+#endif
 
 void try_to_initiate_rollforward(void** rip) {
   void* ra_src = *rip;
