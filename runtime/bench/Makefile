@@ -9,7 +9,7 @@ endif
 
 INCLUDE_FILES=$(wildcard $(CMDLINE_PATH)/*.hpp) $(wildcard $(MCSL_PATH)/*.hpp) $(wildcard ../include/*.hpp)  $(wildcard ./*.hpp)
 
-INCLUDE_PREFIX=-I $(CMDLINE_PATH) -I $(MCSL_PATH) -DMCSL_LINUX -DTPALRTS_LINUX -I ../include/ $(HWLOC_INCLUDE_PREFIX) -I $(PAPI_PREFIX)/include -Wno-write-strings -Wno-format-zero-length $(HBTIMER_KMOD_INCLUDE_PREFIX)
+INCLUDE_PREFIX=-I $(CMDLINE_PATH) -I $(MCSL_PATH) -fno-stack-protector -DMCSL_LINUX -DTPALRTS_LINUX -I ../include/ $(HWLOC_INCLUDE_PREFIX) -I $(PAPI_PREFIX)/include -Wno-write-strings -Wno-format-zero-length $(HBTIMER_KMOD_INCLUDE_PREFIX)
 
 LINKER_PREFIX=-pthread $(HWLOC_LIBRARY_PREFIX) -lrt -L $(PAPI_PREFIX)/lib -lpapi -ldl $(HBTIMER_KMOD_LINKER_FLAGS)
 
