@@ -46,6 +46,7 @@ extern "C" {
 
 extern
 uint64_t rollforward_table_size;
+uint64_t rollback_table_size;
 extern
 struct hb_rollforward rollforward_table[];
 extern
@@ -65,8 +66,14 @@ using register_type = ulong_t*;
 void try_to_initiate_rollforward(void** rip) {
   void* ra_src = *rip;
   void* ra_dst = nullptr;
-  // Binary search over the rollbackwards
-  {
+  for (uint64_t i = 0; i < rollforward_table_size; i++) {
+    if (rollforward_table[i].from == ra_src) {
+      ra_dst = rollforward_table[i].to;
+      break;
+    }
+  }
+  // Binary search over the rollforward keys
+  /*  {
     int64_t i = 0, j = (int64_t)rollforward_table_size - 1;
     int64_t k;
     while (i <= j) {
@@ -80,9 +87,9 @@ void try_to_initiate_rollforward(void** rip) {
 	j = k - 1;
       }
     }
-  }
+    } */
   if (ra_dst != NULL) {
-      *rip = ra_dst;
+    *rip = ra_dst;
   }
 }
 

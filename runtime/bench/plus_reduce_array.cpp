@@ -16,7 +16,14 @@ void launch() {
 
 } // end namespace
 
+int sorter(const void* v1,const void* v2) {
+  return *((uint64_t*)v1)-*((uint64_t*)v2);
+}
+
 int main() {
+  printf("sz=%lu %lu\n",rollforward_table_size, rollback_table_size);
+  qsort(rollforward_table, rollforward_table_size, 16, sorter);
+  qsort(rollback_table, rollforward_table_size, 16, sorter);
   tpalrts::launch();
   return 0;
 }
