@@ -83,12 +83,7 @@ double plus_reduce_array_serial(double* a, uint64_t lo, uint64_t hi) {
 
 void plus_reduce_array_interrupt(double* a, uint64_t lo, uint64_t hi, uint64_t r, double* dst, void* p);
 
-volatile int bar = 0;
-void __attribute__((noinline)) myfoo() {
-  //  printf("foo\n");
-  bar++;
-}
-
+/*
 void dump_table() {
   int fd = open("rf.bin", O_WRONLY|O_CREAT, 0666);
   int n = write(fd,rollforward_table,rollforward_table_size*16);
@@ -98,10 +93,9 @@ void dump_table() {
   n = write(fd,rollback_table,rollforward_table_size*16);
   close(fd);
   assert(n == rollforward_table_size*16);
-}
+  }*/
 
 void __attribute__((preserve_all, noinline)) __rf_handle_plus_reduce_array(double* a, uint64_t lo, uint64_t hi, double r, double* dst, bool& promoted, void* _p) {
-      myfoo();
   tpalrts::promotable* p = (tpalrts::promotable*)_p;
   if ((hi - lo) <= 1) {
     promoted = false;
@@ -123,35 +117,41 @@ void __attribute__((preserve_all, noinline)) __rf_handle_plus_reduce_array(doubl
   }
   void* ra_dst = __builtin_return_address(0);
   void* ra_src = NULL;
-  for (uint64_t i = 0; i < rollback_table_size; i++) {
-    if (rollback_table[i].from == ra_dst) {
-      ra_src = rollback_table[i].to;
-      break;
+  // Binary search over the rollbackwards
+  {
+    int64_t i = 0, j = (int64_t)rollforward_table_size - 1;
+    int64_t k;
+    while (i <= j) {
+      k = i + ((j - i) / 2);
+      if ((uint64_t)rollback_table[k].from == (uint64_t)ra_dst) {
+	ra_src = rollback_table[k].to;
+	break;
+      } else if ((uint64_t)rollback_table[k].from < (uint64_t)ra_dst) {
+	i = k + 1;
+      } else {
+	j = k - 1;
+      }
     }
   }
-    // Binary search over the rollbackwards
-    /*
-    {
-      int64_t i = 0, j = (int64_t)rollforward_table_size - 1;
-      int64_t k;
-      while (i <= j) {
-	k = i + ((j - i) / 2);
-	if ((uint64_t)rollback_table[k].from == (uint64_t)ra_dst) {
-	  ra_src = rollback_table[k].to;
-	  break;
-	} else if ((uint64_t)rollback_table[k].from < (uint64_t)ra_dst) {
-	  i = k + 1;
-	} else {
-	  j = k - 1;
-	}
-	} */
   if (ra_src != NULL) {
     void* fa = __builtin_frame_address(0);
     void** rap = (void**)((char*)fa + 8);
     *rap = ra_src;
   } else {
-    printf("oops! %lx\n\n",ra_dst);
-    dump_table();
+    printf("oops! %lx %lu\n\n",ra_dst, rollback_table_size);
+
+    
+    for (uint64_t i = 0; i < rollback_table_size; i++) {
+      if (rollforward_table[i].from == ra_dst) {
+	ra_src = rollforward_table[i].to;
+	break;
+      }
+    }
+
+    if (ra_src == NULL) {
+      printf("found no entry in rollforward table!\n");
+    }
+    //    dump_table();
     exit(1);
   }
 }
@@ -237,6 +237,7 @@ auto rf_well_formed_check() {
     }
     rff1 = rff2;
   }
+  //  printf("passed rf table checks\n");
 }
   
 auto bench_pre(promotable*) -> void {
