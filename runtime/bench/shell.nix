@@ -10,6 +10,7 @@
   cilk-plus-rts-with-stats ? sources.cilk-plus-rts-with-stats,
   hbtimer-kmod ? import ../../../heartbeat-linux { pkgs=pkgs; stdenv=stdenv; },
   python ? pkgs.python38,
+  perl ? pkgs.perl,
   jemalloc ? pkgs.jemalloc # use jemalloc, unless this parameter equals null (for now, use v4.5.0, because 5.1.0 has a deadlock bug)
   # pviewSrc ? pkgs.fetchFromGitHub {
   #   owner  = "deepsea-inria";
@@ -25,7 +26,7 @@ stdenv.mkDerivation rec {
   src = ./.;
 
   buildInputs =
-    [ hwloc gcc python ]
+    [ hwloc gcc python perl ]
     ++ (if jemalloc == null then [] else [ jemalloc ]);
 
   HBTIMER_KMOD_INCLUDE_PREFIX=

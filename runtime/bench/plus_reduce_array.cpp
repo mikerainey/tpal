@@ -24,5 +24,6 @@ int main() {
   qsort(rollforward_table, rollforward_table_size, 16, sorter);
   qsort(rollback_table, rollforward_table_size, 16, sorter);
   tpalrts::launch();
+  //  printf("result=%f\n",plus_reduce_array::result);
   return 0;
 }
