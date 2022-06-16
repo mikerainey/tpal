@@ -81,7 +81,7 @@ double plus_reduce_array_serial(double* a, uint64_t lo, uint64_t hi) {
 
 #define D 64
 
-void plus_reduce_array_interrupt(double* a, uint64_t lo, uint64_t hi, uint64_t r, double* dst, void* p);
+void plus_reduce_array_interrupt(double* a, uint64_t lo, uint64_t hi, double r, double* dst, void* p);
 
 /*
 void dump_table() {
@@ -156,7 +156,7 @@ void __attribute__((preserve_all, noinline)) __rf_handle_plus_reduce_array(doubl
   }
 }
 
-void plus_reduce_array_interrupt(double* a, uint64_t lo, uint64_t hi, uint64_t r, double* dst, void* p) {
+void plus_reduce_array_interrupt(double* a, uint64_t lo, uint64_t hi, double r, double* dst, void* p) {
   if (! (lo < hi)) {
     goto exit;
   }
